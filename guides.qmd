@@ -1,0 +1,22 @@
+---
+title: "Methods guides"
+listing: 
+  - id: getting-started
+    contents: "guides/getting-started/*_en.qmd"
+    type: grid
+    sort-ui: false
+  - id: planning
+    contents: "guides/planning/*_en.qmd"
+    type: grid
+    sort-ui: false
+---
+
+## Getting started 
+
+:::{#getting-started}
+:::
+
+## Planning research and evaluations
+
+:::{#planning}
+:::
