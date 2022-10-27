@@ -54,19 +54,15 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
         
-      - name: Build site
-        run: quarto::quarto_render()
-        shell: Rscript {0}
-        
-      - name: Dir
-        run: |
-          dir
-      - name: Deploy 🚀
-        # only deploy when push to main
-        if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4
+      # - name: Build site
+      #   run: quarto::quarto_render()
+      #   shell: Rscript {0}
+      
+      
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
         with:
-          # The branch the action should deploy to.
-          branch: gh-pages
-          # The folder the action should deploy. Adapt if you changed in Quarto config
-          folder: _site
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      

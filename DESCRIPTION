@@ -1,4 +1,4 @@
 Package: methods
 Title: EGAP methods resources
 Version: 0.0.1
-Suggests: tidyverse, ri2, quarto
+Suggests: tidyverse, ri2, quarto, DeclareDesign
