@@ -2,9 +2,12 @@
   {
     "listing": "/guides.html",
     "items": [
+      "/guides/getting-started/eval_conversations_en.html",
       "/guides/getting-started/causal-inference_en.html",
       "/guides/getting-started/adaptive_en.html",
       "/guides/getting-started/covariates_en.html",
+      "/guides/getting-started/design_en.html",
+      "/guides/getting-started/effect-types_en.html",
       "/guides/planning/power_en.html"
     ]
   }
