@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.247">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Peter van der Windt">
+
+<title>EGAP Learning - 10 Things You Need to Know About the Local Average Treatment Effect</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">EGAP Learning</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html">
+ <span class="menu-text">Methods guides</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#what-the-late-is" id="toc-what-the-late-is" class="nav-link" data-scroll-target="#what-the-late-is">1 What the LATE is</a></li>
+  <li><a href="#with-one-sided-noncompliance-you-need-to-satisfy-an-exclusion-restriction-to-estimate-the-late" id="toc-with-one-sided-noncompliance-you-need-to-satisfy-an-exclusion-restriction-to-estimate-the-late" class="nav-link" data-scroll-target="#with-one-sided-noncompliance-you-need-to-satisfy-an-exclusion-restriction-to-estimate-the-late">2 With one-sided noncompliance you need to satisfy an exclusion restriction to estimate the LATE</a></li>
+  <li><a href="#with-two-sided-noncompliance-the-late-can-be-estimated-assuming-both-the-exclusion-restriction-and-a-no-defiers-assumption" id="toc-with-two-sided-noncompliance-the-late-can-be-estimated-assuming-both-the-exclusion-restriction-and-a-no-defiers-assumption" class="nav-link" data-scroll-target="#with-two-sided-noncompliance-the-late-can-be-estimated-assuming-both-the-exclusion-restriction-and-a-no-defiers-assumption">3 With two-sided noncompliance the LATE can be estimated assuming both the exclusion restriction and a “no defiers” assumption</a></li>
+  <li><a href="#you-can-estimate-the-late-using-an-instrumental-variables-approach" id="toc-you-can-estimate-the-late-using-an-instrumental-variables-approach" class="nav-link" data-scroll-target="#you-can-estimate-the-late-using-an-instrumental-variables-approach">4 You can estimate the LATE using an instrumental variables approach</a></li>
+  <li><a href="#how-to-conduct-statistical-inference-about-the-late" id="toc-how-to-conduct-statistical-inference-about-the-late" class="nav-link" data-scroll-target="#how-to-conduct-statistical-inference-about-the-late">5 How to conduct statistical inference about the LATE</a></li>
+  <li><a href="#the-late-only-reflects-treatment-effects-among-compliers" id="toc-the-late-only-reflects-treatment-effects-among-compliers" class="nav-link" data-scroll-target="#the-late-only-reflects-treatment-effects-among-compliers">6 The LATE only reflects treatment effects among compliers</a></li>
+  <li><a href="#the-late-estimate-is-always-larger-than-the-itt-estimate" id="toc-the-late-estimate-is-always-larger-than-the-itt-estimate" class="nav-link" data-scroll-target="#the-late-estimate-is-always-larger-than-the-itt-estimate">7 The LATE estimate is always larger than the ITT estimate</a></li>
+  <li><a href="#the-late-is-an-important-estimand-in-encouragement-designs-and-in-downstream-experiments" id="toc-the-late-is-an-important-estimand-in-encouragement-designs-and-in-downstream-experiments" class="nav-link" data-scroll-target="#the-late-is-an-important-estimand-in-encouragement-designs-and-in-downstream-experiments">8 The LATE is an important estimand in “encouragement” designs and in downstream experiments</a></li>
+  <li><a href="#you-can-use-a-placebo-controlled-design-to-identify-the-late" id="toc-you-can-use-a-placebo-controlled-design-to-identify-the-late" class="nav-link" data-scroll-target="#you-can-use-a-placebo-controlled-design-to-identify-the-late">9 You can use a placebo-controlled design to identify the LATE</a></li>
+  <li><a href="#addressing-partial-compliance-can-be-complicated" id="toc-addressing-partial-compliance-can-be-complicated" class="nav-link" data-scroll-target="#addressing-partial-compliance-can-be-complicated">10 Addressing partial compliance can be complicated</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 Things You Need to Know About the Local Average Treatment Effect</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Peter van der Windt </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>Sometimes a treatment or a program is delivered but for some reason or another only some individuals or groups actually take the treatment. In this case it can be hard to estimate treatment effects for the whole population. For example maybe people for whom the treatment would have had a big effect decided not to take up the treatment. In these cases it is still possible to estimate what’s called the “Local Average Treatment Effect,” or LATE. This guide<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> discusses the LATE: what it is, how to estimate it, and how to interpret it.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</section>
+<section id="what-the-late-is" class="level1">
+<h1>1 What the LATE is</h1>
+<p>When subjects do not receive the treatment to which they were assigned, the experimenter faces a “noncompliance” problem. Some subjects may need the treatment so badly that they will always take up treatment, irrespective of whether they are assigned to the treatment or to the control group. These are called “Always-Takers”. Other subjects may not take the treatment even if they are assigned to the treatment group: the “Never-Takers”. Some subjects are “Compliers”. These are the subjects that do what they are supposed to do: they are treated when assigned to the treatment group, and they are not treated when they are assigned to the control group. Finally, some subjects do the exact opposite of what they are supposed to do. They are called “Defiers”. Table 1 shows these four different types of subjects in the population.</p>
+<p><img src="figs/Table1pvdw.png" class="img-fluid"></p>
+<p>Noncompliance can make it impossible to estimate the average treatment effect (ATE) for the population. For example, say that in a population of 200, 100 people are randomly assigned to treatment and we find that only 80 people are actually treated. What is the impact of the treatment? One method to answer this question is simply to ignore the noncompliance and compare the outcome in the treatment (100 people) and control (100 people) groups. This method estimates the average intention-to-treat effect (ITT). (See our <a href="https://egap.org/resource/10-types-of-treatment-effect-you-should-know-about/">guide on different kinds of treatment effects</a> for more on the ITT.) While informative, this method does not give a measure of the effect of the treatment itself. Another approach would be to compare the 120 really-untreated and 80 really-treated subjects. Doing so, however, might give you biased estimates. The reason is that the 20 subjects that did not comply with their assignment are likely to be a nonrandom subset of those that were assigned to treatment.</p>
+<p>So what now? In some cases it is possible to estimate the “Local Average Treatment Effect” (LATE), also known as the “Complier Average Causal Effect” (CACE). The LATE is the average treatment effect for the Compliers. Under assumptions discussed below, the LATE equals the ITT effect divided by the share of compliers in the population.</p>
+</section>
+<section id="with-one-sided-noncompliance-you-need-to-satisfy-an-exclusion-restriction-to-estimate-the-late" class="level1">
+<h1>2 With one-sided noncompliance you need to satisfy an exclusion restriction to estimate the LATE</h1>
+<p>The example introduced above is termed one-sided noncompliance: 80% of the population respond to the treatment assignment (the “Compliers”) and 20% do not (the “Never-Takers”). Say that after the treatment, the experimenter measures the average outcome to be 50 in the treatment group and 10 in the control group. This situation is illustrated in Table 2. Note that only those indicated with blue in Table 2 were in fact treated.</p>
+<p><img src="figs/Table2pvdw_0.png" class="img-fluid"></p>
+<p>Before we can calculate the LATE under one-sided noncompliance we need to make an assumption. The exclusion restriction (also called “excludability”) stipulates that outcomes respond to treatments, not treatment assignments. In normal words this simply means that the outcome for a Never-Taker is the same regardless of whether they are assigned to the treatment or control group: in both cases the subject is not treated, and that is what matters.</p>
+<p>Because the treatment was randomly assigned, we know that if there are 20% Never-Takers in the treatment group (left column), there are probably about 20% Never-Takers in the control group. Because of the exclusion restriction, the Never-Takers have the same outcome under both assignment conditions, and thus the difference in average outcomes (40) cannot be attributed to the Never-Takers. We can thus attribute the entire ITT effect to the Compliers. The LATE can therefore be estimated by dividing the ITT estimate by the share of Compliers: 40/0.8 = 50.</p>
+</section>
+<section id="with-two-sided-noncompliance-the-late-can-be-estimated-assuming-both-the-exclusion-restriction-and-a-no-defiers-assumption" class="level1">
+<h1>3 With two-sided noncompliance the LATE can be estimated assuming both the exclusion restriction and a “no defiers” assumption</h1>
+<p>The experimenter may also face two-sided noncompliance. In this case, some subjects in the treatment group go untreated and some in the control group receive the treatment. In this world, the population consists of the Compliers, the Never-Takers, the Always-Takers, and the Defiers. To estimate LATE under two-sided noncompliance we need a second assumption: that the population contains no Defiers (the assumption is also called the “monotonicity” assumption). To see the use of this assumption look at Table 3, which illustrates our example under two-sided noncompliance. Again, after the treatment the experimenter measures the average outcome to be 50 in the treatment group and 10 in the control group. Note that those subjects in blue were in fact treated.</p>
+<p><img src="figs/Table3pvdw.png" class="img-fluid"></p>
+<p>With the exclusion restriction and the no Defiers assumption we can estimate the LATE. Because of the exclusion restriction, we can attribute the entire ITT effect to Compliers and not to Never-Takers or Always-Takers. Given that we have an estimate of the ITT effect (40), what remains is to estimate the share of Compliers in the population. (Table 3 shows the subjects’ types as seen by an omniscient deity. The experimenter cannot observe these types, but can estimate their shares, as explained below.)</p>
+<p>We cannot observe whether any given subject is a Complier, but we do observe whether they took the treatment. In the treatment group, we observe that 90 people took the treatment (and thus must be either Compliers or Always-Takers) and 10 did not (and thus must be Never-Takers, since there are no Defiers). Thus, 10% of the treatment group are Never-Takers, and since treatment was assigned randomly, we estimate that about 10% of the control group are Never-Takers. Similarly, in the control group, we observe that 10 people took the treatment (and thus must be Always-Takers, since there are no Defiers) and 90 did not (and thus must be either Compliers or Never-Takers). Thus, 10% of the control group are Always-Takers, and we estimate that about 10% of the treatment group are Always-Takers. From all this, we can estimate the share of Compliers as 100% - 10% (Never-Takers) - 10% (Always-Takers) = 80%. Finally, we can estimate the LATE as 40/0.8=50.</p>
+</section>
+<section id="you-can-estimate-the-late-using-an-instrumental-variables-approach" class="level1">
+<h1>4 You can estimate the LATE using an instrumental variables approach</h1>
+<p>The LATE estimate is equivalent to an instrumental variables estimate. This is most easily illustrated following a set of regressions. Say that 50 individuals from a population of 100 are randomly assigned to treatment. Regressing treatment status (D) on the treatment assignment (Z) gives the estimated share of compliers: 80%. The ITT effect is estimated by regressing outcome Y on the assignment to treatment (Z). Again, LATE is estimated by dividing the ITT estimate by the estimated share of compliers. A researcher will get exactly the same results when running a two-stage least squares (2SLS) regression in which the outcome (Y) is regressed on the treatment (D), using the assignment to treatment as an instrumental variable (Z). This is shown in the code below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,<span class="dv">50</span>) <span class="co"># Assign 50 to treatment group (Z = 1), 50 to control group (Z = 0)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> Z           <span class="co"># Compliers have D (treatment received) = Z (treatment assignment)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>D[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]  <span class="ot">&lt;-</span> <span class="dv">0</span>    <span class="co"># 10 Never Takers</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>D[<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>    <span class="co"># 10 Always Takers</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Y        <span class="ot">&lt;-</span> <span class="dv">50</span><span class="sc">*</span>D <span class="co"># Compliers have Y = 50 if treated, 0 if not treated</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Y[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]  <span class="ot">&lt;-</span> <span class="dv">100</span>  <span class="co"># Never takers have high Y</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Y[<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>] <span class="ot">&lt;-</span> <span class="dv">0</span>    <span class="co"># Always takers have low Y</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimated share of compliers </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ITTD <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(D<span class="sc">~</span>Z))[<span class="dv">2</span>] </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimated intention-to-treat effect</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ITT  <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>Z))[<span class="dv">2</span>] </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># LATE estimate</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>LATE <span class="ot">&lt;-</span> ITT <span class="sc">/</span> ITTD</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Y_1 =</span> <span class="fu">mean</span>(Y[Z<span class="sc">==</span><span class="dv">1</span>]), <span class="at">Y_0=</span><span class="fu">mean</span>(Y[Z<span class="sc">==</span><span class="dv">0</span>]), ITTD, ITT, LATE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Y_1 Y_0 ITTD ITT LATE
+Z  50  10  0.8  40   50</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(AER) </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">ivreg</span>(Y<span class="sc">~</span> D <span class="sc">|</span> Z)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+ivreg(formula = Y ~ D | Z)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+   -55     -5     -5     -5     95 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    5.000      5.660   0.883    0.379    
+D             50.000      8.839   5.657 1.53e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 35.36 on 98 degrees of freedom
+Multiple R-Squared: -0.1136,    Adjusted R-squared: -0.125 
+Wald test:    32 on 1 and 98 DF,  p-value: 1.528e-07 </code></pre>
+</div>
+</div>
+</section>
+<section id="how-to-conduct-statistical-inference-about-the-late" class="level1">
+<h1>5 How to conduct statistical inference about the LATE</h1>
+<p>Because the LATE equals the ratio of the ITT and the share of Compliers, the LATE will be equal to zero whenever the ITT equals zero. To test the null hypothesis that the LATE is zero, you can thus rely on tests of the null hypothesis that the ITT is zero. This is a straightforward way to go if you would like to rely on randomization inference for hypothesis tests. (See our guides on <a href="https://egap.org/resource/10-things-to-know-about-hypothesis-testing/">hypothesis testing</a> and <a href="https://egap.org/resource/10-things-to-know-about-randomization-inference/">randomization inference</a> for more.) Alternatively, you can make use of the conventional standard errors and confidence intervals generated by instrumental variables regression, which rely on parametric assumptions about the sampling distribution. As a rule of thumb, the standard error of the CACE will be roughly equal to the standard error of the ITT divided by the share of Compliers.</p>
+</section>
+<section id="the-late-only-reflects-treatment-effects-among-compliers" class="level1">
+<h1>6 The LATE only reflects treatment effects among compliers</h1>
+<p>While a LATE estimate is better than nothing, it provides a consistent estimate of the average treatment effect only for a subgroup of the population: the Compliers. It does not capture effects of the treatment among everyone in the experimental sample (ATE). For instance, Angrist and Evans (1998) study the effect of childbearing on a mother’s labor supply. In their paper, compliers account for only 6% of the total population, while we would like to know the effect for everyone, or at least for a larger subgroup of the population of interest.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Whether or not only obtaining the effect for Compliers is problematic depends on an experimenter’s objectives. Sometimes the LATE is exactly what the researcher is interested in: the average effect on those that actually comply with the assignment to treatment. Moreover, LATE might not be very different from the ATE if the share of compliers is large and the treatment effects for the different types in the population are similar enough. To explore the latter, researchers can compare the background attributes of the Compliers and Never-takers in the treatment group. Another approach is to compare the average outcomes of Always-Takers and Compliers among those that are treated (those in blue in Table 3), and the average outcomes of Never-Takers and Compliers among those that are not treated.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Finally, it is important to keep in mind that whether a subject is a Defier, Complier, Never-Taker or Always-Taker also depends on the experimental design and the context in which the experiment is conducted. For example, using phone calls instead of a monetary incentive to encourage treatment take-up can alter the share of compliers in the population. As a result, different instruments will estimate different LATEs.</p>
+</section>
+<section id="the-late-estimate-is-always-larger-than-the-itt-estimate" class="level1">
+<h1>7 The LATE estimate is always larger than the ITT estimate</h1>
+<p>The LATE estimate is calculated as the intention-to-treat estimate (ITT) divided by the estimated share of Compliers in the population. With noncompliance, the share of Compliers in the population is smaller than one. As a result, the LATE estimate will always be larger than the ITT estimate. Another way to look at this is that following the exclusion restriction (reminder: the exclusion restriction states that the outcome for a Never-Taker or Always-Taker is the same regardless of whether they are assigned to the treatment or control group), the ITT effect for the Never-Takers and the Always-Takers is zero. Thus, given any positive number of Never and/or Always-Takers, the average ITT effect is smaller than the LATE.</p>
+</section>
+<section id="the-late-is-an-important-estimand-in-encouragement-designs-and-in-downstream-experiments" class="level1">
+<h1>8 The LATE is an important estimand in “encouragement” designs and in downstream experiments</h1>
+<p><em>Encouragement Designs:</em> In an encouragement design, subjects are randomly invited to participate in the treatment. The reason to do so is that in some cases it might be unethical to make subjects adhere to the treatment assignment. In other cases, it might require unnecessarily large incentives to obtain adherence. As a result, in encouragement designs subjects self-select into treatment. For example, Hirano et al (2000) study the impact of a letter encouraging inoculation of patients at risk for flu, sent to a randomly selected set of physicians. The outcome of interest is an indicator for flu-related hospital visits. Needless to say, the incentives for the treatment (the letter) have only a limited effect on the actual treatment received (a flu shot by the physician), and thus the study population will consist of Compliers, Always-Takers, and Never-Takers. (We assume there are no Defiers, patients who would get the flu shot if and only if their physician did not get the letter.) It is thus easy to see how such an encouragement design corresponds to the two-sided noncompliance case.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p><em>Downstream experiments:</em> Downstream experiments are studies in which an initial randomization (e.g.&nbsp;distribution of school vouchers) causes a change in an outcome (e.g.&nbsp;education level), and this outcome is then considered a treatment affecting a subsequent outcome (e.g.&nbsp;income).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Also, these experiments correspond to our two-sided noncompliance setup. Noncompliance occurs because the random intervention is just one of many “encouragements” that cause people to take the treatment. Downstream experiments place particular pressure on the exclusion restriction, which requires that (following the example) school vouchers influences income only through higher education. This assumption would be violated if school vouchers affected income for reasons other than education.</p>
+</section>
+<section id="you-can-use-a-placebo-controlled-design-to-identify-the-late" class="level1">
+<h1>9 You can use a placebo-controlled design to identify the LATE</h1>
+<p>Another strategy to estimate the LATE involves designing your experiment in such a way that you can find out who the Compliers are even among those who did not receive the treatment. One way to do so is to create a placebo group that receives a version of the treatment without the treatment’s “active ingredient.” Gerber, Green, Kaplan, and Kern (2010), for example, study the effect of an automated phone call that delivers an encouragement to vote on whether study participants turn out to vote.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> The experiment included a placebo group in which study participants received automated phone calls that encouraged them to recycle. Because respondents in the placebo group also received calls, it is possible to observe which respondents in the placebo group answered the phone. Under the assumption that the content of the phone call does not affect who answers the phone, one can estimate the LATE by comparing turnout rates among those who answered the phone in the treatment group to turnout rates among those who answered the phone in the placebo group. The key assumption which makes this strategy work is that respondents who comply with the treatment (pick up the voting phone call) also comply with the placebo (pick up the recycling phone call) and vice versa. Gerber, Green, Kaplan, and Kern (2010) discuss the advantages of having both a pure control and a placebo group for estimating the LATE.</p>
+</section>
+<section id="addressing-partial-compliance-can-be-complicated" class="level1">
+<h1>10 Addressing partial compliance can be complicated</h1>
+<p>“Partial compliance” occurs when a subject is assigned to a treatment but receives less than “all” of the treatment. This is possible in designs with compound treatments, multi-arm designs like factorial designs, and in dose-response trials where the treatment variable is continuous. For example, subjects assigned to a three-session job training program may only attend two of the three sessions. Patients in a clinical trial assigned to receive 100 mg dosages of an experimental drug once every week for five weeks may only receive four of the five assigned doses. Addressing partial compliance can be especially complicated because the effective number of treatment conditions exceeds the number intended in the original design. This expansion of the number of treatment conditions affects the definition of the LATE and how to estimate it. First, the number and definition of compliance statuses changes. The categories used in designs with a binary treatment (Always-Takers, Never-Takers, Compliers, and Defiers) no longer suffice. Instead, the set of possible compliance statuses is determined by all possible combinations of treatment assignment and treatment receipt. In the binary case, we ruled out Defiers. In the partial compliance case, we can make similar (design-specific) monotonicity assumptions that rule out some theoretically possible compliance statuses. Finally, we are no longer interested in a single LATE. Partial compliance means that the number of quantities we are trying to estimate increases. Unfortunately, the IV/2SLS estimator used under one- and two-way noncompliance in two-group designs is a biased estimator of LATEs under partial compliance. Instead, Bayesian approaches have emerged as an alternative method for inference.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Originating author: Peter van der Windt, 20 October 2014. Revisions: Winston Lin, 22 August 2016. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits. Thanks to Albert Fang for point 10.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>For more extensive overviews, see: J. D. Angrist, G. W. Imbens, and D. B. Rubin (1996), “Identification of Causal Effects Using Instrumental Variables” (with discussion), Journal of the American Statistical Association 91: 444-472; J. D. Angrist (2006), “Instrumental Variables Methods in Experimental Criminological Research: What, Why and How,” Journal of Experimental Criminology 2: 23-44; J. D. Angrist and J.-S. Pischke (2009), <em>Mostly Harmless Econometrics</em>, sections 4.4-4.6 and 6.2; T. Dunning (2012), <em>Natural Experiments in the Social Sciences</em>; M. Baiocchi, J. Cheng, and D. S. Small (2014), “Instrumental Variable Methods for Causal Inference,” Statistics in Medicine 33: 2297-2340 (with correction in Statistics in Medicine 33: 4859-4860).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Angrist, J. D. Evans, W. N. 1998. Children and their Parents’ Labor Supply: Evidence from Exogenous variation in family size. American Economic Review, 88(3), 450-477.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>See: Imbens, G. W. (2010). Better LATE Than Nothing: Some Comments on Deaton (2009) and Heckman and Urzua (2009). Journal of Economic Literature, 48, 399-423. And Imbens, G. W., &amp; Angrist, J. D. (1994). Identification and Estimation of Local Average Treatment Effects. Econometrica, 62(2), 467-475, and 2). And Imbens, G. W. &amp; Wooldridge, J. 2007. Lecture notes and slides at: http://www.nber.org/minicourse3.html.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Hirano, K., Imbens, G.W., Rubin, D.B. &amp; Zhou, X. (2000). Assessing the Effect of an Influenza Vaccine in an Encouragement Design. Biostatistics, 1(1), 69-88.]<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>See: Green, D. P. &amp; Gerber, A. S. 2002. The Downstream Benefits of Experimentation. Political Analysis, Vol. 10(4), 394-402.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>See Gerber, Alan S., Donald P. Green, Edward H. Kaplan, and Holger L. Kern. 2010. “Baseline, Placebo, and Treatment: Efficient Estimation for Three-Group Experiments.” Political Analysis, Vol.18(3), 297-315.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>See Qi Long, Roderick J. A. Little, and Xihong Lin. 2010. Estimating Causal Effects in Trials Involving Multi-Treatment Arms Subject to Non-compliance: A Bayesian framework. Journal of the Royal Statistical Society: Series C (Applied Statistics), 59(3): 513-531.; Jin, H. &amp; Rubin, D. B. (2009). Public schools versus private schools: Causal inference with Partial Compliance. Journal of Educational and Behavioral Statistics, 34, 24-45; Jin, H. &amp; Rubin, D. B. (2008). Principal Stratification for Causal Inference with Extended Partial Compliance. Journal of the American Statistical Association, 103, 101-111.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
