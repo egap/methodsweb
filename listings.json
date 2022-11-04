@@ -4,6 +4,7 @@
     "items": [
       "/guides/getting-started/causal-inference_en.html",
       "/guides/getting-started/adaptive_en.html",
+      "/guides/getting-started/covariates_en.html",
       "/guides/planning/power_en.html"
     ]
   }
