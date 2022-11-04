@@ -1,10 +1,11 @@
 ---
 title: "10 Things You Need to Know About Causal Inference"
 author: "Macartan Humphreys"
-abstract: |
-  The philosopher David Lewis described causation as "something that makes a difference, and the difference it makes must be a difference from what would have happened without it."[^1] This is the interpretation given to causality by most experimentalists. Even though the definition seems simple, it has many subtle implications. Here are ten ideas implied by this notion of causality that matter for research design.^[Originating author: Macartan Humphreys. Minor revisions: Winston Lin and Donald P. Green, 24 Jun 2016. Revisions MH 6 Jan 2020. Revisions Anna Wilke May 2021. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits.]
 ---
 
+Abstract
+==
+The philosopher David Lewis described causation as "something that makes a difference, and the difference it makes must be a difference from what would have happened without it."[^1] This is the interpretation given to causality by most experimentalists. Even though the definition seems simple, it has many subtle implications. Here are ten ideas implied by this notion of causality that matter for research design.^[Originating author: Macartan Humphreys. Minor revisions: Winston Lin and Donald P. Green, 24 Jun 2016. Revisions MH 6 Jan 2020. Revisions Anna Wilke May 2021. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits.]
 
 1. A causal claim is a statement about what didn't happen.
 ==
