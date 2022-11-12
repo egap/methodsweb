@@ -1,7 +1,8 @@
 Package: methods
 Title: EGAP methods resources
 Version: 0.0.1
-Suggests: tidyverse, ri2, quarto, DeclareDesign, lme4, lmtest, sandwich, CausalGAM, RItools, quantreg, mediation, blockTools, rmutil, styler, coin, dgof, hexbin, kSamples, ddst, pander
+Suggests: tidyverse, ri2, quarto, DeclareDesign, lme4, lmtest, sandwich, CausalGAM, RItools, quantreg, mediation, blockTools, rmutil, styler, coin, dgof, hexbin, kSamples, ddst, pander, ri
 Remotes: 
   cran/blockTools,
-  markmfredrickson/RItools@randomization-distribution
+  markmfredrickson/RItools@randomization-distribution,
+  cran/ri
