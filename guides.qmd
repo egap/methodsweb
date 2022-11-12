@@ -9,6 +9,7 @@ listing:
     contents: "guides/planning/*_en.qmd"
     type: grid
     sort-ui: false
+    fields: [image, title, author]
 ---
 
 ## Getting started 
