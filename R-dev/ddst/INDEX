@@ -1,6 +1,0 @@
-ddst-package            Data Driven Smooth Tests
-ddst.exp.test           Data Driven Smooth Test for Exponentiality
-ddst.extr.test          Data Driven Smooth Test for Extreme Value
-                        Distribution
-ddst.norm.test          Data Driven Smooth Test for Normality
-ddst.uniform.test       Data Driven Smooth Test for Uniformity
