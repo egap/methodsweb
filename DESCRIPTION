@@ -3,4 +3,4 @@ Title: EGAP methods resources
 Version: 0.0.1
 Suggests: tidyverse, ri2, quarto, DeclareDesign, lme4, lmtest, sandwich, CausalGAM, RItools, quantreg, mediation
 Remotes:
-- cran/blockTools
+ - cran/blockTools
