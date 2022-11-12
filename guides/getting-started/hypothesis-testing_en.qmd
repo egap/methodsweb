@@ -524,7 +524,7 @@ pMeanRank4 <- RItest(y=dat$Y,z=dat$Z,samples=1000, test.stat= meanrankTZ ,
 		     sampler = thedesignA)
 pMean4
 pMeanRank4
-dev_mode(on=FALSE,path=here("R-dev"))
+# dev_mode(on=FALSE,path=here("R-dev"))
 ```
 ## using the ri2 package
 
