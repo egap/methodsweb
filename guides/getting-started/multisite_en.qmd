@@ -1,7 +1,7 @@
 ---
 title: "10 Things to Know About Multisite or Block-Randomized Trials"
 author: "Kristen Hunter"
-bibliography: multisite_refs.bib
+bibliography: guides/bib/multisite_refs.bib
 ---
 
 # 1. What is a multisite or block randomized trial?
