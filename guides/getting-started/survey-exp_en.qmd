@@ -1,7 +1,7 @@
 ---
 title: "10 Things to Know About Survey Experiments"
 author: "Christopher Grady"
-bibliography: guides/bib/egap_svyExps.bib
+bibliography: egap_svyExps.bib
 ---
 
 <style>
