@@ -2,17 +2,20 @@ project:
   type: website
 
 website:
-  title: "EGAP Learning"
+  title: "Methods for Impact Evaluations"
   navbar:
+    logo: img/egap-logo.svg
+    search: true
     right:
       - href: index.qmd
         text: Home
+      - href: guides.qmd
+        text: Guides
       - about.qmd
-      - guides.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: simplex
     css: styles.css
     toc: true
 
