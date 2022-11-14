@@ -1,16 +1,19 @@
 ---
-title: "Methods guides"
+title: "Guides for self-learning"
 listing: 
   - id: getting-started
     contents: "guides/getting-started/*_en.qmd"
     type: grid
     sort-ui: false
+    fields: [image, title, author]
   - id: planning
     contents: "guides/planning/*_en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
 ---
+
+EGAP seeks to improve methods for rigorous impact evaluation throughout the social and behavioral science research community, as well as to make existing methods accessible to a wider audience. The methods guides are primers on a range of methodological and research topics. Each guide takes one issue and outlines the ten most important points to understand about it or the ten essential steps necessary to addressing that issue in your work.
 
 ## Getting started 
 
