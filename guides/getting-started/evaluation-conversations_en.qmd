@@ -1,6 +1,8 @@
 ---
 title: "10 Conversations that Implementers and Evaluators Need to Have"
-author: "Jake Bowers & Rebecca Wolfe"
+author:
+  - "Jake Bowers"
+  - "Rebecca Wolfe"
 ---
 
 # Abstract

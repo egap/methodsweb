@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Adaptive Experimental Design"
-author: "Donald Green & Molly Offer-Westort"
+author: 
+  - "Donald Green"
+  - "Molly Offer-Westort"
 ---
 
 1.	What is an “adaptive”[^1] design?
