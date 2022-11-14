@@ -1,6 +1,7 @@
 ---
 title: "10 Things to Know About Reading a Regression Table"
 author: "Abby Long"
+image: regression-table.png
 ---
 
 Abstract

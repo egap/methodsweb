@@ -1,6 +1,7 @@
 ---
 title: " 10 cosas que debe saber sobre la inferencia causal"
 author: "Macartan Humphreys"
+image: causal-inference.png
 ---
 
 Resumen

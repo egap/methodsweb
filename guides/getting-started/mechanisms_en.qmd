@@ -1,6 +1,7 @@
 ---
 title: "10 Things to Know About Mechanisms"
 author: "Lindsay Dolan"
+image: mechanisms.png
 ---
 
 ```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}

@@ -1,6 +1,7 @@
 ---
 title: "10 Things to Know About Survey Design"
 author: "Gabriella Sacramone-Lutz"
+image: survey-design.png
 ---
 
 1 The design of baseline and endline surveys differ in key ways 

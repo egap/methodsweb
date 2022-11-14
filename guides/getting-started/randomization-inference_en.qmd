@@ -1,6 +1,7 @@
 ---
 title: "10 Things to Know About Randomization Inference"
 author: "Donald Green"
+image: randomization-inference.png
 ---
 
 1. Randomization inference is a method for calculating p-values for hypothesis tests [^1] [^2]

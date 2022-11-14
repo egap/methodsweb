@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.247">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Paul Testa">
+
+<title>Methods for Impact Evaluations - 10 Types of Treatment Effect You Should Know About</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods for Impact Evaluations</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html">
+ <span class="menu-text">Guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#average-treatment-effects" id="toc-average-treatment-effects" class="nav-link" data-scroll-target="#average-treatment-effects">1 Average Treatment Effects</a></li>
+  <li><a href="#conditional-average-treatment-effects" id="toc-conditional-average-treatment-effects" class="nav-link" data-scroll-target="#conditional-average-treatment-effects">2 Conditional Average Treatment Effects</a></li>
+  <li><a href="#intent-to-treat-effects" id="toc-intent-to-treat-effects" class="nav-link" data-scroll-target="#intent-to-treat-effects">3 Intent-to-Treat Effects</a></li>
+  <li><a href="#complier-average-treatment-effects" id="toc-complier-average-treatment-effects" class="nav-link" data-scroll-target="#complier-average-treatment-effects">4 Complier Average Treatment Effects</a></li>
+  <li><a href="#population-and-sample-average-treatment-effects" id="toc-population-and-sample-average-treatment-effects" class="nav-link" data-scroll-target="#population-and-sample-average-treatment-effects">5 Population and Sample Average Treatment Effects</a></li>
+  <li><a href="#average-treatment-effects-on-the-treated-and-the-control" id="toc-average-treatment-effects-on-the-treated-and-the-control" class="nav-link" data-scroll-target="#average-treatment-effects-on-the-treated-and-the-control">6 Average Treatment Effects on the Treated and the Control</a></li>
+  <li><a href="#quantile-average-treatment-effects" id="toc-quantile-average-treatment-effects" class="nav-link" data-scroll-target="#quantile-average-treatment-effects">7 Quantile Average Treatment Effects</a></li>
+  <li><a href="#mediation-effects" id="toc-mediation-effects" class="nav-link" data-scroll-target="#mediation-effects">8 Mediation Effects</a></li>
+  <li><a href="#log-odds-treatment-effects" id="toc-log-odds-treatment-effects" class="nav-link" data-scroll-target="#log-odds-treatment-effects">9 Log-Odds Treatment Effects</a></li>
+  <li><a href="#attributable-effects" id="toc-attributable-effects" class="nav-link" data-scroll-target="#attributable-effects">10 Attributable Effects</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 Types of Treatment Effect You Should Know About</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Paul Testa </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>This guide<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> describes ten distinct types of causal effects that researchers may want to estimate. As discussed in our guide <a href="https://egap.org/resource/10-things-to-know-about-causal-inference/">10 Things to Know About Causal Inference</a>, simple randomization allows one to produce estimates of the average of the unit level causal effects in a sample. This average causal effect or average treatment effect (ATE) is a powerful concept because it is one solution to the problem of not observing all relevant counterfactuals. Yet, it is not the only productive engagement with this problem. In fact, there are many different types of quantities of causal interest. The goal of this guide is to help you choose estimands (a parameter of interest) and estimators (procedures for calculating estimates of those parameters) that are appropriate and meaningful for your data.</p>
+</section>
+<section id="average-treatment-effects" class="level1">
+<h1>1 Average Treatment Effects</h1>
+<p>We begin by reviewing how, with randomization, a simple difference-of-means provides an unbiased estimate of the ATE. We take extra time to introduce some common statistical concepts and notation used throughout this guide.</p>
+<p>First we define a treatment effect for an individual observation (a person, household, city, etc.) as the difference between that unit’s behavior under treatment <span class="math inline">\((Y_{i}(1))\)</span> and control <span class="math inline">\((Y_{i}(0))\)</span>:</p>
+<p><span class="math display">\[τ_{i}=Y_{i}(1)−Y_{i}(0)\]</span></p>
+<p>Since we can only observe either <span class="math inline">\(Y_{i}(1)\)</span> or <span class="math inline">\(Y_{i}(0)\)</span> the individual treatment effect is unknowable. A quantity that we can learn about, however, is the average treatment effect (ATE) across all observations in our experiment:</p>
+<p><span class="math display">\[ATE≡\frac{1}{N}∑^{N}_{i=1}τ_{i}=\frac{∑^{N}_{1}Y_{i}(1)}{N}−\frac{∑^{N}_{1}Y_{i}(0)}{N}\]</span></p>
+<p>Let <span class="math inline">\(D_{i}\)</span> be an indicator for whether we observe an observation under treatment or control. If treatment is randomly assigned, <span class="math inline">\(D_{i}\)</span> is independent, not only of potential outcomes but also of any covariates (observed and unobserved) that might predict those outcomes <span class="math inline">\(((Y_{i}(1),Y_{i}(0),X_{i}⊥⊥D_{i}))\)</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Suppose our design involves <span class="math inline">\(m\)</span> units under treatment and <span class="math inline">\(N−m\)</span> under control. Suppose we were to repeatedly reassign treatment at random many times and each time calculate the difference of means between treated and control groups and then to record this value in a list. In other words, for every repetition, we produce an estimate of the ATE using the the observed difference in means:<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><span class="math display">\[\widehat{ATE} =\frac{∑^m_1Z_{i}Y_{i}}{m}−\frac{∑^{N}_{m+1}(1−Z_{i})Y_{i}}{N−m}\]</span></p>
+<p>The average of the estimates in our list will be the same as the difference of the means of the true potential outcomes had we observed the full schedule of potential outcomes for all observations. That is <span class="math inline">\(E(Y_i(1)|D=1)=E(Y_i(1)|D=0)=E(Y_i(1))\)</span> and <span class="math inline">\(E(Y_i(0)|D=1)=E(Y_i(0)|D=0)=E(Y_i(0))\)</span>. Another way to state this characteristic of the average treatment effect and its estimator is to say that the difference of observed means is an unbiased estimator of the average treatment effect.</p>
+<p>Statistical inference about the estimated ATE requires that we know how it will vary across randomizations. It turns out that we can write the variance of the ATE across randomizations as follows:</p>
+<p><span class="math display">\[V(ATE) = \frac{N}{N−1} [\frac{V(Y_{i}(1))}{m}+\frac{V(Y_{i}(0))}{N−m}]−\frac{1}{N−1}[V(Y_{i}(1))+V(Y_{i}(0))−2∗Cov(Y_{i}(1),Y_{i}(0))]\]</span></p>
+<p>and estimate this quantity from the sample estimates of the variance in each group.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>A linear model regressing the observed outcome <span class="math inline">\(Y_{i}\)</span> on a treatment indicator <span class="math inline">\(D_{i}\)</span> provides a convenient estimator of the ATE (and with some additional adjustments, the variance of the ATE):</p>
+<p><span class="math display">\[Y_{i}=Y_{i}(0)∗(1−D_{i})+Y_{i}(1)∗D_{i}=β_{0}+β_{1}D_{i}+u\]</span></p>
+<p>since we can rearrange terms so that <span class="math inline">\(β_{0}\)</span> estimates the average among control observations <span class="math inline">\((Y_{i}(0)∣D_{i}=0)\)</span> and <span class="math inline">\(β_{1}\)</span> estimates the differences of means <span class="math inline">\((Y_{i}(1)∣D_{i}=1)–(Y_{i}(1)∣D_{i}=0)\)</span>. In the code below, we create a sample of 1,000 observations and randomly assign a treatment <span class="math inline">\(D_i\)</span> with a constant unit effect to half of the units. We estimate the ATE using ordinary least squares (OLS) regression to calculate the observed mean difference. Calculating the means in each group and taking their difference would also produce an unbiased estimate of the ATE. Note that the estimated ATE from OLS is unbiased, but the errors in this linear model are assumed to be independent and identically distributed. When our treatment effects both the average value of the outcome and the distribution of responses, this assumption no longer holds and we need to adjust the standard errors from OLS using a Huber-White sandwich estimator to obtain the correct estimates (based on the variance of the ATE) for statistical inference.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Finally, we also demonstrate the unbiasedness of these estimators through simulation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># For replication</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Population size</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(N) <span class="co"># Potential outcome under control condition</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">=</span> Y0 <span class="sc">+</span> <span class="dv">1</span> <span class="co"># Potential outcome under treatment condition</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>N)<span class="sc">%%</span><span class="dv">2</span>) <span class="co"># Treatment: 1 if treated, 0 otherwise</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0 <span class="co"># Outcome in population</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(D,Y)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ATE <span class="ot">=</span> <span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp))[<span class="dv">2</span>] <span class="co">#same as with(samp,mean(Y[Z==1])-mean(Y[Z==0]))</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># SATE with Neyman/Randomization Justified Standard Errors</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># which are the same as OLS standard errors when no covariates or blocking</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(fit))[<span class="st">"D"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Estimate Std. Error 
+1.01820525 0.01841784 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ATE.se<span class="ot">&lt;-</span><span class="fu">coeftest</span>(fit,<span class="fu">vcovHC</span>(fit,<span class="at">type=</span><span class="st">"HC2"</span>))[<span class="st">"D"</span>,<span class="dv">2</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># same as with(samp,sqrt(var(Y[D==1])/sum(D)+var(Y[D==0])/(n-sum(D)))</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assess unbiasedness and simulate standard errors</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>getATE<span class="ot">&lt;-</span><span class="cf">function</span>() {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">=</span> <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>N)<span class="sc">%%</span><span class="dv">2</span>) <span class="co"># Treatment: 1 if treated, 0 otherwise</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>D))[[<span class="st">"D"</span>]]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>manyATEs<span class="ot">&lt;-</span><span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">getATE</span>())</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Unbiasedness:</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">ATE=</span><span class="fu">mean</span>(Y1)<span class="sc">-</span><span class="fu">mean</span>(Y0), <span class="at">ExpEstATE=</span><span class="fu">mean</span>(manyATEs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      ATE ExpEstATE 
+1.0000000 0.9999077 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Standard Error</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">### True SE formula</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>V<span class="ot">&lt;-</span><span class="fu">var</span>(<span class="fu">cbind</span>(Y0,Y1))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>varc<span class="ot">&lt;-</span>V[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>vart<span class="ot">&lt;-</span>V[<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>covtc<span class="ot">&lt;-</span>V[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="fu">sum</span>(D)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>m<span class="ot">&lt;-</span>N<span class="sc">-</span>n</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>varestATE<span class="ot">&lt;-</span>((N<span class="sc">-</span>n)<span class="sc">/</span>(N<span class="dv">-1</span>))<span class="sc">*</span>(vart<span class="sc">/</span>n) <span class="sc">+</span> ((N<span class="sc">-</span>m)<span class="sc">/</span>(N<span class="dv">-1</span>))<span class="sc">*</span> (varc<span class="sc">/</span>m) <span class="sc">+</span> (<span class="dv">2</span><span class="sc">/</span>(N<span class="dv">-1</span>)) <span class="sc">*</span> covtc</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">### Compare SEs</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">SimulatedSE=</span> <span class="fu">sd</span>(manyATEs), <span class="at">TrueSE=</span><span class="fu">sqrt</span>(varestATE), <span class="at">ConservativeSE=</span>ATE.se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   SimulatedSE         TrueSE ConservativeSE 
+    0.01835497     0.01842684     0.01841784 </code></pre>
+</div>
+</div>
+</section>
+<section id="conditional-average-treatment-effects" class="level1">
+<h1>2 Conditional Average Treatment Effects</h1>
+<p>The problem with looking at average treatment effects only is that it takes attention away from the fact that treatment effects might be very different for different sorts of people. While the “fundamental problem of causal inference” suggests that measuring causal effects for individual units is impossible, making inferences on groups of units is not.</p>
+<p>Random assignment ensures that treatment is independent of potential outcomes and any (observed and unobserved) covariates. Sometimes, however, we have additional information about the experimental units as they existed before the experiment was fielded, say <span class="math inline">\(X_{i}\)</span>, and this information can can help us understand how treatment effects vary across subgroups. For example, we may suspect that men and women respond differently to treatment, and we can test for this hetorogeneity by estimating conditional ATE for each subgroup separately <span class="math inline">\((CATE=E(Y_{i}(1)−Y_{i}(0)∣D_{i},X_{i}))\)</span>. If our covariate is continous, we can test its moderating effects by interacting the continous variable with the treatment. Note, however, that the treatment effect is now conditional on both treatment status and the value of the conditioning variable at which the effect is evaluated and so we must adjust our interpretation and standard errors accordingly.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>A word of warning: looking at treatment effects across dimensions that are themselves affected by treatment is a dangerous business and can lead to incorrect inferences. For example if you wanted to see how administering a drug led to health improvements you could run separate analyses for men and women, but you could not run separate analyses for those who in fact took the drug and those who did not (this is an example of inference for compliers which requires separate techniques described in point 4 below).</p>
+</section>
+<section id="intent-to-treat-effects" class="level1">
+<h1>3 Intent-to-Treat Effects</h1>
+<p>Outside of a controlled laboratory setting, the subjects we assign to treatment often are not the same as the subjects who actually receive the treatment. When some subjects assigned to treatment fail to receive it, we call this an experiment with one-sided non-compliance. When additionally, some subjects assigned to control also receive the treatment, we say there is two-sided non-compliance. For example, in a get-out-the-vote experiment, some people assigned to receive a mailer may not receive it. Perhaps they’ve changed addresses or never check their mail. Similarly, some observations assigned to control may receive the treatment. Perhaps they just moved in, and the previous tenant’s mail is still arriving.</p>
+<p>When non-compliance occurs, the receipt of treatment is no longer independent of potential outcomes and confounders. The people who actually read their mail probably differ in a number of ways from the people who throw their mail away (or read their neighbors’ mail) and these differences likely also affect their probability of voting. The difference-of-means between subjects assigned to treatment and control no longer estimates the ATE, but instead estimates what is called an intent-to-treat effect (ITT). We often interpret the ITT as the effect of giving someone the opportunity to receive treatment. The ITT is particularly relevant then for assessing programs and interventions with voluntary participation.</p>
+<p>In the code below, we create some simple data with one-sided non-compliance. Although the true treatment effect for people who actually received the treatment is 2, our estimated ITT is smaller (about 1) because only some of the people assigned to treatment actually receive it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># For replication</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Population size</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(n) <span class="co"># Potential outcome under control condition</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>C <span class="ot">=</span> <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>n)<span class="sc">%%</span><span class="dv">2</span>) <span class="co"># Whether someone is a complier or not</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">=</span> Y0 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">+</span>C <span class="co"># Potential outcome under treatment</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>n)<span class="sc">%%</span><span class="dv">2</span>) <span class="co"># Treatment assignment</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> Z<span class="sc">*</span>C <span class="co"># Treatment Uptake</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0 <span class="co"># Outcome in population</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(Z,Y)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ITT<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>Z,<span class="at">data=</span>samp))[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="complier-average-treatment-effects" class="level1">
+<h1>4 Complier Average Treatment Effects</h1>
+<p>What if you are interested in figuring out the effects of a treatment on those people who actually took up the treatment and not just those people that were administered the treatment? For example what is the effect of radio ads on voting behavior for those people that actually hear the ads?</p>
+<p>This turns out to be a hard problem (for more on this see our guide <a href="https://egap.org/resource/10-things-to-know-about-the-local-average-treatment-effect/">10 Things to Know About the Local Average Treatment Effect</a>). The reasons for non-compliance with treatment can be thought of as an omitted variable. While the receipt of treatment is no longer independent of potential outcomes, the assignment of treatment status is. As long as random assignment had some positive effect on the probability of receiving treatment, we can use it as an instrument to identify the effects of treatment on the sub-population of subjects who comply with treatment assignment.</p>
+<p>Following the notation of Angrist and Pischke,<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> let <span class="math inline">\(Z\)</span> be an indicator for whether an observation was assigned to treatment and <span class="math inline">\(D_{i}\)</span> indicates whether that subject actually received the treatment. Experiments with non-compliance are composed of always-takers (<span class="math inline">\(D_{i}=1\)</span>, regardless of <span class="math inline">\(Z_{i}\)</span>), never-takers (<span class="math inline">\(D_{i}=0\)</span> regardless of <span class="math inline">\(Z_{i}\)</span>), and compliers (<span class="math inline">\(D_{i}=1\)</span> when <span class="math inline">\(Z_{i}=1\)</span> and <span class="math inline">\(0\)</span> when <span class="math inline">\(Z_{i}=0\)</span>).<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> We can estimate a complier average causal effect (CACE), sometimes also called a local average treatment effect (LATE), by weighting the ITT (the effect of <span class="math inline">\(Z\)</span> on <span class="math inline">\(Y\)</span>) by the effectiveness of random assignment on treatment uptake (the effect of <span class="math inline">\(Z\)</span> on <span class="math inline">\(D\)</span>).</p>
+<p><span class="math display">\[CACE= \frac{Effect of Z on Y}{Effect of Z on D}=\frac{E(Y_i∣Z_i=1)-E(Y_i|Z_i=0)}{E(D_i|Z_i=1)-E(D_i|Z_i=0)}\]</span></p>
+<p>The estimator above highlights the fact that the ITT and CACE converge as we approach full compliance. Constructing standard errors for ratios is somewhat cumbersome and so we usually estimate a CACE using two-stage-least-squares regression with random assignment, <span class="math inline">\(Z_i\)</span>, serving as instrument for treatment receipt <span class="math inline">\(D_i\)</span> in the first stage of the model. This approach simplifies the estimation of standard errors and allows for the inclusion of covariates as additional instruments. We demonstrate both strategies in the code below for data with two-sided non-compliance. Note, however, that when instruments are weak (e.g.&nbsp;random assignment had only a small effect on the receipt of treatment), instrumental variable estimators and their standard errors can be biased and inconsistent.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># For replication</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Population size</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(n) <span class="co"># Potential outcome under control condition</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">=</span> Y0 <span class="sc">+</span> <span class="dv">1</span> <span class="co"># Potential outcome under treatment</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>n)<span class="sc">%%</span><span class="dv">2</span>) <span class="co"># Treatment assignment</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>pD<span class="ot">&lt;-</span><span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">+</span><span class="fu">rnorm</span>(n,<span class="at">mean=</span><span class="dv">2</span><span class="sc">*</span>Z)) <span class="co"># Non-compliance</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>D<span class="ot">&lt;-</span><span class="fu">rbinom</span>(n,<span class="dv">1</span>,pD) <span class="co"># Treatment receipt with non-compliance</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0 <span class="co"># Outcome in population</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(Z,D,Y)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># IV estimate library(AER) CACE = coef(ivreg(Y ~ D | Z, data = samp))[2]</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Wald Estimator ITT&lt;-coef(lm(Y~Z,data=samp))[2] ITT.D&lt;-coef(lm(D~Z,data=samp))[2] CACE.wald&lt;-ITT/ITT.D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="population-and-sample-average-treatment-effects" class="level1">
+<h1>5 Population and Sample Average Treatment Effects</h1>
+<p>Often we want to generalize from our sample to make statements about some broader population of interest.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> Let <span class="math inline">\(S_i\)</span> be an indicator for whether an subject is in our sample. The sample average treatment effect (SATE) is defined simply as <span class="math inline">\(E(Y_i(1)−Y_i(0)|S_i=1)\)</span> and the population <span class="math inline">\(E(Y_i(1)−Y_i(0))\)</span>. With a large random sample from a well-defined population with full compliance with treatment, our SATE and PATE are equal in expectation and so a good estimate for one (like a difference of sample means) will be a good estimate for the other.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+<p>In practice, the experimental pool may consist of a group of units selected in an unknown manner from a vaguely defined population of such units and compliance with treatment assignment may be less than complete. In such cases our SATE may diverge from the PATE and recovering estimates of each becomes more complicated. Imai, King, and Stuart (2008) decompose the divergence between these estimates into error that arises from sample selection and treatment imbalance. Error from sample selection arises from different distributions of (observed and unobserved) covariates in our sample and population. For example people in a medical trial often differ from the population for whom the drug would be available. Error from treatment imbalance reflects differences in covariates between treatment and control groups in our sample, perhaps because of non-random assignment and/or non-compliance.</p>
+<p>While there are no simple solutions to the problems created by such error, there are steps you can take in both the design of your study and the analysis of your data to address these challenges to estimating the PATE or CACE/LATE. For example, including a placebo intervention provides additional information on the probability of receiving treatment, that can be used to re-weight the effect of actually receiving it (e.g Nickerson (2008)) in the presence of non-compliance. One could also use a model to re-weight observations to adjust for covariate imbalance and the unequal probability of receiving the treatment, both within the sample and between a sample and the population of interest.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<p>In the code below, we demonstrate several approaches to estimating these effects implemented in the CausalGAM package for R.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> Specifically, the package produces regression, inverse-propensity weighting (IPW), and augmented inverse-propensity weighting estimates of the ATE. Combining regression adjustment with IPW, the AIPW has the feature of being “doubly robust” in that the estimate is still consistent even if we have incorrectly specified either the regression model or the propensity score for the probability weighting.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example adapted from ?estimate.ATE</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CausalGAM)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># For replication</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Sample size</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">=</span> <span class="fu">rnorm</span>(n) <span class="co"># Pre-treatment covariates</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">=</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">0.5</span> <span class="sc">+</span> <span class="fl">0.75</span><span class="sc">*</span>X2) <span class="co"># Unequal probabilty of Treatment</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p) <span class="co"># Treatment</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">rnorm</span>(n) <span class="co"># Potential outcomes</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">=</span> Y0 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">+</span> X1 <span class="sc">+</span> X2</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0 <span class="co"># Observed outcomes</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(X1,X2,D,Y)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate ATE with AIPW, IPW, Regression weights</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>ATE.out <span class="ot">&lt;-</span> <span class="fu">estimate.ATE</span>(<span class="at">pscore.formula =</span> D <span class="sc">~</span> X1 <span class="sc">+</span>X2,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">pscore.family =</span> binomial,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">outcome.formula.t =</span> Y <span class="sc">~</span> X1</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                        <span class="sc">+</span>X2,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">outcome.formula.c =</span> Y <span class="sc">~</span> X1</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                        <span class="sc">+</span>X2,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                        <span class="at">outcome.family =</span> gaussian,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                        <span class="at">treatment.var =</span> <span class="st">"D"</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data=</span>samp,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">divby0.action=</span><span class="st">"t"</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">divby0.tol=</span><span class="fl">0.001</span>,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">var.gam.plot=</span><span class="cn">FALSE</span>, <span class="at">nboot=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="average-treatment-effects-on-the-treated-and-the-control" class="level1">
+<h1>6 Average Treatment Effects on the Treated and the Control</h1>
+<p>To evaluate the policy implications of a particular intervention, we often need to know the effects of the treatment not just on the whole population but specifically for those to whom the treatment is administered. We define the average effects of treatment among the treated (ATT) and the control (ATC) as simple counter-factual comparisons:</p>
+<p><span class="math display">\[ATT=E(Y_i(1)-Y_i(0)|D_i=1)=E(Y_i(1)|D_i=1)-E(Y_i(0)|D_i=1)\]</span> <span class="math display">\[ATC=E(Y_i(1)-Y_i(0)|D_i=0)=E(Y_i(1)|D_i=0)-E(Y_i(0)|D_i=0)\]</span></p>
+<p>Informally, the ATT is the effect for those that we treated; ATC is what the effect <em>would</em> be for those we did not treat.</p>
+<p>When treatment is randomly assigned and there is full compliance, <span class="math inline">\(ATE=ATT=ATC\)</span>, since <span class="math inline">\(E(Y_i(0)∣D_i=1)=E(Y_i(0)∣D_i=0)\)</span> and <span class="math inline">\(E(Y_i(1)∣D_i=0)=E(Y_i(1)∣D_i=1)\)</span> Often either because of the nature of the intervention or specific concerns about cost and ethnics, treatment compliance is incomplete and the ATE will not in general equal the ATT or ATC. In such instances, we saw in the previous section that we could re-weight observations by their probability of receiving the treatment to recover estimates of the ATE. The same logic can be extended to produce estimates of the ATT and ATC in both our sample and the population.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></p>
+<p>Below, we create a case where the probability of receiving treatment varies but can be estimated using a propensity score model.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> The predicted probabilities from this model are then used as weights to recover the estimates of the ATE, ATT, and ATC. Inverse propensity score weighting attempts to balance the distribution of covariates between treatment and control groups when estimating the ATE. For the ATT, this weighting approach treats subjects in the treated group as a sample from the target population (people who received the treatment) and weights subjects in the control by their odds of receiving the treatment. In a similar fashion, the estimate of the ATC weights treated observations to look like controls. The quality (unbiasedness) of these estimates is inherently linked to the quality of our models for predicting the receipt of treatment. Inverse propensity score weighting and other procedures produce balance between treatment and control groups on observed covariates, but unless we have the “true model” (and we almost never know the true model) the potential for bias from unobserved covariates remains and should lead us to interpret our estimates of the ATT or ATC in light of the quality of the model that produced it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># For replication</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Sample size</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">=</span> <span class="fu">rnorm</span>(n) <span class="co"># Pre-treatment covariates</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">=</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">0.5</span> <span class="sc">+</span> <span class="fl">0.75</span><span class="sc">*</span>X2) <span class="co"># Unequal probabilty of Treatment</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p) <span class="co"># Treatment</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">rnorm</span>(n) <span class="co"># Potential outcomes</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">=</span> Y0 <span class="sc">+</span><span class="dv">1</span> <span class="sc">+</span>X1 <span class="sc">+</span>X2</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0 <span class="co"># Observed outcomes</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(X1,X2,D,Y)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Propensity score model</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>samp<span class="sc">$</span>p.score<span class="ot">&lt;-</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(<span class="fu">glm</span>(D<span class="sc">~</span>X1<span class="sc">+</span>X2,samp,<span class="at">family=</span>binomial),<span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverse Propability Weights</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>samp<span class="sc">$</span>W.ipw<span class="ot">&lt;-</span><span class="fu">with</span>(samp, <span class="fu">ifelse</span>(D<span class="sc">==</span><span class="dv">1</span>,<span class="dv">1</span><span class="sc">/</span>p.score,<span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>p.score)))</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>samp<span class="sc">$</span>W.att<span class="ot">&lt;-</span><span class="fu">with</span>(samp, <span class="fu">ifelse</span>(D<span class="sc">==</span><span class="dv">1</span>,<span class="dv">1</span>,p.score<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>p.score)))</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>samp<span class="sc">$</span>W.atc<span class="ot">&lt;-</span><span class="fu">with</span>(samp, <span class="fu">ifelse</span>(D<span class="sc">==</span><span class="dv">1</span>,(<span class="dv">1</span><span class="sc">-</span>p.score)<span class="sc">/</span>p.score,<span class="dv">1</span>))</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># IPW: ATE, ATT, ATC</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>ATE.ipw<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp,<span class="at">weights=</span>W.ipw))[<span class="dv">2</span>]</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>ATT.ipw<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp,<span class="at">weights=</span>W.att))[<span class="dv">2</span>]</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>ATC.ipw<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp,<span class="at">weights=</span>W.atc))[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="quantile-average-treatment-effects" class="level1">
+<h1>7 Quantile Average Treatment Effects</h1>
+<p>The ATE focuses on the middle, in a way on the effect for a typical person, but we often also care about the distributional consequences of our treatment. We want to know not just whether our treatment raised average income, but also whether it made the distribution of income in the study more or less equal.</p>
+<p>Claims about distributions are difficult. Even though we can estimate the ATE from a difference of sample means, in general, we cannot make statements about the joint distribution of potential outcomes <span class="math inline">\((F(Yi(1),Yi(0)))\)</span> without further assumptions. Typically, these assumptions either limit our analysis to a specific sub-population<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> or require us to assume some form of rank invariance in the distribution of responses to treatment effects.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></p>
+<p>If these assumptions are justified for our data, we can obtain consistent estimates of quantile treatment effects (QTE) using quantile regression.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> Just as linear regression estimates the ATE as a difference in means (or, when covariates are used in the model, from a conditional mean), quantile regression fits a linear model to a conditional quantile and this model can then be used to estimates the effects of treatment for that particular quantile of the outcome. The approach can be extended to include covariates and instruments for non-compliance. Note that the interpretation of the QTE is for a given quantile, not an individual at that quantile.</p>
+<p>Below we show a case where the ATE is 0, but the treatment effect is negative for low quantiles of the response and positive for high quantiles. Estimating quantile treatment effects provides another tool for detecting heterogeneous effects and allows us to describe distributional consequences of our intervention. These added insights come at the cost of requiring more stringent statistical assumptions of our data and more nuanced interpretations of our results.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># For replication</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Population size</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(n) <span class="co"># Potential outcome under control condition</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Y1<span class="ot">=</span> Y0</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>Y1[Y0 <span class="sc">&lt;</span>.<span class="dv">5</span>] <span class="ot">=</span> Y0[Y0 <span class="sc">&lt;</span>.<span class="dv">5</span>]<span class="sc">-</span><span class="fu">rnorm</span>(<span class="fu">length</span>(Y0[Y0 <span class="sc">&lt;</span>.<span class="dv">5</span>]))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>Y1[Y0 <span class="sc">&gt;</span>.<span class="dv">5</span>] <span class="ot">=</span> Y0[Y0 <span class="sc">&gt;</span>.<span class="dv">5</span>]<span class="sc">+</span><span class="fu">rnorm</span>(<span class="fu">length</span>(Y0[Y0 <span class="sc">&gt;</span>.<span class="dv">5</span>]))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>n)<span class="sc">%%</span><span class="dv">2</span>) <span class="co"># Treatment: 1 if treated, 0 otherwise</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0 <span class="co"># Outcome in population</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(D,Y)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantreg)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>ATE <span class="ot">=</span> <span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp))[<span class="dv">2</span>]</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>QTE <span class="ot">=</span> <span class="fu">rq</span>(Y<span class="sc">~</span>D,<span class="at">tau =</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(.<span class="dv">05</span>,.<span class="dv">95</span>,<span class="at">length.out=</span><span class="dv">10</span>),<span class="at">data=</span>samp,<span class="at">method =</span> <span class="st">"fn"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(QTE),<span class="at">parm=</span><span class="dv">2</span>,<span class="at">main=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">"QTE"</span>,<span class="at">xlab=</span><span class="st">"Quantile"</span>,<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">4.1</span>, <span class="fl">2.1</span>, <span class="fl">2.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="effect-types_en_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="mediation-effects" class="level1">
+<h1>8 Mediation Effects</h1>
+<p>Sometimes we want to describe not just the magnitude and significance of an observed causal effect, but also the mechanism (or mechanisms) that produced it. Did our intervention raise turnout in the treatment group, in part, by increasing these subjects’ sense of political efficacy? If so, how much of that total effect can be attributed to the mediated effects of our treatment on efficacy and efficacy on turnout?</p>
+<p>Baron and Kenny (1986) offer a general framework for thinking about mediation by decomposing the total effect of treatment into its indirect effect on a mediator that then effects the outcome, called an average causal mediation effect (ACME), and the remaining average direct effect (ADE) of the treatment. Unbiased estimation of these effects, however, requires a set of strong assumptions about the relationship between treatment, mediators, outcomes, and potential confounders, collectively called sequential ignorability (Imai, Keele, and Yamamoto (2010), Bullock, Green, and Ha (2010)).<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></p>
+<p>Most causal effects likely operate through multiple channels, and so an assumption of sequential ignorability for your experiment can be hard to justify. For example, the top row in the figure below illustrates situations in which sequential ignorability holds, while the bottom row depicts two (of many possible) cases in which sequential ignorability is violated, and mediation analysis is biased. In essence, specifying the effects of a particular mediator requires strong assumptions about the role of all the other mediators in the causal chain. While some experimental designs can, in theory, provide additional leverage (such as running a second, parallel experiment in which the mediator is also manipulated), in practice these designs are hard to implement and still sensitive to unobserved bias. In some cases, the insights we hope to gain from mediation analysis may be more easily acquired from subgroup analysis and experiments designed to test for moderation.</p>
+<p>Imai and colleagues propose an approach to mediation analysis that allows researchers to test the sensitivity of their estimates to violations of sequential ignorability.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> In the code we demonstrate some of the features of their approach, implemented in the mediation package in R (Tingley et al.&nbsp;2014). We model the relationships with OLS, but the package is capable of handling other outcome processes, such as generalized linear models or general additive models, that may be more appropriate for your data. Most importantly, the package allows us to produce bounds that reflect the sensitivity of our point estimates to some violations of sequential ignorability. In our simulated data, just over 20 percent of the total effect is mediated by our proposed mediator, M and the bias from an unobserved pre-treatment confounder would have to be quite large (ρ=.7) before we would reject the finding of a positive ACME. These bounds are only valid, however, if we believe there are no unobserved post-treatment confounders (as in panel 4). Sensitivity analysis is still possible, but more complicated in such settings (Imai and Yamamoto 2013).</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/effect-types/effect-types_fig2.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># Replication</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Sample size</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(n) <span class="co"># Potential outcome under control condition</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">sample</span>((<span class="dv">1</span><span class="sc">:</span>n)<span class="sc">%%</span><span class="dv">2</span>) <span class="co"># Treatment: 1 if treated, 0 otherwise</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">rnorm</span>(n) <span class="co"># Covariate</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>M<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="at">n=</span>n,<span class="at">mean=</span>D<span class="sc">+</span><span class="fu">rnorm</span>(n)) <span class="co"># Mediator influenced by Treatment</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">=</span> Y0 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">+</span> M <span class="co"># Potential outcome under treatment</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0 <span class="co"># Outcome in population</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>samp<span class="ot">&lt;-</span><span class="fu">data.frame</span>(D,M,Y)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mediation)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>med.f<span class="ot">&lt;-</span><span class="fu">lm</span>(M<span class="sc">~</span>D<span class="sc">+</span>X,<span class="at">data=</span>samp) <span class="co"># Model for mediator</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>out.f<span class="ot">&lt;-</span><span class="fu">lm</span>(Y<span class="sc">~</span>M<span class="sc">+</span>D<span class="sc">+</span>X,<span class="at">data=</span>samp) <span class="co"># Model for outcome</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Estimate ACME and ADE</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mediation)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>med.out<span class="ot">&lt;-</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">mediate</span>(med.f,out.f,<span class="at">treat=</span><span class="st">"D"</span>,<span class="at">mediator=</span><span class="st">"M"</span>,<span class="at">robustSE=</span>T,<span class="at">sims=</span><span class="dv">1000</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Sensitivity of ACME to unobserved pre-treatment confounder</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>s.out<span class="ot">&lt;-</span><span class="fu">medsens</span>(med.out)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(s.out) <span class="co"># Plot sensistivity bounds</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="effect-types_en_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Structural equations estimates of ACME ADE</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># f1&lt;-formula(Y~D+X)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># f2&lt;-formula(M~D+X)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># f3&lt;-formula(Y~D+M+X)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># med.sys&lt;-systemfit(list(f1,f2,f3),data=samp)</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ACME&lt;-coef(med.sys)["eq1_D"]-coef(med.sys)["eq3_D"]</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ADE&lt;-coef(med.sys)["eq3_D"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="log-odds-treatment-effects" class="level1">
+<h1>9 Log-Odds Treatment Effects</h1>
+<p>Average treatment effects seem a bit hard to interpret when outcomes are not continuous. For example, a very common binary outcome in the study of elections is coded as 1 when subjects voted, and 0 when they did not. The average effect might be 0.2, but what does it really mean to say that a treatment increased my voting by 0.2? Estimating causal effects for dichotomous outcomes requires some additional care, particularly when including covariates. A common quantity of causal interest for dichotomous outcomes is our treatment’s effect on the log-odds of success, defined for the experimental pool as:</p>
+<p><span class="math display">\[\Delta = log\frac{E(Y_i(1))}{1-E(Y_i(1))} - log\frac{E(Y_i(0))}{1-E(Y_i(0))}\]</span></p>
+<p>Freedman (2008b) shows that logistic regression adjusting for covariates in a randomized experiments produces biased estimates of this causal effect. The basic intuition for Freedman’s argument comes from the fact that taking the log of averages is not the same as taking the average of logs and so the treatment coefficient estimated from a logistic regression conditioning on covariates will not provide a consistent estimator of log-odds of success. Instead, Freedman recommends taking the predicted probabilities varying subjects’ treatment status but maintaining their observed covariate profiles to produce a consistent estimator of the log-odds.</p>
+<p>The basic procedure is outlined in the code below. The coefficients from the logistics regression controlling for covariate X, tend to overestimate the effect of treatment on the log odds, while the adjusted estimates from the predicted probabilities produce consistent results.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># For replication</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Sample size</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>U <span class="ot">=</span> <span class="fu">runif</span>(n)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">runif</span>(n) <span class="co"># Observed Covariate</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">ifelse</span>(U<span class="sc">&gt;</span>.<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">0</span>) <span class="co"># Potential Outcomes</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">=</span> <span class="fu">ifelse</span>(U<span class="sc">+</span>X<span class="sc">&gt;</span>.<span class="dv">75</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">rbinom</span>(n,<span class="dv">1</span>,.<span class="dv">75</span>) <span class="co"># Randomly assign 3/4 to treatment</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1<span class="sc">+</span>Y0<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>D)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(X,D,Y)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>aT<span class="ot">&lt;-</span><span class="fu">with</span>(samp, <span class="fu">mean</span>(Y[D<span class="sc">==</span><span class="dv">1</span>]))</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>aC<span class="ot">&lt;-</span><span class="fu">with</span>(samp, <span class="fu">mean</span>(Y[D<span class="sc">==</span><span class="dv">0</span>]))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Unconditional log odds</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>log.odds<span class="ot">&lt;-</span><span class="fu">log</span>(aT<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>aT))<span class="sc">-</span><span class="fu">log</span>(aC<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>aC))</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic regression conditioning on X overestimates log odds</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">glm</span>(Y<span class="sc">~</span>D<span class="sc">+</span>X,<span class="at">data=</span>samp,<span class="fu">binomial</span>(<span class="st">"logit"</span>))</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>log.odds.logit<span class="ot">&lt;-</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(<span class="fu">glm</span>(Y<span class="sc">~</span>D<span class="sc">+</span>X,<span class="at">data=</span>samp,<span class="fu">binomial</span>(<span class="st">"logit"</span>)))[<span class="dv">2</span>]</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataframes using original covariates for predicted probabilities</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>D1<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">D=</span><span class="dv">1</span>,samp[,<span class="fu">c</span>(<span class="st">"X"</span>)])</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>D0<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">D=</span><span class="dv">0</span>,samp[,<span class="fu">c</span>(<span class="st">"X"</span>)])</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Adjusted log-odds produces consisted estimator of log-odds</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>aT.adj<span class="ot">&lt;-</span><span class="fu">predict</span>(fit,<span class="at">newdata=</span>D1,<span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>aC.adj<span class="ot">&lt;-</span><span class="fu">predict</span>(fit,<span class="at">newdata=</span>D0,<span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>log.odds.adj<span class="ot">&lt;-</span><span class="fu">log</span>(<span class="fu">mean</span>(aT.adj)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">mean</span>(aT.adj)))<span class="sc">-</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="fu">mean</span>(aC.adj)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">mean</span>(aC.adj)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="attributable-effects" class="level1">
+<h1>10 Attributable Effects</h1>
+<p>We conclude with a brief discussion of an alternative quantity of causal interest that may be particularly useful with binary outcomes: the attributable effect (Rosenbaum 2010). Consider a simple case with a dichotomous outcome and treatment. Let <span class="math inline">\(A\)</span> be the number of outcomes attributable to treatment, that is, the number of cases in which <span class="math inline">\(Y_i\)</span> equaled 1 among treated subjects which would not have occurred had these units been assigned to control. For a range of <span class="math inline">\(A\)</span>’s, we adjust the observed contingency table of outcomes among the treated, and compare this resulting distribution to a known null distribution (the distribution of outcomes we would have observed had treatment had no effect). The resulting range of <span class="math inline">\(A\)</span>’s for which our test continues to reject the null hypothesis of no effect provides a range of effects that are attributable to our treatment.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Table 1</th>
+<th><span class="math inline">\(D=1\)</span></th>
+<th><span class="math inline">\(D=0\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Y=1\)</span></td>
+<td><span class="math inline">\(\sum Y_iD_i-A\)</span></td>
+<td><span class="math inline">\((1-Y_i)(D_i)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Y=0\)</span></td>
+<td><span class="math inline">\(\sum Y_i(1-D_i)+A\)</span></td>
+<td><span class="math inline">\(\sum (1-Y_i)(1-D_i)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Rosenbaum (2002) shows extensions of this concept to different types of outcomes (such as continuous variables). A similar logic can also be applied to detecting uncommon but dramatic responses to treatment (Rosenbaum and Silber 2008).</p>
+<p>Hansen and Bowers (2009) use this approach to identify the number of additional votes attributable to different interventions in get-out-the-vote experiment with clustered treatment assignment and one-sided non-compliance. They show that, in large samples, one can approximate the confidence interval for attributable effects without assessing each attribution. Here is an example of that approach where covariates are used to increase precision.</p>
+<p>First, we define an attributable effect as <span class="math inline">\(A=∑_iZ_iτ_i\)</span>, where <span class="math inline">\(τ_i=Y_i(1)−Y_i(0)\)</span> and <span class="math inline">\(y∈0,1\)</span> following Rosenbaum (2002). That is, the attributable effect is the number of “yes” or “success” or other “1” responses among those treated that we would not have seen if they had been assigned control.</p>
+<p>Second, notice that if we write the set <span class="math inline">\(U\)</span> as the experimental pool, and the set of control units is a subset of the whole pool, <span class="math inline">\(C⊆U\)</span>, then we can write <span class="math inline">\(∑_{i∈C}Y_i−Y_i(0)=0\)</span>. This means that we can represent <span class="math inline">\(A\)</span> using totals:</p>
+<span class="math display">\[A = ∑_{i=1}^NZ_iτ_i=∑_{i=1}^NZ_i(Y_i(1)−Y_i(0))=∑_{i∉C}y_i(1)−∑_{i∉C}y_i(0)\]</span> <span class="math display">\[  = ∑_{i∉C}Y_i−∑_{i∉C}Y_i(0)=∑_{i=1}^NY_i−∑_{i=1}^NY_i(0)=t_U−t_C\]</span>
+<center>
+= observed total overall (fixed and observed) - total outcome under control (unobserved, to estimate)
+</center>
+<p>Third, this representation allows us to produce a design-based confidence interval for A^ by drawing on the survey sampling literature about statistical inference for sample totals because the observed total outcomes, tU, is fixed across randomizations. We can use covariates to increase precision here because the survey regression estimator allows us to estimate the total that we would have seen in the control group: <span class="math inline">\(\hat{t}_c=\sum_{i∈U}\hat{Y}_i+\sum_{i∈U}(Y_i-\hat{Y}_i)\)</span> with <span class="math inline">\(\hat{Y}_i=f(X_i,\beta)\)</span> (Lohr 1999). The survey sampling literature shows that as <span class="math inline">\(N→∞\)</span>, <span class="math inline">\(CI(\hat{t}_c) \approx \hat{t}_c \pm z_{a/2}SE(\hat{t}_c)\)</span>. So, one can calculate <span class="math inline">\(\widehat{SE}(\hat{t}_c)\)</span> from standard sampling theory and then the <span class="math inline">\(CI(\hat{A}) \approx t_U-\widehat{CI}(\hat{t}_c)\)</span>.</p>
+<p>In the code below, we provide an illustration using simulated data for a binary response and treatment. In 85 percent of the treatment group, <span class="math inline">\(Y=1\)</span> compared to 52 percent in the control. A difference of this size is consistent with our treatment having caused <span class="math inline">\(Y=1\)</span> for between 92 and 138 of subjects, for whom <span class="math inline">\(Y\)</span> would have otherwise equaled 0 had they not received the treatment. The regression estimator, which leverages precision gained from including covariates, produces tighter confidence intervals (98.8 to 135.1) for the attributable effects.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># For replication </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># Sample size </span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">=</span> <span class="fu">rnorm</span>(n) <span class="co"># Covariates </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">=</span> <span class="fu">rnorm</span>(n) </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">0.5</span> <span class="sc">+</span> <span class="fl">0.75</span><span class="sc">*</span>X2) <span class="co"># Unequal probability of treatment </span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p) </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>p0 <span class="ot">=</span> <span class="fu">pnorm</span>(<span class="fu">rnorm</span>(n)) <span class="co"># Potential outcomes for binary response </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">pnorm</span>(X1 <span class="sc">+</span> X2<span class="sc">+</span><span class="dv">1</span>) </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p0) </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">=</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p1) </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0 <span class="co"># Observed outcome </span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(D,Y,X1,X2) <span class="co"># Data frame </span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>attribute<span class="ot">&lt;-</span><span class="cf">function</span>(treat,out,A,data){ </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Contingency Table of Treatment Status and Outcome </span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  attr.tab<span class="ot">&lt;-</span><span class="fu">with</span>(data,<span class="fu">table</span>(treat,out)) <span class="co"># </span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Matrix of p-values for Attributable effects, A </span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  attr.ps<span class="ot">&lt;-</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="at">nc=</span><span class="dv">2</span>,<span class="at">nr=</span>A,<span class="at">dimnames=</span><span class="fu">list</span>(<span class="cn">NULL</span>,<span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"p"</span>))) </span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>A){ </span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    attr.ps[i,]<span class="ot">&lt;-</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(i,<span class="fu">fisher.test</span>(attr.tab<span class="sc">+</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,i,<span class="dv">0</span>,<span class="sc">-</span>i),<span class="dv">2</span>,<span class="dv">2</span>))<span class="sc">$</span>p) </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find range of effects </span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  get.bounds<span class="ot">&lt;-</span><span class="cf">function</span>(){ </span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    diffs<span class="ot">&lt;-</span><span class="fu">ifelse</span>(.<span class="dv">05</span><span class="sc">-</span>attr.ps[,<span class="st">"p"</span>]<span class="sc">&gt;</span><span class="dv">0</span>,.<span class="dv">05</span><span class="sc">-</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>                    attr.ps[,<span class="st">"p"</span>],<span class="dv">99</span>) </span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    index<span class="ot">&lt;-</span>(diffs <span class="sc">%in%</span> </span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>              <span class="fu">c</span>(<span class="fu">min</span>(diffs),<span class="fu">min</span>(diffs[diffs<span class="sc">&gt;</span><span class="fu">min</span>(diffs)]))) </span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    index </span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return range of effects </span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (attr.ps[<span class="fu">get.bounds</span>(),])</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(samp,<span class="fu">table</span>(D,Y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Y
+D     0   1
+  0 318 339
+  1  51 292</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(samp,<span class="fu">apply</span>(<span class="fu">table</span>(D,Y),<span class="dv">1</span>,prop.table)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   D
+Y           0        1
+  0 0.4840183 0.148688
+  1 0.5159817 0.851312</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attribute</span>(<span class="at">treat =</span> D, <span class="at">out=</span> Y, <span class="at">A=</span><span class="dv">200</span>,<span class="at">data=</span>samp) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       A          p
+[1,]  92 0.04519869
+[2,] 138 0.04587804</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression estimator </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fit1<span class="ot">&lt;-</span><span class="fu">lm</span>(Y<span class="sc">~</span>X1<span class="sc">+</span>X2,<span class="at">data=</span>samp,<span class="at">subset=</span>D<span class="sc">==</span><span class="dv">0</span>) </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>hatYcU<span class="ot">&lt;-</span><span class="fu">predict</span>(fit1,<span class="at">newdata=</span>samp) </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>ec<span class="ot">&lt;-</span>Y[D<span class="sc">==</span><span class="dv">0</span>]<span class="sc">-</span>hatYcU[D<span class="sc">==</span><span class="dv">0</span>] <span class="do">## same as residuals(fit1) </span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>hatTotYc<span class="ot">&lt;-</span><span class="fu">sum</span>(hatYcU)<span class="sc">+</span><span class="fu">sum</span>(ec) </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="fu">length</span>(Y) </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>nctrls<span class="ot">&lt;-</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">-</span>D) </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>thefpc<span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> (nctrls<span class="sc">/</span>N)) </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>varhattC<span class="ot">&lt;-</span>N<span class="sc">*</span>thefpc<span class="sc">*</span><span class="fu">var</span>(Y[D<span class="sc">==</span><span class="dv">0</span>]) </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">&lt;-</span><span class="fu">c</span>(.<span class="dv">05</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">&lt;-</span><span class="fu">sort</span>(<span class="fu">c</span>(alpha<span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>)) </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>ciTotYc<span class="ot">&lt;-</span>hatTotYc<span class="sc">+</span><span class="fu">sqrt</span>(varhattC)<span class="sc">*</span><span class="fu">qnorm</span>(alpha) </span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>ciAE<span class="ot">&lt;-</span><span class="fu">sort</span>(<span class="fu">sum</span>(Y) <span class="sc">-</span> ciTotYc ) </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ciAE)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"lower 95%"</span>,<span class="st">"lower </span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="st">66%"</span>,<span class="st">"upper 66%"</span>,<span class="st">"upper 95%"</span>) </span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ciAE) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  lower 95% lower \n66%   upper 66%   upper 95% 
+   98.78637   107.97975   125.90114   135.09451 </code></pre>
+</div>
+</div>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Aronow, Peter M, and Joel A Middleton. 2013. “A Class of Unbiased Estimators of the Average Treatment Effect in Randomized Experiments.” Journal of Causal Inference 1 (1): 135–54.</p>
+<p>Aronow, Peter M, and Cyrus Samii. 2014. “Does Regression Produce Representative Estimates of Causal Effects?” In EPSA 2013 Annual General Conference Paper. Vol. 585.</p>
+<p>Baron, Reuben M, and David A Kenny. 1986. “The Moderator–Mediator Variable Distinction in Social Psychological Research: Conceptual, Strategic, and Statistical Considerations.” Journal of Personality and Social Psychology 51 (6). American Psychological Association: 1173.</p>
+<p>Bound, John, David A Jaeger, and Regina M Baker. 1995. “Problems with Instrumental Variables Estimation When the Correlation Between the Instruments and the Endogenous Explanatory Variable Is Weak.” Journal of the American Statistical Association 90 (430). Taylor &amp; Francis: 443–50.</p>
+<p>Brambor, Thomas, William R. Clark, and Matt Golder. 2006. “Understanding Interaction Models: Improving Empirical Analyses.” Political Analysis 14 (1): 63–82.</p>
+<p>Bullock, John G, Donald P Green, and Shang E Ha. 2010. “Yes, but What’s the Mechanism?(don’t Expect an Easy Answer).” Journal of Personality and Social Psychology 98 (4). American Psychological Association: 550.</p>
+<p>Chernozhukov, Victor, and Christian Hansen. 2005. “An IV Model of Quantile Treatment Effects.” Econometrica 73 (1). Wiley Online Library: 245–61.</p>
+<p>Dunning, Thad. 2010. “Design-Based Inference: Beyond the Pitfalls of Regression Analysis?” Rethinking Social Inquiry: Diverse Tools, Shared Standards. 2nd Ed. Lanham, Md.: Rowman and Littlefield.</p>
+<p>Freedman, David A. 2008a. “On Regression Adjustments to Experimental Data.” Advances in Applied Mathematics 40 (2). Elsevier: 180–93. ———. 2008b. “Randomization Does Not Justify Logistic Regression.” Statistical Science 23 (2). Institute of Mathematical Statistics: 237–49.</p>
+<p>Frölich, Markus, and Blaise Melly. 2010. “Estimation of Quantile Treatment Effects with Stata.” Stata Journal 10 (3): 423.</p>
+<p>Gerber, Alan S, and Donald P Green. 2012. Field Experiments: Design, Analysis, and Interpretation. WW Norton.</p>
+<p>Green, Donald P. 2009. “Regression Adjustments to Experimental Data: Do David Freedman’s Concerns Apply to Political Science?” In 26th Annual Meeting of the Society for Political Methodology, Yale University, July, 23–25.</p>
+<p>Hansen, Ben, and Jake Bowers. 2009. “Attributing Effects to a Cluster-Randomized Get-Out-the-Vote Campaign.” Journal of the American Statistical Association 104 (487). Taylor &amp; Francis: 873–85.</p>
+<p>Hartman, Erin, RD Grieve, R Ramsahai, and Jasjeet S Sekhon. forthcoming. “From SATE to PATT: Combining Experimental with Observational Studies.” Journal of the Royal Statistical Society.</p>
+<p>Hirano, Keisuke, Guido W Imbens, and Geert Ridder. 2003. “Efficient Estimation of Average Treatment Effects Using the Estimated Propensity Score.” Econometrica 71 (4). Wiley Online Library: 1161–89.</p>
+<p>Holland, Paul W. 1986. “Statistics and Causal Inference.” Journal of the American Statistical Association 81 (396). Taylor &amp; Francis: 945–60.</p>
+<p>Imai, K., L. Keele, D. Tingley, and T. Yamamoto. 2011. “Unpacking the Black Box of Causality: Learning About Causal Mechanisms from Experimental and Observational Studies.” American Political Science Review 105 (4). Cambridge Univ Press: 765–89.</p>
+<p>Imai, Kosuke, and Teppei Yamamoto. 2013. “Identification and Sensitivity Analysis for Multiple Causal Mechanisms: Revisiting Evidence from Framing Experiments.” Political Analysis 21 (2). SPM-PMSAPSA: 141–71.</p>
+<p>Imai, Kosuke, Luke Keele, and Teppei Yamamoto. 2010. “Identification, Inference and Sensitivity Analysis for Causal Mediation Effects.” Statistical Science. JSTOR, 51–71.</p>
+<p>Imai, Kosuke, Gary King, and Elizabeth A Stuart. 2008. “Misunderstandings Between Experimentalists and Observationalists About Causal Inference.” Journal of the Royal Statistical Society: series A (Statistics in Society) 171 (2). Wiley Online Library: 481–502.</p>
+<p>Imai, Kosuke, Dustin Tingley, and Teppei Yamamoto. 2013. “Experimental Designs for Identifying Causal Mechanisms.” Journal of the Royal Statistical Society: Series A (Statistics in Society) 176 (1). Wiley Online Library: 5–51.</p>
+<p>Lin, Winston. 2013. “Agnostic Notes on Regression Adjustments to Experimental Data: Reexamining Freedman’s Critique.” The Annals of Applied Statistics 7 (1). Institute of Mathematical Statistics: 295–318.</p>
+<p>Lohr, Sharon L. 1999. “Sampling: DesignandAnalysis.” Pacific Grove, CA: Brooks/Cole.</p>
+<p>Neyman, Jerzy. 1990 [1923]. “On the Application of Probability Theory to Agricultural Experiments. Essay on Principles. Section 9.” Statistical Science 5 (4). Institute of Mathematical Statistics: 465–72 (Translated by D.M. Dabrowska and T.P. Speed from the original Polish).</p>
+<p>Nickerson, D.W. 2008. “Is Voting Contagious? Evidence from Two Field Experiments.” American Political Science Review 102 (1). Cambridge Univ Press: 49.</p>
+<p>Rosenbaum, Paul. 2002. “Attributing Effects to Treatment in Matched Observational Studies.” Journal of the American Statistical Association 97 (457). Taylor &amp; Francis: 183–92.</p>
+<p>Rosenbaum, Paul R. 2002. Observational Studies. Springer.</p>
+<p>Rosenbaum, Paul, and Donald B. Rubin. 1983. “The Central Role of the Propensity Score in Observational Studies for Causal Effects.” Biometrika 70 (1). Biometrika Trust: 41–55.</p>
+<p>Rosenbaum, Paul, and Jeffrey H Silber. 2008. “Aberrant Effects of Treatment.” Journal of the American Statistical Association 103 (481). Taylor &amp; Francis: 240–47.</p>
+<p>Rosenbaum, PR. 2010. “Design of Observational Studies.” Springer Series in Statistics. New York [etc.]: Springer. Tingley, Dustin, Teppei Yamamoto, Kentaro Hirose, Luke Keele, and Kosuke Imai. 2014. “mediation: R Package for Causal Mediation Analysis.” Journal of Statistical Software 59 (5): 1–38. http://www.jstatsoft.org/v59/i05/.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>For a more formal discussion of independence and the assumptions necessary to estimate causal effects, see Holland (1986) and Angrist, Joshua, and Jörn-Steffen Pischke. 2008. Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton University Press.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>See Holland and Angrist &amp; Pischke again for more formal discussion of independence and the assumptions necessary to estimate causal effects.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Estimates are often written with a hat ( <span class="math inline">\(\widehat{ATE}\)</span> ) to reflect the difference between the estimate from our particular sample and the estimand, target of our estimation that is unobserved. Unless otherwise stated, in this guide we focus on generating sample estimates and subsequently omit this explicit notation for brevity. See Gerber and Green (2012) for concise introduction to this distinction and Imbens and Wooldridge (2007) for a thorough treatment of these concepts.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>The covariance of <span class="math inline">\(Y_{i}(1),Y_{i}(0)\)</span> is impossible to observe but the “Neyman” estimator of the variance omitting the covariance term provides a conservative (too large) estimate of the true sample variance because we tend to assume that the covariance is positive. Since we are generally worried about minimizing type I error rate (incorrectly rejecting true null hypothesis), we prefer using conservative estimates of the variance. See also Dunning (2010) and Gerber and Green (2012) for justification of the conservative variance estimator.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Lin (2013)<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Brambor, Clark, and Golder (2006)<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Angrist, Joshua, and Jörn-Steffen Pischke. 2008. Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton university press.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>We typically assume monotonicity, meaning there are no defiers or people who only take the treatment when assigned to control (<span class="math inline">\(D_{i}=1\)</span> when <span class="math inline">\(Z_i=0\)</span>) and refuse the treatment when assigned to treatment (<span class="math inline">\(D_{i}=0\)</span> when <span class="math inline">\(Z_{i}=1\)</span>).<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Angrist, Joshua, and Jörn-Steffen Pischke. 2008. Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton university press.; Bound, Jaeger, and Baker (1995)<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>See Imai, King, and Stuart (2008) for a more detailed review of the issues discussed in this section.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Imbens, Guido, and Jeffrey M Wooldridge. 2007. What’s New in Econometrics? NBER.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Angrist and Pischke (2008) provide a brief introduction of topics covered in more detail by Hirano, Imbens, and Ridder (2003), Aronow and Middleton (2013), Glynn and Quinn (2010), and Hartman et al.&nbsp;(forthcoming)<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Glynn, Adam N, and Kevin M Quinn. 2010. “An Introduction to the Augmented Inverse Propensity Weighted Estimator.” Political Analysis 18 (1):36–56.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>See Hartman et al.&nbsp;(forthcoming) for an example of efforts to combine experimental and observational data to move from a sample ATE to an estimate of a population ATT.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Rosenbaum and Rubin (1983)<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Abadie, Angrist, and Imbens (2002)<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Chernozhukov and Hansen (2005). That is, treatment can have heterogeneous effects but the ordering of potential outcomes is preserved. See Angrist and Pischke Angrist, Joshua, and Jörn-Steffen Pischke. 2008. Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton university press. See Frölich and Melly (2010) for fairly concise discussions of these issues and Abbring and Heckman (Abbring, Jaap H, and James J Heckman. 2007. “Econometric Evaluation of Social Programs, Part III: Distributional Treatment Effects, Dynamic Treatment Effects, Dynamic Discrete Choice, and General Equilibrium Policy Evaluation.” Handbook of Econometrics 6. Elsevier: 5145–5303.) (2007) for a thorough overview.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>See Koenker, Roger, and Kevin Hallock. 2001. “Quantile Regression: An Introduction.” Journal of Economic Perspectives 15 (4): 43–56. for a concise overview of quantile regression<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Formally, Imai, Keele, and Yamamoto (2010) define the necessary conditions of sequential ignorability as: <span class="math inline">\({Y_i(d',m),M_i(d)}⊥D_i|X_i=x, Y_i(d',m)⊥M_i(d)|D_i=d,X_i=x\)</span>. That is, first, given pre-treatment covariates, the potential outcomes of Y and M are independent of treatment D, and, second, that conditional on pre-treatment covariates and treatment status, potential outcomes are also independent of the mediator.<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>See for example Imai, Keele, and Yamamoto (2010), Imai et al.&nbsp;(2011), Imai, Tingley, and Yamamoto (2013), Imai and Yamamoto (2013). Also see the discussion of Imai, Tingley, and Yamamoto (2013) for different perspectives on the desirability of addressing mediation-type claims with sensitivity or bounds-style analyses.<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

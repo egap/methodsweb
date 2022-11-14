@@ -1,6 +1,7 @@
 ---
 title: "10 Strategies for Figuring out if X Causes Y"
 author: "Macartan Humphreys"
+image: x-cause-y.png
 ---
 
 Abstract

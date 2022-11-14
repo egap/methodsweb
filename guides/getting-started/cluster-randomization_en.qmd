@@ -2,6 +2,7 @@
 title: "10 Things to Know About Cluster Randomization"
 author: "Jake Bowers"
 bibliography: cluster-randomization.bib
+image: cluster-randomization.png
 ---
 
 ```{r,echo=FALSE, message=FALSE}

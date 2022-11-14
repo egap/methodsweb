@@ -1,6 +1,7 @@
 ---
 title: "10 Things to Know About Survey Implementation"
 author: "Gabriella Sacramone-Lutz"
+image: survey-implementation.png
 ---
 
 1 Decide whether or not to work with a local firm

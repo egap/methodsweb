@@ -1,6 +1,7 @@
 ---
 title: "10 Things You Need to Know About the Local Average Treatment Effect"
 author: "Peter van der Windt"
+image: late.png
 ---
 
 Abstract
