@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gabriella Sacramone-Lutz">
+
+<title>Methods for Impact Evaluations - 10 Things to Know About Survey Design</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods for Impact Evaluations</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html">
+ <span class="menu-text">Guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-design-of-baseline-and-endline-surveys-differ-in-key-ways" id="toc-the-design-of-baseline-and-endline-surveys-differ-in-key-ways" class="nav-link active" data-scroll-target="#the-design-of-baseline-and-endline-surveys-differ-in-key-ways">1 The design of baseline and endline surveys differ in key ways</a>
+  <ul class="collapse">
+  <li><a href="#baseline-surveys" id="toc-baseline-surveys" class="nav-link" data-scroll-target="#baseline-surveys">Baseline surveys</a></li>
+  <li><a href="#covariates" id="toc-covariates" class="nav-link" data-scroll-target="#covariates">Covariates</a></li>
+  <li><a href="#pre-treatment-measurement-of-outcomes" id="toc-pre-treatment-measurement-of-outcomes" class="nav-link" data-scroll-target="#pre-treatment-measurement-of-outcomes">Pre-treatment measurement of outcomes</a></li>
+  <li><a href="#endline-surveys" id="toc-endline-surveys" class="nav-link" data-scroll-target="#endline-surveys">Endline Surveys</a></li>
+  </ul></li>
+  <li><a href="#there-are-benefits-and-drawbacks-of-surveys-as-measurement-tools" id="toc-there-are-benefits-and-drawbacks-of-surveys-as-measurement-tools" class="nav-link" data-scroll-target="#there-are-benefits-and-drawbacks-of-surveys-as-measurement-tools">2 There are benefits and drawbacks of surveys as measurement tools</a></li>
+  <li><a href="#develop-your-survey-before-or-in-tandem-with-your-pre-analysis-plan" id="toc-develop-your-survey-before-or-in-tandem-with-your-pre-analysis-plan" class="nav-link" data-scroll-target="#develop-your-survey-before-or-in-tandem-with-your-pre-analysis-plan">3 Develop your survey before or in tandem with your pre-analysis plan</a></li>
+  <li><a href="#use-standard-measures-in-order-to-make-out-of-sample-comparisons" id="toc-use-standard-measures-in-order-to-make-out-of-sample-comparisons" class="nav-link" data-scroll-target="#use-standard-measures-in-order-to-make-out-of-sample-comparisons">4 Use standard measures in order to make out-of-sample comparisons</a></li>
+  <li><a href="#behavioral-measures-are-almost-always-better" id="toc-behavioral-measures-are-almost-always-better" class="nav-link" data-scroll-target="#behavioral-measures-are-almost-always-better">5 Behavioral measures are almost always better</a>
+  <ul class="collapse">
+  <li><a href="#gathering-behavioral-data-doesnt-have-to-be-expensive.-here-is-how-to-develop-low-cost-measures" id="toc-gathering-behavioral-data-doesnt-have-to-be-expensive.-here-is-how-to-develop-low-cost-measures" class="nav-link" data-scroll-target="#gathering-behavioral-data-doesnt-have-to-be-expensive.-here-is-how-to-develop-low-cost-measures">Gathering behavioral data doesn’t have to be expensive. Here is how to develop low-cost measures:</a></li>
+  </ul></li>
+  <li><a href="#there-are-survey-methods-that-measure-sensitive-behaviors-and-attitudes-in-risky-environments-while-protecting-respondents" id="toc-there-are-survey-methods-that-measure-sensitive-behaviors-and-attitudes-in-risky-environments-while-protecting-respondents" class="nav-link" data-scroll-target="#there-are-survey-methods-that-measure-sensitive-behaviors-and-attitudes-in-risky-environments-while-protecting-respondents">6 There are survey methods that measure sensitive behaviors and attitudes in risky environments while protecting respondents</a></li>
+  <li><a href="#if-social-desirability-bias-andor-risk-to-respondents-are-not-concerns-then-use-attitudinal-measures-with-these-qualities" id="toc-if-social-desirability-bias-andor-risk-to-respondents-are-not-concerns-then-use-attitudinal-measures-with-these-qualities" class="nav-link" data-scroll-target="#if-social-desirability-bias-andor-risk-to-respondents-are-not-concerns-then-use-attitudinal-measures-with-these-qualities">7 If social desirability bias and/or risk to respondents are not concerns: then use attitudinal measures with these qualities</a>
+  <ul class="collapse">
+  <li><a href="#how-do-you-construct-questions-that-accomplish-these-goals" id="toc-how-do-you-construct-questions-that-accomplish-these-goals" class="nav-link" data-scroll-target="#how-do-you-construct-questions-that-accomplish-these-goals">How do you construct questions that accomplish these goals?</a></li>
+  </ul></li>
+  <li><a href="#question-ordering-instrument-length-matter" id="toc-question-ordering-instrument-length-matter" class="nav-link" data-scroll-target="#question-ordering-instrument-length-matter">8 Question ordering &amp; instrument length matter</a></li>
+  <li><a href="#make-sure-response-rates-do-not-differ-as-a-function-of-treatment-assignment" id="toc-make-sure-response-rates-do-not-differ-as-a-function-of-treatment-assignment" class="nav-link" data-scroll-target="#make-sure-response-rates-do-not-differ-as-a-function-of-treatment-assignment">9 Make sure response rates do not differ as a function of treatment assignment</a></li>
+  <li><a href="#pilot" id="toc-pilot" class="nav-link" data-scroll-target="#pilot">10 Pilot!</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 Things to Know About Survey Design</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gabriella Sacramone-Lutz </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="the-design-of-baseline-and-endline-surveys-differ-in-key-ways" class="level1">
+<h1>1 The design of baseline and endline surveys differ in key ways</h1>
+<p>Surveys are the most frequently-used tool for collecting experimental data in social science research, and the design of these surveys can have a profound effect on the conclusions we draw about the treatments we study. Therefore, the stakes are high when designing surveys around your experimental projects.</p>
+<p>At a minimum, all that is needed to estimate a treatment effect after an experiment has been conducted is a measure of the outcome, collected after the treatment has been delivered, with a sufficient number of observations across the treatment and control groups. If time and budget allow, baseline surveys, conducted before the implementation of an experiment, serve important functions as well and can improve analysis greatly.</p>
+<section id="baseline-surveys" class="level2">
+<h2 class="anchored" data-anchor-id="baseline-surveys">Baseline surveys</h2>
+<p>Baseline surveys should produce data that describe the experimental subject population as they were before the treatment is delivered. This is accomplished through the measurement of covariates, which are observed pre-treatment characteristics of experimental subjects. Using covariate data you can: 1) describe the subject population, 2) improve the precision with which you estimate treatment effects, 3) report balance, and 4) estimate heterogeneous treatment effects.</p>
+</section>
+<section id="covariates" class="level2">
+<h2 class="anchored" data-anchor-id="covariates">Covariates</h2>
+<p>Covariates improve the precision with which you can estimate treatment effects by reducing variance in three ways; covariates can be used to rescale your dependent variable, as controls when using regression to estimate treatment effects, and to construct blocks in order to conduct blocked random assignment.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In order for covariate data to be used to reduce variance in our estimates of treatment effects, they need to be unaffected by treatment assignment, i.e.&nbsp;collected sometime before treatment is delivered. See the guide on <a href="https://egap.org/resource/10-things-to-know-about-covariate-adjustment">covariate adjustment</a> for more about how to use covariate data.</p>
+<p>The greater the predictive power of included covariates, the greater increase in the power of your design and the precision with which you can estimate effects. If you believe covariates will likely predict outcomes in your experiment, then that is grounds to include them in your survey. For example, if the intervention involves providing a service at a cost to treated users, income will likely explain some variation in outcomes and is therefore a useful covariate to measure at the baseline stage.</p>
+<p>Because pre-treatment covariates can improve precision, conducting a baseline becomes more important when the sample size is limited.</p>
+<p>Covariates also allow you to conduct sub-group analyses. Heterogeneous effects are not causal, and so interpretation is limited. Still, understanding how treatment effects vary by subejcts’ attributes can provide you with important clues about mechanisms. The implication for design is to include covariates for which you would like to report heterogeneous effects. Covariate data will also be used to show “balance”, or the extent to which the treatment and control populations resemble each other. Although random assignment alone ensures that outcomes across the treatment and control group are in expectation the same, it is standard practice to show that random assignment resulted in two groups that are “balanced” on covariates of interest. If, for example, the treatment group included 25% more men than the control group, we might worry that random assignment failed in some way. Collecting pre-treatment covariate data allows us to evaluate and report balance.</p>
+</section>
+<section id="pre-treatment-measurement-of-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="pre-treatment-measurement-of-outcomes">Pre-treatment measurement of outcomes</h2>
+<p>The baseline provides an opportunity to measure the outcome before the experiment was conducted, later allowing you to use change scores as your outcome and the difference-in-differences estimator. The difference-in-differences estimator will improve precision only when a covariate strongly predicts outcomes.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</section>
+<section id="endline-surveys" class="level2">
+<h2 class="anchored" data-anchor-id="endline-surveys">Endline Surveys</h2>
+<p>Endline surveys, conducted after the treatment is delivered, are primarily used to measure outcomes. Including questions about implementation can improve analysis and interpretation greatly.</p>
+<p>Surveys conducted after treatments are delivered are one way to understand if there were compliance issues or other implementation issues that may have consequences for analysis. Survey data can help to determine the scope of non-compliance with the assigned treatment, and the underlying causes. This is an opportunity to ask subjects directly about reasons for noncompliance. Subjects may have understood the treatment differently than the researchers, and survey data can be used to both show this and speculate why this may have happened.</p>
+<p>In the endline, you can learn about spillover by asking subjects in the control condition about their knowledge and access to the treatment. Interviews with treated subjects are useful for understanding spillover as well, because survey data can be used to understand the networks through which the treatment could have “spilled-over” into the control group.</p>
+<p>Describing the population is important here as well, but covariate data collected after implementation are less useful for improving precision. Ordinarily, covariates collected after treatment assignment are considered suspect, as they could conceivably be affected by treatment.</p>
+<table class="table">
+<colgroup>
+<col style="width: 56%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Baseline checklist</th>
+<th>Endline checklist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Will your data allow you to:</td>
+<td>Will your data allow you to:</td>
+</tr>
+<tr class="even">
+<td>• Describe the population</td>
+<td>• Estimate effects</td>
+</tr>
+<tr class="odd">
+<td>• Adjust treatment effect estimates (are the covariates included likely to be prognostic of outcomes?)</td>
+<td>• Assess if spillover occurred, or if there was interference</td>
+</tr>
+<tr class="even">
+<td>• Estimate heterogeneous treatment effects</td>
+<td>• Measure non-compliance (and the reasons for non-compliance if it occurred)</td>
+</tr>
+<tr class="odd">
+<td>• Design a blocked randomization procedure</td>
+<td>• Look for causal mechanisms (how are effects transmitted?)</td>
+</tr>
+<tr class="even">
+<td>• Describe balance across treatment and control conditions</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="there-are-benefits-and-drawbacks-of-surveys-as-measurement-tools" class="level1">
+<h1>2 There are benefits and drawbacks of surveys as measurement tools</h1>
+<p>Occasionally researchers face a choice between using administrative data or collecting original data in order to measure outcomes and estimate treatment effects. Governments or organizations implementing social programs typically collect their own data, and its possible that this data fits your needs, and will allow you to estimate treatment effects without implementing your own survey.</p>
+<p>Existing data can be used in place of original data when:</p>
+<ol type="1">
+<li>It covers the experimental subject population</li>
+<li>It includes outcome measures that are consistent with the outcomes of interest specified in the pre-analysis plan</li>
+<li>It has been collected in a reliable way:
+<ul>
+<li>the group that collected the data implemented a known sampling procedure</li>
+<li>the incentive was to collect unbiased data, rather than prove the program had a positive effect, i.e.&nbsp;respondents were not intimidated or manipulated</li>
+</ul></li>
+</ol>
+<p>Using administrative data saves money and time, to that end it is important to understand the tradeoffs involved in the collection and use of survey data for the analysis of experiments. In some cases, administrative data is more reliable than original data. For example, court records might be more reliable than interviews with plaintiffs and defendants.</p>
+<p>Collecting original data usually means more options. As a researcher you are able to collect tailored measures, hone in on a population of interest, and you have more opportunity to explore mechanisms.</p>
+</section>
+<section id="develop-your-survey-before-or-in-tandem-with-your-pre-analysis-plan" class="level1">
+<h1>3 Develop your survey before or in tandem with your pre-analysis plan</h1>
+<p>It is now standard practice in experimental social science research to register a <strong>pre-analysis plan</strong> (PAP), which lays out in advance exactly what effects will be estimated and how. The key concern is that if you choose your tests <em>after</em> you see the data, you can get whatever results you like, or at least you can accentuate the tests that bolster a pet hypothesis.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Pre-registering a design and analysis plan, therefore, is a solution that prevents “fishing”: data mining and specification searching.</p>
+<p>If you plan on developing a PAP, there are good reasons, beyond the normative value in increasing the level of transparency in your work, to develop your survey(s) at the same time. Early development of survey instruments is an opportunity to increase confidence in your power calculations, and to enhance precision by including measures of all possible predictive covariates.</p>
+<p>Power is the overall probability that your design will detect an effect if an effect exists. Calculating <a href="https://egap.org/resource/10-things-to-know-about-statistical-power">power</a> involves making assumptions about the range of possible effect sizes, the range of possible values of predictive covariates, how many subjects you will include in your experiment, and how many subjects will answer your survey. Developing your instrument and sampling procedure can significantly improve the accuracy of these assumptions by setting the range of possible values for covariates and outcome measures.</p>
+<p>The best PAPs include a mapping between survey measures (questions) and each equation of interest that will eventually be estimated. Completing this exercise as you develop your survey ensures you have included necessary survey-based covariates and alternative outcome measures.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>A good PAP will also include how you plan to code open ended questions, how you plan to coarsen data, and how you will deal with missingness (including power calculations under different levels of missingness).</p>
+</section>
+<section id="use-standard-measures-in-order-to-make-out-of-sample-comparisons" class="level1">
+<h1>4 Use standard measures in order to make out-of-sample comparisons</h1>
+<p>Review instruments posted on the EGAP pre-registration archive and regional public opinion surveys (<a href="http://www.latinobarometro.org/lat.jsp">Latinobarómetro</a>, <a href="http://afrobarometer.org/">Afrobarometer</a>); most likely someone has already measured what you want to measure. The critique of experiments often rests on the “portability” of results; we aren’t sure if results would replicate in other contexts. Using common measures is one step towards being able to compare effect sizes and underlying populations across contexts.</p>
+</section>
+<section id="behavioral-measures-are-almost-always-better" class="level1">
+<h1>5 Behavioral measures are almost always better</h1>
+<p>As social scientists, we ultimately care about attitudes and beliefs because we expect they drive behavior. The mapping of attitudes to behaviors, however, is often less coherent than we might expect. For example, a respondent might be willing to express dissatisfaction with an authoritarian regime in the context of a survey, but entirely unwilling to join a protest. Therefore, making claims about the link between attitudes and behaviors involves some assumption about the costs of behaviors, which are unknown to the researcher. Within the context of a survey, however, there are more opportunities than you might expect to inexpensively and directly measure respondent’s behaviors.</p>
+<p>For example, Lauren Young used a clever behavioral measure when estimating the effect of fear on participation in dissent. The key outcome in her experiment is the willingness of participants to publicly signal support for the opposition in an authoritarian regime. We might believe that simply asking respondents if they support the regime would not yield truthful responses: it is relatively low cost to say “no,” or alternatively, the respondent might feel pressure from the researcher to say “yes.” In order to more accurately measure behavioral change, she gave subjects an opportunity to accept a pro-opposition wristband.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> This measure is more convincing because wearing the wristband is public and potentially costly. The behavioral measure is a more accurate indicator of political behavior in the world.</p>
+<section id="gathering-behavioral-data-doesnt-have-to-be-expensive.-here-is-how-to-develop-low-cost-measures" class="level2">
+<h2 class="anchored" data-anchor-id="gathering-behavioral-data-doesnt-have-to-be-expensive.-here-is-how-to-develop-low-cost-measures">Gathering behavioral data doesn’t have to be expensive. Here is how to develop low-cost measures:</h2>
+<ol type="1">
+<li>Brainstorm a set of actions that subjects would do if the treatment had had an effect or would not do in the case that the treatment did not have an effect. It also works to think about behavior on a continuum—i.e., what would people be <em>more likely</em> to do if affected, and <em>less likely</em> to do if not? Local context matters a lot here; rely on your enumerators, local survey staff, or implementation partners to help you think through a set of possibilities. One nice way to think about this is to challenge yourself to think about “hints.” In the above example, we might think about a group of opposition activists wearing wristbands publicly as a “hint” that people are more likely to take risks. Keep in mind your eventual audience: what behaviors are frequently tracked in the literature you hope to speak to?</li>
+<li>Isolate the set of behaviors that are feasible to measure. This will most likely be the set of behaviors that can be immediately observed by the enumerator and involve minimal materials. What is the least expensive or costly action that would be associated with the behavioral change you want to detect?</li>
+<li>Ideally, pre-test the measures either with the rest of your survey, or in smaller focus groups. Learning why respondents did or did not behave a certain way will increase confidence in your results.</li>
+</ol>
+</section>
+</section>
+<section id="there-are-survey-methods-that-measure-sensitive-behaviors-and-attitudes-in-risky-environments-while-protecting-respondents" class="level1">
+<h1>6 There are survey methods that measure sensitive behaviors and attitudes in risky environments while protecting respondents</h1>
+<p>The estimation of treatment effects depends on accurate measures of attitudes and beliefs, which in turn depend on honest responses to survey questions. Respondents, in some cases, will answer survey questions in the way they believe others in their community would like them to, or in the way the enumerator or researcher would like them to. People are more likely to do this when they could face punishment for their true beliefs—from social sanctioning to physical harm. In some instances, respondents may not feel comfortable giving a response at all. If this is the case, your measures will be biased in the direction respondents believe to be “socially desirable.”</p>
+<p>Social desirability bias or even worse, risk of harm, makes it difficult to elicit truthful responses in sensitive questions on a survey. A class of statistical methods for survey methodology address this problem. Each method– list experiments, endorsement experiments, and the randomized response technique—works by introducing random noise that conceals individual responses. This means that, on the subject side individual responses are hidden from the researcher, and on the researcher side you can only study the responses of groups (not individuals).</p>
+<p>In the case that you use one of these methods, you may also want to include direct survey measures of the same concept or directly measure for at least a sample of the subset to be able to capture the level of reporting bias across direct and list/endorsement/randomized response measures.</p>
+<p>LINKS TO LIST EXPERIMENT RESOURCES: http://imai.princeton.edu/projects/sensitive.html</p>
+</section>
+<section id="if-social-desirability-bias-andor-risk-to-respondents-are-not-concerns-then-use-attitudinal-measures-with-these-qualities" class="level1">
+<h1>7 If social desirability bias and/or risk to respondents are not concerns: then use attitudinal measures with these qualities</h1>
+<p>High-quality measures share two main characteristics; they are valid and reliable. A valid measure measures the underlying concept it is intended to capture. A reliable measure produces the same measurements when a given quantity is assessed repeatedly.</p>
+<p>Experiments should be “replicable” in the sense that other scientists could run the same experiment in the same context and get the same results. Having a survey with valid and reliable measures is essential to making this possible.</p>
+<section id="how-do-you-construct-questions-that-accomplish-these-goals" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-you-construct-questions-that-accomplish-these-goals">How do you construct questions that accomplish these goals?</h2>
+<ol type="1">
+<li>Use the simplest possible form of each question, using the most widely-understood words. Avoid jargon or technical terms, and be straightforward and brief.</li>
+<li>Be specific, such that if the question were to be lifted from the section and asked without context you would get the same response.</li>
+<li>It helps to begin the question by providing a context. For example, you can prime a time period (“Thinking of the last year: has your income been better, the same, or worse?”), or a place (“Thinking of people in this village: have people earned more or less this year as compared to last year?”)</li>
+<li>Avoid measuring multiple things at once. For example, the following question measures attitudes about both the president and government concurrently, making it difficult to draw a clear conclusion from the data: “Do you think the president and the government are doing a good job in terms of protecting basic freedoms?”</li>
+<li>When constructing response categories, be as comprehensive as possible. Include all possible responses. You don’t want to record a lot of “don’t know” responses and miss important information. See below for a discussion of scales.</li>
+<li>Keep in mind the concerns with social desirability discussed above; the wording of the question shouldn’t lead the respondent towards a certain response.</li>
+</ol>
+</section>
+</section>
+<section id="question-ordering-instrument-length-matter" class="level1">
+<h1>8 Question ordering &amp; instrument length matter</h1>
+<p>Responding to a survey is costly for the respondent. They are volunteering their time and being asked to think in ways that may be new or unfamiliar to them, often for long periods of time. Keeping this in mind, keep your questionnaire as short and as engaging as possible. If you have a large enough sample, you can shorten a questionnaire by randomly assigning some of the respondents to different forms.</p>
+<p>Split your instrument into sections by topic. Give your questionnaire a logical flow as you move from one section to another, starting with general questions and moving to more complex topics.</p>
+<p>Start your questionnaire with an introduction that makes the respondent feel informed and safe. Ask sensitive questions towards the end of the survey; respondents will (hopefully) feel more comfortable as the interview goes on, and if the respondent ends the interview you still have most of your data. Be aware that priming in earlier sections will affect the responses to later questions.</p>
+</section>
+<section id="make-sure-response-rates-do-not-differ-as-a-function-of-treatment-assignment" class="level1">
+<h1>9 Make sure response rates do not differ as a function of treatment assignment</h1>
+<p>If response rates are related to treatment status, your survey data can yield biased estimates. For example, let’s say you are conducting a study of an intervention that involves testing study participants for health problems and informing those in the treatment group of their diagnosis. This is a sensitive intervention and may cause people in the treatment group to become more apprehensive about answering a survey than those in the control group. Simply analyzing the data without accounting for differential response rates would yield data that was biased away from the true treatment effect—we lack data on those with the highest potential outcomes, those subjects who have been exposed to the strongest version of the treatment.</p>
+<p>One way to deal with this in the design of your survey (not the design of the treatment or in analysis alone [e.g., using bounded treatment effects<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>]), is to track a subsample of individuals from the hard-to-reach group. Choose a subset of missing respondents and invest in tracking and reaching them. At the analysis stage you have the option of weighting the data from this subsample in order to account for attrition.</p>
+</section>
+<section id="pilot" class="level1">
+<h1>10 Pilot!</h1>
+<p>It is absolutely essential to pre-test your survey instrument after you have designed it. The purpose of a pre-test (or pilot) is to make sure your instrument works in the real world. This means that, by the time you implement your survey in the field, you are confident that:</p>
+<ol type="1">
+<li>Respondents will understand the questions</li>
+<li>Respondents will be comfortable responding</li>
+<li>The questions are not leading</li>
+<li>The questions produce enough variation in the data</li>
+<li>That you have included all relevant response categories (and you won’t get a lot of non-response)</li>
+<li>The instrument is not too long</li>
+</ol>
+<p>The <a href="https://egap.org/resource/10-things-to-know-about-survey-implementation">survey implementation</a> guide explains about how to set up and carry out a pre-test.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Gerber, Alan S., and Donald P. Green. Field Experiments: Design, Analysis, and Interpretation. New York: W.W. Norton, 2012.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Gerber, Alan S., and Donald P. Green. Field Experiments: Design, Analysis, and Interpretation. New York: W.W. Norton, 2012. See equation 4.2.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Link to fishing article: http://www.columbia.edu/~mh2245/papers1/PA_2012b.pdf. Link to Casey et al: http://qje.oxfordjournals.org/content/127/4/1755.full.pdf+html<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>If employing multiple survey measures for the same outcome; pre-commit to how you will analyze them e.g.&nbsp;in an index/with accounting for multiple comparisons etc. to avoid cherry-picking measures post-hoc.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Young, Lauren. The psychology of political risk in autocracy. Working paper, Columbia University, September 2015.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>This approach involves estimating the upper and lower “bounds,” which are the largest and smallest ATEs we would obtain if the missing information were filled in with the highest and lowest outcomes that appear in the data we have.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
