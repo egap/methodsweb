@@ -1,7 +1,7 @@
 ---
 title: "10 Things to Know About Hypothesis Testing"
 author: "Jake Bowers"
-bibliography: hypothesistesting.bib
+bibliography: hypothesis-testing.bib
 ---
 
 \newcommand{\bX}{\mathbf{X}}

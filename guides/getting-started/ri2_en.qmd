@@ -28,7 +28,7 @@ In `ri2`, you always "declare" the random assignment procedure so the computer k
 
 ```{r}
 library(ri2)
-complete_dat <- read.csv("complete_dat.csv")
+complete_dat <- read.csv("ri2_complete_dat.csv")
 complete_dec <- declare_ra(N = 200)
 ```
 
@@ -61,7 +61,7 @@ summary(ri_out, p = "lower")
 The answer that `ri2` produces depends deeply on the randomization procedure. The next example imagines that the treatment was blocked at the school level.
 
 ```{r}
-blocked_dat <- read.csv("blocked_dat.csv")
+blocked_dat <- read.csv("ri2_blocked_dat.csv")
 blocked_dec <- declare_ra(blocks = blocked_dat$schools)
 ri_out <-
   conduct_ri(
@@ -77,7 +77,7 @@ plot(ri_out)
 A very similar syntax accommodates a cluster randomized trial.
 
 ```{r}
-clustered_dat <- read.csv("clustered_dat.csv")
+clustered_dat <- read.csv("ri2_clustered_dat.csv")
 clustered_dec <- declare_ra(clusters =  clustered_dat$schools)
 ri_out <-
   conduct_ri(
@@ -175,7 +175,7 @@ plot(ri_out)
 In a three-arm trial, the research might wish to compare each treatment to control separately. To do this, we must change the null hypothesis in a subtle way: we are going to assume the sharp null for each *pairwise* comparison. For example, when comparing treatment 1 to control, we exclude the subjects assigned to treatment 2 and pretend we simply have a two arm trial conducted among the subjects assigned to control and treatment 1.
 
 ```{r three_arm_example, eval=TRUE, warn=FALSE}
-three_arm_dat <- read.csv("three_arm_dat.csv")
+three_arm_dat <- read.csv("ri2_three_arm_dat.csv")
 three_arm_dec <- declare_ra(N = 200, 
                             conditions = c("Control", "Treatment 1", "Treatment 2"))
 ri_out <-
