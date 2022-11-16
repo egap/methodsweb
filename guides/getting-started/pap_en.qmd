@@ -1,8 +1,10 @@
 ---
 title: "10 Things to Know About Pre-Analysis Plans"
 author:
-  - "Nuole (Lula) Chen"
-  - "Christopher Grady"
+  - name: "Nuole (Lula) Chen"
+    url: https://lulachen.github.io/
+  - name: "Christopher Grady"
+    url: https://publish.illinois.edu/cdgrady2/
 ---
 
 <style>

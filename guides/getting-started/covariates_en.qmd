@@ -1,6 +1,8 @@
 ---
 title: " 10 Things to Know About Covariate Adjustment"
-author: "Lindsay Dolan"
+author: 
+  - name: "Lindsay Dolan"
+    url: https://lindsayrdolan.com/
 image: covariates.png
 ---
 

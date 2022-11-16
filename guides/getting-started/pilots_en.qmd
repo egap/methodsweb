@@ -1,9 +1,12 @@
 ---
 title: "10 Things to Know About Pilot Studies"
 author:
-  - "Kaylyn Jackson Schiff"
-  - "Daniel S. Schiff"
-  - "Natália S. Bueno"
+  - name: "Kaylyn Jackson Schiff"
+    url: https://www.kaylynjacksonschiff.com/
+  - name: "Daniel S. Schiff"
+    url: https://danielschiff.com/
+  - name: "Natália S. Bueno"
+    url: https://egap.org/member/natalia-bueno/
 ---
 
 # 1. What is a pilot, and what is it good for?

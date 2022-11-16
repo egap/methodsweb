@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Measurement in Experiments"
-author: "Tara Slough"
+author: 
+  - name: "Tara Slough"
+    url: https://egap.org/member/tara-slough/
 ---
 
 # 1. The validity of inferences we draw from an experiment depend on the validity of the measures used.

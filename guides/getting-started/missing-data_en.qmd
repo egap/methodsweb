@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Missing Data"
-author: "Tara Slough"
+author: 
+  - name: "Tara Slough"
+    url: https://egap.org/member/tara-slough/
 ---
 
 1. What is missing data?

@@ -1,6 +1,8 @@
 ---
 title: "10 Strategies for Figuring out if X Causes Y"
-author: "Macartan Humphreys"
+author: 
+  - name: "Macartan Humphreys"
+    url: https://egap.org/member/macartan-humphreys/
 image: x-cause-y.png
 ---
 

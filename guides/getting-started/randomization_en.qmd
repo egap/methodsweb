@@ -1,6 +1,8 @@
 ---
 title: "10 Things You Need to Know About Randomization"
-author: "Lindsay Dolan"
+author: 
+  - name: "Lindsay Dolan"
+    url: https://lindsayrdolan.com/
 image: randomization.png
 ---
 

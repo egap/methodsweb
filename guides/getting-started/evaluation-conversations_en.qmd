@@ -1,8 +1,10 @@
 ---
 title: "10 Conversations that Implementers and Evaluators Need to Have"
 author:
-  - "Jake Bowers"
-  - "Rebecca Wolfe"
+  - name: "Jake Bowers"
+    url: https://egap.org/member/jake-bowers/
+  - name: "Rebecca Wolfe"
+    url: https://egap.org/member/rebecca-wolfe/
 ---
 
 # Abstract

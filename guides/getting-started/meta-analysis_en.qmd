@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Conducting a Meta-Analysis"
-author: "Donald Green"
+author: 
+  - name: "Donald Green"
+    url: https://egap.org/member/donald-green/
 ---
 
 1. What is meta-analysis?

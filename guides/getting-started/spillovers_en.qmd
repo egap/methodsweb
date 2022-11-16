@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Spillovers"
-author: "Alexander Coppock"
+author: 
+  - name: "Alexander Coppock"
+    url: https://egap.org/member/alexander-coppock/
 image: spillovers.png
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Survey Implementation"
-author: "Gabriella Sacramone-Lutz"
+author: 
+  - name: "Gabriella Sacramone-Lutz"
+    url: https://gabriellalutz.com/
 image: survey-implementation.png
 ---
 

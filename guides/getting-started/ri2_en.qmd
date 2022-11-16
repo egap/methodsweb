@@ -1,6 +1,8 @@
 ---
 title: "10 Randomization Inference Procedures with ri2"
-author: "Alexander Coppock"
+author: 
+  - name: "Alexander Coppock"
+    url: https://egap.org/member/alexander-coppock/
 ---
 
 ```{r, echo=FALSE}

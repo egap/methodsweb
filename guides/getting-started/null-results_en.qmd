@@ -1,6 +1,8 @@
 ---
 title: "10 Things Your Null Result Might Mean"
-author: "Rekha Balu"
+author: 
+  - name: "Rekha Balu"
+    url: https://cabs.mdrc.org/team/rekha-balu
 ---
 
 Abstract

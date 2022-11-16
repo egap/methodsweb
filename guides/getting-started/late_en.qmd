@@ -1,6 +1,8 @@
 ---
 title: "10 Things You Need to Know About the Local Average Treatment Effect"
-author: "Peter van der Windt"
+author: 
+  - name: "Peter van der Windt"
+    url: https://egap.org/member/peter-van-der-windt/
 image: late.png
 ---
 

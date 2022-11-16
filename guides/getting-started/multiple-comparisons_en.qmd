@@ -1,6 +1,8 @@
 ---
 title: "10 Things You Need to Know About Multiple Comparisons"
-author: "Alexander Coppock"
+author: 
+  - name: "Alexander Coppock"
+    url: https://egap.org/member/alexander-coppock/
 image: multiple-comparisons.png
 ---
 

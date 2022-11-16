@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Cluster Randomization"
-author: "Jake Bowers"
+author: 
+  - name: "Jake Bowers"
+    url: https://egap.org/member/jake-bowers/
 bibliography: cluster-randomization.bib
 image: cluster-randomization.png
 ---

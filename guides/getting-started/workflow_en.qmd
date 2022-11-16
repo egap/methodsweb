@@ -1,6 +1,8 @@
 ---
 title: "10 Things You Need to Know About Project Workflow"
-author: "Matthew Lisiecki"
+author: 
+  - name: "Matthew Lisiecki"
+    url: https://egap.org/member/matthew-lisiecki/
 ---
 
 1.	People have limited memories

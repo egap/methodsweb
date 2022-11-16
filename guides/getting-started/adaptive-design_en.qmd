@@ -1,8 +1,10 @@
 ---
 title: "10 Things to Know About Adaptive Experimental Design"
 author: 
-  - "Donald Green"
-  - "Molly Offer-Westort"
+  - name: "Donald Green"
+    url: https://egap.org/member/donald-green/
+  - name: "Molly Offer-Westort"
+    url: https://mollyow.github.io/
 ---
 
 1.	What is an “adaptive”[^1] design?

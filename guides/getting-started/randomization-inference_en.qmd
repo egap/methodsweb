@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Randomization Inference"
-author: "Donald Green"
+author: 
+  - name: "Donald Green"
+    url: https://egap.org/member/donald-green/
 image: randomization-inference.png
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: "10 Types of Treatment Effect You Should Know About"
-author: "Paul Testa"
+author: 
+  - name: "Paul Testa"
+    url: https://paultesta.org/
 image: effect-types.png
 ---
 

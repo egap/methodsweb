@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Sampling"
-author: "Anna M. Wilke"
+author: 
+  - name: "Anna M. Wilke"
+    url: https://anna-wilke.com/
 bibliography: sampling.bib
 ---
 

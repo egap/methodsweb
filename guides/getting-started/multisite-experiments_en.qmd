@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Multisite or Block-Randomized Trials"
-author: "Kristen Hunter"
+author: 
+  - name: "Kristen Hunter"
+    url: https://scholar.harvard.edu/khunter/home
 bibliography: multisite_refs.bib
 ---
 

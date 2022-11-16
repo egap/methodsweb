@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Heterogeneous Treatment Effects"
-author: "Albert Fang"
+author: 
+  - name: "Albert Fang"
+    url: https://albertfang.com/
 image: heterogeneous-effects.png
 ---
 

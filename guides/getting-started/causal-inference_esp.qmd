@@ -1,6 +1,8 @@
 ---
 title: " 10 cosas que debe saber sobre la inferencia causal"
-author: "Macartan Humphreys"
+author: 
+  - name: "Macartan Humphreys"
+    url: https://egap.org/member/macartan-humphreys/
 image: causal-inference.png
 ---
 
