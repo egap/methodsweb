@@ -11,13 +11,14 @@ website:
         text: Home
       - href: guides.qmd
         text: Guides
-      - about.qmd
 
 format:
   html:
     theme: simplex
     css: styles.css
+    linkcolor: blue
     toc: true
+    code-overflow: wrap
 
 
 
