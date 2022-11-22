@@ -5,6 +5,7 @@ author:
     url: https://egap.org/member/donald-green/
   - name: "Molly Offer-Westort"
     url: https://mollyow.github.io/
+bibliography: adaptive-design.bib
 ---
 
 1.	What is an “adaptive”[^1] design?
@@ -85,17 +86,4 @@ As noted above, adaptive designs add to the complexity of the research design an
 
 On the other hand, funders and implementation partners may welcome the idea of an experimental design that responds to on-the-ground conditions such that problematic arms are scaled back. A middle ground between static designs and designs that envision adaptation over many periods are adaptive designs involving only two or three interim analyses and adjustments. Such trials are winning increased acceptance in biomedical research (Chow and Chang 2008) and are likely to become more widely used in the social sciences too. The growing interest in replication and design-based extensions of existing experiments to aid generalization are likely to create opportunities for adaptive design.
 
-References
-==
-Chin, Richard. 2016. Adaptive and flexible clinical trials. New York: CRC Press. 
-
-Chow, Shein-Chung, and Mark Chang. 2008. “Adaptive design methods in clinical trials – a review.”  Orphanet Journal of Rare Diseases 3:11. <a target="_blank" href="http://doi.org/10.1186/1750-1172-3-11"> Link to article </a>
-
-Nie, Xinkun, Xiaoying Tian, Jonathan Taylor, and James Zou. 2017. "Why Adaptively Collected Data Have Negative Bias and How to Correct for It." arXiv:1708.01977
-
-Scott, Steven L. 2010. “A modern Bayesian look at the multi-armed bandit.” Applied Stochastic Models in Business and Industry 26:639–658.
-
-Thompson, William R. 1933. On the likelihood that one unknown probability exceeds another in view of the evidence of two samples. Biometrika 25:285–294.
-
-Villar, Sofía S., Jack Bowden, and James Wason. “Multi-Armed Bandit Models for the Optimal Design of Clinical Trials: Benefits and Challenges.” Statistical science: a review journal of the Institute of Mathematical Statistics 30.2 (2015): 199–215.
 ---
