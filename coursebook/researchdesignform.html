@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Methods for Impact Evaluations – researchdesignform</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Methods for Impact Evaluations</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../guides.html">
+ <span class="menu-text">Guides</span></a>
+  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">about.qmd</span></li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-research-design-process" id="toc-the-research-design-process" class="nav-link active" data-scroll-target="#the-research-design-process">The Research Design Process</a>
+  <ul class="collapse">
+  <li><a href="#core-content" id="toc-core-content" class="nav-link" data-scroll-target="#core-content">Core Content</a></li>
+  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
+  <li><a href="#design-form-and-pre-registration" id="toc-design-form-and-pre-registration" class="nav-link" data-scroll-target="#design-form-and-pre-registration">Design Form and Pre-registration</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a>
+  <ul class="collapse">
+  <li><a href="#egap-methods-guides" id="toc-egap-methods-guides" class="nav-link" data-scroll-target="#egap-methods-guides">EGAP Methods Guides</a></li>
+  <li><a href="#books-chapters-and-articles" id="toc-books-chapters-and-articles" class="nav-link" data-scroll-target="#books-chapters-and-articles">Books, Chapters, and Articles</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="the-research-design-process" class="level1">
+<h1>The Research Design Process</h1>
+<p>This book aims to help you understand and design randomized field experiments. But before we dive into the details of research design, we need a good research question – a question that will advance knowledge or help make a policy decision or both. There is no simple recipe for finding or developing a good scientific or policy question, but our theories are important for articulating good questions that underlie impactful research. After formulating our question, we develop the best design possible within our resource constraints, using our knowledge of causal inference and statistics from the modules that follow.</p>
+<p>This module introduces the <a href="https://egap.github.io/learningdays-resources/Exercises/design-form.Rmd">EGAP Research Design Form</a>, a checklist to guide you through the many stages of the research process. The Learning Days workshops are organized around the Research Design Form. We also point you towards the <a href="http://declaredesign.org">DeclareDesign</a> software package to explore the implications of different choices we could make for our research designs. Finally, this module discusses pre-analysis plans and pre-registration. When plan our analyses and make these plans public, we improve our chances of persuading others with our results.</p>
+<section id="core-content" class="level2">
+<h2 class="anchored" data-anchor-id="core-content">Core Content</h2>
+<ul>
+<li><p>A <strong>good research question</strong> advances science and/or is a question the answer to which will inform a policy decision.</p></li>
+<li><p>Certain <strong>research designs</strong> are better able to address certain questions. We want to choose the design that best answers our key questions within our constraints.</p></li>
+<li><p>The questions we ask arise — often implicitly — from our values and from our understanding about how the world works. These <strong>theories</strong> make our questions relevant. And the experiments that we execute teach us about the theory. That is, we hope that the evidence and data arising from these research designs improve our understanding.</p></li>
+<li><p>Core components of a research design</p></li>
+<li><p>Introduce core components of the <a href="https://egap.github.io/learningdays-resources/Exercises/design-form.html">EGAP Research Design Form</a>.</p></li>
+<li><p>Introduce a research design software package, <a href="http://declaredesign.org">DeclareDesign</a>.</p></li>
+<li><p>The move in social science towards the <strong>review of designs, rather than outcomes</strong>.</p></li>
+<li><p><strong>Pre-registration</strong> – what it is, and why and how we should do it.</p></li>
+</ul>
+</section>
+<section id="slides" class="level2">
+<h2 class="anchored" data-anchor-id="slides">Slides</h2>
+<p>Below are slides with the core content that we cover in our lecture on research design. You can directly use these slides or make your own local copy and edit.</p>
+<ul>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/researchdesignform-slides.Rmd">R Markdown Source</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/researchdesignform-slides.pdf">PDF Version</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/researchdesignform-slides.html">HTML Version</a></p></li>
+</ul>
+<p>You can also see the slides used in previous EGAP Learning Days:</p>
+<ul>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/declare_design-montevideo.pdf">The DeclareDesign presentation from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/declare_design-malawi.pdf">The DeclareDesign presentation from EGAP Learning Days in Salima, Malawi, February 2017</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/declare_design-santiago.pdf">The DeclareDesign presentation from EGAP Learning Days at Universidad Diego Portales in Santiago, Chile, May 2016</a></p></li>
+</ul>
+<p>You can also see slides for Design Talks in previous EGAP Learning Days, where presenters focus on issues that come up in designing the research, rather than the results:</p>
+<ul>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/research_design_2-benin.pdf">Design Talk from EGAP Learning Days at the African School of Economics, Benin, March 2018</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/research_design_1-montevideo.pdf">Design Talk 1 from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/research_design_2-montevideo.pdf">Design Talk 2 from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/research_design_3-montevideo.pdf">Design Talk 3 from EGAP Learning Days at Universidad Católica del Uruguay, Montevideo, March 2018</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/research_design_1-santiago.pdf">Design Talk 1 from EGAP Learning Days at Universidad Diego Portales in Santiago, Chile, May 2016</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/research_design_2-santiago.pdf">Design Talk 2 from EGAP Learning Days at Universidad Diego Portales in Santiago, Chile, May 2016</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/research_design_3-santiago.pdf">Design Talk 3 from EGAP Learning Days at Universidad Diego Portales in Santiago, Chile, May 2016</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Slides/Examples/research_design-guatemala.pdf">Design Talk from EGAP Learning Days in Guatemala City, Guatemala, August 2017</a></p></li>
+</ul>
+</section>
+<section id="design-form-and-pre-registration" class="level2">
+<h2 class="anchored" data-anchor-id="design-form-and-pre-registration">Design Form and Pre-registration</h2>
+<ul>
+<li><p><a href="https://egap.github.io/learningdays-resources/Exercises/design-form.html">EGAP Research Design Form</a>. A checklist we created for the Learning Days to guide you through the stages of the research process.</p>
+<ul>
+<li><p><a href="https://egap.github.io/learningdays-resources/Exercises/design-form.docx">Docx Version</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Exercises/design-form.pdf">PDF Version</a></p></li>
+<li><p><a href="https://egap.github.io/learningdays-resources/Exercises/design-form.html">HTML Version</a></p></li>
+</ul></li>
+<li><p>Links to repositories for pre-registration/pre-analysis plans:</p>
+<ul>
+<li><p>EGAP registry, hosted by OSF (https://egap.org/registry/)</p></li>
+<li><p>AEA RCT registry (https://www.socialscienceregistry.org/)</p></li>
+<li><p>OSF (https://osf.io/registries)</p></li>
+</ul></li>
+<li><p>Examples of other pre-registrations/pre-analysis plans:</p>
+<ul>
+<li><p>SMS Messages in Mozambique from the <a href="https://oes.gsa.gov/projects/sms-mozambique/">US Federal Government</a></p></li>
+<li><p>Police Body-Cameras from the <a href="https://osf.io/472zh">Lab @ DC</a></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<section id="egap-methods-guides" class="level3">
+<h3 class="anchored" data-anchor-id="egap-methods-guides">EGAP Methods Guides</h3>
+<ul>
+<li><p>EGAP Methods Guide <a href="https://egap.org/resource/10-things-to-know-about-pre-analysis-plans/">10 Things to Know about Pre-Analysis Plans</a></p></li>
+<li><p>EGAP Methods Guide <a href="https://egap.org/resource/10-things-to-know-about-measurement-in-experiments/">10 Things to Know about Measurement in Experiments</a></p></li>
+</ul>
+</section>
+<section id="books-chapters-and-articles" class="level3">
+<h3 class="anchored" data-anchor-id="books-chapters-and-articles">Books, Chapters, and Articles</h3>
+<ul>
+<li><p><a href="https://oes.gsa.gov/assets/files/preregistration-as-a-tool-in-federal-evaluation.pdf">Preregistration as a Tool for Strengthening Federal Evaluation</a>. A white paper from the US Government’s Office of Evaluation Sciences. You can also see examples of their pre-analysis plans on all of <a href="https://oes.gsa.gov/work/">their field experiment pages</a>.</p></li>
+<li><p><span class="citation" data-cites="christensen_transparent_2019">[@christensen_transparent_2019]</span>. The book summarizes new approaches in social science research on transparency and reproducibility.</p></li>
+<li><p><span class="citation" data-cites="gerber_field_2012">[@gerber_field_2012]</span>. Chapter 12 includes some examples of experimental research designs.</p></li>
+</ul>
+</section>
+<section id="tools" class="level3">
+<h3 class="anchored" data-anchor-id="tools">Tools</h3>
+<ul>
+<li><a href="https://declaredesign.org/">DeclareDesign</a>, an exciting and comprehensive set of software tools for describing, assessing, and conducting empirical research.</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

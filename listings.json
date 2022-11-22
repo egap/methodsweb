@@ -1,5 +1,13 @@
 [
   {
+    "listing": "/index.html",
+    "items": [
+      "/guides/getting-started/causal-inference_en.html",
+      "/guides/getting-started/external-validity_en.html",
+      "/guides/getting-started/covariates_en.html"
+    ]
+  },
+  {
     "listing": "/guides.html",
     "items": [
       "/guides/getting-started/evaluation-conversations_en.html",
