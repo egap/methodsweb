@@ -5,19 +5,38 @@ website:
   title: "Methods for Impact Evaluations"
   navbar:
     logo: img/egap-logo.svg
+    logo-width: 500px
     search: true
     right:
-      - href: index.qmd
+      - file: index.qmd
         text: Home
-      - href: guides.qmd
+      - file: guides.qmd
         text: Guides
-      - about.qmd
+      - file: coursebook/index.qmd
+        text: Coursebook
+      
+  sidebar:
+    - title: "Coursebook"
+      contents:
+        - coursebook/index.qmd
+        - coursebook/researchdesignform.qmd
+        - coursebook/causalinference.qmd
+        - coursebook/randomization.qmd
+        - coursebook/hypothesistesting.qmd
+        - coursebook/estimation.qmd
+        - coursebook/statisticalpower.qmd
+        - coursebook/measurement.qmd
+        - coursebook/references.qmd
+        
+    - title: "Guides"
 
 format:
   html:
     theme: simplex
     css: styles.css
     toc: true
+    code-overflow: wrap
+    code-fold: false
 
 
 
