@@ -34,9 +34,9 @@ format:
   html:
     theme: simplex
     css: styles.css
+    linkcolor: blue
     toc: true
     code-overflow: wrap
-    code-fold: false
 
 
 
