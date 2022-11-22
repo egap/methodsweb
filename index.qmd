@@ -1,3 +1,28 @@
+---
+listing: 
+  - id: guides
+    contents: 
+      - causal-inference_en.qmd
+      - covariates_en.qmd
+      - external-validity_en.qmd
+    type: grid
+    sort-ui: false
+    fields: [image, title, author]
+    max-items: 3
+    page-size: 3
+---
+
+![](/img/egap-logo.svg)
+
+Evidence in Governance and Politics (EGAP) is a global research, evaluation, and learning network that promotes rigorous knowledge accumulation, innovation, and evidence-based policy in various governance and accountability domains.
+
+**Our methods resources are aimed at learners and teachers of all levels. Guides are for self-learning, and our coursebook is for teachers of impact evaluation methods.**
+
 # Self-learning guides
 
-# Teaching materials
+Learn methods for impact evaluations just-in-time to use them with guides for impact evaluation methods -- for researchers, evidence users, and students
+
+:::{#guides}
+:::
+
+# Teaching coursebook
