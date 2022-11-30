@@ -158,18 +158,13 @@ Thus, larger sites have a larger impact on the outcome.
 For example, if one very large site is an outlier, the impact at that site will heavily drive the final results.
 Taking this approach makes sense from a utilitarian perspective, i.e., if the benefit of the intervention is equal to the total sum of benefits across all people.
 Average student impact might be of interest to a high-level policymaker, such as a state official.
-The average student impact is
-\[
-\frac{1}{N} \sum_{j = 1}^{J} \sum_{i = 1}^{N_j} B_{ij} = \sum_{j = 1}^{J} \frac{N_j}{N} B_j.
-\]
+The average student impact is $\frac{1}{N} \sum_{j = 1}^{J} \sum_{i = 1}^{N_j} B_{ij} = \sum_{j = 1}^{J} \frac{N_j}{N} B_j.$
 
 When we consider the average site impact, we weigh each site equally.
 Thus, larger sites will be equally weighted to smaller sites.
 A site-level decision maker, such as a school principal, might be more interested in the average site impact, so that site size does not influence the final answer.
-The average site impact is
-\[
-\frac{1}{J} \sum_{j = 1}^{J} B_j.
-\]
+The average site impact is $\frac{1}{J} \sum_{j = 1}^{J} B_j.$
+
 Note that in the case where all sites are of the same size, or all sites have the same impact, then these two estimands are the same.
 
 To summarize, this section and the prior section have given two axes of choices: the population of interest (FP or SP for finite and super population), and the target of inference (persons or sites).
@@ -220,20 +215,16 @@ Note that these models as presented do not include covariates, but covariates ca
 **Fixed effects with a constant treatment (FE)**
 
 With this model, the researcher assumes that there are site-specific fixed effects (intercepts), but a common overall ATE.
-The assumed model is
-\[
-Y_{ij} = \sum_{k = 1}^{J} \alpha_k \text{Site}_{k,ij} + \beta T_{ij} + e_{ij},
-\]
+The assumed model is $Y_{ij} = \sum_{k = 1}^{J} \alpha_k \text{Site}_{k,ij} + \beta T_{ij} + e_{ij}$,
 where $\text{Site}_{k,ij}$ is an indicator for unit $ij$ being in site $k$ (out of $J$ sites), $T_{ij}$ is a treatment indicator, and $e_{ij}$ is an $iid$ error term.
 For more discussion, see @Raudenbush2015.
 
 **Fixed effects with interactions (FE-inter)**
 
 With this model, the researcher assumes site-specific heterogeneous treatment effects, so in addition to fitting a separate fixed effect for the *intercepts* for each site, a separate treatment impact *coefficient* is found for each site.
-\[
-Y_{ij} = \sum_{k = 1}^{J} \alpha_k \text{Site}_{k,ij} +
-\sum_{k = 1}^{J} \beta_k \text{Site}_{k,ij} T_{ij} + e_{ij}
-\]
+$$Y_{ij} = \sum_{k = 1}^{J} \alpha_k \text{Site}_{k,ij} +
+\sum_{k = 1}^{J} \beta_k \text{Site}_{k,ij} T_{ij} + e_{ij}$$
+
 Given a series of site-specific treatment estimates $\hat{\beta}_j$, these estimates are then averaged, with weights by either simple weighting (see @Clark2011) or by site size.
 
 ## Common multilevel models
@@ -308,11 +299,7 @@ Unbiasedness does not hold for one super population model; see @Pashley2022 for 
 
 Consider the FE model (fixed effects with a constant treatment).
 This regression model results in a *precision-weighted* estimate, in which each site impact is weighted by the estimated precision of estimating that site's impact.
-The estimator is
-\[
-\hat{\beta}_{FE} = \sum_{j = 1}^{J} \frac{N_j p_j (1 - p_j)}{Z} \hat{B_j},
-\]
-where $p_j$ is the proportion treated at site $j$.
+The estimator is $\hat{\beta}_{FE} = \sum_{j = 1}^{J} \frac{N_j p_j (1 - p_j)}{Z} \hat{B_j}$, where $p_j$ is the proportion treated at site $j$.
 The quantity $Z$ is a normalizing constant, so $Z$ is defined as $\sum_{j = 1}^{J} N_j p_j (1-p_j)$ to ensure the weights sum to one.
 The weights are $N_j p_j (1 - p_j)$, which is the inverse of $Var(\hat{\beta_j})$, so the weights are related to the precision of the estimate for each site.
 This expression shows that sites with larger $N_j$, or that have $p_j$ closer to $0.5$, have larger weights.
@@ -333,10 +320,8 @@ In contrast, the FE-inter model ends up with weights identical to the design-bas
 
 Multilevel models also result in precision weighting, but in these models the estimated precision also takes into account the assumed underlying variance in site impacts.
 For example, the FIRC model can be expressed roughly as:
-\[
-\hat{\beta}_{ML-FIRC*} = \sum_{j = 1}^{J} \frac{1}{Z}
-\left(\frac{\sigma^2}{N_j p_j ( 1 - p_j)} + \tau^2\right)^{-1} \hat{B_j},
-\]
+$$\hat{\beta}_{ML-FIRC*} = \sum_{j = 1}^{J} \frac{1}{Z}
+\left(\frac{\sigma^2}{N_j p_j ( 1 - p_j)} + \tau^2\right)^{-1} \hat{B_j}$$,
 where $Z$ is again a normalizing constant, $Z = \sum_{j = 1}^{J} \left(\frac{\sigma^2}{N_j p_j ( 1 - p_j)} + \tau^2\right)^{-1}$.
 This equation assumes that the $b_j$ have known variance $\tau^2$, and the $e_{ij}$ have known variance $\sigma^2$.
 In general, we do not know these quantities, and instead must estimate them.
@@ -475,20 +460,11 @@ ICC is also used in the design and analysis of cluster-randomized trials.
 We consider two different estimators and how they impact power.
 First, consider a version of the finite population FE model that has been expanded to include level 1 (student) covariates.
 The standard error for the ATE estimator is
-
-\[
-SE = \sqrt{\frac{(1-\text{ICC})(1-R^2_{1})}{\bar{T}(1 - \bar{T}) J \bar{n}}},
-\]
-
-where $ICC$ is the intraclass correlation, $R_1^2$ is the proportion of variation explained by level 1 (student) covariates, $\bar{T}$ is the average number of treated units per site, $J$ is the number of sites, and $\bar{n}$ is the average number of students per site.
+$SE = \sqrt{\frac{(1-\text{ICC})(1-R^2_{1})}{\bar{T}(1 - \bar{T}) J \bar{n}}}$, where $ICC$ is the intraclass correlation, $R_1^2$ is the proportion of variation explained by level 1 (student) covariates, $\bar{T}$ is the average number of treated units per site, $J$ is the number of sites, and $\bar{n}$ is the average number of students per site.
 For more information about this standard error expression, see the technical appendix of @Hunter2022.
 
 In contrast, consider the super population RIRC model.
-The standard error for the ATE estimator is
-\[
-SE = \sqrt{\frac{\text{ICC} \omega}{J} + \frac{(1-\text{ICC})(1-R^2_{1})}{\bar{T}(1 - \bar{T}) J \bar{n}}},
-\]
-where $\omega$ is the ratio between the cross-site impact variation and the control outcome variation.
+The standard error for the ATE estimator is $SE = \sqrt{\frac{\text{ICC} \omega}{J} + \frac{(1-\text{ICC})(1-R^2_{1})}{\bar{T}(1 - \bar{T}) J \bar{n}}}$, where $\omega$ is the ratio between the cross-site impact variation and the control outcome variation.
 We can see that in doing super population inference, the standard error has an additional term which is non-negative, so it will be as least as large as the standard error from finite population inference.
 A larger standard error will result in lower power.
 

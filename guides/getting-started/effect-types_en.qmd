@@ -40,10 +40,7 @@ The average of the estimates in our list will be the same as the difference of t
 $E(Y_i(1)|D=1)=E(Y_i(1)|D=0)=E(Y_i(1))$ and $E(Y_i(0)|D=1)=E(Y_i(0)|D=0)=E(Y_i(0))$. Another way to state this characteristic of the average treatment effect and its estimator is to say that the difference of observed means is an unbiased estimator of the average treatment effect.
 
 Statistical inference about the estimated ATE requires that we know how it will vary across randomizations. It turns out that we can write the variance of the ATE across randomizations as follows:
-
-$$V(ATE) = \frac{N}{N−1} [\frac{V(Y_{i}(1))}{m}+\frac{V(Y_{i}(0))}{N−m}]−\frac{1}{N−1}[V(Y_{i}(1))+V(Y_{i}(0))−2∗Cov(Y_{i}(1),Y_{i}(0))]$$
-
-and estimate this quantity from the sample estimates of the variance in each group.[^5]
+$V(ATE) = \frac{N}{N−1} [\frac{V(Y_{i}(1))}{m}+\frac{V(Y_{i}(0))}{N−m}]−\frac{1}{N−1}[V(Y_{i}(1))+V(Y_{i}(0))−2∗Cov(Y_{i}(1),Y_{i}(0))]$, and estimate this quantity from the sample estimates of the variance in each group.[^5]
 
 [^5]: The covariance of $Y_{i}(1),Y_{i}(0)$ is impossible to observe but the “Neyman” estimator of the variance omitting the covariance term provides a conservative (too large) estimate of the true sample variance because we tend to assume that the covariance is positive. Since we are generally worried about minimizing type I error rate (incorrectly rejecting true null hypothesis), we prefer using conservative estimates of the variance. See also Dunning (2010) and Gerber and Green (2012) for justification of the conservative variance estimator.
 

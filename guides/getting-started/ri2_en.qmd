@@ -191,7 +191,7 @@ summary(ri_out)
 ## plot(ri_out)
 ```
 
-# 7. Randomization inference for joint significance
+# 8. Randomization inference for joint significance
 
 In that same three-arm trial that compares two treatments to a control, we might be interested in testing whether, jointly, the treatments appear to change outcomes relative to the control. This is analogous to a joint F-test, conducted via randomization inference. We assume the sharp null that a unit would express their observed outcome in *any* of the three conditions.
 
