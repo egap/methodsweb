@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#randomization-inference-for-treatment-effect-heterogeneity-by-subgroups" id="toc-randomization-inference-for-treatment-effect-heterogeneity-by-subgroups" class="nav-link" data-scroll-target="#randomization-inference-for-treatment-effect-heterogeneity-by-subgroups">5. Randomization inference for treatment effect heterogeneity by subgroups</a></li>
   <li><a href="#randomization-inference-for-unmodeled-treatment-effect-heterogeneity" id="toc-randomization-inference-for-unmodeled-treatment-effect-heterogeneity" class="nav-link" data-scroll-target="#randomization-inference-for-unmodeled-treatment-effect-heterogeneity">6. Randomization inference for unmodeled treatment effect heterogeneity</a></li>
   <li><a href="#randomization-inference-for-multi-arm-trials" id="toc-randomization-inference-for-multi-arm-trials" class="nav-link" data-scroll-target="#randomization-inference-for-multi-arm-trials">7. Randomization inference for multi-arm trials</a></li>
-  <li><a href="#randomization-inference-for-joint-significance" id="toc-randomization-inference-for-joint-significance" class="nav-link" data-scroll-target="#randomization-inference-for-joint-significance">7. Randomization inference for joint significance</a></li>
+  <li><a href="#randomization-inference-for-joint-significance" id="toc-randomization-inference-for-joint-significance" class="nav-link" data-scroll-target="#randomization-inference-for-joint-significance">8. Randomization inference for joint significance</a></li>
   <li><a href="#randomization-inference-under-noncompliance" id="toc-randomization-inference-under-noncompliance" class="nav-link" data-scroll-target="#randomization-inference-under-noncompliance">9. Randomization inference under noncompliance</a></li>
   <li><a href="#randomization-inference-for-arbitrary-test-statistics" id="toc-randomization-inference-for-arbitrary-test-statistics" class="nav-link" data-scroll-target="#randomization-inference-for-arbitrary-test-statistics">10. Randomization inference for arbitrary test statistics</a></li>
   </ul>
@@ -445,7 +445,7 @@ names were found from a short variable and have been discarded</code></pre>
 </div>
 </section>
 <section id="randomization-inference-for-joint-significance" class="level1">
-<h1>7. Randomization inference for joint significance</h1>
+<h1>8. Randomization inference for joint significance</h1>
 <p>In that same three-arm trial that compares two treatments to a control, we might be interested in testing whether, jointly, the treatments appear to change outcomes relative to the control. This is analogous to a joint F-test, conducted via randomization inference. We assume the sharp null that a unit would express their observed outcome in <em>any</em> of the three conditions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>F_statistic <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>

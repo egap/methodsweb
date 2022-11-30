@@ -22,6 +22,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -241,7 +260,7 @@ H: The treatment will increase beliefs in city enforcement capacity among treatm
 </ol>
 <p>You may choose to use several procedures for inference criteria. For example, you may want to use both FWER and FDR adjustments for multiple comparisons and compare between the two. Or you may want to use <span class="math inline">\(p\)</span>-values from randomization inference as a check on <span class="math inline">\(p\)</span>-values from a null distribution assumed to be normal. If you choose to use several procedures, you should specify how you will interpret findings if different procedures come to different conclusions.</p>
 <p class="comment">
-<strong>Example:</strong><br><br> We use HC2 standard errors with our block-randomized experiment because it is equivalent to randomization-based Neyman variance estimator <span class="citation" data-cites="samii2012">[@samii2012]</span>. We expect the treatment group to pay more city taxes than the control group, and therefore use a one-tailed test where <span class="math inline">\(H_1 &gt; H_0\)</span>. We set <span class="math inline">\(\alpha = 0.05\)</span> and will reject the null when the <span class="math inline">\(p\)</span>-value is less than 0.05. Because we only have one confirmatory hypothesis, we do not adjust for multiple comparisons. <br><br> As a check on the HC2 standard errors, we also calculate <span class="math inline">\(p\)</span>-values directly using <a href="https://egap.org/resource/10-things-to-know-about-randomization-inference">randomization inference</a>, with the difference-in-means as our test statistic.
+<strong>Example:</strong><br><br> We use HC2 standard errors with our block-randomized experiment because it is equivalent to randomization-based Neyman variance estimator <span class="citation" data-cites="samii2012">(<a href="#ref-samii2012" role="doc-biblioref">Samii and Aronow 2012</a>)</span>. We expect the treatment group to pay more city taxes than the control group, and therefore use a one-tailed test where <span class="math inline">\(H_1 &gt; H_0\)</span>. We set <span class="math inline">\(\alpha = 0.05\)</span> and will reject the null when the <span class="math inline">\(p\)</span>-value is less than 0.05. Because we only have one confirmatory hypothesis, we do not adjust for multiple comparisons. <br><br> As a check on the HC2 standard errors, we also calculate <span class="math inline">\(p\)</span>-values directly using <a href="https://egap.org/resource/10-things-to-know-about-randomization-inference">randomization inference</a>, with the difference-in-means as our test statistic.
 </p>
 </section>
 <section id="what-is-in-a-pap-procedures-for-data-issues" class="level1">
@@ -255,7 +274,7 @@ H: The treatment will increase beliefs in city enforcement capacity among treatm
 <li>How would you assess if the extreme/missing data are plausibly random (i.e.&nbsp;do the extreme data points/missingness correlate with treatment, specific covariates/subgroups, or outcomes)?</li>
 <li>What procedures will you use to address extreme points/missingness and how do you justify using your procedure?
 <ul>
-<li>If extreme/missing data are not random, we recommend including some kind of bounds analysis to determine the bounds of your estimate with extreme points/missing data. For example, extreme value bounds can help you determine the range of an average treatment effect by setting all missing outcomes in the treatment group with largest possible outcome and setting all missing outcomes in the control group with the smallest possible outcome <span class="citation" data-cites="gerber2012field">[@gerber2012field]</span>.<br>
+<li>If extreme/missing data are not random, we recommend including some kind of bounds analysis to determine the bounds of your estimate with extreme points/missing data. For example, extreme value bounds can help you determine the range of an average treatment effect by setting all missing outcomes in the treatment group with largest possible outcome and setting all missing outcomes in the control group with the smallest possible outcome <span class="citation" data-cites="gerber2012field">(<a href="#ref-gerber2012field" role="doc-biblioref">Gerber and Green 2012</a>)</span>.<br>
 </li>
 <li>If extreme/missing data are random, we recommend imputing the extreme points or missing data. You may also drop these data if the extreme/missing data are random, and you should specify conditions under which you choose to drop the data. For example, consider setting a threshold for a missing covariate such that if the percentage of data missing from the covariate exceeds the threshold, you drop the covariate.</li>
 </ul></li>
@@ -326,7 +345,7 @@ Consider dropping these survey outcomes and catalog the reason for our decision.
 <!--
 *2. PAPs increase time to run the study.*
 A PAP _is_ a substantial time-investment upfront, but PAPs can reduce analysis and publication time.  Both because the main analysis code is already written and because journal reviewers may not request as many robustness checks, since you have pre-specified your statistical model upfront.-->
-<p>More discussion of the pros and cons of PAPs can be found in chapter 19 of <span class="citation" data-cites="rosenbaum2010">@rosenbaum2010</span> and in <span class="citation" data-cites="olken2015">@olken2015</span>.</p>
+<p>More discussion of the pros and cons of PAPs can be found in chapter 19 of <span class="citation" data-cites="rosenbaum2010">Rosenbaum (<a href="#ref-rosenbaum2010" role="doc-biblioref">2010</a>)</span> and in <span class="citation" data-cites="olken2015">Olken (<a href="#ref-olken2015" role="doc-biblioref">2015</a>)</span>.</p>
 </section>
 <section id="when-and-where-do-you-register-a-pap" class="level1">
 <h1>10 When and where do you register a PAP?</h1>
@@ -343,21 +362,41 @@ https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist
 <p>Happy Pre-Analysis Planning!</p>
 </section>
 <section id="references" class="level1">
-<h1>References</h1>
+
+
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-caughey2017npc" class="csl-entry" role="doc-biblioentry">
+Caughey, Devin, Allan Dafoe, and Jason Seawright. 2017. <span>“Nonparametric Combination: A Framework for Testing Elaborate Theories.”</span> <em>The Journal of Politics</em> 79 (2): 688–701.
+</div>
+<div id="ref-gerber2012field" class="csl-entry" role="doc-biblioentry">
+Gerber, Alan S, and Donald P Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. WW Norton.
+</div>
+<div id="ref-nosek2015" class="csl-entry" role="doc-biblioentry">
+Nosek, B. A., G. Alter, G. C. Banks, D. Borsboom, S. D. Bowman, S. J. Breckler, S. Buck, et al. 2015. <span>“Promoting an Open Research Culture.”</span> <em>Science</em> 348 (6242): 1422–25.
+</div>
+<div id="ref-olken2015" class="csl-entry" role="doc-biblioentry">
+Olken, Benjamin A. 2015. <span>“Promises and Perils of Pre Analysis Plans.”</span> <em>Journal of Economic Perspectives</em> 29 (3): 61–80.
+</div>
+<div id="ref-rosenbaum2010" class="csl-entry" role="doc-biblioentry">
+Rosenbaum, Paul R. 2010. <em>Design of Observational Studies</em>. Springer Series in Statistics. Springer.
+</div>
+<div id="ref-samii2012" class="csl-entry" role="doc-biblioentry">
+Samii, Cyrus, and Peter M Aronow. 2012. <span>“On Equivalencies Between Design Based and Regression Based Variance Estimators for Randomized Experiments.”</span> <em>Statistics and Probability Letters</em> 82 (2): 365–70.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>PAPs are encouraged as part of the <a href="https://osf.io/4kdbm/?_ga=2.259736077.62256863.1547257566-317545181.1501862097">Transparency and Openness Promotion (TOP) Guidelines</a> <span class="citation" data-cites="nosek2015">[@nosek2015]</span>, published in <a href="http://science.sciencemag.org/content/348/6242/1422.full">Science</a>, with leading social science journals committing to implementing TOP Guidelines.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>PAPs are encouraged as part of the <a href="https://osf.io/4kdbm/?_ga=2.259736077.62256863.1547257566-317545181.1501862097">Transparency and Openness Promotion (TOP) Guidelines</a> <span class="citation" data-cites="nosek2015">(<a href="#ref-nosek2015" role="doc-biblioref">Nosek et al. 2015</a>)</span>, published in <a href="http://science.sciencemag.org/content/348/6242/1422.full">Science</a>, with leading social science journals committing to implementing TOP Guidelines.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Resources like the DeclareDesign project can assist you with simulating and analyzing fake data that mimics the real data your project will gather. <a href="https://egap.org/resource/10-things-to-know-about-statistical-power">Power analysis</a>, an important component of a PAP, requires simulated data.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>As R.A. Fisher said and has often been requoted, “Make your theories elaborate…when constructing a causal hypothesis one should envisage as many different consequences of the truth as possible,” (Cochran, 1965; cited in <span class="citation" data-cites="rosenbaum2010">@rosenbaum2010</span>, pp.&nbsp;327). Though this was said about determining causation in observational studies, the logic also applies to experimental studies.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>For an example of an omnibus test, see <span class="citation" data-cites="caughey2017npc">@caughey2017npc</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>As R.A. Fisher said and has often been requoted, “Make your theories elaborate…when constructing a causal hypothesis one should envisage as many different consequences of the truth as possible,” (Cochran, 1965; cited in <span class="citation" data-cites="rosenbaum2010">Rosenbaum (<a href="#ref-rosenbaum2010" role="doc-biblioref">2010</a>)</span>, pp.&nbsp;327). Though this was said about determining causation in observational studies, the logic also applies to experimental studies.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For an example of an omnibus test, see <span class="citation" data-cites="caughey2017npc">Caughey, Dafoe, and Seawright (<a href="#ref-caughey2017npc" role="doc-biblioref">2017</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>You may also be interested in estimating other types of effects. See this <a href="https://egap.org/resource/10-types-of-treatment-effect-you-should-know-about/">guide on types of treatment effects</a> for more information about effect types.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>For example, you could calculate standard errors and <span class="math inline">\(p\)</span>-values using permutation-based <a href="https://egap.org/resource/10-things-to-know-about-randomization-inference">randomization inference</a>. Or you could closely approximate standard errors and <span class="math inline">\(p\)</span>-values using analytic methods <span class="citation" data-cites="samii2012">[@samii2012]</span><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>For example, you could calculate standard errors and <span class="math inline">\(p\)</span>-values using permutation-based <a href="https://egap.org/resource/10-things-to-know-about-randomization-inference">randomization inference</a>. Or you could closely approximate standard errors and <span class="math inline">\(p\)</span>-values using analytic methods <span class="citation" data-cites="samii2012">(<a href="#ref-samii2012" role="doc-biblioref">Samii and Aronow 2012</a>)</span><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>Note that some organizations do not use third party sites. For example, the <a href="https://oes.gsa.gov/methods/">U.S. General Services Administration Office of Evaluation Sciences process</a> uses Github, which has timestamps that verify the PAP was created before the analysis was conducted.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
