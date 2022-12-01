@@ -19,7 +19,7 @@ Evidence in Governance and Politics (EGAP) is a global research, evaluation, and
 
 **Our methods resources are aimed at learners and teachers of all levels. Guides are for self-learning, and our coursebook is for teachers of impact evaluation methods.**
 
-# Self-learning guides
+# Methods guides
 
 Learn methods for impact evaluations just-in-time to use them with guides for impact evaluation methods -- for researchers, evidence users, and students
 
