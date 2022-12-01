@@ -22,6 +22,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -170,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
 <p>There is no guarantee that adaptive design will be superior in terms of speed or accuracy. For example, adaptive designs may result in a lengthy trial in cases where all of the arms are approximately equally effective. Even when one arm is truly superior, adaptive searches have some probability of resulting in long, circuitous searches (and considerable expense) if by chance they get off to a bad start (i.e., one of the inferior arms appears to be better than the other based on an initial round of results).</p>
 <p>For instance, consider the following scenario in which all but one of the arms have a 0.10 probability of success, and the superior arm has a 0.12 probability of success (with the same trial design as in the previous example). The design eventually settles on the truly superior arm but only after more than 200 periods (N = 23,810). Even after 50 periods, the results provide no clear sense that any of the arms is superior.</p>
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/adaptive/fig2.png" class="img-fluid"></p>
-<p>A further disadvantage of adaptive designs is they may produce biased estimates of the average treatment effect of the apparent best arm vis-à-vis the control group. Bias arises because the trial stops when the best arm crosses a threshold suggesting optimality; this stopping rule tends to favor lucky draws that suggest the efficacy of the winning arm. Conversely, when adaptive algorithms associate sampling probability with observed history, under-estimation for inferior arms, including the control group, may persist until stopping time (Nie et al., 2017).</p>
+<p>A further disadvantage of adaptive designs is they may produce biased estimates of the average treatment effect of the apparent best arm vis-à-vis the control group. Bias arises because the trial stops when the best arm crosses a threshold suggesting optimality; this stopping rule tends to favor lucky draws that suggest the efficacy of the winning arm. Conversely, when adaptive algorithms associate sampling probability with observed history, under-estimation for inferior arms, including the control group, may persist until stopping time (<span class="citation" data-cites="nie_etal_2017">Nie et al. (<a href="#ref-nie_etal_2017" role="doc-biblioref">2017</a>)</span>).</p>
 <p>For example, in the first scenario described above in which all arms have a 0.10 probability of success except for the best arm, which is 0.20, the average estimated success probability for the truly best arm is 0.202 across 1000 simulated experiments, while the control group average is found to 0.083. The average estimated difference in success probabilities (i.e., the average treatment effect) is 0.119, as compared to the true value of 0.10.</p>
 <p>In the second scenario, in which the best arm’s success probability is just 0.12, the average estimated success probability for the best arm is 0.121, and the average estimated ATE is 0.027, as compared to the true ATE of 0.02. Bias in this case is relatively small on a percentage point scale due to the very large size of the average experiment.</p>
 </section>
@@ -183,12 +202,12 @@ Adaptive designs are well suited to survey, on-line, and lab experiments, where 
 </section>
 <section id="what-is-the-connection-between-adaptive-designs-and-multi-arm-bandit-problems" class="level1">
 <h1>5. What is the connection between adaptive designs and “multi-arm bandit problems”?</h1>
-<p>The multi-arm bandit problem (Scott 2010) is a metaphor for the following optimization problem. Imagine that you could drop a coin in one of several slot machines that may pay off at different rates. (Slot machines are sometimes nicknamed “one-arm bandits,” hence the name.) You would like to make as much money as possible. The optimization problem may be characterized as a trade off between learning about the relative merits of the various slot machines – exploration – and reaping the benefits of employing the best arm – exploitation. A static design may be viewed as an extreme case of allocating subjects solely for exploration.</p>
+<p>The multi-arm bandit problem (<span class="citation" data-cites="scott_2010">Scott (<a href="#ref-scott_2010" role="doc-biblioref">2010</a>)</span>) is a metaphor for the following optimization problem. Imagine that you could drop a coin in one of several slot machines that may pay off at different rates. (Slot machines are sometimes nicknamed “one-arm bandits,” hence the name.) You would like to make as much money as possible. The optimization problem may be characterized as a trade off between learning about the relative merits of the various slot machines – exploration – and reaping the benefits of employing the best arm – exploitation. A static design may be viewed as an extreme case of allocating subjects solely for exploration.</p>
 <p>As applied to RCTs, the aim is to explore the merits of the various treatment arms while at the same time reaping the benefits of the best arm or arms. Although the MAB problem is not specifically about estimating treatment effects, one could adjust the optimization objective so that the aim is to find the treatment arm with the greatest apparent superiority over the control group.</p>
 </section>
 <section id="what-are-some-widely-used-algorithms-for-automating-adaptation" class="level1">
 <h1>6. What are some widely used algorithms for automating “adaptation”?</h1>
-<p>The most commonly used methods employ some form of “Thompson sampling” (Thompson 1933). Interim results are assessed periodically, and in the next period subjects are assigned to treatment arms in proportion to the posterior probability that a given arm is best. The more likely an arm is to be “best,” the more subjects it receives.</p>
+<p>The most commonly used methods employ some form of “Thompson sampling” (<span class="citation" data-cites="thompson_1933">Thompson (<a href="#ref-thompson_1933" role="doc-biblioref">1933</a>)</span>). Interim results are assessed periodically, and in the next period subjects are assigned to treatment arms in proportion to the posterior probability that a given arm is best. The more likely an arm is to be “best,” the more subjects it receives.</p>
 <p>Many variations on this basic assignment routine have been proposed, and some are designed to make it less prone to bias. If an adaptive trial is rolled out during a period in which success rates tend to be growing, increasing allocation of subjects to the best arm will tend to exaggerate that arm’s efficacy relative to the other arms, which receive fewer subjects during the high-yield period. In order to assess bias and correct for it, it may be useful to allocate some subjects in every period according to a static design. In this case, inverse probability weights for each period may be used to obtain unbiased estimates of the average treatment effect. (See Gerber and Green 2012 on the use of inverse probability weights for estimation of average treatment effects when the probability of assignment varies from block to block.)</p>
 </section>
 <section id="what-are-the-symptoms-of-futile-search" class="level1">
@@ -202,22 +221,42 @@ Adaptive designs are well suited to survey, on-line, and lab experiments, where 
 </section>
 <section id="are-multi-arm-bandit-trials-frequently-used-in-social-science" class="level1">
 <h1>9. Are multi-arm bandit trials frequently used in social science?</h1>
-<p>Many of the applications to date have taken place in commercial settings, such as website design for high-volume e-commerce, or in settings such as on-line fundraising. Relatively few applications have been written up in detail for a scholarly audience. Surprisingly rare are applications in biomedical research. As Villar et al.&nbsp;(2015, p.200) note, “Despite this apparent near-perfect fit between a real-world problem and a mathematical theory, the MABP has yet to be applied to an actual clinical trial.”</p>
-<p>Putting aside the use of multi-arm bandit approaches, the use of adaptive trials is gradually winning acceptance in biomedical research. For details, see Chin (2016).</p>
+<p>Many of the applications to date have taken place in commercial settings, such as website design for high-volume e-commerce, or in settings such as on-line fundraising. Relatively few applications have been written up in detail for a scholarly audience. Surprisingly rare are applications in biomedical research. As <span class="citation" data-cites="villar_etal_2015">Villar, Bowden, and Wason (<a href="#ref-villar_etal_2015" role="doc-biblioref">2015</a>)</span> note, “Despite this apparent near-perfect fit between a real-world problem and a mathematical theory, the MABP has yet to be applied to an actual clinical trial.”</p>
+<p>Putting aside the use of multi-arm bandit approaches, the use of adaptive trials is gradually winning acceptance in biomedical research. For details, see <span class="citation" data-cites="chin_2016">Chin (<a href="#ref-chin_2016" role="doc-biblioref">2016</a>)</span>.</p>
 </section>
 <section id="what-other-considerations-should-inform-the-decision-to-use-adaptive-design" class="level1">
 <h1>10. What other considerations should inform the decision to use adaptive design?</h1>
 <p>As noted above, adaptive designs add to the complexity of the research design and analysis. They also may increase the challenges of implementation, particularly in field settings where the logistical or training costs associated with different arms vary markedly. Even when one arm is clearly superior (inferior), the lead-time necessary to staff or outfit this arm may make it difficult to scale it up (down). Adaptive designs are only practical if adaptation is feasible.</p>
-<p>On the other hand, funders and implementation partners may welcome the idea of an experimental design that responds to on-the-ground conditions such that problematic arms are scaled back. A middle ground between static designs and designs that envision adaptation over many periods are adaptive designs involving only two or three interim analyses and adjustments. Such trials are winning increased acceptance in biomedical research (Chow and Chang 2008) and are likely to become more widely used in the social sciences too. The growing interest in replication and design-based extensions of existing experiments to aid generalization are likely to create opportunities for adaptive design.</p>
+<p>On the other hand, funders and implementation partners may welcome the idea of an experimental design that responds to on-the-ground conditions such that problematic arms are scaled back. A middle ground between static designs and designs that envision adaptation over many periods are adaptive designs involving only two or three interim analyses and adjustments. Such trials are winning increased acceptance in biomedical research (<span class="citation" data-cites="chow_chang_2008">Chow and Chang (<a href="#ref-chow_chang_2008" role="doc-biblioref">2008</a>)</span>) and are likely to become more widely used in the social sciences too. The growing interest in replication and design-based extensions of existing experiments to aid generalization are likely to create opportunities for adaptive design.</p>
 </section>
 <section id="references" class="level1">
-<h1>References</h1>
+
+
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-chin_2016" class="csl-entry" role="doc-biblioentry">
+Chin, Richard. 2016. <em>Adaptive and Flexible Clinical Trials</em>. CRC Press.
+</div>
+<div id="ref-chow_chang_2008" class="csl-entry" role="doc-biblioentry">
+Chow, Shein-Chung, and Mark Chang. 2008. <span>“Adaptive Design Methods in Clinical Trials – a Review.”</span> <em>Orphanet Journal of Rare Diseases</em> 3 (11).
+</div>
+<div id="ref-nie_etal_2017" class="csl-entry" role="doc-biblioentry">
+Nie, Xinkun, Xiaoying Tian, Jonathan Taylor, and James Zou. 2017. <span>“Why Adaptively Collected Data Have Negative Bias and How to Correct for It.”</span>
+</div>
+<div id="ref-scott_2010" class="csl-entry" role="doc-biblioentry">
+Scott, Steven L. 2010. <span>“A Modern Bayesian Look at the Multi-Armed Bandit.”</span> <em>Applied Stochastic Models in Business and Industry</em> 26: 639–58.
+</div>
+<div id="ref-thompson_1933" class="csl-entry" role="doc-biblioentry">
+Thompson, William R. 1933. <span>“On the Likelihood That One Unknown Probability Exceeds Another in View of the Evidence of Two Samples.”</span> <em>Biometrika</em> 25: 285–94.
+</div>
+<div id="ref-villar_etal_2015" class="csl-entry" role="doc-biblioentry">
+Villar, Sofı́a S., Jack Bowden, and James Wason. 2015. <span>“Multi-Armed Bandit Models for the Optimal Design of Clinical Trials: Benefits and Challenges.”</span> <em>Statistical Science: A Review Journal of the Institute of Mathematical Statistics</em> 30 (2): 199–215.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>This guide originally authored by Donald Green (Columbia University) and Molly Offer-Westort (Yale University) and published on February 23, 2018.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
