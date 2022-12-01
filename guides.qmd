@@ -1,5 +1,5 @@
 ---
-title: "Guides for self-learning"
+title: "Methods guides"
 listing: 
   - id: getting-started
     contents: "guides/getting-started/*_en.qmd"
