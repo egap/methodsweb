@@ -5,6 +5,9 @@ author:
     url: https://egap.org/member/jake-bowers/
 bibliography: cluster-randomization.bib
 image: cluster-randomization.png
+format:
+  html:
+    code-fold: true
 ---
 
 ```{r,echo=FALSE, message=FALSE}
