@@ -1518,26 +1518,51 @@ e.nextSibling.nextSibling.style.display="block";
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-28_d95a9130d815874989d25ca881e87135">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RItools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: ggplot2</code></pre>
+<pre><code>Loading required package: SparseM</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits=</span><span class="dv">3</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a village level dataset</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>villages <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(pretend_data,<span class="at">by =</span> <span class="fu">list</span>(<span class="at">village =</span> pretend_data<span class="sc">$</span>j), mean)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate 10 fake covariates</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>villages[<span class="fu">paste</span>(<span class="st">"x"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="at">sep=</span><span class="st">""</span>)] <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fu">nrow</span>(villages)<span class="sc">*</span><span class="dv">10</span>), <span class="at">ncol=</span><span class="dv">10</span>)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>balance_formula <span class="ot">&lt;-</span> <span class="fu">reformulate</span>(<span class="fu">paste</span>(<span class="st">"x"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="at">sep=</span><span class="st">""</span>), <span class="at">response=</span><span class="st">"Z"</span>)</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Do a design-based, large sample balance test</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>balance_test <span class="ot">&lt;-</span><span class="fu">xBalance</span>(balance_formula,</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">strata=</span><span class="fu">list</span>(<span class="at">noblocks=</span><span class="cn">NULL</span>),</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data=</span>villages,</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">report =</span> <span class="fu">c</span>(</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"std.diffs"</span>, <span class="st">"z.scores"</span>, <span class="st">"adj.means"</span>,</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"adj.mean.diffs"</span>, <span class="st">"chisquare.test"</span>, <span class="st">"p.values"</span></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The results of the 1-by-1 balance tests</span></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">round</span>(balance_test<span class="sc">$</span>results,<span class="dv">2</span>),<span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'SparseM'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:base':
+
+    backsolve</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: dgof</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dgof'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    ks.test</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: replacing previous import 'stats::ks.test' by 'dgof::ks.test' when
+loading 'RItools'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits=</span><span class="dv">3</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a village level dataset</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>villages <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(pretend_data,<span class="at">by =</span> <span class="fu">list</span>(<span class="at">village =</span> pretend_data<span class="sc">$</span>j), mean)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate 10 fake covariates</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>villages[<span class="fu">paste</span>(<span class="st">"x"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="at">sep=</span><span class="st">""</span>)] <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fu">nrow</span>(villages)<span class="sc">*</span><span class="dv">10</span>), <span class="at">ncol=</span><span class="dv">10</span>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>balance_formula <span class="ot">&lt;-</span> <span class="fu">reformulate</span>(<span class="fu">paste</span>(<span class="st">"x"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="at">sep=</span><span class="st">""</span>), <span class="at">response=</span><span class="st">"Z"</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Do a design-based, large sample balance test</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>balance_test <span class="ot">&lt;-</span><span class="fu">xBalance</span>(balance_formula,</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">strata=</span><span class="fu">list</span>(<span class="at">noblocks=</span><span class="cn">NULL</span>),</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data=</span>villages,</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">report =</span> <span class="fu">c</span>(</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"std.diffs"</span>, <span class="st">"z.scores"</span>, <span class="st">"adj.means"</span>,</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"adj.mean.diffs"</span>, <span class="st">"chisquare.test"</span>, <span class="st">"p.values"</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The results of the 1-by-1 balance tests</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">round</span>(balance_test<span class="sc">$</span>results,<span class="dv">2</span>),<span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
@@ -1667,8 +1692,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-29_80876b3ea21c3d2a7827b4cc903f02f5">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The overall omnibus p-value</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">round</span>(balance_test<span class="sc">$</span>overall,<span class="dv">2</span>),<span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The overall omnibus p-value</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">round</span>(balance_test<span class="sc">$</span>overall,<span class="dv">2</span>),<span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
