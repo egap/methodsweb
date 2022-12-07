@@ -253,6 +253,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-2_875040f2caff2c4ce00a1e779a8829d9">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the sample average treatment effect (SATE)</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>treatment_effect     <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -282,6 +284,7 @@ div.csl-indent {
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>standard_error_V1 <span class="ot">&lt;-</span> <span class="fu">sd</span>(treatment_effects_V1)</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the histogram of all possible estimates of the treatment effect</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(treatment_effects_V1,<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="fl">2.5</span>),<span class="at">breaks =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -290,6 +293,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-3_a5d8ca04eaee930af0226dd8fa075984">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Version 2 - Cluster randomized</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate all possible assignments of treatment when clustering by hair color (Z)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>clustered_assignments     <span class="ot">&lt;-</span> <span class="fu">combn</span>(<span class="at">x =</span> <span class="fu">unique</span>(hair_color),<span class="at">m =</span> <span class="dv">1</span>)</span>
@@ -307,6 +312,7 @@ div.csl-indent {
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>standard_error_V2 <span class="ot">&lt;-</span> <span class="fu">sd</span>(treatment_effects_V2)</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the histogram of all possible estimates of the treatment effect</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(treatment_effects_V2,<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="fl">2.5</span>),<span class="at">breaks =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -316,8 +322,11 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare the standard errors</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">round</span>(<span class="fu">data.frame</span>(standard_error_V1,standard_error_V2),<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
@@ -356,6 +365,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-5_aeb26aa2ad90d4bed2995ab1d63d60de">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>make_clustered_data <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">J =</span> <span class="dv">10</span>, <span class="at">n =</span> <span class="dv">100</span>, <span class="at">treatment_effect =</span> .<span class="dv">25</span>, <span class="at">ICC =</span> .<span class="dv">1</span>){</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>     <span class="do">## Inspired by Mathieu et al, 2012, Journal of Applied Psychology</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">if</span> (J <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">!=</span> <span class="dv">0</span> <span class="sc">|</span> n <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">!=</span><span class="dv">0</span>) {</span>
@@ -371,12 +382,15 @@ div.csl-indent {
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>pretend_data <span class="ot">&lt;-</span> <span class="fu">make_clustered_data</span>(<span class="at">J =</span> <span class="dv">10</span>,<span class="at">n =</span> <span class="dv">100</span>,<span class="at">treatment_effect =</span> .<span class="dv">25</span>,<span class="at">ICC =</span> .<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Because we have created the data ourselves, we can calculate the true standard error of our estimator. We firstly generate the true sampling distribution by simulating every possible permutation of the treatment and calculating the estimate each time. The standard deviation of this distribution is the standard error of the estimator.</p>
 <div class="hidecode" onclick="doclick(this);">
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-6_c84e23db335227b87fc0c9e2906a83c0">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of clusters</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>J <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(pretend_data<span class="sc">$</span>j))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate all possible ways of combining clusters into a treatment group</span></span>
@@ -398,6 +412,7 @@ div.csl-indent {
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>true_SE <span class="ot">&lt;-</span> <span class="fu">sd</span>(cluster_results)</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>true_SE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2567029</code></pre>
 </div>
@@ -409,6 +424,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-7_097e072b402b94e831b86d5387b9b341">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ATE_estimate <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> Z,<span class="at">data =</span> pretend_data)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>IID_SE <span class="ot">&lt;-</span> <span class="cf">function</span>(model) {</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">return</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcov</span>(model)))[[<span class="st">"Z"</span>]])</span>
@@ -439,6 +456,7 @@ div.csl-indent {
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  ),</span>
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span></span>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
@@ -463,6 +481,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-8_4013a9caa349d16a874bc2864cfd16a2">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>compare_SEs <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>     simulated_SE <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="fu">replicate</span>(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          <span class="dv">5000</span>,</span>
@@ -494,6 +514,7 @@ div.csl-indent {
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">J =</span> <span class="dv">100</span>,<span class="fu">compare_SEs</span>(J_100_clusters)),</span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">J =</span> <span class="dv">1000</span>,<span class="fu">compare_SEs</span>(J_1000_clusters))</span>
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
@@ -539,6 +560,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-9_4abcfbcbfbdc78f5fcdbc00e549387a2">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate the unit-level data to the cluster level</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum outcome to cluster level</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Yj <span class="ot">&lt;-</span> <span class="fu">tapply</span>(pretend_data<span class="sc">$</span>Y,pretend_data<span class="sc">$</span>j,sum)</span>
@@ -568,6 +591,7 @@ div.csl-indent {
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">with</span>(pretend_data, <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>]))</span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>))</span>
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">data.frame</span>(ATEs),<span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
@@ -594,6 +618,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-10_30cf77be364bd822bdeec6c5ff2838fa">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Approximating variance using normality assumptions</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>normal_sampling_variance <span class="ot">&lt;-</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>     (N<span class="sc">/</span>(n_j<span class="sc">*</span>J_treated<span class="sc">*</span>(N<span class="sc">-</span>J_treated)))<span class="sc">*</span>(<span class="fu">var</span>(Yj)<span class="sc">/</span>n_j)</span>
@@ -609,6 +635,7 @@ div.csl-indent {
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(ses) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Assuming Normality"</span>,<span class="st">"Permutations"</span>)</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(ses)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
@@ -643,6 +670,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-11_1e33ebdbd1b6bae4e5d4b6e6da60fd35">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1000</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of firms</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>J <span class="ot">&lt;-</span> <span class="dv">20</span></span>
@@ -663,6 +692,7 @@ div.csl-indent {
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">&lt;-</span> Y0 <span class="sc">+</span> cluster_ATE[j]</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># True sample average treatment effect</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>(true_SATE <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y1<span class="sc">-</span>Y0))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14.9943</code></pre>
 </div>
@@ -671,8 +701,11 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-12_e87c6a810518e1664e7dcdf0d9b08c52">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation between firm size and effect size</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(n_j,cluster_ATE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.961843</code></pre>
 </div>
@@ -682,6 +715,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-13_f32f19913fd42fce108de2891a2116fc">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Unweighted SATE</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>SATE_estimate_no_weights <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
@@ -699,6 +734,7 @@ div.csl-indent {
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(SATE_estimate_no_weights),<span class="at">col=</span><span class="st">"blue"</span>)</span>
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># And add the true SATE</span></span>
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>true_SATE,<span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -708,6 +744,8 @@ div.csl-indent {
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-14_374125f0897920c23e828db7701fd3c1">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Weighted cluster-averages</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>SATE_estimate_weighted <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
@@ -737,6 +775,7 @@ div.csl-indent {
 <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(SATE_estimate_weighted),<span class="at">col=</span><span class="st">"green"</span>)</span>
 <span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co"># And add the true SATE</span></span>
 <span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>true_SATE,<span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -775,6 +814,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-15_b2ce2f905420f33e23c3560979488719">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a function that matches pairs based on size</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>pair_sizes <span class="ot">&lt;-</span> <span class="cf">function</span>(j,n_j){</span>
@@ -823,6 +864,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(SATE_estimate_paired),<span class="at">col=</span><span class="st">"purple"</span>)</span>
 <span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="co"># And add the true SATE</span></span>
 <span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>true_SATE,<span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -839,6 +881,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-16_1023a9fc3728d7d6f1def0201621ebbe">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The paired estimator is much closer to the true SATE</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">round</span>(<span class="fu">data.frame</span>(</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">true_SATE =</span> true_SATE,</span>
@@ -846,6 +890,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">weighted_SATE =</span> <span class="fu">mean</span>(SATE_estimate_weighted),</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">unweighted_SATE =</span> <span class="fu">mean</span>(SATE_estimate_no_weights)</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>),<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
@@ -888,6 +933,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-17_529794bbdd40c78305609b084ac768dc">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create experimental data</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"V"</span>,.<span class="dv">4</span><span class="sc">*</span>N),<span class="fu">rep</span>(<span class="st">"M"</span>,.<span class="dv">6</span><span class="sc">*</span>N))</span>
@@ -933,6 +980,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(est_effects,<span class="at">breaks =</span> <span class="dv">100</span>,<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>,<span class="dv">7</span>))</span>
 <span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> true_ATE,<span class="at">col =</span> <span class="st">"red"</span>)</span>
 <span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(est_effects,<span class="at">na.rm =</span> T),<span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -955,6 +1003,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-18_707ece0e4494b92fac116e6527005caa">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>form_matched_pairs <span class="ot">&lt;-</span> <span class="cf">function</span>(ID,types){</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  pair_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">unique</span>(types),<span class="cf">function</span>(type){</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    ID <span class="ot">&lt;-</span> ID[types <span class="sc">==</span> type]</span>
@@ -980,6 +1030,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(est_matched_effects,<span class="at">breaks =</span> <span class="dv">100</span>,<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>,<span class="dv">7</span>))</span>
 <span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> true_ATE,<span class="at">col =</span> <span class="st">"red"</span>)</span>
 <span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(est_matched_effects,<span class="at">na.rm =</span> T),<span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1003,6 +1054,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-19_905c5daf51b3962acc61357249b26a1e">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>simple_OLS <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> Z,<span class="at">data =</span> J_30_clusters)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>multilevel <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Y <span class="sc">~</span> Z <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> j),</span>
@@ -1013,6 +1066,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">round</span>(<span class="fu">data.frame</span>(</span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">OLS=</span><span class="fu">coef</span>(simple_OLS)[<span class="st">"Z"</span>],<span class="at">Multilevel=</span><span class="fu">fixef</span>(multilevel)[<span class="st">"Z"</span>]</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  ),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
@@ -1045,6 +1099,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-20_db6eb61c8d457a6c48224915303fb83f">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This function calculates confidence intervals for linear models</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with custom variance-covariance matrices</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>confint_HC<span class="ot">&lt;-</span><span class="cf">function</span> (coefficients, df, <span class="at">level =</span> <span class="fl">0.95</span>, vcov_mat, ...) {</span>
@@ -1077,6 +1133,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model_Based_Wald_CI =</span> multi_wald_CI,</span>
 <span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model_Based_Profile_CI =</span> multi_profile_CI</span>
 <span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>),<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
@@ -1119,8 +1176,11 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-21_7d31db2ca51a501656341e85957a8e99">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>VC <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(lme4<span class="sc">:::</span><span class="fu">VarCorr.merMod</span>(multilevel))</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">ICC =</span> VC<span class="sc">$</span>vcov[<span class="dv">1</span>] <span class="sc">/</span> <span class="fu">sum</span>(VC<span class="sc">$</span>vcov)),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> ICC 
 0.09 </code></pre>
@@ -1140,6 +1200,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-22_79d56c45434e93f5b8e831f67cdf29da">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a function for checking whether 0 is in the confidence interval of</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the RCSE, cluster-aggregated, and multilevel estimation approaches</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>sim_0_ate <span class="ot">&lt;-</span> <span class="cf">function</span>(J,Y) {</span>
@@ -1224,6 +1286,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb25-82"><a href="#cb25-82" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Multi-Level"</span></span>
 <span id="cb25-83"><a href="#cb25-83" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb25-84"><a href="#cb25-84" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(error_comparison,<span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
@@ -1293,6 +1356,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-23_8f5e88f07a3d0202e9f23c971e7356d0">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A function to test the null hypothesis and the true hypothesis</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>test_H0_and_Htrue <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">J =</span> J,<span class="at">n =</span> n,<span class="at">treatment_effect =</span> treatment_effect,<span class="at">ICC =</span> ICC) {</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make data:</span></span>
@@ -1334,6 +1399,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">false_positive =</span> false_positive</span>
 <span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>  ))</span>
 <span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>We can now analyze how power is affected when the number of clusters and the size of clusters vary, holding the ICC constant at .01 and the treatment effect constant at .2. We look both at the power — how often we correctly reject the null of no effect when there really is one - as well as at the error — how often we incorrectly reject the null of no effect when there really isn’t an effect. Typically we want the power to be around .8 and the error rate to be around .5 (when using a 95% confidence level).</p>
 <style>
@@ -1348,6 +1414,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-24_0e78cac62b00c7d79fca95fdb393b828">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The numbers of clusters we will consider</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Js <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">80</span>,<span class="dv">160</span>,<span class="dv">320</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The cluster sizes we will consider</span></span>
@@ -1391,6 +1459,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>,<span class="at">at =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">25</span>))</span>
 <span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>.<span class="dv">8</span>)</span>
 <span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"top"</span>, <span class="at">legend =</span> <span class="fu">colnames</span>(power_J_n),<span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span> ,<span class="at">pch=</span><span class="dv">1</span>,<span class="at">horiz =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1407,12 +1476,15 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-25_257a75b98dc1cbf06c6071552045bb23">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the error rate under the different scenarios</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(error_J_n, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"b"</span>),<span class="at">pch=</span><span class="dv">1</span>,<span class="at">axes =</span> F,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>),<span class="at">ylab =</span> <span class="st">"error rate"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>,<span class="at">labels =</span> <span class="fu">rownames</span>(error_J_n),<span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>,<span class="at">at =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">25</span>))</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>.<span class="dv">05</span>)</span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"top"</span>, <span class="at">legend =</span> <span class="fu">colnames</span>(error_J_n),<span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span> ,<span class="at">pch=</span><span class="dv">1</span>,<span class="at">horiz =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1431,6 +1503,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-26_63d2c1f919ace4e48db4f63fd88ac523">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>J_njs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">160</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ICCs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,.<span class="dv">6</span>,.<span class="dv">1</span>)<span class="sc">+</span><span class="fu">c</span>(.<span class="dv">01</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>power_ICC <span class="ot">&lt;-</span> error_ICC <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
@@ -1470,6 +1544,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>,<span class="at">at =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">25</span>))</span>
 <span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>.<span class="dv">8</span>)</span>
 <span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"top"</span>, <span class="at">legend =</span> <span class="fu">colnames</span>(power_ICC),<span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> ,<span class="at">pch=</span><span class="dv">1</span>,<span class="at">horiz =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1486,12 +1561,15 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-27_58ed868d31247528e739fb1eba3df962">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the error rate under the different scenarios</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(error_ICC, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"b"</span>),<span class="at">pch=</span><span class="dv">1</span>,<span class="at">axes =</span> F,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>),<span class="at">ylab =</span> <span class="st">"error rate"</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>,<span class="at">labels =</span> <span class="fu">rownames</span>(error_ICC),<span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>)</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">2</span>,<span class="at">at =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">25</span>))</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span>.<span class="dv">05</span>)</span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"top"</span>, <span class="at">legend =</span> <span class="fu">colnames</span>(error_ICC),<span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> ,<span class="at">pch=</span><span class="dv">1</span>,<span class="at">horiz =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="cluster-randomization_en_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1516,7 +1594,10 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-28_d95a9130d815874989d25ca881e87135">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RItools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: SparseM</code></pre>
 </div>
@@ -1545,6 +1626,8 @@ Attaching package: 'dgof'</code></pre>
 <pre><code>Warning: replacing previous import 'stats::ks.test' by 'dgof::ks.test' when
 loading 'RItools'</code></pre>
 </div>
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits=</span><span class="dv">3</span>)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a village level dataset</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>villages <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(pretend_data,<span class="at">by =</span> <span class="fu">list</span>(<span class="at">village =</span> pretend_data<span class="sc">$</span>j), mean)</span>
@@ -1563,6 +1646,7 @@ loading 'RItools'</code></pre>
 <span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="co"># The results of the 1-by-1 balance tests</span></span>
 <span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">round</span>(balance_test<span class="sc">$</span>results,<span class="dv">2</span>),<span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
@@ -1692,8 +1776,11 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell" data-hash="cluster-randomization_en_cache/html/unnamed-chunk-29_80876b3ea21c3d2a7827b4cc903f02f5">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The overall omnibus p-value</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">round</span>(balance_test<span class="sc">$</span>overall,<span class="dv">2</span>),<span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
