@@ -312,6 +312,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>6: It’s easy to implement these procedures</h1>
 <p>In R, the <code>p.adjust()</code> function contains many of the corrections devised by statisticians to address the multiple comparisons problem. The <code>p.adjust()</code> function is in base R, so no additional packages are required. The <code>p.adjust()</code> function gives adjusted p-values after implementing a correction.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">343</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> </span>
@@ -334,6 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>bonferroni_sig <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(p, <span class="st">"bonferroni"</span>) <span class="sc">&lt;</span> alpha</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>holm_sig <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(p, <span class="st">"holm"</span>) <span class="sc">&lt;</span> alpha</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>BH_sig <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(p, <span class="st">"BH"</span>) <span class="sc">&lt;</span>alpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>The results of this simulation are presented in the table and figure below.</p>
 <table class="table">
@@ -388,6 +391,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The next step is picking the right threshold value below which results are deemed statistically significant. If <span class="math inline">\(\alpha\)</span> is 0.05, we need to find the target p-value that, across all simulations under the sharp null, yields 5% significant hypothesis tests.</p>
 <p>Once we have the right threshold value, it’s as easy as comparing the uncorrected p-values to the threshold value — those below the threshold are deemed significant.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Control the FWER through simulation</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span>
@@ -429,6 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>sig_simulated <span class="ot">&lt;-</span> p_obs <span class="sc">&lt;=</span> target_p_value</span>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to raw p-values</span></span>
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>sig <span class="ot">&lt;-</span> p_obs <span class="sc">&lt;=</span> <span class="fl">0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>The target p-value obtained by the simulation is 0.002 — hypothesis tests with raw p-values below 0.002 are deemed significant. Compare this with the Bonferroni method, which would require a p-value below 0.05/100 = 0.0005, an order of magnitude smaller. The closer the correlation of the tests (the parameter “r” in the code above) is to zero, the closer the two methods will be.</p>
 <p>The flexibility of the simulation method is both an advantage and a disadvantage. The advantage is that it can accommodate any set of testing procedures, returning a study-specific correction that will generally be more powerful than other methods to control the FWER. The disadvantage is that it requires the researcher to code up a simulation — there are no prewritten functions that will apply across research contexts.</p>
@@ -515,6 +521,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As with the mean effects index, this varible <span class="math inline">\(\bar{s}_i\)</span> the serves as the dependent variable in your analysis. One potential drawback to the inverse covariance weighting index is that there is no guarantee that elements in the inverted covariance matrix (<span class="math inline">\(\boldsymbol{\Sigma}^{-1}\)</span>) are positive. As such, it is possible to generate negative weights using this indexing method. Given that outcomes are oriented in the same direction, a negative weight effectively reverses the direction of the effect on negatively-weighted outcomes in the construction of the index.</p>
 <p>The following functions implement both the mean effects and inverse covariance weighted index methods and evaluate both functions on a DGP with 50 outcome measures:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">require</span>(mvtnorm))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">require</span>(dplyr))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">require</span>(randomizr))</span>
@@ -564,6 +572,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  index <span class="ot">&lt;-</span> (s_ij <span class="sc">-</span> <span class="fu">mean</span>(s_ij[Z<span class="sc">==</span><span class="dv">0</span>], <span class="at">na.rm =</span> T))<span class="sc">/</span><span class="fu">sd</span>(s_ij[Z<span class="sc">==</span><span class="dv">0</span>], <span class="at">na.rm =</span> T)</span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(s_ij)</span>
 <span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>We can see how these indices perform in a setting with <span class="math inline">\(k = 5\)</span> outcome variables.</p>
 <style>
@@ -578,6 +587,8 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A DGP with K outcome variables</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Untreated potential outcomes drawn from multivariate normal distribution</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">5</span></span>
@@ -595,6 +606,7 @@ e.nextSibling.nextSibling.style.display="block";
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>mean_effects_index <span class="ot">&lt;-</span> <span class="fu">calculate_mean_effects_index</span>(<span class="at">Z =</span> Z, <span class="at">outcome_mat =</span> mat, <span class="at">reorient =</span> F)</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>inv_cov_weighted_index <span class="ot">&lt;-</span> <span class="fu">calculate_inverse_covariance_weighted_index</span>(<span class="at">Z =</span> Z, <span class="at">outcome_mat =</span> mat,<span class="at">reorient =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>First, we can examine the properties of the indices alongside our five outcome variables by looking at the covariance matrix.</p>
 <style>
@@ -609,7 +621,10 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">cov</span>(<span class="fu">data.frame</span>(mat, mean_effects_index, inv_cov_weighted_index)), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
@@ -722,10 +737,13 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(Z, mean_effects_index, inv_cov_weighted_index) <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">ifelse</span>(Z<span class="sc">==</span><span class="dv">1</span>, <span class="st">"Treatment"</span>, <span class="st">"Control"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mean_effects_index, <span class="at">y =</span> inv_cov_weighted_index, <span class="at">colour =</span> Group)) <span class="sc">+</span> </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Mean Effects Index"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Inverse Covariance Weighted Index"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="multiple-comparisons_en_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -743,11 +761,14 @@ e.nextSibling.nextSibling.style.display="block";
 [Click to show code]
 </div>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">summary</span>(<span class="fu">lm</span>(mean_effects_index <span class="sc">~</span> Z))<span class="sc">$</span>coef[<span class="st">"Z"</span>, <span class="fu">c</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)], </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summary</span>(<span class="fu">lm</span>(inv_cov_weighted_index <span class="sc">~</span> Z))<span class="sc">$</span>coef[<span class="st">"Z"</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mean Effects Index"</span>, <span class="st">"Inverse Covariance Weighted Index"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"Std. Error"</span>, <span class="st">"p-value"</span>)</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(table, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>
