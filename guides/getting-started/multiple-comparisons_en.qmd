@@ -4,6 +4,9 @@ author:
   - name: "Alexander Coppock"
     url: https://egap.org/member/alexander-coppock/
 image: multiple-comparisons.png
+format:
+  html:
+    code-fold: true
 ---
 
 Abstract
