@@ -120,9 +120,10 @@ gg <-
   ) +
   theme_minimal() +
   theme(
-    panel.background = element_blank(),
+    panel.background = element_rect(fill = "blue"),
     panel.grid.major = element_blank(),
-    legend.position = "none"
+    legend.position = "none",
+    plot.margin = unit(c(0, 0, 0, -0.1), "null")
   )
 
 gg
