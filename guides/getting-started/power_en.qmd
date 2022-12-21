@@ -89,7 +89,7 @@ Using the formula in section 4, you can see how sensitive power is to all of the
 
 [^3]: For an additional online power visualization tool, see Kristoffer Magnusson's [R Psychologist blog](http://rpsychologist.com/d3/NHST/){target="_blank"}.
 
-<iframe height="500" src="https://egap.shinyapps.io/Power_Calculator/" width="600"></iframe>
+<iframe height="500" src="https://egap.shinyapps.io/Power_Calculator/" width="100%"></iframe>
 
 6 How to Use Simulation to Estimate Power
 ==
