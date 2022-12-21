@@ -122,7 +122,8 @@ gg <-
   theme(
     panel.background = element_blank(),
     panel.grid.major = element_blank(),
-    legend.position = "none"
+    legend.position = "none",
+    plot.margin = unit(c(-0.30, 0, 0, 0), "null")
   )
 
 gg
