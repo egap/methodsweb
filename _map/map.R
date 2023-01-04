@@ -59,7 +59,7 @@ countries <-
 
 crs_robin <- "+proj=robin +lat_0=0 +lon_0=0 +x0=0 +y0=0"
 # projection outline in long-lat coordinates
-lats <- c(90:-90,-90:90, 90)
+lats <- c(90:-80,-80:90, 90)
 longs <- c(rep(c(180,-180), each = 181), 180)
 robin_outline <-
   list(cbind(longs, lats)) %>%
@@ -68,7 +68,8 @@ robin_outline <-
   st_transform(crs = crs_robin)
 # bounding box in transformed coordinates
 xlim <- c(-18494733, 18613795)
-ylim <- c(-9473396, 9188587)
+# ylim <- c(-9473396, 9188587)
+ylim <- c(-7025155, 9188587)
 robin_bbox <-
   list(cbind(
     c(xlim[1], xlim[2], xlim[2], xlim[1], xlim[1]),
@@ -120,12 +121,13 @@ gg <-
   ) +
   theme_minimal() +
   theme(
-    panel.background = element_rect(fill = "blue"),
+    panel.background = element_blank(),
     panel.grid.major = element_blank(),
     legend.position = "none",
-    plot.margin = unit(c(0, 0, 0, -0.1), "null")
+    plot.margin = unit(c(0, 0, 0, -0.1), "null"),
+    axis.text = element_blank()
   )
 
 gg
 
-ggsave("img/ldmap.svg", width = 5, height = 3, gg)
+ggsave("img/ldmap.svg", width = 5, height = 2.5, gg)

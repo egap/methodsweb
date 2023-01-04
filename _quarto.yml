@@ -12,6 +12,8 @@ website:
         text: Home
       - file: guides.qmd
         text: Guides
+      - file: software.qmd
+        text: Software
       - file: coursebook/index.qmd
         text: Coursebook
       
