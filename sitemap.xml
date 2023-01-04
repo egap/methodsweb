@@ -2,194 +2,194 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/egap/methodsweb/guides.html</loc>
-    <lastmod>2022-12-23T00:21:49.795Z</lastmod>
+    <lastmod>2023-01-04T22:20:44.975Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/statisticalpower.html</loc>
-    <lastmod>2022-12-23T00:21:50.615Z</lastmod>
+    <lastmod>2023-01-04T22:20:45.799Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/measurement.html</loc>
-    <lastmod>2022-12-23T00:21:51.039Z</lastmod>
+    <lastmod>2023-01-04T22:20:46.187Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/references.html</loc>
-    <lastmod>2022-12-23T00:21:51.379Z</lastmod>
+    <lastmod>2023-01-04T22:20:46.563Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/estimation.html</loc>
-    <lastmod>2022-12-23T00:21:51.843Z</lastmod>
+    <lastmod>2023-01-04T22:20:47.027Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/threats.html</loc>
-    <lastmod>2022-12-23T00:21:52.271Z</lastmod>
+    <lastmod>2023-01-04T22:20:47.423Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/glossary.html</loc>
-    <lastmod>2022-12-23T00:21:52.803Z</lastmod>
+    <lastmod>2023-01-04T22:20:47.987Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/researchdesignform.html</loc>
-    <lastmod>2022-12-23T00:21:53.311Z</lastmod>
+    <lastmod>2023-01-04T22:20:48.451Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/ethics.html</loc>
-    <lastmod>2022-12-23T00:21:53.699Z</lastmod>
+    <lastmod>2023-01-04T22:20:48.847Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/index.html</loc>
-    <lastmod>2022-12-23T00:21:54.159Z</lastmod>
+    <lastmod>2023-01-04T22:20:49.275Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/randomization.html</loc>
-    <lastmod>2022-12-23T00:21:54.607Z</lastmod>
+    <lastmod>2023-01-04T22:20:49.756Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/causalinference.html</loc>
-    <lastmod>2022-12-23T00:21:55.051Z</lastmod>
+    <lastmod>2023-01-04T22:20:50.212Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/coursebook/hypothesistesting.html</loc>
-    <lastmod>2022-12-23T00:21:55.499Z</lastmod>
+    <lastmod>2023-01-04T22:20:50.640Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/index.html</loc>
-    <lastmod>2022-12-23T00:21:55.923Z</lastmod>
+    <lastmod>2023-01-04T22:20:51.100Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/research-questions/late_en.html</loc>
+    <lastmod>2023-01-04T22:20:54.468Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/research-questions/effect-types_en.html</loc>
+    <lastmod>2023-01-04T22:21:34.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/research-questions/mechanisms_en.html</loc>
+    <lastmod>2023-01-04T22:21:39.592Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/research-questions/heterogeneous-effects_en.html</loc>
+    <lastmod>2023-01-04T22:22:29.245Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/causal-inference/causal-inference_fr.html</loc>
+    <lastmod>2023-01-04T22:22:29.897Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/causal-inference/x-cause-y_en.html</loc>
+    <lastmod>2023-01-04T22:22:30.469Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/causal-inference/causal-inference_esp.html</loc>
+    <lastmod>2023-01-04T22:22:31.177Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/causal-inference/causal-inference_en.html</loc>
+    <lastmod>2023-01-04T22:22:31.953Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/data-strategies/survey-experiments_en.html</loc>
+    <lastmod>2023-01-04T22:22:33.285Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/data-strategies/spillovers_en.html</loc>
+    <lastmod>2023-01-04T22:22:35.989Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/data-strategies/missing-data_en.html</loc>
+    <lastmod>2023-01-04T22:22:52.539Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/data-strategies/cluster-randomization_en.html</loc>
+    <lastmod>2023-01-04T22:30:46.602Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/data-strategies/multisite-experiments_en.html</loc>
+    <lastmod>2023-01-04T22:30:47.802Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/data-strategies/randomization_en.html</loc>
+    <lastmod>2023-01-04T22:30:52.203Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/data-strategies/measurement_en.html</loc>
+    <lastmod>2023-01-04T22:31:07.344Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/data-strategies/adaptive-design_en.html</loc>
+    <lastmod>2023-01-04T22:31:07.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/data-strategies/sampling_en.html</loc>
+    <lastmod>2023-01-04T22:31:12.676Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/interpretation/regression-table_en.html</loc>
+    <lastmod>2023-01-04T22:31:14.341Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/interpretation/null-results_en.html</loc>
+    <lastmod>2023-01-04T22:31:14.901Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/egap/methodsweb/guides/planning/pilots_en.html</loc>
+    <lastmod>2023-01-04T22:31:18.857Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/guides/planning/power_en.html</loc>
-    <lastmod>2022-12-23T00:22:29.671Z</lastmod>
+    <lastmod>2023-01-04T22:31:53.548Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/hypothesis-testing_en.html</loc>
-    <lastmod>2022-12-23T00:23:53.900Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/planning/survey-design_en.html</loc>
+    <lastmod>2023-01-04T22:31:54.192Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/survey-experiments_en.html</loc>
-    <lastmod>2022-12-23T00:23:55.180Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/planning/pap_en.html</loc>
+    <lastmod>2023-01-04T22:31:55.116Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/late_en.html</loc>
-    <lastmod>2022-12-23T00:23:58.320Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/implementation/evaluation-conversations_en.html</loc>
+    <lastmod>2023-01-04T22:31:55.896Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/pilots_en.html</loc>
-    <lastmod>2022-12-23T00:24:02.212Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/implementation/survey-implementation_en.html</loc>
+    <lastmod>2023-01-04T22:31:56.696Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/randomization-inference_en.html</loc>
-    <lastmod>2022-12-23T00:24:04.176Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/implementation/workflow_en.html</loc>
+    <lastmod>2023-01-04T22:31:58.577Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/evaluation-conversations_en.html</loc>
-    <lastmod>2022-12-23T00:24:04.936Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/assessing-designs/power_en.html</loc>
+    <lastmod>2023-01-04T22:32:33.144Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/effect-types_en.html</loc>
-    <lastmod>2022-12-23T00:24:44.093Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/assessing-designs/external-validity_en.html</loc>
+    <lastmod>2023-01-04T22:32:33.716Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/causal-inference_fr.html</loc>
-    <lastmod>2022-12-23T00:24:44.789Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/analysis-procedures/hypothesis-testing_en.html</loc>
+    <lastmod>2023-01-04T22:33:54.943Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/x-cause-y_en.html</loc>
-    <lastmod>2022-12-23T00:24:45.381Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/analysis-procedures/randomization-inference_en.html</loc>
+    <lastmod>2023-01-04T22:33:56.979Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/survey-implementation_en.html</loc>
-    <lastmod>2022-12-23T00:24:46.165Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/analysis-procedures/multiple-comparisons_en.html</loc>
+    <lastmod>2023-01-04T22:34:27.686Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/causal-inference_esp.html</loc>
-    <lastmod>2022-12-23T00:24:46.841Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/analysis-procedures/ri2_en.html</loc>
+    <lastmod>2023-01-04T22:39:40.975Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/power_en.html</loc>
-    <lastmod>2022-12-23T00:25:21.249Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/spillovers_en.html</loc>
-    <lastmod>2022-12-23T00:25:23.953Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/missing-data_en.html</loc>
-    <lastmod>2022-12-23T00:25:40.753Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/mechanisms_en.html</loc>
-    <lastmod>2022-12-23T00:25:46.217Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/cluster-randomization_en.html</loc>
-    <lastmod>2022-12-23T00:33:58.103Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/multisite-experiments_en.html</loc>
-    <lastmod>2022-12-23T00:33:59.403Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/randomization_en.html</loc>
-    <lastmod>2022-12-23T00:34:03.995Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/survey-design_en.html</loc>
-    <lastmod>2022-12-23T00:34:04.671Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/pap_en.html</loc>
-    <lastmod>2022-12-23T00:34:05.595Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/workflow_en.html</loc>
-    <lastmod>2022-12-23T00:34:07.531Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/causal-inference_en.html</loc>
-    <lastmod>2022-12-23T00:34:08.319Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/heterogeneous-effects_en.html</loc>
-    <lastmod>2022-12-23T00:34:57.243Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/regression-table_en.html</loc>
-    <lastmod>2022-12-23T00:34:58.919Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/multiple-comparisons_en.html</loc>
-    <lastmod>2022-12-23T00:35:28.092Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/measurement_en.html</loc>
-    <lastmod>2022-12-23T00:35:43.584Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/null-results_en.html</loc>
-    <lastmod>2022-12-23T00:35:44.176Z</lastmod>
+    <loc>https://github.com/egap/methodsweb/guides/analysis-procedures/covariates_en.html</loc>
+    <lastmod>2023-01-04T22:39:43.291Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/egap/methodsweb/guides/getting-started/meta-analysis_en.html</loc>
-    <lastmod>2022-12-23T00:35:44.740Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/external-validity_en.html</loc>
-    <lastmod>2022-12-23T00:35:45.296Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/adaptive-design_en.html</loc>
-    <lastmod>2022-12-23T00:35:45.872Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/ri2_en.html</loc>
-    <lastmod>2022-12-23T00:41:15.599Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/covariates_en.html</loc>
-    <lastmod>2022-12-23T00:41:18.047Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/egap/methodsweb/guides/getting-started/sampling_en.html</loc>
-    <lastmod>2022-12-23T00:41:22.887Z</lastmod>
+    <lastmod>2023-01-04T22:39:43.883Z</lastmod>
   </url>
 </urlset>

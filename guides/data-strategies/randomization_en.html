@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lindsay Dolan">
+
+<title>Methods - 10 Things You Need to Know About Randomization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html">
+ <span class="menu-text">Guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.qmd">
+ <span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../coursebook/index.html">
+ <span class="menu-text">Coursebook</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#some-ways-are-better-than-others" id="toc-some-ways-are-better-than-others" class="nav-link" data-scroll-target="#some-ways-are-better-than-others">1 Some ways are better than others</a></li>
+  <li><a href="#block-randomization-you-can-ensure-that-treatment-and-control-groups-are-balanced" id="toc-block-randomization-you-can-ensure-that-treatment-and-control-groups-are-balanced" class="nav-link" data-scroll-target="#block-randomization-you-can-ensure-that-treatment-and-control-groups-are-balanced">2 Block randomization: You can ensure that treatment and control groups are balanced</a></li>
+  <li><a href="#factorial-designs-you-can-randomize-multiple-treatments-at-the-same-time-without-using-up-power" id="toc-factorial-designs-you-can-randomize-multiple-treatments-at-the-same-time-without-using-up-power" class="nav-link" data-scroll-target="#factorial-designs-you-can-randomize-multiple-treatments-at-the-same-time-without-using-up-power">3 Factorial designs: You can randomize multiple treatments at the same time without using up power</a></li>
+  <li><a href="#you-can-randomize-whole-clusters-together-but-the-bigger-your-clusters-the-weaker-tends-to-be-your-power" id="toc-you-can-randomize-whole-clusters-together-but-the-bigger-your-clusters-the-weaker-tends-to-be-your-power" class="nav-link" data-scroll-target="#you-can-randomize-whole-clusters-together-but-the-bigger-your-clusters-the-weaker-tends-to-be-your-power">4 You can randomize whole clusters together (but the bigger your clusters, the weaker tends to be your power)</a></li>
+  <li><a href="#you-can-randomize-in-a-way-that-makes-it-easier-to-see-if-there-are-spillovers" id="toc-you-can-randomize-in-a-way-that-makes-it-easier-to-see-if-there-are-spillovers" class="nav-link" data-scroll-target="#you-can-randomize-in-a-way-that-makes-it-easier-to-see-if-there-are-spillovers">5 You can randomize in a way that makes it easier to see if there are spillovers</a></li>
+  <li><a href="#different-units-can-be-assigned-to-treatment-with-different-probabilities" id="toc-different-units-can-be-assigned-to-treatment-with-different-probabilities" class="nav-link" data-scroll-target="#different-units-can-be-assigned-to-treatment-with-different-probabilities">6 Different units can be assigned to treatment with different probabilities</a></li>
+  <li><a href="#restricted-randomization-if-you-dont-like-what-you-get-you-can-start-over" id="toc-restricted-randomization-if-you-dont-like-what-you-get-you-can-start-over" class="nav-link" data-scroll-target="#restricted-randomization-if-you-dont-like-what-you-get-you-can-start-over">7 Restricted randomization: If you don’t like what you get you can start over</a></li>
+  <li><a href="#write-randomization-code-that-lets-you-simulate-many-possible-randomizations" id="toc-write-randomization-code-that-lets-you-simulate-many-possible-randomizations" class="nav-link" data-scroll-target="#write-randomization-code-that-lets-you-simulate-many-possible-randomizations">8 Write randomization code that lets you simulate many possible randomizations</a></li>
+  <li><a href="#you-can-randomize-as-you-go-along" id="toc-you-can-randomize-as-you-go-along" class="nav-link" data-scroll-target="#you-can-randomize-as-you-go-along">9 You can randomize as you go along</a></li>
+  <li><a href="#randomization-can-sometimes-be-an-ethical-way-of-assigning-a-treatment-but-sometimes-it-isnt" id="toc-randomization-can-sometimes-be-an-ethical-way-of-assigning-a-treatment-but-sometimes-it-isnt" class="nav-link" data-scroll-target="#randomization-can-sometimes-be-an-ethical-way-of-assigning-a-treatment-but-sometimes-it-isnt">10 Randomization can sometimes be an ethical way of assigning a treatment, but sometimes it isn’t</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 Things You Need to Know About Randomization</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lindsay Dolan </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>This guide will help you design and execute different types of randomization in your experiments. We focus on the big ideas and provide examples and tools that you can use in R. For why to do randomization see <a href="https://egap.org/resource/10-strategies-for-figuring-out-if-x-caused-y">this methods guide</a>.</p>
+</section>
+<section id="some-ways-are-better-than-others" class="level1">
+<h1>1 Some ways are better than others</h1>
+<p>There are many ways to randomize. The simplest is to flip a coin each time you want to determine whether a given subject gets treatment or not. This ensures that each subject has a .5 probability of receiving the treatment and a .5 probability of not receiving it. Done this way, whether one subject receives the treatment in no way affects whether the next subject receives the treatment, every subject has an equal chance of getting the treatment, and the treatment will be independent from all confounding factors — at least in expectation.</p>
+<p>This is not a bad approach but it has shortcomings. First, using this method, you cannot know in advance how many units will be in treatment and how many in control. If you want to know this, you need some way to do selections so that the different draws are not statistically independent from each other (like drawing names from a hat). Second, you may want to assert control over the exact share of units assigned to treatment and control. That’s hard to do with a coin. Third, you might want to be able to replicate your randomization to show that there was no funny business. That’s hard to do with coins and hats. Finally, as we show below, there are all sorts of ways to do randomization to improve power and ensure balance in various ways that are very hard to achieve using coins and hats.</p>
+<p>Fortunately though, flexible replicable randomization is very easy to do with freely available software. The following simple R code can, for example, be used to generate a random assignment, specifying the number of units to be treated. Here, N (100) is the number of units you have and m (34) is the number you want to treat. The “seed” makes it possible to replicate the same draw each time you run the code (or you can change the seed for a different draw).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">343</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">complete_ra</span>(<span class="dv">100</span>, <span class="dv">34</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="block-randomization-you-can-ensure-that-treatment-and-control-groups-are-balanced" class="level1">
+<h1>2 Block randomization: You can ensure that treatment and control groups are balanced</h1>
+<p>It is possible, when randomizing, to specify the balance of particular factors you care about between treatment and control groups, even though it is not possible to specify which particular units are selected for either group.</p>
+<p>For example, you can specify that treatment and control groups contain equal ratios of men to women. In doing so, you avoid any randomization that might produce a distinctly male treatment group and a distinctly female control group, or vice-versa.</p>
+<p>Why is this desirable? Not because our estimate of the average treatment effect would otherwise be biased, but because it could be really noisy. Suppose that a random assignment happened to generate a very male treatment group and a very female control group. We would observe a correlation between gender and treatment status. If we were to estimate a treatment effect, that treatment effect would still be unbiased because gender did not cause treatment status. However, it would be more difficult to reject the null hypothesis that it was not our treatment but gender that was producing the effect. In short, the imbalance produces a noisy estimate, which makes it more difficult for us to be confident in our estimates.</p>
+<p>Block (sometimes called stratified) randomization helps us to rig our experiment so that our treatment and control groups are balanced along important dimensions but are still randomly assigned. Essentially, this type of randomization design constructs multiple mini-experiments: for example, it might take women and randomly assign half to treatment and half to control, and then it would assign half of men to treatment and half to control. This guarantees a gender balance when treatment and control groups are pooled.</p>
+<p>Another advantage of block randomization is that it ensures that we will be able to estimate treatment effects for subgroups of interest. For example, imagine that we are interested in estimating the effect of the treatment among women. If we do not block on gender, we may, by chance, end up with a random assignment that puts only few women into the treatment group. Our estimate of the treatment effect among women would then be very noisy. However, if we assign treatment separately among women and among men, we can ensure that we will have enough women in, respectively, the treatment and control group to obtain a precise estimate among this subgroup.</p>
+<p>The <a href="https://cran.r-project.org/web/packages/blockTools/index.html">blockTools package</a> is a useful package for conducting block randomization. Let’s start by generating a fake data set for 60 subjects, 36 of whom are male and 24 of whom are female.</p>
+<p>Suppose we would like to block on gender. Based on our data, blockTools will generate the smallest possible blocks, each a grouping of two units with the same gender, one of which will be assigned to treatment, and one to control.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(blockTools)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">36</span>), <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">24</span>)),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">18</span><span class="sc">:</span><span class="dv">65</span>, <span class="at">size =</span> <span class="dv">60</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># one covariate block</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  dat <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Z_block_1 =</span> <span class="fu">block_ra</span>(female))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(female, Z_block_1))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># matched quartets</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">block</span>(dat, <span class="at">n.tr =</span> <span class="dv">4</span>, <span class="at">id.vars =</span> <span class="st">"id"</span>, </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">block.vars =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"age"</span>))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  dat <span class="sc">%&gt;%</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">block_id =</span> <span class="fu">createBlockIDs</span>(out, dat, <span class="at">id.var =</span> <span class="st">"id"</span>),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_block_2 =</span> <span class="fu">block_ra</span>(block_id))</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_block_2, block_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can check the mean of the variable on which you blocked for treatment and control to see that treatment and control groups are in fact perfectly balanced on gender.</p>
+</section>
+<section id="factorial-designs-you-can-randomize-multiple-treatments-at-the-same-time-without-using-up-power" class="level1">
+<h1>3 Factorial designs: You can randomize multiple treatments at the same time without using up power</h1>
+<p>Suppose there are multiple components of a treatment that you want to test. For example, you may want to evaluate the impact of a microfinance program. Two specific treatments might be lending money to women and providing them with training. A factorial design looks at all possible combinations of these treatments: (1) Loans, (2) Training, (3) Loans + Training, and (4) Control. Subjects are then randomly assigned to one of these four conditions.</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/randomization/factorial-table.png" class="img-fluid"></p>
+<p>Factorial designs are especially useful when evaluating interventions that include a package of treatments. As in the example above, many development interventions come with several arms, and it is sometimes difficult to tell which arms are producing the observed effect. A factorial design separates out these different treatments and also allows us to see the interaction between them.</p>
+<p>The following code shows you how to randomize for a factorial design.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_loan =</span> <span class="fu">complete_ra</span>(<span class="dv">80</span>, <span class="dv">40</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_training =</span> <span class="fu">block_ra</span>(<span class="at">blocks =</span> Z_loan)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_loan, Z_training))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="you-can-randomize-whole-clusters-together-but-the-bigger-your-clusters-the-weaker-tends-to-be-your-power" class="level1">
+<h1>4 You can randomize whole clusters together (but the bigger your clusters, the weaker tends to be your power)</h1>
+<p>Sometimes it is impossible to randomize at the level of the individual. For example, a radio appeal to get individuals to a polling station must inherently be broadcast to a whole media market; it is impossible to broadcast just to some individuals but not others. Whether it is by necessity or by choice, sometimes you will randomize clusters instead of individuals.</p>
+<p>The disadvantage of cluster randomization is that it reduces your power, since the number of randomly assigned units now reflects the number of clusters and not simply your total number of subjects. If your sample consisted of two clusters of 1,000 individuals each, the functional number of units might be closer to 2, not 2,000. For this reason, it is preferable to make clusters as small as possible.</p>
+<p>The degree to which clustering reduces your power depends on the extent to which units in the same cluster resemble each other. It is desirable to have heterogeneity within your clusters so that they are as representative as possible of your broader population. If the individuals within clusters are very similar to each other, they may have similar potential outcomes, which means that groups of individuals with similar potential outcomes will all be assigned to treatment or control together. If a cluster has particularly high or low potential outcomes, this assignment procedure will increase the overall correlation between potential outcomes and treatment assignment. As a result, your estimates become more variable. In brief, if your clusters are more representative of the broader population, your estimates of the average treatment effect will be more precise. See our <a href="https://egap.org/resource/10-things-to-know-about-cluster-randomization/">guide on cluster random assignment</a> for more details.</p>
+<p>A frequently asked question is how cluster randomization differs from block randomization. Block randomization is conducted in order to achieve balance based on pre-treatment covariates. For example, an education intervention might block randomize on the previous year’s test scores in order to track the progress of both low- and high-performing students. Cluster randomization is when multiple units are treated as a group–they all receive treatment or control status together. For example, the same education intervention might randomize at the level of the classroom, so the classrooms constitute the clusters. It is possible to block and cluster randomize simultaneously. In our example, you might calculate the average test score for each classroom and block randomize based on the classroom’s average score.</p>
+<p>The following graphic demonstrates what your data might look like in the cases of block, cluster, and block + cluster randomization, relative to a simple case of randomization with no blocking or clustering. The example imagines that we conduct an experiment in four schools, where each school comprises four classrooms with four students in each classroom. The top left panel represents simple random assignment. Note that the number of students assigned to treatment (tiles shaded in blue) varies across schools. For example, in school 1, 9 students are assigned to treatment but in school 4, the treatment group comprises only 6 students. The top right panel represents a random assignment procedure that uses schools as blocks. This procedure ensures that exactly eight students are assigned to treatment in each school. The bottom left panel shows cluster random assignment. The idea is that the four students in each quadrant of a school are in the same classroom, and we assign entire classrooms to treatment. Note again that, because there is no blocking involved, the number of classrooms assigned to treatment varies across schools. For example, school 1 assigns three classrooms to treatment while school 3 assigns all classrooms to control. Finally, the bottom right panel corresponds to assignment that is both blocked by school and clustered by classroom. Blocking ensures that exactly two classrooms per school are assigned to treatment.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="randomization_en_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="720"></p>
+<p></p><figcaption class="figure-caption">Illustration of patterns of assignments you might see under different types of blocked and clustered designs. (Colors indicate treatment assignment)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="you-can-randomize-in-a-way-that-makes-it-easier-to-see-if-there-are-spillovers" class="level1">
+<h1>5 You can randomize in a way that makes it easier to see if there are spillovers</h1>
+<p>When designing your experiment, think critically about whether “spillovers” pose a threat to your ability to identify the causal effect of your treatment. Spillovers arise if one units outcome is affected by the treatment status of another unit. This can be tricky if units have the ability to interact with each other: one member of a village may learn of another villager’s receipt of a cash grant and may change their behavior accordingly.</p>
+<p>One way to make spillovers more evident is to use double randomization. You would first randomly assign some clusters to treatment and others to control, and within clusters, you would assign some individuals to treatment and others to control. Comparing control individuals in your treatment cluster to individuals in your control cluster will enable you to assess the role of spillovers in your experiment.</p>
+</section>
+<section id="different-units-can-be-assigned-to-treatment-with-different-probabilities" class="level1">
+<h1>6 Different units can be assigned to treatment with different probabilities</h1>
+<p>Sometimes people think that “random” means that two events are equally likely, but in fact, random assignment is “random” so long as the probability of assignment to treatment is strictly between 0 and 1. If a subject has a 0 or a 100 percent chance of being assigned to treatment, that subject should be excluded from your experimental analysis because there is no randomization occurring. However, all subjects with a probability of assignment to treatment strictly between 0 and 1 may be included, even if their probabilities differ, so long as their probabilities are known.</p>
+<p>Why might you want to assign different probabilities of assignment to treatment? Suppose you are working with an implementing partner to randomize the allocation of election observers in order to measure the effect on electoral fraud. Your implementing partner can afford to send only a few election observers to a rural part of the country. You could address this constraint by blocking on geographic area and assigning a higher probability of assignment to treatment to more proximate villages to which it is less costly to travel. So long as the probability of assignment to treatment for more accessible villages is less than 1, the probability of assignment to treatment for less accessible villages is greater than zero, and these probabilities are known, it is possible to estimate the effect of the treatment.</p>
+<p>When subjects have differing probabilities of assignment to treatment, however, you can no longer simply merge all subjects in the analysis of your data. If you do, then treatment assignment will be correlated with background characteristics on which you blocked. There are two ways of handling this.</p>
+<p>The first way is to estimate the average treatment effect block by block and then to average the treatment effects, each weighted by the size of the block relative to the entire sample.</p>
+<p>The second way is inverse probability weighting (IPW). In IPW, weights are defined as the 1/p for treated units and 1/(1-p) for control units, where p refers to the probability of assignment to treatment. This method allows you to run a weighted regression of your outcome on treatment assignment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Y0 =</span> <span class="dv">1</span><span class="sc">:</span>N,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">Y1 =</span> Y0 <span class="sc">+</span> <span class="dv">10000</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  dat <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> <span class="fu">seq</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>, <span class="at">length.out =</span> N),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z =</span> <span class="fu">simple_ra</span>(N, <span class="at">prob_unit =</span> p),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> Z <span class="sc">*</span> Y1 <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> Z) <span class="sc">*</span> Y0)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">naive_estimate =</span> <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>]),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">ipw_estimate =</span> <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>], <span class="dv">1</span> <span class="sc">/</span> p[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>], <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> p[Z <span class="sc">==</span> <span class="dv">0</span>]))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="restricted-randomization-if-you-dont-like-what-you-get-you-can-start-over" class="level1">
+<h1>7 Restricted randomization: If you don’t like what you get you can start over</h1>
+<p>Sometimes you might want to make sure that randomization does not produce particular types of pattern (for example, too many people who know each other all being in treatment). But the patterns you care about might be too hard to set up in advance. What you can do is take a random draw and then check whether the draw meets the criteria you care about. If it doesn’t, then draw again. Be warned, though, that if you do this, you create a couple of complications: (1) each unit will not necessarily be assigned to treatment with the same probability, (2) units may not be independently assigned to treatment. You need to take into account both of these facts in your analysis. You can do so by generating inverse probability weights as we did in point 6. Here, you will need to use the same restricted randomization code that you used to assign treatment to figure out how likely it is that each subject is assigned to treatment under these restrictions. You simply run the code a large number of times and calculate the proportion of times that a given unit is assigned to treatment across all repetitions. Next, you use the distribution of possible treatment assignments to implement randomization inference. These analyses are complex so proceed with caution.</p>
+</section>
+<section id="write-randomization-code-that-lets-you-simulate-many-possible-randomizations" class="level1">
+<h1>8 Write randomization code that lets you simulate many possible randomizations</h1>
+<p>A benefit of using R code to randomize is that you can perform thousands of possible randomizations in seconds. Why is this beneficial?</p>
+<ol type="1">
+<li>It can be useful as a way to check whether your randomization code worked. For example, if one or more subjects in your experiment never received treatment over 10,000 possible random assignments, then you would suspect a flaw in your randomization code.</li>
+<li>You can use re-randomization to calculate the exact probability of assignment to treatment for each individual in your experiment. This is especially helpful if your randomization code is more complex. Perhaps you employ both block and cluster randomization or a restricted randomization procedure, resulting probabilities of assignment to treatment that vary greatly across individuals in a large experiment. These probabilities would be difficult to calculate by hand, but an easy solution is to run your original randomization code many times and generate a variable representing each individual’s proportion of times they were assigned to treatment: this represents his or her individual probability of assignment to treatment. The inverse of this variable can then be used in a weighted regression when estimating the average treatment effect.</li>
+<li>Simulating possible randomizations is a design-based approach to calculating statistical significance. This approach, called randomization inference, generates an exact <span class="math inline">\(p\)</span>-value by calculating possible average treatment effects that would be observed under hypothetical random assignments if in fact the treatment had no effect. The <span class="math inline">\(p\)</span>-value is then the proportion of the estimated treatment effects that is at least as large in magnitude as the one that your experiment observed. Randomization inference avoids making distributional assumptions and instead uses the distribution of data observed in your experiment. This approach is preferable to standard calculations of statistical significance when the sampling distribution is not normal – a problem that is more likely to arise when your experimental sample is small and when your outcomes do not follow a normal distribution. For more information on randomization inference, including sample code, visit the <a href="https://egap.org/resource/10-things-to-know-about-randomization-inference/">10 Things to Know About Randomization Inference</a> Methods Guide.</li>
+</ol>
+</section>
+<section id="you-can-randomize-as-you-go-along" class="level1">
+<h1>9 You can randomize as you go along</h1>
+<p>In many experiments, you may not know the entirety of your sample at the beginning of the experiment; some subjects may join over time. This presents a complication when we want to use a simple blocking algorithm because the addition of subjects to our pool may change the composition of our blocks and therefore their probabilities of assignment to treatment.</p>
+<p>To maintain the ability to block and therefore the ability to assert control over the balance between treatment and control groups, you can use covariates to calculate a new subject’s similarity to other previously assigned subjects and assign the new subject to the treatment condition with fewer similar units.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+</section>
+<section id="randomization-can-sometimes-be-an-ethical-way-of-assigning-a-treatment-but-sometimes-it-isnt" class="level1">
+<h1>10 Randomization can sometimes be an ethical way of assigning a treatment, but sometimes it isn’t</h1>
+<p>Randomization is the key ingredient for isolating the causal effect of a treatment from a research design perspective, but it is also important to consider the ethical implications of randomization as well. When we think about the long-term effects of an experiment, randomization enables us to test which programs are most effective so that resources can be directed to programs that make the most difference in the lives of future populations. In the short term, randomizing access to a program (as opposed to distributing based on arbitrary characteristics) can be a particularly ethical way of distributing scarce goods that cannot be extended to everyone.</p>
+<p>However, sometimes, it is the neediest populations that need to be served by an intervention in an experiment. A randomized design that treats equal numbers of low-income and high-income participants with loans is letting resources flow to less rather than more needy individuals. If we believe there are beneficial effects of the loan, then this raises concerns about the ethics of allocating resources away from the neediest.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> One would need a strong case for social benefits of the research and would also seek designs that provide benefits ultimately to control groups.</p>
+<p>A wait list randomization design is one way of treating an entire subject pool while enabling the researcher to test the effectiveness of the treatment experimentally. In this design, the program could roll out the intervention in phases and randomly assign the units to the phase in which they will be treated. For example, if a program wanted to treat 90 villages in total, it could treat 30 villages each year, and measure outcomes at the end of each year. If you wanted to compare outcomes in treatment and control villages, you would compare the 30 treated villages to the 60 yet-untreated villages at the end of the first year. At the end of the second year, you could compare the 30 villages that were treated in the previous year to the 30 villages that are yet-untreated. Essentially, this creates two experiments, identical but for the year’s time that separates them. In the table below, you can see that in the first year, we could compare the dark blue treatment group to the two light blue control groups. In the second year, we could compare the dark red treatment group to the light red treatment group, but we would want to avoid pooling the two treatment groups because one has been treated for longer than the other. You can see that after the third year, no more comparisons may be made because all units have been treated.</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/randomization/wait-list-table.png" class="img-fluid"></p>
+<p>The only requirement is that a subject’s assignment to treatment in a particular phase is randomly assigned and unrelated to their potential outcomes of interest. A design in which more eager participants received treatment earlier would violate this assumption and would not yield an unbiased estimate of the treatment effect, as unobserved factors that predispose them to seeking out treatment may be influencing their schedule of potential outcomes. The wait list design is an example of a creative randomization design that could address ethical concerns about limiting the distribution of a valuable treatment.</p>
+<p>Ethics are often highly intertwined with randomized designs, especially in social science and medical research. As a researcher, you should carefully consider the possible implications of randomizing any given treatment. You will also need to solicit approval for your research design from your research institution’s Institutional Review Board (IRB).</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Random number generators are actually pseudo-random because they generate a vector of random numbers based on a small set of initial values, known as a seed state. Random number generators operate this way in order to improve computational speed. However, the series of random numbers generated is as random as you need to it to be for the purposes of random assignment because it is wholly unrelated to the potential outcomes of your subjects.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>All code chunks updated by Alex Coppock on 25 November, 2020.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>For more, see Moore, Ryan T., and Sally A. Moore. “Blocking for sequential political experiments.” Political Analysis 21.4 (2013): 507-523.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For a more detalied walkthrough on the randomization procedures available in the R package randomizr, see: https://declaredesign.org/r/randomizr/articles/randomizr_vignette.html<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>But if we are certain about the loan’s effects, then it’s also unclear why we are running an experiment to test it. In medical research, randomized controlled trials often stop if it becomes clear early on that a drug is undoubtedly curing life-threatening diseases, and therefore withholding it from control subjects is dangerous. (Similarly, a trial would also stop if it were clear early on that a drug is undoubtedly causing negative and harmful effects.)<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

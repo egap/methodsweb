@@ -272,6 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(beta) </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>In addition, EGAP has created a power calculator Shiny app, which you can <a href="https://egap.shinyapps.io/Power_Calculator/" target="_blank">access here</a>.</p>
 </section>
 <section id="when-to-believe-your-power-analysis" class="level1">
 <h1>5 When to Believe Your Power Analysis</h1>
@@ -279,8 +280,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So in most power analyses you are in fact seeing what happens with numbers that are to some extent made up. The good news is that it is easy to find out how much your conclusions depend on your assumptions: simply vary your assumptions and see how the conclusions on power vary.</p>
 <p>This is most easily seen by thinking about how power varies with the number of subjects. A power analysis that looks at power for different study sizes simply plugs in a range of values in for N and seeing how β changes.</p>
 <p>Using the formula in section 4, you can see how sensitive power is to all of the assumptions: Power will be higher if you assume the treatment effect will be larger, or if you’re willing to accept a higher alpha level, or if you have more or less confidence in the noisiness of your measures.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<iframe height="500" src="https://egap.shinyapps.io/Power_Calculator/" width="850">
-</iframe>
 </section>
 <section id="how-to-use-simulation-to-estimate-power" class="level1">
 <h1>6 How to Use Simulation to Estimate Power</h1>
@@ -315,10 +314,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  } </span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>powers </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.246 0.272 0.334 0.430 0.566 0.612 0.600 0.664 0.692 0.788 0.726 0.804
-[13] 0.836 0.918 0.860 0.916 0.914 0.908 0.942 0.970 0.960 0.970 0.976 0.972
-[25] 0.988 0.986 0.992 0.996 0.994 0.990 0.996 0.996 0.994 0.998 0.996 0.998
-[37] 1.000 1.000 1.000 1.000 0.998 1.000 1.000 1.000 1.000 1.000 1.000 1.000</code></pre>
+<pre><code> [1] 0.260 0.402 0.386 0.458 0.444 0.616 0.592 0.630 0.684 0.782 0.780 0.818
+[13] 0.860 0.898 0.896 0.876 0.910 0.948 0.930 0.968 0.960 0.964 0.966 0.966
+[25] 0.978 0.976 0.984 0.992 0.990 0.996 0.996 0.998 1.000 0.992 0.996 1.000
+[37] 1.000 1.000 0.998 1.000 0.998 1.000 1.000 1.000 1.000 1.000 1.000 1.000</code></pre>
 </div>
 </div>
 <p>The code for this simulation and others is available <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/" target="_blank">here</a>. Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.</p>

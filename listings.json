@@ -2,46 +2,19 @@
   {
     "listing": "/guides.html",
     "items": [
-      "/guides/getting-started/evaluation-conversations_en.html",
-      "/guides/getting-started/ri2_en.html",
-      "/guides/getting-started/x-cause-y_en.html",
-      "/guides/getting-started/causal-inference_en.html",
-      "/guides/getting-started/external-validity_en.html",
-      "/guides/getting-started/multiple-comparisons_en.html",
-      "/guides/getting-started/workflow_en.html",
-      "/guides/getting-started/randomization_en.html",
-      "/guides/getting-started/power_en.html",
-      "/guides/getting-started/late_en.html",
-      "/guides/getting-started/null-results_en.html",
-      "/guides/getting-started/adaptive-design_en.html",
-      "/guides/getting-started/cluster-randomization_en.html",
       "/guides/getting-started/meta-analysis_en.html",
-      "/guides/getting-started/covariates_en.html",
-      "/guides/getting-started/heterogeneous-effects_en.html",
-      "/guides/getting-started/hypothesis-testing_en.html",
-      "/guides/getting-started/measurement_en.html",
-      "/guides/getting-started/mechanisms_en.html",
-      "/guides/getting-started/missing-data_en.html",
-      "/guides/getting-started/multisite-experiments_en.html",
-      "/guides/getting-started/pilots_en.html",
-      "/guides/getting-started/pap_en.html",
-      "/guides/getting-started/randomization-inference_en.html",
-      "/guides/getting-started/regression-table_en.html",
-      "/guides/getting-started/sampling_en.html",
-      "/guides/getting-started/spillovers_en.html",
-      "/guides/getting-started/survey-design_en.html",
-      "/guides/getting-started/survey-experiments_en.html",
-      "/guides/getting-started/survey-implementation_en.html",
-      "/guides/getting-started/effect-types_en.html",
-      "/guides/planning/power_en.html"
+      "/guides/planning/power_en.html",
+      "/guides/planning/pilots_en.html",
+      "/guides/planning/pap_en.html",
+      "/guides/planning/survey-design_en.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
-      "/guides/getting-started/causal-inference_en.html",
-      "/guides/getting-started/external-validity_en.html",
-      "/guides/getting-started/covariates_en.html"
+      "/guides/causal-inference/causal-inference_en.html",
+      "/guides/assessing-designs/external-validity_en.html",
+      "/guides/analysis-procedures/covariates_en.html"
     ]
   }
 ]
