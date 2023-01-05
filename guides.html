@@ -63,7 +63,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-getting-started .list');
+    const listingTargetEl = window.document.querySelector('#listing-analysis-procedures .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -72,11 +72,11 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-image','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-description"],
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-getting-started'] = new List('listing-getting-started', options);
+    window['quarto-listings']['listing-analysis-procedures'] = new List('listing-analysis-procedures', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -91,7 +91,7 @@ ul.task-list li input[type="checkbox"] {
   
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-planning .list');
+    const listingTargetEl = window.document.querySelector('#listing-assessing-designs .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -104,7 +104,147 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-planning'] = new List('listing-planning', options);
+    window['quarto-listings']['listing-assessing-designs'] = new List('listing-assessing-designs', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-causal-inference .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-causal-inference'] = new List('listing-causal-inference', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-data-strategies .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-data-strategies'] = new List('listing-data-strategies', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-implementation .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-implementation'] = new List('listing-implementation', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-interpretation .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-interpretation'] = new List('listing-interpretation', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-research-questions .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-research-questions'] = new List('listing-research-questions', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -173,8 +313,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
-  <li><a href="#planning-research-and-evaluations" id="toc-planning-research-and-evaluations" class="nav-link" data-scroll-target="#planning-research-and-evaluations">Planning research and evaluations</a></li>
+  <li><a href="#analysis-procedures" id="toc-analysis-procedures" class="nav-link active" data-scroll-target="#analysis-procedures">Analysis Procedures</a></li>
+  <li><a href="#assessing-designs" id="toc-assessing-designs" class="nav-link" data-scroll-target="#assessing-designs">Assessing Designs</a></li>
+  <li><a href="#causal-inference" id="toc-causal-inference" class="nav-link" data-scroll-target="#causal-inference">Causal Inference</a></li>
+  <li><a href="#data-strategies" id="toc-data-strategies" class="nav-link" data-scroll-target="#data-strategies">Data Strategies</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation">Implementation</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -199,12 +344,50 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>EGAP seeks to improve methods for rigorous impact evaluation throughout the social and behavioral science research community, as well as to make existing methods accessible to a wider audience. The methods guides are primers on a range of methodological and research topics. Each guide takes one issue and outlines the ten most important points to understand about it or the ten essential steps necessary to addressing that issue in your work.</p>
-<section id="getting-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<div id="listing-getting-started" class="quarto-listing quarto-listing-container-grid">
+<section id="analysis-procedures" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-procedures">Analysis Procedures</h2>
+<div id="listing-analysis-procedures" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1672870431509" data-listing-reading-time-sort="12.905">
-<a href="./guides/getting-started/meta-analysis_en.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="7.195">
+<a href="./guides/analysis-procedures/ri2_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-img-bg" style="height: 150px;">
+&nbsp;
+</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Randomization Inference Procedures with ri2
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Alexander Coppock
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1672958047395" data-listing-reading-time-sort="28.285">
+<a href="./guides/analysis-procedures/multiple-comparisons_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/analysis-procedures/multiple-comparisons.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things You Need to Know About Multiple Comparisons
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Alexander Coppock
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1672958047395" data-listing-reading-time-sort="12.905">
+<a href="./guides/analysis-procedures/meta-analysis_en.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-img-bg" style="height: 150px;">
 &nbsp;
@@ -222,21 +405,97 @@ Donald Green
 </div>
 </a>
 </div>
+<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1672958047395" data-listing-reading-time-sort="25.46">
+<a href="./guides/analysis-procedures/covariates_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/analysis-procedures/covariates.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Covariate Adjustment
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Lindsay Dolan
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-listing-file-modified-sort="1672958047395" data-listing-reading-time-sort="28.18">
+<a href="./guides/analysis-procedures/hypothesis-testing_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-img-bg" style="height: 150px;">
+&nbsp;
+</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Hypothesis Testing
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Jake Bowers
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="10.68">
+<a href="./guides/analysis-procedures/randomization-inference_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/analysis-procedures/randomization-inference.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Randomization Inference
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Donald Green
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
 </div>
 </section>
-<section id="planning-research-and-evaluations" class="level2">
-<h2 class="anchored" data-anchor-id="planning-research-and-evaluations">Planning research and evaluations</h2>
-<div id="listing-planning" class="quarto-listing quarto-listing-container-grid">
+<section id="assessing-designs" class="level2">
+<h2 class="anchored" data-anchor-id="assessing-designs">Assessing Designs</h2>
+<div id="listing-assessing-designs" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1672870431513" data-listing-reading-time-sort="18.835">
-<a href="./guides/planning/power_en.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="10.545">
+<a href="./guides/assessing-designs/external-validity_en.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img src="https://raw.githubusercontent.com/egap/methods-guides/master/power/simulatedpvals.png" class="thumbnail-image card-img" style="height: 150px;">
+<img src="./guides/assessing-designs/external-validity.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things You Need to Know About External Validity
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Renard Sexton
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="18.89">
+<a href="./guides/assessing-designs/power_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/assessing-designs/power.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -251,57 +510,430 @@ Alexander Coppock
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1672870431513" data-listing-reading-time-sort="20.835">
-<a href="./guides/planning/pilots_en.html" class="quarto-grid-link">
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="causal-inference" class="level2">
+<h2 class="anchored" data-anchor-id="causal-inference">Causal Inference</h2>
+<div id="listing-causal-inference" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="10.59">
+<a href="./guides/causal-inference/x-cause-y_en.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img src="./guides/planning/research_sequence.png" class="thumbnail-image card-img" style="height: 150px;">
+<img src="./guides/causal-inference/x-cause-y.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-10 Things to Know About Pilot Studies
+10 Strategies for Figuring out if X Causes Y
 </h5>
 <div class="card-attribution card-text-small start">
 <div class="listing-author">
-Kaylyn Jackson Schiff, Daniel S. Schiff, Natália S. Bueno
+Macartan Humphreys
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1672870431513" data-listing-reading-time-sort="20.555">
-<a href="./guides/planning/pap_en.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="10.975">
+<a href="./guides/causal-inference/causal-inference_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/causal-inference/causal-inference.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things You Need to Know About Causal Inference
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Macartan Humphreys
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="data-strategies" class="level2">
+<h2 class="anchored" data-anchor-id="data-strategies">Data Strategies</h2>
+<div id="listing-data-strategies" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="24.435">
+<a href="./guides/data-strategies/randomization_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/data-strategies/randomization.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things You Need to Know About Randomization
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Lindsay Dolan
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="9.145">
+<a href="./guides/data-strategies/adaptive-design_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://raw.githubusercontent.com/egap/methods-guides/master/adaptive/fig1.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Adaptive Experimental Design
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Donald Green, Molly Offer-Westort
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="48.94">
+<a href="./guides/data-strategies/cluster-randomization_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/data-strategies/cluster-randomization.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Cluster Randomization
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Jake Bowers
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="22.945">
+<a href="./guides/data-strategies/measurement_en.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-img-bg" style="height: 150px;">
 &nbsp;
 </div>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-10 Things to Know About Pre-Analysis Plans
+10 Things to Know About Measurement in Experiments
 </h5>
 <div class="card-attribution card-text-small start">
 <div class="listing-author">
-Nuole (Lula) Chen, Christopher Grady
+Tara Slough
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1672870431513" data-listing-reading-time-sort="15.735">
-<a href="./guides/planning/survey-design_en.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="4" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="19.59">
+<a href="./guides/data-strategies/missing-data_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-img-bg" style="height: 150px;">
+&nbsp;
+</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Missing Data
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Tara Slough
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-listing-file-modified-sort="1672958047399" data-listing-reading-time-sort="31.19">
+<a href="./guides/data-strategies/multisite-experiments_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-img-bg" style="height: 150px;">
+&nbsp;
+</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Multisite or Block-Randomized Trials
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Kristen Hunter
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-listing-file-modified-sort="1672958047403" data-listing-reading-time-sort="35.02">
+<a href="./guides/data-strategies/sampling_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-img-bg" style="height: 150px;">
+&nbsp;
+</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Sampling
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Anna M. Wilke
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-listing-file-modified-sort="1672958047403" data-listing-reading-time-sort="17.38">
+<a href="./guides/data-strategies/spillovers_en.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img src="./guides/planning/survey-design.png" class="thumbnail-image card-img" style="height: 150px;">
+<img src="./guides/data-strategies/spillovers.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-10 Things to Know About Survey Design
+10 Things to Know About Spillovers
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Alexander Coppock
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-listing-file-modified-sort="1672958047403" data-listing-reading-time-sort="31.655">
+<a href="./guides/data-strategies/survey-experiments_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/data-strategies/conjoint_image2.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Survey Experiments
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Christopher Grady
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="implementation" class="level2">
+<h2 class="anchored" data-anchor-id="implementation">Implementation</h2>
+<div id="listing-implementation" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1672958047403" data-listing-reading-time-sort="21.52">
+<a href="./guides/implementation/evaluation-conversations_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-img-bg" style="height: 150px;">
+&nbsp;
+</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Conversations that Implementers and Evaluators Need to Have
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Jake Bowers, Rebecca Wolfe
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1672958047407" data-listing-reading-time-sort="10.475">
+<a href="./guides/implementation/workflow_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-img-bg" style="height: 150px;">
+&nbsp;
+</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things You Need to Know About Project Workflow
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Matthew Lisiecki
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1672958047407" data-listing-reading-time-sort="22.82">
+<a href="./guides/implementation/survey-implementation_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/implementation/survey-implementation.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Survey Implementation
 </h5>
 <div class="card-attribution card-text-small start">
 <div class="listing-author">
 Gabriella Sacramone-Lutz
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
+<div id="listing-interpretation" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1672958047407" data-listing-reading-time-sort="12.54">
+<a href="./guides/interpretation/null-results_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-img-bg" style="height: 150px;">
+&nbsp;
+</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things Your Null Result Might Mean
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Rekha Balu
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1672958047407" data-listing-reading-time-sort="30.26">
+<a href="./guides/interpretation/regression-table_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/interpretation/regression-table.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Reading a Regression Table
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Abby Long
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
+<div id="listing-research-questions" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1672958047407" data-listing-reading-time-sort="15.52">
+<a href="./guides/research-questions/late_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/research-questions/late.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things You Need to Know About the Local Average Treatment Effect
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Peter van der Windt
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1672958047407" data-listing-reading-time-sort="23.415">
+<a href="./guides/research-questions/heterogeneous-effects_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/research-questions/heterogeneous-effects.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Heterogeneous Treatment Effects
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Albert Fang
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1672958047407" data-listing-reading-time-sort="28.63">
+<a href="./guides/research-questions/mechanisms_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/research-questions/mechanisms.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Things to Know About Mechanisms
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Lindsay Dolan
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1672958047407" data-listing-reading-time-sort="26.97">
+<a href="./guides/research-questions/effect-types_en.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./guides/research-questions/effect-types.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+10 Types of Treatment Effect You Should Know About
+</h5>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Paul Testa
 </div>
 </div>
 </div>
