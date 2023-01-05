@@ -1,13 +1,38 @@
 ---
 title: "Methods guides"
 listing: 
-  - id: getting-started
-    contents: "guides/getting-started/*_en.qmd"
+  - id: analysis-procedures
+    contents: "guides/analysis-procedures/*_en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
-  - id: planning
-    contents: "guides/planning/*_en.qmd"
+  - id: assessing-designs
+    contents: "guides/assessing-designs/*_en.qmd"
+    type: grid
+    sort-ui: false
+    fields: [image, title, author]
+  - id: causal-inference
+    contents: "guides/causal-inference/*_en.qmd"
+    type: grid
+    sort-ui: false
+    fields: [image, title, author]
+  - id: data-strategies
+    contents: "guides/data-strategies/*_en.qmd"
+    type: grid
+    sort-ui: false
+    fields: [image, title, author]
+  - id: implementation
+    contents: "guides/implementation/*_en.qmd"
+    type: grid
+    sort-ui: false
+    fields: [image, title, author]
+  - id: interpretation
+    contents: "guides/interpretation/*_en.qmd"
+    type: grid
+    sort-ui: false
+    fields: [image, title, author]
+  - id: research-questions
+    contents: "guides/research-questions/*_en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
@@ -15,12 +40,37 @@ listing:
 
 EGAP seeks to improve methods for rigorous impact evaluation throughout the social and behavioral science research community, as well as to make existing methods accessible to a wider audience. The methods guides are primers on a range of methodological and research topics. Each guide takes one issue and outlines the ten most important points to understand about it or the ten essential steps necessary to addressing that issue in your work.
 
-## Getting started 
+## Analysis Procedures 
 
-:::{#getting-started}
+:::{#analysis-procedures}
 :::
 
-## Planning research and evaluations
+## Assessing Designs
 
-:::{#planning}
+:::{#assessing-designs}
+:::
+
+## Causal Inference
+
+:::{#causal-inference}
+:::
+
+## Data Strategies
+
+:::{#data-strategies}
+:::
+
+## Implementation
+
+:::{#implementation}
+:::
+
+## Interpretation
+
+:::{#interpretation}
+:::
+
+## Research Questions
+
+:::{#research-questions}
 :::
