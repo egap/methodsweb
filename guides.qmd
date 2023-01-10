@@ -31,6 +31,11 @@ listing:
     type: grid
     sort-ui: false
     fields: [image, title, author]
+  - id: planning
+    contents: "guides/planning/*_en.qmd"
+    type: grid
+    sort-ui: false
+    fields: [image, title, author]
   - id: research-questions
     contents: "guides/research-questions/*_en.qmd"
     type: grid
@@ -39,6 +44,21 @@ listing:
 ---
 
 EGAP seeks to improve methods for rigorous impact evaluation throughout the social and behavioral science research community, as well as to make existing methods accessible to a wider audience. The methods guides are primers on a range of methodological and research topics. Each guide takes one issue and outlines the ten most important points to understand about it or the ten essential steps necessary to addressing that issue in your work.
+
+## Causal Inference
+
+:::{#causal-inference}
+:::
+
+## Research Questions
+
+:::{#research-questions}
+:::
+
+## Data Strategies
+
+:::{#data-strategies}
+:::
 
 ## Analysis Procedures 
 
@@ -50,14 +70,9 @@ EGAP seeks to improve methods for rigorous impact evaluation throughout the soci
 :::{#assessing-designs}
 :::
 
-## Causal Inference
+## Planning
 
-:::{#causal-inference}
-:::
-
-## Data Strategies
-
-:::{#data-strategies}
+:::{#planning}
 :::
 
 ## Implementation
@@ -68,9 +83,4 @@ EGAP seeks to improve methods for rigorous impact evaluation throughout the soci
 ## Interpretation
 
 :::{#interpretation}
-:::
-
-## Research Questions
-
-:::{#research-questions}
 :::
