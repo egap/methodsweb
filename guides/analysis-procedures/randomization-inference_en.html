@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -360,7 +379,7 @@ mean in group 0 mean in group 1
 </section>
 <section id="randomization-inference-may-give-different-p-values-from-conventional-tests-when-the-number-of-observations-is-small-and-when-the-distribution-of-outcomes-is-non-normal" class="level1">
 <h1>5. Randomization inference may give different p-values from conventional tests when the number of observations is small and when the distribution of outcomes is non-normal</h1>
-<p>Conventional p-values typically rely on approximations that presuppose either that the outcomes are normally distributed or that the subject pool is large enough that the test statistics follow a posited sampling distribution. When outcomes are highly skewed, as in the case of donations (a few people donate large sums, but the overwhelming majority donate nothing), conventional methods may produce inaccurate p-values. Gerber and Green (2012, p.65) give the following example in which randomization inference and conventional test statistics produce different results:</p>
+<p>Conventional p-values typically rely on approximations that presuppose either that the outcomes are normally distributed or that the subject pool is large enough that the test statistics follow a posited sampling distribution. When outcomes are highly skewed, as in the case of donations (a few people donate large sums, but the overwhelming majority donate nothing), conventional methods may produce inaccurate p-values. @<span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span> (p.65) give the following example in which randomization inference and conventional test statistics produce different results:</p>
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/ri/fig1.png" class="img-fluid"></p>
 </section>
 <section id="randomization-inference-is-useful-for-clustered-designs-clustering-fuzzy-clustering" class="level1">
@@ -387,25 +406,33 @@ mean in group 0 mean in group 1
 <p>Note on available software for implementing randomization. For the latest R package for randomization inference, see <a href="http://alexandercoppock.com/ri2/articles/ri2_vignette.html">here</a>. For randomization inference code specifically tailored to the special features of binary outcomes, see <a href="https://cran.r-project.org/web/packages/RI2by2/index.html">here</a>. Stata users may find an all-purpose package <a href="https://github.com/simonheb/ritest">here</a>.</p>
 </section>
 <section id="references" class="level1">
-<h1>References</h1>
-<p>Chung, EunYi and Joseph P. Romano. 2013. “Exact and asymptotically robust permutation tests.” The Annals of Statistics, 41(2), 484-507.</p>
-<p>Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. New York: W.W. Norton.</p>
-<p>Small, Dylan S., Thomas R. Ten Have, and Paul R. Rosenbaum. 2008. “Randomization Inference in a Group–Randomized Trial of Treatments for Depression: Covariate Adjustment, Noncompliance, and Quantile Effects.” Journal of the American Statistical Association, 103(481), 271-279.</p>
+
+
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-chung_romano_2013" class="csl-entry" role="doc-biblioentry">
+Chung, EunYi, and Joseph P. Romano. 2013. <span>“Exact and Asymptotically Robust Permutation Tests.”</span> <em>The Annals of Statistics</em> 41 (2): 484–507.
+</div>
+<div id="ref-gerber_green_2012" class="csl-entry" role="doc-biblioentry">
+Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. New York: W.W. Norton.
+</div>
+<div id="ref-small_et_al_2008" class="csl-entry" role="doc-biblioentry">
+Small, Dylan S., Thomas R. Ten Have, and Paul R. Rosenbaum. 2008. <span>“Randomization Inference in a Group–Randomized Trial of Treatments for Depression: Covariate Adjustment, Noncompliance, and Quantile Effects.”</span> <em>Journal of the American Statistical Association</em> 103 (481): 271–79.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Acknowledgements: I am grateful to Winston Lin and Gareth Nellis, who commented on an earlier draft.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>We focus here on randomization inference as applied to hypothesis testing. Randomization inference may also be used for construction of confidence intervals, but this application requires stronger assumptions. See Green and Gerber (2012), chapter 3.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>We focus here on randomization inference as applied to hypothesis testing. Randomization inference may also be used for construction of confidence intervals, but this application requires stronger assumptions. See <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>, chapter 3.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>As explained in other guides, the fundamental problem of causal inference is that we cannot observe what would have happened to those in control group had they be treated, nor can we observe what would have happened to those in the treatment group had they not been treated.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>One-tailed tests consider the null hypothesis of no effect against an alternative hypothesis that the average treatment effect is positive (negative). Two-tailed tests evaluate a null hypothesis against the alternative that the ATE is nonzero, whether positive or negative. In that case, the p-value may be assessed by calculating the proportion of simulated random assignments that are at least as large as the observed test statistic in absolute value.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>See Chung and Romano (2013). This “studentized” approach makes sense when there is reason to believe that the treatment changes the variance in outcomes in an experiment with different numbers of subjects in treatment and control.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>See <span class="citation" data-cites="chung_romano_2013">Chung and Romano (<a href="#ref-chung_romano_2013" role="doc-biblioref">2013</a>)</span>. This “studentized” approach makes sense when there is reason to believe that the treatment changes the variance in outcomes in an experiment with different numbers of subjects in treatment and control.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>See <a href="https://egap.org/resource/10-things-to-know-about-heterogeneous-treatment-effects">10 Things to Know about Heterogeneous Treatment Effects</a>, especially section 7 on multiple comparisons.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>The alternative is to make stronger assumptions. See Small, Ten Have, and Rosenbaum (2008).<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>The alternative is to make stronger assumptions. See <span class="citation" data-cites="small_et_al_2008">Small, Ten Have, and Rosenbaum (<a href="#ref-small_et_al_2008" role="doc-biblioref">2008</a>)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
