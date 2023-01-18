@@ -4,12 +4,13 @@ author:
   - name: "Donald Green"
     url: https://egap.org/member/donald-green/
 image: randomization-inference.png
+bibliography: randomization-inference.bib
 ---
 
 1. Randomization inference is a method for calculating p-values for hypothesis tests [^1] [^2]
 ==
 [^1]: Acknowledgements: I am grateful to Winston Lin and Gareth Nellis, who commented on an earlier draft.
-[^2]: We focus here on randomization inference as applied to hypothesis testing. Randomization inference may also be used for construction of confidence intervals, but this application requires stronger assumptions. See Green and Gerber (2012), chapter 3.
+[^2]: We focus here on randomization inference as applied to hypothesis testing. Randomization inference may also be used for construction of confidence intervals, but this application requires stronger assumptions. See @gerber_green_2012, chapter 3.
 
 One of the advantages of conducting a randomized trial is that the researcher knows the precise procedure by which the units were allocated to treatment and control. Randomization inference considers what would have happened under all possible random assignments, not just the one that happened to be selected for the experiment at hand. Against the backdrop of all possible random assignments, is the actual experimental result unusual? How unusual is it?
 
@@ -64,11 +65,11 @@ When the reference distribution is known based on a complete census of possible 
 ==
 In principle, any test statistic can be used as input for randomization inference, which in turn outputs a p-value. Some test statistics provide more informative results than others, however. For example, although the simple difference-in-means often performs well, there are good arguments for other test statistics, such as the t-ratio using a robust standard error.[^5] In this case, the researcher would calculate the test statistic for the actual experiment and compare it to a reference distribution of robust t-statistics under the sharp null hypothesis of no effect.
 
-[^5]: See Chung and Romano (2013). This “studentized” approach makes sense when there is reason to believe that the treatment changes the variance in outcomes in an experiment with different numbers of subjects in treatment and control.  
+[^5]: See @chung_romano_2013. This “studentized” approach makes sense when there is reason to believe that the treatment changes the variance in outcomes in an experiment with different numbers of subjects in treatment and control.
 
 5. Randomization inference may give different p-values from conventional tests when the number of observations is small and when the distribution of outcomes is non-normal
 ==
-Conventional p-values typically rely on approximations that presuppose either that the outcomes are normally distributed or that the subject pool is large enough that the test statistics follow a posited sampling distribution. When outcomes are highly skewed, as in the case of donations (a few people donate large sums, but the overwhelming majority donate nothing), conventional methods may produce inaccurate p-values. Gerber and Green (2012, p.65) give the following example in which randomization inference and conventional test statistics produce different results:
+Conventional p-values typically rely on approximations that presuppose either that the outcomes are normally distributed or that the subject pool is large enough that the test statistics follow a posited sampling distribution. When outcomes are highly skewed, as in the case of donations (a few people donate large sums, but the overwhelming majority donate nothing), conventional methods may produce inaccurate p-values. @@gerber_green_2012 (p.65) give the following example in which randomization inference and conventional test statistics produce different results:
 
 ![](https://raw.githubusercontent.com/egap/methods-guides/master/ri/fig1.png)
 
@@ -92,9 +93,9 @@ Randomized trials that involve multiple outcomes, multiple treatments, or multip
 ==
 Randomization inference is a flexible method that can accommodate null hypotheses other than the sharp null of no effect for any unit. The methods described above could also be applied to the null hypothesis that all units have a treatment effect of seven.  
 
-On the other hand, randomization inference cannot be applied with additional assumptions in cases where hypotheses focus on unobserved subgroups, such as compliers in cases of non-compliance with the treatment. We cannot simulate the sampling distribution of the estimated complier average causal effect when we lack knowledge of who the compliers are.   (In the case of one-sided noncompliance, we know who the compliers are in the treatment group but not the control group.) In this case, the researcher may have to be content using randomization inference to assess the sharp null hypothesis that the intention-to-treat effect is zero.[^7]
+On the other hand, randomization inference cannot be applied with additional assumptions in cases where hypotheses focus on unobserved subgroups, such as compliers in cases of non-compliance with the treatment. We cannot simulate the sampling distribution of the estimated complier average causal effect when we lack knowledge of who the compliers are. (In the case of one-sided noncompliance, we know who the compliers are in the treatment group but not the control group.) In this case, the researcher may have to be content using randomization inference to assess the sharp null hypothesis that the intention-to-treat effect is zero.[^7]
 
-[^7]: The alternative is to make stronger assumptions. See Small, Ten Have, and Rosenbaum (2008).
+[^7]: The alternative is to make stronger assumptions. See @small_et_al_2008.
 
 10.	In some applications, randomization inference may not be worth the trouble
 ==
@@ -102,10 +103,4 @@ Old-fashioned approximate methods work well when the assumptions on which the ap
 
 Note on available software for implementing randomization. For the latest R package for randomization inference, see [here](http://alexandercoppock.com/ri2/articles/ri2_vignette.html). For randomization inference code specifically tailored to the special features of binary outcomes, see [here](https://cran.r-project.org/web/packages/RI2by2/index.html). Stata users may find an all-purpose package [here](https://github.com/simonheb/ritest).
 
-References
-==
-Chung, EunYi and Joseph P. Romano. 2013. "Exact and asymptotically robust permutation tests." The Annals of Statistics, 41(2), 484-507.
-
-Gerber, Alan S., and Donald P. Green. 2012. *Field Experiments: Design, Analysis, and Interpretation*. New York: W.W. Norton.
-
-Small, Dylan S., Thomas R. Ten Have, and Paul R. Rosenbaum. 2008. "Randomization Inference in a Group–Randomized Trial of Treatments for Depression: Covariate Adjustment, Noncompliance, and Quantile Effects." Journal of the American Statistical Association, 103(481), 271-279.
+# References
