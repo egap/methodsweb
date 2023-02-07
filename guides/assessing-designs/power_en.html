@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -189,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#power-analysis-for-multiple-treatments" id="toc-power-analysis-for-multiple-treatments" class="nav-link" data-scroll-target="#power-analysis-for-multiple-treatments">8 Power Analysis for Multiple Treatments</a></li>
   <li><a href="#how-to-think-about-power-for-clustered-designs" id="toc-how-to-think-about-power-for-clustered-designs" class="nav-link" data-scroll-target="#how-to-think-about-power-for-clustered-designs">9 How to Think About Power for Clustered Designs</a></li>
   <li><a href="#good-power-analysis-makes-preregistration-easy" id="toc-good-power-analysis-makes-preregistration-easy" class="nav-link" data-scroll-target="#good-power-analysis-makes-preregistration-easy">10 Good Power Analysis Makes Preregistration Easy</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -314,10 +334,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  } </span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>powers </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.254 0.312 0.382 0.502 0.496 0.628 0.704 0.684 0.724 0.718 0.820 0.834
-[13] 0.868 0.846 0.898 0.936 0.886 0.940 0.940 0.976 0.964 0.942 0.968 0.986
-[25] 0.986 0.988 0.984 0.998 0.982 0.990 0.996 0.992 0.996 0.994 0.994 0.998
-[37] 1.000 0.998 0.998 1.000 1.000 1.000 0.998 1.000 1.000 0.998 1.000 1.000</code></pre>
+<pre><code> [1] 0.218 0.308 0.356 0.446 0.442 0.590 0.674 0.648 0.708 0.708 0.818 0.844
+[13] 0.846 0.882 0.890 0.878 0.916 0.966 0.960 0.934 0.958 0.968 0.970 0.990
+[25] 0.986 0.988 0.994 0.990 0.994 0.996 0.996 0.996 1.000 1.000 1.000 1.000
+[37] 0.996 1.000 0.998 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000</code></pre>
 </div>
 </div>
 <p>The code for this simulation and others is available <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/" target="_blank">here</a>. Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.</p>
@@ -360,22 +380,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As a general rule, clustering decreases your power. If you can avoid clustering your treatments, that is preferable for power. Unless you face concerns related to spillover, logistics, or ethics, take the variation down to the lowest level that you can.</p>
 <p>The best case scenario for a cluster-level design is when which cluster a subject is in provides very little information about their outcomes. Suppose subjects were randomly assigned to clusters — the cluster wouldn’t help to predict outcomes at all. If the cluster is not predictive of the outcome, then we haven’t lost too much power to clustering.</p>
 <p>Where clustering really causes trouble is when there is a strong relationship between the cluster and the outcome. To take the villages example, suppose that some villages are, as a whole, much richer than others. Then the clusters might be quite predictive of educational attainment. Clustering can reduce your effective sample size from the total number of individuals to the total number of clusters.</p>
-<p>There are formulas that can help you understand the consequences of clustering — see Gelman/Hill page 447-449 for an extended discussion. While these formulas can be useful, they can also be quite cumbersome to work with. The core insight however is a simple one: you generally get more power from increasing the number of clusters than you do from increasing the number of subjects within clusters. Better to have 100 clusters with 10 subjects in each than 10 clusters with 100 subjects in each.</p>
-<p>Again, a more flexible approach to power analysis when dealing with clusters is simulation. See the (Declare Design library for block and cluster randomized experiments)[https://declaredesign.org/r/designlibrary/reference/block_cluster_two_arm_designer.html] for some starter code. The (DeclareDesign)[https://declaredesign.org] software aims to make simulations for power analysis (among many other tasks) easier. See also Gelman/Hill page 450-453 for another simulation approach.</p>
+<p>There are formulas that can help you understand the consequences of clustering — see <span class="citation" data-cites="gelman_hill_2006">Gelman and Hill (<a href="#ref-gelman_hill_2006" role="doc-biblioref">2006</a>)</span>, page 447-449 for an extended discussion. While these formulas can be useful, they can also be quite cumbersome to work with. The core insight however is a simple one: you generally get more power from increasing the number of clusters than you do from increasing the number of subjects within clusters. Better to have 100 clusters with 10 subjects in each than 10 clusters with 100 subjects in each.</p>
+<p>Again, a more flexible approach to power analysis when dealing with clusters is simulation. See the (Declare Design library for block and cluster randomized experiments)[https://declaredesign.org/r/designlibrary/reference/block_cluster_two_arm_designer.html] for some starter code. The (DeclareDesign)[https://declaredesign.org] software aims to make simulations for power analysis (among many other tasks) easier. See also <span class="citation" data-cites="gelman_hill_2006">Gelman and Hill (<a href="#ref-gelman_hill_2006" role="doc-biblioref">2006</a>)</span>, pages 450-453 for another simulation approach.</p>
 </section>
 <section id="good-power-analysis-makes-preregistration-easy" class="level1">
 <h1>10 Good Power Analysis Makes Preregistration Easy</h1>
 <p>When you deal with power you focus on what you cannot control (noise) and what you can control (design). If you use the simulation approach to power analysis then you will be forced to imagine how your data will look and how you will handle it when it comes in. You will get a chance to specify all of your hunches and best guesses in advance, so that you can launch your experiments with clear expectations of what they can and cannot show. That’s some work but the good news is that if you really do it you are most of the way to putting together a comprehensive and registerable pre-analysis plan.</p>
+</section>
+<section id="references" class="level1">
+
+
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-gelman_hill_2006" class="csl-entry" role="doc-biblioentry">
+Gelman, A., and J. Hill. 2006. <em>Data Analysis Using Regression and Multilevel/Hierarchical Models</em>. Cambridge University Press.
+</div>
+<div id="ref-gerber_green_2012" class="csl-entry" role="doc-biblioentry">
+Gerber, A. S., and D. P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. W.W. Norton.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Originating author: Alex Coppock, 20 Nov 2013. The guide is a live document and subject to updating by EGAP members at any time. Coppock is not responsible for subsequent edits to this guide<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Reproduced from Gerber and Green 2012, page 93<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Reproduced from <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>, page 93<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>For an additional online power visualization tool, see Kristoffer Magnusson’s <a href="http://rpsychologist.com/d3/NHST/" target="_blank">R Psychologist blog</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
