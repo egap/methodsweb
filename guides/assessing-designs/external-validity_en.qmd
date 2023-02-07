@@ -4,7 +4,7 @@ author:
   - name: "Renard Sexton"
     url: https://egap.org/member/renard-sexton/
 image: external-validity.png
-bibliography: external_validity.bib
+bibliography: external-validity.bib
 ---
 
 Abstract
