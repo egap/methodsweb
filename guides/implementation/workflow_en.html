@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -188,6 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#your-future-selfand-otherswill-want-to-be-able-to-access-your-data" id="toc-your-future-selfand-otherswill-want-to-be-able-to-access-your-data" class="nav-link" data-scroll-target="#your-future-selfand-otherswill-want-to-be-able-to-access-your-data">8. Your future self–and others–will want to be able to access your data</a></li>
   <li><a href="#to-minimize-error-build-testing-into-the-code" id="toc-to-minimize-error-build-testing-into-the-code" class="nav-link" data-scroll-target="#to-minimize-error-build-testing-into-the-code">9. To minimize error, build testing into the code</a></li>
   <li><a href="#research-should-remove-speculation" id="toc-research-should-remove-speculation" class="nav-link" data-scroll-target="#research-should-remove-speculation">10. Research should remove speculation</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -219,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="people-have-limited-memories" class="level1">
 <h1>1. People have limited memories</h1>
-<p>There are limits to human memory. Since most experimental research requires at least months if not years of design, monitoring, analysis, and reporting, few researchers can maintain mental oversight of all of a project’s moving pieces over time. Introduce additional investigators into the mix, and the questions of who did what, when, and why (if not how) multiply and become harder to answer. As replication becomes more important (by the original project team or outside researchers), maintaining a written record of decisions, actions, and questions becomes essential. Bowers and Voors (2016)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> provide a framework and steps for improving project’s workflow; this guide draws upon their paper and upon additional tools aimed at documenting the important choices made by researchers and effectively communicating those choices to the project team.</p>
+<p>There are limits to human memory. Since most experimental research requires at least months if not years of design, monitoring, analysis, and reporting, few researchers can maintain mental oversight of all of a project’s moving pieces over time. Introduce additional investigators into the mix, and the questions of who did what, when, and why (if not how) multiply and become harder to answer. As replication becomes more important (by the original project team or outside researchers), maintaining a written record of decisions, actions, and questions becomes essential. <span class="citation" data-cites="bowers_voors_2016">Bowers and Voors (<a href="#ref-bowers_voors_2016" role="doc-biblioref">2016</a>)</span> provide a framework and steps for improving project’s workflow; this guide draws upon their paper and upon additional tools aimed at documenting the important choices made by researchers and effectively communicating those choices to the project team.</p>
 </section>
 <section id="effective-data-analysis-is-aided-by-coding" class="level1">
 <h1>2. Effective data analysis is aided by coding</h1>
@@ -249,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="coding-is-communication-2-to-yourself-to-co-investigators-and-to-the-future" class="level1">
 <h1>4. Coding is communication 2: to yourself, to co-investigators, and to the future</h1>
-<p>Coding and communication can be linked even tighter by combining them in the same file. Using markup systems like R Markdown (see section 4 below) or R+LaTeX<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, you can place a code chunk that produces a table or figure right where that table/figure will be in the document. If you make a change to the code that produces that table/figure, it appears in the document without any additional work. The R code in point 2 starts with <code>```{r codechunk1}</code> which tells R+markdown that the next bit of text is R code to be executed and ends with <code>```</code> which tells R+markdown to go back to interpreting the text as prose. For example, in markdown one uses two asterisks to make text <strong>bold</strong> (<code>**like this**</code>) but two asterisks would confuse R (there is no R command with two asterisks), so the idea of a code chunk allows two or more kinds of text to be mixed in a single document. Coauthors and editors can also review the manuscript together with the tables and figures, rather than scrolling back and forth between the two. When it comes time to produce the final version of the document, the code chunks can be hidden to display only the relevant table/figure.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> The idea is to type the document in plain text but that external programs (including R) can compile so that they end up looking like nice, formatted PDFs. You can use Markdown on Windows and Mac OSX, and you can also edit the file in an ordinary text editor. Jupyter notebooks are another recent open source approach to mixing prose text and code text which emphasize the python language but which can also include R.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Coding and communication can be linked even tighter by combining them in the same file. Using markup systems like R Markdown (see section 4 below) or R+LaTeX<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, you can place a code chunk that produces a table or figure right where that table/figure will be in the document. If you make a change to the code that produces that table/figure, it appears in the document without any additional work. The R code in point 2 starts with <code>```{r codechunk1}</code> which tells R+markdown that the next bit of text is R code to be executed and ends with <code>```</code> which tells R+markdown to go back to interpreting the text as prose. For example, in markdown one uses two asterisks to make text <strong>bold</strong> (<code>**like this**</code>) but two asterisks would confuse R (there is no R command with two asterisks), so the idea of a code chunk allows two or more kinds of text to be mixed in a single document. Coauthors and editors can also review the manuscript together with the tables and figures, rather than scrolling back and forth between the two. When it comes time to produce the final version of the document, the code chunks can be hidden to display only the relevant table/figure.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The idea is to type the document in plain text but that external programs (including R) can compile so that they end up looking like nice, formatted PDFs. You can use Markdown on Windows and Mac OSX, and you can also edit the file in an ordinary text editor. Jupyter notebooks are another recent open source approach to mixing prose text and code text which emphasize the python language but which can also include R.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 </section>
 <section id="a-useful-tool-for-combining-code-and-writeup-r-markdown" class="level1">
 <h1>4. A useful tool for combining code and writeup: R Markdown</h1>
@@ -259,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="data-analysis-requires-clear-routes-between-inputs-and-outputs" class="level1">
 <h1>5. Data analysis requires clear routes between inputs and outputs</h1>
 <p>Nearly every script begins by calling in the relevant data for analysis. This should be done with a line that produces the same output on every computer. This, in turn, requires that collaborators need to have access to a shared file structure for storing project materials, about which more in section 7.</p>
-<p>Within that shared file structure, the organization of files can be a very helpful map for identifying what went where. Nagler <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> outlines the principle of modularity, which suggest that you separate files by function (namely making data cleaning/processing/recoding/merging distinct from analysis). Storing the original data file in a folder labeled “raw” and the cleaned/recoded datafile in one marked “clean” tells you and your collaborators where to find each without searching too hard. If the folder structure starts to get overly complicated, consider using a README file (a brief text file) to explain where the relevant input and output files for your analysis are stored.</p>
+<p>Within that shared file structure, the organization of files can be a very helpful map for identifying what went where. <span class="citation" data-cites="nagler_1995">Nagler (<a href="#ref-nagler_1995" role="doc-biblioref">1995</a>)</span> outlines the principle of modularity, which suggest that you separate files by function (namely making data cleaning/processing/recoding/merging distinct from analysis). Storing the original data file in a folder labeled “raw” and the cleaned/recoded datafile in one marked “clean” tells you and your collaborators where to find each without searching too hard. If the folder structure starts to get overly complicated, consider using a README file (a brief text file) to explain where the relevant input and output files for your analysis are stored.</p>
 </section>
 <section id="version-control-keeps-track-of-who-did-what-and-when-and-makes-sure-that-work-is-not-overwritten" class="level1">
 <h1>6. Version control keeps track of who did what and when, and makes sure that work is not overwritten</h1>
@@ -270,8 +290,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Produce multiple versions of the same document (such as one for a journal and one for a conference);</li>
 <li>Work on a file without undoing the work that someone else on your team happened to do at the same time</li>
 </ul>
-<p>One way to practice effective version control is to use the “track changes” function within word processors. This allows one author to make edits in a way that others can quickly identify, review, and “accept” or “reject.” In Google Docs<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, this feature (which Google calls “suggestion” mode) can be combined with the ability for multiple authors to work on the document at once time (assuming that everyone has a reliable internet connection).</p>
-<p>In situations with less reliable internet access, Dropbox<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> can provide shared access to a folder or series of folders where project materials are stored. One author can make an edit and sync their account, and then another can view the latest version. Authors cannot make changes at the same time, but they can hand off to each other with greater ease. This can be aided by adopting a file naming structure that tells you when the latest changes were made. Naming a file <code>document.docx</code> does not communicate this; naming it <code>yyyymmdd_document.docx</code> does (it also allows you to sort the folder by name and see the most recently edited version first. If the versions start to pile up, consider creating an archive subfolder to store all but the most recent version.</p>
+<p>One way to practice effective version control is to use the “track changes” function within word processors. This allows one author to make edits in a way that others can quickly identify, review, and “accept” or “reject.” In Google Docs<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, this feature (which Google calls “suggestion” mode) can be combined with the ability for multiple authors to work on the document at once time (assuming that everyone has a reliable internet connection).</p>
+<p>In situations with less reliable internet access, Dropbox<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> can provide shared access to a folder or series of folders where project materials are stored. One author can make an edit and sync their account, and then another can view the latest version. Authors cannot make changes at the same time, but they can hand off to each other with greater ease. This can be aided by adopting a file naming structure that tells you when the latest changes were made. Naming a file <code>document.docx</code> does not communicate this; naming it <code>yyyymmdd_document.docx</code> does (it also allows you to sort the folder by name and see the most recently edited version first. If the versions start to pile up, consider creating an archive subfolder to store all but the most recent version.</p>
 </section>
 <section id="a-useful-tool-for-version-control-github" class="level1">
 <h1>7. A useful tool for version control: GitHub</h1>
@@ -281,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="your-future-selfand-otherswill-want-to-be-able-to-access-your-data" class="level1">
 <h1>8. Your future self–and others–will want to be able to access your data</h1>
-<p>Science involves learning from the work of others in addition to remembering about the past work of oneself. If one works in such a way that a future self can remember, then, often that work will be easy to use by others as they themselves attempt to extend the science or even just learn how to apply your good ideas to their own context.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> There are a number of tools to make storing and sharing files for replication easier, including GitHub and the Center for Open Science’s Open Science Framework (OSF). OSF recently ran a <a href="http://www.socialsciencesreplicationproject.com">replication project</a> aimed at understanding “predictors of reproducibility of research results, and how low reproducibility may inhibit efficient accumulation of knowledge.”</p>
+<p>Science involves learning from the work of others in addition to remembering about the past work of oneself. If one works in such a way that a future self can remember, then, often that work will be easy to use by others as they themselves attempt to extend the science or even just learn how to apply your good ideas to their own context.[^7] There are a number of tools to make storing and sharing files for replication easier, including GitHub and the Center for Open Science’s Open Science Framework (OSF). OSF recently ran a <a href="http://www.socialsciencesreplicationproject.com">replication project</a> aimed at understanding “predictors of reproducibility of research results, and how low reproducibility may inhibit efficient accumulation of knowledge.”</p>
 <p>Data should be stored in places like a Dataverse or the ICPSR or other places with a plan for daily backups band also a plan for data to be preserved and made available for many years into the future (in contrast to your favorite homemade website).</p>
 </section>
 <section id="to-minimize-error-build-testing-into-the-code" class="level1">
@@ -314,22 +334,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="research-should-remove-speculation" class="level1">
 <h1>10. Research should remove speculation</h1>
 <p>Ultimately, the point of doing research is to move things from the realm of opinion into the realm of knowledge. Thus, effective research should have findings that are not a matter of opinion, and at which others can arrive. If, in the future, somebody disagrees with your analysis, you can hand them the raw data files and analysis scripts and watch them arrive at the same result.</p>
+</section>
+<section id="references" class="level1">
+
+
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-bowers_voors_2016" class="csl-entry" role="doc-biblioentry">
+Bowers, Jake, and Maarten Voors. 2016. <span>“How to Improve Your Relationship with Your Future Self.”</span> <em>Revista de Ciencia Pol<span>ı́</span>tica</em> 36 (3).
+</div>
+<div id="ref-nagler_1995" class="csl-entry" role="doc-biblioentry">
+Nagler, Jonathan. 1995. <span>“Coding Style and Good Computing Practices.”</span> <em>PS: Political Science and Politics</em> 28 (3): 488–92.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Bowers, J. &amp; Voors, M. 2016. How to Improve Your Relationship With Your Future Self. Revista de Ciencia Política. Vol. 36, Issue 3.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Called, anachronistically, Sweave<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Note that all of the EGAP methods guides that produce figures or tables are produced this way (see https://github.com/egap/methods-guides)<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>There are many ways to type text that includes code such that parenthesis are automatically closed, spelling is checked, or even help is provided about the code itself. RStudio is an integrated development environment (IDE) that includes a nice editor. Some of us use older tools that are more widespread such as vim, or eMacs. Others any of the contemporary improvements on those old tools such as Atom.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Nagler, Jonathan. 1995. “Coding Style and Good Computing Practices”. PS: Political Science and Politics 28(3): 488-92.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>https://docs.google.com<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>https://www.dropbox.com<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>King, Gary. 1995. “Replication, Replication”. PS: Political Science and Politics 28(3): 444-452.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Called, anachronistically, Sweave<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Note that all of the EGAP methods guides that produce figures or tables are produced this way (see https://github.com/egap/methods-guides)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>There are many ways to type text that includes code such that parenthesis are automatically closed, spelling is checked, or even help is provided about the code itself. RStudio is an integrated development environment (IDE) that includes a nice editor. Some of us use older tools that are more widespread such as vim, or eMacs. Others any of the contemporary improvements on those old tools such as Atom.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://docs.google.com<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>https://www.dropbox.com<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

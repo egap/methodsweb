@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -189,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#sometimes-you-can-avoid-spillovers-with-buffer-rows" id="toc-sometimes-you-can-avoid-spillovers-with-buffer-rows" class="nav-link" data-scroll-target="#sometimes-you-can-avoid-spillovers-with-buffer-rows">8. Sometimes you can avoid spillovers with “buffer rows”</a></li>
   <li><a href="#there-are-other-design-based-approaches-for-detecting-spillover-effects." id="toc-there-are-other-design-based-approaches-for-detecting-spillover-effects." class="nav-link" data-scroll-target="#there-are-other-design-based-approaches-for-detecting-spillover-effects.">9. There are other design-based approaches for detecting spillover effects.</a></li>
   <li><a href="#even-if-a-treatment-is-binary-spillovers-might-not-be.-the-right-model-might-require-dealing-with-dosage" id="toc-even-if-a-treatment-is-binary-spillovers-might-not-be.-the-right-model-might-require-dealing-with-dosage" class="nav-link" data-scroll-target="#even-if-a-treatment-is-binary-spillovers-might-not-be.-the-right-model-might-require-dealing-with-dosage">10. Even if a treatment is binary, spillovers might not be. The right model might require dealing with “dosage”</a></li>
-  <li><a href="#for-further-reading" id="toc-for-further-reading" class="nav-link" data-scroll-target="#for-further-reading">For further reading</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -414,23 +433,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Bowers, Fredrickson, and Panagopoulos (2013) propose a framework that can accommodate any causal model that maps treatment assignments into potential outcomes. The potential outcomes can be in discrete categories (as we’ve been assuming for most of this guide) or a continuous function of the dosage of spillovers.</p>
 <p>A schematic sketch of their method is as follows. Suppose the causal model has two parameters: <span class="math inline">\(\beta_1\)</span>, the direct treatment effect and <span class="math inline">\(\beta_2\)</span>, the indirect effect of a single unit of spillover dosage. A joint test of the hypothesis that <span class="math inline">\(\beta_1 = \beta_2 = 0\)</span> is equivalent to a test of the sharp null hypothesis of no effect. Such a test yields a p-value — the probability that the observed data were generated according to the causal model in which <span class="math inline">\(\beta_1 = \beta_2 = 0\)</span>.</p>
 <p>But we aren’t restricted to only obtaining p-values for the hypothesis that <span class="math inline">\(\beta_1 = \beta_2 = 0\)</span>. Those parameters could take on any values, and we could associate a p-value with any hypothesized pair of values. The essence of their proposed estimation method is to pick the pair that generates the highest p-value by searching through the set of plausible pairs.</p>
+<p>For further reading, see: <span class="citation" data-cites="arnonow_samii_2015">(<a href="#ref-arnonow_samii_2015" role="doc-biblioref"><strong>arnonow_samii_2015?</strong></a>)</span> <span class="citation" data-cites="athey_imbens_2017a">Athey and Imbens (<a href="#ref-athey_imbens_2017a" role="doc-biblioref">2017a</a>)</span> <span class="citation" data-cites="athey_imbens_2017b">Athey and Imbens (<a href="#ref-athey_imbens_2017b" role="doc-biblioref">2017b</a>)</span> <span class="citation" data-cites="bowers_et_al_2013">Bowers, Fredrickson, and Panagopoulos (<a href="#ref-bowers_et_al_2013" role="doc-biblioref">2013</a>)</span> <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span> <span class="citation" data-cites="glennerster_takavarasha_2013">Glennerster and Takavarasha (<a href="#ref-glennerster_takavarasha_2013" role="doc-biblioref">2013</a>)</span> <span class="citation" data-cites="paluck_et_al_2016">Paluck, Shepherd, and Aronow (<a href="#ref-paluck_et_al_2016" role="doc-biblioref">2016</a>)</span> <span class="citation" data-cites="sinclair_et_al_2012">Sinclair, McConnell, and Green (<a href="#ref-sinclair_et_al_2012" role="doc-biblioref">2012</a>)</span></p>
 </section>
-<section id="for-further-reading" class="level1">
-<h1>For further reading</h1>
-<p>Aronow, Peter M., and Cyrus Samii (2015). “Estimating Average Causal Effects Under Interference Between Units.” <a href="http://arxiv.org/abs/1305.6156">arXiv</a></p>
-<p>Athey, Susan, and Guido W. Imbens (2017a). “The Econometrics of Randomized Experiments.” In <em>Handbook of Economic Field Experiments</em>, vol.&nbsp;1 (E. Duflo and A. Banerjee, eds.). <a href="http://arxiv.org/abs/1607.00698">arXiv</a> <a href="http://dx.doi.org/10.1016/bs.hefe.2016.10.003">DOI</a></p>
-<p>Athey, Susan, and Guido W. Imbens (2017b). <a href="http://doi.org/10.1257/jep.31.2.3">“The State of Applied Econometrics: Causality and Policy Evaluation.”</a> <em>Journal of Economic Perspectives</em> 31(2): 3–32.</p>
-<p>Bowers, Jake, Mark M. Fredrickson, and Costas Panagopoulos (2013). “Reasoning about Interference Between Units: A General Framework.” <em>Political Analysis</em> 21: 97–124.</p>
-<p>Gerber, Alan S., and Donald P. Green (2012). <em>Field Experiments: Design, Analysis, and Interpretation</em>, chapter 8.</p>
-<p>Glennerster, Rachel, and Kudzai Takavarasha (2013). <em>Running Randomized Evaluations: A Practical Guide</em>, modules 4.2, 7.3, and 8.2.</p>
-<p>Paluck, Elizabeth Levy, Hana Shepherd, and Peter M. Aronow (2016). “Changing Climates of Conflict: A Social Network Experiment in 56 Schools.” <em>Proceedings of the National Academy of Sciences</em> 113: 566–571.</p>
-<p>Sinclair, Betsy, Margaret McConnell, and Donald P. Green (2012). “Detecting Spillover Effects: Design and Analysis of Multilevel Experiments.” <em>American Journal of Political Science</em> 56: 1055–1069.</p>
+<section id="references" class="level1">
+
+
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-athey_imbens_2017a" class="csl-entry" role="doc-biblioentry">
+Athey, Susan, and Guido W. Imbens. 2017a. <span>“Handbook of Economic Field Experiments, Vol. 1.”</span> In, edited by E. Duflo and A. Banerjee.
+</div>
+<div id="ref-athey_imbens_2017b" class="csl-entry" role="doc-biblioentry">
+———. 2017b. <span>“The State of Applied Econometrics: Causality and Policy Evaluation.”</span> <em>Journal of Economic Perspectives</em> 31 (2): 3–32.
+</div>
+<div id="ref-bowers_et_al_2013" class="csl-entry" role="doc-biblioentry">
+Bowers, Jake, Mark M. Fredrickson, and Costas Panagopoulos. 2013. <span>“Reasoning about Interference Between Units: A General Framework.”</span> <em>Political Analysis</em> 21: 97–124.
+</div>
+<div id="ref-gerber_green_2012" class="csl-entry" role="doc-biblioentry">
+Gerber, Alan S., and Donald P. Green. 2012. <span>“Field Experiments: Design, Analysis, and Interpretation.”</span> In. W.W. Norton.
+</div>
+<div id="ref-glennerster_takavarasha_2013" class="csl-entry" role="doc-biblioentry">
+Glennerster, Rachel, and Kudzai Takavarasha. 2013. <span>“Running Randomized Evaluations: A Practical Guide,”</span> In.
+</div>
+<div id="ref-paluck_et_al_2016" class="csl-entry" role="doc-biblioentry">
+Paluck, Elizabeth Levy, Hana Shepherd, and Peter M. Aronow. 2016. <span>“Changing Climates of Conflict: A Social Network Experiment in 56 Schools.”</span> <em>Proceedings of the National Academy of Sciences</em> 113: 566–71.
+</div>
+<div id="ref-sinclair_et_al_2012" class="csl-entry" role="doc-biblioentry">
+Sinclair, Betsy, Margaret McConnell, and Donald P. Green. 2012. <span>“Detecting Spillover Effects: Design and Analysis of Multilevel Experiments.”</span> <em>American Journal of Political Science</em> 56: 1055–69.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Originating author: Alex Coppock, 31 Jul 2014. Minor revisions: Don Green and Winston Lin, 20 July 2016. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
