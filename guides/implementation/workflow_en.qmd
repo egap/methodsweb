@@ -3,13 +3,12 @@ title: "10 Things You Need to Know About Project Workflow"
 author: 
   - name: "Matthew Lisiecki"
     url: https://egap.org/member/matthew-lisiecki/
+bibliography: workflow.bib
 ---
 
 1.	People have limited memories
 ==
-There are limits to human memory. Since most experimental research requires at least months if not years of design, monitoring, analysis, and reporting, few researchers can   maintain mental oversight of all of a project’s moving pieces over time. Introduce additional investigators into the mix, and the questions of who did what, when, and why (if not how) multiply and become harder to answer. As replication becomes more important (by the original project team or outside researchers), maintaining a written record of decisions, actions, and questions becomes essential. Bowers and Voors (2016)[^1] provide a framework and steps for improving  project’s workflow; this guide draws upon their paper and upon additional tools aimed at documenting the important choices made by researchers and effectively communicating those choices to the project team.
-
-[^1]: Bowers, J. & Voors, M. 2016. How to Improve Your Relationship With Your Future Self. Revista de Ciencia Política. Vol. 36, Issue 3.
+There are limits to human memory. Since most experimental research requires at least months if not years of design, monitoring, analysis, and reporting, few researchers can   maintain mental oversight of all of a project’s moving pieces over time. Introduce additional investigators into the mix, and the questions of who did what, when, and why (if not how) multiply and become harder to answer. As replication becomes more important (by the original project team or outside researchers), maintaining a written record of decisions, actions, and questions becomes essential. @bowers_voors_2016 provide a framework and steps for improving  project’s workflow; this guide draws upon their paper and upon additional tools aimed at documenting the important choices made by researchers and effectively communicating those choices to the project team.
 
 2.	Effective data analysis is aided by coding
 ==
@@ -60,9 +59,7 @@ For more information, see the [Metaketa III committee R Markdown Manual](https:/
 ==
 Nearly every script begins by calling in the relevant data for analysis. This should be done with a line that produces the same output on every computer. This, in turn, requires that collaborators need to have access to a shared file structure for storing project materials, about which more in section 7.
 
-Within that shared file structure, the organization of files can be a very helpful map for identifying what went where. Nagler [^5] outlines the principle of modularity, which suggest that you separate files by function (namely making data cleaning/processing/recoding/merging distinct from analysis). Storing the original data file in a folder labeled “raw” and the cleaned/recoded datafile in one marked “clean” tells you and your collaborators where to find each without searching too hard. If the folder structure starts to get overly complicated, consider using a README file (a brief text file) to explain where the relevant input and output files for your analysis are stored.
-
-[^5]: Nagler, Jonathan. 1995. “Coding Style and Good Computing Practices”. PS: Political Science and Politics 28(3): 488-92.
+Within that shared file structure, the organization of files can be a very helpful map for identifying what went where. @nagler_1995 outlines the principle of modularity, which suggest that you separate files by function (namely making data cleaning/processing/recoding/merging distinct from analysis). Storing the original data file in a folder labeled “raw” and the cleaned/recoded datafile in one marked “clean” tells you and your collaborators where to find each without searching too hard. If the folder structure starts to get overly complicated, consider using a README file (a brief text file) to explain where the relevant input and output files for your analysis are stored.
 
 6.	Version control keeps track of who did what and when, and makes sure that work is not overwritten
 ==
@@ -73,13 +70,13 @@ Even teams with perfect file structure in their shared folder can run into issue
 * Produce multiple versions of the same document (such as one for a journal and one for a conference);
 * Work on a file without undoing the work that someone else on your team happened to do at the same time
 
-One way to practice effective version control is to use the “track changes” function within word processors. This allows one author to make edits in a way that others can quickly identify, review, and “accept” or “reject.” In Google Docs[^6], this feature (which Google calls “suggestion” mode) can be combined with the ability for multiple authors to work on the document at once time (assuming that everyone has a reliable internet connection).
+One way to practice effective version control is to use the “track changes” function within word processors. This allows one author to make edits in a way that others can quickly identify, review, and “accept” or “reject.” In Google Docs[^5], this feature (which Google calls “suggestion” mode) can be combined with the ability for multiple authors to work on the document at once time (assuming that everyone has a reliable internet connection).
 
-[^6]: https://docs.google.com
+[^5]: https://docs.google.com
 
-In situations with less reliable internet access, Dropbox[^7] can provide shared access to a folder or series of folders where project materials are stored. One author can make an edit and sync their account, and then another can view the latest version. Authors cannot make changes at the same time, but they can hand off to each other with greater ease. This can be aided by adopting a file naming structure that tells you when the latest changes were made. Naming a file ```document.docx``` does not communicate this; naming it ```yyyymmdd_document.docx``` does (it also allows you to sort the folder by name and see the most recently edited version first. If the versions start to pile up, consider creating an archive subfolder to store all but the most recent version.
+In situations with less reliable internet access, Dropbox[^6] can provide shared access to a folder or series of folders where project materials are stored. One author can make an edit and sync their account, and then another can view the latest version. Authors cannot make changes at the same time, but they can hand off to each other with greater ease. This can be aided by adopting a file naming structure that tells you when the latest changes were made. Naming a file ```document.docx``` does not communicate this; naming it ```yyyymmdd_document.docx``` does (it also allows you to sort the folder by name and see the most recently edited version first. If the versions start to pile up, consider creating an archive subfolder to store all but the most recent version.
 
-[^7]: https://www.dropbox.com
+[^6]: https://www.dropbox.com
 
 7.	A useful tool for version control: GitHub
 ==
@@ -91,11 +88,11 @@ For more information, see [Metaketa III committee GitHub Manual](https://github.
 
 8.	Your future self--and others--will want to be able to access your data
 ==
-Science involves learning from the work of others in addition to remembering about the past work of oneself. If one works in such a way that a future self can remember, then, often that work will be easy to use by others as they themselves attempt to extend the science or even just learn how to apply your good ideas to their own context.[^8] There are a number of tools to make storing and sharing files for replication easier, including GitHub and the Center for Open Science’s Open Science Framework (OSF). OSF recently ran a [replication project](http://www.socialsciencesreplicationproject.com) aimed at understanding “predictors of reproducibility of research results, and how low reproducibility may inhibit efficient accumulation of knowledge.”
+Science involves learning from the work of others in addition to remembering about the past work of oneself. If one works in such a way that a future self can remember, then, often that work will be easy to use by others as they themselves attempt to extend the science or even just learn how to apply your good ideas to their own context.[^7] There are a number of tools to make storing and sharing files for replication easier, including GitHub and the Center for Open Science’s Open Science Framework (OSF). OSF recently ran a [replication project](http://www.socialsciencesreplicationproject.com) aimed at understanding “predictors of reproducibility of research results, and how low reproducibility may inhibit efficient accumulation of knowledge.”
 
 Data should be stored in places like a Dataverse or the ICPSR or other places with a plan for daily backups band also a plan for data to be preserved and made available for many years into the future (in contrast to your favorite homemade website).
 
-[^8]: King, Gary. 1995. “Replication, Replication”. PS: Political Science and Politics 28(3): 444-452.  
+[^8]: See @king_1995.
 
 9.	To minimize error, build testing into the code
 ==
@@ -129,3 +126,5 @@ This tells you to go back and review the function, where we see a + instead of a
 10.	Research should remove speculation
 ==
 Ultimately, the point of doing research is to move things from the realm of opinion into the realm of knowledge. Thus, effective research should have findings that are not a matter of opinion, and at which others can arrive. If, in the future, somebody disagrees with your analysis, you can hand them the raw data files and analysis scripts and watch them arrive at the same result.
+
+# References
