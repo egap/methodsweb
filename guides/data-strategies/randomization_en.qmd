@@ -4,6 +4,7 @@ author:
   - name: "Lindsay Dolan"
     url: https://lindsayrdolan.com/
 image: randomization.png
+bibliography: randomization.bib
 ---
 
 Abstract
@@ -249,7 +250,7 @@ In many experiments, you may not know the entirety of your sample at the beginni
 
 To maintain the ability to block and therefore the ability to assert control over the balance between treatment and control groups, you can use covariates to calculate a new subject’s similarity to other previously assigned subjects and assign the new subject to the treatment condition with fewer similar units.[^3] [^4]
 
-[^3]: For more, see Moore, Ryan T., and Sally A. Moore. “Blocking for sequential political experiments.” Political Analysis 21.4 (2013): 507-523.
+[^3]: For more, see @moore_moore_2013.
 
 [^4]: For a more detalied walkthrough on the randomization procedures available in the R package randomizr, see: https://declaredesign.org/r/randomizr/articles/randomizr_vignette.html
 
@@ -268,3 +269,5 @@ A wait list randomization design is one way of treating an entire subject pool w
 The only requirement is that a subject’s assignment to treatment in a particular phase is randomly assigned and unrelated to their potential outcomes of interest. A design in which more eager participants received treatment earlier would violate this assumption and would not yield an unbiased estimate of the treatment effect, as unobserved factors that predispose them to seeking out treatment may be influencing their schedule of potential outcomes. The wait list design is an example of a creative randomization design that could address ethical concerns about limiting the distribution of a valuable treatment.
 
 Ethics are often highly intertwined with randomized designs, especially in social science and medical research. As a researcher, you should carefully consider the possible implications of randomizing any given treatment. You will also need to solicit approval for your research design from your research institution’s Institutional Review Board (IRB).
+
+# References
