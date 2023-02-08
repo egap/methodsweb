@@ -3,6 +3,7 @@ title: "10 Things to Know About Measurement in Experiments"
 author: 
   - name: "Tara Slough"
     url: https://egap.org/member/tara-slough/
+bibliography: measurement.bib
 ---
 
 # 1. The validity of inferences we draw from an experiment depend on the validity of the measures used.
@@ -235,8 +236,4 @@ For example, consider a set of studies that seek to measure variation in the con
 
 For this reason, while it may be useful to develop indicators based on existing work or instruments from other contexts, this is not necessarily the best way to develop measures in a new context. Pre-testing can provide insights into whether indicators are appropriate in a given setting. In sum, the mapping between concepts and indicators is site-specific in many cases. Researchers should consider these limitations when operationalizing common concepts in distinct settings. 
 
-# Bibliography
-
-Adcock, Robert and David Collier. "Measurement Validity: A Shared Standard for Qualitative and Quantitative Research." *American Political Science Review.* 95 (3): 529-546.
-
-de Quidt, Jonathan, Johannes Haushofer, and Christopher Roth. 2018. "Measuring and Bounding Experimenter Demand." *American Economic Review.* 108 (11): 3266-3302.
+# References
