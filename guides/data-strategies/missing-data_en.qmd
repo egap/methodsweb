@@ -3,6 +3,7 @@ title: "10 Things to Know About Missing Data"
 author: 
   - name: "Tara Slough"
     url: https://egap.org/member/tara-slough/
+bibliography: missing-data.bib
 ---
 
 1. What is missing data?
@@ -45,7 +46,7 @@ data.frame(x = rep(rchisq(n = 1000, df = 5), 3),
 ```
 
 
-Similarly, when we seek to estimate causal effects, some patterns of missing data can lead to biased estimates of causal effects. In particular, missingness of the treatment indicator or the outcome variable of interest can induce bias in estimates of the ATE. First, consider missingness of an outcome variable $Y_i(Z)$. Adopting some notation from Gerber and Green (2013), define "reporting" as a potential outcome of a treatment, $Z$, as $R_i(Z) \in \{0, 1\}$. In this notation, $R_i(Z) = 0$ indicates that $Y_i(Z)$ is missing and $R_i(Z)=1$ indicates that the outcome is non-missing. Using this notation, we can express the ATE as:
+Similarly, when we seek to estimate causal effects, some patterns of missing data can lead to biased estimates of causal effects. In particular, missingness of the treatment indicator or the outcome variable of interest can induce bias in estimates of the ATE. First, consider missingness of an outcome variable $Y_i(Z)$. Adopting some notation from @gerber_green_2013, define "reporting" as a potential outcome of a treatment, $Z$, as $R_i(Z) \in \{0, 1\}$. In this notation, $R_i(Z) = 0$ indicates that $Y_i(Z)$ is missing and $R_i(Z)=1$ indicates that the outcome is non-missing. Using this notation, we can express the ATE as:
 
 \begin{align}
 \underbrace{E[Y_i(1)]-E[Y_i(0)]}_{ATE} =& \underbrace{E[R_i(1)]E[Y_i(1)|R_i(1) = 1]}_{Z = 1\text{ and }Y_i \text{ is not missing}} + \underbrace{(1-E[R_i(1)])(E[Y_i(1)|R_i(1) = 0])}_{Z = 1 \text{ and } Y_i \text{ is missing}} - \\ 
@@ -132,7 +133,7 @@ Suppose that we analyze a dataset with missing treatment or outcome data while i
 
 $$E[Y_i(1)|R_i(1)]- E[Y_i(0)|R_i(1)]$$
 
-This is necessarily equivalent to the ATE estimand $E[Y_i(1)]-E[Y_i(0)]$ if missingness is independent of potential outcomes (MIPO), i.e. $Y_i(Z) \perp R_i(Z)$ (Gerber and Green, 2013).\footnote{A slightly stronger version of this assumption used in the literature is Missingness Completely at Random (MCAR) which holds further that $\textbf{X}_i \perp R_i(Z)$, where $\textbf{X}_i$ includes all pretreatment covariates.} Thus, to interpret $E[Y_i(1)|R_i(1)]- E[Y_i(0)|R_i(1)]$ as an unbiased estimator of the ATE, we must impose an assumption that MIPO. 
+This is necessarily equivalent to the ATE estimand $E[Y_i(1)]-E[Y_i(0)]$ if missingness is independent of potential outcomes (MIPO), i.e. $Y_i(Z) \perp R_i(Z)$ (@gerber_green_2013).\footnote{A slightly stronger version of this assumption used in the literature is Missingness Completely at Random (MCAR) which holds further that $\textbf{X}_i \perp R_i(Z)$, where $\textbf{X}_i$ includes all pretreatment covariates.} Thus, to interpret $E[Y_i(1)|R_i(1)]- E[Y_i(0)|R_i(1)]$ as an unbiased estimator of the ATE, we must impose an assumption that MIPO. 
 
 The assumption that MIPO is most plausible when missingness occurs by some random process. Under what conditions might this assumption be plausible? Perhaps we were only able to gather a random subset of administrative outcome data. In this case, missingness would be independent of both potential outcomes and pretreatment covariates. Alternatively, idiosyncratic behavior in data collection (enumerator absence or error) that is plausibly unrelated to potential outcomes may also be consistent with MIPO. On the other hand, survey non-response or other forms of outcome measurement dependent on subject reporting are often much harder to justify under MIPO. Because we cannot validate MIPO, we depend on researchers' consideration of whether the assumption is plausible under a given data generating process. Where MIPO is not plausible, we should not simply "ignore" missing data in estimation. In these cases, researchers should consider the methods described in #6-#10.
 
@@ -208,7 +209,7 @@ model2 <- lm(Yobs ~ Z + Ximputed + Xmissing)
 
 The estimator `model2` does not drop observations on the basis of the missing pre-treatment variable `Xobs` like `model1` does.
 
-Alternatively, if pre-treatment missingness is minimal (less than 10% of observations), or when working with very small datasets with few observations relative to the number of covariates and missingness indicators, Lin, Green, and Coppock (2016) advocate imputing the (unconditional) mean of the observed pre-treatment covariate. Call this variable `Ximputed_mean`.
+Alternatively, if pre-treatment missingness is minimal (less than 10% of observations), or when working with very small datasets with few observations relative to the number of covariates and missingness indicators, @lin_et_al_2016 advocate imputing the (unconditional) mean of the observed pre-treatment covariate. Call this variable `Ximputed_mean`.
 
 ```{r, warning = F, message = F, echo = F}
 Xmean <- mean(Xobs, na.rm = T)
@@ -259,14 +260,8 @@ The methods in #8 and #9 describe methods of single imputation, where a single v
 
 2. *Estimation*: Estimate the ATE (or other estimand of interest) using each imputed dataset. This generates as many estimates and standard errors as there are imputed datasets.
 
-3. *Pooling estimates*: Finally, researchers combine estimates from the different imputed datasets to generate a point estimate of the ATE and its stanard error. Typically, this point estimate can be calculated using Rubin's rules (2004). 
+3. *Pooling estimates*: Finally, researchers combine estimates from the different imputed datasets to generate a point estimate of the ATE and its stanard error. Typically, this point estimate can be calculated using rules laid out by @rubin_2004. 
 
 Multiple imputation is implemented in many software packages and relatively straightforward to implement. However, the specification of a data generating process from which datasets are imputed relies on additional assumptions about the correctness of the model of missingness (the data generating process). These assumptions are generally untestable and stronger than the standard experimental assumptions invoked to identify an interval estimate of the ATE using Manski bounds. 
 
-References:
-==
-Gerber, Alan S. and Donald P. Green. (2013). *Field Experiments: Design, Analysis, and Interpretation.* New York: W.W. Norton.
-
-Lin, Winston, Donald P. Green, and Alexander Coppock. (2016). "Standard Operating Procedures for Don Green's Lab at Columbia." Available at [https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html](https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html).
-
-Rubin Donald B. (2004). *Multiple Imputation for Nonresponse in Surveys.* New York: John Wiley and Sons.
+# References
