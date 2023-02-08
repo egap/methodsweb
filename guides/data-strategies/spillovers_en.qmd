@@ -4,6 +4,7 @@ author:
   - name: "Alexander Coppock"
     url: https://egap.org/member/alexander-coppock/
 image: spillovers.png
+bibliography: spillovers.bib
 ---
 
 Abstract
@@ -239,21 +240,14 @@ A schematic sketch of their method is as follows. Suppose the causal model has t
 
 But we aren’t restricted to only obtaining p-values for the hypothesis that $\beta_1 = \beta_2 = 0$. Those parameters could take on any values, and we could associate a p-value with any hypothesized pair of values. The essence of their proposed estimation method is to pick the pair that generates the highest p-value by searching through the set of plausible pairs.
 
-For further reading
-==
-Aronow, Peter M., and Cyrus Samii (2015). "Estimating Average Causal Effects Under Interference Between Units." [arXiv](http://arxiv.org/abs/1305.6156)
+For further reading, see:
+@arnonow_samii_2015
+@athey_imbens_2017a
+@athey_imbens_2017b
+@bowers_et_al_2013
+@gerber_green_2012
+@glennerster_takavarasha_2013
+@paluck_et_al_2016
+@sinclair_et_al_2012
 
-Athey, Susan, and Guido W. Imbens (2017a). "The Econometrics of Randomized Experiments." In _Handbook of Economic Field Experiments_, vol. 1 (E. Duflo and A. Banerjee, eds.). [arXiv](http://arxiv.org/abs/1607.00698) [DOI](http://dx.doi.org/10.1016/bs.hefe.2016.10.003)
-
-Athey, Susan, and Guido W. Imbens (2017b). ["The State of Applied Econometrics: Causality and Policy
-Evaluation."](http://doi.org/10.1257/jep.31.2.3) _Journal of Economic Perspectives_ 31(2): 3--32.
-
-Bowers, Jake, Mark M. Fredrickson, and Costas Panagopoulos (2013). "Reasoning about Interference Between Units: A General Framework." _Political Analysis_ 21: 97--124.
-
-Gerber, Alan S., and Donald P. Green (2012). _Field Experiments: Design, Analysis, and Interpretation_, chapter 8.
-
-Glennerster, Rachel, and Kudzai Takavarasha (2013). _Running Randomized Evaluations: A Practical Guide_, modules 4.2, 7.3, and 8.2.
-
-Paluck, Elizabeth Levy, Hana Shepherd, and Peter M. Aronow (2016). "Changing Climates of Conflict: A Social Network Experiment in 56 Schools." _Proceedings of the National Academy of Sciences_ 113: 566--571.
-
-Sinclair, Betsy, Margaret McConnell, and Donald P. Green (2012). "Detecting Spillover Effects: Design and Analysis of Multilevel Experiments." _American Journal of Political Science_ 56: 1055--1069.
+# References
