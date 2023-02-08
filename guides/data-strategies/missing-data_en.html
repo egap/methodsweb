@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -187,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#what-is-imputation" id="toc-what-is-imputation" class="nav-link" data-scroll-target="#what-is-imputation">7. What is imputation?</a></li>
   <li><a href="#we-can-bound-ates-to-account-for-missing-outcome-data-without-making-assumptions-about-the-distribution-of-missing-outcomes." id="toc-we-can-bound-ates-to-account-for-missing-outcome-data-without-making-assumptions-about-the-distribution-of-missing-outcomes." class="nav-link" data-scroll-target="#we-can-bound-ates-to-account-for-missing-outcome-data-without-making-assumptions-about-the-distribution-of-missing-outcomes.">9. We can bound ATEs to account for missing outcome data without making assumptions about the distribution of missing outcomes.</a></li>
   <li><a href="#multiple-imputation-for-missing-outcomes-allows-for-point-estimation-of-ates-but-relies-on-stronger-assumptions-than-bounding." id="toc-multiple-imputation-for-missing-outcomes-allows-for-point-estimation-of-ates-but-relies-on-stronger-assumptions-than-bounding." class="nav-link" data-scroll-target="#multiple-imputation-for-missing-outcomes-allows-for-point-estimation-of-ates-but-relies-on-stronger-assumptions-than-bounding.">10. Multiple imputation for missing outcomes allows for point estimation of ATEs, but relies on stronger assumptions than bounding.</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References:</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -253,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="missing-data_en_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Similarly, when we seek to estimate causal effects, some patterns of missing data can lead to biased estimates of causal effects. In particular, missingness of the treatment indicator or the outcome variable of interest can induce bias in estimates of the ATE. First, consider missingness of an outcome variable <span class="math inline">\(Y_i(Z)\)</span>. Adopting some notation from Gerber and Green (2013), define “reporting” as a potential outcome of a treatment, <span class="math inline">\(Z\)</span>, as <span class="math inline">\(R_i(Z) \in \{0, 1\}\)</span>. In this notation, <span class="math inline">\(R_i(Z) = 0\)</span> indicates that <span class="math inline">\(Y_i(Z)\)</span> is missing and <span class="math inline">\(R_i(Z)=1\)</span> indicates that the outcome is non-missing. Using this notation, we can express the ATE as:</p>
+<p>Similarly, when we seek to estimate causal effects, some patterns of missing data can lead to biased estimates of causal effects. In particular, missingness of the treatment indicator or the outcome variable of interest can induce bias in estimates of the ATE. First, consider missingness of an outcome variable <span class="math inline">\(Y_i(Z)\)</span>. Adopting some notation from <span class="citation" data-cites="gerber_green_2013">Gerber and Green (<a href="#ref-gerber_green_2013" role="doc-biblioref">2013</a>)</span>, define “reporting” as a potential outcome of a treatment, <span class="math inline">\(Z\)</span>, as <span class="math inline">\(R_i(Z) \in \{0, 1\}\)</span>. In this notation, <span class="math inline">\(R_i(Z) = 0\)</span> indicates that <span class="math inline">\(Y_i(Z)\)</span> is missing and <span class="math inline">\(R_i(Z)=1\)</span> indicates that the outcome is non-missing. Using this notation, we can express the ATE as:</p>
 <p><span class="math display">\[\begin{align}
 \underbrace{E[Y_i(1)]-E[Y_i(0)]}_{ATE} =&amp; \underbrace{E[R_i(1)]E[Y_i(1)|R_i(1) = 1]}_{Z = 1\text{ and }Y_i \text{ is not missing}} + \underbrace{(1-E[R_i(1)])(E[Y_i(1)|R_i(1) = 0])}_{Z = 1 \text{ and } Y_i \text{ is missing}} - \\
 &amp;\underbrace{E[R_i(0)]E[Y_i(0)|R_i(0) = 1]}_{Z = 0 \text { and } Y_i \text{ is not missing }} - \underbrace{(1-E[R_i(0)])E[Y_i(0)|R_i(0) = 0]}_{Z = 0 \text { and } Y_i \text{ is missing }}
@@ -327,7 +346,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>5. What assumptions do we invoke when we “ignore” treatment or outcome missingness in estimation?</h1>
 <p>Suppose that we analyze a dataset with missing treatment or outcome data while ignoring the missingness. If we “ignore” the missingness, we drop observations for which we lack a value for one of these variables. If we proceed to estimate the ATE on the subsample of data for which we have full data for both treatment and outcomes, we estimate:</p>
 <p><span class="math display">\[E[Y_i(1)|R_i(1)]- E[Y_i(0)|R_i(1)]\]</span></p>
-<p>This is necessarily equivalent to the ATE estimand <span class="math inline">\(E[Y_i(1)]-E[Y_i(0)]\)</span> if missingness is independent of potential outcomes (MIPO), i.e.&nbsp;<span class="math inline">\(Y_i(Z) \perp R_i(Z)\)</span> (Gerber and Green, 2013). Thus, to interpret <span class="math inline">\(E[Y_i(1)|R_i(1)]- E[Y_i(0)|R_i(1)]\)</span> as an unbiased estimator of the ATE, we must impose an assumption that MIPO.</p>
+<p>This is necessarily equivalent to the ATE estimand <span class="math inline">\(E[Y_i(1)]-E[Y_i(0)]\)</span> if missingness is independent of potential outcomes (MIPO), i.e.&nbsp;<span class="math inline">\(Y_i(Z) \perp R_i(Z)\)</span> (<span class="citation" data-cites="gerber_green_2013">Gerber and Green (<a href="#ref-gerber_green_2013" role="doc-biblioref">2013</a>)</span>). Thus, to interpret <span class="math inline">\(E[Y_i(1)|R_i(1)]- E[Y_i(0)|R_i(1)]\)</span> as an unbiased estimator of the ATE, we must impose an assumption that MIPO.</p>
 <p>The assumption that MIPO is most plausible when missingness occurs by some random process. Under what conditions might this assumption be plausible? Perhaps we were only able to gather a random subset of administrative outcome data. In this case, missingness would be independent of both potential outcomes and pretreatment covariates. Alternatively, idiosyncratic behavior in data collection (enumerator absence or error) that is plausibly unrelated to potential outcomes may also be consistent with MIPO. On the other hand, survey non-response or other forms of outcome measurement dependent on subject reporting are often much harder to justify under MIPO. Because we cannot validate MIPO, we depend on researchers’ consideration of whether the assumption is plausible under a given data generating process. Where MIPO is not plausible, we should not simply “ignore” missing data in estimation. In these cases, researchers should consider the methods described in #6-#10.</p>
 </section>
 <section id="why-should-we-assess-whether-missingness-of-outcomes-is-related-to-treatment-assignment" class="level1">
@@ -573,7 +592,7 @@ E[R_i(1)-R_i(0)] &amp;= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yobs <span class="sc">~</span> Z <span class="sc">+</span> Ximputed <span class="sc">+</span> Xmissing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The estimator <code>model2</code> does not drop observations on the basis of the missing pre-treatment variable <code>Xobs</code> like <code>model1</code> does.</p>
-<p>Alternatively, if pre-treatment missingness is minimal (less than 10% of observations), or when working with very small datasets with few observations relative to the number of covariates and missingness indicators, Lin, Green, and Coppock (2016) advocate imputing the (unconditional) mean of the observed pre-treatment covariate. Call this variable <code>Ximputed_mean</code>.</p>
+<p>Alternatively, if pre-treatment missingness is minimal (less than 10% of observations), or when working with very small datasets with few observations relative to the number of covariates and missingness indicators, <span class="citation" data-cites="lin_et_al_2016">Lin, Green, and Coppock (<a href="#ref-lin_et_al_2016" role="doc-biblioref">2016</a>)</span> advocate imputing the (unconditional) mean of the observed pre-treatment covariate. Call this variable <code>Ximputed_mean</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
@@ -801,20 +820,28 @@ E[R_i(1)-R_i(0)] &amp;= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 <ol type="1">
 <li><p><em>Imputation</em>: Missing values are imputed via a random draw of plausible values under the specified data generating process. This creates a full dataset without missing values. Typically, researchers will impute at least five complete datasets. The only differences across these imputed datasets are the values that were missing in the original data.</p></li>
 <li><p><em>Estimation</em>: Estimate the ATE (or other estimand of interest) using each imputed dataset. This generates as many estimates and standard errors as there are imputed datasets.</p></li>
-<li><p><em>Pooling estimates</em>: Finally, researchers combine estimates from the different imputed datasets to generate a point estimate of the ATE and its stanard error. Typically, this point estimate can be calculated using Rubin’s rules (2004).</p></li>
+<li><p><em>Pooling estimates</em>: Finally, researchers combine estimates from the different imputed datasets to generate a point estimate of the ATE and its stanard error. Typically, this point estimate can be calculated using rules laid out by <span class="citation" data-cites="rubin_2004">Rubin (<a href="#ref-rubin_2004" role="doc-biblioref">2004</a>)</span>.</p></li>
 </ol>
 <p>Multiple imputation is implemented in many software packages and relatively straightforward to implement. However, the specification of a data generating process from which datasets are imputed relies on additional assumptions about the correctness of the model of missingness (the data generating process). These assumptions are generally untestable and stronger than the standard experimental assumptions invoked to identify an interval estimate of the ATE using Manski bounds.</p>
 </section>
 <section id="references" class="level1">
-<h1>References:</h1>
-<p>Gerber, Alan S. and Donald P. Green. (2013). <em>Field Experiments: Design, Analysis, and Interpretation.</em> New York: W.W. Norton.</p>
-<p>Lin, Winston, Donald P. Green, and Alexander Coppock. (2016). “Standard Operating Procedures for Don Green’s Lab at Columbia.” Available at <a href="https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html">https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html</a>.</p>
-<p>Rubin Donald B. (2004). <em>Multiple Imputation for Nonresponse in Surveys.</em> New York: John Wiley and Sons.</p>
+
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-gerber_green_2013" class="csl-entry" role="doc-biblioentry">
+Gerber, Alan S., and Donald P. Green. 2013. <em>Field Experiments: Design, Analysis, and Interpretation</em>. W.W. Norton.
+</div>
+<div id="ref-lin_et_al_2016" class="csl-entry" role="doc-biblioentry">
+Lin, Winston, Donald P. Green, and Alexander Coppock. 2016. <span>“Standard Operating Procedures for Don Green’s Lab at Columbia.”</span>
+</div>
+<div id="ref-rubin_2004" class="csl-entry" role="doc-biblioentry">
+Rubin, Donald B. 2004. <em>Multiple Imputation for Nonresponse in Surveys</em>. New York: John Wiley; Sons.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

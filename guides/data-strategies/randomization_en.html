@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -189,6 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#write-randomization-code-that-lets-you-simulate-many-possible-randomizations" id="toc-write-randomization-code-that-lets-you-simulate-many-possible-randomizations" class="nav-link" data-scroll-target="#write-randomization-code-that-lets-you-simulate-many-possible-randomizations">8 Write randomization code that lets you simulate many possible randomizations</a></li>
   <li><a href="#you-can-randomize-as-you-go-along" id="toc-you-can-randomize-as-you-go-along" class="nav-link" data-scroll-target="#you-can-randomize-as-you-go-along">9 You can randomize as you go along</a></li>
   <li><a href="#randomization-can-sometimes-be-an-ethical-way-of-assigning-a-treatment-but-sometimes-it-isnt" id="toc-randomization-can-sometimes-be-an-ethical-way-of-assigning-a-treatment-but-sometimes-it-isnt" class="nav-link" data-scroll-target="#randomization-can-sometimes-be-an-ethical-way-of-assigning-a-treatment-but-sometimes-it-isnt">10 Randomization can sometimes be an ethical way of assigning a treatment, but sometimes it isn’t</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -360,17 +380,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/randomization/wait-list-table.png" class="img-fluid"></p>
 <p>The only requirement is that a subject’s assignment to treatment in a particular phase is randomly assigned and unrelated to their potential outcomes of interest. A design in which more eager participants received treatment earlier would violate this assumption and would not yield an unbiased estimate of the treatment effect, as unobserved factors that predispose them to seeking out treatment may be influencing their schedule of potential outcomes. The wait list design is an example of a creative randomization design that could address ethical concerns about limiting the distribution of a valuable treatment.</p>
 <p>Ethics are often highly intertwined with randomized designs, especially in social science and medical research. As a researcher, you should carefully consider the possible implications of randomizing any given treatment. You will also need to solicit approval for your research design from your research institution’s Institutional Review Board (IRB).</p>
+</section>
+<section id="references" class="level1">
+
+
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-moore_moore_2013" class="csl-entry" role="doc-biblioentry">
+Moore, Ryan T., and Sally A. Moore. 2013. <span>“Blocking for Sequential Political Experiments.”</span> <em>Political Analysis</em> 21 (4): 507–23.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Random number generators are actually pseudo-random because they generate a vector of random numbers based on a small set of initial values, known as a seed state. Random number generators operate this way in order to improve computational speed. However, the series of random numbers generated is as random as you need to it to be for the purposes of random assignment because it is wholly unrelated to the potential outcomes of your subjects.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>All code chunks updated by Alex Coppock on 25 November, 2020.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>For more, see Moore, Ryan T., and Sally A. Moore. “Blocking for sequential political experiments.” Political Analysis 21.4 (2013): 507-523.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>For more, see <span class="citation" data-cites="moore_moore_2013">Moore and Moore (<a href="#ref-moore_moore_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>For a more detalied walkthrough on the randomization procedures available in the R package randomizr, see: https://declaredesign.org/r/randomizr/articles/randomizr_vignette.html<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>But if we are certain about the loan’s effects, then it’s also unclear why we are running an experiment to test it. In medical research, randomized controlled trials often stop if it becomes clear early on that a drug is undoubtedly curing life-threatening diseases, and therefore withholding it from control subjects is dangerous. (Similarly, a trial would also stop if it were clear early on that a drug is undoubtedly causing negative and harmful effects.)<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>

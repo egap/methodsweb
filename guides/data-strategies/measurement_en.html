@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -188,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#leverage-multiple-indicators-to-assess-the-validity-of-a-measure-but-be-aware-of-the-limitations-of-such-tests." id="toc-leverage-multiple-indicators-to-assess-the-validity-of-a-measure-but-be-aware-of-the-limitations-of-such-tests." class="nav-link" data-scroll-target="#leverage-multiple-indicators-to-assess-the-validity-of-a-measure-but-be-aware-of-the-limitations-of-such-tests.">8. Leverage multiple indicators to assess the validity of a measure but be aware of the limitations of such tests.</a></li>
   <li><a href="#the-use-of-multiple-indicators-often-improves-the-power-of-your-experiment-but-may-introduce-a-bias-efficiency-tradeoff." id="toc-the-use-of-multiple-indicators-often-improves-the-power-of-your-experiment-but-may-introduce-a-bias-efficiency-tradeoff." class="nav-link" data-scroll-target="#the-use-of-multiple-indicators-often-improves-the-power-of-your-experiment-but-may-introduce-a-bias-efficiency-tradeoff.">9. The use of multiple indicators often improves the power of your experiment, but may introduce a bias-efficiency tradeoff.</a></li>
   <li><a href="#while-concepts-may-be-global-many-indicators-are-context-specific." id="toc-while-concepts-may-be-global-many-indicators-are-context-specific." class="nav-link" data-scroll-target="#while-concepts-may-be-global-many-indicators-are-context-specific.">10. While concepts may be global, many indicators are context-specific.</a></li>
-  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Bibliography</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -221,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="the-validity-of-inferences-we-draw-from-an-experiment-depend-on-the-validity-of-the-measures-used." class="level1">
 <h1>1. The validity of inferences we draw from an experiment depend on the validity of the measures used.</h1>
 <p>We typically experiment in order to estimate the causal effect of a treatment, <span class="math inline">\(Z\)</span>, on an outcome, <span class="math inline">\(Y\)</span>. Yet, the reason that we care about estimating this causal effect is, in principle, to understand characteristics of the relationship between two theoretical, unobserved, concepts measured by observed variables <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span>.</p>
-<p>Following Adcock and Collier (2001), consider the measurement process graphed in Figure 1 in three steps. First, researchers begin with systematized concept, a clearly-defined theoretical construct. From this concept, the researcher develops an indicator mapping the concept onto a scale or a set of categories. Finally, units or cases are scored on the indicator, yielding a measurement of treatment, <span class="math inline">\(Z\)</span> and an outcome <span class="math inline">\(Y\)</span>. A measurement is valid if variation in the indicator closely approximates variation in the underlying concept of interest.</p>
+<p>Following <span class="citation" data-cites="adcock_collier_2001">Adcock and Collier (<a href="#ref-adcock_collier_2001" role="doc-biblioref">2001</a>)</span>, consider the measurement process graphed in Figure 1 in three steps. First, researchers begin with systematized concept, a clearly-defined theoretical construct. From this concept, the researcher develops an indicator mapping the concept onto a scale or a set of categories. Finally, units or cases are scored on the indicator, yielding a measurement of treatment, <span class="math inline">\(Z\)</span> and an outcome <span class="math inline">\(Y\)</span>. A measurement is valid if variation in the indicator closely approximates variation in the underlying concept of interest.</p>
 <p>An experimental research design should allow a researcher to estimate the causal effect of <span class="math inline">\(Z\)</span> on <span class="math inline">\(Y\)</span> under standard assumptions. But if the ultimate goal is to make an inference about causal effect of the concept that <span class="math inline">\(Z\)</span> measures on the concept that <span class="math inline">\(Y\)</span> measures, the inferences that we can hope to make on the basis of our experimental evidence are valid if and only if both measures are valid.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -280,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[E[Y_i|Z_i = 1]−E[Y_i|Z_i = 0] = \underbrace{E[\nu_i|Z_i = 1] − E[\nu_i|Z_i =0]}_{ATE} +
 \underbrace{E[\kappa_i|Z_i = 1] - E[\kappa_i|Z_i =0]}_{\text{Bias}}\]</span></p>
 <p>There are various sources of non-systematic measurement error in experiments. <a href="https://en.wikipedia.org/wiki/Demand_characteristics">Demand effects</a> and <a href="https://en.wikipedia.org/wiki/Hawthorne_effect">Hawthorne effects</a> can be motivated as sources of systematic measurement error. Moreover, designs that measure outcomes asymmetrically in treatment and control groups may be prone to systematic measurement error. In all cases, there exists asymmetry across treatment conditions in: (a) the way that subjects respond to being observed; or (b) the way that we observe outcomes that is distinct from any effect of the treatment on the latent variable of interest. The biased estimate of the ATE becomes the net of any effects on the latent variables (the ATE) and the non-systematic measurement error.</p>
-<p>When designing an experiment, researchers can take various steps to limit systematic measurement error. First and foremost, they can attempt to use identical measurement strategies across all experimental groups. To limit demand and Hawthorne effects, researchers often aim to design treatments and measurement strategies that are as naturalistic and unobtrusive as possible. For example, sometimes it can be beneficial to avoid baseline surveys at the outset of an experiment that would reveal the purpose of a study to participants. Researchers may also want to separate treatment from outcome measurement phases to limit the apparent connection between the two. Ensuring that study staff are blind towards the treatment status of study participants can also help maintain measurement symmetry across treatment conditions. The use of placebo treatments sometimes helps to hide their treatment status even from study participants themselves. Finally, researchers sometimes supplement outcome measures such as survey questions that are particularly susceptible to demand effects with behavioral measures for which experimenter demand may be less of a concern. See de Quidt et al.&nbsp;(2018) for a way to assess the robustness of your experimental results to demand effects.</p>
+<p>When designing an experiment, researchers can take various steps to limit systematic measurement error. First and foremost, they can attempt to use identical measurement strategies across all experimental groups. To limit demand and Hawthorne effects, researchers often aim to design treatments and measurement strategies that are as naturalistic and unobtrusive as possible. For example, sometimes it can be beneficial to avoid baseline surveys at the outset of an experiment that would reveal the purpose of a study to participants. Researchers may also want to separate treatment from outcome measurement phases to limit the apparent connection between the two. Ensuring that study staff are blind towards the treatment status of study participants can also help maintain measurement symmetry across treatment conditions. The use of placebo treatments sometimes helps to hide their treatment status even from study participants themselves. Finally, researchers sometimes supplement outcome measures such as survey questions that are particularly susceptible to demand effects with behavioral measures for which experimenter demand may be less of a concern. See <span class="citation" data-cites="de_quidt_et_al_2018">Quidt, Haushofer, and Roth (<a href="#ref-de_quidt_et_al_2018" role="doc-biblioref">2018</a>)</span> for a way to assess the robustness of your experimental results to demand effects.</p>
 </section>
 <section id="leverage-multiple-indicators-to-assess-the-validity-of-a-measure-but-be-aware-of-the-limitations-of-such-tests." class="level1">
 <h1>8. Leverage multiple indicators to assess the validity of a measure but be aware of the limitations of such tests.</h1>
@@ -381,15 +400,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For example, consider a set of studies that seek to measure variation in the concept of political knowledge or sophistication. Political knowledge may be assessed through questions that ask subjects to recall a fact about politics. One question may ask subjects to recall the current executive’s (president/prime minister etc.) name, scoring answers as “correct” or “incorrect.” In country <span class="math inline">\(A\)</span>, 50% of respondents answer the question correctly. In Country <span class="math inline">\(B\)</span>, 100% of respondents answer the question correctly. In Country <span class="math inline">\(B\)</span>, we are unable to identify any variation in the indicator because everyone could answer the question. This does not imply that there is no variation in political knowledge in Country <span class="math inline">\(B\)</span>, just that this indicator is a poor measure of the variation that exists. In Country <span class="math inline">\(A\)</span>, however, this question may be a completely appropriate indicator of political knowledge. If political knowledge was the outcome of an experiment, the lack of variation in the outcome in Country <span class="math inline">\(B\)</span> fails to allow us to identify any difference in political knowledge between treatment and control groups.</p>
 <p>For this reason, while it may be useful to develop indicators based on existing work or instruments from other contexts, this is not necessarily the best way to develop measures in a new context. Pre-testing can provide insights into whether indicators are appropriate in a given setting. In sum, the mapping between concepts and indicators is site-specific in many cases. Researchers should consider these limitations when operationalizing common concepts in distinct settings.</p>
 </section>
-<section id="bibliography" class="level1">
-<h1>Bibliography</h1>
-<p>Adcock, Robert and David Collier. “Measurement Validity: A Shared Standard for Qualitative and Quantitative Research.” <em>American Political Science Review.</em> 95 (3): 529-546.</p>
-<p>de Quidt, Jonathan, Johannes Haushofer, and Christopher Roth. 2018. “Measuring and Bounding Experimenter Demand.” <em>American Economic Review.</em> 108 (11): 3266-3302.</p>
+<section id="references" class="level1">
+
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-adcock_collier_2001" class="csl-entry" role="doc-biblioentry">
+Adcock, Robert, and David Collier. 2001. <span>“Measurement Validity: A Shared Standard for Qualitative and Quantitative Research.”</span> <em>American Political Science Review</em> 95 (3): 529–46.
+</div>
+<div id="ref-de_quidt_et_al_2018" class="csl-entry" role="doc-biblioentry">
+Quidt, Jonathan de, Johannes Haushofer, and Christopher Roth. 2018. <span>“Measuring and Bounding Experimenter Demand.”</span> <em>American Economic Review</em> 108 (11): 3266–3302.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
