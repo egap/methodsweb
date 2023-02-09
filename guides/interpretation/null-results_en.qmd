@@ -3,6 +3,7 @@ title: "10 Things Your Null Result Might Mean"
 author: 
   - name: "Rekha Balu"
     url: https://cabs.mdrc.org/team/rekha-balu
+bibliography: null-results.bib
 ---
 
 Abstract
@@ -90,8 +91,10 @@ If you addressed all the issues above related to intervention design, sample siz
 
 When you have a precise null, you do not have a gap in evidence--you are generating evidence.
 
-***What can you do to convince editors and reviewers they should publish your null results?*** This guide should help you reason about your null results and thus explain their importance. If other studies on your topic exist, you can also contextualize your results; for example, follow some of the ideas from [Abadie 2019](https://economics.mit.edu/files/14851).
+***What can you do to convince editors and reviewers they should publish your null results?*** This guide should help you reason about your null results and thus explain their importance. If other studies on your topic exist, you can also contextualize your results; for example, follow some of the ideas from @abadie_2020.
 
-For an example, see how [Bhatti et al.](http://www.kaspermhansen.eu/Work/WEP_2017.pdf)--in their study of a Danish governmental voter turnout intervention--used previous work on face-to-face voter turnout (reported on as a meta-analysis [here](http://www.kaspermhansen.eu/Work/british_2016.pdf)) to contextualize their own small effects.
+For an example, see how @bhatti_et_al_2018--in their study of a Danish governmental voter turnout intervention--used previous work on face-to-face voter turnout (reported on as a meta-analysis in @bhatti_et_al_2016) to contextualize their own small effects.
 
 If you are unable to find a publication willing to include a study with null results in their journal, you can still contribute to the evidence base on the policy area under examination by making your working paper, data, and/or analysis code publicly available. Many researchers choose to do so via their personal websites; in addition, there are repositories (such as the [Open Science Framework](https://osf.io/)) that provide a platform for researchers to share their in-progress and unpublished work.
+
+# References
