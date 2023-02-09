@@ -240,14 +240,6 @@ A schematic sketch of their method is as follows. Suppose the causal model has t
 
 But we aren’t restricted to only obtaining p-values for the hypothesis that $\beta_1 = \beta_2 = 0$. Those parameters could take on any values, and we could associate a p-value with any hypothesized pair of values. The essence of their proposed estimation method is to pick the pair that generates the highest p-value by searching through the set of plausible pairs.
 
-For further reading, see:
-@arnonow_samii_2015
-@athey_imbens_2017a
-@athey_imbens_2017b
-@bowers_et_al_2013
-@gerber_green_2012
-@glennerster_takavarasha_2013
-@paluck_et_al_2016
-@sinclair_et_al_2012
+For further reading, see: @aronow_samii_2015, @athey_imbens_2017a, @athey_imbens_2017b, @bowers_et_al_2013, @gerber_green_2012, @glennerster_takavarasha_2013, @paluck_et_al_2016, @sinclair_et_al_2012
 
 # References
