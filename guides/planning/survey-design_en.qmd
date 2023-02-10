@@ -4,6 +4,7 @@ author:
   - name: "Gabriella Sacramone-Lutz"
     url: https://gabriellalutz.com/
 image: survey-design.png
+bibliography: survey-design.bib
 ---
 
 1 The design of baseline and endline surveys differ in key ways 
@@ -18,7 +19,7 @@ Baseline surveys should produce data that describe the experimental subject popu
 ## Covariates
 Covariates improve the precision with which you can estimate treatment effects by reducing variance in three ways; covariates can be used to rescale your dependent variable, as controls when using regression to estimate treatment effects, and to construct blocks in order to conduct blocked random assignment.[^1] In order for covariate data to be used to reduce variance in our estimates of treatment effects, they need to be unaffected by treatment assignment, i.e. collected sometime before treatment is delivered. See the guide on [covariate adjustment](https://egap.org/resource/10-things-to-know-about-covariate-adjustment) for more about how to use covariate data.
 
-[^1]: Gerber, Alan S., and Donald P. Green. Field Experiments: Design, Analysis, and Interpretation. New York: W.W. Norton, 2012.
+[^1]: See @gerber_green_2012.
 
 The greater the predictive power of included covariates, the greater increase in the power of your design and the precision with which you can estimate effects. If you believe covariates will likely predict outcomes in your experiment, then that is grounds to include them in your survey. For example, if the intervention involves providing a service at a cost to treated users, income will likely explain some variation in outcomes and is therefore a useful covariate to measure at the baseline stage. 
 
@@ -31,7 +32,7 @@ Covariate data will also be used to show “balance”, or the extent to which t
 
 The baseline provides an opportunity to measure the outcome before the experiment was conducted, later allowing you to use change scores as your outcome and the difference-in-differences estimator. The difference-in-differences estimator will improve precision only when a covariate strongly predicts outcomes.[^2]
 
-[^2]: Gerber, Alan S., and Donald P. Green. Field Experiments: Design, Analysis, and Interpretation. New York: W.W. Norton, 2012. See equation 4.2.
+[^2]: See @gerber_green_2012, equation 4.2.
 
 ## Endline Surveys
 
@@ -94,7 +95,7 @@ As social scientists, we ultimately care about attitudes and beliefs because we 
 
 For example, Lauren Young used a clever behavioral measure when estimating the effect of fear on participation in dissent. The key outcome in her experiment is the willingness of participants to publicly signal support for the opposition in an authoritarian regime. We might believe that simply asking respondents if they support the regime would not yield truthful responses: it is relatively low cost to say “no,” or alternatively, the respondent might feel pressure from the researcher to say “yes.” In order to more accurately measure behavioral change, she gave subjects an opportunity to accept a pro-opposition wristband.[^5] This measure is more convincing because wearing the wristband is public and potentially costly. The behavioral measure is a more accurate indicator of political behavior in the world.
 
-[^5]: Young, Lauren. The psychology of political risk in autocracy. Working paper, Columbia University, September 2015.
+[^5]: See @young_2018.
 
 ## Gathering behavioral data doesn’t have to be expensive. Here is how to develop low-cost measures:
 
@@ -156,3 +157,5 @@ It is absolutely essential to pre-test your survey instrument after you have des
 6. The instrument is not too long
 
 The [survey implementation](https://egap.org/resource/10-things-to-know-about-survey-implementation) guide explains about how to set up and carry out a pre-test.
+
+# References
