@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -188,6 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-late-is-an-important-estimand-in-encouragement-designs-and-in-downstream-experiments" id="toc-the-late-is-an-important-estimand-in-encouragement-designs-and-in-downstream-experiments" class="nav-link" data-scroll-target="#the-late-is-an-important-estimand-in-encouragement-designs-and-in-downstream-experiments">8 The LATE is an important estimand in “encouragement” designs and in downstream experiments</a></li>
   <li><a href="#you-can-use-a-placebo-controlled-design-to-identify-the-late" id="toc-you-can-use-a-placebo-controlled-design-to-identify-the-late" class="nav-link" data-scroll-target="#you-can-use-a-placebo-controlled-design-to-identify-the-late">9 You can use a placebo-controlled design to identify the LATE</a></li>
   <li><a href="#addressing-partial-compliance-can-be-complicated" id="toc-addressing-partial-compliance-can-be-complicated" class="nav-link" data-scroll-target="#addressing-partial-compliance-can-be-complicated">10 Addressing partial compliance can be complicated</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -294,7 +314,7 @@ Wald test:    32 on 1 and 98 DF,  p-value: 1.528e-07 </code></pre>
 </section>
 <section id="the-late-only-reflects-treatment-effects-among-compliers" class="level1">
 <h1>6 The LATE only reflects treatment effects among compliers</h1>
-<p>While a LATE estimate is better than nothing, it provides a consistent estimate of the average treatment effect only for a subgroup of the population: the Compliers. It does not capture effects of the treatment among everyone in the experimental sample (ATE). For instance, Angrist and Evans (1998) study the effect of childbearing on a mother’s labor supply. In their paper, compliers account for only 6% of the total population, while we would like to know the effect for everyone, or at least for a larger subgroup of the population of interest.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Whether or not only obtaining the effect for Compliers is problematic depends on an experimenter’s objectives. Sometimes the LATE is exactly what the researcher is interested in: the average effect on those that actually comply with the assignment to treatment. Moreover, LATE might not be very different from the ATE if the share of compliers is large and the treatment effects for the different types in the population are similar enough. To explore the latter, researchers can compare the background attributes of the Compliers and Never-takers in the treatment group. Another approach is to compare the average outcomes of Always-Takers and Compliers among those that are treated (those in blue in Table 3), and the average outcomes of Never-Takers and Compliers among those that are not treated.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Finally, it is important to keep in mind that whether a subject is a Defier, Complier, Never-Taker or Always-Taker also depends on the experimental design and the context in which the experiment is conducted. For example, using phone calls instead of a monetary incentive to encourage treatment take-up can alter the share of compliers in the population. As a result, different instruments will estimate different LATEs.</p>
+<p>While a LATE estimate is better than nothing, it provides a consistent estimate of the average treatment effect only for a subgroup of the population: the Compliers. It does not capture effects of the treatment among everyone in the experimental sample (ATE). For instance, <span class="citation" data-cites="angrist_evans_1998">Angrist and Evans (<a href="#ref-angrist_evans_1998" role="doc-biblioref">1998</a>)</span> study the effect of childbearing on a mother’s labor supply. In their paper, compliers account for only 6% of the total population, while we would like to know the effect for everyone, or at least for a larger subgroup of the population of interest.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Whether or not only obtaining the effect for Compliers is problematic depends on an experimenter’s objectives. Sometimes the LATE is exactly what the researcher is interested in: the average effect on those that actually comply with the assignment to treatment. Moreover, LATE might not be very different from the ATE if the share of compliers is large and the treatment effects for the different types in the population are similar enough. To explore the latter, researchers can compare the background attributes of the Compliers and Never-takers in the treatment group. Another approach is to compare the average outcomes of Always-Takers and Compliers among those that are treated (those in blue in Table 3), and the average outcomes of Never-Takers and Compliers among those that are not treated.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Finally, it is important to keep in mind that whether a subject is a Defier, Complier, Never-Taker or Always-Taker also depends on the experimental design and the context in which the experiment is conducted. For example, using phone calls instead of a monetary incentive to encourage treatment take-up can alter the share of compliers in the population. As a result, different instruments will estimate different LATEs.</p>
 </section>
 <section id="the-late-estimate-is-always-larger-than-the-itt-estimate" class="level1">
 <h1>7 The LATE estimate is always larger than the ITT estimate</h1>
@@ -302,32 +322,82 @@ Wald test:    32 on 1 and 98 DF,  p-value: 1.528e-07 </code></pre>
 </section>
 <section id="the-late-is-an-important-estimand-in-encouragement-designs-and-in-downstream-experiments" class="level1">
 <h1>8 The LATE is an important estimand in “encouragement” designs and in downstream experiments</h1>
-<p><em>Encouragement Designs:</em> In an encouragement design, subjects are randomly invited to participate in the treatment. The reason to do so is that in some cases it might be unethical to make subjects adhere to the treatment assignment. In other cases, it might require unnecessarily large incentives to obtain adherence. As a result, in encouragement designs subjects self-select into treatment. For example, Hirano et al (2000) study the impact of a letter encouraging inoculation of patients at risk for flu, sent to a randomly selected set of physicians. The outcome of interest is an indicator for flu-related hospital visits. Needless to say, the incentives for the treatment (the letter) have only a limited effect on the actual treatment received (a flu shot by the physician), and thus the study population will consist of Compliers, Always-Takers, and Never-Takers. (We assume there are no Defiers, patients who would get the flu shot if and only if their physician did not get the letter.) It is thus easy to see how such an encouragement design corresponds to the two-sided noncompliance case.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p><em>Encouragement Designs:</em> In an encouragement design, subjects are randomly invited to participate in the treatment. The reason to do so is that in some cases it might be unethical to make subjects adhere to the treatment assignment. In other cases, it might require unnecessarily large incentives to obtain adherence. As a result, in encouragement designs subjects self-select into treatment. For example, <span class="citation" data-cites="hirano_et_al_2000">Hirano et al. (<a href="#ref-hirano_et_al_2000" role="doc-biblioref">2000</a>)</span> study the impact of a letter encouraging inoculation of patients at risk for flu, sent to a randomly selected set of physicians. The outcome of interest is an indicator for flu-related hospital visits. Needless to say, the incentives for the treatment (the letter) have only a limited effect on the actual treatment received (a flu shot by the physician), and thus the study population will consist of Compliers, Always-Takers, and Never-Takers. (We assume there are no Defiers, patients who would get the flu shot if and only if their physician did not get the letter.) It is thus easy to see how such an encouragement design corresponds to the two-sided noncompliance case.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <p><em>Downstream experiments:</em> Downstream experiments are studies in which an initial randomization (e.g.&nbsp;distribution of school vouchers) causes a change in an outcome (e.g.&nbsp;education level), and this outcome is then considered a treatment affecting a subsequent outcome (e.g.&nbsp;income).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Also, these experiments correspond to our two-sided noncompliance setup. Noncompliance occurs because the random intervention is just one of many “encouragements” that cause people to take the treatment. Downstream experiments place particular pressure on the exclusion restriction, which requires that (following the example) school vouchers influences income only through higher education. This assumption would be violated if school vouchers affected income for reasons other than education.</p>
 </section>
 <section id="you-can-use-a-placebo-controlled-design-to-identify-the-late" class="level1">
 <h1>9 You can use a placebo-controlled design to identify the LATE</h1>
-<p>Another strategy to estimate the LATE involves designing your experiment in such a way that you can find out who the Compliers are even among those who did not receive the treatment. One way to do so is to create a placebo group that receives a version of the treatment without the treatment’s “active ingredient.” Gerber, Green, Kaplan, and Kern (2010), for example, study the effect of an automated phone call that delivers an encouragement to vote on whether study participants turn out to vote.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> The experiment included a placebo group in which study participants received automated phone calls that encouraged them to recycle. Because respondents in the placebo group also received calls, it is possible to observe which respondents in the placebo group answered the phone. Under the assumption that the content of the phone call does not affect who answers the phone, one can estimate the LATE by comparing turnout rates among those who answered the phone in the treatment group to turnout rates among those who answered the phone in the placebo group. The key assumption which makes this strategy work is that respondents who comply with the treatment (pick up the voting phone call) also comply with the placebo (pick up the recycling phone call) and vice versa. Gerber, Green, Kaplan, and Kern (2010) discuss the advantages of having both a pure control and a placebo group for estimating the LATE.</p>
+<p>Another strategy to estimate the LATE involves designing your experiment in such a way that you can find out who the Compliers are even among those who did not receive the treatment. One way to do so is to create a placebo group that receives a version of the treatment without the treatment’s “active ingredient.” <span class="citation" data-cites="gerber_et_al_2010">Gerber et al. (<a href="#ref-gerber_et_al_2010" role="doc-biblioref">2010</a>)</span>, for example, study the effect of an automated phone call that delivers an encouragement to vote on whether study participants turn out to vote.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> The experiment included a placebo group in which study participants received automated phone calls that encouraged them to recycle. Because respondents in the placebo group also received calls, it is possible to observe which respondents in the placebo group answered the phone. Under the assumption that the content of the phone call does not affect who answers the phone, one can estimate the LATE by comparing turnout rates among those who answered the phone in the treatment group to turnout rates among those who answered the phone in the placebo group. The key assumption which makes this strategy work is that respondents who comply with the treatment (pick up the voting phone call) also comply with the placebo (pick up the recycling phone call) and vice versa. <span class="citation" data-cites="gerber_et_al_2010">Gerber et al. (<a href="#ref-gerber_et_al_2010" role="doc-biblioref">2010</a>)</span> discuss the advantages of having both a pure control and a placebo group for estimating the LATE.</p>
 </section>
 <section id="addressing-partial-compliance-can-be-complicated" class="level1">
 <h1>10 Addressing partial compliance can be complicated</h1>
 <p>“Partial compliance” occurs when a subject is assigned to a treatment but receives less than “all” of the treatment. This is possible in designs with compound treatments, multi-arm designs like factorial designs, and in dose-response trials where the treatment variable is continuous. For example, subjects assigned to a three-session job training program may only attend two of the three sessions. Patients in a clinical trial assigned to receive 100 mg dosages of an experimental drug once every week for five weeks may only receive four of the five assigned doses. Addressing partial compliance can be especially complicated because the effective number of treatment conditions exceeds the number intended in the original design. This expansion of the number of treatment conditions affects the definition of the LATE and how to estimate it. First, the number and definition of compliance statuses changes. The categories used in designs with a binary treatment (Always-Takers, Never-Takers, Compliers, and Defiers) no longer suffice. Instead, the set of possible compliance statuses is determined by all possible combinations of treatment assignment and treatment receipt. In the binary case, we ruled out Defiers. In the partial compliance case, we can make similar (design-specific) monotonicity assumptions that rule out some theoretically possible compliance statuses. Finally, we are no longer interested in a single LATE. Partial compliance means that the number of quantities we are trying to estimate increases. Unfortunately, the IV/2SLS estimator used under one- and two-way noncompliance in two-group designs is a biased estimator of LATEs under partial compliance. Instead, Bayesian approaches have emerged as an alternative method for inference.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+</section>
+<section id="references" class="level1">
+
+
 
 
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-angrist_2006" class="csl-entry" role="doc-biblioentry">
+Angrist, J. D. 2006. <span>“Instrumental Variables Methods in Experimental Criminological Research: What, Why and How.”</span> <em>Journal of Experimental Criminology</em> 2: 23–44.
+</div>
+<div id="ref-angrist_evans_1998" class="csl-entry" role="doc-biblioentry">
+Angrist, J. D., and W. N. Evans. 1998. <span>“Children and Their Parents’ Labor Supply: Evidence from Exogenous Variation in Family Size.”</span> <em>American Economic Review</em> 88 (3): 450–77.
+</div>
+<div id="ref-angrist_et_al_1996" class="csl-entry" role="doc-biblioentry">
+Angrist, J. D., G. W. Imbens, and D. B. Rubin. 1996. <span>“Identification of Causal Effects Using Instrumental Variables.”</span> <em>Journal of the American Statistical Association</em> 91: 444–72.
+</div>
+<div id="ref-angrist_pischke_2009" class="csl-entry" role="doc-biblioentry">
+Angrist, J. D., and J.-S. Pischke. 2009. <em>Mostly Harmless Econometrics</em>.
+</div>
+<div id="ref-baiocchi_et_al_2014" class="csl-entry" role="doc-biblioentry">
+Baiocchi, M., J. Cheng, and D. S. Small. 2014. <span>“Instrumental Variable Methods for Causal Inference.”</span> <em>Statistics in Medicine</em> 33: 2297–2340.
+</div>
+<div id="ref-dunning_2012" class="csl-entry" role="doc-biblioentry">
+Dunning, T. 2012. <em>Natural Experiments in the Social Sciences</em>.
+</div>
+<div id="ref-gerber_et_al_2010" class="csl-entry" role="doc-biblioentry">
+Gerber, Alan S., Donald P. Green, Edward H. Kaplan, and Holger L. Kern. 2010. <span>“Baseline, Placebo, and Treatment: Efficient Estimation for Three-Group Experiments.”</span> <em>Political Analysis</em> 18 (3): 297–315.
+</div>
+<div id="ref-green_gerber_2002" class="csl-entry" role="doc-biblioentry">
+Green, Donald P., and Alan S. Gerber. 2002. <span>“The Downstream Benefits of Experimentation.”</span> <em>Political Analysis</em> 10 (4): 394–402.
+</div>
+<div id="ref-hirano_et_al_2000" class="csl-entry" role="doc-biblioentry">
+Hirano, K., G. W. Imbens, D. B. Rubin, and X. Zhou. 2000. <span>“Assessing the Effect of an Influenza Vaccine in an Encouragement Design.”</span> <em>Biostatistics</em> 1 (1): 69–88.
+</div>
+<div id="ref-imbens_2010" class="csl-entry" role="doc-biblioentry">
+Imbens, G. W. 2010. <span>“Better LATE Than Nothing: Some Comments on Deaton (2009) and Heckman and Urzua (2009).”</span> <em>Journal of Economic Literature</em> 48 (2): 399–423.
+</div>
+<div id="ref-imbens_angrist_1994" class="csl-entry" role="doc-biblioentry">
+Imbens, G. W., and J. D. Angrist. 1994. <span>“Identification and Estimation of Local Average Treatment Effects.”</span> <em>Econometrica</em> 62 (2): 467–75.
+</div>
+<div id="ref-imbens_wooldridge_2007" class="csl-entry" role="doc-biblioentry">
+Imbens, G. W., and J. J. Wooldridge. 2007. <span>“Lecture Notes and Slides.”</span>
+</div>
+<div id="ref-jin_rubin_2008" class="csl-entry" role="doc-biblioentry">
+Jin, H., and D. B. Rubin. 2008. <span>“Principal Stratification for Causal Inference with Extended Partial Compliance.”</span> <em>Journal of the American Statistical Association</em> 103: 101–11.
+</div>
+<div id="ref-jin_rubin_2009" class="csl-entry" role="doc-biblioentry">
+———. 2009. <span>“Public Schools Versus Private Schools: Causal Inference with Partial Compliance.”</span> <em>Journal of Educational and Behavioral Statistics</em> 34: 24–45.
+</div>
+<div id="ref-qi_long_et_al_2010" class="csl-entry" role="doc-biblioentry">
+Qi Long, Roderick, J. A. Little, and Xihong Lin. 2010. <span>“Estimating Causal Effects in Trials Involving Multi-Treatment Arms Subject to Non-Compliance: A Bayesian Framework.”</span> <em>Journal of the Royal Statistical Society: Series C (Applied Statistics)</em> 59 (3): 513–31.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Originating author: Peter van der Windt, 20 October 2014. Revisions: Winston Lin, 22 August 2016. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits. Thanks to Albert Fang for point 10.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>For more extensive overviews, see: J. D. Angrist, G. W. Imbens, and D. B. Rubin (1996), “Identification of Causal Effects Using Instrumental Variables” (with discussion), Journal of the American Statistical Association 91: 444-472; J. D. Angrist (2006), “Instrumental Variables Methods in Experimental Criminological Research: What, Why and How,” Journal of Experimental Criminology 2: 23-44; J. D. Angrist and J.-S. Pischke (2009), <em>Mostly Harmless Econometrics</em>, sections 4.4-4.6 and 6.2; T. Dunning (2012), <em>Natural Experiments in the Social Sciences</em>; M. Baiocchi, J. Cheng, and D. S. Small (2014), “Instrumental Variable Methods for Causal Inference,” Statistics in Medicine 33: 2297-2340 (with correction in Statistics in Medicine 33: 4859-4860).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Angrist, J. D. Evans, W. N. 1998. Children and their Parents’ Labor Supply: Evidence from Exogenous variation in family size. American Economic Review, 88(3), 450-477.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>See: Imbens, G. W. (2010). Better LATE Than Nothing: Some Comments on Deaton (2009) and Heckman and Urzua (2009). Journal of Economic Literature, 48, 399-423. And Imbens, G. W., &amp; Angrist, J. D. (1994). Identification and Estimation of Local Average Treatment Effects. Econometrica, 62(2), 467-475, and 2). And Imbens, G. W. &amp; Wooldridge, J. 2007. Lecture notes and slides at: http://www.nber.org/minicourse3.html.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Hirano, K., Imbens, G.W., Rubin, D.B. &amp; Zhou, X. (2000). Assessing the Effect of an Influenza Vaccine in an Encouragement Design. Biostatistics, 1(1), 69-88.]<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>See: Green, D. P. &amp; Gerber, A. S. 2002. The Downstream Benefits of Experimentation. Political Analysis, Vol. 10(4), 394-402.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>See Gerber, Alan S., Donald P. Green, Edward H. Kaplan, and Holger L. Kern. 2010. “Baseline, Placebo, and Treatment: Efficient Estimation for Three-Group Experiments.” Political Analysis, Vol.18(3), 297-315.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>See Qi Long, Roderick J. A. Little, and Xihong Lin. 2010. Estimating Causal Effects in Trials Involving Multi-Treatment Arms Subject to Non-compliance: A Bayesian framework. Journal of the Royal Statistical Society: Series C (Applied Statistics), 59(3): 513-531.; Jin, H. &amp; Rubin, D. B. (2009). Public schools versus private schools: Causal inference with Partial Compliance. Journal of Educational and Behavioral Statistics, 34, 24-45; Jin, H. &amp; Rubin, D. B. (2008). Principal Stratification for Causal Inference with Extended Partial Compliance. Journal of the American Statistical Association, 103, 101-111.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>For more extensive overviews, see: <span class="citation" data-cites="angrist_et_al_1996">Angrist, Imbens, and Rubin (<a href="#ref-angrist_et_al_1996" role="doc-biblioref">1996</a>)</span>; <span class="citation" data-cites="angrist_2006">Angrist (<a href="#ref-angrist_2006" role="doc-biblioref">2006</a>)</span>; <span class="citation" data-cites="angrist_pischke_2009">Angrist and Pischke (<a href="#ref-angrist_pischke_2009" role="doc-biblioref">2009</a>)</span>, sections 4.4-4.6 and 6.2; <span class="citation" data-cites="dunning_2012">Dunning (<a href="#ref-dunning_2012" role="doc-biblioref">2012</a>)</span>; <span class="citation" data-cites="baiocchi_et_al_2014">Baiocchi, Cheng, and Small (<a href="#ref-baiocchi_et_al_2014" role="doc-biblioref">2014</a>)</span> (with correction in Statistics in Medicine 33: 4859-4860).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>See <span class="citation" data-cites="angrist_evans_1998">Angrist and Evans (<a href="#ref-angrist_evans_1998" role="doc-biblioref">1998</a>)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>See: <span class="citation" data-cites="imbens_2010">Imbens (<a href="#ref-imbens_2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="imbens_angrist_1994">Imbens and Angrist (<a href="#ref-imbens_angrist_1994" role="doc-biblioref">1994</a>)</span>; <span class="citation" data-cites="imbens_wooldridge_2007">Imbens and Wooldridge (<a href="#ref-imbens_wooldridge_2007" role="doc-biblioref">2007</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>See <span class="citation" data-cites="hirano_et_al_2000">Hirano et al. (<a href="#ref-hirano_et_al_2000" role="doc-biblioref">2000</a>)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>See <span class="citation" data-cites="green_gerber_2002">Green and Gerber (<a href="#ref-green_gerber_2002" role="doc-biblioref">2002</a>)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>See <span class="citation" data-cites="gerber_et_al_2010">Gerber et al. (<a href="#ref-gerber_et_al_2010" role="doc-biblioref">2010</a>)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>See <span class="citation" data-cites="qi_long_et_al_2010">Qi Long, Little, and Lin (<a href="#ref-qi_long_et_al_2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="jin_rubin_2009">Jin and Rubin (<a href="#ref-jin_rubin_2009" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="jin_rubin_2008">Jin and Rubin (<a href="#ref-jin_rubin_2008" role="doc-biblioref">2008</a>)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
