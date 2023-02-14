@@ -4,6 +4,7 @@ author:
   - name: "Tara Slough"
     url: https://egap.org/member/tara-slough/
 bibliography: missing-data.bib
+image: missing-data.png
 ---
 
 1. What is missing data?

@@ -4,6 +4,7 @@ author:
   - name: "Kristen Hunter"
     url: https://scholar.harvard.edu/khunter/home
 bibliography: multisite-experiments.bib
+image: multisite-experiments.png
 ---
 
 # 1. What is a multisite or block randomized trial?

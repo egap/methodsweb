@@ -4,6 +4,7 @@ author:
   - name: "Christopher Grady"
     url: https://publish.illinois.edu/cdgrady2/
 bibliography: survey-experiments.bib
+image: survey-experiments.png
 ---
 
 <style>

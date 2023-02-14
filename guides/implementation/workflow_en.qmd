@@ -4,6 +4,7 @@ author:
   - name: "Matthew Lisiecki"
     url: https://egap.org/member/matthew-lisiecki/
 bibliography: workflow.bib
+image: workflow.png
 ---
 
 1.	People have limited memories

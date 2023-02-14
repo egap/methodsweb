@@ -4,6 +4,7 @@ author:
   - name: "Tara Slough"
     url: https://egap.org/member/tara-slough/
 bibliography: measurement.bib
+image: measurement.png
 ---
 
 # 1. The validity of inferences we draw from an experiment depend on the validity of the measures used.

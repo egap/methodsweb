@@ -4,6 +4,7 @@ author:
   - name: "Rekha Balu"
     url: https://cabs.mdrc.org/team/rekha-balu
 bibliography: null-results.bib
+image: null-results.png
 ---
 
 Abstract

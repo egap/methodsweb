@@ -5,6 +5,7 @@ author:
     url: https://egap.org/member/jake-bowers/
   - name: "Rebecca Wolfe"
     url: https://egap.org/member/rebecca-wolfe/
+image: evaluation-conversations.png
 ---
 
 # Abstract

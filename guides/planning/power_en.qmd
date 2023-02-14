@@ -2,6 +2,7 @@
 title: "10 Things You Need to Know About Statistical Power"
 author: "Alexander Coppock"
 bibliography: power.bib
+image: power.png
 ---
 
 Abstract

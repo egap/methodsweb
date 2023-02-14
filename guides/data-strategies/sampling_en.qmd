@@ -4,6 +4,7 @@ author:
   - name: "Anna M. Wilke"
     url: https://anna-wilke.com/
 bibliography: sampling.bib
+image: sampling.png
 ---
 
 ```{r, echo = FALSE,message=F, error=F,warning=F}

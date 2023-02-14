@@ -4,6 +4,7 @@ author:
   - name: "Donald Green"
     url: https://egap.org/member/donald-green/
 bibliography: meta-analysis.bib
+image: meta-analysis.png
 ---
 
 1. What is meta-analysis?

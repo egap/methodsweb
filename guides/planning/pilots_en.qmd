@@ -8,6 +8,7 @@ author:
   - name: "Natália S. Bueno"
     url: https://egap.org/member/natalia-bueno/
 bibliography: pilots.bib
+image: pilots.png
 ---
 
 # 1. What is a pilot, and what is it good for?
