@@ -29,15 +29,7 @@ jobs:
           install.packages("remotes")
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
         shell: Rscript {0}
-
-      - name: Cache R packages
-        if: runner.os != 'Windows'
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
-          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-
-          
+        
       - name: Install system dependencies on Linux
         if: runner.os == 'Linux'
         run: |
@@ -54,10 +46,17 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
         
+      - name: Cache R packages
+        if: runner.os != 'Windows'
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
+          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-
+        
       # - name: Build site
       #   run: quarto::quarto_render()
       #   shell: Rscript {0}
-      
       
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
