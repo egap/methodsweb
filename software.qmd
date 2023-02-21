@@ -1,0 +1,67 @@
+---
+title: "Software"
+include-before-body: whodis
+---
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+  
+  
+<style>
+table.dataTable tbody td {
+  vertical-align: top;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+    var groupColumn = 0;
+    var table = $('#example').DataTable({
+        columnDefs: [{ visible: false, targets: groupColumn }],
+        order: [[groupColumn, 'asc']],
+        displayLength: 25,
+        drawCallback: function (settings) {
+            var api = this.api();
+            var rows = api.rows({ page: 'current' }).nodes();
+            var last = null;
+ 
+            api
+                .column(groupColumn, { page: 'current' })
+                .data()
+                .each(function (group, i) {
+                    if (last !== group) {
+                        $(rows)
+                            .eq(i)
+                            .before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+ 
+                        last = group;
+                    }
+                });
+        },
+    });
+ 
+    // Order by the grouping
+    $('#example tbody').on('click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+            table.order([groupColumn, 'desc']).draw();
+        } else {
+            table.order([groupColumn, 'asc']).draw();
+        }
+    });
+});
+</script>
+
+We collected statistical software tools useful for designing, implementing, and analyzing results from impact evaluations. You can search for functions and for software packages in R and Stata below.
+
+```{r}
+#| echo: false
+#| message: false
+library(knitr)
+library(tidyverse)
+software <- read_rds("software_functions.rds")
+kable(software |> select(-Experiments), format = "html", table.attr = "id=\"example\" class=\"display\" style=\"width:100%\"")
+```
+

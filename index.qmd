@@ -28,6 +28,12 @@ Learn methods for impact evaluations just-in-time to use them with guides for im
 
 [More...](/guides.html)
 
+# Software 
+
+Software tools in R and Stata can be useful for designing, implementing, analysis, and reporting on impact evaluations. We collected relevant software and provide a search interface for it.
+
+[More...](/software.html)
+
 # Teaching coursebook
 
 ![Learning days host cities (red) and participant home countries (blue).](/img/ldmap.svg)
