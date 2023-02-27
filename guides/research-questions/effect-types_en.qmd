@@ -32,7 +32,7 @@ Let $D_{i}$ be an indicator for whether we observe an observation under treatmen
 
 Suppose our design involves $m$ units under treatment and $N−m$ under control. Suppose we were to repeatedly reassign treatment at random many times and each time calculate the difference of means between treated and control groups and then to record this value in a list. In other words, for every repetition, we produce an estimate of the ATE using the the observed difference in means:[^4]
 
-[^4]: Estimates are often written with a hat ( $\widehat{ATE}$ ) to reflect the difference between the estimate from our particular sample and the estimand, target of our estimation that is unobserved. Unless otherwise stated, in this guide we focus on generating sample estimates and subsequently omit this explicit notation for brevity. See @gerger_green_2012 for concise introduction to this distinction and @imbens_wooldridge_2007 for a thorough treatment of these concepts.
+[^4]: Estimates are often written with a hat ( $\widehat{ATE}$ ) to reflect the difference between the estimate from our particular sample and the estimand, target of our estimation that is unobserved. Unless otherwise stated, in this guide we focus on generating sample estimates and subsequently omit this explicit notation for brevity. See @gerber_green_2012 for concise introduction to this distinction and @imbens_wooldridge_2007 for a thorough treatment of these concepts.
 
 $$\widehat{ATE} =\frac{∑^m_1Z_{i}Y_{i}}{m}−\frac{∑^{N}_{m+1}(1−Z_{i})Y_{i}}{N−m}$$
 

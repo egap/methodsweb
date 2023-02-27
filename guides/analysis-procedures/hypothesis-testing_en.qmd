@@ -297,7 +297,7 @@ second is the mean difference of the rank-transformed outcomes (`meanrankTZ`),
 which returns a value of `r signif(observedMeanRankTZ,2)`.
 One could also use versions of these test statistics standardized by their estimated
 standard error (see @chung2013exact for an argument in favor of this test
-statistic). To test the sharp null hypothesis of no effects, one may choose almost any test statistic such that the values of that function increase as the difference between treated and control outcomes increase (see @rosenbaum:2002, Chapter 2, for a discussion of "effect increasing" test statistics).
+statistic). To test the sharp null hypothesis of no effects, one may choose almost any test statistic such that the values of that function increase as the difference between treated and control outcomes increase (see @rosenbaum2002, Chapter 2, for a discussion of "effect increasing" test statistics).
 
 Test of the weak null of no effects use the differences of means (perhaps standardized or studentized) as the test statistic.
 
