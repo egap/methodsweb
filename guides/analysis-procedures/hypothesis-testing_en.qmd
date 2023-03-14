@@ -348,7 +348,7 @@ observed considering, for the sake of argument, a given hypothesis.
 Let us test the sharp null hypothesis of no effects. In the case of the
 example experiment, the treatment was assigned to exactly 5 observations out
 of 10 completely at random. To repeat that operation, we need only permute or
-shuffle the given $Z$ vector (you can see the Code by clicking on the "Code" button).
+shuffle the given $Z$ vector.
 
 ```{r}
 repeatExperiment <- function(Z){
