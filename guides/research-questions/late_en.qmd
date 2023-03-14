@@ -17,7 +17,7 @@ Sometimes a treatment or a program is delivered but for some reason or another o
 
 When subjects do not receive the treatment to which they were assigned, the experimenter faces a "noncompliance" problem. Some subjects may need the treatment so badly that they will always take up treatment, irrespective of whether they are assigned to the treatment or to the control group. These are called "Always-Takers". Other subjects may not take the treatment even if they are assigned to the treatment group: the "Never-Takers". Some subjects are "Compliers". These are the subjects that do what they are supposed to do: they are treated when assigned to the treatment group, and they are not treated when they are assigned to the control group. Finally, some subjects do the exact opposite of what they are supposed to do. They are called "Defiers". Table 1 shows these four different types of subjects in the population.
 
-![](figs/Table1pvdw.png) 
+![](late_Table1pvdw.png) 
 
 Noncompliance can make it impossible to estimate the average treatment effect (ATE) for the population. For example, say that in a population of 200, 100 people are randomly assigned to treatment and we find that only 80 people are actually treated. What is the impact of the treatment? One method to answer this question is simply to ignore the noncompliance and compare the outcome in the treatment (100 people) and control (100 people) groups. This method estimates the average intention-to-treat effect (ITT). (See our [guide on different kinds of treatment effects](https://egap.org/resource/10-types-of-treatment-effect-you-should-know-about/) for more on the ITT.) While informative, this method does not give a measure of the effect of the treatment itself. Another approach would be to compare the 120 really-untreated and 80 really-treated subjects. Doing so, however, might give you biased estimates. The reason is that the 20 subjects that did not comply with their assignment are likely to be a nonrandom subset of those that were assigned to treatment.
 
@@ -27,7 +27,7 @@ So what now? In some cases it is possible to estimate the "Local Average Treatme
 
 The example introduced above is termed one-sided noncompliance: 80% of the population respond to the treatment assignment (the "Compliers") and 20% do not (the "Never-Takers"). Say that after the treatment, the experimenter measures the average outcome to be 50 in the treatment group and 10 in the control group. This situation is illustrated in Table 2. Note that only those indicated with blue in Table 2 were in fact treated.
 
-![](figs/Table2pvdw_0.png) 
+![](late_Table2pvdw_0.png) 
 
 
 Before we can calculate the LATE under one-sided noncompliance we need to make an assumption. The exclusion restriction (also called "excludability") stipulates that outcomes respond to treatments, not treatment assignments. In normal words this simply means that the outcome for a Never-Taker is the same regardless of whether they are assigned to the treatment or control group: in both cases the subject is not treated, and that is what matters.
@@ -38,7 +38,7 @@ Because the treatment was randomly assigned, we know that if there are 20% Never
 
 The experimenter may also face two-sided noncompliance. In this case, some subjects in the treatment group go untreated and some in the control group receive the treatment. In this world, the population consists of the Compliers, the Never-Takers, the Always-Takers, and the Defiers. To estimate LATE under two-sided noncompliance we need a second assumption: that the population contains no Defiers (the assumption is also called the "monotonicity" assumption). To see the use of this assumption look at Table 3, which illustrates our example under two-sided noncompliance. Again, after the treatment the experimenter measures the average outcome to be 50 in the treatment group and 10 in the control group. Note that those subjects in blue were in fact treated.
 
-![](figs/Table3pvdw.png) 
+![](late_Table3pvdw.png) 
 
 With the exclusion restriction and the no Defiers assumption we can estimate the LATE. Because of the exclusion restriction, we can attribute the entire ITT effect to Compliers and not to Never-Takers or Always-Takers. Given that we have an estimate of the ITT effect (40), what remains is to estimate the share of Compliers in the population. (Table 3 shows the subjects' types as seen by an omniscient deity. The experimenter cannot observe these types, but can estimate their shares, as explained below.)
 
