@@ -170,7 +170,7 @@ While we've talked about research in terms of "pilots" and "main studies," this 
 
 
 <center>
-![The Role of Pilots in Experimental Research](research_sequence.png){width=50%} 
+![The Role of Pilots in Experimental Research](pilots_research_sequence.png){width=50%} 
 </center>
 <!--We can share if you are able to upload the image to the EGAP website.-->
 
