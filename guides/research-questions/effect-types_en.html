@@ -544,9 +544,9 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p><span class="citation" data-cites="rosenbaum_2002">(<a href="#ref-rosenbaum_2002" role="doc-biblioref"><strong>rosenbaum_2002?</strong></a>)</span> shows extensions of this concept to different types of outcomes (such as continuous variables). A similar logic can also be applied to detecting uncommon but dramatic responses to treatment <span class="citation" data-cites="rosenbaum_silber_2008">Rosenbaum and Silber (<a href="#ref-rosenbaum_silber_2008" role="doc-biblioref">2008</a>)</span>.</p>
+<p><span class="citation" data-cites="rosenbaum_2002a">Rosenbaum (<a href="#ref-rosenbaum_2002a" role="doc-biblioref">2002a</a>)</span> shows extensions of this concept to different types of outcomes (such as continuous variables). A similar logic can also be applied to detecting uncommon but dramatic responses to treatment <span class="citation" data-cites="rosenbaum_silber_2008">Rosenbaum and Silber (<a href="#ref-rosenbaum_silber_2008" role="doc-biblioref">2008</a>)</span>.</p>
 <p><span class="citation" data-cites="hansen_bowers_2009">Hansen and Bowers (<a href="#ref-hansen_bowers_2009" role="doc-biblioref">2009</a>)</span> use this approach to identify the number of additional votes attributable to different interventions in get-out-the-vote experiment with clustered treatment assignment and one-sided non-compliance. They show that, in large samples, one can approximate the confidence interval for attributable effects without assessing each attribution. Here is an example of that approach where covariates are used to increase precision.</p>
-<p>First, we define an attributable effect as <span class="math inline">\(A=∑_iZ_iτ_i\)</span>, where <span class="math inline">\(τ_i=Y_i(1)−Y_i(0)\)</span> and <span class="math inline">\(y∈0,1\)</span> following <span class="citation" data-cites="rosenbaum_2002">(<a href="#ref-rosenbaum_2002" role="doc-biblioref"><strong>rosenbaum_2002?</strong></a>)</span>. That is, the attributable effect is the number of “yes” or “success” or other “1” responses among those treated that we would not have seen if they had been assigned control.</p>
+<p>First, we define an attributable effect as <span class="math inline">\(A=∑_iZ_iτ_i\)</span>, where <span class="math inline">\(τ_i=Y_i(1)−Y_i(0)\)</span> and <span class="math inline">\(y∈0,1\)</span> following <span class="citation" data-cites="rosenbaum_2002b">Rosenbaum (<a href="#ref-rosenbaum_2002b" role="doc-biblioref">2002b</a>)</span>. That is, the attributable effect is the number of “yes” or “success” or other “1” responses among those treated that we would not have seen if they had been assigned control.</p>
 <p>Second, notice that if we write the set <span class="math inline">\(U\)</span> as the experimental pool, and the set of control units is a subset of the whole pool, <span class="math inline">\(C⊆U\)</span>, then we can write <span class="math inline">\(∑_{i∈C}Y_i−Y_i(0)=0\)</span>. This means that we can represent <span class="math inline">\(A\)</span> using totals:</p>
 <span class="math display">\[A = ∑_{i=1}^NZ_iτ_i=∑_{i=1}^NZ_i(Y_i(1)−Y_i(0))=∑_{i∉C}y_i(1)−∑_{i∉C}y_i(0)\]</span> <span class="math display">\[  = ∑_{i∉C}Y_i−∑_{i∉C}Y_i(0)=∑_{i=1}^NY_i−∑_{i=1}^NY_i(0)=t_U−t_C\]</span>
 <center>
@@ -717,8 +717,14 @@ Lin, Winston. 2013. <span>“Agnostic Notes on Regression Adjustments to Experim
 <div id="ref-nickerson_2008" class="csl-entry" role="doc-biblioentry">
 Nickerson, D. W. 2008. <span>“Is Voting Contagious? Evidence from Two Field Experiments.”</span> <em>American Political Science Review</em> 102 (1).
 </div>
+<div id="ref-rosenbaum_2002a" class="csl-entry" role="doc-biblioentry">
+Rosenbaum, Paul R. 2002a. <span>“Attributing Effects to Treatment in Matched Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 97 (457): 183–92.
+</div>
+<div id="ref-rosenbaum_2002b" class="csl-entry" role="doc-biblioentry">
+———. 2002b. <em>Observational Studies</em>. Springer.
+</div>
 <div id="ref-rosenbaum_2010" class="csl-entry" role="doc-biblioentry">
-Rosenbaum, Paul R. n.d. <em>Design of Observational Studies</em>. New York, NY: Springer.
+———. n.d. <em>Design of Observational Studies</em>. New York, NY: Springer.
 </div>
 <div id="ref-rosenbaum_rubin_1983" class="csl-entry" role="doc-biblioentry">
 Rosenbaum, Paul R., and Donald B. Rubin. 1983. <span>“The Central Role of the Propensity Score in Observational Studies for Causal Effects.”</span> <em>Biometrika</em> 70 (1): 41–55.
