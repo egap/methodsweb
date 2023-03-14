@@ -203,17 +203,17 @@ div.csl-indent {
 <h1>6. Ex Post Controlling II: Matching and Weighting</h1>
 <p>A variety of alternative approaches seek to account for confounding variables by carefully matching treatment units to one or many control units. Matching has some advantages over regression (for example, estimates can be less sensitive to choices of functional form), but the basic idea is nevertheless similar, and indeed matching methods can be implemented in a regression framework using appropriate weights. Like regression, at its core, this strategy depends on a conviction that there are no important confounding variables that the researcher is unaware of or is unable to measure. Specific methods include:</p>
 <ul>
-<li><a href="http://dept.stat.lsa.umich.edu/~bbh/hansen2004.pdf">optimal full- and pair-matching</a> and see the <a href="https://github.com/markmfredrickson/optmatch">optmatch package</a></li>
-<li><a href="https://projecteuclid.org/euclid.aoas/1396966284">optimal pair-matching with fine-balance via mixed integer programming</a>. <a href="https://cran.rstudio.com/web/packages/designmatch">See also the designmatch package</a> and the <a href="http://jrzubizarreta.com/evaluation.pdf">paper comparing approaches</a></li>
-<li><a href="https://projecteuclid.org/euclid.aoas/1536652962">optimal multi-level matching (for designs with schools and students)</a></li>
-<li><a href="https://www.stat.berkeley.edu/~spi/software.html">sparse optimal matching</a></li>
-<li><a href="https://arxiv.org/abs/1703.03882">generalized full matching</a></li>
-<li><a href="http://gking.harvard.edu/cem">coarsened exact matching</a></li>
-<li><a href="http://sekhon.berkeley.edu/papers/GenMatch.pdf">genetic matching</a></li>
-<li><a href="http://web.stanford.edu/~jhain/Paper/PA2012.pdf">entropy balancing</a></li>
-<li><a href="http://pan.oxfordjournals.org/content/18/1/36.short">inverse propensity weighting</a></li>
-<li><a href="http://www.columbia.edu/~jz2313/sbw.pdf">stable balancing weights</a>, and the use of</li>
-<li><a href="http://web.stanford.edu/~jhain/Paper/AJPS2015a.pdf">synthetic controls</a>.</li>
+<li>Optimal full- and pair-matching (<span class="citation" data-cites="hansen_2004">Hansen (<a href="#ref-hansen_2004" role="doc-biblioref">2004</a>)</span>), and see the <a href="https://github.com/markmfredrickson/optmatch">optmatch package</a></li>
+<li>Optimal pair-matching with fine-balance via mixed integer programming (<span class="citation" data-cites="zubizarreta_et_al_2014">Zubizarreta, Paredes, and Rosenbaum (<a href="#ref-zubizarreta_et_al_2014" role="doc-biblioref">2014</a>)</span>). <a href="https://cran.rstudio.com/web/packages/designmatch">See also the designmatch package</a> and the paper comparing approaches (<span class="citation" data-cites="dla_resa_zubizarreta_2016">Los Angeles Resa and Zubizarreta (<a href="#ref-dla_resa_zubizarreta_2016" role="doc-biblioref">2016</a>)</span>)</li>
+<li>Optimal multi-level matching (for designs with schools and students) (<span class="citation" data-cites="pimentel_et_al_2018">Pimentel et al. (<a href="#ref-pimentel_et_al_2018" role="doc-biblioref">2018</a>)</span>)</li>
+<li><a href="https://www.stat.berkeley.edu/~spi/software.html">Sparse optimal matching</a></li>
+<li>Generalized full matching (<span class="citation" data-cites="savje_et_al_2017">Sävje, Higgins, and Sekhon (<a href="#ref-savje_et_al_2017" role="doc-biblioref">2017</a>)</span>)</li>
+<li><a href="http://gking.harvard.edu/cem">Coarsened exact matching</a></li>
+<li>Genetic matching (<span class="citation" data-cites="diamond_sekhon_2013">Diamond and Sekhon (<a href="#ref-diamond_sekhon_2013" role="doc-biblioref">2013</a>)</span>)</li>
+<li>Entropy balancing (<span class="citation" data-cites="hainmueller_2012">Hainmueller (<a href="#ref-hainmueller_2012" role="doc-biblioref">2012</a>)</span>)</li>
+<li>Inverse propensity weighting (<span class="citation" data-cites="glynn_quinn_2010">Glynn and Quinn (<a href="#ref-glynn_quinn_2010" role="doc-biblioref">2010</a>)</span>)</li>
+<li>Stable balancing weights (<span class="citation" data-cites="zubizarreta_2015">Zubizarreta (<a href="#ref-zubizarreta_2015" role="doc-biblioref">2015</a>)</span>), and the use of</li>
+<li>Synthetic controls (<span class="citation" data-cites="abadie_et_al_2015">Abadie, Diamond, and Hainmueller (<a href="#ref-abadie_et_al_2015" role="doc-biblioref">2015</a>)</span>).</li>
 </ul>
 </section>
 <section id="instrumental-variables-iv" class="level1">
@@ -231,7 +231,7 @@ div.csl-indent {
 <section id="front-door-strategies-argument-from-mechanisms" class="level1">
 <h1>10. Front Door Strategies (Argument from mechanisms)</h1>
 <p>A final approach, conceptually close to process tracing, is to make use of mechanisms. Say you know, as depicted in the picture below, that <span class="math inline">\(A\)</span> can cause <span class="math inline">\(C\)</span> only through <span class="math inline">\(B\)</span>. Say moreover that you know that no third variable causes both <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> (other than, perhaps, via <span class="math inline">\(A\)</span>) and no third variable causes both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. Then covariation between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> and between <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> can be used to assess the effect of <span class="math inline">\(A\)</span> on <span class="math inline">\(C\)</span>. The advantage is that causality can be established even in the presence of confounders — for example even if, as in the picture below, unobserved variables cause both <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span>. The difficulty however is that the strategy requires a lot of confidence in your beliefs about the structure of causal relations. For more see <span class="citation" data-cites="pearl_2000">Pearl (<a href="#ref-pearl_2000" role="doc-biblioref">2000</a>)</span>.</p>
-<p><img src="dag.png" class="img-fluid"></p>
+<p><img src="x-cause-y_dag.png" class="img-fluid"></p>
 </section>
 <section id="references" class="level1">
 
@@ -242,14 +242,29 @@ div.csl-indent {
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-abadie_et_al_2015" class="csl-entry" role="doc-biblioentry">
+Abadie, Alberto, Alexis Diamond, and Jens Hainmueller. 2015. <span>“Comparative Politics and the Synthetic Control Method.”</span> <em>American Journal of Political Science</em> 59 (2): 495–510.
+</div>
 <div id="ref-blattman_annan_2010" class="csl-entry" role="doc-biblioentry">
 Blattman, Christopher, and Jeannie Annan. 2010. <span>“The Consequences of Child Soldiering.”</span> <em>The Review of Economics and Statistics</em> 92 (4): 882–98.
+</div>
+<div id="ref-diamond_sekhon_2013" class="csl-entry" role="doc-biblioentry">
+Diamond, Alexis, and Jasjeet S. Sekhon. 2013. <span>“Genetic Matching for Estimating Causal Effects: A General Multivariate Matching Method for Achieving Balance in Observational Studies.”</span> <em>The Review of Economics and Statistics</em> 95 (3): 932–45.
 </div>
 <div id="ref-dunning_2012" class="csl-entry" role="doc-biblioentry">
 Dunning, Thad. 2012. <em>Natural Experiments in the Social Sciences Natural Experiments in the Social Sciences: A Design-Based Approach</em>. Cambridge University Press.
 </div>
 <div id="ref-gilligan_et_al_2012" class="csl-entry" role="doc-biblioentry">
 Gilligan, Michael J., Cyrus Samii, and Eric N. Mvukiyehe. 2012. <span>“Reintegrating Rebels into Civilian Life: Quasi-Experimental Evidence from Burundi.”</span> <em>Journal of Conflict Resolution</em> 57 (4).
+</div>
+<div id="ref-glynn_quinn_2010" class="csl-entry" role="doc-biblioentry">
+Glynn, Adam N., and Kevin M. Quinn. 2010. <span>“An Introduction to the Augmented Inverse Propensity Weighted Estimator.”</span> <em>Political Analysis</em> 18 (1): 36–56.
+</div>
+<div id="ref-hainmueller_2012" class="csl-entry" role="doc-biblioentry">
+Hainmueller, Jens. 2012. <span>“Entropy Balancing for Causal Effects: A Multivariate Reweighting Method to Produce Balanced Samples in Observational Studies.”</span> <em>Political Analysis</em> 20: 25–46.
+</div>
+<div id="ref-hansen_2004" class="csl-entry" role="doc-biblioentry">
+Hansen, Ben B. 2004. <span>“Full Matching in an Observational Study of Coaching for the SAT.”</span> <em>Journal of the American Statistical Association</em> 99 (467): 609–18.
 </div>
 <div id="ref-humphreys_jacobs_2015" class="csl-entry" role="doc-biblioentry">
 Humphreys, Macartan, and Alan Jacobs. 2015. <span>“Mixing Methods: A Bayesian Approach.”</span> <em>American Political Science Review</em> 109 (4): 653–73.
@@ -260,6 +275,9 @@ Humphreys, Macartan, and Jeremy M. Weinstein. 2009. <span>“Field Experiments a
 <div id="ref-lee_lemieux_2013" class="csl-entry" role="doc-biblioentry">
 Lee, David S., and Thomas Lemieux. 2013. <span>“The SAGE Handbook of Regression Analysis and Causal Inference.”</span> In. SAGE Publications Ltd.
 </div>
+<div id="ref-dla_resa_zubizarreta_2016" class="csl-entry" role="doc-biblioentry">
+Los Angeles Resa, Marı́a de, and José R. Zubizarreta. 2016. <span>“Evaluation of Subset Matching Methods and Forms of Covariate Balance.”</span> <em>Statistics in Medicine</em> 35 (27): 4961–79.
+</div>
 <div id="ref-manacorda_et_al_2011" class="csl-entry" role="doc-biblioentry">
 Manacorda, Marco, Edward Miguel, and Andrea Vigorito. 2011. <span>“Government Transfers and Political Support.”</span> <em>American Economic Journal: Applied Economics</em> 3 (3): 1–28.
 </div>
@@ -269,11 +287,23 @@ Miguel, Edward, Shanker Satyanath, and Ernest Sergenti. 2004. <span>“Economic 
 <div id="ref-pearl_2000" class="csl-entry" role="doc-biblioentry">
 Pearl, Judea. 2000. <em>Causality: Models, Reasoning, and Inference</em>. Cambridge University Press.
 </div>
+<div id="ref-pimentel_et_al_2018" class="csl-entry" role="doc-biblioentry">
+Pimentel, Samuel D., Lindsay C. Page, Matthew Lenard, and Luke Keele. 2018. <span>“Optimal Multilevel Matching Using Network Flows: An Application to a Summer Reading Intervention.”</span> <em>Ann. Appl. Stat.</em> 12 (3): 1479–1505.
+</div>
 <div id="ref-samii_2013" class="csl-entry" role="doc-biblioentry">
 Samii, Cyrus. 2013. <span>“Perils or Promise of Ethnic Integration? Evidence from a Hard Case in Burundi.”</span> <em>American Political Science Review</em> 107 (3): 558–73.
 </div>
+<div id="ref-savje_et_al_2017" class="csl-entry" role="doc-biblioentry">
+Sävje, Fredrik, Michael J. Higgins, and Jasjeet S. Sekhon. 2017. <span>“Generalized Full Matching and Extrapolation of the Results from a Large-Scale Voter Mobilization Experiment.”</span>
+</div>
 <div id="ref-skovron_titiunik_2015" class="csl-entry" role="doc-biblioentry">
 Skovron, Christopher, and Rocı́o Titiunik. 2015. <span>“A Practical Guide to Regression Discontinuity Designs in Political Science.”</span> In.
+</div>
+<div id="ref-zubizarreta_2015" class="csl-entry" role="doc-biblioentry">
+Zubizarreta, José R. 2015. <span>“Stable Weights That Balance Covariates for Estimation with Incomplete Outcome Data.”</span> <em>Journal of the American Statistical Association</em> 110 (511): 910–22.
+</div>
+<div id="ref-zubizarreta_et_al_2014" class="csl-entry" role="doc-biblioentry">
+Zubizarreta, José R., Ricardo D. Paredes, and Paul R. Rosenbaum. 2014. <span>“Matching for Balance, Pairing for Heterogeneity in an Observational Study of the Effectiveness of for-Profit and Not-for-Profit High Schools in Chile.”</span> <em>Ann. Appl. Stat.</em> 8 (1): 204–31.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
