@@ -229,7 +229,7 @@ Conjoint experiments [@hainmueller2014causal; @green1971conjoint] have gained po
 
 Respondents saw:
 
-![](conjoint_image2.png)
+![](survey-experiments_conjoint_image2.png)
 
 Through a conjoint experiment, researchers can learn about the average marginal effect of several aspects of a scenario, far more than would be feasible with a typical vignette or factorial design.  Though researchers could include and vary an almost infinite number of characteristics, the best practice is to only vary traits that could confound the relationship between a primary explanatory variable and an outcome of interest, rather than varying any trait that might affect the outcome of interest [@diaz2020survey].
 
