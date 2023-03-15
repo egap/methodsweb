@@ -13,7 +13,7 @@ This guide[^1] will help you assess and improve the power of your experiments. W
 
 [^1]: Originating author: Alex Coppock, 20 Nov 2013. The guide is a live document and subject to updating by EGAP members at any time. Coppock is not responsible for subsequent edits to this guide
 
-1 What Power Is
+1. What Power Is
 ==
 Power is the ability to distinguish signal from noise.
 
@@ -27,7 +27,7 @@ A major concern before embarking on an experiment is the danger of a __false neg
 
 If our experiments are highly-powered, we can be confident that if there truly is a treatment effect, we’ll be able to see it.
 
-2 Why You Need It
+2. Why You Need It
 ==
 Experimenters often guard against false positives with statistical significance tests. After an experiment has been run, we are concerned about falsely concluding that there is an effect when there really isn’t.
 
@@ -41,7 +41,7 @@ Many disciplines have settled on a target power value of 0.80. Researchers will 
 
 A note of caution: power matters a lot. Negative results from underpowered studies can be hard to interpret: Is there really no effect? Or is the study just not able to figure it out? Positive results from an underpowered study can also be misleading: conditional upon being statistically significant, an estimate from an underpowered study probably overestimates treatment effects. Under powered studies are sometimes based on overly optimistic assumptions; a convincing power analysis makes these assumptions explicit and should protect you from implementing designs that realistically have no chance of answering the questions you want to answer.
 
-3 The Three Ingredients of Statistical Power
+3. The Three Ingredients of Statistical Power
 ==
 There are three big categories of things that determine how highly powered your experiment will be. The first two (the strength of the treatment and background noise) are things that you can’t really control – these are the realities of your experimental environment. The last, the experimental design, is the only thing that you have power over – use it!
 
@@ -49,7 +49,7 @@ There are three big categories of things that determine how highly powered your 
 * Background noise. As the background noise of your outcome variables increases, the power of your experiment decreases. To the extent that it is possible, try to select outcome variables that have low variability. In practical terms, this means comparing the standard deviation of the outcome variable to the expected treatment effect size — there is no magic ratio that you should be shooting for, but the closer the two are, the better off your experiment will be. By and large, researchers are not in control of background noise, and picking lower-noise outcome variables is easier said than done. Furthermore, many outcomes we would like to study are inherently quite variable. From this perspective, background noise is something you just have to deal with as best you can.
 * Experimental Design. Traditional power analysis focuses on one (albeit very important) element of experimental design: the number of subjects in each experimental group. Put simply, a larger number of subjects increases power. However, there are other elements of the experimental design that can increase power: how is the randomization conducted? Will other factors be statistically controlled for? How many treatment groups will there be, and can they be combined in some analyses?
 
-4 Key Formulas for Calculating Power
+4. Key Formulas for Calculating Power
 ==
 Statisticians have derived formulas for calculating the power of many experimental designs. They can be useful as a back of the envelope calculation of how large a sample you’ll need. Be careful, though, because the assumptions behind the formulas can sometimes be obscure, and worse, they can be wrong.
 
@@ -80,7 +80,7 @@ power_calculator <- function(mu_t, mu_c, sigma, alpha=0.05, N){
 
 In addition, EGAP has created a power calculator Shiny app, which you can [access here](https://egap.shinyapps.io/Power_Calculator/).
 
-5 When to Believe Your Power Analysis
+5. When to Believe Your Power Analysis
 ==
 From some perspectives the whole idea of power analysis makes no sense. You want to figure out the size of some treatment effect but first you need to do a power analysis which requires that you already know your treatment effect and a lot more besides.
 
@@ -92,7 +92,7 @@ Using the formula in section 4, you can see how sensitive power is to all of the
 
 [^3]: For an additional online power visualization tool, see Kristoffer Magnusson's [R Psychologist blog](http://rpsychologist.com/d3/NHST/).
 
-6 How to Use Simulation to Estimate Power
+6. How to Use Simulation to Estimate Power
 ==
 Power is a measure of how often, given assumptions, we would obtain statistically significant results, if we were to conduct our experiment thousands of times. The power calculation formula takes assumptions and return an analytic solution. However, due to advances in modern computing, we don’t have to rely on analytic solutions for power analysis. We can tell our computers to literally run the experiment thousands of times and simply count how frequently our experiment comes up significant.
 
@@ -134,14 +134,14 @@ In addition to counting up how often your experiments come up statistically sign
 
 ![](https://raw.githubusercontent.com/egap/methods-guides/master/power/simulatedpvals.png)
 
-7 How to Change your Design to Improve Your Power
+7. How to Change your Design to Improve Your Power
 ==
 When it comes to statistical power, the only thing that that’s under your control is the design of the experiment. As we’ve seen above, an obvious design choice is the number of subjects to include in the experiment. The more subjects, the higher the power.
 
 However, the number of subjects is not the only design choice that has consequences for power. There are two broad classes of design choices that are especially important in this regard.
 
 * Choice of estimator. Are you using difference-in-means? Will you be doing some transformation, such as a logit or a probit? Will you be controlling for covariates? Will you be using some kind of robust standard error estimator? All of these choices will make a difference for the statistical significance of your results, and therefore for the power of your experiment. One easy way to think about this is to imagine what command you’ll be running in R or Stata after the experiment has come back; that’s your estimator!
-* Randomization Protocol. What kind of randomization will you be employing? Simple randomization gives all subjects an equal probability of being in the treatment group, and then performs a (possibly weighted) coin flip for each. Complete randomization is similar, but it ensures that exactly a certain number will be assigned to treatment. Block randomization is even more powerful — it ensures that a certain number within a subgroup will be assigned to treatment. A restricted random assignment rejects some random assignments based on some set of criteria — lack of balance perhaps. These various types of random assignment can dramatically increase the power of an experiment at no extra cost. Read up on randomization protocols [here](https://egap.org/resource/10-things-to-know-about-randomization/).
+* Randomization Protocol. What kind of randomization will you be employing? Simple randomization gives all subjects an equal probability of being in the treatment group, and then performs a (possibly weighted) coin flip for each. Complete randomization is similar, but it ensures that exactly a certain number will be assigned to treatment. Block randomization is even more powerful — it ensures that a certain number within a subgroup will be assigned to treatment. A restricted random assignment rejects some random assignments based on some set of criteria — lack of balance perhaps. These various types of random assignment can dramatically increase the power of an experiment at no extra cost. Read up on randomization protocols [here](https://methods.egap.org/guides/data-strategies/randomization_en.html).
 
 There are too many choices to cover in this short article, but check out the Simulation for Power Analysis code page for some ways to get started. But to give a flavor of the simulation approach, consider how you would conduct a power analysis if you wanted to include covariates in your analysis.
 
@@ -162,19 +162,19 @@ Here’s a graph that compares the power of an experiment that does control for 
 
 This approach doesn’t rely on a formula to come up with the probability of getting a statistically significant result: it relies on brute force! And because simulation lets you specify every step of the experimental design, you do a far more nuanced power analysis than simply considering the number of subjects.
 
-8 Power Analysis for Multiple Treatments
+8. Power Analysis for Multiple Treatments
 ==
 Many experiments employ multiple treatments which are compared both to each other and to a control group. This added complication changes what we mean when we say the “power” of an experiment. In the single treatment group case, power is just the probability of getting a statistically significant result. In the multiple treatment case, it can mean a variety of things: A) the probability of at least one of the treatments turning up significant, B) the probability of all the treatments turning up significant (versus control) or C) the probability that the treatments will be ranked in the hypothesized order, and that those ranks will be statistically significant.
 
-This question of multiple treatment arms is related to the problem of multiple comparisons. (See [our guide on this topic](https://egap.org/resource/10-things-to-know-about-multiple-comparisons/) for more details.) Standard significance testing is based on the premise that you’re conducting a single test for statistical significance, and the p-values derived from these tests reflect the probability under the null of seeing such a larger (or larger) treatment effect. If, however, you are conducting multiple tests, this probability is no longer correct. Within a suite of tests, the probability that at least one of the tests will turn up significant even when the true effect is zero is higher, essentially because you have more attempts. A commonly cited (if not commonly used) solution is to use the Bonferroni correction: specify the number of comparisons you will be making in advance, then divide your significance level (alpha) by that number.
+This question of multiple treatment arms is related to the problem of multiple comparisons. (See [our guide on this topic](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html) for more details.) Standard significance testing is based on the premise that you’re conducting a single test for statistical significance, and the p-values derived from these tests reflect the probability under the null of seeing such a larger (or larger) treatment effect. If, however, you are conducting multiple tests, this probability is no longer correct. Within a suite of tests, the probability that at least one of the tests will turn up significant even when the true effect is zero is higher, essentially because you have more attempts. A commonly cited (if not commonly used) solution is to use the Bonferroni correction: specify the number of comparisons you will be making in advance, then divide your significance level (alpha) by that number.
 
 If you are going to be using a Bonferroni correction, then standard power calculators will be more complicated to use: you’ll have to specify your Bonferroni-corrected alpha levels and calculate the power of each separate comparison. To calculate the probability that all the tests are significant, multiply all the separate powers together. To calculate the probability that at least one of the tests is significant, calculate the probability that none are, then subtract from one.
 
 Or you can use simulation. An example of a power calculation done in R is available on the simulations page.
 
-9 How to Think About Power for Clustered Designs
+9. How to Think About Power for Clustered Designs
 ==
-When an experiment has to assign whole groups of people to treatment rather than individually, we say that the experiment is clustered. This is common in educational experiments, where whole classrooms of children are assigned to treatment or control, or in development economics, where whole villages of individuals are assigned to treatment or control. (See [our guide on cluster randomization](https://egap.org/resource/10-things-to-know-about-cluster-randomization/) for more details.)
+When an experiment has to assign whole groups of people to treatment rather than individually, we say that the experiment is clustered. This is common in educational experiments, where whole classrooms of children are assigned to treatment or control, or in development economics, where whole villages of individuals are assigned to treatment or control. (See [our guide on cluster randomization](https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html) for more details.)
 
 As a general rule, clustering decreases your power. If you can avoid clustering your treatments, that is preferable for power. Unless you face concerns related to spillover, logistics, or ethics, take the variation down to the lowest level that you can.
 
@@ -189,7 +189,7 @@ See the (Declare Design library for block and cluster randomized experiments)[ht
 The (DeclareDesign)[https://declaredesign.org] software aims to make simulations for power analysis (among many other tasks) easier.
 See also @gelman_hill_2006, pages 450-453 for another simulation approach.
 
-10 Good Power Analysis Makes Preregistration Easy
+10. Good Power Analysis Makes Preregistration Easy
 ==
 When you deal with power you focus on what you cannot control (noise) and what you can control (design). If you use the simulation approach to power analysis then you will be forced to imagine how your data will look and how you will handle it when it comes in. You will get a chance to specify all of your hunches and best guesses in advance, so that you can launch your experiments with clear expectations of what they can and cannot show. That’s some work but the good news is that if you really do it you are most of the way to putting together a comprehensive and registerable pre-analysis plan.
 
