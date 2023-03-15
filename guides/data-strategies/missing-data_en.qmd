@@ -62,9 +62,14 @@ Examining the preceding equations, the estimator using only only the non-missing
 
 1. There is no missingness, $E[R_i(1)] = 1$ and $E[R_i(0)] = 1$.
 2. Missingness is independent of potential outcomes:
-$$\underbrace{E[Y_i(1)|R_i(1) = 1]}_{E[Y_i(1)] \text{ if } Y_i(1) \text{ is not missing}} =  \underbrace{E[Y_i(1)|R_i(1) = 0]}_{E[Y_i(1)] \text{ if } Y_i(1) \text{ is missing}}\\
-\text{ and } \\
-\underbrace{E[Y_i(0)|R_i(0) = 1]}_{E[Y_i(0)] \text{ if } Y_i(0) \text{ is not missing}} = \underbrace{E[Y_i(0)|R_i(0) = 0]}_{E[Y_i(0)] \text{ if } Y_i(0) \text{ is missing}}$$
+
+$$
+\begin{align}
+\underbrace{E[Y_i(1)|R_i(1) = 1]}_{E[Y_i(1)] \text{ if } Y_i(1) \text{ is not missing }} &=  \underbrace{E[Y_i(1)|R_i(1) = 0]}_{E[Y_i(1)] \text{ if } Y_i(1) \text{ is missing }}\\
+&\text{and } \\
+\underbrace{E[Y_i(0)|R_i(0) = 1]}_{E[Y_i(0)] \text{ if } Y_i(0) \text{ is not missing }} &= \underbrace{E[Y_i(0)|R_i(0) = 0]}_{E[Y_i(0)] \text{ if } Y_i(0) \text{ is missing }}
+\end{align}
+$$
 
 Otherwise, the analysis conditional upon observing $Y_i(Z)$ can induce an unknowable (but boundable) amount of bias in our estimate of the ATE. 
 
