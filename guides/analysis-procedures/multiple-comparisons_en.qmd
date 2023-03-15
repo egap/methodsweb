@@ -278,7 +278,7 @@ There are two principal indexing methods in the literature:
 
 ### Mean Effects Index
 
-@kling_et_al_2004 employ a mean effects index, constructed as follows:
+@kling_et_al_2005 employ a mean effects index, constructed as follows:
 
 1. If necessary, reorient some outcomes so that beneficial effects are consistently scored higher across all outcomes. 
 2. Calculate a $z$-score, $\tilde{y}_{ik}$ by subtracting off the *control* group mean and dividing by the *control* group standard deviation, as follows, where $i$ indexes individuals and $k$ indexes outcomes: 

@@ -11,7 +11,7 @@ image: hypothesis-testing.png
 \newcommand{\bbeta}{\boldsymbol{\beta}}
 \newcommand{\bSigma}{\boldsymbol{\Sigma}}
 
-# Hypothesis tests summarize information in research designs to help people reason about treatment effects
+# 1. Hypothesis tests summarize information in research designs to help people reason about treatment effects
 
 When researchers report that "The estimated average treatment effect is 5
 ($p=.02$)," they are using a shorthand to say, "Dear reader, in case you were
@@ -26,7 +26,7 @@ quasi-experimental designs).
 
 The $p$-value summarizes the ability of a given test to
 distinguish signal from noise. As we saw in [10 Things You Need to Know about
-Statistical Power](https://egap.org/resource/10-things-to-know-about-statistical-power),
+Statistical Power](https://methods.egap.org/guides/assessing-designs/power_en.html),
 whether an experiment can detect a treatment effect depends not
 only on the size of the experimental pool, but also the distribution of the
 outcome^[Outcomes with big outliers add noise, outcomes that are mostly 0 have
@@ -44,9 +44,9 @@ the creation of a probability distribution that allows calculation of a
 $p$-value. It also discusses the idea of rejecting (but not accepting) a
 hypothesis and touches on the question of what makes for a good hypothesis
 test (hint: an ideal hypothesis test should cast doubt on the truth rarely and
-distinguish even faint signals from noise). See also [10 Things You Need to Know about Randomization Inference](https://egap.org/resource/10-things-to-know-about-randomization-inference) for more discussion of these ideas.
+distinguish even faint signals from noise). See also [10 Things You Need to Know about Randomization Inference](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html) for more discussion of these ideas.
 
-# In an experiment, a hypothesis is a claim about unobserved causal relationships
+# 2. In an experiment, a hypothesis is a claim about unobserved causal relationships
 
 We do experiments to make interpretable causal comparisons
 [@kinder1993behalf], and we often estimate average causal effects. What does
@@ -56,7 +56,7 @@ effects versus making best guesses about causal effects.
 
 ## A quick overview of the fundamental problem of causal inference and an introduction to some notation
 
-Recall from [Ten Things to Know about Causal Inference](https://egap.org/resource/10-things-to-know-about-causal-inference) that the counterfactual conceptualization of causality uses the idea of potential
+Recall from [10 Things to Know about Causal Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html) that the counterfactual conceptualization of causality uses the idea of potential
 outcomes to **define** cause and to formalize what we **mean** when we
 say "X causes Y" or "Smoking causes cancer" or "Information increases tax
 compliance."  Although there are other ways to think about causality
@@ -93,7 +93,7 @@ problem of causal inference. All of these ways involve changing the target of in
 taxes?" we tend to say, "We cannot answer that question directly. However, we can
 answer a related question."
 
-The first approach changes the question from whether information causes a particular person to pay her taxes to whether information causes people to pay their taxes *on average*. [Ten Types of Treatment Effect You Should Know About](https://egap.org/resource/10-types-of-treatment-effect-you-should-know-about/) describes how a scientist can **estimate average causal effects** in a randomized experiment even though individual causal effects are unobservable. This insight is credited to Jerzy Neyman. Judea
+The first approach changes the question from whether information causes a particular person to pay her taxes to whether information causes people to pay their taxes *on average*. [Ten Types of Treatment Effect You Should Know About](https://methods.egap.org/guides/research-questions/effect-types_en.html) describes how a scientist can **estimate average causal effects** in a randomized experiment even though individual causal effects are unobservable. This insight is credited to Jerzy Neyman. Judea
 Pearl's work on estimating the conditional probability distribution of an outcome based on a causal model of that outcome is similar to this idea. Both approaches address the
 fundamental problem of causal inference by changing the question to focus on averages
 or conditional probabilities rather than individuals.
@@ -123,7 +123,7 @@ lot of information about this model or idea or hypothesis." or, as above,
 @rosenbaum2002(Chapter 2), @rosenbaum2010(chapter 2), and
 @rosenbaum2017observation, for more details about this approach.)
 
-# The Null Hypothesis of No Effects is a precise statement about potential outcomes
+# 3. The Null Hypothesis of No Effects is a precise statement about potential outcomes
 
 Even if we cannot use direct observation to learn about counterfactual causal
 effects, we can still ask questions about them, or make theoretical models
@@ -157,7 +157,7 @@ context of hypotheses about the propagation of treatment effects across
 a network.
 
 
-# The weak null hypothesis of no effects is a statement about aggregated potential outcomes
+# 4. The weak null hypothesis of no effects is a statement about aggregated potential outcomes
 
 An experiment may influence some units but, on average, have no effects.
 To codify this intuition, researchers can write a null hypothesis
@@ -178,7 +178,7 @@ a Central Limit Theorem to describe the distribution of averages in large
 samples---and this, in turn, makes calculating $p$-values quick and easy in
 large samples.
 
-# Randomization allows us to use what we observe to test hypotheses about what we do not observe.
+# 5. Randomization allows us to use what we observe to test hypotheses about what we do not observe.
 
 Whether one hypothesizes about unit-level effects directly or about averages
 of them, we still must confront the problem of distinguishing signal from noise. A hypothesis only refers to potential outcomes. Above,
@@ -238,7 +238,7 @@ $\bar{\tau}=\bar{y}_{1} - \bar{y}_0 = 0$, and
 we can write a similar identity linking means of unobserved potential outcomes to means
 of observed outcomes in different treatment conditions.
 
-# Test statistics summarize the relationship between observed outcomes and treatment assignment.
+# 6. Test statistics summarize the relationship between observed outcomes and treatment assignment.
 
 Given a hypothesis and a mapping from unobserved to observed outcomes, the
 next ingredient in a hypothesis test is a test statistic. A test statistic
@@ -302,15 +302,14 @@ statistic). To test the sharp null hypothesis of no effects, one may choose almo
 Test of the weak null of no effects use the differences of means (perhaps standardized or studentized) as the test statistic.
 
 
-# $p$-values encode how much information a research design and test statistic tell us about the hypothesis. Hypothesis tests require distributions of the test statistic under the hypothesis.
+# 7. $p$-values encode how much information a research design and test statistic tell us about the hypothesis. Hypothesis tests require distributions of the test statistic under the hypothesis.
 
 Given a claim about the possible results of the experiment (i.e. an hypothesis) and
 a way to summarize the observed data as it bears on the hypothesis (i.e. a test
 statistic that should get bigger as the results diverge from the hypothesis
 as explained above), we now want to move beyond description of the observed
 data to learn how much natural variability we would expect to see in the
-test statistic given the research design entertaining the hypothesis (to get us back to the question of
-signal and noise).
+test statistic given the research design entertaining the hypothesis (to get us back to the question of signal and noise).
 
 How much evidence we have about a hypothesis depends on the design of the
 study. A large experiment, for example, should have more information about
@@ -440,7 +439,7 @@ calculating the one-sided upper $p$-value and the other calculating the
 one-sided lower $p$-value. Now, if we did this we would be calculating two
 $p$-values and, if we made a standard practice of this, we would run the risk
 of misleading ourselves. After all, recall from the [10 things about multiple
-comparisons](https://egap.org/resource/10-things-to-know-about-multiple-comparisons)
+comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html)
 that even if there really is no effect, 100 independent and well operating
 tests of the null of no effects will yield no more than 5 $p$-values less than
 .05. One easy solution to the challenge of summarizing extremity of
@@ -570,7 +569,7 @@ used as a test statistic. We will return to this point later when we discuss
 the characteristics of a good test --- one of which is a controlled false
 positive rate.
 
-# In simple hypothesis tests, we do not accept null hypotheses.
+# 8. In simple hypothesis tests, we do not accept null hypotheses.
 
 Sometimes people want to make a decision using the $p$-value. Remember that a
 $p$-value uses a test statistic and the idea of repeating the experiment to
@@ -631,7 +630,7 @@ So, a single large $p$-value is some argument in favor of the null,
 but not a very clear argument.
 
 
-# Once you are using $p$-values to reject a hypothesis, you will make errors
+# 9. Once you are using $p$-values to reject a hypothesis, you will make errors
 
 A good test rarely rejects true hypotheses (i.e. has a controlled false
 positive error rate) and easily detects signal from noise (i.e. has good
@@ -641,7 +640,7 @@ noise).
 ## How to learn about errors of missing the signal in the noise?
 
 The [10 Things you need to know about statistical
-power](https://egap.org/resource/10-things-to-know-about-statistical-power)
+power](https://methods.egap.org/guides/assessing-designs/power_en.html)
 guide explains how we want hypotheses to reject false nulls (i.e. detect
 signal from noise). When we think about the power of statistical tests, we
 need to consider the **alternative hypothesis**. However, as we have shown
@@ -719,7 +718,7 @@ make your own simulation.
 apply(pDist,1,function(x){ mean(x<.05)})
 ```
 
-# What else to know about hypothesis tests.
+# 10. What else to know about hypothesis tests.
 
 Here we list a few other important but advanced topics connected to hypothesis
 testing:
@@ -727,7 +726,7 @@ testing:
  - Even if a given testing procedure controls the false positive rate for
    a single test, it may not control the rate for a group of multiple tests.
    See [10 Things you need to know about multiple
-   comparisons](https://egap.org/resource/10-things-to-know-about-multiple-comparisons)
+   comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html)
    for a guide to the approaches to controlling such rejection-rates in
    multiple tests.
  - A $100\alpha$\% confidence interval can be defined as the range of

@@ -36,8 +36,8 @@ The researcher decides their *estimand* will be the average treatment effect for
 In this example, the researchers observe all of the subjects for whom they want to estimate an effect.
 As with any causal analysis, the researchers do not observe the control outcomes of the subjects assigned to the active treatment, or the treated outcomes of the subjects assigned to the control treatment.
 Thus, causal inference is sometimes referenced as a missing data problem, because it is impossible to observe both potential outcomes (the potential outcome given active treatment and the potential outcome given control treatment).
-See [10 Things to Know About Causal Inference](https://egap.org/resource/10-things-to-know-about-causal-inference/){target="_blank"}
-and [10 Types of Treatment Effect You Should Know About](https://egap.org/resource/10-types-of-treatment-effect-you-should-know-about/){target="_blank"}
+See [10 Things to Know About Causal Inference](https://egap.org/resource/10-things-to-know-about-causal-inference/)
+and [10 Types of Treatment Effect You Should Know About](https://egap.org/resource/10-types-of-treatment-effect-you-should-know-about/)
 for a discussion of other common estimands.
 
 Given an estimand, the researchers choose their *estimator* to be the coefficient from an OLS regression of the observed outcome on site-specific fixed effects and the treatment indicator.
@@ -75,21 +75,21 @@ Blocking can help increase statistical power overall or ensure statistical power
 Multisite experiments have structural blocks, such as districts, schools, or classrooms.
 The type of block can impact variance estimation, as shown in @Pashley2021 and @Pashley2022.
 
-The [EGAP Metaketa Projects](https://egap.org/our-work-0/the-metaketa-initiative/){target="_blank"}
+The [EGAP Metaketa Projects](https://egap.org/our-work-0/the-metaketa-initiative/)
 are also multisite trials: the 5 to 7 countries that contain sites for each study are fixed and chosen in advance by the different research teams.
 
 ## A multisite trial is not a cluster-randomized trial
 
 A different type of RCT is a [cluster-randomized
-design](https://egap.org/resource/10-things-to-know-about-cluster-randomization/){target="_blank"},
+design](https://egap.org/resource/10-things-to-know-about-cluster-randomization/),
 in which entire schools are assigned to either the active treatment or control
 treatment.
 [This video explains the difference between cluster and
-block-randomized designs](https://youtu.be/bL2U9z8hX1k){target="_blank"}.
+block-randomized designs](https://youtu.be/bL2U9z8hX1k).
 In a multisite trial, treatment is assigned **within a block to individual units**.
 In a cluster-randomized trial, treatment is assigned to **groups** of units.
 Some designs [combine cluster- and
-block-randomization](https://declaredesign.org/r/designlibrary/reference/block_cluster_two_arm_designer.html){target="_blank"}.
+block-randomization](https://declaredesign.org/r/designlibrary/reference/block_cluster_two_arm_designer.html).
 
 Another design that is not a multisite or block-randomized trial is an experiment that takes place in only one school and assigns individual students to active treatment and control treatment.
 This type of study has only one site and thus differences
@@ -405,7 +405,7 @@ They found that "the range of estimates across all estimators is rarely meaningf
 The unbiased design-based estimator and the precision-weighted fixed effect estimate both target the person-weighted estimand.
 There was little difference in estimates between these estimators.
 Most likely, "this implies that the potential bias in the bias-precision trade off to the fixed effect estimators is negligible in practice."
-Other [authors](https://egap.org/resource/sd-block-rand/){target="_blank"} have been able to create situations in which the bias-precision trade off is more severe.
+Other [authors](https://egap.org/resource/sd-block-rand/) have been able to create situations in which the bias-precision trade off is more severe.
 
 **For site-weighted estimands, the choice of estimator can matter.**
 
