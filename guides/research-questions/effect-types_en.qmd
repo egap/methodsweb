@@ -9,12 +9,12 @@ bibliography: effect-types.bib
 
 Abstract
 ==
-This guide[^1] describes ten distinct types of causal effects that researchers may want to estimate. As discussed in our guide [10 Things to Know About Causal Inference](https://egap.org/resource/10-things-to-know-about-causal-inference/), simple randomization allows one to produce estimates of the average of the unit level causal effects in a sample. This average causal effect or average treatment effect (ATE) is a powerful concept because it is one solution to the problem of not observing all relevant counterfactuals. Yet, it is not the only productive engagement with this problem. In fact, there are many different types of quantities of causal interest. The goal of this guide is to help you choose estimands (a parameter of interest) and estimators (procedures for calculating estimates of those parameters) that are appropriate and meaningful for your data.
+This guide[^1] describes ten distinct types of causal effects that researchers may want to estimate. As discussed in our guide [10 Things to Know About Causal Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html), simple randomization allows one to produce estimates of the average of the unit level causal effects in a sample. This average causal effect or average treatment effect (ATE) is a powerful concept because it is one solution to the problem of not observing all relevant counterfactuals. Yet, it is not the only productive engagement with this problem. In fact, there are many different types of quantities of causal interest. The goal of this guide is to help you choose estimands (a parameter of interest) and estimators (procedures for calculating estimates of those parameters) that are appropriate and meaningful for your data.
 
 
 [^1]:  For a more formal discussion of independence and the assumptions necessary to estimate causal effects, see @holland_1986 and @angrist_pischke_2008.
 
-1 Average Treatment Effects
+1. Average Treatment Effects
 ==
 We begin by reviewing how, with randomization, a simple difference-of-means provides an unbiased estimate of the ATE. We take extra time to introduce some common statistical concepts and notation used throughout this guide.
 
@@ -93,7 +93,7 @@ varestATE<-((N-n)/(N-1))*(vart/n) + ((N-m)/(N-1))* (varc/m) + (2/(N-1)) * covtc
 c(SimulatedSE= sd(manyATEs), TrueSE=sqrt(varestATE), ConservativeSE=ATE.se)
 ```
 
-2 Conditional Average Treatment Effects
+2. Conditional Average Treatment Effects
 ==
 The problem with looking at average treatment effects only is that it takes attention away from the fact that treatment effects might be very different for different sorts of people. While the “fundamental problem of causal inference” suggests that measuring causal effects for individual units is impossible, making inferences on groups of units is not.
 
@@ -103,7 +103,7 @@ Random assignment ensures that treatment is independent of potential outcomes an
 
 A word of warning: looking at treatment effects across dimensions that are themselves affected by treatment is a dangerous business and can lead to incorrect inferences. For example if you wanted to see how administering a drug led to health improvements you could run separate analyses for men and women, but you could not run separate analyses for those who in fact took the drug and those who did not (this is an example of inference for compliers which requires separate techniques described in point 4 below).
 
-3 Intent-to-Treat Effects
+3. Intent-to-Treat Effects
 ==
 Outside of a controlled laboratory setting, the subjects we assign to treatment often are not the same as the subjects who actually receive the treatment. When some subjects assigned to treatment fail to receive it, we call this an experiment with one-sided non-compliance. When additionally, some subjects assigned to control also receive the treatment, we say there is two-sided non-compliance. For example, in a get-out-the-vote experiment, some people assigned to receive a mailer may not receive it. Perhaps they’ve changed addresses or never check their mail. Similarly, some observations assigned to control may receive the treatment. Perhaps they just moved in, and the previous tenant’s mail is still arriving.
 
@@ -124,12 +124,12 @@ samp = data.frame(Z,Y)
 ITT<-coef(lm(Y~Z,data=samp))[2]
 ```
 
-4 Complier Average Treatment Effects
+4. Complier Average Treatment Effects
 ==
 What if you are interested in figuring out the effects of a treatment on those people who actually took up the treatment and not just those people that were administered the treatment? For example what is the effect of radio ads on voting behavior for those people that actually hear the ads?
 
 
-This turns out to be a hard problem (for more on this see our guide [10 Things to Know About the Local Average Treatment Effect](https://egap.org/resource/10-things-to-know-about-the-local-average-treatment-effect/)). The reasons for non-compliance with treatment can be thought of as an omitted variable. While the receipt of treatment is no longer independent of potential outcomes, the assignment of treatment status is. As long as random assignment had some positive effect on the probability of receiving treatment, we can use it as an instrument to identify the effects of treatment on the sub-population of subjects who comply with treatment assignment.
+This turns out to be a hard problem (for more on this see our guide [10 Things to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html)). The reasons for non-compliance with treatment can be thought of as an omitted variable. While the receipt of treatment is no longer independent of potential outcomes, the assignment of treatment status is. As long as random assignment had some positive effect on the probability of receiving treatment, we can use it as an instrument to identify the effects of treatment on the sub-population of subjects who comply with treatment assignment.
 
 Following the notation of @angrist_pischke_2008 let $Z$ be an indicator for whether an observation was assigned to treatment and $D_{i}$ indicates whether that subject actually received the treatment. Experiments with non-compliance are composed of always-takers ($D_{i}=1$, regardless of $Z_{i}$), never-takers ($D_{i}=0$ regardless of $Z_{i}$), and compliers ($D_{i}=1$ when $Z_{i}=1$ and $0$ when $Z_{i}=0$).[^8] We can estimate a complier average causal effect (CACE), sometimes also called a local average treatment effect (LATE), by weighting the ITT (the effect of $Z$ on $Y$) by the effectiveness of random assignment on treatment uptake (the effect of $Z$ on $D$).
 
@@ -155,7 +155,7 @@ samp = data.frame(Z,D,Y)
 # Wald Estimator ITT<-coef(lm(Y~Z,data=samp))[2] ITT.D<-coef(lm(D~Z,data=samp))[2] CACE.wald<-ITT/ITT.D
 ```
 
-5 Population and Sample Average Treatment Effects
+5. Population and Sample Average Treatment Effects
 ==
 Often we want to generalize from our sample to make statements about some broader population of interest.[^10] Let $S_i$ be an indicator for whether an subject is in our sample. The sample average treatment effect (SATE) is defined simply as $E(Y_i(1)−Y_i(0)|S_i=1)$ and the population $E(Y_i(1)−Y_i(0))$. With a large random sample from a well-defined population with full compliance with treatment, our SATE and PATE are equal in expectation and so a good estimate for one (like a difference of sample means) will be a good estimate for the other.[^11]
 
@@ -201,7 +201,7 @@ ATE.out <- estimate.ATE(pscore.formula = D ~ X1 +X2,
                         var.gam.plot=FALSE, nboot=50)
 ```
 
-6 Average Treatment Effects on the Treated and the Control
+6. Average Treatment Effects on the Treated and the Control
 ==
 To evaluate the policy implications of a particular intervention, we often need to know the effects of the treatment not just on the whole population but specifically for those to whom the treatment is administered. We define the average effects of treatment among the treated (ATT) and the control (ATC) as simple counter-factual comparisons:
 
@@ -243,7 +243,7 @@ ATT.ipw<-coef(lm(Y~D,data=samp,weights=W.att))[2]
 ATC.ipw<-coef(lm(Y~D,data=samp,weights=W.atc))[2]
 ```
 
-7 Quantile Average Treatment Effects
+7. Quantile Average Treatment Effects
 ==
 The ATE focuses on the middle, in a way on the effect for a typical person, but we often also care about the distributional consequences of our treatment. We want to know not just whether our treatment raised average income, but also whether it made the distribution of income in the study more or less equal.
 
@@ -277,7 +277,7 @@ seq(.05,.95,length.out=10),data=samp,method = "fn")
 plot(summary(QTE),parm=2,main="",ylab="QTE",xlab="Quantile",mar = c(5.1, 4.1, 2.1, 2.1))
 ```
 
-8 Mediation Effects
+8. Mediation Effects
 ==
 Sometimes we want to describe not just the magnitude and significance of an observed causal effect, but also the mechanism (or mechanisms) that produced it. Did our intervention raise turnout in the treatment group, in part, by increasing these subjects’ sense of political efficacy? If so, how much of that total effect can be attributed to the mediated effects of our treatment on efficacy and efficacy on turnout?
 
@@ -327,7 +327,7 @@ plot(s.out) # Plot sensistivity bounds
 # ADE<-coef(med.sys)["eq3_D"]
 ```
 
-9 Log-Odds Treatment Effects
+9. Log-Odds Treatment Effects
 ==
 Average treatment effects seem a bit hard to interpret when outcomes are not continuous. For example, a very common binary outcome in the study of elections is coded as 1 when subjects voted, and 0 when they did not. The average effect might be 0.2, but what does it really mean to say that a treatment increased my voting by 0.2? Estimating causal effects for dichotomous outcomes requires some additional care, particularly when including covariates. A common quantity of causal interest for dichotomous outcomes is our treatment’s effect on the log-odds of success, defined for the experimental pool as:
 
@@ -365,7 +365,7 @@ log.odds.adj<-log(mean(aT.adj)/(1-mean(aT.adj)))-
   log(mean(aC.adj)/(1-mean(aC.adj)))
 ```
 
-10 Attributable Effects
+10. Attributable Effects
 ==
 We conclude with a brief discussion of an alternative quantity of causal interest that may be particularly useful with binary outcomes: the attributable effect (@rosenbaum_2010). Consider a simple case with a dichotomous outcome and treatment. Let $A$ be the number of outcomes attributable to treatment, that is, the number of cases in which $Y_i$ equaled 1 among treated subjects which would not have occurred had these units been assigned to control. For a range of $A$’s, we adjust the observed contingency table of outcomes among the treated, and compare this resulting distribution to a known null distribution (the distribution of outcomes we would have observed had treatment had no effect). The resulting range of $A$’s for which our test continues to reject the null hypothesis of no effect provides a range of effects that are attributable to our treatment.
 

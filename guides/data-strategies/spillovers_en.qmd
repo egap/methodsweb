@@ -62,7 +62,7 @@ What does the non-interference assumption mean? Subjects can only reveal one of 
 
 We can state the non-interference assumption more formally using potential outcomes notation:  $y_i(z_i,Z)=y_i(z′_i,Z′)$, if $z_i=z′_i$, where  $Z$ and $Z′$ represent any two possible random assignment vectors. In words, this expression states that subject $i$ is unaffected by other subjects’ treatment assignments.
 
-How reasonable is the non-interference assumption? The answer depends on the domain. Every study that finds a statistically significant impact of spillovers is providing evidence that the assumption is incorrect in that particular application. Most papers discussing spillovers tend to focus on examples in which the non-interference assumption is false. But other studies suggest that spillovers are sometimes surprisingly weak. Sinclair, McConnell, and Green (2012) for example find no evidence of within-zip code spillovers of experimental encouragements to vote, bolstering the non-interference claims made by the dozens of previous turnout experiments.
+How reasonable is the non-interference assumption? The answer depends on the domain. Every study that finds a statistically significant impact of spillovers is providing evidence that the assumption is incorrect in that particular application. Most papers discussing spillovers tend to focus on examples in which the non-interference assumption is false. But other studies suggest that spillovers are sometimes surprisingly weak. @sinclair_et_al_2012 for example find no evidence of within-zip code spillovers of experimental encouragements to vote, bolstering the non-interference claims made by the dozens of previous turnout experiments.
 
 4. You need some kind of non-interference assumption whenever you try to estimate spillover effects
 ==
@@ -216,7 +216,7 @@ The main disadvantage of this design, however, is that by design you cannot esti
 
 9. There are other design-based approaches for detecting spillover effects.
 ==
-Some researchers employ a “multilevel” design for exploring spillover effects. The “levels” of the experiment correspond to the spillover network. For example, Sinclair, McConnell, and Green (2012) employ a multilevel design to investigate the possible spillover effects of an encouragement to vote. The levels in their experiment are the neighborhood (nine-digit ZIP code), the household, and the individual. The authors’ non-interference assumption is that the treatment assignments of units in other neighborhoods do not matter. What determines which potential outcome is revealed is a combination of three things:
+Some researchers employ a “multilevel” design for exploring spillover effects. The “levels” of the experiment correspond to the spillover network. For example, @sinclair_et_al_2012 employ a multilevel design to investigate the possible spillover effects of an encouragement to vote. The levels in their experiment are the neighborhood (nine-digit ZIP code), the household, and the individual. The authors’ non-interference assumption is that the treatment assignments of units in other neighborhoods do not matter. What determines which potential outcome is revealed is a combination of three things:
 
 * An individual’s own treatment assignment
 * The treatment assignment of his or her housemate
@@ -230,11 +230,11 @@ What are the disadvantages? As ever, the difficulty is that the non-interference
 
 10. Even if a treatment is binary, spillovers might not be. The right model might require dealing with “dosage”
 ==
-We’ve explored a non-parametric approach to estimating spillover effects. (See Aronow and Samii 2015 for a fuller treatment of this method as well as a conservative variance estimator in the presence of spillovers.) Units were randomly assigned to one of four conditions with a complex (but knowable) probability. Our estimates of causal effects were calculated as differences in weighted average outcomes between the treatment conditions. This approach has the advantage of making IPW estimation easy – simply weight each observation by the inverse of the probability of it being in the condition that it’s in.
+We’ve explored a non-parametric approach to estimating spillover effects. (See @aronow_samii_2015 for a fuller treatment of this method as well as a conservative variance estimator in the presence of spillovers.) Units were randomly assigned to one of four conditions with a complex (but knowable) probability. Our estimates of causal effects were calculated as differences in weighted average outcomes between the treatment conditions. This approach has the advantage of making IPW estimation easy – simply weight each observation by the inverse of the probability of it being in the condition that it’s in.
 
 But what about “dosage”? Perhaps in fact spillovers work as a decreasing function of the distance to every other treated unit or in some other more complex way. The spillover is then a continuous variable that describes the “dosage” of exposure to spillovers. The non-parametric IPW approach would require us to chop up the continuous variable in to bins and then calculate average outcomes according to the bin. The IPW estimator quickly becomes quite noisy, as fewer and fewer units occupy each bin.
 
-Bowers, Fredrickson, and Panagopoulos (2013) propose a framework that can accommodate any causal model that maps treatment assignments into potential outcomes. The potential outcomes can be in discrete categories (as we’ve been assuming for most of this guide) or a continuous function of the dosage of spillovers.
+@bowers_et_al_2013 propose a framework that can accommodate any causal model that maps treatment assignments into potential outcomes. The potential outcomes can be in discrete categories (as we’ve been assuming for most of this guide) or a continuous function of the dosage of spillovers.
 
 A schematic sketch of their method is as follows. Suppose the causal model has two parameters: $\beta_1$, the direct treatment effect and $\beta_2$, the indirect effect of a single unit of spillover dosage. A joint test of the hypothesis that $\beta_1 = \beta_2 = 0$ is equivalent to a test of the sharp null hypothesis of no effect. Such a test yields a p-value — the probability that the observed data were generated according to the causal model in which $\beta_1 = \beta_2 = 0$.
 

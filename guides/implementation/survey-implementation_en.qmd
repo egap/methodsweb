@@ -6,7 +6,7 @@ author:
 image: survey-implementation.png
 ---
 
-1 Decide whether or not to work with a local firm
+1. Decide whether or not to work with a local firm
 ==
 There are two discrete skill sets needed on the ground when implementing a survey. The first skill set is focused on administration/logistics, and the second skill set is focused on research design. The first set of skills is needed for administration: budgeting, creating route plans, recruitment, and management of staff.  Administration requires a level of familiarity with local conditions; for example, the ability to quickly estimate costs and troubleshoot logistical issues are important here. The second skill set requires knowledge of research methods to ensure that survey implementation is consistent with the research design. Researchers must be able to recognize any deviations from the protocol and address them in a way that leads to as little bias as possible. Important here is a deep understanding of the survey protocols and possible alternatives, in the case that changes need to be made on the ground. 
 
@@ -19,11 +19,11 @@ When setting up contracts with local firms it is important to get the incentives
 
 In addition to direct costs, it is reasonable for a local firm to charge overhead. This can vary from context to context, and it is best to check against the budgets of other similar projects to make sure the rate is reasonable. 
 
-2 Budgeting 
+2. Budgeting 
 ==
 As you prepare to begin survey implementation, the first and most important part of the survey is budgeting expected costs. It’s important to be thorough and detailed in putting together your budget; it will be critical throughout implementation and will be closely considered by potential funders. 
 
-The total cost of a survey is the sum of fixed costs, like transportation and equipment costs, and variable expenses like salaries, per diems, and administration costs. See the attached [budget template](INSERT LINK) for an overview of typical costs and notes on how to estimate them.
+The total cost of a survey is the sum of fixed costs, like transportation and equipment costs, and variable expenses like salaries, per diems, and administration costs.
 
 ## Salaries
 Estimating total salary costs before drawing the sample (needed in order to determine the teams and route plans) requires a bit of guesswork. One approach is to estimate the work-hours needed to conduct the survey (survey length x sample size) and divide by some estimated number of enumerators to come up with the number of enumerator days you will need to pay. The per diem may need to cover food and lodging, and make this clear to enumerators so they can plan accordingly. For surveys that will require long fieldwork, it is good practice to pay salary on a rest day each week although some enumerators prefer to work continuously in order to finish sooner and return home. This choice is context-specific. 
@@ -42,7 +42,7 @@ It’s important to, ex ante, be as accurate as possible in estimating the full 
 ## Equipment
 Later on in this guide we present the benefits of using personal digital assistants (PDAs) or tablets for data collection (see section 3). PDAs/tablets can be either purchased using survey funds or leased from a research firm, university, or other researchers. 
 
-3 Should you use PDAs or tablets instead of paper?[^1] 
+3. Should you use PDAs or tablets instead of paper?[^1] 
 ==
 ## Why Personal Digital Assistants [PDAs] or Tablets are better (if you have the budget)
 Use of a PDA/tablet allows the collection of more accurate and detailed data (Goldstein, 2012) because of:
@@ -76,7 +76,7 @@ PDAs/tablets have lower error rates than paper-based surveys (Caeyers, 2010) and
 * Code answer values (i.e. the values that will be outputted into the dataset) in advance so that you can standardize scales and easily clean the data (for example, use different negative numbers for "don't know" and "refuse" options so a 10-character command in R can clean the whole dataset). 
 * Take advantage of having more space for text by giving enumerators directions for complicated items in the displayed question text itself. 
 
-4 Establish a Management Structure
+4. Establish a Management Structure
 ==
 ![](https://raw.githubusercontent.com/egap/methods-guides/master/implementation/implementation_mgmt_structure.png)
 
@@ -113,7 +113,7 @@ Conducting both audits and backchecks means that for each individual survey ther
 
 Auditors and backcheckers must report directly to survey management. Imagine an example: Say a village is difficult to find and the team of enumerators chooses a replacement (rather than resampling by the PIs), and the auditors visit the sampled village and uncover it was not surveyed. If this error is communicated to someone also managing the enumerators, their best response is to cover this up or try to fix it without the PI knowing. This prevents having to admit a management mistake, and having to add a day of work to revisit the original or resampled village. If the survey team is notified directly, there is an opportunity to fix the mistake and make personnel changes as needed. Unmonitored communication between auditing teams and enumeration teams can result in a lot of unauthorized fixes and unexplainable data patterns.
 
-5 Recruit enumerators
+5. Recruit enumerators
 ==
 ## Sources
 If you are working alone, recruit experienced enumerators through contacts at survey firms, NGOs, or universities. It is important that enumerators are experienced, literate, educated, and able to build rapport with subjects. Hiring enumerators who are connected, in some way, with the survey leaders or local coordinator, e.g. through a youth organization or other social tie, can help immensely with oversight as the enumerators have bigger reputational costs if they shirk their duties. 
@@ -124,7 +124,7 @@ The foremost requirement is that the enumerators speak the required local langua
 ## Gender parity
 Having a team of mostly male enumerators interview a sample with equal numbers of men and women there can introduce response bias. For sensitive questions, such as questions on sexual behavior or violence, it is strongly recommended that women interview other women. If it is difficult to recruit experienced women enumerators, it usually makes sense to hold a special training for women candidates with less experience in order to ensure teams are balanced in the end. 
 
-6 You must pre-test! 
+6. You must pre-test! 
 ==
 There are several different and necessary phases of pre-testing:
 
@@ -132,7 +132,7 @@ There are several different and necessary phases of pre-testing:
 2. The second phase of pre-testing focuses on the translated version of the instrument; the key concern is that the questions are easily understood by native speakers while retaining the meaning intended by the researcher. This is best done by a group of translators or members of your survey team, as it often it takes several people to discuss and settle upon the widely understood meaning of words and phrases. If you are translating into multiple languages, it’s important to have people from every language represented for consistency, working together to ensure consistency across versions. Fellow enumerators can work here, but it is better to recruit people of varying education levels.
 3. The third phase of pre-testing ensures that respondents understand the intended meaning of each question and are comfortable responding. The best way to get at this is to observe enumerators conduct practice surveys in the field. You’ll want to get as close as you can to the real sample for this test, incorporating different subgroups within the real sample, e.g. men and women, more and less educated. Instruct enumerators on how to identify and record issues, so that they can describe them after to the PI and survey manager, but also observe these practice interviews first-hand. Key concerns are clarity and length: respondents should not become confused, tired, unfocused, or disinterested.  You want to understand how the questions are understood by respondents and if enumerators are changing questions at all during the survey. This step will also, importantly, give the project team a good idea of how long the average survey should take, so you can adjust expectations of how many surveys can be done per enumerator per day.
 
-7 Training
+7. Training
 ==
 ## Standards
 Trainings establish consistent standards for data collection. If you are contracting a survey firm and are not on the ground yourself, training is the most important part of the process to personally attend. It’s a key moment to communicate quality standards, expectations, the intended meaning of each question, and teach important procedures that may be more technical than what the firm is used to, such as a list experiment. It is also a key moment to motivate the team, by communicating the project’s goals and importance. In order to ensure that the each member of the team is prepared to a certain standard, it is a good idea to test each team member at the end of the training period. There should be an expectation that some team members will be asked not to proceed any further with the project as a result of the test, which will emphasize the importance of taking training to heart and taking the test seriously.
@@ -177,7 +177,7 @@ Before being deployed to the field, each enumerator must:
 
 Data from mock surveys must be individually assessed and feedback given to each enumerator. You can check whether certain enumerators are entering data differently than their peers, for example by entering lots of “Don’t know” or “Refuse” answers, finding low prevalence of sensitive behaviors, or entering data that is logically inconsistent. However, there is a lot that you can’t tell from the data alone. Spending a lot of time observing enumerators while they run surveys can greatly increase the quality of the data by improving their training, allowing you to select the best enumerators more accurately, and allowing you to understand how the questions are being implemented in the field. 
 
-8 Employee incentives
+8. Employee incentives
 ==
 To a large extent, the quality of the data collected is determined by the behavior the enumerators. Throughout the hiring, training, and field stages of the survey it is important to get the incentives right so that enumerators are motivated to do high quality work.
 
@@ -205,13 +205,13 @@ Soft incentives help to keep teams happy and motivated throughout work. Some exa
 * *Recommendations to other survey firms, NGOs, etc.*
 * *Wrap party*
 
-9 Map out your routes 
+9. Map out your routes 
 ==
 Make route plans that set the order in which enumeration areas [EAs] will be covered, and then assign teams to routes. The basic idea is to minimize transportation costs while taking into account regional differences in languages or dialects that could mean that only some teams can work in certain areas. 
 
 A good way to visualize route plans is to mark sampled EAs on a map, using different colors to indicate different languages spoken in each EA. [SAMPLE PHOTO HERE]. Rely on team leaders to gauge travel time between sampled points and to suggest best routes.
 
-10 Checking the data
+10. Checking the data
 ==
 Write code to clean data and check for errors, and run it on available data as soon as possible. This code should check for nonsensical responses or patterns, both within and across instruments (enumerator error). 
 
