@@ -283,7 +283,7 @@ div.csl-indent {
 <li><span class="math inline">\(\sigma\)</span> is the standard deviation of outcomes. This is how we make assumptions about how noisy our experiment will be — one of the assumptions we’re making is that sigma is the same for both the treatment and control groups. Suppose <span class="math inline">\(\sigma=20\)</span></li>
 <li><span class="math inline">\(\alpha\)</span> is our significance level – the convention in many disciplines is that α should be equal to 0.05. <span class="math inline">\(N\)</span> is the total number of subjects. This is the only variable that is under the direct control of the researcher. This formula assumes that every subject had a 50/50 chance of being in control. Suppose that <span class="math inline">\(N=500\)</span>.</li>
 </ul>
-<p>Working through the formula, we find that under this set of assumptions, <span class="math inline">\(β = 0.80\)</span>, meaning that we have an 80% chance of recovering a statistically significant result with this design. Click <a href="https://docs.google.com/spreadsheets/d/117R4cqKkhX1MFqPIh7Yg2YzjHykxD7WsSLXqhEbD33I/edit#gid=0" target="_blank">here for a google spreadsheet</a> that includes this formula. You can copy these formulas directly into Excel. If you’re comfortable in R, here is code that will accomplish the same calculation.</p>
+<p>Working through the formula, we find that under this set of assumptions, <span class="math inline">\(β = 0.80\)</span>, meaning that we have an 80% chance of recovering a statistically significant result with this design. Click <a href="https://docs.google.com/spreadsheets/d/117R4cqKkhX1MFqPIh7Yg2YzjHykxD7WsSLXqhEbD33I/edit#gid=0">here for a google spreadsheet</a> that includes this formula. You can copy these formulas directly into Excel. If you’re comfortable in R, here is code that will accomplish the same calculation.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>power_calculator <span class="ot">&lt;-</span> <span class="cf">function</span>(mu_t, mu_c, sigma, <span class="at">alpha=</span><span class="fl">0.05</span>, N){ </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  lowertail <span class="ot">&lt;-</span> (<span class="fu">abs</span>(mu_t <span class="sc">-</span> mu_c)<span class="sc">*</span><span class="fu">sqrt</span>(N))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>sigma) </span>
@@ -292,7 +292,7 @@ div.csl-indent {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(beta) </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In addition, EGAP has created a power calculator Shiny app, which you can <a href="https://egap.shinyapps.io/Power_Calculator/" target="_blank">access here</a>.</p>
+<p>In addition, EGAP has created a power calculator Shiny app, which you can <a href="https://egap.shinyapps.io/Power_Calculator/">access here</a>.</p>
 </section>
 <section id="when-to-believe-your-power-analysis" class="level1">
 <h1>5 When to Believe Your Power Analysis</h1>
@@ -334,13 +334,13 @@ div.csl-indent {
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  } </span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>powers </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.276 0.322 0.350 0.464 0.550 0.532 0.660 0.654 0.708 0.782 0.818 0.806
-[13] 0.846 0.914 0.866 0.910 0.916 0.944 0.984 0.944 0.972 0.972 0.976 0.990
-[25] 0.990 0.990 0.992 0.988 0.988 0.998 0.996 0.998 0.996 0.994 0.992 0.998
-[37] 1.000 0.996 0.998 0.998 0.998 0.998 1.000 1.000 1.000 1.000 1.000 1.000</code></pre>
+<pre><code> [1] 0.248 0.310 0.436 0.500 0.454 0.568 0.610 0.714 0.652 0.776 0.784 0.806
+[13] 0.866 0.894 0.904 0.898 0.918 0.938 0.946 0.956 0.976 0.972 0.976 0.980
+[25] 0.984 0.978 0.982 0.990 0.994 0.996 0.990 0.998 0.998 0.994 0.998 0.998
+[37] 0.998 0.998 1.000 0.998 1.000 0.998 1.000 1.000 1.000 1.000 1.000 1.000</code></pre>
 </div>
 </div>
-<p>The code for this simulation and others is available <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/" target="_blank">here</a>. Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.</p>
+<p>The code for this simulation and others is available <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/">here</a>. Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.</p>
 <p>In addition to counting up how often your experiments come up statistically significant, you can directly observe the distribution of p-values you’re likely to get. The graph below shows that under these assumptions, you can get expect to get quite a few p-values in the 0.01 range, but that 80% will be below 0.05.</p>
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/power/simulatedpvals.png" class="img-fluid"></p>
 </section>
@@ -407,7 +407,7 @@ Gerber, A. S., and D. P. Green. 2012. <em>Field Experiments: Design, Analysis, a
 <ol>
 <li id="fn1"><p>Originating author: Alex Coppock, 20 Nov 2013. The guide is a live document and subject to updating by EGAP members at any time. Coppock is not responsible for subsequent edits to this guide<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Reproduced from <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>, page 93<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>For an additional online power visualization tool, see Kristoffer Magnusson’s <a href="http://rpsychologist.com/d3/NHST/" target="_blank">R Psychologist blog</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>For an additional online power visualization tool, see Kristoffer Magnusson’s <a href="http://rpsychologist.com/d3/NHST/">R Psychologist blog</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
