@@ -9,9 +9,7 @@ bibliography: power.bib
 
 Abstract
 ==
-This guide[^1] will help you assess and improve the power of your experiments. We focus on the big ideas and provide examples and tools that you can use in R and Google Spreadsheets.
-
-[^1]: Originating author: Alex Coppock, 20 Nov 2013. The guide is a live document and subject to updating by EGAP members at any time. Coppock is not responsible for subsequent edits to this guide
+This guide will help you assess and improve the power of your experiments. We focus on the big ideas and provide examples and tools that you can use in R and Google Spreadsheets.
 
 1. What Power Is
 ==

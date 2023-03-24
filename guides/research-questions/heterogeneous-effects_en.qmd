@@ -9,11 +9,9 @@ bibliography: heterogeneous-effects.bib
 
 Abstract
 ==
-This guide[^1] discusses methods for analyzing heterogeneous treatment effects: testing for heterogeneity, estimating subgroup treatment effects and their differences, and addressing the pitfalls of multiple comparisons and ad hoc specification search.[^2]
+This guide discusses methods for analyzing heterogeneous treatment effects: testing for heterogeneity, estimating subgroup treatment effects and their differences, and addressing the pitfalls of multiple comparisons and ad hoc specification search.[^1]
 
-[^1]: Originating author: Albert Fang, 3 Jun 2016. Revisions: Winston Lin and Don Green, 16 Jan 2017. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits.
-
-[^2]: This guide draws heavily from @gerber_green_2012 and from Don Green's course notes for Experimental Methods at Columbia University.
+[^1]: This guide draws heavily from @gerber_green_2012 and from Don Green's course notes for Experimental Methods at Columbia University.
 
 1. What Is Treatment Effect Heterogeneity?
 ==
@@ -21,9 +19,9 @@ Any given treatment might affect different experimental subjects in different wa
 
 2. Testing for Heterogeneity
 ==
-As a first step, one might be interested in whether the variance of the treatment effect $\tau_i$ across subjects is statistically distinguishable from zero and seek to test the null hypothesis that $Var(\tau_i) = 0$ (which is equivalent to the hypothesis of a constant treatment effect, i.e., $\tau_i = \tau, \forall i$). However, it is not possible to estimate $Var(\tau_i)$ in an experimental setting because you never get to see the treatment effect for any particular individual. Instead, you only get to see the outcome for each person either in the treatment or in the control condition.[^3]
+As a first step, one might be interested in whether the variance of the treatment effect $\tau_i$ across subjects is statistically distinguishable from zero and seek to test the null hypothesis that $Var(\tau_i) = 0$ (which is equivalent to the hypothesis of a constant treatment effect, i.e., $\tau_i = \tau, \forall i$). However, it is not possible to estimate $Var(\tau_i)$ in an experimental setting because you never get to see the treatment effect for any particular individual. Instead, you only get to see the outcome for each person either in the treatment or in the control condition.[^2]
 
-[^3]: This is known as the Fundamental Problem of Causal Inference. For more background, see [10 Things You Need to Know About Causal Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html).
+[^2]: This is known as the Fundamental Problem of Causal Inference. For more background, see [10 Things You Need to Know About Causal Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html).
 
 To illustrate this, we can rewrite $Var(\tau_i)$ as
 $$
@@ -34,9 +32,9 @@ Var(\tau_i) &= Var(Y_i(1) - Y_i(0)) \\
 $$
 The term $Cov(Y_i(1),Y_i(0))$ on the right-hand side cannot be estimated in an experiment because we only observe a subject's treated potential outcome or untreated potential outcome, not both.
 
-Although we cannot estimate $Var(\tau_i)$, the hypothesis that $Var(\tau_i) = 0$ does have the testable implication that the distributions of the treated and untreated potential outcomes are identical except for a constant shift $\tau$. Randomization inference (Fisher 1935) allows us to test this implication without additional modeling assumptions, asymptotics, or regularity conditions.[^4]
+Although we cannot estimate $Var(\tau_i)$, the hypothesis that $Var(\tau_i) = 0$ does have the testable implication that the distributions of the treated and untreated potential outcomes are identical except for a constant shift $\tau$. Randomization inference (Fisher 1935) allows us to test this implication without additional modeling assumptions, asymptotics, or regularity conditions.[^3]
 
-[^4]: For further reading, see @gerber_green_2012 and @ding_et_al_2016. 
+[^3]: For further reading, see @gerber_green_2012 and @ding_et_al_2016. 
 
 **1. Compare treatment and control outcome variances.** Under the null hypothesis of a constant treatment effect, the variances of the treated and untreated potential outcomes are equal: $Var(Y_i(1)) = Var(Y_i(0))$. This is because
 $$
@@ -266,17 +264,17 @@ You can also reduce the numbers of CATEs and interactions under consideration fo
 ==
 Machine learning methods are useful to automate the search for systematic variation in treatment effects. These automated approaches are attractive because they minimize researchers' use of ad hoc discretion in selecting and testing interactions, and are useful for conducting exploratory analyses.
 
-Popular machine learning methods include support vector machines (R package [FindIt](http://cran.r-project.org/web/packages/FindIt/index.html)),[^6] Bayesian additive regression trees (R package [BayesTree](http://cran.r-project.org/web/packages/BayesTree/index.html)),[^7] classification and regression trees (R package [causalTree](https://github.com/susanathey/causalTree)),^[See @athey_imbens_2016.] random forests,^[See @wager_athey_2016.] and kernel regularized least squares (R package [KRLS](http://cran.r-project.org/web/packages/KRLS/index.html)).[^8]
+Popular machine learning methods include support vector machines (R package [FindIt](http://cran.r-project.org/web/packages/FindIt/index.html)),[^9] Bayesian additive regression trees (R package [BayesTree](http://cran.r-project.org/web/packages/BayesTree/index.html)),[^10] classification and regression trees (R package [causalTree](https://github.com/susanathey/causalTree)),^[See @athey_imbens_2016.] random forests,^[See @wager_athey_2016.] and kernel regularized least squares (R package [KRLS](http://cran.r-project.org/web/packages/KRLS/index.html)).[^11]
 
-[^6]: See, for example, @imai_ratkovic_2013.
+[^9]: See, for example, @imai_ratkovic_2013.
 
-[^7]: See @chipman_et_al_2010; @hill_2011; @green_kern_2012.
+[^10]: See @chipman_et_al_2010; @hill_2011; @green_kern_2012.
 
-[^8]: See @hainmueller_hazlett_2013.
+[^11]: See @hainmueller_hazlett_2013.
 
-In addition to single machine learning methods, ensemble methods may be used. Ensemble methods estimate a weighted average of multiple machine learning estimates of heterogeneous effects where the weights are a function of out-of-sample prediction performance.[^9]
+In addition to single machine learning methods, ensemble methods may be used. Ensemble methods estimate a weighted average of multiple machine learning estimates of heterogeneous effects where the weights are a function of out-of-sample prediction performance.[^12]
 
-[^9]: See @van_der_laan_et_al_2007; @grimmer_et_al_2014.
+[^12]: See @van_der_laan_et_al_2007; @grimmer_et_al_2014.
 
 10. A Note on Interactions between Treatment and Post-Treatment Covariates
 ==
@@ -284,8 +282,8 @@ The discussion thus far has assumed that the treatment effect heterogeneity of i
 
 Some researchers may be interested in post-treatment effect modification, or the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants' levels of depression during the followup period? Conditioning on a post-treatment covariate may lead to bias, because biased estimation of both the main effect and the interaction effects is possible when a post-treatment covariate is included as a regressor. This is especially likely when the covariate is affected by the treatment.
 
-There is a burgeoning body of methodological research on the conditions under which CATEs involving post-treatment covariates are identified. These methods rely on model-based identification.[^11]
+There is a burgeoning body of methodological research on the conditions under which CATEs involving post-treatment covariates are identified. These methods rely on model-based identification.[^13]
 
-[^11]: For further reading (at an advanced technical level), see @vansteelandt_goetghebeur_2003; @vansteelandt_goetghebeur_2004; @vansteelandt_2010; @stephens_et_al_2016.
+[^13]: For further reading (at an advanced technical level), see @vansteelandt_goetghebeur_2003; @vansteelandt_goetghebeur_2004; @vansteelandt_2010; @stephens_et_al_2016.
 
 # References

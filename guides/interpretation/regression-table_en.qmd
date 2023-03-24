@@ -9,7 +9,7 @@ bibliography: regression-table.bib
 
 Abstract
 ==
-This guide^[Originating author: Abby Long. Revisions: Winston Lin, 21 July 2016. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits. Thanks to Don Green, Macartan Humphreys, and Tod Mijanovich for helpful discussions.] gives basic information to help you understand how to interpret the results of ordinary least squares (OLS) regression in social science research. The guide focuses on regression but also discusses general concepts such as confidence intervals.
+This guide gives basic information to help you understand how to interpret the results of ordinary least squares (OLS) regression in social science research. The guide focuses on regression but also discusses general concepts such as confidence intervals.
 
 The table below that will be used throughout this methods guide is adapted from a study done by EGAP members Miriam Golden, Eric Kramon and their colleagues (@asunka_et_al_2013). The authors performed a field experiment in Ghana in 2012 to test the effectiveness of domestic election observers on combating two common electoral fraud problems: ballot stuffing and overvoting. Ballot stuffing occurs when more ballots are found in a ballot box than are known to have been distributed to voters. Overvoting occurs when more votes are cast at a polling station than the number of voters registered. This table reports a multiple regression (this is a concept that will be further explained below) from their experiment that explores the effects of domestic election observers on ballot stuffing. The sample consists of 2,004 polling stations.
 

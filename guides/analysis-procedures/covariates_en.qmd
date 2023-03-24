@@ -9,9 +9,7 @@ bibliography: covariates.bib
 
 Abstract
 ==
-This guide[^1] will help you think through when it makes sense to try to “control for other things” when estimating treatment effects using experimental data. We focus on the big ideas and provide examples in R.
-
-[^1]: Originating author: Lindsay Dolan. Revisions: Don Green and Winston Lin, 1 Nov 2016. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits. Thanks to Macartan Humphreys and Diana Mutz for helpful discussions.
+This guide will help you think through when it makes sense to try to “control for other things” when estimating treatment effects using experimental data. We focus on the big ideas and provide examples in R.
 
 1. What is covariate adjustment?
 ==
