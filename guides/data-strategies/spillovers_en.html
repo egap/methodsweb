@@ -240,7 +240,7 @@ div.csl-indent {
 
 <section id="abstract" class="level1">
 <h1>Abstract</h1>
-<p>This guide<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> helps you think through how to design and analyze experiments when there is a risk of “interference” between units. This has been an important area of research in recent years and there have been real gains in our understanding of how to detect spillover effects. Spillovers arise whenever one unit is affected by the treatment status of another unit. Spillovers make it difficult to work out causal effects (we say why below). Experimentalists worry a lot about them, but the complications that spillovers create are not unique to randomized experiments.</p>
+<p>This guide helps you think through how to design and analyze experiments when there is a risk of “interference” between units. This has been an important area of research in recent years and there have been real gains in our understanding of how to detect spillover effects. Spillovers arise whenever one unit is affected by the treatment status of another unit. Spillovers make it difficult to work out causal effects (we say why below). Experimentalists worry a lot about them, but the complications that spillovers create are not unique to randomized experiments.</p>
 </section>
 <section id="what-they-are" class="level1">
 <h1>1. What they are</h1>
@@ -270,7 +270,7 @@ div.csl-indent {
 <p>In order to see how spillovers can distort estimated treatment effects, consider the graph below:</p>
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/spillovers/spilloverbias.jpg" class="img-fluid"></p>
 <p>The graph considers a situation in which the true direct effect of treating a village is 1, and shows how estimated treatment effects can be higher or lower than 1 depending on the direction and size of spillovers as well as the number of villages treated.</p>
-<p>In this case, positive spillovers cause a negative bias and vice-versa. This is because when spillovers are positive, the control group mean is inflated, so the difference-in-means is smaller than it otherwise would have been.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The extent of the bias, however, depends on the number of villages treated as well as the magnitude of the spillover effect. In this example, the more villages are treated, the smaller the bias resulting from spillovers. This is because when more villages are treated, both the treatment and control group means are similarly inflated by positive spillovers and deflated by negative spillovers.</p>
+<p>In this case, positive spillovers cause a negative bias and vice-versa. This is because when spillovers are positive, the control group mean is inflated, so the difference-in-means is smaller than it otherwise would have been.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The extent of the bias, however, depends on the number of villages treated as well as the magnitude of the spillover effect. In this example, the more villages are treated, the smaller the bias resulting from spillovers. This is because when more villages are treated, both the treatment and control group means are similarly inflated by positive spillovers and deflated by negative spillovers.</p>
 <p>Often, evaluators are trying to estimate what would happen if a program were rolled out to everyone. Evidence from an RCT that ignores spillover could greatly over or underestimate the total effects of the intervention.</p>
 </section>
 <section id="most-experimental-analyses-implicitly-or-explicitly-assume-that-there-are-no-spillovers." class="level1">
@@ -471,8 +471,7 @@ Sinclair, Betsy, Margaret McConnell, and Donald P. Green. 2012. <span>“Detecti
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Originating author: Alex Coppock, 31 Jul 2014. Minor revisions: Don Green and Winston Lin, 20 July 2016. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Note though, it is generally very difficult to guess the direction of the bias that would be induced by spillover. Claims like, “spillover would only make our treatment effects appear stronger” usually depend on assumptions of treatment (and spillover) effect homogeneity.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Note though, it is generally very difficult to guess the direction of the bias that would be induced by spillover. Claims like, “spillover would only make our treatment effects appear stronger” usually depend on assumptions of treatment (and spillover) effect homogeneity.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

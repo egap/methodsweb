@@ -242,7 +242,7 @@ div.csl-indent {
 </div>
 <section id="what-clustering-is" class="level1">
 <h1>1. What clustering is</h1>
-<p>Cluster randomized<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> experiments allocate treatments to groups, but measure outcomes at the level of the individuals that compose the groups. It is this divergence between the level at which the intervention is assigned and the level at which outcomes are defined that classifies an experiment as cluster randomized.</p>
+<p>Cluster randomized experiments allocate treatments to groups, but measure outcomes at the level of the individuals that compose the groups. It is this divergence between the level at which the intervention is assigned and the level at which outcomes are defined that classifies an experiment as cluster randomized.</p>
 <p>Consider a study that randomly assigns villages to receive different development programs, where the well-being of households in the village is the outcome of interest. This is a clustered design because, while the treatment is assigned to the village as a whole, we are interested in outcomes defined at the household level. Or consider a study that randomly assigns certain households to receive different get-out-the-vote messages, where we are interested in the voting behavior of individuals. Because the unit of assignment for the message is the household, but the outcome is defined as individual behavior, this study is cluster randomized.</p>
 <p>Now consider a study in which villages are selected at random, and 10 people from each village are assigned to treatment or control, and we measure the well-being of those individuals. In this case, the study is not cluster randomized, because the level at which treatment is assigned and the level at which outcomes are defined is the same. Suppose that a study randomly assigned villages to different development programs and then measured social cohesion in the village. Though it contains the same randomization procedure as our first example, it is not clustered because we are interested here in village-level outcomes: the level of treatment assignment and of outcome measurement is the same.</p>
 <p>Clustering matters for two main reasons. On the one hand, clustering reduces the amount of information in an experiment because it restricts the number of ways that the treatment and control groups can be composed, relative to randomization at the individual level. If this fact is not taken into account, we often underestimate the variance in our estimator, leading to over-confidence in our the results of the study. On the other hand, clustering raises the question of how to combine information from different parts of the same experiment into one quantity. Especially when clusters are not of equal sizes and the potential outcomes of units within them are very different, conventional estimators will systematically produce the wrong answer due to bias. However, several approaches at the design and analysis phases can overcome the challenges posed by cluster randomized designs.</p>
@@ -1815,7 +1815,6 @@ e.nextSibling.nextSibling.style.display="block";
 
 </section>
 
-
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-arceneaux2009modeling" class="csl-entry" role="doc-biblioentry">
 Arceneaux, Kevin, and David W Nickerson. 2009. <span>“Modeling Certainty with Clustered Data: A Comparison of Methods.”</span> <em>Political Analysis</em> 17 (2): 177–90.
@@ -1835,12 +1834,7 @@ Imai, Kosuke, Gary King, and Clayton Nall. 2009. <span>“The Essential Role of 
 <div id="ref-kish1965survey" class="csl-entry" role="doc-biblioentry">
 Kish, Leslie. 1965. <em>Survey Sampling</em>. New York: John Wiley &amp; Sons.
 </div>
-</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>This guide was originally written by Jake Bowers and Ashlea Rundlett (22 Nov 2014). Updates made by Jasper Cooper (25 Aug 2015) and Anna Wilke (Mar 2022).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

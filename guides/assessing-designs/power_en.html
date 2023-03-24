@@ -240,7 +240,7 @@ div.csl-indent {
 
 <section id="abstract" class="level1">
 <h1>Abstract</h1>
-<p>This guide<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> will help you assess and improve the power of your experiments. We focus on the big ideas and provide examples and tools that you can use in R and Google Spreadsheets.</p>
+<p>This guide will help you assess and improve the power of your experiments. We focus on the big ideas and provide examples and tools that you can use in R and Google Spreadsheets.</p>
 </section>
 <section id="what-power-is" class="level1">
 <h1>1. What Power Is</h1>
@@ -272,7 +272,7 @@ div.csl-indent {
 <section id="key-formulas-for-calculating-power" class="level1">
 <h1>4. Key Formulas for Calculating Power</h1>
 <p>Statisticians have derived formulas for calculating the power of many experimental designs. They can be useful as a back of the envelope calculation of how large a sample you’ll need. Be careful, though, because the assumptions behind the formulas can sometimes be obscure, and worse, they can be wrong.</p>
-<p>Here is a common formula used to calculate power<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Here is a common formula used to calculate power<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p><span class="math display">\[\beta = \Phi \left(\frac{|\mu_t-\mu_c|\sqrt{N}}{2\sigma}-\Phi^{-1} \left(1-\frac{\alpha}{2}\right) \right)\]</span></p>
 <ul>
 <li><span class="math inline">\(\beta\)</span> is our measure of power. Because it’s the probability of getting a statistically significant result, β will be a number between 0 and 1.</li>
@@ -299,7 +299,7 @@ div.csl-indent {
 <p>From some perspectives the whole idea of power analysis makes no sense. You want to figure out the size of some treatment effect but first you need to do a power analysis which requires that you already know your treatment effect and a lot more besides.</p>
 <p>So in most power analyses you are in fact seeing what happens with numbers that are to some extent made up. The good news is that it is easy to find out how much your conclusions depend on your assumptions: simply vary your assumptions and see how the conclusions on power vary.</p>
 <p>This is most easily seen by thinking about how power varies with the number of subjects. A power analysis that looks at power for different study sizes simply plugs in a range of values in for N and seeing how β changes.</p>
-<p>Using the formula in section 4, you can see how sensitive power is to all of the assumptions: Power will be higher if you assume the treatment effect will be larger, or if you’re willing to accept a higher alpha level, or if you have more or less confidence in the noisiness of your measures.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>Using the formula in section 4, you can see how sensitive power is to all of the assumptions: Power will be higher if you assume the treatment effect will be larger, or if you’re willing to accept a higher alpha level, or if you have more or less confidence in the noisiness of your measures.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 </section>
 <section id="how-to-use-simulation-to-estimate-power" class="level1">
 <h1>6. How to Use Simulation to Estimate Power</h1>
@@ -334,10 +334,10 @@ div.csl-indent {
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  } </span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>powers </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.298 0.266 0.338 0.418 0.538 0.582 0.604 0.680 0.744 0.784 0.824 0.824
-[13] 0.846 0.894 0.900 0.920 0.916 0.926 0.946 0.944 0.938 0.982 0.964 0.982
-[25] 0.990 0.982 0.962 0.990 0.994 0.990 0.998 0.996 0.998 0.994 1.000 1.000
-[37] 0.996 1.000 1.000 1.000 0.998 1.000 1.000 1.000 0.998 1.000 1.000 0.998</code></pre>
+<pre><code> [1] 0.232 0.300 0.416 0.396 0.494 0.526 0.648 0.680 0.758 0.752 0.782 0.786
+[13] 0.852 0.880 0.886 0.916 0.938 0.910 0.970 0.960 0.982 0.978 0.974 0.980
+[25] 0.980 0.978 0.994 0.968 0.992 0.998 0.994 0.996 0.994 1.000 1.000 0.998
+[37] 0.996 0.996 1.000 1.000 0.998 1.000 1.000 1.000 1.000 1.000 1.000 1.000</code></pre>
 </div>
 </div>
 <p>The code for this simulation and others is available <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/">here</a>. Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.</p>
@@ -405,9 +405,8 @@ Gerber, A. S., and D. P. Green. 2012. <em>Field Experiments: Design, Analysis, a
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Originating author: Alex Coppock, 20 Nov 2013. The guide is a live document and subject to updating by EGAP members at any time. Coppock is not responsible for subsequent edits to this guide<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Reproduced from <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>, page 93<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>For an additional online power visualization tool, see Kristoffer Magnusson’s <a href="http://rpsychologist.com/d3/NHST/">R Psychologist blog</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Reproduced from <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>, page 93<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>For an additional online power visualization tool, see Kristoffer Magnusson’s <a href="http://rpsychologist.com/d3/NHST/">R Psychologist blog</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
