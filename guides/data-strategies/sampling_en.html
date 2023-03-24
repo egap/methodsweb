@@ -387,10 +387,10 @@ S_5 &amp; = \{A,B,D,F\} &amp; S_{10} &amp; = \{A,D,E,F\} &amp; S_{15} &amp;  = \
 </div>
 </div>
 </div>
-<p>The first panel in Figure @ref(fig:samplingdistributions) plots the distribution of the true average effect of our treatment across the 15 possible samples of four units that we may draw. In constructing this distribution, we presume that we can observe <em>both</em> potential outcomes among the four randomly sampled units. We thus suppress uncertainty that comes from the process of random assignment and focus on sampling uncertainty alone. Since we draw our samples randomly, the distribution of SATEs is centered on the true PATE of <span class="math inline">\(-3\)</span>. Among any given sample, however, the average effect of the treatment may be larger or smaller than the PATE.</p>
+<p>The first panel in the figure above plots the distribution of the true average effect of our treatment across the 15 possible samples of four units that we may draw. In constructing this distribution, we presume that we can observe <em>both</em> potential outcomes among the four randomly sampled units. We thus suppress uncertainty that comes from the process of random assignment and focus on sampling uncertainty alone. Since we draw our samples randomly, the distribution of SATEs is centered on the true PATE of <span class="math inline">\(-3\)</span>. Among any given sample, however, the average effect of the treatment may be larger or smaller than the PATE.</p>
 <p>The second panel of the figure considers one realized sample of four units. There are six possible ways of randomly assigning two out of four units to treatment. For the particular sample considered in panel 2, these six possible random assignments yield the shown distribution of possible treatment effect estimates. In constructing this distribution, we have ignored sampling uncertainty and focused solely on uncertainty that comes from randomization. Since we randomly assign units to treatment and control, the distribution is centered on the true average effect of the treatment <em>in this sample</em>. Yet, this SATE differs from the PATE.</p>
 <p>Since there are 15 possible samples and six ways of randomly assigning treatment within each sample, there are <span class="math inline">\(15 \times 6 = 90\)</span> possible estimates that may result in our hypothetical study. Panel 3 of the figure plots the distribution of all possible effect estimates, taking into account both uncertainty from sampling and from random assignment.</p>
-<p>If we would like to make inferences to population quantities, our uncertainty estimates should reflect both kinds of uncertainty. If we use permutation-based randomization inference to calculate <span class="math inline">\(p\)</span>-values to test sharp null hypotheses, for example, we only consider variability that stems from the random assignment of units to treatment and not from the sampling of units itself. If we use a bootstrap-based random sampling inference, we will tend to ignore the uncertainty arising from random assignment. One could combine <em>both</em> bootstrap re-sampling and randomization-justified permutations to reflect the two sources of uncertainty, although this might be computationaly complex and time consuming. Alternatively, the standard Neyman estimator of the variance of the difference-in-means estimator produces standard errors that are conservative if we presume that all uncertainty comes from random assignment. These standard errors will provide unbiased variance estimates if we can conceive of the experimental subject pool as a random sample from a population that is infinite. This assumption seems plausible when the experimental subject pool is a random sample that is small relative to the population. Where the size of the experimental sample is large relative to the population, Neyman standard errors will be conservative as well. See <span class="citation" data-cites="aronow2014sharp">Aronow et al. (<a href="#ref-aronow2014sharp" role="doc-biblioref">2014</a>)</span> and <span class="citation" data-cites="abadie2020sampling">Abadie et al. (<a href="#ref-abadie2020sampling" role="doc-biblioref">2020</a>)</span> for more on how to obtain unbiased variance estimates when sampling from a finite population.</p>
+<p>If we would like to make inferences to population quantities, our uncertainty estimates should reflect both kinds of uncertainty. If we use permutation-based randomization inference to calculate <span class="math inline">\(p\)</span>-values to test sharp null hypotheses, for example, we only consider variability that stems from the random assignment of units to treatment and not from the sampling of units itself. If we use a bootstrap-based random sampling inference, we will tend to ignore the uncertainty arising from random assignment. One could combine <em>both</em> bootstrap re-sampling and randomization-justified permutations to reflect the two sources of uncertainty, although this might be computationaly complex and time consuming. Alternatively, the standard Neyman estimator of the variance of the difference-in-means estimator produces standard errors that are conservative if we presume that all uncertainty comes from random assignment. These standard errors will provide unbiased variance estimates if we can conceive of the experimental subject pool as a random sample from a population that is infinite. This assumption seems plausible when the experimental subject pool is a random sample that is small relative to the population. Where the size of the experimental sample is large relative to the population, Neyman standard errors will be conservative as well. See <span class="citation" data-cites="aronow2014sharp">Aronow, Green, and Lee (<a href="#ref-aronow2014sharp" role="doc-biblioref">2014</a>)</span> and <span class="citation" data-cites="abadie2020sampling">Abadie et al. (<a href="#ref-abadie2020sampling" role="doc-biblioref">2020</a>)</span> for more on how to obtain unbiased variance estimates when sampling from a finite population.</p>
 </section>
 <section id="how-can-sampling-help-with-problems-of-non-response" class="level1">
 <h1>8. How can sampling help with problems of non-response?</h1>
@@ -423,34 +423,34 @@ S_5 &amp; = \{A,B,D,F\} &amp; S_{10} &amp; = \{A,D,E,F\} &amp; S_{15} &amp;  = \
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-abadie2017should" class="csl-entry" role="doc-biblioentry">
-Abadie, Alberto, Susan Athey, Guido W Imbens, and Jeffrey Wooldridge. 2017. <span>“When Should You Adjust Standard Errors for Clustering?”</span> Working Paper 24003. Cambridge, MA: National Bureau of Economic Research.
+Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey Wooldridge. 2017. <span>“When Should You Adjust Standard Errors for Clustering?”</span> Working Paper 24003. Cambridge, MA: National Bureau of Economic Research.
 </div>
 <div id="ref-abadie2020sampling" class="csl-entry" role="doc-biblioentry">
-Abadie, Alberto, Susan Athey, Guido W Imbens, and Jeffrey M Wooldridge. 2020. <span>“Sampling-Based Versus Design-Based Uncertainty in Regression Analysis.”</span> <em>Econometrica</em> 88 (1): 265–96.
+Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey M Wooldridge. 2020. <span>“Sampling-Based Versus Design-Based Uncertainty in Regression Analysis.”</span> <em>Econometrica</em> 88 (1): 265–96.
 </div>
 <div id="ref-aronow2014sharp" class="csl-entry" role="doc-biblioentry">
-Aronow, Peter M, Donald P Green, Donald KK Lee, et al. 2014. <span>“Sharp Bounds on the Variance in Randomized Experiments.”</span> <em>The Annals of Statistics</em> 42 (3): 850–71.
+Aronow, Peter M., Donald P. Green, and Donald K. K. Lee. 2014. <span>“Sharp Bounds on the Variance in Randomized Experiments.”</span> <em>The Annals of Statistics</em> 42 (3): 850–71.
 </div>
 <div id="ref-coppock2017combining" class="csl-entry" role="doc-biblioentry">
-Coppock, Alexander, Alan S Gerber, Donald P Green, and Holger L Kern. 2017. <span>“Combining Double Sampling and Bounds to Address Nonignorable Missing Outcomes in Randomized Experiments.”</span> <em>Political Analysis</em> 25 (2): 188–206.
+Coppock, Alexander, Alan S. Gerber, Donald P. Green, and Holger L. Kern. 2017. <span>“Combining Double Sampling and Bounds to Address Nonignorable Missing Outcomes in Randomized Experiments.”</span> <em>Political Analysis</em> 25 (2): 188–206.
 </div>
 <div id="ref-gerber2012field" class="csl-entry" role="doc-biblioentry">
-Gerber, Alan S, and Donald P Green. 2012. <em><span class="nocase">Field experiments: Design, analysis, and interpretation</span></em>. WW Norton.
+Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. WW Norton.
 </div>
 <div id="ref-gile2018methods" class="csl-entry" role="doc-biblioentry">
-Gile, Krista J, Isabelle S Beaudry, Mark S Handcock, and Miles Q Ott. 2018. <span>“Methods for Inference from Respondent-Driven Sampling Data.”</span> <em>Annual Review of Statistics and Its Application</em> 5: 65–93.
+Gile, Krista J., Isabelle S. Beaudry, Mark S. Handcock, and Miles Q. Ott. 2018. <span>“Methods for Inference from Respondent-Driven Sampling Data.”</span> <em>Annual Review of Statistics and Its Application</em> 5: 65–93.
 </div>
 <div id="ref-gile20107" class="csl-entry" role="doc-biblioentry">
-Gile, Krista J, and Mark S Handcock. 2010. <span>“Respondent-Driven Sampling: An Assessment of Current Methodology.”</span> <em>Sociological Methodology</em> 40 (1): 285–327.
+Gile, Krista J., and Mark S. Handcock. 2010. <span>“Respondent-Driven Sampling: An Assessment of Current Methodology.”</span> <em>Sociological Methodology</em> 40 (1): 285–327.
 </div>
 <div id="ref-green2020countering" class="csl-entry" role="doc-biblioentry">
-Green, Donald P, Anna M Wilke, and Jasper Cooper. 2020. <span>“Countering Violence Against Women by Encouraging Disclosure: A Mass Media Experiment in Rural Uganda.”</span> <em>Comparative Political Studies</em> 53 (14): 2283–2320.
+Green, Donald P., Anna M. Wilke, and Jasper Cooper. 2020. <span>“Countering Violence Against Women by Encouraging Disclosure: A Mass Media Experiment in Rural Uganda.”</span> <em>Comparative Political Studies</em> 53 (14): 2283–2320.
 </div>
 <div id="ref-groves2011survey" class="csl-entry" role="doc-biblioentry">
-Groves, Robert M, Floyd J Fowler Jr, Mick P Couper, James M Lepkowski, Eleanor Singer, and Roger Tourangeau. 2009. <em>Survey Methodology</em>. 2nd ed. Hoboken, NJ: John Wiley &amp; Sons.
+Groves, Robert M., Floyd J. Fowler Jr., Mick P. Couper, James M. Lepkowski, Eleanor Singer, and Roger Tourangeau. 2009. <em>Survey Methodology</em>. 2nd ed. Hoboken, NJ: John Wiley &amp; Sons.
 </div>
 <div id="ref-hansen1946problem" class="csl-entry" role="doc-biblioentry">
-Hansen, Morris H, and William N Hurwitz. 1946. <span>“The Problem of Non-Response in Sample Surveys.”</span> <em>Journal of the American Statistical Association</em> 41 (236): 517–29.
+Hansen, Morris H., and William N. Hurwitz. 1946. <span>“The Problem of Non-Response in Sample Surveys.”</span> <em>Journal of the American Statistical Association</em> 41 (236): 517–29.
 </div>
 <div id="ref-kish1965survey" class="csl-entry" role="doc-biblioentry">
 Kish, Leslie. 1965. <em>Survey Sampling</em>. New York: John Wiley &amp; Sons.
@@ -459,7 +459,7 @@ Kish, Leslie. 1965. <em>Survey Sampling</em>. New York: John Wiley &amp; Sons.
 Lohr, Sharon L. 2009. <em>Sampling: Design and Analysis</em>. 2nd ed. Boston: Brooks/Cole Cengage Learning.
 </div>
 <div id="ref-miratrix2018worth" class="csl-entry" role="doc-biblioentry">
-Miratrix, Luke W, Jasjeet S Sekhon, Alexander G Theodoridis, and Luis F Campos. 2018. <span>“Worth Weighting? How to Think about and Use Weights in Survey Experiments.”</span> <em>Political Analysis</em> 26 (3): 275–91.
+Miratrix, Luke W., Jasjeet S. Sekhon, Alexander G. Theodoridis, and Luis F. Campos. 2018. <span>“Worth Weighting? How to Think about and Use Weights in Survey Experiments.”</span> <em>Political Analysis</em> 26 (3): 275–91.
 </div>
 <div id="ref-splawa1990application" class="csl-entry" role="doc-biblioentry">
 Neyman, Jerzy. 1990. <span>“On the Application of Probability Theory to Agricultural Experiments. Essay on Principles. Section 9.”</span> <em>Statistical Science</em> 5 (4): 465–72.
@@ -477,7 +477,7 @@ Stoker, L., and J. Bowers. 2002. <span>“<span class="nocase">Designing multi-l
 Tipton, Elizabeth. 2013. <span>“Improving Generalizations from Experiments Using Propensity Score Subclassification: Assumptions, Properties, and Contexts.”</span> <em>Journal of Educational and Behavioral Statistics</em> 38 (3): 239–66.
 </div>
 <div id="ref-tran2015sampling" class="csl-entry" role="doc-biblioentry">
-Tran, Hoang Vu, Linh-Vi N Le, Lisa Grazina Johnston, Patrick Nadol, Anh Van Do, Ha Thi Thanh Tran, and Tuan Anh Nguyen. 2015. <span>“Sampling Males Who Inject Drugs in Haiphong, Vietnam: Comparison of Time-Location and Respondent-Driven Sampling Methods.”</span> <em>Journal of Urban Health</em> 92 (4): 744–57.
+Tran, Hoang Vu, Linh-Vi N. Le, Lisa Grazina Johnston, Patrick Nadol, Anh Van Do, Ha Thi Thanh Tran, and Tuan Anh Nguyen. 2015. <span>“Sampling Males Who Inject Drugs in Haiphong, Vietnam: Comparison of Time-Location and Respondent-Driven Sampling Methods.”</span> <em>Journal of Urban Health</em> 92 (4): 744–57.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
