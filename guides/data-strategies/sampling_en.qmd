@@ -17,8 +17,8 @@ library(kableExtra)
 ```
 
 
-**Abstract**
-
+Abstract
+==
 Researchers are rarely able to collect measurements on all units that make up the target population of a study. Time and budget constraints typically require the selection of a subset of units --- a process called sampling. This guide provides an overview of different ways to sample and how these affect what can be learned from a study. Particular attention is paid to questions about sampling and randomized experiments.
 
 1. What is random sampling?
