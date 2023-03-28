@@ -5,9 +5,8 @@ author:
     url: https://cabs.mdrc.org/team/rekha-balu
 bibliography: null-results.bib
 image: null-results.png
-theme:
-  - simplex
-  - custom.scss
+toc: true
+theme: custom.scss
 ---
 
 Abstract
