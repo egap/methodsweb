@@ -6,7 +6,9 @@ author:
 bibliography: null-results.bib
 image: null-results.png
 toc: true
-theme: custom.scss
+theme:
+  - simplex
+  - custom.scss
 ---
 
 Abstract
