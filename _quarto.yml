@@ -34,9 +34,7 @@ website:
 
 format:
   html:
-    theme:
-      - simplex
-      - custom.scss
+    theme: simplex
     css: styles.css
     linkcolor: blue
     toc: true
