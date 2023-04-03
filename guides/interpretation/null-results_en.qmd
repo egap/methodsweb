@@ -8,9 +8,7 @@ image: null-results.png
 format:
   html:
     toc: true
-    theme:
-      - simplex
-      - custom.scss
+    theme: custom.scss
 ---
 
 Abstract
