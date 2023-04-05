@@ -93,7 +93,7 @@ problem of causal inference. All of these ways involve changing the target of in
 taxes?" we tend to say, "We cannot answer that question directly. However, we can
 answer a related question."
 
-The first approach changes the question from whether information causes a particular person to pay her taxes to whether information causes people to pay their taxes *on average*. [Ten Types of Treatment Effect You Should Know About](https://methods.egap.org/guides/research-questions/effect-types_en.html) describes how a scientist can **estimate average causal effects** in a randomized experiment even though individual causal effects are unobservable. This insight is credited to Jerzy Neyman. Judea
+The first approach changes the question from whether information causes a particular person to pay her taxes to whether information causes people to pay their taxes *on average*. [10 Types of Treatment Effect You Should Know About](https://methods.egap.org/guides/research-questions/effect-types_en.html) describes how a scientist can **estimate average causal effects** in a randomized experiment even though individual causal effects are unobservable. This insight is credited to Jerzy Neyman. Judea
 Pearl's work on estimating the conditional probability distribution of an outcome based on a causal model of that outcome is similar to this idea. Both approaches address the
 fundamental problem of causal inference by changing the question to focus on averages
 or conditional probabilities rather than individuals.
@@ -104,7 +104,7 @@ probability model of treatment assignment $Z_i$ (for example, $Z \sim \text{Bern
 probability model of the two potential outcomes (for example,
 $(y_{i,1},y_{i,0}) \sim \text{Multivariate Normal}(\bbeta \bX, \bSigma)$ with a vector of coefficients $\bbeta$, an $n \times p$ matrix of variables $\bX$ (containing both treatment assignment and other background information) and a $p \times p$ variance-covariance matrix $\Sigma$ describing how all of the columns in $\bX$ relate to one another). The probability models relate treatment, background information, and outcomes to one another. The approach combines these models with data using Bayes' Rule to produce posterior distributions for
 quantities like the individual level treatment effects or average treatment
-effects (see [@imbens2007causal] for more on what they call the Bayesian
+effects (see @imbens2007causal for more on what they call the Bayesian
 Predictive approach to causal inference). So, this predictive approach focuses not on averages but on differences in predicted potential
 outcomes for each person (although mostly these individual predicted differences are summarized using characteristics of the posterior distributions, like the average of the predictions.)
 
@@ -120,7 +120,7 @@ or $y_{i,1}=y_{i,0}+\tau_i$ where $\tau_i=0$ for everyone. However, the answer t
 question has to be something like "This research design and dataset provide a
 lot of information about this model or idea or hypothesis." or, as above,
 "This research design is not consistent with that claim." (See
-@rosenbaum2002(Chapter 2), @rosenbaum2010(chapter 2), and
+@rosenbaum2002[Chapter 2], @rosenbaum2010[chapter 2], and
 @rosenbaum2017observation, for more details about this approach.)
 
 # 3. The Null Hypothesis of No Effects is a precise statement about potential outcomes
@@ -191,10 +191,10 @@ can link the unobserved counterfactual outcomes to an observed outcome ($Y_i$)
 using treatment assignment ($Z_i$) like so:
 
 \begin{equation}
-Y_i = Z_i y_{i,1} + (1 - Z_i) y_{i,0} (\#eq:identity)
+Y_i = Z_i y_{i,1} + (1 - Z_i) y_{i,0}
 \end{equation}
 
-\@ref(eq:identity) says that our observed outcome, $Y_i$ (here, amount of
+This equation says that our observed outcome, $Y_i$ (here, amount of
 taxes paid by person $i$), is $y_{i,1}$ when the person is assigned to the
 treatment group ($Z_i=1$), and $y_{i,0}$ when the person is assigned to the
 control group.
@@ -205,9 +205,8 @@ payments of every single person such that  $H_0: y_{i,1} = y_{i,0} + \tau_i$ whe
 $\tau_i=5$ for all $i$.
 
 Let us entertain this model for the sake of argument. What would this
-hypothesis imply for what we observe? We have the equation relating observed
-to unobserved in \@ref(eq:identity) so, this model or hypothesis would
-imply that:
+hypothesis imply for what we observe? The above equation relates observed
+to unobserved so, this model or hypothesis would imply that:
 
 $$ \begin{aligned}  Y_i & = Z_i ( y_{i,0} + \tau_i ) + ( 1 - Z_i) y_{i,0} \\
 & = Z_i  y_{i,0} + Z_i \tau_i + y_{i,0} - Z_i y_{i,0} \\
