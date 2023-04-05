@@ -477,7 +477,7 @@ Site-level covariates are not useful in these models because there are already s
 
 To calculate power for multisite trials, users can use the PowerUpR! package (@Dong2013).
 The package also calculates sample size requirements and minimum detectable effect size.
-The newly-developed PUMP package (@Hunter2022) extends the functionality of PowerUpR! to experiments with multiple outcomes, in addition to providing user-friendly tools for exploring the sensitivity of power to different assumptions.
+The newly-developed PUMP package (from @Hunter2022) extends the functionality of PowerUpR! to experiments with multiple outcomes, in addition to providing user-friendly tools for exploring the sensitivity of power to different assumptions.
 
 
 # 10. Takeaway advice for researchers on multisite trials

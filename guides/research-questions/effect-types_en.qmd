@@ -279,7 +279,7 @@ plot(summary(QTE),parm=2,main="",ylab="QTE",xlab="Quantile",mar = c(5.1, 4.1, 2.
 
 8. Mediation Effects
 ==
-Sometimes we want to describe not just the magnitude and significance of an observed causal effect, but also the mechanism (or mechanisms) that produced it. Did our intervention raise turnout in the treatment group, in part, by increasing these subjects’ sense of political efficacy? If so, how much of that total effect can be attributed to the mediated effects of our treatment on efficacy and efficacy on turnout?
+Sometimes we want to describe not just the magnitude and significance of an observed causal effect, but also the [mechanism](https://methods.egap.org/guides/research-questions/mechanisms_en.html) (or mechanisms) that produced it. Did our intervention raise turnout in the treatment group, in part, by increasing these subjects’ sense of political efficacy? If so, how much of that total effect can be attributed to the mediated effects of our treatment on efficacy and efficacy on turnout?
 
 @baron_kenny_1986 offer a general framework for thinking about mediation by decomposing the total effect of treatment into its indirect effect on a mediator that then effects the outcome, called an average causal mediation effect (ACME), and the remaining average direct effect (ADE) of the treatment. Unbiased estimation of these effects, however, requires a set of strong assumptions about the relationship between treatment, mediators, outcomes, and potential confounders, collectively called sequential ignorability (@imai_keele_yamamoto_2010, @bullock_green_ha_2010).[^19]
 
