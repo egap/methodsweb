@@ -633,8 +633,8 @@ to 0.
 
 Two other approaches work to alleviate this problem of bias from the correlation
 of cluster size and treatment effect: (1) condition on cluster size directly and
-(2) use the Horvitz-Thompson estimator. This [DeclareDesign Blog
-Post](https://declaredesign.org/blog/bias-cluster-randomized-trials.html)
+(2) use the Horvitz-Thompson estimator. This [DeclareDesign blog
+post](https://declaredesign.org/blog/bias-cluster-randomized-trials.html)
 discusses both options. Here we demonstrate a pairing approach to conditioning
 on cluster-size given the example data that we generated above.
 
@@ -749,8 +749,8 @@ randomization, whereby, for example, the within-pair similarity of
 observed covariates is maximized. @imai2009essential
 recommend a mixture model for post-randomization pair-matched
 estimation, and spell out some of the assumptions that must be
-made for such estimates to be valid. And this  [DeclareDesign Blog
-Post](https://declaredesign.org/blog/bias-cluster-randomized-trials.html)
+made for such estimates to be valid. And this  [DeclareDesign blog
+post](https://declaredesign.org/blog/bias-cluster-randomized-trials.html)
 demonstrates conditioning on cluster-size without strict pairing.
 
 
