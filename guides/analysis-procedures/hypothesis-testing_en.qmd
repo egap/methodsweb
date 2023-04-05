@@ -245,7 +245,7 @@ summarizes the relationship between treatment and observed outcomes using a
 single number. In general, we would like our test statistics to take on larger
 values the larger the treatment effect. The code below, for example, shows are two such test
 statistics using an example experiment with 10 units randomized into two
-groups (you can press the "CODE" button to see the R code).
+groups.
 
 ```{r setupdata, results='hide', echo=TRUE}
 library(randomizr)
@@ -296,7 +296,7 @@ second is the mean difference of the rank-transformed outcomes (`meanrankTZ`),
 which returns a value of `r signif(observedMeanRankTZ,2)`.
 One could also use versions of these test statistics standardized by their estimated
 standard error (see @chung2013exact for an argument in favor of this test
-statistic). To test the sharp null hypothesis of no effects, one may choose almost any test statistic such that the values of that function increase as the difference between treated and control outcomes increase (see @rosenbaum2002, Chapter 2, for a discussion of "effect increasing" test statistics).
+statistic). To test the sharp null hypothesis of no effects, one may choose almost any test statistic such that the values of that function increase as the difference between treated and control outcomes increase (see @rosenbaum2002[Chapter 2], for a discussion of "effect increasing" test statistics).
 
 Test of the weak null of no effects use the differences of means (perhaps standardized or studentized) as the test statistic.
 
@@ -437,9 +437,7 @@ effect or a positive effect. Then we might make two hypothesis tests --- one
 calculating the one-sided upper $p$-value and the other calculating the
 one-sided lower $p$-value. Now, if we did this we would be calculating two
 $p$-values and, if we made a standard practice of this, we would run the risk
-of misleading ourselves. After all, recall from the [10 things about multiple
-comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html)
-that even if there really is no effect, 100 independent and well operating
+of misleading ourselves. After all, recall from [10 Things You Need to Know About Multiple Comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html) that even if there really is no effect, 100 independent and well operating
 tests of the null of no effects will yield no more than 5 $p$-values less than
 .05. One easy solution to the challenge of summarizing extremity of
 a experiment in either direction rather than just focusing on greater-than or
@@ -448,7 +446,7 @@ standard $p$-value produced by most canned software such as `lm()` and
 `t.test()` and `wilcox.test()` in R. The basic idea is to calculate both
 $p$-values and then multiply the smaller $p$-value by 2. (The idea here is
 that you are penalizing  yourself for making  two  tests -- see
-@rosenbaum2010design, Chap 2 and @cox1977role for  more on the idea of
+@rosenbaum2010design[Chapter 2] and @cox1977role for  more on the idea of
 multiplying the smaller p-value by two.)
 
 ```{r twosidedp}
@@ -638,8 +636,7 @@ noise).
 
 ## How to learn about errors of missing the signal in the noise?
 
-The [10 Things you need to know about statistical
-power](https://methods.egap.org/guides/assessing-designs/power_en.html)
+The [10 Things You Need to Know About Statistical Power](https://methods.egap.org/guides/assessing-designs/power_en.html)
 guide explains how we want hypotheses to reject false nulls (i.e. detect
 signal from noise). When we think about the power of statistical tests, we
 need to consider the **alternative hypothesis**. However, as we have shown
@@ -724,8 +721,7 @@ testing:
 
  - Even if a given testing procedure controls the false positive rate for
    a single test, it may not control the rate for a group of multiple tests.
-   See [10 Things you need to know about multiple
-   comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html)
+   See [10 Things You Need to Know About Multiple Comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html)
    for a guide to the approaches to controlling such rejection-rates in
    multiple tests.
  - A $100\alpha$\% confidence interval can be defined as the range of
@@ -735,15 +731,15 @@ testing:
    hypothesis tests**. This  means that criticisms of $p$-values are also
    criticisms of confidence intervals.
  - A point estimate based on hypothesis testing is called a Hodges-Lehmann
-   point estimate. (@rosenbaum1993hlp,@hodges1963elb)
+   point estimate. (@rosenbaum1993hlp, @hodges1963elb)
  - A set of hypothesis tests can be combined into one single hypothesis test.
    For example, you can test the hypothesis of an effect of  size 1 on
    outcome 1, an effect  of size 0  on outcome 2 and an effect of -10 on
-   outcome 3. (@hansen:bowers:2008,@caughey2017nonparametric)
+   outcome 3. (@hansen:bowers:2008, @caughey2017nonparametric)
  - In equivalence testing, one can hypothesize that two test-statistics are
    equivalent (i.e. the treatment group is the same as the control group)
    rather than only about one test-statistic (the difference between the two
-   groups is zero) {@hartman2018equivalence}
+   groups is zero) (@hartman2018equivalence)
  - Since a hypothesis test is a model of potential outcomes, one can use
    hypothesis testing to learn about complex models, such as models of
    spillover and propagation of treatment effects across networks
