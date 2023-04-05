@@ -70,7 +70,7 @@ and half are assigned to the active treatment (an offer of additional math pract
 Because of the direct correspondence between multisite trials and blocked experiments, statistical properties of blocked experiments also translate directly to multisite experiments.
 The main difference between a traditional blocked RCT and a multisite experiment is that in many blocked RCTs, the researcher is able to choose the blocks.
 For example, in a clinical trial, a researcher may decide to block based on gender or specific age categories.
-Blocking can help increase statistical power overall or ensure statistical power to assess effects within subgroups (such as those defined by time of entering the study, or defined by other important covariates that might predict the outcome) [@moore2012multivariate;@moore2013;@bowers2011mem].
+Blocking can help increase statistical power overall or ensure statistical power to assess effects within subgroups (such as those defined by time of entering the study, or defined by other important covariates that might predict the outcome) (@moore2012multivariate, @moore2013, @bowers2011mem).
 @Pashley2021 makes the distinction between **fixed blocks**, where the number and covariate distribution of blocks is chosen by the researcher, and **structural blocks**, where natural groupings determine the number of blocks and their covariate distributions.
 Multisite experiments have structural blocks, such as districts, schools, or classrooms.
 The type of block can impact variance estimation, as shown in @Pashley2021 and @Pashley2022.
@@ -97,7 +97,7 @@ between sites do not matter in this design.
 
 ## Why choose a multisite or block-randomized trial design?
 
-In most contexts, blocking reduces estimation error over an unblocked (completely randomized) experiment [@moore2012multivariate; @gerber2012field].
+In most contexts, blocking reduces estimation error over an unblocked (completely randomized) experiment (@moore2012multivariate, @gerber2012field).
 Thus, blocked experiments generally offer higher statistical power than unblocked experiments.
 Blocking is most helpful in increasing precision and statistical power in the setting where there is variation in the outcome, and where the blocks are related to this variation.
 
@@ -114,7 +114,7 @@ This blocking within site would allow comparisons of the treatment effects on th
 Often, in a multisite trial with treatment administered by site administrators (like principals of schools), an analyst has no choice but to randomize within site.
 In other studies, the construction and choice of blocking criteria is a choice.
 @Pashley2022 shows that blocking is generally beneficial, but also explores settings in which it may be harmful.
-Blocking does result in fewer degrees of freedom, but in practice this reduction is rarely an issue, unless an experiment is very small [@Imai2008].
+Blocking does result in fewer degrees of freedom, but in practice this reduction is rarely an issue, unless an experiment is very small (@Imai2008).
 Any use of blocking requires that an analyst keep track of the blocks and also that an analyst reflect the blocks in subsequent analysis: in many circumstances estimating average treatment effects from a block-randomized experiment while ignoring the blocks will yield biased estimates of the underlying targeted estimands (see ["The trouble with 'controlling for blocks'"](https://declaredesign.org/blog/biased-fixed-effects.html)  and ["Estimating Average Treatment Effects in Block Randomized Experiments"](https://egap.org/resource/sd-block-rand) for demonstrations of bias arising from different approaches to weighting by blocks).
 
 # 3. Analysis can either target the population in the experiment, or a broader population.
@@ -180,7 +180,7 @@ Linear regression can be used as a tool in both design-based approaches (to calc
 and model-based approaches (to estimate the parameters of a Normal data-generating process).
 In general, this guide considers linear regression as used in a model-based approach.]
 In model-based approaches, the researcher estimates the parameter in a likelihood function that is chosen to represent the natural stochastic process that generates the outcomes in the study.
-See @rubin:1990b for more discussion of the differences between design- and model-based approaches to statistical inference.
+See @rubin1990b for more discussion of the differences between design- and model-based approaches to statistical inference.
 
 The different categories of estimator differ both philosophically and practically.
 Each category assumes a different source of randomness, and thus has a different statistical justification.
@@ -188,7 +188,7 @@ Each category assumes a different source of randomness, and thus has a different
 **Design-based** estimators specifically target the four estimands outlined above.
 The main source of uncertainty is assumed to be the treatment assignment: which units happened to be assigned to the active treatment, and which happened to be assigned to the control treatment.
 This assumption is the reason for their name; the uncertainty in the estimates is by design, from the purposeful randomization of units.
-Using design-based estimators is also sometimes called Neymanian inference, as the estimators and properties were first introduced by Neyman (@Neyman1923).
+Using design-based estimators is also sometimes called Neymanian inference, as the estimators and properties were first introduced by @Neyman1923.
 Design-based estimators can also incorporate uncertainty from sampling when using a super population framework.
 
 **Linear regression** estimators are the most familiar to many researchers.
@@ -209,7 +209,7 @@ Multilevel models are also called mixed effects models or mixed models, where a 
 For a more comprehensive look at multilevel models, see @Raudenbush2015.
 
 Let's examine a few popular models among linear regression and multilevel models in more detail.
-Note that these models as presented do not include covariates, but covariates can easily be incorporated to increase power if the analyst is willing to increase bias by a small amount in exchange (often a very small amount if the experiment is large enough) [@lin2013agnostic].
+Note that these models as presented do not include covariates, but covariates can easily be incorporated to increase power if the analyst is willing to increase bias by a small amount in exchange (often a very small amount if the experiment is large enough) (see @lin2013agnostic).
 
 ## Common linear regression models
 
@@ -360,8 +360,8 @@ For linear regression estimators, the traditional way to calculate standard erro
 We term this a model-based standard error approach, as they rely on the assumed model of $iid$ standard errors.
 Alternatively, heteroscedastically robust standard errors (Huber-White) or cluster robust standard errors relax this $iid$
 assumption (see @Weiss2019 and @Richburg-Hayes2008).
-Robust standard errors fall into a design-based approach instead of a model-based approach [@lin2013agnostic; Chapter 3 of @gerber2012field].
-Huber-White standard errors correspond to the finite population framework, while the asymptotic theory justifying traditional cluster robust standard errors corresponds to the super population framework in regards the clusters. In a [cluster-randomized trial](https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html), treatment is assigned to clusters, so there is also a finite-population-of-clusters perspective on cluster robust standard errors that is approximated in what are commonly known as CR2 standard errors [@Pustejovsky2018].
+Robust standard errors fall into a design-based approach instead of a model-based approach (see @lin2013agnostic, Chapter 3 of @gerber2012field).
+Huber-White standard errors correspond to the finite population framework, while the asymptotic theory justifying traditional cluster robust standard errors corresponds to the super population framework in regards the clusters. In a [cluster-randomized trial](https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html), treatment is assigned to clusters, so there is also a finite-population-of-clusters perspective on cluster robust standard errors that is approximated in what are commonly known as CR2 standard errors (see @Pustejovsky2018).
 
 To briefly summarize the correspondence between standard error estimators and the assumed population, first consider the motivation behind robust standard error estimators.
 In the FE model, treatment effects are assumed to be constant across sites.
@@ -376,7 +376,7 @@ This strategy generally results in larger standard errors.
 For more discussion of cluster robust standard errors, see @Abadie2017 and @Pustejovsky2018.
 
 Finally, the details for standard error estimation for multilevel modeling are outside the scope of this guide.
-Generally, maximum likelihood theory is applied, which "requires a complete model for both the random effects and the residual variances" (@Miratrix2020).
+Generally, maximum likelihood theory is applied, which "requires a complete model for both the random effects and the residual variances" (see @Miratrix2020).
 FIRC and RIRC models naturally produce standard errors under the super population framework, while RICC essentially takes a
 finite population framework because the treatment impacts are not assumed to be drawn from a super population, as they are assumed to be consistent across sites.
 
