@@ -51,9 +51,9 @@ There are three big categories of things that determine how highly powered your 
 ==
 Statisticians have derived formulas for calculating the power of many experimental designs. They can be useful as a back of the envelope calculation of how large a sample you’ll need. Be careful, though, because the assumptions behind the formulas can sometimes be obscure, and worse, they can be wrong.
 
-Here is a common formula used to calculate power[^2]
+Here is a common formula used to calculate power:[^2]
 
-[^2]:  Reproduced from @gerber_green_2012, page 93
+[^2]:  Reproduced from @gerber_green_2012, page 93.
 
 $$\beta = \Phi \left(\frac{|\mu_t-\mu_c|\sqrt{N}}{2\sigma}-\Phi^{-1} \left(1-\frac{\alpha}{2}\right) \right)$$
 
