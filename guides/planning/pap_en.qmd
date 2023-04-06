@@ -66,7 +66,7 @@ There are two types of hypotheses to consider including in your PAP: confirmator
 
 Some people prefer to list few hypotheses and others prefer to list many.  As a rule, you should include as many hypotheses as relate to your theory or intervention.[^FisherQuote]  This may be a single outcome, but if your experimental intervention or theory makes predictions about 8 outcomes, list hypotheses for those 8 outcomes.  If your experimental intervention or theory postulates specific mechanisms through which the explanatory variable affects an outcome or outcomes, those mechanisms should be clear in the hypothesis.
 
-[^FisherQuote]: As R.A. Fisher said and has often been requoted, "Make your theories elaborate...when constructing a causal hypothesis one should envisage as many different consequences of the truth as possible," (Cochran, 1965; cited in @rosenbaum2010, pp. 327).  Though this was said about determining causation in observational studies, the logic also applies to experimental studies.
+[^FisherQuote]: As R.A. Fisher said and has often been requoted, "Make your theories elaborate...when constructing a causal hypothesis one should envisage as many different consequences of the truth as possible," (Cochran (1965); cited in @rosenbaum2010, pp. 327).  Though this was said about determining causation in observational studies, the logic also applies to experimental studies.
 
 Note that with more than one hypothesis you will need to specify a procedure for handling multiple hypotheses in the inference criteria section of your PAP, either by correcting for multiple tests or by aggregating all hypotheses into an index or an omnibus test.^[For an example of an omnibus test, see @caughey2017npc.]  If using an omnibus test, you could list all outcomes under one hypothesis.  See our section about [inference criteria](#infcrit) for more about correcting for multiple tests.
 
@@ -123,7 +123,7 @@ where $i$ is the individual in neighborhood $j$, $Z$ is the treatment indicator,
 
 Inference criteria are decision rules for determining the detectability of effects (i.e. if an explanatory variable really affects an outcome variable).  Establishing inference criteria requires making several choices about when to believe the estimated effect is "statistically significantly different" from the null hypothesis.  We recommend clearly specifying and justifying answers to the following questions:
 
-1. What kind of standard errors will you use?  Why are you using this kind of standard errors?^[For example, you could calculate standard errors and $p$-values using permutation-based [randomization inference](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html).  Or you could closely approximate standard errors and $p$-values using analytic methods [@samii2012]]
+1. What kind of standard errors will you use?  Why are you using this kind of standard errors?^[For example, you could calculate standard errors and $p$-values using permutation-based [randomization inference](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html).  Or you could closely approximate standard errors and $p$-values using analytic methods as in @samii2012.]
 2. Do you plan to do a one-tailed or two-tailed test?  
 3. At what $\alpha$ level will you reject the null hypothesis from a $p$-value?  
 4. Do you have multiple hypotheses?  If so, what procedure will you use to adjust for [multiple comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html)?  
