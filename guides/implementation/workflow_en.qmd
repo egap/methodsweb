@@ -91,7 +91,7 @@ Science involves learning from the work of others in addition to remembering abo
 
 Data should be stored in places like a Dataverse or the ICPSR or other places with a plan for daily backups band also a plan for data to be preserved and made available for many years into the future (in contrast to your favorite homemade website).
 
-[^8]: See @king_1995.
+[^7]: See @king_1995.
 
 9.	To minimize error, build testing into the code
 ==
