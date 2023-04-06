@@ -55,17 +55,18 @@ Similarly, for **prediction**, OLS regression gives the best linear predictor in
 
 4. What are the standard errors, t-statistics, p-values, and degrees of freedom?
 ==
-__Standard Error__
+
+## Standard Error
 
 The standard error (SE) is an estimate of the standard deviation of an estimated coefficient.^[Strictly speaking, the **true SE** is the standard deviation of the estimated coefficient, while what we see in the regression table is the **estimated SE**. However, in common parlance, people often say "standard error" when they mean the estimated SE, and we'll do the same.] It is often shown in parentheses next to or below the coefficient in the regression table. It can be thought of as a measure of the precision with which the regression coefficient is estimated. The smaller the SE, the more precise is our estimate of the coefficient. SEs are of interest not so much for their own sake as for enabling the construction of confidence intervals (CIs) and significance tests. An often-used rule of thumb is that when the sample is reasonably large, the margin of error for a 95% CI is approximately twice the SE. However, explicit CI calculations are preferable. We discuss CIs in more detail in the next section.
 
 The table above from @asunka_et_al_2013 shows "robust" standard errors, which have attractive properties in large samples because they remain valid even when some of the regression model assumptions are violated. The key assumptions that "conventional" or "classical" SEs make and robust SEs relax are that (1) the expected value of Y, given X, is a linear function of X, and (2) the variance of Y does not depend on X (conditional homoskedasticity). Robust SEs do assume (unless they are "clustered") either that the observations are statistically independent or that the treatment was randomly assigned to the units of observation (the polling stations in this example).^[Robust SEs are also known as **Huber--White** or **sandwich SEs**. On the properties of robust SEs, see: @angrist_pischke_2009, section 3.1.3 and chapter 8; @imbens_kolesar_2016; @reichardt_gollob_1999; @samii_aronow_2012; @lin_2013; @abadie_et_al_2014.]
 
-__t-Statistic__
+## t-Statistic
 
 The t-statistic (in square brackets in the example table) is the ratio of the estimated coefficient to its standard error. T-statistics usually appear in the output of regression procedures but are often omitted from published regression tables, as they're just a tool for constructing confidence intervals and significance tests.
 
-__p-Values and Significance Tests__
+## p-Values and Significance Tests
 
 In the table above, if an estimated coefficient (in bold) is marked with one or more asterisks,^[The use of asterisks to flag statistically significant results is common but not universal. Our intention here is merely to explain what the asterisks mean, not to recommend that they should or should not be used.] that means the estimate is "statistically significant" at the 1%, 5%, or 10% level---in other words, the p-value (from a [two-sided test](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests)^[Two-sided tests are the default in most software packages and in some research fields, so when tables do not explicitly note whether the p-values associated with regression coefficients are one- or two-sided, they are usually two-sided. @olken_2015 (pp. 67, 70) notes that since "convention typically dictates two-sided hypothesis tests," researchers who prefer one-sided tests should commit to that choice in a pre-analysis plan so "they cannot be justly accused of cherry-picking the test after the fact." @greenland_et_al_2016 (p. 342) argue against the view that one should always use two-sided p-values, but write, "Nonetheless, because two-sided _P_ values are the usual default, it will be important to note when and why a one-sided _P_ value is being used instead."] of the null hypothesis that the true coefficient is zero) is below 0.01, 0.05, or 0.1.
 
@@ -75,7 +76,7 @@ In the table, the only estimated coefficient that is statistically significant a
 
 It is easy to misinterpret p-values and significance tests. Many scholars believe that although significance tests can be useful as a restraining device, they are often overemphasized. Helpful discussions include the American Statistical Association's 2016 [statement on p-values](http://doi.org/10.1080/00031305.2016.1154108); the invited comments on the statement, especially @greenland_et_al_2016; and short posts by [David Aldous](https://web.archive.org/web/20150908143632/http://www.stat.berkeley.edu/~aldous/157/Books/stat.html) and [Andrew Gelman](http://andrewgelman.com/2015/03/02/what-hypothesis-testing-is-all-about-hint-its-not-what-you-think/).
 
-__F-Test and Degrees of Freedom__
+## F-Test and Degrees of Freedom
 
 The bottom section of the table includes a row with the heading "F(5, 59)", the value 1.43 (the F-statistic), and the p-value .223. This [F-test](https://en.wikipedia.org/wiki/F-test#Regression_problems) is a test of the null hypothesis that the true values of the regression coefficients, excluding the intercept, are all zero. In other words, the null hypothesis is that none of the explanatory variables actually help predict the outcome. In this example, the p-value associated with the F-statistic is 0.223, so the null hypothesis is not rejected at any of the conventional significance levels. However, since our main interest is in the effects of observers, the F-test isn't of much interest in this application. (We already knew that the estimated coefficient on "Observer Present" is not statistically significant, as noted above.)
 
