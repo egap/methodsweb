@@ -272,7 +272,7 @@ div.csl-indent {
 <section id="key-formulas-for-calculating-power" class="level1">
 <h1>4. Key Formulas for Calculating Power</h1>
 <p>Statisticians have derived formulas for calculating the power of many experimental designs. They can be useful as a back of the envelope calculation of how large a sample you’ll need. Be careful, though, because the assumptions behind the formulas can sometimes be obscure, and worse, they can be wrong.</p>
-<p>Here is a common formula used to calculate power<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Here is a common formula used to calculate power:<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p><span class="math display">\[\beta = \Phi \left(\frac{|\mu_t-\mu_c|\sqrt{N}}{2\sigma}-\Phi^{-1} \left(1-\frac{\alpha}{2}\right) \right)\]</span></p>
 <ul>
 <li><span class="math inline">\(\beta\)</span> is our measure of power. Because it’s the probability of getting a statistically significant result, β will be a number between 0 and 1.</li>
@@ -334,10 +334,10 @@ div.csl-indent {
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  } </span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>powers </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.238 0.312 0.338 0.462 0.546 0.512 0.614 0.644 0.704 0.804 0.790 0.842
-[13] 0.864 0.870 0.850 0.910 0.912 0.924 0.954 0.970 0.970 0.970 0.966 0.974
-[25] 0.966 0.994 0.984 0.988 0.994 0.992 0.996 0.998 0.996 1.000 0.996 1.000
-[37] 0.998 1.000 1.000 1.000 1.000 0.998 1.000 1.000 1.000 1.000 1.000 1.000</code></pre>
+<pre><code> [1] 0.262 0.348 0.378 0.500 0.500 0.626 0.562 0.678 0.740 0.824 0.834 0.808
+[13] 0.886 0.866 0.912 0.920 0.940 0.950 0.952 0.964 0.952 0.962 0.968 0.982
+[25] 0.990 0.988 0.990 0.990 0.992 0.994 0.994 1.000 0.998 0.992 0.998 1.000
+[37] 0.998 1.000 0.998 1.000 1.000 1.000 0.998 1.000 1.000 1.000 1.000 1.000</code></pre>
 </div>
 </div>
 <p>The code for this simulation and others is available <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/">here</a>. Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.</p>
@@ -405,7 +405,7 @@ Gerber, A. S., and D. P. Green. 2012. <em>Field Experiments: Design, Analysis, a
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Reproduced from <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>, page 93<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Reproduced from <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>, page 93.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>For an additional online power visualization tool, see Kristoffer Magnusson’s <a href="http://rpsychologist.com/d3/NHST/">R Psychologist blog</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
