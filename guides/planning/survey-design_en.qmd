@@ -103,8 +103,8 @@ For example, Lauren Young used a clever behavioral measure when estimating the e
 2. Isolate the set of behaviors that are feasible to measure. This will most likely be the set of behaviors that can be immediately observed by the enumerator and involve minimal materials. What is the least expensive or costly action that would be associated with the behavioral change you want to detect?
 3. Ideally, pre-test the measures either with the rest of your survey, or in smaller focus groups. Learning why respondents did or did not behave a certain way will increase confidence in your results. 
 
-6. There are survey methods that measure sensitive behaviors and attitudes in risky environments while protecting respondents
-==
+# 6. There are survey methods that measure sensitive behaviors and attitudes in risky environments while protecting respondents
+
 The estimation of treatment effects depends on accurate measures of attitudes and beliefs, which in turn depend on honest responses to survey questions. Respondents, in some cases, will answer survey questions in the way they believe others in their community would like them to, or in the way the enumerator or researcher would like them to. People are more likely to do this when they could face punishment for their true beliefs—from social sanctioning to physical harm. In some instances, respondents may not feel comfortable giving a response at all. If this is the case, your measures will be biased in the direction respondents believe to be "socially desirable." 
 
 Social desirability bias or even worse, risk of harm, makes it difficult to elicit truthful responses in sensitive questions on a survey. A class of statistical methods for survey methodology address this problem. Each method-- list experiments, endorsement experiments, and the randomized response technique—works by introducing random noise that conceals individual responses. This means that, on the subject side individual responses are hidden from the researcher, and on the researcher side you can only study the responses of groups (not individuals). 
