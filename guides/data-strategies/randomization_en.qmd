@@ -7,8 +7,6 @@ image: randomization.png
 bibliography: randomization.bib
 ---
 
-Abstract
-==
 This guide will help you design and execute different types of randomization in your experiments. We focus on the big ideas and provide examples and tools that you can use in R. For why to do randomization see [this methods guide](https://methods.egap.org/guides/causal-inference/x-cause-y_en.html).
 
 

@@ -7,8 +7,6 @@ image: power.png
 bibliography: power.bib
 ---
 
-Abstract
-==
 This guide will help you assess and improve the power of your experiments. We focus on the big ideas and provide examples and tools that you can use in R and Google Spreadsheets.
 
 1. What Power Is

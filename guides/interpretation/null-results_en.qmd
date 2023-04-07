@@ -13,8 +13,6 @@ format:
       - custom.scss
 ---
 
-Abstract
-==
 After the excitement and hard work of running a field experiment is over, it’s not uncommon to hear policymakers and researchers express disappointment when they end up hearing that the intervention did not have a detectable impact.
 This guide explains that a null result rarely means “the intervention didn’t work,” even though that tends to be the shorthand many people use. Instead, a null result can reflect the myriad design choices that policy implementers and researchers make in the course of developing and testing an intervention. After all, people tend to label [hypothesis tests](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html) with high p-values as “null results”, and hypothesis tests (as summaries of information about design and data) can produce large p-values for many reasons. Policymakers can make better decisions about what to do with a null result when they understand how and why they got that result.
 

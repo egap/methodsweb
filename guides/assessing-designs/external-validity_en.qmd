@@ -7,8 +7,6 @@ image: external-validity.png
 bibliography: external-validity.bib
 ---
 
-Abstract
-==
 After months or years under development and implementation, navigating the practical, theoretical and inferential pitfalls of experimental social science research, your experiment has finally been completed. Comparing the treatment and control groups, you find a substantively and statistically significant result on an outcome of theoretical interest. Before you can pop the champagne in celebration of an intervention well evaluated, a friendly colleague asks: “But what does this tell us about the world?”
 
 1. What is external validity?

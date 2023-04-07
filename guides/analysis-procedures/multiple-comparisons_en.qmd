@@ -10,8 +10,6 @@ format:
     code-fold: true
 ---
 
-Abstract
-==
 The “Multiple Comparisons Problem” is the problem  that standard statistical procedures can be misleading when researchers conduct a large group of hypothesis tests. When a researcher does more than one test of a hypothesis (or set of closely related hypotheses), the chances are that some finding will appear “significant” even when there’s nothing going on.
 
 [Classical hypothesis tests](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html) assess statistical significance by calculating the probability under a null hypothesis of obtaining estimates as large or larger as the observed estimate. When multiple tests are conducted, however, classical p-values can mislead --- they no longer reflect the true probability under the null.

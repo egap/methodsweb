@@ -8,8 +8,6 @@ author:
 image: evaluation-conversations.png
 ---
 
-# Abstract
-
 If you are a practitioner or official from a governmental or non-governmental organization (an &quot;implementer&quot;), this guide is intended to help you to take advantage of opportunities to collaborate with external researchers (&quot;evaluators&quot;) to evaluate your organization&#39;s policies or programs. Researchers working on evaluations can also benefit from this guide by understanding how to take implementers&#39; needs into account.
 
 As an implementer, what should you expect or request when collaborating with an external evaluator? How can that evaluation be designed to help your organization and the broader field to learn and innovate? What conversations should you have with an evaluator upfront so that the evaluation runs smoothly? How can you work with the evaluator to decide on and communicate actionable and convincing analyses about the impact of a program? How will you and the evaluator share what you learned to improve the practice of your organization and others? How can you ensure that what you learn helps the whole community of practice so that overall social welfare improves? This short guide offers questions to guide conversations with prospective evaluators, points to some practices that have worked well elsewhere, and explains why they might be important or useful in future evaluations.[^1]

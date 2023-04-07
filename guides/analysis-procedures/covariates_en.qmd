@@ -7,8 +7,6 @@ image: covariates.png
 bibliography: covariates.bib
 ---
 
-Abstract
-==
 This guide will help you think through when it makes sense to try to “control for other things” when estimating treatment effects using experimental data. We focus on the big ideas and provide examples in R.
 
 1. What is covariate adjustment?
