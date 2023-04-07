@@ -197,8 +197,7 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  <li><a href="#what-is-covariate-adjustment" id="toc-what-is-covariate-adjustment" class="nav-link" data-scroll-target="#what-is-covariate-adjustment">1. What is covariate adjustment?</a></li>
+  <li><a href="#what-is-covariate-adjustment" id="toc-what-is-covariate-adjustment" class="nav-link active" data-scroll-target="#what-is-covariate-adjustment">1. What is covariate adjustment?</a></li>
   <li><a href="#controlling-for-covariates-at-the-design-stage-blocking" id="toc-controlling-for-covariates-at-the-design-stage-blocking" class="nav-link" data-scroll-target="#controlling-for-covariates-at-the-design-stage-blocking">2. Controlling for covariates at the design stage (blocking)</a></li>
   <li><a href="#how-to-do-it-in-a-regression" id="toc-how-to-do-it-in-a-regression" class="nav-link" data-scroll-target="#how-to-do-it-in-a-regression">3. How to do it in a regression</a></li>
   <li><a href="#why-to-do-it" id="toc-why-to-do-it" class="nav-link" data-scroll-target="#why-to-do-it">4. Why to do it</a></li>
@@ -238,10 +237,7 @@ div.csl-indent {
 
 </header>
 
-<section id="abstract" class="level1">
-<h1>Abstract</h1>
 <p>This guide will help you think through when it makes sense to try to “control for other things” when estimating treatment effects using experimental data. We focus on the big ideas and provide examples in R.</p>
-</section>
 <section id="what-is-covariate-adjustment" class="level1">
 <h1>1. What is covariate adjustment?</h1>
 <p>“Covariates” are baseline characteristics of your experimental subjects. When you run an experiment, you are primarily interested in collecting data on outcome variables that your intervention may affect, e.g.&nbsp;expenditure decisions, attitudes toward democracy, or contributions for a public good in a lab experiment. But it’s also a good idea to collect data on baseline characteristics of subjects before treatment assignment occurs, e.g.&nbsp;gender, level of education, or ethnic group. If you do this you can explore how treatment effects vary with these characteristics (see <a href="https://methods.egap.org/guides/research-questions/heterogeneous-effects_en.html">10 Things to Know About Heterogeneous Treatment Effects</a>). But doing this also lets you perform covariate adjustment.</p>

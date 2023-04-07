@@ -197,8 +197,7 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  <li><a href="#some-ways-are-better-than-others" id="toc-some-ways-are-better-than-others" class="nav-link" data-scroll-target="#some-ways-are-better-than-others">1. Some ways are better than others</a></li>
+  <li><a href="#some-ways-are-better-than-others" id="toc-some-ways-are-better-than-others" class="nav-link active" data-scroll-target="#some-ways-are-better-than-others">1. Some ways are better than others</a></li>
   <li><a href="#block-randomization-you-can-ensure-that-treatment-and-control-groups-are-balanced" id="toc-block-randomization-you-can-ensure-that-treatment-and-control-groups-are-balanced" class="nav-link" data-scroll-target="#block-randomization-you-can-ensure-that-treatment-and-control-groups-are-balanced">2. Block randomization: You can ensure that treatment and control groups are balanced</a></li>
   <li><a href="#factorial-designs-you-can-randomize-multiple-treatments-at-the-same-time-without-using-up-power" id="toc-factorial-designs-you-can-randomize-multiple-treatments-at-the-same-time-without-using-up-power" class="nav-link" data-scroll-target="#factorial-designs-you-can-randomize-multiple-treatments-at-the-same-time-without-using-up-power">3. Factorial designs: You can randomize multiple treatments at the same time without using up power</a></li>
   <li><a href="#you-can-randomize-whole-clusters-together-but-the-bigger-your-clusters-the-weaker-tends-to-be-your-power" id="toc-you-can-randomize-whole-clusters-together-but-the-bigger-your-clusters-the-weaker-tends-to-be-your-power" class="nav-link" data-scroll-target="#you-can-randomize-whole-clusters-together-but-the-bigger-your-clusters-the-weaker-tends-to-be-your-power">4. You can randomize whole clusters together (but the bigger your clusters, the weaker tends to be your power)</a></li>
@@ -238,10 +237,7 @@ div.csl-indent {
 
 </header>
 
-<section id="abstract" class="level1">
-<h1>Abstract</h1>
 <p>This guide will help you design and execute different types of randomization in your experiments. We focus on the big ideas and provide examples and tools that you can use in R. For why to do randomization see <a href="https://methods.egap.org/guides/causal-inference/x-cause-y_en.html">this methods guide</a>.</p>
-</section>
 <section id="some-ways-are-better-than-others" class="level1">
 <h1>1. Some ways are better than others</h1>
 <p>There are many ways to randomize. The simplest is to flip a coin each time you want to determine whether a given subject gets treatment or not. This ensures that each subject has a .5 probability of receiving the treatment and a .5 probability of not receiving it. Done this way, whether one subject receives the treatment in no way affects whether the next subject receives the treatment, every subject has an equal chance of getting the treatment, and the treatment will be independent from all confounding factors — at least in expectation.</p>

@@ -197,8 +197,7 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  <li><a href="#almost-every-social-science-experiment-faces-a-multiple-comparisons-problem" id="toc-almost-every-social-science-experiment-faces-a-multiple-comparisons-problem" class="nav-link" data-scroll-target="#almost-every-social-science-experiment-faces-a-multiple-comparisons-problem">1. Almost every social science experiment faces a multiple comparisons problem</a></li>
+  <li><a href="#almost-every-social-science-experiment-faces-a-multiple-comparisons-problem" id="toc-almost-every-social-science-experiment-faces-a-multiple-comparisons-problem" class="nav-link active" data-scroll-target="#almost-every-social-science-experiment-faces-a-multiple-comparisons-problem">1. Almost every social science experiment faces a multiple comparisons problem</a></li>
   <li><a href="#why-multiple-comparisons-are-a-problem" id="toc-why-multiple-comparisons-are-a-problem" class="nav-link" data-scroll-target="#why-multiple-comparisons-are-a-problem">2. Why multiple comparisons are a problem</a></li>
   <li><a href="#dont-mix-up-the-fwer-and-fdr" id="toc-dont-mix-up-the-fwer-and-fdr" class="nav-link" data-scroll-target="#dont-mix-up-the-fwer-and-fdr">3. Don’t mix up the FWER and FDR!</a></li>
   <li><a href="#control-the-fwer-with-bonferroni-style-corrections-including-the-holm-correction" id="toc-control-the-fwer-with-bonferroni-style-corrections-including-the-holm-correction" class="nav-link" data-scroll-target="#control-the-fwer-with-bonferroni-style-corrections-including-the-holm-correction">4. Control the FWER with Bonferroni-style corrections (including the Holm correction)</a></li>
@@ -241,12 +240,9 @@ div.csl-indent {
 
 </header>
 
-<section id="abstract" class="level1">
-<h1>Abstract</h1>
 <p>The “Multiple Comparisons Problem” is the problem that standard statistical procedures can be misleading when researchers conduct a large group of hypothesis tests. When a researcher does more than one test of a hypothesis (or set of closely related hypotheses), the chances are that some finding will appear “significant” even when there’s nothing going on.</p>
 <p><a href="https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html">Classical hypothesis tests</a> assess statistical significance by calculating the probability under a null hypothesis of obtaining estimates as large or larger as the observed estimate. When multiple tests are conducted, however, classical p-values can mislead — they no longer reflect the true probability under the null.</p>
 <p>This guide will help you guard against drawing false conclusions from your experiments. We focus on the big ideas and provide examples and tools that you can use in R.</p>
-</section>
 <section id="almost-every-social-science-experiment-faces-a-multiple-comparisons-problem" class="level1">
 <h1>1. Almost every social science experiment faces a multiple comparisons problem</h1>
 <p>Typically, researchers are not interested in just one treatment versus control comparison per experiment. There are three main ways that comparisons proliferate:</p>
