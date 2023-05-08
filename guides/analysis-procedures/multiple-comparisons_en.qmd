@@ -253,9 +253,9 @@ Recall from earlier that the Benjamini-Hochberg procedure to control FDR can als
 
 FDR Variants| Methods for Control | Software
 :------|:-------------------------|:-----|
-**pFDR**: positive FDR, $E[V/R|R>0]$| The Storey-BH procedure sets a rejection area and estimates the corresponding error rate.  This contrasts the B-H procedure sets an error rate $\alpha$ and estimates its rejection area with the adjustments (@storey_2002).  | See R package <a href = "http://www.bioconductor.org/packages/release/bioc/html/qvalue.html">`qvalue`</a>
-**mFDR** or Fdr: marginal FDR, $E[FP]/E[R]$.| $\alpha$-investing, a procedure where, after rejecting a null hypothesis, the researcher can "invest" in the $\alpha$ threshold by increasing the threshold for subsequent tests (@foster_stine_2008).| See R package <a href = "https://rdrr.io/bioc/onlineFDR/"> `onlineFDR` </a>
-**fdr**: Local false discovery rate, $fdr(z)$| An empirical Bayes approach to estimate local false discovery rate as a function of the size of the test statistic $z$ (@efron_2004). | See R pacakge <a href = "https://cran.r-project.org/web/packages/locfdr/locfdr.pdf"> `locfdr` </a>
+**pFDR**: positive FDR, $E[V/R|R>0]$| The Storey-BH procedure sets a rejection area and estimates the corresponding error rate.  This contrasts the B-H procedure sets an error rate $\alpha$ and estimates its rejection area with the adjustments [@storey_2002].  | See R package <a href = "http://www.bioconductor.org/packages/release/bioc/html/qvalue.html">`qvalue`</a>
+**mFDR** or Fdr: marginal FDR, $E[FP]/E[R]$.| $\alpha$-investing, a procedure where, after rejecting a null hypothesis, the researcher can "invest" in the $\alpha$ threshold by increasing the threshold for subsequent tests [@foster_stine_2008].| See R package <a href = "https://rdrr.io/bioc/onlineFDR/"> `onlineFDR` </a>
+**fdr**: Local false discovery rate, $fdr(z)$| An empirical Bayes approach to estimate local false discovery rate as a function of the size of the test statistic $z$ [@efron_2004]. | See R pacakge <a href = "https://cran.r-project.org/web/packages/locfdr/locfdr.pdf"> `locfdr` </a>
 
 There is the increased chance of accepting more false discoveries with these other methods over the basic B-H approach.  However, in cases with many, many tests, where the researcher might be willing to accept a few more false discoveries along with making more true discoveries, these methods for controlling FDR are good alternatives. 
 

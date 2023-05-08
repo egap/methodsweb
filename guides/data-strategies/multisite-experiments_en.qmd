@@ -9,14 +9,14 @@ image: multisite-experiments.png
 
 # 1. What is a multisite or block randomized trial?
 
-A multisite or block-randomized trial is a randomized experiment "in which sample members are randomly assigned to a program or a control group *within* each of a number of sites" (@Raudenbush2015).
+A multisite or block-randomized trial is a randomized experiment "in which sample members are randomly assigned to a program or a control group *within* each of a number of sites" [@Raudenbush2015].
 
 This guide focuses on multisite educational trials for illustration, although multisite trials are not unique to education.
 Multisite trials are a subset of multilevel randomized controlled trials (RCTs), in which units are nested within hierarchical structures, such as students nested within schools nested within districts.
 This guide uses as an illustrative example the case where each site is a school, although they could also be districts or classrooms; thus the term "site" and "school" are used interchangeably.
 
 An advantage of multisite trials is that they allow a researcher to study average impact across
-units or sites, while also getting a sense of heterogeneity across sites (@Raudenbush2015).
+units or sites, while also getting a sense of heterogeneity across sites [@Raudenbush2015].
 However, the opportunities provided by multisite trials also come with their own challenges.
 Much of the rest of this guide will discuss the choices that researchers must make when analyzing multisite trials, and the consequences of these choices.
 
@@ -114,7 +114,7 @@ This blocking within site would allow comparisons of the treatment effects on th
 Often, in a multisite trial with treatment administered by site administrators (like principals of schools), an analyst has no choice but to randomize within site.
 In other studies, the construction and choice of blocking criteria is a choice.
 @Pashley2022 shows that blocking is generally beneficial, but also explores settings in which it may be harmful.
-Blocking does result in fewer degrees of freedom, but in practice this reduction is rarely an issue, unless an experiment is very small (@Imai2008).
+Blocking does result in fewer degrees of freedom, but in practice this reduction is rarely an issue, unless an experiment is very small [@Imai2008].
 Any use of blocking requires that an analyst keep track of the blocks and also that an analyst reflect the blocks in subsequent analysis: in many circumstances estimating average treatment effects from a block-randomized experiment while ignoring the blocks will yield biased estimates of the underlying targeted estimands (see ["The trouble with 'controlling for blocks'"](https://declaredesign.org/blog/biased-fixed-effects.html)  and ["Estimating Average Treatment Effects in Block Randomized Experiments"](https://egap.org/resource/sd-block-rand) for demonstrations of bias arising from different approaches to weighting by blocks).
 
 # 3. Analysis can either target the population in the experiment, or a broader population.
@@ -152,7 +152,7 @@ For more discussion of the consequence of the super population and finite popula
 # 4. The average site effect is not the same as the average person effect.
 
 The second choice a researcher makes is the target of inference: is the researcher interested in the **average student**, or
-the **average site** (@Miratrix2020)?
+the **average site** [@Miratrix2020]?
 
 When we consider the average student impact, we weigh each student equally.
 Thus, larger sites have a larger impact on the outcome.
@@ -348,7 +348,7 @@ The difference between the finite population and super population framework come
 In general, the super population framework results in larger estimates of error because of the additional uncertainty induced by assuming the sites observed are randomly drawn from a larger population.
 In general, variation in the control outcome can be broken down into *within site* variation and *between site* variation.
 In the finite population framework, estimators calculate variation *within* sites, and then estimators average this variation across sites.
-In the super population framework, estimators look at the variation *between* sites to "capture both any within-site estimation error along with the uncertainty associated with sampling sites from a larger population" (@Miratrix2020).
+In the super population framework, estimators look at the variation *between* sites to "capture both any within-site estimation error along with the uncertainty associated with sampling sites from a larger population" [@Miratrix2020].
 For both approaches, modeling assumptions can stabilize uncertainty estimation procedures, but also risk inducing bias if the modeling assumptions are wrong.
 
 For design-based estimators, for the finite population framework Neyman developed a conservative estimator for the standard error using the observed outcomes.
@@ -370,7 +370,7 @@ The assumption of $iid$ standard errors will be broken.
 Huber-White standard errors allow for heteroscedasticity in the residuals while still assuming that sites are fixed,
 which fits into a finite population framework: in fact @lin2013agnostic shows that the standard error derived by @Neyman1923 on finite-population and design-based principles is the same as the HC2 standard error.
 
-In contrast, for cluster robust standard errors, "the conventional adjustments, often implicitly, assume that the clusters in the sample are only a small fraction of the clusters in the population of interest" (@Abadie2017).
+In contrast, for cluster robust standard errors, "the conventional adjustments, often implicitly, assume that the clusters in the sample are only a small fraction of the clusters in the population of interest" [@Abadie2017].
 Using cluster robust standard errors accounts for both correlation of individuals within sites, and different amounts of variation across sites.
 This strategy generally results in larger standard errors.
 For more discussion of cluster robust standard errors, see @Abadie2017 and @Pustejovsky2018.
@@ -453,7 +453,7 @@ Given the discussion thus far, it is not surprising that modeling choices made b
 
 To further understand power, we define an important quantity in power calculations: the intraclass correlation coefficient (ICC).
 Broadly, variation in the observed control outcomes can be categorized into *within*-site variation, and *between*-site variation.
-In educational trials, the ICC is the proportion of variation in the outcome that lies *between* sites (@Schochet2016).
+In educational trials, the ICC is the proportion of variation in the outcome that lies *between* sites [@Schochet2016].
 The ICC is defined as the ratio of the variance at the site level divided by the overall variance of the individual outcomes.
 This quantity plays a different role in block-randomized trial power analysis depending on the target of inference chosen by the analyst.
 ICC is also used in the design and analysis of cluster-randomized trials.
@@ -475,7 +475,7 @@ Additionally, the individual-level covariates do not impact the super population
 However, site-level covariates, which would be denoted $R_2^2$, do not impact power.
 Site-level covariates are not useful in these models because there are already site-level effects, so the addition of covariates at that level does not provide more information.
 
-To calculate power for multisite trials, users can use the PowerUpR! package (@Dong2013).
+To calculate power for multisite trials, users can use the PowerUpR! package [@Dong2013].
 The package also calculates sample size requirements and minimum detectable effect size.
 The newly-developed PUMP package (from @Hunter2022) extends the functionality of PowerUpR! to experiments with multiple outcomes, in addition to providing user-friendly tools for exploring the sensitivity of power to different assumptions.
 

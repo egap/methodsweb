@@ -33,17 +33,17 @@ Perhaps the most common approach to causal identification in applied statistical
 ==
 A variety of alternative approaches seek to account for confounding variables by carefully matching treatment units to one or many control units. Matching has some advantages over regression (for example, estimates can be less sensitive to choices of functional form), but the basic idea is nevertheless similar, and indeed matching methods can be implemented in a regression framework using appropriate weights. Like regression, at its core, this strategy depends on a conviction that there are no important confounding variables that the researcher is unaware of or is unable to measure. Specific methods include:
 
-* Optimal full- and pair-matching (@hansen_2004), and see the [optmatch package](https://github.com/markmfredrickson/optmatch)
-* Optimal pair-matching with fine-balance via mixed integer programming (@zubizarreta_et_al_2014). [See also the designmatch package](https://cran.rstudio.com/web/packages/designmatch) and the paper comparing approaches (@dla_resa_zubizarreta_2016)
-* Optimal multi-level matching (for designs with schools and students) (@pimentel_et_al_2018)
+* Optimal full- and pair-matching [@hansen_2004], and see the [optmatch package](https://github.com/markmfredrickson/optmatch)
+* Optimal pair-matching with fine-balance via mixed integer programming [@zubizarreta_et_al_2014]. [See also the designmatch package](https://cran.rstudio.com/web/packages/designmatch) and the paper comparing approaches [@dla_resa_zubizarreta_2016]
+* Optimal multi-level matching (for designs with schools and students) [@pimentel_et_al_2018]
 * [Sparse optimal matching](https://www.stat.berkeley.edu/~spi/software.html)
-* Generalized full matching (@savje_et_al_2017)
+* Generalized full matching [@savje_et_al_2017]
 * [Coarsened exact matching](http://gking.harvard.edu/cem)
-* Genetic matching (@diamond_sekhon_2013)
-* Entropy balancing (@hainmueller_2012)
-* Inverse propensity weighting (@glynn_quinn_2010)
-* Stable balancing weights (@zubizarreta_2015), and the use of
-* Synthetic controls (@abadie_et_al_2015).
+* Genetic matching [@diamond_sekhon_2013]
+* Entropy balancing [@hainmueller_2012]
+* Inverse propensity weighting [@glynn_quinn_2010]
+* Stable balancing weights [@zubizarreta_2015], and the use of
+* Synthetic controls [@abadie_et_al_2015].
 
 7. Instrumental variables (IV)
 ==

@@ -60,7 +60,7 @@ Recall from [10 Things to Know about Causal Inference](https://methods.egap.org/
 outcomes to **define** cause and to formalize what we **mean** when we
 say "X causes Y" or "Smoking causes cancer" or "Information increases tax
 compliance."  Although there are other ways to think about causality
-(@brady2008causation), the counterfactual idea suggests that we imagine that
+[@brady2008causation], the counterfactual idea suggests that we imagine that
 each person, $i$, would pay their taxes, $y_{i}$,  if given
 information about the use to which those taxes are put. Write $Z_i=1$ to mean
 that information was giving to the person and $Z_i=0$ if no information was
@@ -727,7 +727,7 @@ testing:
  - A $100\alpha$\% confidence interval can be defined as the range of
    hypotheses where all of the $p$-values are greater than or equal to
    $\alpha$. This is called inverting the hypothesis test.
-   (@rosenbaum2010design). That is, a **confidence interval is a collection of
+   [@rosenbaum2010design]. That is, a **confidence interval is a collection of
    hypothesis tests**. This  means that criticisms of $p$-values are also
    criticisms of confidence intervals.
  - A point estimate based on hypothesis testing is called a Hodges-Lehmann
@@ -739,7 +739,7 @@ testing:
  - In equivalence testing, one can hypothesize that two test-statistics are
    equivalent (i.e. the treatment group is the same as the control group)
    rather than only about one test-statistic (the difference between the two
-   groups is zero) (@hartman2018equivalence)
+   groups is zero) [@hartman2018equivalence]
  - Since a hypothesis test is a model of potential outcomes, one can use
    hypothesis testing to learn about complex models, such as models of
    spillover and propagation of treatment effects across networks
