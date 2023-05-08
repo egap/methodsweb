@@ -5,6 +5,10 @@ author:
     url: https://anna-wilke.com/
 bibliography: sampling.bib
 image: sampling.png
+format:
+  html:
+    toc: true
+    toc-location: body
 ---
 
 ```{r, echo = FALSE,message=F, error=F,warning=F}
