@@ -1,1 +1,1 @@
-Sitemap: https://github.com/egap/methodsweb/sitemap.xml
+Sitemap: https://methods.egap.org/sitemap.xml
