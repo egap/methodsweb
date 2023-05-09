@@ -1,14 +1,7 @@
 ---
-output:
-  html_document:
-    theme: journal
-    toc: yes
-    includes:
-        after_body: ../linking_script.html
-  pdf_document:
-    toc: yes
-  word_document:
-    toc: yes
+title: ""
+author: 
+  - name: ""
 bibliography: pap.bib
 ---
 

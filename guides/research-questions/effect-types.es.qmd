@@ -1,11 +1,9 @@
 ---
-output:
-  html_document:
-    toc: yes
-    theme: journal
-    includes:
-        after_body: ../linking_script.html
+title: ""
+author: 
+  - name: ""
 ---
+  
 
 <!-- title: "10 Types of Treatment Effect You Should Know About" -->
 <!-- author: "Methods Guide Author: Paul Testa" -->
