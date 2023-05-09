@@ -4,11 +4,12 @@
   }
   
 /*-- scss:defaults --*/
-$h1-font-size:  4rem !default;
+$h1-font-size:  50rem;
 
 /*-- scss:rules --*/
 h1 {
   text-decoration: underline
+  font-size: 50rem;
 }
 
 h2, h3, h4, h5, h6 {
