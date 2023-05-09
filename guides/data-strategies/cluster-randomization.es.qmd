@@ -13,8 +13,9 @@ library(knitr)
 library(lme4)
 ```
 
-1 Lo que crear conglomerados significa 
-==
+# Lo que crear conglomerados significa 
+
+
 En  los experimentos en que se aleatoriza por conglomerados (grupos) [^1] el tratamiento se asigna a grupos enteros, pero las variables de resultado  se miden a nivel de los individuos que componen los grupos. La divergencia entre el nivel en el que se asigna la intervención y el nivel en el que se miden los resultados lo que define un experimento con aleatorización por conglomerados.
 
 [^1]: Esta guía fue escrita originalmente por Jake Bowers y Ashlea Rundlett (22 de noviembre de 2014). Actualizaciones realizadas por Jasper Cooper. 

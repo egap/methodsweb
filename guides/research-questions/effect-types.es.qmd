@@ -9,8 +9,9 @@ abstract: |
   Esta guía^[Puede consultar Holland (1986), Angrist y Pischke  Angrist, Joshua y Jörn-Steffen Pischke. 2008. Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton University Press.] presenta una discusión más formal de la independencia y de los supuestos necesarios para estimar los efectos causales. Además, describe diez tipos distintos de efectos causales en los que podríamos estar interesados. Como demostramos en nuestra guía de inferencia causal, la aleatorización simple permite producir estimaciones del promedio de los efectos causales al nivel de la unidad en una muestra. Este efecto causal promedio o efecto promedio del tratamiento (Average Treatment Effect, ATE) es un concepto poderoso porque provee una solución al problema de no poder observar todos los contrafactuales relevantes para la estimación. Sin embargo, no es la unica forma de abordar este problema. De hecho, hay muchas cantidades  de interés causal diferentes. El objetivo de esta guía es ayudarlo a elegir estimandos (un parámetro de interés) y estimadores (procedimientos para calcular estimaciones de esos parámetros) que sean apropiados y significativos para sus datos.
 ---
 
-1 Efecto promedio del tratamiento
-==
+# Efecto promedio del tratamiento
+
+
 Comenzamos revisando cómo, con la aleatorización, una simple diferencia de medias proporciona una estimación no sesgada del ATE. A continuación, presentamos algunos conceptos estadísticos comunes y la notación que  utilizamos a lo largo de esta guía.
 
 Primero definimos el efecto del tratamiento para una observación individual (una persona, hogar, ciudad, etc.) como la diferencia entre el comportamiento de esa unidad bajo tratamiento $(Y_ {i} (1))$ y su control 
@@ -101,8 +102,9 @@ varestATE<-((N-n)/(N-1))*(vart/n) + ((N-m)/(N-1))* (varc/m) + (2/(N-1)) * covtc
 c(SimulatedSE= sd(manyATEs), TrueSE=sqrt(varestATE), ConservativeSE=ATE.se) 
 ```
 
-2 Efecto condicional promedio del tratamiento
-==
+# Efecto condicional promedio del tratamiento
+
+
 El problema de enfocarse únicamente el efecto promedio del tratamiento es que desvía la atención del hecho de que los efectos del tratamiento pueden ser muy diferentes para diferentes tipos de personas. Si bien el "problema fundamental de la inferencia causal" sugiere que medir los efectos causales para unidades individuales es imposible, hacer inferencias sobre grupos de unidades no lo es.
 
 La asignación aleatoria asegura que el tratamiento sea independiente de las variables de resultado y de cualquier covariable (observada y no observada). Sin embargo, a veces tenemos información adicional sobre las unidades experimentales tal como eran antes de que se realizara el experimento. Denotaremos  esta información como $X_{i}$. $X_{i}$ puede ayudarnos a comprender cómo los efectos del tratamiento varían entre los subgrupos. Por ejemplo, podemos sospechar que los hombres y las mujeres responden de manera diferente al tratamiento, y podemos probar esta hetorogeneidad estimando el ATE condicional para cada subgrupo por separado $(CATE = E (Y_{i} (1) -Y_{i} (0)∣D_ {i}, X_{i}))$. Si nuestra covariable es continua podemos probar sus efectos moderadores interactuando la variable continua con el tratamiento. Sin embargo, tenga en cuenta que el efecto del tratamiento ahora está condicionado tanto al estado del tratamiento como al valor de la variable condicionante en la que se evalúa el efecto, por lo que debemos ajustar nuestra interpretación y los errores estándar en consecuencia.[^7]
@@ -111,8 +113,9 @@ La asignación aleatoria asegura que el tratamiento sea independiente de las var
 
 Una advertencia: enfocarse en los efectos del tratamiento en las dimensiones que se ven afectadas por el tratamiento es peligroso y puede conducir a inferencias incorrectas. Por ejemplo, si quisiera ver cómo la administración de un medicamento produce mejoras en la salud, podría buscar por separado a hombres y mujeres, pero no podría buscar por separado a los que  tomaron el medicamento y a los que no (este es un ejemplo de inferencia para que los que cumplen con la asignación al tramiento y este tipo de inferencia requiere otras técnicas  descritas en el punto 4).
 
-3 Efectos de la intención de tratar
-==
+# Efectos de la intención de tratar
+
+
 Fuera de un entorno de laboratorio controlado, los sujetos que asignamos al tratamiento a menudo no son los mismos que los sujetos que realmente reciben el tratamiento. Cuando algunos sujetos asignados al tratamiento no lo reciben, lo llamamos un experimento con incumplimiento unilateral. Cuando además, algunos sujetos asignados al control también reciben el tratamiento, decimos que hay un incumplimiento bilateral. Por ejemplo, en un experimento para promover la votación electoral, es posible que algunas sujetos asignados para recibir una carta no lo reciban. Quizás hayan cambiado de dirección o nunca hayan revisado su correo. De manera similar, algunas observaciones asignadas al control pueden recibir el tratamiento. Quizás se acaban de mudar y el correo del inquilino anterior todavía llega a ese domicilio.
 
 Cuando hay incumplimiento, la recepción del tratamiento ya no es independiente de las variable resultados y posibles factores que puedan generar distorsión. Las personas que realmente leen su correo probablemente difieran en varias formas de las personas que tiran su correo (o leen el correo ajeno) y estas diferencias probablemente también afecten su probabilidad de votar. La diferencia de medias entre los sujetos asignados al tratamiento y al control ya no estima el ATE, sino que estima lo que se llama un efecto por intención de tratar (Intention to treat, ITT). A menudo interpretamos el ITT como el efecto de darle a alguien la oportunidad de recibir el  tratamiento. El ITT es particularmente relevante  para evaluar programas e intervenciones con participación voluntaria.
@@ -134,8 +137,9 @@ ITT<-coef(lm(Y~Z,data=samp))[2]
 ```
 
 
-4 Efectos de tratamiento promedio para los que cumplen
-==
+# Efectos de tratamiento promedio para los que cumplen
+
+
 ¿Qué pasa si estamos interesado en averiguar los efectos de un tratamiento en aquellas personas que realmente recibieron el tratamiento y no solo en aquellas personas a las que se les asignó el tratamiento? Por ejemplo, ¿cuál es el efecto de los anuncios de radio en el comportamiento de voto de las personas que realmente escuchan los anuncios?
 
 Esto resulta ser un problema difícil de abordar (en esta guía puede encontrar más información al respecto). Las razones del incumplimiento del tratamiento pueden ser una variable omitida. Si bien la recepción del tratamiento ya no es independiente de los posibles resultados, la asignación del estado del tratamiento sí lo es. Siempre que la asignación aleatoria tenga algún efecto positivo sobre la probabilidad de recibir tratamiento, podemos usarlo como un instrumento para identificar los efectos del tratamiento en la subpoblación de sujetos que cumplen con la asignación al tratamiento.
@@ -172,8 +176,9 @@ samp = data.frame(Z,D,Y)
 
 
 
-5 Efectos promedio del tratamiento en la población y la muestra
-==
+# Efectos promedio del tratamiento en la población y la muestra
+
+
 A menudo queremos hacer generalizaciones a partir de nuestra muestra para poder hacer afirmaciones sobre una población de interés más amplia [^11]. Sea $S_i$ un indicador de si un sujeto está en nuestra muestra. El efecto de tratamiento promedio de la muestra (Sample Average Treatment Effect, SATE) se define simplemente como $E(Y_i (1) -Y_i(0) | S_i = 1)$ y la población $E(Y_i (1) -Y_i (0))$. Con una muestra aleatoria grande de una población bien definida y con cumplimiento  total de la asignación al tratamiento, el SATE y el PATE (ATE de la población) son iguales en expectativa y, por lo tanto, una buena estimación para uno (como una diferencia de medias muestrales) será una buena estimación para el otro. [^12]
 
 [^11]: Vea Imai, King y Stuart (2008) para una revisión más detallada de los temas discutidos en esta sección.
@@ -220,8 +225,9 @@ ATE.out <- estimate.ATE(pscore.formula = D ~ X1 +X2,
                         var.gam.plot=FALSE, nboot=50)
 ```
 
-6 Efecto promedio del tratamiento en el grupo de tratamiento y el control
-==
+# Efecto promedio del tratamiento en el grupo de tratamiento y el control
+
+
 Para evaluar las implicaciones en políticas públicas de una intervención en particular, a menudo necesitamos conocer los efectos del tratamiento no solo para toda la población, sino específicamente para aquellos a quienes se administra el tratamiento. Definimos los efectos promedio del tratamiento entre los tratados (Average Treatment effect on the Treated. ATT) y el grupo de control (Average Treatment effect on the Control, ATC) como simples comparaciones contrafactuales:
 
 
@@ -268,8 +274,9 @@ ATT.ipw<-coef(lm(Y~D,data=samp,weights=W.att))[2]
 ATC.ipw<-coef(lm(Y~D,data=samp,weights=W.atc))[2]
 ```
 
-7 Efecto promedio cuantil  del tratamiento 
-==
+# Efecto promedio cuantil  del tratamiento 
+
+
 El ATE se enfoca en en el punto medio que es de alguna manera el efecto para una observación típica, pero a menudo también nos preocupan las consecuencias distributivas de nuestro tratamiento. Queremos saber no solo si nuestro tratamiento aumentó el ingreso promedio, sino también si hizo que la distribución del ingreso en el estudio fuera más o menos igual.
 
 
@@ -305,8 +312,9 @@ seq(.05,.95,length.out=10),data=samp,method = "fn")
 plot(summary(QTE),parm=2,main="",ylab="QTE",xlab="Quantile",mar = c(5.1, 4.1, 2.1, 2.1)) 
 ```
 
-8 Efectos de mediación
-==
+# Efectos de mediación
+
+
 A veces queremos describir no solo la magnitud y el significado de un efecto causal observado, sino también el mecanismo (o mecanismos) que lo produjeron. ¿Nuestra intervención aumentó la participación en el grupo de tratamiento, en parte, porque aumentó el sentido de eficacia política de estos sujetos? Si es así, ¿cuánto de ese efecto total puede atribuirse a los efectos mediados por nuestro tratamiento en la eficacia y de la eficacia en la participación?
 
 Baron y Kenny (1986) ofrecen un marco general para pensar en la mediación al descomponer el efecto total del tratamiento en su efecto indirecto sobre un mediador que luego afecta el resultado, llamado efecto de mediación causal promedio (Average Causal Mediation Effect, ACME), y el efecto directo promedio restante (emaining Average Direct Effect, ADE) del tratamiento. Sin embargo, la estimación insesgada de estos efectos requiere un conjunto de supuestos sólidos sobre la relación entre el tratamiento, los mediadores, los resultados y los posibles factores que pueden generar distorsión, denominados colectivamente ignorabilidad secuencial (Imai, Keele y Yamamoto (2010), Bullock, Green y Ha (2010). )). [^20]
@@ -359,8 +367,9 @@ plot(s.out) # Grafica limites de sensibilidad
 # ADE<-coef(med.sys)["eq3_D"]
 ```
 
-9 Efectos del tratamiento con probabilidades logarítmicas
-==
+# Efectos del tratamiento con probabilidades logarítmicas
+
+
 Los efectos promedio del tratamiento parecen un poco difíciles de interpretar cuando los resultados no son continuos. Por ejemplo, un resultado binario muy común en el estudio de las elecciones se codifica como 1 cuando los sujetos votaron y 0 cuando no lo hicieron. El efecto promedio podría ser 0.2, pero ¿qué significa realmente decir que un tratamiento aumentó mi voto en 0.2? La estimación de los efectos causales de los resultados dicotómicos requiere un cuidado adicional, en particular cuando se incluyen covariables. Una cantidad común de interés causal para los resultados dicotómicos es el efecto de nuestro tratamiento sobre las probabilidades de éxito logarítmicas, definidas para el grupo experimental como:
 
 $$\Delta = log\frac{E(Y_i(1))}{1-E(Y_i(1))} - log\frac{E(Y_i(0))}{1-E(Y_i(0))}$$
@@ -399,8 +408,9 @@ log.odds.adj<-log(mean(aT.adj)/(1-mean(aT.adj)))-
   log(mean(aC.adj)/(1-mean(aC.adj)))
 ```
 
-10 Efectos atribuibles
-==
+# Efectos atribuibles
+
+
 Concluimos con una breve discusión de un caso alternativo de interés causal que puede ser particularmente útil con resultados binarios: el efecto atribuible (Rosenbaum 2010). Considere un caso simple con un resultado y un tratamiento dicotómicos. Sea $A$ el número de resultados atribuibles al tratamiento, es decir, el número de casos en los que $Y_i$ es igual a 1 entre los sujetos tratados y que de haber sido asginados al control no habrían producido el mismo resultado. Para un rango de $A$, ajustamos la tabla de contingencia observada de resultados entre las unidades tratadas y comparamos esta distribución resultante con una distribución nula conocida (la distribución de resultados que hubiéramos observado si el tratamiento no hubiera tenido efecto). El rango resultante de $A$ para el cual nuestra prueba continúa rechazando la hipótesis nula de ningún efecto proporciona un rango de efectos que son atribuibles a nuestro tratamiento.
 
  Tabla 1|$D=1$              |$D=0$

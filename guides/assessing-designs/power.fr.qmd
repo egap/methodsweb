@@ -17,8 +17,9 @@ Nous nous concentrons sur les grandes idées et fournissons des exemples et des 
 Le guide est un document vivant et susceptible d'être mis à jour par les membres de EGAP à tout moment.
 Coppock n'est pas responsable des modifications ultérieures apportées à ce guide.
 
-1 Qu'est-ce qu'est la puissance statistique?
-==
+# Qu'est-ce qu'est la puissance statistique?
+
+
 La puissance est la capacité de distinguer le signal du bruit.
 
 Le signal qui nous intéresse est l'impact d'un traitement sur certains résultats.
@@ -44,8 +45,9 @@ Il serait dommage de se donner autant de peine et de dépenser autant pour rando
 Si nos expériences ont une grande puissance statistique, nous pouvons être sûrs de ceci :
 s'il y a vraiment un effet de traitement, nous pourrons le voir.
 
-2 Pourquoi vous en avez besoin ?
-==
+# Pourquoi vous en avez besoin ?
+
+
 Les expérimentateurs se prémunissent souvent contre les faux positifs avec des tests de signification statistique.
 Après une expérience, nous craignons de conclure à tort qu'il y a un effet alors qu'il n'y en a pas vraiment.
 
@@ -65,8 +67,9 @@ Attention : la puissance statistique compte beaucoup.
 Les résultats nuls d'études de faible puissance peuvent être difficiles à interpréter : n'y a-t-il vraiment aucun effet ? Ou l'étude n'est-elle tout simplement pas en mesure de le mesurer? Les résultats positifs d'une étude de faible puissance peuvent également être trompeurs : à condition d'être statistiquement significative, une estimation d'une étude de faible puissance surestime probablement l'effet du traitement.
 Les études de faible puissance sont parfois basées sur des hypothèses trop optimistes ; une analyse de puissance convaincante rend ces hypothèses explicites et devrait vous protéger de la mise en œuvre de conceptions qui n'ont de manière réaliste aucune chance de répondre aux questions auxquelles vous souhaitez répondre.
 
-3 Les trois ingrédients de la puissance statistique
-==
+# Les trois ingrédients de la puissance statistique
+
+
 Il existe trois grandes catégories de facteurs qui déterminent la puissance de votre expérience.
 Les deux premiers (l'efficacité du traitement et le bruit de fond) sont des choses que vous ne pouvez pas vraiment contrôler – ce sont les réalités de votre environnement expérimental.
 Le dernier facteur, la conception expérimentale, est la seule chose que vous pouvez contrôler – utilisez-le !
@@ -90,8 +93,9 @@ L'analyse de puissance statistique traditionnelle se concentre sur un élément 
 En termes simples, un plus grand nombre de sujets augmente la puissance.
 Cependant, il existe d'autres éléments de la conception expérimentale qui peuvent augmenter la puissance : comment la randomisation est-elle menée ? Est-ce que d'autres facteurs seront contrôlés statistiquement? Combien de groupes de traitement y aura-t-il et peuvent-ils être combinés pour certaines analyses ?
 
-4 Formules clés pour calculer la puissance statistique
-==
+# Formules clés pour calculer la puissance statistique
+
+
 Les statisticiens ont dérivé des formules pour calculer la puissance de nombreux modèles expérimentaux.
 Elles peuvent être utiles pour calculer approximativement la taille de l'échantillon dont vous aurez besoin.
 Soyez prudent, cependant, car les hypothèses qui sous-tendent les formules peuvent parfois être obscures, ou pire encore, elles peuvent être fausses.
@@ -131,8 +135,9 @@ power_calculator <- function(mu_t, mu_c, sigma, alpha=0.05, N){
   } 
 ```
 
-5 Quand croire votre analyse de puissance ?
-==
+# Quand croire votre analyse de puissance ?
+
+
 
 D'un certain point de vue, l'idée d'analyser la puissance statistique n'a aucun sens.
 Vous voulez déterminer l'ampleur d'un effet de traitement, mais vous devez d'abord effectuer une analyse de puissance qui nécessite que vous connaissiez déjà l'effet de votre traitement et bien plus encore.
@@ -149,8 +154,9 @@ En utilisant la formule de la section 4, vous pouvez voir à quel point la puiss
 
 <iframe height="500" src="https://egap.shinyapps.io/Power_Calculator/" width="850"></iframe>
 
-6 Comment utiliser la simulation pour estimer la puissance ?
-==
+# Comment utiliser la simulation pour estimer la puissance ?
+
+
 La puissance est une mesure de la fréquence pour laquelle, compte tenu des hypothèses, nous obtiendrions des résultats statistiquement significatifs si nous devions mener notre expérience des milliers de fois.
 La formule de calcul de puissance se base sur des hypothèses et renvoie une solution analytique.
 Cependant, en raison des progrès de l'informatique moderne, nous n'avons pas à nous fier à des solutions analytiques pour l'analyse de puissance.
@@ -196,8 +202,9 @@ Le graphique ci-dessous montre que sous ces hypothèses, vous pouvez vous attend
 
 ![](https://raw.githubusercontent.com/egap/methods-guides/master/power/simulatedpvals.png)
 
-7 Comment changer votre conception pour améliorer votre puissance ?
-==
+# Comment changer votre conception pour améliorer votre puissance ?
+
+
 En ce qui concerne la puissance statistique, la seule chose que vous contrôlez est la conception de l'expérience.
 Comme nous l'avons vu ci-dessus, un choix de conception évident est le nombre de sujets à inclure dans l'expérience.
 Plus il y a de sujets, plus la puissance est élevée.
@@ -246,8 +253,9 @@ Ce graphique montre que pour n'importe quel N, le modèle ajusté par les covari
 
 Cette approche ne repose pas sur une formule pour trouver la probabilité d'obtenir un résultat statistiquement significatif : elle repose sur la force brute ! Et parce que la simulation vous permet de spécifier chaque étape de la conception expérimentale, vous effectuez une analyse de puissance beaucoup plus nuancée que la simple considération du nombre de sujets.
 
-8 Analyse de puissance pour plusieurs traitements
-==
+# Analyse de puissance pour plusieurs traitements
+
+
 
 De nombreuses expériences emploient plusieurs traitements qui sont comparés à la fois les uns aux autres et à un groupe de contrôle.
 Cette complication supplémentaire change ce que nous entendons lorsque nous disons la "puissance" d'une expérience.
@@ -271,8 +279,9 @@ Ou vous pouvez utiliser la simulation.
 Un exemple de calcul de puissance fait dans R est disponible sur la page des simulations.
 
 
-9 Comment penser la puissance pour les conceptions par grappe (cluster) ?
-==
+# Comment penser la puissance pour les conceptions par grappe (cluster) ?
+
+
 
 Lorsqu'une expérience doit assigner des groupes entiers de personnes à un traitement plutôt qu'individuellement, nous avons une expérience par grappe.
 Ceci est courant pour les expériences éducatives, où des classes entières d'enfants sont assignées au traitement ou au contrôle, ou dans l'économie du développement, où des villages entiers d'individus sont assignés au traitement ou au contrôle.
@@ -298,8 +307,9 @@ Mieux vaut avoir 100 grappes de 10 sujets que 10 grappes avec 100 sujets.
 Encore une fois, une approche plus flexible de l'analyse de puissance lorsqu'il s'agit de grappes est la simulation.
 Voir la page de simulations [ici](https://TODO), ou lisez Gelman/Hill page 450-453 pour une autre approche de simulation.
 
-10 Une bonne analyse de puissance facilite le pré-enregistrement
-==
+# Une bonne analyse de puissance facilite le pré-enregistrement
+
+
 Lorsque vous traitez de puissance statistique, vous vous concentrez sur ce que vous ne pouvez pas contrôler (le bruit) et ce que vous pouvez contrôler (la conception).
 Si vous utilisez l'approche de simulation pour l'analyse de puissance, vous serez obligé d'imaginer à quoi ressembleront vos données et comment vous allez les gérer.
 Vous aurez la possibilité de spécifier à l'avance toutes vos intuitions et vos meilleures suppositions, afin de pouvoir lancer vos expériences avec des attentes claires sur ce qu'elles peuvent et ne peuvent pas montrer.

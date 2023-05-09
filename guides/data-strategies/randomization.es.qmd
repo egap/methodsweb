@@ -12,8 +12,9 @@ Resumen
 ==
 Esta guía le ayudará a diseñar y ejecutar diferentes tipos de asignación aleatoria en sus experimentos. Aquí nos centramos en  ideas generales y proporcionamos ejemplos y herramientas que puede utilizar en R. Para saber saber más sobre por qué aleatorizar, consulte [esta guía de métodos](http://egap.org/resource/10-estrategias-para-determinar-si-x-causo-y).
 
-1 Unas formas son mejores que otras
-==
+# Unas formas son mejores que otras
+
+
 Hay muchas formas de aleatorizar. La más simple es lanzar una moneda para determinar si un sujeto recibe un tratamiento o no. Esto asegura que cada sujeto tenga una probabilidad de 0.5 de recibir el tratamiento y una probabilidad de 0.5 de no recibirlo. Hecho de esta manera, si un sujeto recibe el tratamiento no afecta para nada el que el siguiente sujeto reciba o no el tratamiento. Cada sujeto tiene la misma probabilidad de recibir el tratamiento y  no estaría correlacionado con factores que generen una asociación engañosa, al menos en valor esperado.
 
 
@@ -35,8 +36,9 @@ set.seed(343)
 complete_ra(N = 100, m = 34)
 ```
 
-2  Aleatorización en bloques: puede asegurarse de antemano que los grupos de tratamiento y control estén balanceados
-==
+# Aleatorización en bloques: puede asegurarse de antemano que los grupos de tratamiento y control estén balanceados
+
+
 
 La aleatorización en bloques nos permite asegurarnos que los grupos de tratamiento y de control estén balanceados con respecto a  factores particulares que sean de nuestro interés.  Esto significa que es posible especificar, por ejemplo, que sus grupos de tratamiento y control contengan proporciones iguales de hombres y mujeres. En otras palabras, esto evita cualquier aleatorización que pueda producir un grupo de tratamiento con sólo hombres y un grupo de control con sólo mujeres, o viceversa.
 
@@ -81,8 +83,9 @@ Puede verificar la media de la variable que utilizo para crear los bloques en el
 
  
 
-3 diseños factoriales: puede aleatorizar múltiples tratamientos al mismo tiempo sin perder poder
-==
+# diseños factoriales: puede aleatorizar múltiples tratamientos al mismo tiempo sin perder poder
+
+
 Supongamos que queremos hacer pruebas de varios componentes de un tratamiento. Por ejemplo, es posible que desee evaluar el impacto de un programa de micro-finanzas. Dos tratamientos específicos podrían ser prestar dinero a las mujeres y brindarles capacitación. Un diseño factorial analiza todas las combinaciones posibles de estos tratamientos: (1) Préstamos, (2) Capacitación, (3) Préstamos + capacitación y (4) Control. Luego, los sujetos se asignan al azar a una de estas cuatro condiciones.
 
 
@@ -103,8 +106,9 @@ dat <-
 with(dat, table(Z_loan, Z_training))
 ```
 
-4 Usted puede asignar  un conglomerado todo junto al tratamiento  (¡pero cuanto más grandes sean sus conglomerados, menos poder tendrá!)
-==
+# Usted puede asignar  un conglomerado todo junto al tratamiento  (¡pero cuanto más grandes sean sus conglomerados, menos poder tendrá!)
+
+
 
 A veces no podemos asignar el tratamiento aleatoriamente al nivel del individuo. Por ejemplo,  es imposible transmitir una propaganda radial que busque incentivar individuos a que vayan a un puesto de votación solo a algunas personas pero no a otras. Ya sea por necesidad o por elección, a veces se aleatorizan conglomerados en lugar de individuos.
 
@@ -123,8 +127,9 @@ El siguiente gráfico muestra cómo se verían los grupos de tratamiento y contr
 Ilustración de los patrones de las unidades de tratamiento y control que se pueden dar en diferentes tipos de diseños con bloques y conglomerados._</center>
 
 
-5 Puede aleatorizar de manera que sea fácil identificar si hay derrame de efectos
-==
+# Puede aleatorizar de manera que sea fácil identificar si hay derrame de efectos
+
+
 Al diseñar su experimento, piense si el "derrame" representa una amenaza para la capacidad de identificar el efecto causal del tratamiento. Los efectos de derrame surgen si el resultado de una unidad se ve afectado porque otra unidad reciba o no el tratamiento. Esto puede ser difícil si las unidades tienen la capacidad de interactuar entre sí: un miembro de una aldea puede enterarse de que otro aldeano ha recibido un subsidio en efectivo y cambiar su comportamiento en consecuencia.
 
 Una forma de hacer que los efectos de derrame sean más evidentes es utilizar la doble aleatorización. Primero asignar aleatoriamente algunos conglomerados al tratamiento y otros al control, y dentro de los conglomerados, asignaría algunos individuos al tratamiento y otros al control. La comparación de los individuos de control de su conglomerados de tratamiento con los de su conglomerado de control le permitirá evaluar el papel de los efectos secundarios en su experimento.
@@ -132,8 +137,9 @@ Una forma de hacer que los efectos de derrame sean más evidentes es utilizar la
 
 
 
-6 Las probabilidades de asignación al tratamiento pueden variar de una unidad a otra
-==
+# Las probabilidades de asignación al tratamiento pueden variar de una unidad a otra
+
+
 A veces se tiende a creer que algo "aleatorio" significa que dos eventos son igualmente probables, pero de hecho, la asignación aleatoria es "aleatoria" siempre que la probabilidad de asignación al tratamiento esté estrictamente entre 0 y 1. Si un sujeto tiene un 0 o un 100 por ciento de probabilidad de ser asignado a un tratamiento, ese sujeto debe excluirse del análisis experimental porque sus resultados no serían afectados por la aleatorización. Sin embargo, siempre que se conozcan sus probabilidades, se pueden incluir todos los sujetos con una probabilidad de asignación al tratamiento estrictamente entre 0 y 1, incluso si sus probabilidades difieren.
 
 ¿Por qué querríamos tener diferentes probabilidades de asignación al tratamiento? Suponga que quiere asignar al azar vehedores electorales a puestos de votación con el fin de medir sus efectos sobre el fraude electoral. Pero sólo puede enviar unos pocos vehedores electorales a una zona rural del país. Usted puede abordar esta restricción creando bloques en función del área geográfica y asignando una mayor probabilidad de asignación al tratamiento a las aldeas más cercanas a las que es menos costoso viajar. Siempre que la probabilidad de asignación al tratamiento para las aldeas más accesibles sea menor que 1, la probabilidad de asignación al tratamiento para las aldeas menos accesibles sea mayor que cero y se conozcan estas probabilidades, es posible estimar el efecto del tratamiento.
@@ -165,8 +171,9 @@ dat %>%
   )
 ```
 
-7 Aleatorización restringida: si no le gusta lo que obtiene, puede empezar de nuevo
-==
+# Aleatorización restringida: si no le gusta lo que obtiene, puede empezar de nuevo
+
+
 Descartar una asignación aleatoria porque no nos gusta lo que resultó puede parecer incoherente con la idea general de la aleatorización. Pero a veces tiene sentido hacerlo. Puede que quiera asegurarse de que la aleatorización no produzca patrones particulares (por ejemplo, demasiadas personas que se conocen entre sí y todas reciben el tratamiento). Pero los patrones que le interesan pueden ser demasiado difíciles de especificar de antemano. Lo que puede hacer entonces es hacer un sorteo al azar y luego ver si la asignación sorteada cumple con los criterios que necesita o no,  de no ser así, puede  volver a sortear. Sin embargo, tenga en cuenta que si hace esto, genera un par de complicaciones: (1) puede que las unidad no tengan la misma probabilidad de asignación y (2) es posible que las unidades no se asignen de forma independiente al tratamiento. Debe tener en cuenta estos dos hechos en su análisis. Por ejemplo, generando ponderaciones de probabilidad inversa como hicimos en el punto 6, pero usando el mismo código de aleatorización restringido para determinar qué tan probable es que cada sujeto sea asignado al tratamiento bajo estas restricciones. Luego, utilizar la distribución de posibles asignaciones al tratamiento para hacer poder inferencia basada en la aleatorización (randomization inference). Estos análisis son complejos, así que proceda con precaución.
 
 8. Escriba un código para aleatorizar que le permita simular muchas aleatorizaciones posibles
@@ -177,8 +184,9 @@ Una ventaja de utilizar código de R para aleatorizar es que puede realizar mile
 2. Puede usar la reasignación aleatoria para calcular la probabilidad exacta de asignación al tratamiento para cada individuo en su experimento. Esto es especialmente útil si su código para aleatorizar es complejo. Quizás esté asignando el tratamiento en bloques y por conglomerados, lo que arroja probabilidades de asignación al tratamiento muy diferentes para cada individuo. Estas probabilidades serían difíciles de calcular a mano, pero una solución fácil es ejecutar su código para aleatorizar muchas veces y generar una variable que represente la proporción de veces que cada individuo fue asignado al tratamiento: esto representa su probabilidad individual de asignación al tratamiento.  Luego puede usar esta variable en una regresión ponderada para calcular el efecto promedio del tratamiento.
 3. La simulación de posibles aleatorizaciones es un enfoque basado en el diseño para calcular la significancia estadística. Este enfoque, llamado inferencia basada en aleatorización (randomization inference), genera un valor p exacto calculando los posibles efectos promedio del tratamiento que se observarían bajo asignaciones aleatorias hipotéticas asumiendo que el tratamiento no tiene ningún efecto. El valor p es entonces la proporción de los efectos estimados del tratamiento que es al menos tan grande en magnitud como el que observó su experimento. Este enfoque es mucho mejor que calcular la significancia estadística utilizando pruebas estándar cuando la distribución de los datos no es normal,  ya que la inferencia basada en la aleatorización evita hacer supuestos de la distribución de los datos y, en cambio, utiliza la distribución de los datos observados en su experimento. Para obtener más información sobre la inferencia de aleatorización, incluido el código de muestra, visite la [10 cosas que debe saber sobre la inferencia basada en la aleatorización](https://egap.org/resource/10-things-to-know-about-randomization-inference/) Guía de métodos .
 
-9 Puede aleatorizar conforme avanza
-==
+# Puede aleatorizar conforme avanza
+
+
 
 Es posible que no conozca la muestra total al comienzo de algunos experimentos. Por ejemplo, puede que unos sujetos se unan más tarde al experimento. Esto puede representar una complicación si queremos asignar el tratamiento usando aleatorización en bloques, ya que la adición de sujetos a nuestro grupo puede cambiar la composición de nuestros bloques y por lo tanto sus probabilidades de asignación al tratamiento.
 
@@ -189,8 +197,9 @@ Para poder continuar utilizando el algoritmo de asignación en bloques y, por lo
 
 [^4]: Para obtener un tutorial más detallado sobre los procedimientos de aleatorización disponibles en el paquete R randomizr, consulte: https://declaredesign.org/r/randomizr/articles/randomizr_vignette.html
 
-10 A veces la aleatorización puede ser una forma ética de asignar un tratamiento, pero a veces no.
-==
+# A veces la aleatorización puede ser una forma ética de asignar un tratamiento, pero a veces no.
+
+
 Aunque la aleatorización es el elemento clave para aislar un efecto causal de un tratamiento desde la perspectiva del diseño de investigación, también es importante considerar sus implicaciones éticas. Con respecto a los efectos de largo plazo de un experimento, la aleatorización nos permite determinar qué programas son más efectivos para que los recursos puedan dirigirse a programas que representen una mayor diferencia en la vida de poblaciones que podrían recibir el tratamiento en el futuro. A corto plazo, la distribución aleatoria del acceso a un programa (en contraposición a la distribución basada en características arbitrarias) puede ser una forma particularmente ética de distribuir bienes escasos que no se pueden extender a todos.
 
 Sin embargo, puede que a veces haya poblaciones que necesiten recibir una cierta intervención más que otras. Por ejemplo, un diseño aleatorio que trata a un número igual de participantes de bajos ingresos y de altos ingresos con préstamos está permitiendo que los recursos fluyan a menos personas necesitadas en lugar de a más. Si creemos que el préstamo tiene efectos beneficiosos, entonces  debemos hacernos cuestionamientos éticos sobre la asignación de recursos a personas que no los necesitan realmente [^5].  En ese caso, se necesitaría tener un argumento sólido para los beneficios sociales de la investigación y se deberían buscar diseños que también proporcionen beneficios al grupo de control.

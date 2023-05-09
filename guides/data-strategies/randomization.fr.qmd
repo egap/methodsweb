@@ -14,8 +14,9 @@ Ce guide vous aidera à concevoir et à mettre en œuvre différents types de ra
 Nous nous concentrons sur les grandes lignes et fournissons des exemples et des outils que vous pouvez utiliser dans R.
 Pour savoir pourquoi faire de la randomisation, voir [ce guide des méthodes](http://egap.org/resource/10-strategies-for-figuring-out-if-x-caused-y).
 
-1 Certaines méthodes sont meilleures que d'autres
-==
+# Certaines méthodes sont meilleures que d'autres
+
+
 Il existe de nombreuses façons de randomiser.
 Le plus simple est de lancer une pièce à chaque fois que vous voulez déterminer si un sujet donné reçoit un traitement ou non.
 Cela garantit que chaque sujet a une probabilité de 0,5 de recevoir le traitement et une probabilité de 0,5 de ne pas le recevoir.
@@ -48,8 +49,9 @@ set.seed(343)
 complete_ra(100, 34)
 ```
 
-2 Randomisation par bloc : vous pouvez vous assurer que les groupes de traitement et de contrôle sont équilibrés
-==
+# Randomisation par bloc : vous pouvez vous assurer que les groupes de traitement et de contrôle sont équilibrés
+
+
 
 Il est possible de spécifier pour des facteurs particuliers la proportion exacte d'unités assignées au traitement ou au contrôle.
 Par contre, il n'est pas possible de maintenir une assignation aléatoire en spécifiant les unités particulières sélectionnées pour l'un ou l'autre groupe.
@@ -103,8 +105,9 @@ with(dat, table(Z_block_2, block_id))
 
 Vous pouvez vérifier la moyenne de la variable sur laquelle vous avez découpé en bloc pour voir que les groupes de traitement et de contrôle sont en fait parfaitement équilibrés selon le genre.
 
-3 Conceptions factorielles : vous pouvez randomiser plusieurs traitements en même temps sans perdre de puissance statistique
-==
+# Conceptions factorielles : vous pouvez randomiser plusieurs traitements en même temps sans perdre de puissance statistique
+
+
 
 Supposons qu'il existe plusieurs composants d'un traitement que vous souhaitez tester.
 Par exemple, vous voudrez peut-être évaluer l'impact d'un programme de microfinance.
@@ -129,8 +132,9 @@ dat <-
 with(dat, table(Z_loan, Z_training))
 ```
 
-4 Vous pouvez randomiser des grappes entières ensemble (mais plus vos grappes sont grandes, plus votre puissance statistique est faible !)
-==
+# Vous pouvez randomiser des grappes entières ensemble (mais plus vos grappes sont grandes, plus votre puissance statistique est faible !)
+
+
 
 Parfois, il est impossible de randomiser au niveau de l'individu.
 Par exemple, un appel à la radio pour amener des individus à un bureau de vote doit par nature être diffusé à l'ensemble d'un marché médiatique ; il est impossible de diffuser uniquement à certains individus mais pas à d'autres.
@@ -160,8 +164,9 @@ Dans les deux cas où le découpage par bloc se produit, il y a une distribution
 ![](https://raw.githubusercontent.com/egap/methods-guides/master/randomization/randomizations1.png)
 <center>_Illustration des patterns pour les unités de traitement et de contrôle que vous pourriez voir sous différents types de conceptions par bloc et par grappe._</center>
 
-5 Vous pouvez randomiser d'une manière qui permet de voir plus facilement s'il y a des effets de contamination
-==
+# Vous pouvez randomiser d'une manière qui permet de voir plus facilement s'il y a des effets de contamination
+
+
 Lors de la conception de votre expérience, demandez-vous de manière critique si les "effets de contamination" constituent une menace pour votre capacité à identifier l'effet causal de votre traitement.
 Des contaminations surviennent si le résultat d'une unité est affecté par le statut de traitement d'une autre unité.
 Cela peut être délicat si les unités ont la capacité d'interagir les unes avec les autres : un membre d'un village peut apprendre qu'un autre membre de son village a reçu une subvention en espèces et peut changer son comportement en conséquence.
@@ -170,8 +175,9 @@ Une façon de rendre les effets de contamination plus évidents consiste à util
 Vous assignez d'abord de manière aléatoire certains groupes au traitement et d'autres au contrôle, et au sein des groupes, vous assignez certains individus au traitement et d'autres au contrôle.
 La comparaison des individus témoins de votre grappe de traitement avec les individus de votre grappe de contrôle vous permettra d'évaluer le rôle des effets de contamination dans votre expérience.
 
-6 Différentes unités peuvent être assignées au traitement avec différentes probabilités
-==
+# Différentes unités peuvent être assignées au traitement avec différentes probabilités
+
+
 
 Parfois, les gens pensent que "aléatoire" signifie que deux événements sont également probables, mais en fait, l'assignation aléatoire est "aléatoire" tant que la probabilité d'assignation au traitement est strictement comprise entre 0 et 1.
 Si un sujet a 0 ou 100 % de chances d'être assigné au traitement, ce sujet doit être exclu de votre analyse expérimentale car il n'y a pas de randomisation.
@@ -211,8 +217,9 @@ dat %>%
   )
 ```
 
-7 Randomisation restreinte : si vous n'aimez pas ce que vous obtenez, vous pouvez recommencer
-==
+# Randomisation restreinte : si vous n'aimez pas ce que vous obtenez, vous pouvez recommencer
+
+
 
 Cela peut sembler incompatible avec l'idée même de la randomisation de ne pas choisir une assignation aléatoire parce que vous n'aimez pas ce qui est choisi.
 Mais parfois, cela a du sens.
@@ -227,8 +234,9 @@ mais en utilisant le même code de randomisation restreinte pour déterminer la 
 Ensuite, vous utilisez la distribution des assignations de traitement possibles pour implémenter l'inférence de randomisation.
 Ces analyses étant complexes, procédez avec prudence.
 
-8 Écrivez un code de randomisation qui vous permet de simuler de nombreuses randomisations possibles
-==
+# Écrivez un code de randomisation qui vous permet de simuler de nombreuses randomisations possibles
+
+
 
 Un avantage de R pour randomiser est que vous pouvez effectuer des milliers de randomisations possibles en quelques secondes.
 Pourquoi est-ce bénéfique ?
@@ -249,8 +257,9 @@ La p-valeur est alors la proportion des effets estimés du traitement qui est au
 Cette approche est préférable aux calculs standard de signification statistique lorsque la distribution de vos données n'est pas normale, car l'inférence de randomisation évite de faire des hypothèses de distribution et utilise à la place la distribution des données observées dans votre expérience.
 Pour plus d'informations sur l'inférence de randomisation, y compris des exemples de code, voir [10 choses à savoir sur l'inférence de randomisation](https://egap.org/resource/10-things-to-know-about-randomization-inference/).
 
-9 Vous pouvez randomiser au fur et à mesure
-==
+# Vous pouvez randomiser au fur et à mesure
+
+
 
 Dans de nombreuses expériences, vous ne connaissez peut-être pas l'intégralité de votre échantillon au début de l'expérience ; certains sujets peuvent se joindre à l'expérience au fil du temps.
 Cela présente une complication lorsque nous voulons utiliser un algorithme par bloc simple car l'ajout de sujets à notre échantillon peut modifier la composition de nos blocs et donc leurs probabilités d'assignation de traitement.
@@ -262,8 +271,9 @@ vous pouvez utiliser des covariables pour calculer la similarité d'un nouveau s
 
 [^4]: Pour une présentation plus détaillée des procédures de randomisation disponibles dans le package R randomizr, voir https://declaredesign.org/r/randomizr/articles/randomizr_vignette.html
 
-10 La randomisation peut parfois être une manière éthique d'assigner un traitement, mais parfois ce n'est pas le cas.
-==
+# La randomisation peut parfois être une manière éthique d'assigner un traitement, mais parfois ce n'est pas le cas.
+
+
 
 La randomisation est l'ingrédient clé pour isoler l'effet causal d'un traitement du point de vue de la conception de recherche, mais il est également important de tenir compte des implications éthiques de la randomisation.
 Lorsque nous pensons aux effets à long terme d'une expérience, la randomisation nous permet de tester quels programmes sont les plus efficaces afin que les ressources puissent être dirigées vers les programmes qui font le plus de différences dans la vie future des populations.

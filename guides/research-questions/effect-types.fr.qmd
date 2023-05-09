@@ -15,8 +15,9 @@ abstract: |
   L'objectif de ce guide est de vous aider à choisir des paramètres (i.e. des paramètres d'intérêt) et des estimateurs (procédures pour calculer des estimations de ces paramètres) qui sont appropriés et significatifs pour vos données.
 ---
 
-1 Effet moyen du traitement
-==
+# Effet moyen du traitement
+
+
 Nous commençons par examiner comment, avec la randomisation, une simple différence des moyennes fournit une estimation non biaisée de l'ATE.
 Nous prenons plus de temps pour présenter certains concepts et notations statistiques courants utilisés tout au long de ce guide.
 
@@ -110,8 +111,9 @@ varestATE<-((N-n)/(N-1))*(vart/n) + ((N-m)/(N-1))* (varc/m) + (2/(N-1)) * covtc
 c(SimulatedSE= sd(manyATEs), TrueSE=sqrt(varestATE), ConservativeSE=ATE.se) 
 ```
 
-2 Effet moyen du traitement conditionnel
-==
+# Effet moyen du traitement conditionnel
+
+
 
 Le problème de ne considérer que l'effet moyen du traitement est que cela détourne l'attention du fait que l'effet du traitement peut être très différent pour différents types de personnes.
 Alors que le "problème fondamental de l'inférence causale" suggère que la mesure des effets causaux pour des unités individuelles est impossible, faire des inférences sur des groupes d'unités ne l'est pas.
@@ -127,8 +129,9 @@ Notez, cependant, que l'effet du traitement est désormais conditionné à la fo
 Avertissement : examiner l'effet du traitement à travers des dimensions qui sont elles-mêmes influencées par le traitement est une entreprise dangereuse et peut conduire à des inférences incorrectes.
 Par exemple, si vous vouliez voir comment l'administration d'un médicament conduit à des améliorations de la santé, vous pouvez rechercher séparément les hommes et les femmes, mais vous ne pouvez pas rechercher séparément ceux qui ont effectivement pris le médicament et ceux qui ne l'ont pas fait (ceci est un exemple d'inférence pour conformistes qui nécessite des techniques distinctes décrites au point 4 ci-dessous).
 
-3 Effet d'intention de traiter (intent to treat effect, ITT)
-==
+# Effet d'intention de traiter (intent to treat effect, ITT)
+
+
 
 En dehors de l'environnement contrôlé d'un laboratoire, les sujets que nous assignons au traitement ne sont souvent pas les mêmes que les sujets qui reçoivent réellement le traitement.
 Lorsque certains sujets assignés au traitement ne le reçoivent pas, nous appelons cela une expérience de non-conformité unilatérale.
@@ -160,8 +163,9 @@ samp = data.frame(Z,Y)
 ITT<-coef(lm(Y~Z,data=samp))[2]
 ```
 
-4 Effet causal moyen pour ceux qui se conforment au traitement (complier average causal effect, CACE)
-==
+# Effet causal moyen pour ceux qui se conforment au traitement (complier average causal effect, CACE)
+
+
 Que se passe-t-il si vous souhaitez déterminer l'effet du traitement sur les personnes qui ont effectivement suivi le traitement et pas seulement sur celles à qui le traitement a été administré ?
 Par exemple, quel est l'effet des publicités à la radio sur le comportement de vote des personnes qui entendent réellement les publicités ?
 
@@ -201,8 +205,9 @@ samp = data.frame(Z,D,Y)
 # Wald Estimator ITT<-coef(lm(Y~Z,data=samp))[2] ITT.D<-coef(lm(D~Z,data=samp))[2] CACE.wald<-ITT/ITT.D
 ```
 
-5 Effet moyen du traitement d'une population ou d'un échantillon
-==
+# Effet moyen du traitement d'une population ou d'un échantillon
+
+
 Souvent, à partir de notre échantillon, nous voulons en tirer des généralisations pour une population d'intérêt plus large.[^11]
 Soit $S_i$ un indicateur pour savoir si un sujet fait partie de notre échantillon.
 L'effet moyen du traitement pour l'échantillon (sample average treatment effect, SATE) est défini simplement comme $E(Y_i(1)−Y_i(0)|S_i=1)$ et la population $E(Y_i(1)−Y_i(0))$.
@@ -259,8 +264,9 @@ ATE.out <- estimate.ATE(pscore.formula = D ~ X1 +X2,
                         var.gam.plot=FALSE, nboot=50)
 ```
 
-6 Effet moyen du traitement sur les traités et le contrôle
-==
+# Effet moyen du traitement sur les traités et le contrôle
+
+
 Pour évaluer les implications politiques d'une intervention particulière, nous avons souvent besoin de connaître l'effet du traitement non seulement sur l'ensemble de la population mais spécifiquement pour ceux à qui le traitement est administré. Nous définissons l'effet moyen du traitement pour les traitées (ATT) et le contrôle (ATC) comme de simples comparaisons contrefactuelles :
 
 $$ATT=E(Y_i(1)-Y_i(0)|D_i=1)=E(Y_i(1)|D_i=1)-E(Y_i(0)|D_i=1)$$
@@ -310,8 +316,9 @@ ATT.ipw<-coef(lm(Y~D,data=samp,weights=W.att))[2]
 ATC.ipw<-coef(lm(Y~D,data=samp,weights=W.atc))[2]
 ```
 
-7 Effet moyen du traitement par quantile
-==
+# Effet moyen du traitement par quantile
+
+
 L'ATE se concentre sur le milieu, en quelque sorte sur l'effet pour une personne typique, mais nous nous soucions souvent aussi des conséquences distributives de notre traitement.
 Nous voulons savoir non seulement si notre traitement a augmenté le revenu moyen, mais aussi s'il a rendu la distribution des revenus dans l'étude plus ou moins égale.
 
@@ -355,8 +362,9 @@ seq(.05,.95,length.out=10),data=samp,method = "fn")
 plot(summary(QTE),parm=2,main="",ylab="QTE",xlab="Quantile",mar = c(5.1, 4.1, 2.1, 2.1)) 
 ```
 
-8 Effet de médiation
-==
+# Effet de médiation
+
+
 Parfois, nous voulons décrire non seulement l'ampleur et le niveau de signification d'un effet causal observé, mais aussi le mécanisme (ou les mécanismes) qui l'ont produit.
 Notre intervention a-t-elle augmenté la participation dans le groupe de traitement, en partie, en augmentant le sentiment d'utilité politique pour ces sujets ?
 Si oui, quelle part de cet effet total peut être attribuée aux effets de médiation de notre traitement sur le sentiment d'utilité ; et de ce sentiment d'utilité sur la participation au vote ?
@@ -420,8 +428,9 @@ plot(s.out) # Tracer les bornes de la sensibilité
 # ADE<-coef(med.sys)["eq3_D"]
 ```
 
-9 Effet du traitement Log-Odds
-==
+# Effet du traitement Log-Odds
+
+
 
 L'effet moyen du traitement semble un peu difficile à interpréter lorsque les résultats ne sont pas continus.
 Par exemple, un résultat binaire très courant dans l'étude des élections est codé comme 1 lorsque les sujets ont voté et 0 lorsqu'ils ne l'ont pas fait.
@@ -466,8 +475,9 @@ log.odds.adj<-log(mean(aT.adj)/(1-mean(aT.adj)))-
   log(mean(aC.adj)/(1-mean(aC.adj)))
 ```
 
-10 Effet attribuable
-==
+# Effet attribuable
+
+
 Nous concluons par une brève discussion sur une autre quantité d'intérêt causal qui peut être particulièrement utile avec des résultats binaires : l'effet attribuable (Rosenbaum 2010).
 Considérons un cas simple avec un résultat dichotomique et un traitement.
 Soit $A$ le nombre de résultats attribuables au traitement, c'est-à-dire le nombre de cas pour lesquels $Y_i$ était égal à 1 parmi les sujets traités ; ce qui ne se serait pas produit si ces unités avaient été assignées au contrôle.

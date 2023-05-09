@@ -16,8 +16,9 @@ Esta guía[^1] es un herramienta que le servirá para evaluar y mejorar el poder
 [^1]: Autor original: Alex Coppock, 20 de noviembre de 2013. Esta guía es un documento dinámico y por lo tanto puede ser modificada por los miembros de EGAP en cualquier momento. Coppock no se hace responsable de las ediciones posteriores de esta guía.
 
 
-1 Qué es el poder estadístico
-==
+# Qué es el poder estadístico
+
+
 
 El poder estadístico sirve para diferenciar la señal del ruido.
 
@@ -32,8 +33,9 @@ Una de las principales preocupaciones antes de embarcarse en un experimento es e
 
 Si nuestros experimentos tienen suficiente poder, podemos estar seguros de que si realmente hay un efecto del tratamiento, seremos capaces de observarlo.
 
-2 ¿Por qué es importante?
-==
+# ¿Por qué es importante?
+
+
 A menudo los investigadores experimentales buscan evitar el riesgo de falsos positivos utilizando pruebas de significancia estadística. Después de que se ha realizado un experimento, nos preocupa concluir falsamente que hay un efecto cuando en realidad no lo hay.
 
 El análisis de poder plantea la pregunta opuesta: suponiendo que realmente haya un efecto de tratamiento y que se pueda realizar el experimento muchas veces, ¿con qué frecuencia obtendría un resultado estadísticamente significativo?
@@ -47,8 +49,9 @@ Muchas disciplinas consideran 0.80 como un poder estadístico ideal. Los investi
 Nota de precaución: el poder es muy importante. Los resultados negativos de estudios con poco poder pueden ser difíciles de interpretar: ¿realmente no hay ningún efecto? ¿O el estudio simplemente no puede detectarlo? Los resultados positivos de un estudio con poco poder también pueden ser engañosos: asumiendo que  el efecto sea estadísticamente significativo, una estimación de un estudio con poco poder probablemente sobrestima los efectos del tratamiento. Los estudios con poco poder se basan a veces en supuestos demasiado optimistas; un análisis de poder convincente hace que estas suposiciones sean explícitas y debería protegerlo de la implementación de diseños que, de manera realista, no tienen ninguna posibilidad de responder a las preguntas que desea responder.
 
 
-3 Los tres ingredientes del poder estadístico
-==
+# Los tres ingredientes del poder estadístico
+
+
 Hay tres grandes categorías de cosas que determinan el poder de un experimento. Las dos primeras (la efectividad del tratamiento y el ruido de fondo) son cosas que realmente  no se pueden controlar; estas son las realidades del entorno experimental. El último, el diseño experimental, es lo único sobre lo se que tiene poder: ¡úselo!
 
 * Efectividad del tratamiento. A medida que aumenta la efectividad de un tratamiento, aumenta el poder del experimento. Esto tiene sentido: si el tratamiento le diera a cada sujeto $1,000,000, no hay duda de que podríamos identificar diferencias en el comportamiento entre los grupos de tratamiento y control. Sin embargo, muchas veces no controlamos la efectividad del tratamiento. Por ejemplo, los investigadores que participan en la evaluación de un programa no pueden decidir cuál debería ser el tratamiento, se espera que evalúen el programa tal como es.
@@ -57,8 +60,9 @@ Hay tres grandes categorías de cosas que determinan el poder de un experimento.
 
 * Diseño experimental. El análisis de poder tradicional se centra en un elemento (muy importante) del diseño experimental: el número de sujetos en cada grupo experimental. En pocas palabras, entre más sujetos más poder. Sin embargo, hay otros elementos del diseño experimental que pueden aumentar el poder: ¿cómo se realiza la asignación aleatoria? ¿Se controlarán estadísticamente otros factores? ¿Cuántos grupos de tratamiento habrá y pueden ser estos combinados para algunos análisis?
 
-4 Fórmulas clave para calcular el poder
-==
+# Fórmulas clave para calcular el poder
+
+
 Los estadísticos han derivado fórmulas para calcular el poder de muchos diseños experimentales. Estas pueden resultar útiles para calcular el tamaño de muestra necesaria para detectar un efecto. Sin embargo, tenga cuidado, porque los supuestos detrás de las fórmulas a veces pueden ser poco claros y, lo que es peor, pueden ser erróneos.
 
 A continuación, presentamos una fórmula común que se usa para calcular el poder[^2]
@@ -91,8 +95,9 @@ power_calculator <- function(mu_t, mu_c, sigma, alpha=0.05, N){
   } 
 ```
 
-5 Cuándo confiar en el análisis de poder 
-==
+# Cuándo confiar en el análisis de poder 
+
+
 Desde una perspectiva, puede que toda la idea del análisis del poder no tenga sentido. Estamos interesados averiguar el tamaño de algún efecto del tratamiento, pero primero necesitamos hacer un análisis de poder, lo que requiere que ya conozcamos el efecto del tratamiento y mucho más.
 
 Entonces, en la mayoría de los análisis de poder estamos viendo lo que sucedería asumiendo algunos números que hasta cierto punto son inventados. La buena noticia es que es fácil averiguar cuánto dependen nuestras conclusiones de los supuestos: simplemente tenemos que variar nuestros supuestos y observar cómo varían las conclusiones en relación al poder.
@@ -107,8 +112,9 @@ Usando la fórmula que vimos en la sección 4, podemos ver qué tan sensible es 
 
 <iframe height="500" src="https://egap.shinyapps.io/Power_Calculator/" width="850"></iframe>
 
-6  Cómo  las simulaciones nos puede ayudar a estimar el poder
-==
+# Cómo  las simulaciones nos puede ayudar a estimar el poder
+
+
 El poder es una medida de la frecuencia con la que, dados nuestros supuestos, obtendríamos resultados estadísticamente significativos si lleváramos a cabo nuestro experimento miles de veces. Para la fórmula del cálculo del poder hacemos ciertos supuestos y obtenemos una solución analítica. Sin embargo, gracias a los avances informáticos, no tenemos que depender de soluciones analíticas para el análisis del poder. Podemos decirle a nuestras computadoras que realicen el experimento miles de veces y simplemente establecer la frecuencia con la que nuestro experimento resulta significativo.
 
 El código a continuación muestra cómo realizar esta simulación en R
@@ -161,8 +167,9 @@ Además de contar la frecuencia con la que sus experimentos resultan estadístic
   
 
 ![ ](simulatedpvals_esp.png)
-7 Cómo modificar el diseño de un experimento para mejorar el poder
-==
+# Cómo modificar el diseño de un experimento para mejorar el poder
+
+
 
 Cuando de poder estadístico se trata, sobre lo único que tenemos control es el diseño del experimento. Como ya vimos anteriormente, una elección de diseño obvia es el número de unidades  en el experimento. Entre más unidades, mayor  el poder
 
@@ -191,8 +198,9 @@ A continuación, presentamos un gráfico que compara la eficacia de un experimen
 ![](powergraph21_esp.png)
 Este enfoque no se basa en una fórmula para generar la probabilidad de obtener un resultado estadísticamente significativo: ¡es fuerza bruta! Y debido a que la simulación le permite especificar cada paso del diseño experimental, hace un análisis de poder mucho más matizado que simplemente considerar el número de sujetos.
 
-8 Análisis de poder para múltiples tratamientos
-==
+# Análisis de poder para múltiples tratamientos
+
+
 Muchos experimentos emplean múltiples tratamientos que se comparan entre sí y con un grupo de control. Esta complicación adicional cambia lo que queremos decir cuando decimos el "poder" de un experimento. En el caso de un solo grupo de tratamiento, el poder es solo la probabilidad de obtener un resultado estadísticamente significativo. En el caso de tratamiento múltiple, puede significar una variedad de cosas: A) la probabilidad de que al menos uno de los tratamientos resulte significativo, B) la probabilidad de que todos los tratamientos resulten significativos (frente al control) o C) la probabilidad de que los tratamientos se clasifiquen en un orden hipotético y que esos rangos sean estadísticamente significativos.
 
 La pregunta sobre los múltiples brazos de tratamiento está relacionada con el problema de las compraciones múltiples. La prueba de significancia estándar se basa en la premisa de que está realizando una sola prueba de significancia estadística, y los valores p derivados de estas pruebas reflejan la probabilidad bajo la hipótesis nula de ver un efecto de tratamiento tan grande (o más grande). Sin embargo, si está realizando varias pruebas, esta probabilidad ya no es correcta. Dentro de un conjunto de pruebas, la probabilidad de que al menos una de las pruebas resulte significativa incluso cuando el efecto real es cero es mayor, esencialmente porque tiene más intentos. Una solución comúnmente citada (si no es que usada comúnmente) es usar la corrección de Bonferroni: especificando el número de comparaciones que hará por adelantado y luego dividiendo su nivel de significancia (alfa) por ese número.
@@ -202,8 +210,9 @@ Si va a utilizar una corrección de Bonferroni, las calculadoras de potencia est
 O puede utilizar la simulación. Un ejemplo de un cálculo de poder realizado en R está disponible en la página de simulaciones.
 
 
-9 Cómo pensar el poder para diseños por conglomerados
-==
+# Cómo pensar el poder para diseños por conglomerados
+
+
 
 Cuando un experimento tiene que asignar a grupos enteros de personas al tratamiento en lugar de individualmente, decimos que el experimento es por conglomerados. Esto es común en experimentos educativos, donde aulas enteras de niños se asignan al tratamiento o control, o en la economía del desarrollo, donde aldeas enteras de individuos se asignan al tratamiento o al control.
 
@@ -217,8 +226,9 @@ Hay fórmulas que pueden ayudarlo a comprender las consecuencias de los conglome
 
 Una vez más, un enfoque más flexible para el análisis de poder cuando se trata de conglomerados es la simulación. Vea la página de simulaciones para el código de inicio, o continúe leyendo Gelman / Hill páginas 450-453 para ver otras formas de abordar la simulación.
 
-10 Un buen análisis de poder facilita el pre-registro 
-==
+# Un buen análisis de poder facilita el pre-registro 
+
+
 
 Haciendo un análisis de poder nos concentramos en lo que no podemos controlar  (el ruido) y en lo que podemos controlar (el diseño). Si utiliza simulaciones para el análisis de poder, se verá obligado a imaginar cómo se verán sus datos y cómo los manejará cuando los recolecte. Tendrá la oportunidad de especificar todas sus intuiciones y  suposiciones por adelantado, por lo que que puede realizar sus experimentos con expectativas claras de lo que pueden y no pueden mostrar. Eso es mucho trabajo, pero la buena noticia es que si lo hace, habrá recorrido la mayor parte del camino para armar un plan de pre-análisis completo y registrable.
 
