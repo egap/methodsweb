@@ -5,6 +5,10 @@ author:
     url: https://egap.org/member/macartan-humphreys/
 image: x-cause-y.png
 bibliography: x-cause-y.bib
+format:
+  html:
+    toc: true
+    toc-location: body
 ---
 
 Experiments are a way of figuring out if something causes something else. The basic idea is: try it and find out. The tricky thing is figuring out how to try it out in a way that allows for confidence in beliefs about causal effects. A strategy that holds pride of place in the researcher’s toolkit is the randomized intervention. This is the strategy that is at the heart of most of the experimental research done by EGAP members. But there are other strategies that are sometimes more appropriate. Here we describe the ten most prominent strategies for figuring out causal effects.
@@ -47,9 +51,7 @@ A variety of alternative approaches seek to account for confounding variables by
 
 7. Instrumental variables (IV)
 ==
-Another approach to identifying causal effects is to look for a feature that explains why a given group got a treatment but which is otherwise unrelated to the outcome of interest. Such a feature is called an instrument. For example say you are interested in the effect of a livelihoods program on employment, and say it turned out that most people who got access to the livelihoods program did so because they were a relative of a particular program officer. Now suppose that being a relative of the program officer does not affect job prospects in any way other than through its effect on getting access to the livelihoods program. If so, then you can work out the effect of the program by understanding the effect of being a relative of the program officer on job prospects. This has been a fairly popular approach but the enthusiasm for it has died a bit, basically because it is hard to find a good instrument. One smart application are studies on the effects of poverty on conflict which use rainfall in Africa as an instrument for income/growth. While there are worries that the correlation between conflict and poverty may be due to the fact that conflict causes poverty, it does not seem plausible that conflict causes rainfall! So using rainfall as an instrument here gave a lot more confidence that really there is a causal, and not just correlational, relationship between poverty and conflict.[^1]
-
-[^1]: See @miguel_et_al_2004.
+Another approach to identifying causal effects is to look for a feature that explains why a given group got a treatment but which is otherwise unrelated to the outcome of interest. Such a feature is called an instrument. For example say you are interested in the effect of a livelihoods program on employment, and say it turned out that most people who got access to the livelihoods program did so because they were a relative of a particular program officer. Now suppose that being a relative of the program officer does not affect job prospects in any way other than through its effect on getting access to the livelihoods program. If so, then you can work out the effect of the program by understanding the effect of being a relative of the program officer on job prospects. This has been a fairly popular approach but the enthusiasm for it has died a bit, basically because it is hard to find a good instrument. One smart application are studies on the effects of poverty on conflict which use rainfall in Africa as an instrument for income/growth. While there are worries that the correlation between conflict and poverty may be due to the fact that conflict causes poverty, it does not seem plausible that conflict causes rainfall! So using rainfall as an instrument here gave a lot more confidence that really there is a causal, and not just correlational, relationship between poverty and conflict [@miguel_et_al_2004].
 
 8. Regression discontinuity designs (RDD)
 ==

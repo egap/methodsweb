@@ -4,3 +4,7 @@
 .Ruserdata
 
 /.quarto/
+/_freeze/
+/_site/
+*_cache
+*figure-html*
