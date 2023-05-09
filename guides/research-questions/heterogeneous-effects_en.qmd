@@ -14,9 +14,12 @@ This guide discusses methods for analyzing heterogeneous treatment effects: test
 # What is treatment effect heterogeneity, and when might we want to learn about it?
 ==
 
-Any given treatment might affect different experimental subjects in different ways. The study of treatment effect heterogeneity is the study of these differences across subjects: For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects? 
+Any given treatment might affect different experimental subjects in different ways. The study of treatment effect heterogeneity is the study of these differences across subjects: For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects? For example, Eric Kramon, Sarah Brierley, George Ofosu in their study of [The Moderating Effect of Debates in Ghana](https://egap.org/resource/the-moderating-effect-of-debates-in-ghana/) uncover that partisanship of individuals condition the impact of viewing parliamentary debates on candidate evaluation and vote choice. In addition, the policy brief on [Reducing Clientelism in Benin](https://egap.org/resource/brief-13-reducing-clientelism-in-benin/) details how the effectiveness of different anti-clientelistic policies can depend on the incumbency status of candidates. 
+
 
 Research on such questions can help inform theories about the conditions under which treatments are especially effective or ineffective. It can also help inform ways of designing and deploying policies so as to maximize their effectiveness. If resources will be utilized to deploy a large-scale policy intervention, there are good arguments to be made for deploying it where we have reasonable evidence that it will work. 
+
+
 
 # Conditional average treatment effects (CATEs)
 ==
