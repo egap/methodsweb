@@ -11,7 +11,7 @@ output:
 <!-- title: "10 choses à savoir sur la mesure dans les expériences" -->
 <!-- author: 'Auteur du guide des méthodes: Tara Slough' -->
 
-# 1. La validité des inférences que nous tirons d'une expérience dépend de la validité des mesures utilisées.
+# La validité des inférences que nous tirons d'une expérience dépend de la validité des mesures utilisées.
 
 Nous expérimentons généralement afin d'estimer l'effet causal d'un traitement $Z$ sur un résultat $Y$.
 Pourtant, la raison pour laquelle nous nous soucions d'estimer cet effet causal est, en principe, de comprendre les caractéristiques de la relation entre deux concepts théoriques non observés mesurés par les variables observées $Z$ et $Y$.
@@ -63,7 +63,7 @@ ggplot() +
         axis.text = element_blank())
 ```
 
-# 2. La mesure est le lien entre l'argument substantif et/ou théorique d'un chercheur et une conception de recherche (expérimentale).
+# La mesure est le lien entre l'argument substantif et/ou théorique d'un chercheur et une conception de recherche (expérimentale).
 
 Lorsque nous considérons la conception d'une expérience, nous avons tendance à nous concentrer sur le processus par lequel le traitement $Z$ est assigné de manière aléatoire et sur la distribution conjointe de $Z$ et du résultat $Y$.
 En d'autres termes, nous avons tendance à séparer les scores de $Z$ et $Y$ des concepts plus larges lorsque nous considérons les propriétés statistiques d'une conception de recherche.
@@ -77,7 +77,7 @@ Nous observons des mesures de différents concepts dans les données des deux ex
 En considérant les indicateurs et les concepts plus larges qui sous-tendent les traitements et les résultats, nous sommes obligés d'examiner les théories ou arguments respectifs des chercheurs.
 Ce faisant, nous pouvons soulever des questions sur la validité des mesures et la relation entre la validité des mesures et la validité des inférences finales et substantielles.
 
-# 3. La mesure des traitements comprend l'opérationnalisation du traitement ainsi que la conformité de l'assignation au traitement.
+# La mesure des traitements comprend l'opérationnalisation du traitement ainsi que la conformité de l'assignation au traitement.
 
 Dans une expérience, les traitements sont généralement conçus ou, au minimum, décrits par le chercheur.
 Les consommateurs de recherche expérimentale devraient s'intéresser aux caractéristiques du traitement et à la façon dont il manipule un concept d'intérêt.
@@ -103,7 +103,7 @@ Cependant, si les résidents d'un ménage ne sont pas à la maison lors de la vi
 Notre définition de la conformité devrait déterminer ce qui constitue un "traité" sur notre mesure (endogène) : "le fait qu'un ménage ait reçu ou non le traitement", ici l'information.
 Certaines définitions courantes de la conformité peuvent être (a) qu'un membre du ménage a ouvert la porte ; ou (b) qu'un membre du ménage a écouté le script d'information complet.
 
-# 4. La plupart des résultats d'intérêt en sciences sociales sont latents.
+# La plupart des résultats d'intérêt en sciences sociales sont latents.
 
 Contrairement à la mesure des indicateurs de traitement et de conformité, la mesure des résultats dans la recherche expérimentale suit de beaucoup plus près le processus décrit dans la figure ci-dessus.
 Nous théorisons comment le traitement peut influencer un concept de résultat.
@@ -122,7 +122,7 @@ Comme dans la section 1 ci-dessus, si ces indicateurs ne mesurent pas conceptuel
 De plus, l'erreur de mesure peut miner notre capacité à estimer l'effet de $Z$ et $Y$ conduisant à des inférences incorrectes.
 Le reste de ce guide se concentre sur ce dernier problème.
 
-# 5. Il existe deux types d'erreurs de mesure que nous devrions considérer.
+# Il existe deux types d'erreurs de mesure que nous devrions considérer.
 
 On peut formaliser assez simplement les enjeux de mesure.
 Supposons qu'un traitement $Z_i$ soit supposé changer les préférences pour les normes démocratiques $\nu_i$.
@@ -136,7 +136,7 @@ Cet indicateur, $Y_i$, peut être décomposé en la variable latente, $\nu_i$ et
 
 $$Y_i = \underbrace{\nu_i}_{\text{Résultat latent}} + \underbrace{\delta_i}_{\substack{\text{Erreur de mesure} \\ \text{non-systématique}}} + \underbrace{\kappa_i}_{\substack{\text{Erreur de mesure} \\ \text{systématique}}}$$
 
-# 6. L'erreur de mesure réduit la puissance statistique de votre expérience.
+# L'erreur de mesure réduit la puissance statistique de votre expérience.
 
 L'erreur de mesure non systématique, représentée par $\delta_i$ ci-dessus, fait référence au bruit avec lequel nous mesurons la variable latente.
 En l'absence d'erreur de mesure systématique, on mesure :
@@ -160,7 +160,7 @@ En d'autres termes, plus nos mesures d'une variable latente sont bruyantes, plus
 
 Qu'en est-il du cas où $Cov(\nu_i, \delta_i) < 0$ ? Bien que cela réduise $Var(Y_i)$ (en maintenant $Var(\nu_i)$ et $Var(\delta_i)$ constants), cela atténue également la variation que nous mesurons dans $Y_i$. En principe, cela devrait atténuer le numérateur $|\mu_t-\mu_c|$, qui réduira également la puissance, si cela suffit par rapport à la réduction de la variance.
 
-# 7. L'erreur de mesure systématique biaise les estimations de l'effet causal d'intérêt.
+# L'erreur de mesure systématique biaise les estimations de l'effet causal d'intérêt.
 
 Si nous estimons l'effet moyen de traitement (ATE) de notre traitement $Z_i$, sur les préférences pour les normes démocratiques, $\nu_i$, nous essayons de calculer $E[\nu_i|Z_i = 1] - E[\nu_i|Z_i =0]$.
 Cependant, en présence d'une erreur de mesure **systématique**, où l'erreur de mesure est liée à l'assignation du traitement lui-même (disons, le résultat est mesuré différemment dans les groupes de traitement et de contrôle), un estimateur de la différence des moyennes sur le résultat observé, $Y_i$, renvoie une estimation biaisée de l'ATE.
@@ -180,7 +180,7 @@ De plus, les conceptions qui mesurent les résultats de manière asymétrique da
 Dans tous les cas, il existe une asymétrie entre les conditions de traitement dans (a) la manière dont les sujets réagissent à l'observation ; ou (b) la façon dont nous observons les résultats qui est distincte de tout effet du traitement sur la variable latente d'intérêt.
 L'estimation biaisée de l'ATE devient le net de tout effet sur les variables latentes (l'ATE) et l'erreur de mesure non systématique.
 
-# 8. Tirez parti de plusieurs indicateurs pour évaluer la validité d'une mesure, mais soyez conscient des limites de ces tests.
+# Tirez parti de plusieurs indicateurs pour évaluer la validité d'une mesure, mais soyez conscient des limites de ces tests.
 
 Au-delà de la considération de la qualité de la correspondance entre un concept et une mesure, nous pouvons souvent évaluer la qualité de la mesure en la comparant à des mesures provenant d'opérationnalisations alternatives du même concept, de concepts étroitement liés ou de concepts distincts.
 Dans les *tests convergents* de la validité d'une mesure, nous évaluons la corrélation entre les mesures alternatives d'un concept.
@@ -204,7 +204,7 @@ Il se peut que nous ayons des indicateurs valides des deux concepts, mais ils pr
 En somme, l'ajout de plus de mesures peut aider à valider un indicateur, mais ces tests de validation sont limités dans ce qu'ils nous disent lorsqu'ils échouent.
 Dans cette mesure, nous devons rester conscients des limites en plus de l'utilité de collecter des mesures supplémentaires pour simplement valider un indicateur.
 
-# 9. L'utilisation de plusieurs indicateurs améliore souvent la puissance de votre expérience, mais peut introduire un compromis biais-efficacité.
+# L'utilisation de plusieurs indicateurs améliore souvent la puissance de votre expérience, mais peut introduire un compromis biais-efficacité.
 
 Regrouper plusieurs indicateurs d'un concept ou d'un résultat peut également améliorer la puissance de votre expérience.
 Si plusieurs indicateurs mesurent le même concept mais sont mesurés avec une erreur (non systématique), nous pouvons améliorer la précision avec laquelle nous mesurons la variable latente en tirant parti de plusieurs mesures.
@@ -309,7 +309,7 @@ Les chercheurs doivent louvoyer avec ce compromis.
 Le pré-enregistrement des composants d'un indice fournit une manière raisonnée de naviguer pour un problème qui oblige un examen approfondi du concept en l'absence de données.
 Cela évite également les questions ex post sur le choix des indicateurs pour un indice.
 
-# 10. Alors que les concepts peuvent être globaux, de nombreux indicateurs sont spécifiques au contexte.
+# Alors que les concepts peuvent être globaux, de nombreux indicateurs sont spécifiques au contexte.
 
 De nombreuses études en sciences sociales se concentrent sur des concepts qui sont généralement supposés être latents, notamment les préférences, les connaissances ou les attitudes.
 Dans la mesure où nous travaillons sur des concepts communs, il existe une tendance à s'inspirer des opérationnalisations existantes à partir d'études sur des concepts connexes dans des contextes différents.

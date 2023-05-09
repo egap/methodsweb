@@ -45,7 +45,7 @@ In this guide, we will describe three main approaches for addressing the multipl
 2. Pre-analysis plans. These plans are a powerful design-based tool that enables an analyst to pro-actively manage the multiple comparisons problem.
 3. Replication. If we are concerned that a finding is simply an artifact of sampling variability that we happened to discover because of a naive repeated application of classical hypothesis testing, then the best way to resolve the question is to conduct the experiment again.
 
-# 3. Don't mix up the FWER and FDR!
+# Don't mix up the FWER and FDR!
 
 In classical hypothesis testing, the “$\alpha$ level” describes how willing the researcher is to make a certain kind of mistake: a false positive or a "Type I error" where a researcher falsely concludes that an observed difference is “real,” when in fact there is no difference. From the coin flipping example, concluding that we have an unfair coin because we flipped 9 heads and 1 tails when in reality we have fair coins is an example of a Type I error or false positive error.  After setting the $\alpha$ level, the researcher conducts a hypothesis test and if the p-value $\leq \alpha$, we call the result "statistically significant". In many social science applications, the alpha level, or Type I error rate, is set to 0.05. This means that the researcher is willing to commit a Type I error 5% of the time.
 

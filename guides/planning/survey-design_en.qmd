@@ -103,7 +103,7 @@ For example, Lauren Young used a clever behavioral measure when estimating the e
 2. Isolate the set of behaviors that are feasible to measure. This will most likely be the set of behaviors that can be immediately observed by the enumerator and involve minimal materials. What is the least expensive or costly action that would be associated with the behavioral change you want to detect?
 3. Ideally, pre-test the measures either with the rest of your survey, or in smaller focus groups. Learning why respondents did or did not behave a certain way will increase confidence in your results. 
 
-# 6. There are survey methods that measure sensitive behaviors and attitudes in risky environments while protecting respondents
+# There are survey methods that measure sensitive behaviors and attitudes in risky environments while protecting respondents
 
 The estimation of treatment effects depends on accurate measures of attitudes and beliefs, which in turn depend on honest responses to survey questions. Respondents, in some cases, will answer survey questions in the way they believe others in their community would like them to, or in the way the enumerator or researcher would like them to. People are more likely to do this when they could face punishment for their true beliefs—from social sanctioning to physical harm. In some instances, respondents may not feel comfortable giving a response at all. If this is the case, your measures will be biased in the direction respondents believe to be "socially desirable." 
 
@@ -129,7 +129,7 @@ Experiments should be “replicable” in the sense that other scientists could 
 5. When constructing response categories, be as comprehensive as possible. Include all possible responses. You don’t want to record a lot of “don’t know” responses and miss important information. See below for a discussion of scales.
 6. Keep in mind the concerns with social desirability discussed above; the wording of the question shouldn’t lead the respondent towards a certain response.
 
-# 8. Question ordering & instrument length matter
+# Question ordering & instrument length matter
 
 Responding to a survey is costly for the respondent. They are volunteering their time and being asked to think in ways that may be new or unfamiliar to them, often for long periods of time. Keeping this in mind, keep your questionnaire as short and as engaging as possible. If you have a large enough sample, you can shorten a questionnaire by randomly assigning some of the respondents to different forms.
 

@@ -12,7 +12,7 @@ If you are a practitioner or official from a governmental or non-governmental or
 
 As an implementer, what should you expect or request when collaborating with an external evaluator? How can that evaluation be designed to help your organization and the broader field to learn and innovate? What conversations should you have with an evaluator upfront so that the evaluation runs smoothly? How can you work with the evaluator to decide on and communicate actionable and convincing analyses about the impact of a program? How will you and the evaluator share what you learned to improve the practice of your organization and others? How can you ensure that what you learn helps the whole community of practice so that overall social welfare improves? This short guide offers questions to guide conversations with prospective evaluators, points to some practices that have worked well elsewhere, and explains why they might be important or useful in future evaluations.[^1]
 
-# 1. What is the goal of the evaluation?
+# What is the goal of the evaluation?
 
 This may seem blatantly straightforward--the evaluation is to see if the program worked. Yet most policy evaluation efforts involve multiple goals. The program may be in a pilot stage, and you want to gather preliminary evidence before expanding the program. The program may have worked in one context (country, community), and you would like to know how generalizable it is. You may want to know who the program works for. Does it work differently for men or women? Marginalized communities or wealthy and powerful groups? You may want to know how part of your intervention affects other aspects of your existing interventions (e.g., cash vs. cash + training) or what combination of activities are most cost effective. You may want to know if you should try to scale the program. Or you may want to know not so much whether or not the program works, but why it works.
 
@@ -20,7 +20,7 @@ Additionally, many programs have multiple components. The program may not only b
 
 As implementers, it&#39;s important to be clear on your goal of what you want to learn among yourselves and be clear about those goals with the evaluation team. The evaluation team or person, particularly if they are an academic or publish their work more widely, will also have goals about what they want to learn. Without being clear about what you and your organization need to learn, the evaluator may not design the most appropriate evaluation method. This takes us to the next question.
 
-# 2. What is the best method for the evaluation?
+# What is the best method for the evaluation?
 
 Since evaluation efforts may serve multiple purposes for different audiences, no single research design is always best. We suggest that evaluation and implementation teams not take for granted any given approach: some evaluation teams specialize in human-centered design research which is very similar to ethnographic research in the social sciences; other teams specialize in randomized controlled trials (RCTs). The fact that any given team has expertise in one particular mode of research should not outweigh the need to connect purposes to evaluation design. We have seen such conversations yield realizations that, in fact, an &quot;evaluation&quot; ought to be a multi-step process with learning about the context and the intervention occurring along the way –- more akin to adding evidence to hone a learning agenda than to report on the estimated causal effect of a given intervention in a given place and time.
 
@@ -30,13 +30,13 @@ RCTs can be used to test insights that are derived from more unstructured observ
 
 This conversation about approach, method, and maybe iteration, between the evaluator and the implementer, can also help identify whether the intervention can be conducted in a way to better answer the questions of interest. For example, is there a way to phase in or layer parts of the program so you could test mechanisms? How might you recruit individuals into the program so that it is more representative of the populations you care about, or so that the results will be generalizable? Our general theme here (and elsewhere in this guide) is that the most useful evaluations often occur when both the evaluation and the program design are created collaboratively (see Conversation 6 below).
 
-# 3. Who are the stakeholders?
+# Who are the stakeholders?
 
 Often there are multiple stakeholders both within the organization whose work is subject to the evaluation, but also externally (not to mention the evaluator themself, and the audiences they may want to influence by publicizing the results). Within an organization, some people work across contexts and want to understand how a program may vary in its results across those contexts. Some people implement in a specific context and want to know how to do it better in that place. Then there may be executives who are focused on external influence and raising the profile of the organization versus the program managers who are trying to use the information to adapt their programming. For example, when one of the authors was working on an evaluation related to host and refugee relationships, the HQ team cared most about the pooled results across Lebanon and Jordan. Such results allowed them to speak to the larger issue of host-refugee relations. In contrast, the field teams cared more about country-specific data so they could adapt their programming. The evaluation team worked with both the field and HQ teams to prioritize which results to produce first. In this case, the different needs within an organization did not change the evaluation design. But one could easily imagine a situation where an evaluation designed to be sensitive to the effects of a program in one place would be inappropriate in another context. If a multi-context analysis is of primary importance, then one will be glad to have had this conversation early in the design process rather than discovering that one cannot easily combine datasets.
 
 Both implementers and evaluators who are committed to benefiting the larger social good will also want to influence external stakeholders, particularly policymakers. Discussing who these people are and what questions and information they will find most persuasive needs to happen not just after the data is analyzed, but at the design phase. Otherwise, the implementing organization may be disappointed that the results are not able to speak to certain debates and as a result may be less likely to invest in evidence generation in the future. We discuss more about publicizing results below.
 
-# 4. How can our evaluation enable learning within our organization?
+# How can our evaluation enable learning within our organization?
 
 An organization decides to evaluate the performance of a new (or old) policy because its members desire to learn how to improve. We state this point first and foremost because resistance to evaluation often arises from different stakeholders who think of the word &quot;evaluate&quot; and connect it with &quot;grade&quot; or &quot;rank&quot; or other attempts to measure that often distribute rewards or punishments. An organization that primarily evaluates as a form of ranking or grading will quickly run into resistance and all of the problems associated with replacing internal motivations with external carrots and sticks — carrots and sticks are blunt instruments that rarely lead to the best performance from anyone.
 
@@ -47,13 +47,13 @@ If, however, an organization uses evaluations to learn, then the structure of an
 
 Even when the purpose is to learn, not grade, some within an organization may still be fearful of the results, as they believe their careers are tied to achieving strong results. If they are not bought into the learning agenda, they may resist cooperation with the evaluators or refuse to use the results of the evaluation, limiting the evaluation&#39;s utility. Ensuring that the questions the team closest to the ground wants to learn about are incorporated into the evaluation helps ensure the success both in evaluating the program, and that people will use the results of the evaluation to learn and improve future programs.
 
-# 5. How might this evaluation connect to a broader and shared learning agenda?
+# How might this evaluation connect to a broader and shared learning agenda?
 
 One way to think about learning for an organization is to think about its high level goals: What is the mission of your organization and what part of that mission do you want your programs to contribute to? For example, say a county government has an overall goal of reducing racial inequality. Next imagine that you are implementing a program which provides reduced bus fares with the assumption that reduced bus fares increase employment opportunities with higher wages. You want to test this assumption, and evaluate whether the subsidies contributed to the larger goal of reducing racial inequality. In that case, one might imagine a figure or diagram illustrating this theory of change that by reducing bus fares, People of Color are better able to commute to jobs with higher wages, thus reducing racial inequality. The implementer can then work with the evaluator to design the evaluation to learn about (a) the effects of reducing bus fares on employment options and (b) about how reducing bus fares affects our overall goal of reducing racial inequality in our county.&quot;
 
 By having this type of conversation--about how a specific program or policy may contribute to larger change--there is a recognition that one evaluation or one program is part of a larger learning agenda. This conversation then can shape a deeper collaboration between the implementer and evaluator (see the next Conversation). Evaluators are often based in academia and bring a passion to engage pressing questions of theory to their work with the hope that they uncover some underlying and generalizable truths. They also have read extensively in the field, and may be able to bring additional evidence to bear on your policy or program. If the high level learning goals of a community of evaluators and implementers can connect, then one hopes the results of individual evaluations more easily connect and cumulate into even more effective policy creation and implementation.
 
-# 6. On what parts of the project should we collaborate?
+# On what parts of the project should we collaborate?
 
 In our experience, when a new policy design arises from a creative collaboration between evaluators (who are often academics) and implementers, everyone wins. Often, for example, a better evaluation design can be incorporated into the implementation if discussed early, in a way that creates fewer burdens on the implementer and/or those benefiting from the new policy (e.g., aligning data collection or phasing in of intervention sites). Another benefit arising from such creative co-creation is that different people will bring different perspectives and evidence-bases to the table for the design of both the program and the evaluation. For example, the U.S. government&#39;s Office of Evaluation Sciences ([OES](https://oes.gsa.gov/)) has institutionalized this process. [They write](https://oes.gsa.gov/projectprocess/):
 
@@ -63,7 +63,7 @@ The [Immigration Policy Lab at Stanford](https://immigrationlab.org/team/) uses 
 
 Other evaluations involve an evaluator brought on after the fact — perhaps the funders and/or the implementer desire a fresh perspective on the data and design, or the original implementation was rushed. Either way, &quot;how and on which parts should we collaborate&quot; is still a crucial conversation to have.
 
-# 7. How will we communicate within and across teams?
+# How will we communicate within and across teams?
 
 Collaboration requires communication. This means that the parties to an evaluation agreement must agree to speedy feedback in mutually agreed upon forms and processes for how to do so. For example, some complex evaluations might create a quick web dashboard so that sample sizes and implementation can be easily seen by the whole team. Other, simpler projects may agree to use existing tools for project management and communication. Not everyone checks email all the time. And many people silence their phones as they try to focus. Having this conversation about communication allows new partners to avoid misunderstanding email or Slack silence.
 
@@ -71,7 +71,7 @@ Calendars and deadlines are also an important part of this conversation. During 
 
 The communication discussion is also an opportunity to envision the final products: the one-pager, the anticipated three challenges and hoped for three successes for the external-facing report, the number of drafts of the different final projects the team expects to go through, and who is expected to take the lead on which ones. This might be a time where evaluators and implementers share draft reports or report templates that they have liked in the past.
 
-# 8. How and where shall we make the results of this study public? (i.e., communicate externally)
+# How and where shall we make the results of this study public? (i.e., communicate externally)
 
 A well-done public evaluation report is a gift to humanity.
 
@@ -87,7 +87,7 @@ Moreover, publishing all results helps quell other criticisms that can be aimed 
 
 The timelines that implementers and evaluators, especially ones who come from academia, have for publishing results are likely different. Your organization may want to use or share the results as soon as possible, so that you can improve your programming or influence policy. However, cleaning and analyzing data takes time. And a review of the results before publishing can improve the quality of the presentation and analysis. Some academic publications prefer that the results not be shared publicly before publication in other formats. Given these benefits and constraints, it&#39;s important to talk with the evaluator about how to share the results and when and how.
 
-# 9. What if things do not go as expected or hoped?
+# What if things do not go as expected or hoped?
 
 In conducting an evaluation, numerous things may not go according to plan. There are many operational issues, and since an evaluation can be a multi-month or multi-year process, complications always arise. There may be staffing changes, and their commitment to the evaluation may vary. Or new staff members are interested in different questions. The context may change and the teams have to adapt. The Covid pandemic is a good example of this, as programming and how data was collected had to change practically overnight. Good communication within the team (see above) is essential for navigating these unexpected issues that will arise in some form, and ensuring the integrity of the program and evaluation.
 
@@ -103,7 +103,7 @@ A third approach that is becoming the norm for experimental research in politica
 
 A pre-analysis plan also can help stakeholders within an organization, perhaps stakeholders with conflicting prior beliefs, think through what analyses they would find convincing **before the study has been fielded/data have been analyzed.** For example, an evaluator could generate hypothetical tables and figures and show them to stakeholder meetings asking: &quot;What would your reaction be to a figure like this?&quot; This process helps stakeholders begin to assess the evaluation questions in more detail, ensure that measures are operationalized appropriately, and consider the level of implementation that is needed for the desired results. It also helps stakeholders become aware of the possibility that we may learn something unexpected.
 
-# 10. How can our evaluation contribute to the social good?
+# How can our evaluation contribute to the social good?
 
 A premise of this guide is that the evaluation will contribute to the social good. Yet we think that a conversation about this more generally can help implementers and evaluators collaborate more effectively by providing a superordinate goal to unite the whole team. Further, we encourage this conversation to ensure that all of the evaluation effort adds to the overall efforts to improve the world.
 
