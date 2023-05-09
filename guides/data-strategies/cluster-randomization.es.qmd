@@ -1,7 +1,10 @@
 ---
-title: ""
+title: "10 cosas que debe saber sobre la aleatorización por conglomerados"
 author: 
-  - name: ""
+  - name: "Jake Bowers"
+    url: https://www.jakebowers.org/
+bibliography: cluster-randomization.bib
+image: cluster-randomization.png
 ---
   
 

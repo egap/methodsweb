@@ -1,19 +1,23 @@
 ---
-title: ""
+title: "10 estrategias para descubrir si X causa Y"
 author: 
-  - name: ""
+  - name: "Macartan Humphreys"
+    url: https://egap.org/member/macartan-humphreys/
+image: x-cause-y.png
+abstract: |
+  Les expériences sont un moyen de déterminer si quelque chose cause quelque chose d'autre.
+  L'idée de base, c'est d'essayer pour savoir. Ce qui est délicat, c'est d'essayer d'une manière qui permette d'avoir assez confiance pour croire les effets causaux.
+  L'intervention randomisée est une stratégie qui occupe une place de choix dans la boîte à outils du chercheur.
+  C'est la stratégie qui est au cœur de la plupart des recherches expérimentales menées par les membres de EGAP.
+  Mais il existe d'autres stratégies qui sont parfois plus appropriées.
+  Nous décrivons ici les dix stratégies les plus importantes pour déterminer les effets causaux.^[Auteur d'origine : Macartan Humphreys. Révisions mineures : Winston Lin, 30 août 2016. Le guide est un document vivant et sujet à une mise à jour par les membres de EGAP à tout moment ; les contributeurs répertoriés ne sont pas responsables des modifications ultérieures.]
+bibliography: x-cause-y.bib
 ---
   
-
 <!-- title: "10 Strategies for Figuring out if X Causes Y" -->
 <!-- author: "Methods Guide Author: Macartan Humphreys" -->
 
-Resumen
-==
-Los experimentos son una forma de averiguar si un evento causa otro evento. La idea básica es: pruébelo y descúbralo. Lo complicado es averiguar cómo probarlo de una manera que genere confianza en nuestras creencias sobre los efectos causales. Una estrategia comúnmente utilizada por los investigadores es la intervención aleatoria. Esta es la estrategia que está en el centro de la mayoría de las investigaciones experimentales realizadas por los miembros de EGAP. Pero hay otras estrategias que a veces son más apropiadas. Aquí describimos las diez estrategias más destacadas para determinar efectos causales. ^[Autor de origen: Macartan Humphreys. Revisiones menores: Winston Lin, 30 de agosto de 2016. La guía es un documento activo y está sujeto a actualización por parte de los miembros de EGAP en cualquier momento; los colaboradores enumerados no son responsables de las ediciones posteriores.]
-
 # Aleatorización
-
 
 La estrategia utilizada en pruebas de control aleatorias (o intervenciones aleatorias, experimentos aleatorios) consiste en utilizar algún tipo de sorteo para determinar quién, dentro de algún grupo, tendrá o no acceso a un tratamiento o programa (o quizás quién lo recibirá primero y quién después, o quién recibirá una versión y quién otra). El atractivo de este enfoque es que utiliza la aleatorización para averiguar cuáles son los efectos sistemáticos de un programa. La aleatorización reduce la posibilidad de que una relación observada entre el tratamiento y las variables de resultado se deba a "posibles factores que puedan generar confusión” (confounding factors), es decir, a otras cosas que son diferentes entre los grupos (por ejemplo, podría preocuparnos que las cosas parezcan mejores en áreas tratadas precisamente porque los programas son implementados en áreas donde las cosas funcionan bien, pero al saber que la selección fue aleatoria esta preocupación se elimina por completo). Esta estrategia es poderosa porque garantiza que no hay una relación sistemática entre el tratamiento y todas las demás características que pueden afectar a las variables de resultado, seamos consciente de ellas o no. Por esta razón, a menudo se considera el mejor modelo a seguir. Sin embargo la aleatorización no puede utilizarse siempre y en todas partes, tanto por razones éticas como prácticas. Pero puede utilizarse en muchas más situaciones de lo que se tiende a creer. Léase [Humphreys y Weinstein](http://www.columbia.edu/~mh2245/papers1/HW_ARPS09.pdf) para una discusión de las ventajas y las limitaciones de este método para investigación en economía política de desarrollo.
 

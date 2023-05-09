@@ -7,6 +7,8 @@ author:
     url: https://publish.illinois.edu/cdgrady2/
 bibliography: pap.bib
 image: pap.png
+abstract: | 
+  This guide introduces the idea of a pre-analysis plan (PAP), offers a model and guiding questions for writing pre-analysis plans for your studies, and explains the uses of a pre-analysis plan. Links to PAP registries with example plans are provided at the end of this document.
 ---
 
 <style>
@@ -20,9 +22,6 @@ color: black;
 }
 
 </style>
-
-This guide introduces the idea of a pre-analysis plan (PAP), offers a model and guiding questions for writing pre-analysis plans for your studies, and explains the uses of a pre-analysis plan. Links to PAP registries with example plans are provided at the end of this document.
-
 
 # What is a Pre-Analysis Plan (PAP) 
 

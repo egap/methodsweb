@@ -5,10 +5,9 @@ author:
     url: https://egap.org/member/alexander-coppock/
 image: spillovers.png
 bibliography: spillovers.bib
+abstract: |  
+  This guide helps you think through how to design and analyze experiments when there is a risk of “interference” between units. This has been an important area of research in recent years and there have been real gains in our understanding of how to detect spillover effects. Spillovers arise whenever one unit is affected by the treatment status of another unit. Spillovers make it difficult to work out causal effects (we say why below). Experimentalists worry a lot about them, but the complications that spillovers create are not unique to randomized experiments. 
 ---
-
-This guide helps you think through how to design and analyze experiments when there is a risk of “interference” between units. This has been an important area of research in recent years and there have been real gains in our understanding of how to detect spillover effects. Spillovers arise whenever one unit is affected by the treatment status of another unit. Spillovers make it difficult to work out causal effects (we say why below). Experimentalists worry a lot about them, but the complications that spillovers create are not unique to randomized experiments.  
-
 
 # What they are 
 

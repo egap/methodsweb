@@ -5,6 +5,8 @@ author:
     url: https://publish.illinois.edu/cdgrady2/
 bibliography: survey-experiments.bib
 image: survey-experiments.png
+abstract: | 
+  This guide discusses techniques for using randomization to create experiments within the text of a survey (i.e. survey experiments).  These survey experiments are distinct from studies that use surveys to gather information related to an experiment that occurs outside of the survey.  The guide distinguishes between survey experiments that are used mainly for measuring sensitive attitudes, like list experiments, and those that are mainly used to learn about causal effects, like conjoint experiments.  Survey experiments for measurement attempt to ensure honest responses to sensitive questions by providing anonymity to respondents.  Survey experiments for causal identification randomize images and text to learn how the image or text influences respondents.  Both types of survey experiments face challenges, such as respondents not perceiving anonymity or not interpreting images and text as the researcher intended.  New experimental techniques seek to address these challenges.
 ---
 
 <style>
@@ -18,9 +20,6 @@ color: black;
 }
 
 </style>
-
-This guide discusses techniques for using randomization to create experiments within the text of a survey (i.e. survey experiments).  These survey experiments are distinct from studies that use surveys to gather information related to an experiment that occurs outside of the survey.  The guide distinguishes between survey experiments that are used mainly for measuring sensitive attitudes, like list experiments, and those that are mainly used to learn about causal effects, like conjoint experiments.  Survey experiments for measurement attempt to ensure honest responses to sensitive questions by providing anonymity to respondents.  Survey experiments for causal identification randomize images and text to learn how the image or text influences respondents.  Both types of survey experiments face challenges, such as respondents not perceiving anonymity or not interpreting images and text as the researcher intended.  New experimental techniques seek to address these challenges.
-
 
 # What is a Survey Experiment 
 

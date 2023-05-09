@@ -2,7 +2,7 @@
 title: "10 Things to Know About Measurement in Experiments"
 author: 
   - name: "Tara Slough"
-    url: https://egap.org/member/tara-slough/
+    url: http://taraslough.com
 bibliography: measurement.bib
 image: measurement.png
 ---

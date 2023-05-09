@@ -5,6 +5,8 @@ author:
     url: https://anna-wilke.com/
 bibliography: sampling.bib
 image: sampling.png
+abstract: | 
+  Researchers are rarely able to collect measurements on all units that make up the target population of a study. Time and budget constraints typically require the selection of a subset of units --- a process called sampling. This guide provides an overview of different ways to sample and how these affect what can be learned from a study. Particular attention is paid to questions about sampling and randomized experiments.
 ---
 
 ```{r, echo = FALSE,message=F, error=F,warning=F}
@@ -15,9 +17,6 @@ library(reshape2)
 library(knitr)
 library(kableExtra)
 ```
-
-
-Researchers are rarely able to collect measurements on all units that make up the target population of a study. Time and budget constraints typically require the selection of a subset of units --- a process called sampling. This guide provides an overview of different ways to sample and how these affect what can be learned from a study. Particular attention is paid to questions about sampling and randomized experiments.
 
 # What is random sampling? 
 

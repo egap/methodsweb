@@ -1,24 +1,15 @@
 ---
-output: 
-  html_document:
-    toc: true
-    theme: journal
-    includes:
-        after_body: ../linking_script.html
+title: "10 stratégies pour déterminer si X cause Y"
+author: 
+  - name: "Macartan Humphreys"
+    url: https://egap.org/member/macartan-humphreys/
+image: x-cause-y.png
+abstract: "Experiments are a way of figuring out if something causes something else. The basic idea is: try it and find out. The tricky thing is figuring out how to try it out in a way that allows for confidence in beliefs about causal effects. A strategy that holds pride of place in the researcher’s toolkit is the randomized intervention. This is the strategy that is at the heart of most of the experimental research done by EGAP members. But there are other strategies that are sometimes more appropriate. Here we describe the ten most prominent strategies for figuring out causal effects."
+bibliography: x-cause-y.bib
 ---
 
 <!-- title: "10 stratégies pour déterminer si X cause Y" -->
 <!-- author: "Auteur du guide des méthodes: Macartan Humphreys" -->
-
-Résumé
-==
-Les expériences sont un moyen de déterminer si quelque chose cause quelque chose d'autre.
-L'idée de base, c'est d'essayer pour savoir. Ce qui est délicat, c'est d'essayer d'une manière qui permette d'avoir assez confiance pour croire les effets causaux.
-L'intervention randomisée est une stratégie qui occupe une place de choix dans la boîte à outils du chercheur.
-C'est la stratégie qui est au cœur de la plupart des recherches expérimentales menées par les membres de EGAP.
-Mais il existe d'autres stratégies qui sont parfois plus appropriées.
-Nous décrivons ici les dix stratégies les plus importantes pour déterminer les effets causaux.
-^[Auteur d'origine : Macartan Humphreys. Révisions mineures : Winston Lin, 30 août 2016. Le guide est un document vivant et sujet à une mise à jour par les membres de EGAP à tout moment ; les contributeurs répertoriés ne sont pas responsables des modifications ultérieures.]
 
 1. Randomisation
 ==

@@ -1,17 +1,16 @@
 ---
-output: 
-  html_document:
-    code_folding: hide
-    toc: true
-    theme: journal
-    includes:
-        after_body: ../linking_script.html
+title: "10 choses à savoir sur la mesure dans les expériences"
+author: 
+  - name: "Tara Slough"
+    url: http://taraslough.com/
+bibliography: measurement.bib
+image: measurement.png
 ---
 
 <!-- title: "10 choses à savoir sur la mesure dans les expériences" -->
 <!-- author: 'Auteur du guide des méthodes: Tara Slough' -->
 
-# La validité des inférences que nous tirons d'une expérience dépend de la validité des mesures utilisées.
+# La validité des inférences que nous tirons d'une expérience dépend de la validité des mesures utilisées
 
 Nous expérimentons généralement afin d'estimer l'effet causal d'un traitement $Z$ sur un résultat $Y$.
 Pourtant, la raison pour laquelle nous nous soucions d'estimer cet effet causal est, en principe, de comprendre les caractéristiques de la relation entre deux concepts théoriques non observés mesurés par les variables observées $Z$ et $Y$.

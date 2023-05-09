@@ -34,11 +34,14 @@ website:
 
 format:
   html:
-    theme: simplex
+    theme: 
+      - simplex
     css: styles.css
     linkcolor: blue
     toc: true
+    toc-location: body
     code-overflow: wrap
+    number-sections: true
 
 execute:
   freeze: auto

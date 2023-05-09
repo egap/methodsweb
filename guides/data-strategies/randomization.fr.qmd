@@ -1,21 +1,21 @@
 ---
-title: ""
+title: "10 choses à savoir sur la randomisation"
 author: 
-  - name: ""
+  - name: "Lindsay Dolan"
+    url: https://lindsayrdolan.com/
+image: randomization.png
+bibliography: randomization.bib
+abstract: | 
+  Ce guide vous aidera à concevoir et à mettre en œuvre différents types de randomisation dans vos expériences.
+  Nous nous concentrons sur les grandes lignes et fournissons des exemples et des outils que vous pouvez utiliser dans R.
+  Pour savoir pourquoi faire de la randomisation, voir [ce guide des méthodes](http://egap.org/resource/10-strategies-for-figuring-out-if-x-caused-y).
 ---
   
 
 <!-- title: "10 choses à savoir sur la randomisation" -->
 <!-- author: "Auteur du guide des méthodes: Lindsay Dolan" -->
 
-Résumé
-==
-Ce guide vous aidera à concevoir et à mettre en œuvre différents types de randomisation dans vos expériences.
-Nous nous concentrons sur les grandes lignes et fournissons des exemples et des outils que vous pouvez utiliser dans R.
-Pour savoir pourquoi faire de la randomisation, voir [ce guide des méthodes](http://egap.org/resource/10-strategies-for-figuring-out-if-x-caused-y).
-
 # Certaines méthodes sont meilleures que d'autres
-
 
 Il existe de nombreuses façons de randomiser.
 Le plus simple est de lancer une pièce à chaque fois que vous voulez déterminer si un sujet donné reçoit un traitement ou non.

@@ -1,11 +1,10 @@
 ---
-output: 
-  html_document:
-    code_folding: hide
-    toc: true
-    theme: journal
-    includes:
-        after_body: ../linking_script.html
+title: "10 cosas que debe saber sobre la medición en experimentos"
+author: 
+  - name: "Tara Slough"
+    url: http://taraslough.com/
+bibliography: measurement.bib
+image: measurement.png
 ---
 
 <!-- title: "10 Things to Know About Measurement in Experiments" -->
