@@ -11,7 +11,9 @@ image: measurement.png
 <!-- author: 'Methods Guide Author: Tara Slough' -->
 
 
-# 1. La validez de las conclusiones que sacamos de un experimento depende de la validez de las mediciones usadas. 
+# La validez de las conclusiones que sacamos de un experimento depende de la validez de las mediciones usadas. 
+
+
 
 Usualmente usamos experimentos para estimar el efecto causal de un tratamiento, $Z$, sobre una variable de resultado, $Y$. Sin embargo, la razón por la que nos preocupamos por estimar este efecto causal es, en principio, para entender las características de la relación entre dos conceptos teóricos sin observar, medidos por las variables observadas $Z$ y $Y$.
 
@@ -61,7 +63,9 @@ ggplot() +
         axis.text = element_blank())
 ```
 
-# 2. Las mediciones son el enlace entre el argumento substantivo y/o teórico de un investigador y un diseño de investigación (experimental)
+# Las mediciones son el enlace entre el argumento substantivo y/o teórico de un investigador y un diseño de investigación (experimental)
+
+
 
 
 Cuando consideramos el diseño de un experimento, tendemos a enfocarnos en el proceso mediante el cual el tratamiento asignado aleatoriamente $Z$ es asignado, y en la distribución conjunta de $Z$ y una variable de resultado, $Y$. En otras palabras, tendemos a separar las puntuaciones de $Z$ y $Y$ de conceptos más amplios cuando consideramos las propiedades estadísticas de un diseño de investigación. De esta forma, dos experimentos completamente distintos, con la misma distribución de $Z$ y $Y$, podrían tener propiedades idénticas.
@@ -73,7 +77,9 @@ Sin embargo, cuando consideramos la medición como un componente fundamental del
 
 
 
-# 3. Medir tratamientos incluye la operacionalización del tratamiento, además del cumplimiento de la asignación del tratamiento.
+# Medir tratamientos incluye la operacionalización del tratamiento, además del cumplimiento de la asignación del tratamiento.
+
+
 
 En un experimento, los tratamientos son normalmente diseñados, o como mínimo descritos, por el investigador. Los consumidores de investigación experimental deben estar interesados en las características del tratamiento y cómo este manipula un concepto de interés. La mayoría de los tratamientos en las ciencias sociales son compuestos o incluyen un conjunto de atributos. Podríamos estar interesados en el efecto de proporcionar a los votantes información sobre el desempeño de los funcionarios electos. Sin embargo, proporcionar información también incluye el modo de entrega y quién estaba entregando la información. Para comprender hasta qué punto el tratamiento manipula un concepto, debemos también entender qué manipulación adicional podría estar ejerciendo el tratamiento.
 
@@ -85,7 +91,9 @@ Por ejemplo, considere una campaña de sondeo puerta a puerta que distribuye inf
 
 
 
-# 4. La mayoría de variables de resultado de interés en las ciencias sociales son latentes.
+# La mayoría de variables de resultado de interés en las ciencias sociales son latentes.
+
+
 
 
 En contraste con la medición de los indicadores de tratamiento y de cumplimiento, la medición de variables de resultado en la investigación experimental sigue mucho más de cerca el proceso descrito en la figura anterior. Teorizamos cómo el tratamiento puede influir en un concepto de variable de resultado. Luego operacionalizamos el concepto y registramos los puntajes o valores para completar nuestra medición de la variable de resultado.
@@ -95,7 +103,9 @@ Un desafío particular en la medición de variables de resultado es que las más
 Debido a que estas variables son latentes, es un desafío delinear indicadores apropiados. Una pobre operacionalización tiene consecuencias bastante drásticas para la validez de nuestras inferencias sobre el concepto de interés por dos razones. Como en la sección # 1, si estos indicadores no miden el concepto de interés, entonces las inferencias que hacemos sobre sobre la relación entre $Z$ y $Y$ (incluso con un diseño "perfecto" en términos de poder estadístico y datos faltantes, etc.) puede que no nos enseñen acerca de la "inferencia última" que estamos tratando de hacer. Además, el error de medición puede socavar nuestra capacidad para estimar el efecto de $Z$ y $Y$, lo que lleva a inferencias incorrectas. El resto de esta guía se centra en este último problema.
 
  
-# 5. Hay dos tipos de error de medición que debemos considerar.
+# Hay dos tipos de error de medición que debemos considerar.
+
+
 
 
 Podemos formalizar los desafíos de medición de manera simple. Suponga que el tratamiento $Z_i$ se plantea como hipótesis para cambiar las preferencias por las normas democráticas, $\nu_i$. En principio, la cantidad que nos gustaría estimar es $E[\ nu_i|Z_i = 1] - E[\ nu_i|Z_i = 0] $, el ATE (Average Treatment Effect - Efecto Promedio del Tratamiento) de nuestro tratamiento sobre las preferencias por las normas democráticas. Sin embargo, $\nu_i$ es una variable latente: no podemos medirla directamente. En cambio, preguntamos sobre el apoyo de varios comportamientos que se cree corresponden a estas normas. Este indicador, $Y_i$, se puede descomponer en la variable latente, $\nu_i$ y dos formas de error de medición:
@@ -106,7 +116,9 @@ Podemos formalizar los desafíos de medición de manera simple. Suponga que el t
 
 $$Y_i = \underbrace{\nu_i}_{\text{Valor latente}} + \underbrace{\delta_i}_{\substack{\text{Error de medición} \\ \text{no sistemático}}} + \underbrace{\kappa_i}_{\substack{\text{Error de medición} \\ \text{sistemático}}}$$
 
-# 6. Los errores de medición reducen el poder de su experimento. 
+# Los errores de medición reducen el poder de su experimento. 
+
+
 
 El error de medición no sistemático, representado arriba por $\delta_i$, se refiere al ruido con el que estamos midiendo la variable latente. En ausencia de un error de medición sistemático, medimos:
 
@@ -124,7 +136,9 @@ Siempre que $Cov(\nu_i, \delta_i)\geq 0$ (frecuentemente asumimos $Cov(\nu_i, \d
 
 ¿Qué sucedería en el caso en que $Cov(\nu_i, \delta_i) < 0$? Mientras esto reduce $Var(Y_i)$ (manteniendo $Var(\nu_i)$ y $Var(\delta_i)$ constantes), también atenúa la variación que medimos en $Y_i$. En principio, esto atenuaría el numerador $|\mu_t-\mu_c|$, el cual, si es suficiente en relación con la reducción de la varianza, también reducirá el poder.
 
-# 7. El error de medición sistemático sesga las estimaciones de los efectos causales de los intereses. 
+# El error de medición sistemático sesga las estimaciones de los efectos causales de los intereses. 
+
+
 
 Si estamos estimando el Efecto Promedio del Tratamiento (Average Treatment Effect, ATE) de nuestro tratamiento $Z_i$, sobre las preferencias por las normas democráticas, $\nu_i$, estamos tratando de recuperar el ATE, o $E[\nu_i|Z_i = 1] - E[\nu_i|Z_i = 0]$. Sin embargo, en presencia de un error de medición **sistemático**, donde el error de medición está relacionado con la asignación del tratamiento en sí (por ejemplo, la variable de resultado se mide de manera diferente en el grupo de tratamiento que en el grupo de control), un estimador de diferencia de medias en el resultado observado, $Y_i$, recupera una estimación sesgada del ATE. El efecto del tratamiento ahora incluye la diferencia de medición, así como la diferencia entre los grupos tratados y de control:
 
@@ -137,7 +151,9 @@ $$E[Y_i|Z_i = 1]−E[Y_i|Z_i = 0] = \underbrace{E[\nu_i|Z_i = 1] − E[\nu_i|Z_i
 Hay varias fuentes de errores de medición no-sistemáticos en los experimentos. [Efectos de demanda](https://en.wikipedia.org/wiki/Demand_characteristics) y [Efectos Hawthorne](https://en.wikipedia.org/wiki/Hawthorne_effect) se pueden motivar como fuentes de errores de medición sistemáticos. Mas aún, los diseños que miden las variables de resultados de forma asimétrica en los tratamientos y grupos de control pueden ser propensos a errores de medición sistemáticos. En todos los casos, existe asimetría entre las condiciones de tratamiento en: (a) la forma en que los sujetos responden a ser observados; o (b) la forma en que observamos las variables de resultados, que es distinta de cualquier efecto del tratamiento sobre la variable latente de interés. La estimación sesgada del ATE se convierte en el neto de cualquier efecto sobre las variables latentes (el ATE) y el error de medición no-sistemático.
 
 
-# 8. Aproveche múltiples indicadores para evaluar la validez de una medida, pero tenga en cuenta las limitaciones de tales pruebas. 
+# Aproveche múltiples indicadores para evaluar la validez de una medida, pero tenga en cuenta las limitaciones de tales pruebas. 
+
+
 
 Más allá de considerar la calidad del mapeo entre un concepto y una medida, a menudo podemos evaluar la calidad de la medida comparándola con medidas de operacionalizaciones alternativas del mismo concepto, conceptos estrechamente relacionados o conceptos distintos. En *pruebas convergentes* de la validez de una medida, evaluamos la correlación entre medidas alternativas de un concepto. Si están codificados en la misma dirección, esperamos que la correlación sea positiva y la validez de ambas mediciones aumente a medida que aumenta la magnitud de la correlación. Una limitación de las pruebas convergentes de validez es que si dos mediciones están débilmente correlacionadas, información adicional ausente, no sabemos si una medida es válida (y cuál) o si ambas medidas son inválidas.
 
@@ -148,7 +164,9 @@ Por último, es posible que deseemos determinar si estamos midiendo el concepto 
 En resumen, la adición de más mediciones puede ayudar a validar un indicador, pero estas pruebas de validación están limitadas en lo que nos dicen cuando fallan. En este sentido, debemos ser conscientes de las limitaciones, además de la utilidad de recopilar medidas adicionales para simplemente validar un indicador.
 
 
-# 9. El uso de múltiples indicadores tiende a mejorar el poder de su experimento, pero puede introducir un reemplazo entre el sesgo y la eficiencia. 
+# El uso de múltiples indicadores tiende a mejorar el poder de su experimento, pero puede introducir un reemplazo entre el sesgo y la eficiencia. 
+
+
 
 Recopilar múltiples indicadores de un concepto o una variable de resultado también puede mejorar el poder de su experimento. Si múltiples indicadores miden el mismo concepto pero se miden con un error (no-sistemático), podemos mejorar la precisión con la que medimos la variable latente aprovechando múltiples mediciones.
 
@@ -243,7 +261,9 @@ data.frame(est = c(sims["est_index",], sims["est_Y1",], sims["est_Y2",]),
 
 Hemos examinado un índice compuesto por solo dos indicadores. En principio, se pueden lograr mayores ganancias de eficiencia al incorporar más indicadores en su índice. Sin embargo, a medida que aumentamos el número de indicadores, debemos considerar el grado en que la amalgama de indicadores se adhiere al concepto original. Al agregar mediciones para aprovechar las ganancias de eficiencia, podemos introducir sesgos en la medición del concepto latente. Los investigadores deben navegar este intercambio. El prerregistro de los componentes de un índice proporciona una forma de principios para navegar el tema que obliga a pensar el concepto a fondo en ausencia de datos. Esto también evita las preguntas ex-post sobre la elección de indicadores para un índice.
 
-# 10. Mientras los conceptos pueden ser globales, muchos indicadores son específicos a los contextos.
+# Mientras los conceptos pueden ser globales, muchos indicadores son específicos a los contextos.
+
+
 
 Muchos estudios en las ciencias sociales se enfocan en conceptos que normalmente son asumidos como latentes; incluidas preferencias, conocimiento y actitudes. En la medida en que trabajamos sobre conceptos comunes, existe una tendencia a aprovechar de las operacionalizaciones existentes de estudios sobre conceptos relacionados en diferentes contextos. En estudios en múltiples contextos, como en la Iniciativa Metaketa de EGAP (http://egap.org/metaketa), los investigadores apuntan a estudiar la misma relación causal en variados contextos nacionales. Pero el deseo de estudiar conceptos comunes no implica que los mismos indicadores se deban utilizar en todos los contextos.
 
