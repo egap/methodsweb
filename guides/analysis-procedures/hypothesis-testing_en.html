@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,9 +18,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,48 +48,19 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -102,8 +74,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -142,6 +113,7 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
@@ -161,29 +133,31 @@ div.csl-indent {
     <span class="navbar-title">Methods</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html">
+    <a class="nav-link" href="../../guides.html" rel="" target="">
  <span class="menu-text">Guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html">
+    <a class="nav-link" href="../../software.html" rel="" target="">
  <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html">
+    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
  <span class="menu-text">Coursebook</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -270,7 +244,7 @@ div.csl-indent {
 <p>We do experiments to make interpretable causal comparisons <span class="citation" data-cites="kinder1993behalf">(<a href="#ref-kinder1993behalf" role="doc-biblioref">Kinder and Palfrey 1993</a>)</span>, and we often estimate average causal effects. What does hypothesis testing have to do with causal inference? In this section we explain a bit about the distinction between assessing claims about causal effects versus making best guesses about causal effects.</p>
 <section id="a-quick-overview-of-the-fundamental-problem-of-causal-inference-and-an-introduction-to-some-notation" class="level2">
 <h2 class="anchored" data-anchor-id="a-quick-overview-of-the-fundamental-problem-of-causal-inference-and-an-introduction-to-some-notation">A quick overview of the fundamental problem of causal inference and an introduction to some notation</h2>
-<p>Recall from <a href="https://methods.egap.org/guides/causal-inference/causal-inference_en.html">10 Things to Know about Causal Inference</a> that the counterfactual conceptualization of causality uses the idea of potential outcomes to <strong>define</strong> cause and to formalize what we <strong>mean</strong> when we say “X causes Y” or “Smoking causes cancer” or “Information increases tax compliance.” Although there are other ways to think about causality (<span class="citation" data-cites="brady2008causation">Brady (<a href="#ref-brady2008causation" role="doc-biblioref">2008</a>)</span>), the counterfactual idea suggests that we imagine that each person, <span class="math inline">\(i\)</span>, would pay their taxes, <span class="math inline">\(y_{i}\)</span>, if given information about the use to which those taxes are put. Write <span class="math inline">\(Z_i=1\)</span> to mean that information was giving to the person and <span class="math inline">\(Z_i=0\)</span> if no information was given so that we can write <span class="math inline">\(y_{i,Z_i=1}\)</span> to refer to the amount of taxes paid by someone given information and <span class="math inline">\(y_{i,Z_i=0}\)</span> to refer to the amount of taxes paid by someone not given any information in particular. In an actual experiment, we might <a href="https://egap.org/our-work-0/the-metaketa-initiative/roundtwo-taxation/">randomize the provision of information to citizens</a>, so some people will have the information and others will not. We observe the taxes paid by people in both conditions but, for any one person, we can only observe the taxes that they pay in one of the two conditions. What does it <strong>mean</strong> when we say “causal effect”? It often means that the outcome in one condition (<span class="math inline">\(y_{i,Z_i=1}\)</span> written slightly more simply as <span class="math inline">\(y_{i,1}\)</span>) and the outcome in the other condition (<span class="math inline">\(y_{i,Z_i=0}\)</span> or <span class="math inline">\(y_{i,0}\)</span>) <em>differ</em> for a given person, such that we would write <span class="math inline">\(y_{i,Z_i=1} \ne y_{i,Z_i=0}\)</span>.</p>
+<p>Recall from <a href="https://methods.egap.org/guides/causal-inference/causal-inference_en.html">10 Things to Know about Causal Inference</a> that the counterfactual conceptualization of causality uses the idea of potential outcomes to <strong>define</strong> cause and to formalize what we <strong>mean</strong> when we say “X causes Y” or “Smoking causes cancer” or “Information increases tax compliance.” Although there are other ways to think about causality <span class="citation" data-cites="brady2008causation">(<a href="#ref-brady2008causation" role="doc-biblioref">Brady 2008</a>)</span>, the counterfactual idea suggests that we imagine that each person, <span class="math inline">\(i\)</span>, would pay their taxes, <span class="math inline">\(y_{i}\)</span>, if given information about the use to which those taxes are put. Write <span class="math inline">\(Z_i=1\)</span> to mean that information was giving to the person and <span class="math inline">\(Z_i=0\)</span> if no information was given so that we can write <span class="math inline">\(y_{i,Z_i=1}\)</span> to refer to the amount of taxes paid by someone given information and <span class="math inline">\(y_{i,Z_i=0}\)</span> to refer to the amount of taxes paid by someone not given any information in particular. In an actual experiment, we might <a href="https://egap.org/our-work-0/the-metaketa-initiative/roundtwo-taxation/">randomize the provision of information to citizens</a>, so some people will have the information and others will not. We observe the taxes paid by people in both conditions but, for any one person, we can only observe the taxes that they pay in one of the two conditions. What does it <strong>mean</strong> when we say “causal effect”? It often means that the outcome in one condition (<span class="math inline">\(y_{i,Z_i=1}\)</span> written slightly more simply as <span class="math inline">\(y_{i,1}\)</span>) and the outcome in the other condition (<span class="math inline">\(y_{i,Z_i=0}\)</span> or <span class="math inline">\(y_{i,0}\)</span>) <em>differ</em> for a given person, such that we would write <span class="math inline">\(y_{i,Z_i=1} \ne y_{i,Z_i=0}\)</span>.</p>
 <p>We cannot observe <em>both</em> <span class="math inline">\(y_{i,1}\)</span> and <span class="math inline">\(y_{i,0}\)</span> for each person — if we gave information about taxes to a person we observe <span class="math inline">\(y_{i,1}\)</span> and so we cannot observe how they would have acted if they had not been given this information (<span class="math inline">\(y_{i,0}\)</span>). So, we cannot use direct observation to learn about this counterfactual causal effect and we can only <strong>infer</strong> about it. <span class="citation" data-cites="holland1986statistics">Holland (<a href="#ref-holland1986statistics" role="doc-biblioref">1986</a>)</span> calls this inability to use direct observation to learn about counterfactual causality the “fundamental problem of causal inference.”</p>
 </section>
 <section id="an-overview-of-estimation-based-approaches-to-causal-inference-in-randomized-experiments." class="level2">
@@ -416,7 +390,7 @@ Y_i = Z_i y_{i,1} + (1 - Z_i) y_{i,0}
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="hypothesis-testing_en_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">An example of using the design of the experiment to test a hypothesis.</figcaption><p></p>
+<figcaption class="figure-caption">An example of using the design of the experiment to test a hypothesis.</figcaption>
 </figure>
 </div>
 </div>
@@ -656,10 +630,10 @@ Observed Test Statistic   2.2 0.1508</code></pre>
 <p>Here we list a few other important but advanced topics connected to hypothesis testing:</p>
 <ul>
 <li>Even if a given testing procedure controls the false positive rate for a single test, it may not control the rate for a group of multiple tests. See <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">10 Things You Need to Know About Multiple Comparisons</a> for a guide to the approaches to controlling such rejection-rates in multiple tests.</li>
-<li>A <span class="math inline">\(100\alpha\)</span>% confidence interval can be defined as the range of hypotheses where all of the <span class="math inline">\(p\)</span>-values are greater than or equal to <span class="math inline">\(\alpha\)</span>. This is called inverting the hypothesis test. (<span class="citation" data-cites="rosenbaum2010design">Rosenbaum (<a href="#ref-rosenbaum2010design" role="doc-biblioref">2010a</a>)</span>). That is, a <strong>confidence interval is a collection of hypothesis tests</strong>. This means that criticisms of <span class="math inline">\(p\)</span>-values are also criticisms of confidence intervals.</li>
+<li>A <span class="math inline">\(100\alpha\)</span>% confidence interval can be defined as the range of hypotheses where all of the <span class="math inline">\(p\)</span>-values are greater than or equal to <span class="math inline">\(\alpha\)</span>. This is called inverting the hypothesis test. <span class="citation" data-cites="rosenbaum2010design">(<a href="#ref-rosenbaum2010design" role="doc-biblioref">Rosenbaum 2010a</a>)</span>. That is, a <strong>confidence interval is a collection of hypothesis tests</strong>. This means that criticisms of <span class="math inline">\(p\)</span>-values are also criticisms of confidence intervals.</li>
 <li>A point estimate based on hypothesis testing is called a Hodges-Lehmann point estimate. (<span class="citation" data-cites="rosenbaum1993hlp">Rosenbaum (<a href="#ref-rosenbaum1993hlp" role="doc-biblioref">1993</a>)</span>, <span class="citation" data-cites="hodges1963elb">Hodges and Lehmann (<a href="#ref-hodges1963elb" role="doc-biblioref">1963</a>)</span>)</li>
 <li>A set of hypothesis tests can be combined into one single hypothesis test. For example, you can test the hypothesis of an effect of size 1 on outcome 1, an effect of size 0 on outcome 2 and an effect of -10 on outcome 3. (<span class="citation" data-cites="hansen:bowers:2008">Hansen and Bowers (<a href="#ref-hansen:bowers:2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="caughey2017nonparametric">Caughey, Dafoe, and Seawright (<a href="#ref-caughey2017nonparametric" role="doc-biblioref">2017</a>)</span>)</li>
-<li>In equivalence testing, one can hypothesize that two test-statistics are equivalent (i.e.&nbsp;the treatment group is the same as the control group) rather than only about one test-statistic (the difference between the two groups is zero) (<span class="citation" data-cites="hartman2018equivalence">Hartman and Hidalgo (<a href="#ref-hartman2018equivalence" role="doc-biblioref">2018</a>)</span>)</li>
+<li>In equivalence testing, one can hypothesize that two test-statistics are equivalent (i.e.&nbsp;the treatment group is the same as the control group) rather than only about one test-statistic (the difference between the two groups is zero) <span class="citation" data-cites="hartman2018equivalence">(<a href="#ref-hartman2018equivalence" role="doc-biblioref">Hartman and Hidalgo 2018</a>)</span></li>
 <li>Since a hypothesis test is a model of potential outcomes, one can use hypothesis testing to learn about complex models, such as models of spillover and propagation of treatment effects across networks (<span class="citation" data-cites="bowers2013reasoning">Bowers, Fredrickson, and Panagopoulos (<a href="#ref-bowers2013reasoning" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="bowers2016research">Bowers, Fredrickson, and Aronow (<a href="#ref-bowers2016research" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="bowers2018models">Bowers et al. (<a href="#ref-bowers2018models" role="doc-biblioref">2018</a>)</span>)</li>
 </ul>
 </section>
@@ -671,62 +645,62 @@ Observed Test Statistic   2.2 0.1508</code></pre>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-bowers2018models" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bowers2018models" class="csl-entry" role="listitem">
 Bowers, Jake, Bruce A Desmarais, Mark Frederickson, Nahomi Ichino, Hsuan-Wei Lee, and Simi Wang. 2018. <span>“Models, Methods and Network Topology: Experimental Design for the Study of Interference.”</span> <em>Social Networks</em> 54: 196–208.
 </div>
-<div id="ref-bowers2013reasoning" class="csl-entry" role="doc-biblioentry">
+<div id="ref-bowers2013reasoning" class="csl-entry" role="listitem">
 Bowers, Jake, Mark M Fredrickson, and Costas Panagopoulos. 2013. <span>“<span class="nocase">Reasoning about Interference Between Units: A General Framework</span>.”</span> <em>Political Analysis</em> 21 (1): 97–124.
 </div>
-<div id="ref-bowers2016research" class="csl-entry" role="doc-biblioentry">
+<div id="ref-bowers2016research" class="csl-entry" role="listitem">
 Bowers, Jake, Mark Fredrickson, and Peter M Aronow. 2016. <span>“Research Note: A More Powerful Test Statistic for Reasoning about Interference Between Units.”</span> <em>Political Analysis</em> 24 (3): 395–403.
 </div>
-<div id="ref-brady2008causation" class="csl-entry" role="doc-biblioentry">
+<div id="ref-brady2008causation" class="csl-entry" role="listitem">
 Brady, Henry E. 2008. <span>“Causation and Explanation in Social Science.”</span> In <em>The Oxford Handbook of Political Methodology (Oxford Handbooks of Political Science)</em>.
 </div>
-<div id="ref-caughey2017nonparametric" class="csl-entry" role="doc-biblioentry">
+<div id="ref-caughey2017nonparametric" class="csl-entry" role="listitem">
 Caughey, Devin, Allan Dafoe, and Jason Seawright. 2017. <span>“Nonparametric Combination (NPC): A Framework for Testing Elaborate Theories.”</span> <em>The Journal of Politics</em> 79 (2): 688–701.
 </div>
-<div id="ref-chung2013exact" class="csl-entry" role="doc-biblioentry">
+<div id="ref-chung2013exact" class="csl-entry" role="listitem">
 Chung, EunYi, Joseph P Romano, et al. 2013. <span>“Exact and Asymptotically Robust Permutation Tests.”</span> <em>The Annals of Statistics</em> 41 (2): 484–507.
 </div>
-<div id="ref-cox1977role" class="csl-entry" role="doc-biblioentry">
+<div id="ref-cox1977role" class="csl-entry" role="listitem">
 Cox, DR, W. R. van Zwet, JF Bithell, O. Barndorff-Nielsen, and M. Keuls. 1977. <span>“<span class="nocase">The Role of Significance Tests [with Discussion and Reply]</span>.”</span> <em>Scandinavian Journal of Statistics</em> 4 (2): 49–70.
 </div>
-<div id="ref-fisher:1935" class="csl-entry" role="doc-biblioentry">
+<div id="ref-fisher:1935" class="csl-entry" role="listitem">
 Fisher, R. A. 1935. <em><span class="nocase">The design of experiments. 1935</span></em>. <em>Oliver &amp; Boyd Edinburgh, Scotland</em>. Edinburgh: Oliver; Boyd.
 </div>
-<div id="ref-hansen:bowers:2008" class="csl-entry" role="doc-biblioentry">
+<div id="ref-hansen:bowers:2008" class="csl-entry" role="listitem">
 Hansen, Ben B., and Jake Bowers. 2008. <span>“Covariate Balance in Simple, Stratified and Clustered Comparative Studies.”</span> <em>Statistical Science</em> 23 (2): 219–36.
 </div>
-<div id="ref-hartman2018equivalence" class="csl-entry" role="doc-biblioentry">
+<div id="ref-hartman2018equivalence" class="csl-entry" role="listitem">
 Hartman, Erin, and F Daniel Hidalgo. 2018. <span>“An Equivalence Approach to Balance and Placebo Tests.”</span> <em>American Journal of Political Science</em> 62 (4): 1000–1013.
 </div>
-<div id="ref-hodges1963elb" class="csl-entry" role="doc-biblioentry">
+<div id="ref-hodges1963elb" class="csl-entry" role="listitem">
 Hodges, J. L., and E. L. Lehmann. 1963. <span>“<span class="nocase">Estimates of location based on rank tests</span>.”</span> <em>Ann. Math. Statist</em> 34: 598–611.
 </div>
-<div id="ref-holland1986statistics" class="csl-entry" role="doc-biblioentry">
+<div id="ref-holland1986statistics" class="csl-entry" role="listitem">
 Holland, Paul W. 1986. <span>“<span class="nocase">Statistics and causal inference</span>.”</span> <em>Journal of the American Statistical Association</em> 81 (396): 945–60.
 </div>
-<div id="ref-imbens2007causal" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imbens2007causal" class="csl-entry" role="listitem">
 Imbens, G., and D. Rubin. 2007. <span>“Causal Inference: Statistical Methods for Estimating Causal Effects in Biomedical, Social, and Behavioral Sciences.”</span> Cambridge University Press, forthcoming.
 </div>
-<div id="ref-kinder1993behalf" class="csl-entry" role="doc-biblioentry">
+<div id="ref-kinder1993behalf" class="csl-entry" role="listitem">
 Kinder, D. R., and T. R. Palfrey. 1993. <span>“On Behalf of an Experimental Political Science.”</span> <em>Experimental Foundations of Political Science</em>, 1–39.
 </div>
-<div id="ref-rosenbaum1993hlp" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum1993hlp" class="csl-entry" role="listitem">
 Rosenbaum, Paul R. 1993. <span>“Hodges-Lehmann Point Estimates of Treatment Effect in Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 88 (424): 1250–53.
 </div>
-<div id="ref-rosenbaum2002" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum2002" class="csl-entry" role="listitem">
 ———. 2002. <span>“Attributing Effects to Treatment in Matched Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 97: 183–92.
 </div>
-<div id="ref-rosenbaum2010design" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum2010design" class="csl-entry" role="listitem">
 ———. 2010a. <em>Design of Observational Studies</em>. <em>Springer Series in Statistics</em>. New York, NY: Springer.
 </div>
-<div id="ref-rosenbaum2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum2010" class="csl-entry" role="listitem">
 ———. 2010b. <span>“Design Sensitivity and Efficiency in Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 105: 692–702.
 </div>
-<div id="ref-rosenbaum2017observation" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum2017observation" class="csl-entry" role="listitem">
 ———. 2017. <em>Observation and Experiment: An Introduction to Causal Inference</em>. Harvard University Press.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
@@ -762,9 +736,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -829,6 +817,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

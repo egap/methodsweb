@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,48 +50,19 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -104,8 +76,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -162,29 +133,31 @@ div.csl-indent {
     <span class="navbar-title">Methods</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html">
+    <a class="nav-link" href="../../guides.html" rel="" target="">
  <span class="menu-text">Guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html">
+    <a class="nav-link" href="../../software.html" rel="" target="">
  <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html">
+    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
  <span class="menu-text">Coursebook</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -227,9 +200,9 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
-             <p>Kaylyn Jackson Schiff </p>
-             <p>Daniel S. Schiff </p>
-             <p>Natália S. Bueno </p>
+             <p><a href="https://www.kaylynjacksonschiff.com/">Kaylyn Jackson Schiff</a> </p>
+             <p><a href="https://danielschiff.com/">Daniel S. Schiff</a> </p>
+             <p><a href="https://egap.org/member/natalia-bueno/">Natália S. Bueno</a> </p>
           </div>
   </div>
     
@@ -243,7 +216,7 @@ div.csl-indent {
 <section id="what-is-a-pilot-and-what-is-it-good-for" class="level1">
 <h1>1. What is a pilot, and what is it good for?</h1>
 <p>During the process of planning an experiment, researchers often face questions regarding their study’s theoretical and conceptual underpinnings, its measurement approach, and associated logistics. Pilot studies can help you to consider and improve these elements of your research whether you are running a survey, lab, or field experiment. In particular, <em>a pilot study is a smaller scale preliminary test or trial run, used to assist with the preparation of a more comprehensive investigation</em>. Pilots are typically administered before a research design is finalized in order to evaluate and improve the feasibility, reliability, and validity of the proposed study.</p>
-<p>While it may be tempting to think about a pilot as simply a miniature version of one’s final study, helpful for doing an initial test of one’s hypotheses, pilot studies are neither especially appropriate for <a href="https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html">hypothesis testing</a>, nor are they limited to it. Given smaller sample sizes, pilots are typically underpowered for evaluating hypotheses. Besides, deciding whether to continue a study based on initial results contributes to the “file drawer” problem where important studies and results—including <a href="https://methods.egap.org/guides/interpretation/null-results_en.html">null results</a>—are never published, leading to misrepresentative bodies of published research (<span class="citation" data-cites="franco_et_al_2014">Franco, Malhotra, and Simonovits (<a href="#ref-franco_et_al_2014" role="doc-biblioref">2014</a>)</span>).</p>
+<p>While it may be tempting to think about a pilot as simply a miniature version of one’s final study, helpful for doing an initial test of one’s hypotheses, pilot studies are neither especially appropriate for <a href="https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html">hypothesis testing</a>, nor are they limited to it. Given smaller sample sizes, pilots are typically underpowered for evaluating hypotheses. Besides, deciding whether to continue a study based on initial results contributes to the “file drawer” problem where important studies and results—including <a href="https://methods.egap.org/guides/interpretation/null-results_en.html">null results</a>—are never published, leading to misrepresentative bodies of published research <span class="citation" data-cites="franco_et_al_2014">(<a href="#ref-franco_et_al_2014" role="doc-biblioref">Franco, Malhotra, and Simonovits 2014</a>)</span>.</p>
 <p>Fortunately, as depicted in the table below, pilots can be useful for a wide range of research purposes including theory development, research design, improving measurement, sampling considerations, evaluating logistics, pre-planning analysis, weighing ethical considerations, and communicating one’s research (<span class="citation" data-cites="van_teijlingen_et_al_2001">Teijilngen et al. (<a href="#ref-van_teijlingen_et_al_2001" role="doc-biblioref">2001</a>)</span>; <span class="citation" data-cites="thabane_et_al_2010">Thabane et al. (<a href="#ref-thabane_et_al_2010" role="doc-biblioref">2010</a>)</span>). Each of these activities can help improve the quality of one’s main study and render it more compelling and ultimately successful.</p>
 <p>In the sections below, we review these many benefits. First, we consider how pilots can assist with a study’s theory and measurement approach, evaluate its logistical feasibility, and provide information about the sample size needed to test hypotheses. In addition, we discuss how piloting may help you secure research funding and institutional support, gather feedback, and incorporate best practices in research ethics. Finally, we offer recommendations on how to use pilots to inform your main study design, reveal important unknowns, and contribute to your broader research agenda.</p>
 <table class="table">
@@ -404,7 +377,7 @@ div.csl-indent {
 </section>
 <section id="pilots-can-also-help-you-to-prepare-for-the-logistics-of-running-your-experiment" class="level1">
 <h1>3. Pilots can also help you to prepare for the logistics of running your experiment</h1>
-<p>Perhaps the most often emphasized purpose of pilots is to work out any logistical kinks that might impede the main study (<span class="citation" data-cites="thabane_et_al_2010">Thabane et al. (<a href="#ref-thabane_et_al_2010" role="doc-biblioref">2010</a>)</span>). Logistical considerations include those implicating a project’s overall resources, the study team, the participants, and the administration of study instruments.</p>
+<p>Perhaps the most often emphasized purpose of pilots is to work out any logistical kinks that might impede the main study <span class="citation" data-cites="thabane_et_al_2010">(<a href="#ref-thabane_et_al_2010" role="doc-biblioref">Thabane et al. 2010</a>)</span>. Logistical considerations include those implicating a project’s overall resources, the study team, the participants, and the administration of study instruments.</p>
 <p>In terms of participant logistics, is important to establish whether your study participants understand the research tools and procedures, are able to receive treatment, and feel comfortable answering questions or performing tasks. Based on how successful the pilot is, you may find ways to improve your recruitment strategy, adjust your eligibility criteria, and improve the clarity of your research instruments. It is also important to ensure that basic elements like randomization and data collection are working as anticipated. Data simulations and pilots with very small samples can also be used to test certain study elements.</p>
 <p>Similar considerations apply to your study team and partners. Do they understand the protocols or might they require additional training, for example, to promote reliability in procedures such as data collection? Are there any asymmetries in delivery or measurement of treatment or outcomes of which you were not aware? A pilot can also be very helpful for determining the resources needed to conduct the main study. For example, how much time does it take—for both members of the study team and participants—and what might this imply for the size of the sample and complexity of the research design that is ultimately feasible for the main study?</p>
 <p>While the specific logistical considerations will vary depending on whether your research design is centered around a field experiment, survey experiment, lab experiment, or something else, pilots will help you ensure that your experiment goes as planned. Thus, when constructing a pilot study, consider making a list of the logistical elements you want to evaluate and designing the pilot to facilitate answering associated questions. Asking your participants whether they were able to “hear the video” or “understood the instructions” can make your research easier down the road.</p>
@@ -412,7 +385,7 @@ div.csl-indent {
 <section id="you-can-use-pilots-for-power-analysis-or-for-calculating-minimum-detectable-effects" class="level1">
 <h1>4. You can use pilots for power analysis or for calculating minimum detectable effects</h1>
 <p>Another common purpose of pilot studies, in light of limited resources, is assessing <a href="https://methods.egap.org/guides/assessing-designs/power_en.html">statistical power</a>, which helps to avoid the risk of false negatives (or false positives) from underpowered studies. As described in the <a href="https://methods.egap.org/guides/assessing-designs/power_en.html">EGAP methods guide about power analysis</a>, a researcher’s goal is to answer the following: “supposing there truly is a treatment effect and you were to run your experiment a huge number of times, how often will you get a statistically significant result?” To improve the likelihood that your main study will achieve a typical target power value of 80%, you can use a pilot study combined with careful simulations. These results are helpful for determining appropriate sample sizes, the extent to which you can subset your sample for various analyses, and whether adjustments may be necessary for increasing power.</p>
-<p>Traditionally, a pilot study is used to obtain an estimate of the effect size, which becomes the presumed estimate for simulations used to determine power and sample size in one’s main study. However, the <a href="https://declaredesign.org/blog/2019-01-23-pilot-studies.html">DeclareDesign</a> cautions that effect size estimates are very noisy in small pilots, especially when true effect sizes are small (for example, under 0.2 sd). As an alternative, they recommend using pilot studies to estimate the standard deviation of the outcome variable. Using this estimate, one can easily obtain an unbiased estimate of a main study’s minimum detectable effect (MDE) for a given outcome and with 80% power as 2.8 times the estimated standard error of the associated outcome variable (<span class="citation" data-cites="gelman_hill_2006">Gelman and Hill (<a href="#ref-gelman_hill_2006" role="doc-biblioref">2006</a>)</span>). The goal is to ensure that the MDE is small enough that the study would capture any substantively meaningful effect.</p>
+<p>Traditionally, a pilot study is used to obtain an estimate of the effect size, which becomes the presumed estimate for simulations used to determine power and sample size in one’s main study. However, the <a href="https://declaredesign.org/blog/2019-01-23-pilot-studies.html">DeclareDesign</a> cautions that effect size estimates are very noisy in small pilots, especially when true effect sizes are small (for example, under 0.2 sd). As an alternative, they recommend using pilot studies to estimate the standard deviation of the outcome variable. Using this estimate, one can easily obtain an unbiased estimate of a main study’s minimum detectable effect (MDE) for a given outcome and with 80% power as 2.8 times the estimated standard error of the associated outcome variable <span class="citation" data-cites="gelman_hill_2006">(<a href="#ref-gelman_hill_2006" role="doc-biblioref">Gelman and Hill 2006</a>)</span>. The goal is to ensure that the MDE is small enough that the study would capture any substantively meaningful effect.</p>
 <p>Using the recommendations from DeclareDesign, we provide sample code based on a hypothetical pilot study. In the code below, we assume we have already conducted a pilot study and have calculated the standard deviation of a key outcome measure for both the control and treatment groups. Next, we use these estimates to calculate MDEs for different possible sample sizes, in order to inform our target sample size for a future main study.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
@@ -444,12 +417,12 @@ div.csl-indent {
 </section>
 <section id="piloting-may-help-you-secure-funding-and-support-for-your-research" class="level1">
 <h1>5. Piloting may help you secure funding and support for your research</h1>
-<p>Pilots are not only helpful for improving the quality of your main study, they may also help to ensure you have the support and funding to enable your study to go forward. Given a general trend of tightening of per-researcher funding, particularly for smaller projects (<span class="citation" data-cites="bloch_sorensen_2015">Bloch and Sørensen (<a href="#ref-bloch_sorensen_2015" role="doc-biblioref">2015</a>)</span>), and a movement towards evidence-based decision-making, you may wish to draw on pilots to provide initial evidence that your study is worthwhile. For example, the National Science Foundation (NSF) recognizes the need for more early-stage exploratory studies that can provide a basis for future larger-scale studies, and <a href="https://www.tessexperiments.org/">Time-sharing Experiments for the Social Sciences (TESS)</a> notes that “Proposals that report trial runs of novel and focal ideas will be viewed as more credible.”</p>
-<p>This does not entail that one needs to show that effect sizes are large enough nor that hypotheses are likely to be confirmed. Instead, a pilot can demonstrate that your research project is feasible in terms of time and resources, that your study design is adequate for answering the research questions proposed, and that your research team has the expertise and capacity to administer the study, perform analyses, and even present results in a compelling fashion (<span class="citation" data-cites="van_teijlingen_et_al_2001">Teijilngen et al. (<a href="#ref-van_teijlingen_et_al_2001" role="doc-biblioref">2001</a>)</span>). In a similar fashion, piloting can help you to recruit study team members and organizational partners, or solicit institutional support.</p>
+<p>Pilots are not only helpful for improving the quality of your main study, they may also help to ensure you have the support and funding to enable your study to go forward. Given a general trend of tightening of per-researcher funding, particularly for smaller projects <span class="citation" data-cites="bloch_sorensen_2015">(<a href="#ref-bloch_sorensen_2015" role="doc-biblioref">Bloch and Sørensen 2015</a>)</span>, and a movement towards evidence-based decision-making, you may wish to draw on pilots to provide initial evidence that your study is worthwhile. For example, the National Science Foundation (NSF) recognizes the need for more early-stage exploratory studies that can provide a basis for future larger-scale studies, and <a href="https://www.tessexperiments.org/">Time-sharing Experiments for the Social Sciences (TESS)</a> notes that “Proposals that report trial runs of novel and focal ideas will be viewed as more credible.”</p>
+<p>This does not entail that one needs to show that effect sizes are large enough nor that hypotheses are likely to be confirmed. Instead, a pilot can demonstrate that your research project is feasible in terms of time and resources, that your study design is adequate for answering the research questions proposed, and that your research team has the expertise and capacity to administer the study, perform analyses, and even present results in a compelling fashion <span class="citation" data-cites="van_teijlingen_et_al_2001">(<a href="#ref-van_teijlingen_et_al_2001" role="doc-biblioref">Teijilngen et al. 2001</a>)</span>. In a similar fashion, piloting can help you to recruit study team members and organizational partners, or solicit institutional support.</p>
 </section>
 <section id="you-can-use-a-pilot-to-get-feedback-on-your-study-design" class="level1">
 <h1>6. You can use a pilot to get feedback on your study design</h1>
-<p>Sharing initial findings, successes, and challenges is a great way to help you prepare for your main study. In light of the growth of the open science movement (<span class="citation" data-cites="christensen_et_al_2020">Christensen et al. (<a href="#ref-christensen_et_al_2020" role="doc-biblioref">2020</a>)</span>), conferences and workshops are increasingly open to accepting submissions based on pre-analysis plans and pilot results. Whether through these more formal venues, or by reaching out to colleagues or experts, you can use pilot results to receive feedback about your study design, such as strategies to address possible challenges and unexplored theoretical or empirical directions that you can incorporate in your main study.</p>
+<p>Sharing initial findings, successes, and challenges is a great way to help you prepare for your main study. In light of the growth of the open science movement <span class="citation" data-cites="christensen_et_al_2020">(<a href="#ref-christensen_et_al_2020" role="doc-biblioref">Christensen et al. 2020</a>)</span>, conferences and workshops are increasingly open to accepting submissions based on pre-analysis plans and pilot results. Whether through these more formal venues, or by reaching out to colleagues or experts, you can use pilot results to receive feedback about your study design, such as strategies to address possible challenges and unexplored theoretical or empirical directions that you can incorporate in your main study.</p>
 <p>Further, it can take a long time to complete an experimental study and publish results. Sharing intermediate findings allows you to coordinate with other researchers in the field, helping you to align your work and incorporate recent theoretical and empirical innovations relevant to your study.</p>
 <p>Ultimately, the design and piloting stage is the <strong>best</strong> time to receive feedback, as you still have time to make improvements. In contrast, most key research design decisions will already have been finalized by the time your study undergoes formal peer review for publication.</p>
 </section>
@@ -515,7 +488,7 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="pilots_research_sequence.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<p></p><figcaption class="figure-caption">The Role of Pilots in Experimental Research</figcaption><p></p>
+<figcaption class="figure-caption">The Role of Pilots in Experimental Research</figcaption>
 </figure>
 </div>
 </center>
@@ -531,23 +504,23 @@ div.csl-indent {
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-bloch_sorensen_2015" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bloch_sorensen_2015" class="csl-entry" role="listitem">
 Bloch, Carter, and Mads P. Sørensen. 2015. <span>“The Size of Research Funding: Trends and Implications.”</span> <em>Science and Public Policy</em> 42 (1): 30–43.
 </div>
-<div id="ref-christensen_et_al_2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-christensen_et_al_2020" class="csl-entry" role="listitem">
 Christensen, Garret, Zenan Wang, Elizabeth Levy Paluck, Nicholas Swanson, David Birke, Edward Miguel, and Rebecca Littman. 2020. <span>“Open Science Practices Are on the Rise: The State of Social Science (3S) Survey.”</span>
 </div>
-<div id="ref-franco_et_al_2014" class="csl-entry" role="doc-biblioentry">
+<div id="ref-franco_et_al_2014" class="csl-entry" role="listitem">
 Franco, Annie, Neil Malhotra, and Gabor Simonovits. 2014. <span>“Publication Bias in the Social Sciences: Unlocking the File Drawer.”</span> <em>Science</em> 345 (6203): 1502–5.
 </div>
-<div id="ref-gelman_hill_2006" class="csl-entry" role="doc-biblioentry">
+<div id="ref-gelman_hill_2006" class="csl-entry" role="listitem">
 Gelman, Andrew, and Jennifer Hill. 2006. <em>Data Analysis Using Regression and Multilevel/Hierarchical Models</em>. Cambridge, United Kingdom: Cambridge University Press.
 </div>
-<div id="ref-van_teijlingen_et_al_2001" class="csl-entry" role="doc-biblioentry">
+<div id="ref-van_teijlingen_et_al_2001" class="csl-entry" role="listitem">
 Teijilngen, Edwin R. van, Anne-Marie Rennie, Vanora Hundley, and Wendy Graham. 2001. <span>“The Importance of Conducting and Reporting Pilot Studies: The Example of the Scottish Births Survey.”</span> <em>Journal of Advanced Nursing</em> 34 (3): 289–95.
 </div>
-<div id="ref-thabane_et_al_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-thabane_et_al_2010" class="csl-entry" role="listitem">
 Thabane, Lehana, Jinhui Ma, Rong Chu, Ji Cheng, Afisi Ismaila, Lorena P. Rios, Robson Reid, Marroon Thabane, Lora Giangregorio, and Charles H. Goldsmith. 2010. <span>“A Tutorial on Pilot Studies: The What, Why and How.”</span> <em>BMC Medical Research Methodology</em> 10 (1): 1–10.
 </div>
 </div></section></div></main> <!-- /main -->
@@ -578,9 +551,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -645,6 +632,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

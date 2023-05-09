@@ -1,13 +1,5 @@
 [
   {
-    "listing": "/index.html",
-    "items": [
-      "/guides/causal-inference/causal-inference_en.html",
-      "/guides/assessing-designs/external-validity_en.html",
-      "/guides/analysis-procedures/covariates_en.html"
-    ]
-  },
-  {
     "listing": "/guides.html",
     "items": [
       "/guides/analysis-procedures/ri2_en.html",
@@ -41,6 +33,14 @@
       "/guides/research-questions/heterogeneous-effects_en.html",
       "/guides/research-questions/mechanisms_en.html",
       "/guides/research-questions/effect-types_en.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/guides/causal-inference/causal-inference_en.html",
+      "/guides/assessing-designs/external-validity_en.html",
+      "/guides/analysis-procedures/covariates_en.html"
     ]
   }
 ]

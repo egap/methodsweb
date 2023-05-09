@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -77,29 +77,31 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Methods</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./guides.html">
+    <a class="nav-link" href="./guides.html" rel="" target="">
  <span class="menu-text">Guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./software.html" aria-current="page">
+    <a class="nav-link active" href="./software.html" rel="" target="" aria-current="page">
  <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./coursebook/index.html">
+    <a class="nav-link" href="./coursebook/index.html" rel="" target="">
  <span class="menu-text">Coursebook</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -181,949 +183,949 @@ $(document).ready(function () {
 <p>We collected statistical software tools useful for designing, implementing, and analyzing results from impact evaluations. You can search for functions and for software packages in R and Stata below.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<table id="example" class="display" style="width:100%">
- <thead>
-  <tr>
-   <th style="text-align:left;"> package </th>
-   <th style="text-align:left;"> fn </th>
-   <th style="text-align:left;"> Member(s) </th>
-   <th style="text-align:left;"> Functionality </th>
-   <th style="text-align:left;"> Platform </th>
-   <th style="text-align:left;"> URL </th>
-  </tr>
- </thead>
+<table id="example" class="display table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">package</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">fn</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Member(s)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Functionality</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Platform</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">URL</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> ri2 </td>
-   <td style="text-align:left;"> conduct_ri </td>
-   <td style="text-align:left;"> Alex Coppock </td>
-   <td style="text-align:left;"> Randomization Inference for Randomized Experiments </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/ri2/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> ri2 </td>
-   <td style="text-align:left;"> tidy </td>
-   <td style="text-align:left;"> Alex Coppock </td>
-   <td style="text-align:left;"> Randomization Inference for Randomized Experiments </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/ri2/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> detect_idiosyncratic </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> estimate_systematic </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> get.p.value </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> KS.stat </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> make.linear.data </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> make.quadradic.data </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> make.randomized.compliance.dat </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> make.randomized.dat </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> make.skew.data </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> Penn46_ascii </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> R2 </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> rq.stat </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> rq.stat.cond.cov </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> rq.stat.uncond.cov </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> SE </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> SKS.pool.t </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> SKS.stat </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> SKS.stat.cov </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> SKS.stat.cov.pool </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> SKS.stat.cov.rq </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> SKS.stat.int.cov </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> SKS.stat.int.cov.pool </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> test.stat.info </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> ToyData </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> variance.ratio.test </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> hettx </td>
-   <td style="text-align:left;"> WSKS.t </td>
-   <td style="text-align:left;"> Avi Feller </td>
-   <td style="text-align:left;"> Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/hettx/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> add_bound_to_contour </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> adjusted_estimate </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> adjusted_partial_r2 </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> adjusted_se </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> adjusted_t </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> bias </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> colombia </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> darfur </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> group_partial_r2 </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> model_helper </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> ovb_bounds </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> ovb_contour_plot </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> ovb_extreme_plot </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> ovb_minimal_reporting </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> ovb_partial_r2_bound </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> partial_f </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> partial_f2 </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> partial_r2 </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> rel_bias </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> relative_bias </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> resid_maker </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> robustness_value </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> sensemakr </td>
-   <td style="text-align:left;"> sensitivity_stats </td>
-   <td style="text-align:left;"> Chad Hazlett </td>
-   <td style="text-align:left;"> sensitivity analysis for linear regression </td>
-   <td style="text-align:left;"> R, Stata </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/sensemakr/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> AsyVar </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> balance </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> Blackwell </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> CBIV </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> CBMSM </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> CBPS.fit </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> hdCBPS </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> LaLonde </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> npCBPS </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CBPS </td>
-   <td style="text-align:left;"> vcov_outcome </td>
-   <td style="text-align:left;"> Chad Hazlett, Kosuke Imai </td>
-   <td style="text-align:left;"> Covariate Balancing Propensity Score </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/CBPS/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> cite_design </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> compare_design_code </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> compare_design_data </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> compare_design_estimates </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> compare_design_inquiries </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> compare_design_summaries </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> compare_designs </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> compare_diagnoses </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_assignment </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_diagnosands </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_estimand </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_estimands </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_estimator </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_estimators </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_inquiries </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_inquiry </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_measurement </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_model </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_population </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_potential_outcomes </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_reveal </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_sampling </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_step </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> declare_test </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> delete_step </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> diagnose_design </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> diagnose_designs </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> draw_data </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> draw_estimand </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> draw_estimands </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> draw_estimates </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> expand_design </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> get_diagnosands </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> get_estimates </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> get_simulations </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> insert_step </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> label_estimator </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> label_test </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> model_handler </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> pop.var </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> print_code </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> redesign </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> replace_step </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> reshape_diagnosis </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> run_design </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> set_citation </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> set_diagnosands </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> simulate_design </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> simulate_designs </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> tidy </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> tidy_estimator </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> tidy_try </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> DeclareDesign </td>
-   <td style="text-align:left;"> vars </td>
-   <td style="text-align:left;"> Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys </td>
-   <td style="text-align:left;"> diagnosing and improving research designs </td>
-   <td style="text-align:left;"> R </td>
-   <td style="text-align:left;"> https://rdrr.io/cran/DeclareDesign/ </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">ri2</td>
+<td style="text-align: left;">conduct_ri</td>
+<td style="text-align: left;">Alex Coppock</td>
+<td style="text-align: left;">Randomization Inference for Randomized Experiments</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/ri2/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ri2</td>
+<td style="text-align: left;">tidy</td>
+<td style="text-align: left;">Alex Coppock</td>
+<td style="text-align: left;">Randomization Inference for Randomized Experiments</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/ri2/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">detect_idiosyncratic</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">estimate_systematic</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">get.p.value</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">KS.stat</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">make.linear.data</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">make.quadradic.data</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">make.randomized.compliance.dat</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">make.randomized.dat</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">make.skew.data</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">Penn46_ascii</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">R2</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">rq.stat</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">rq.stat.cond.cov</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">rq.stat.uncond.cov</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">SE</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">SKS.pool.t</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">SKS.stat</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">SKS.stat.cov</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">SKS.stat.cov.pool</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">SKS.stat.cov.rq</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">SKS.stat.int.cov</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">SKS.stat.int.cov.pool</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">test.stat.info</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">ToyData</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">variance.ratio.test</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hettx</td>
+<td style="text-align: left;">WSKS.t</td>
+<td style="text-align: left;">Avi Feller</td>
+<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">add_bound_to_contour</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">adjusted_estimate</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">adjusted_partial_r2</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">adjusted_se</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">adjusted_t</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">bias</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">colombia</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">darfur</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">group_partial_r2</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">model_helper</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">ovb_bounds</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">ovb_contour_plot</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">ovb_extreme_plot</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">ovb_minimal_reporting</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">ovb_partial_r2_bound</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">partial_f</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">partial_f2</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">partial_r2</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">rel_bias</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">relative_bias</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">resid_maker</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">robustness_value</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sensemakr</td>
+<td style="text-align: left;">sensitivity_stats</td>
+<td style="text-align: left;">Chad Hazlett</td>
+<td style="text-align: left;">sensitivity analysis for linear regression</td>
+<td style="text-align: left;">R, Stata</td>
+<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">AsyVar</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">balance</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">Blackwell</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">CBIV</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">CBMSM</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">CBPS.fit</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">hdCBPS</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">LaLonde</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">npCBPS</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CBPS</td>
+<td style="text-align: left;">vcov_outcome</td>
+<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
+<td style="text-align: left;">Covariate Balancing Propensity Score</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">cite_design</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">compare_design_code</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">compare_design_data</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">compare_design_estimates</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">compare_design_inquiries</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">compare_design_summaries</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">compare_designs</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">compare_diagnoses</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_assignment</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_diagnosands</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_estimand</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_estimands</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_estimator</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_estimators</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_inquiries</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_inquiry</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_measurement</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_model</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_population</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_potential_outcomes</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_reveal</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_sampling</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_step</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">declare_test</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">delete_step</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">diagnose_design</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">diagnose_designs</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">draw_data</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">draw_estimand</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">draw_estimands</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">draw_estimates</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">expand_design</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">get_diagnosands</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">get_estimates</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">get_simulations</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">insert_step</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">label_estimator</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">label_test</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">model_handler</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">pop.var</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">print_code</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">redesign</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">replace_step</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">reshape_diagnosis</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">run_design</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">set_citation</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">set_diagnosands</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">simulate_design</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">simulate_designs</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">tidy</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">tidy_estimator</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">tidy_try</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DeclareDesign</td>
+<td style="text-align: left;">vars</td>
+<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
+<td style="text-align: left;">diagnosing and improving research designs</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+</tr>
 </tbody>
 </table>
+
 
 </div>
 </div>
@@ -1158,9 +1160,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1225,6 +1241,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

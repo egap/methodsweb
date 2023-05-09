@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,9 +18,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,48 +48,19 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -102,8 +74,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -142,6 +113,7 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
@@ -161,29 +133,31 @@ div.csl-indent {
     <span class="navbar-title">Methods</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html">
+    <a class="nav-link" href="../../guides.html" rel="" target="">
  <span class="menu-text">Guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html">
+    <a class="nav-link" href="../../software.html" rel="" target="">
  <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html">
+    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
  <span class="menu-text">Coursebook</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -226,7 +200,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
-             <p>Paul Testa </p>
+             <p><a href="https://paultesta.org/">Paul Testa</a> </p>
           </div>
   </div>
     
@@ -445,7 +419,7 @@ div.csl-indent {
 <p>Sometimes we want to describe not just the magnitude and significance of an observed causal effect, but also the <a href="https://methods.egap.org/guides/research-questions/mechanisms_en.html">mechanism</a> (or mechanisms) that produced it. Did our intervention raise turnout in the treatment group, in part, by increasing these subjects’ sense of political efficacy? If so, how much of that total effect can be attributed to the mediated effects of our treatment on efficacy and efficacy on turnout?</p>
 <p><span class="citation" data-cites="baron_kenny_1986">Baron and Kenny (<a href="#ref-baron_kenny_1986" role="doc-biblioref">1986</a>)</span> offer a general framework for thinking about mediation by decomposing the total effect of treatment into its indirect effect on a mediator that then effects the outcome, called an average causal mediation effect (ACME), and the remaining average direct effect (ADE) of the treatment. Unbiased estimation of these effects, however, requires a set of strong assumptions about the relationship between treatment, mediators, outcomes, and potential confounders, collectively called sequential ignorability (<span class="citation" data-cites="imai_keele_yamamoto_2010">Imai, Keele, and Yamamoto (<a href="#ref-imai_keele_yamamoto_2010" role="doc-biblioref">2010</a>)</span>, <span class="citation" data-cites="bullock_green_ha_2010">Bullock, Green, and Ha (<a href="#ref-bullock_green_ha_2010" role="doc-biblioref">2010</a>)</span>).<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></p>
 <p>Most causal effects likely operate through multiple channels, and so an assumption of sequential ignorability for your experiment can be hard to justify. For example, the top row in the figure below illustrates situations in which sequential ignorability holds, while the bottom row depicts two (of many possible) cases in which sequential ignorability is violated, and mediation analysis is biased. In essence, specifying the effects of a particular mediator requires strong assumptions about the role of all the other mediators in the causal chain. While some experimental designs can, in theory, provide additional leverage (such as running a second, parallel experiment in which the mediator is also manipulated), in practice these designs are hard to implement and still sensitive to unobserved bias. In some cases, the insights we hope to gain from mediation analysis may be more easily acquired from subgroup analysis and experiments designed to test for moderation.</p>
-<p>Imai and colleagues propose an approach to mediation analysis that allows researchers to test the sensitivity of their estimates to violations of sequential ignorability.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> In the code we demonstrate some of the features of their approach, implemented in the mediation package in R (<span class="citation" data-cites="tingley_et_al_2014">Tingley et al. (<a href="#ref-tingley_et_al_2014" role="doc-biblioref">2014</a>)</span>). We model the relationships with OLS, but the package is capable of handling other outcome processes, such as generalized linear models or general additive models, that may be more appropriate for your data. Most importantly, the package allows us to produce bounds that reflect the sensitivity of our point estimates to some violations of sequential ignorability. In our simulated data, just over 20 percent of the total effect is mediated by our proposed mediator, M and the bias from an unobserved pre-treatment confounder would have to be quite large (ρ=.7) before we would reject the finding of a positive ACME. These bounds are only valid, however, if we believe there are no unobserved post-treatment confounders (as in panel 4). Sensitivity analysis is still possible, but more complicated in such settings (<span class="citation" data-cites="imai_yamamoto_2013">Imai and Yamamoto (<a href="#ref-imai_yamamoto_2013" role="doc-biblioref">2013</a>)</span>).</p>
+<p>Imai and colleagues propose an approach to mediation analysis that allows researchers to test the sensitivity of their estimates to violations of sequential ignorability.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> In the code we demonstrate some of the features of their approach, implemented in the mediation package in R <span class="citation" data-cites="tingley_et_al_2014">(<a href="#ref-tingley_et_al_2014" role="doc-biblioref">Tingley et al. 2014</a>)</span>. We model the relationships with OLS, but the package is capable of handling other outcome processes, such as generalized linear models or general additive models, that may be more appropriate for your data. Most importantly, the package allows us to produce bounds that reflect the sensitivity of our point estimates to some violations of sequential ignorability. In our simulated data, just over 20 percent of the total effect is mediated by our proposed mediator, M and the bias from an unobserved pre-treatment confounder would have to be quite large (ρ=.7) before we would reject the finding of a positive ACME. These bounds are only valid, however, if we believe there are no unobserved post-treatment confounders (as in panel 4). Sensitivity analysis is still possible, but more complicated in such settings <span class="citation" data-cites="imai_yamamoto_2013">(<a href="#ref-imai_yamamoto_2013" role="doc-biblioref">Imai and Yamamoto 2013</a>)</span>.</p>
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/effect-types/effect-types_fig2.png" class="img-fluid"></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># Replication</span></span>
@@ -518,7 +492,7 @@ div.csl-indent {
 </section>
 <section id="attributable-effects" class="level1">
 <h1>10. Attributable Effects</h1>
-<p>We conclude with a brief discussion of an alternative quantity of causal interest that may be particularly useful with binary outcomes: the attributable effect (<span class="citation" data-cites="rosenbaum_2010">Rosenbaum (<a href="#ref-rosenbaum_2010" role="doc-biblioref">n.d.</a>)</span>). Consider a simple case with a dichotomous outcome and treatment. Let <span class="math inline">\(A\)</span> be the number of outcomes attributable to treatment, that is, the number of cases in which <span class="math inline">\(Y_i\)</span> equaled 1 among treated subjects which would not have occurred had these units been assigned to control. For a range of <span class="math inline">\(A\)</span>’s, we adjust the observed contingency table of outcomes among the treated, and compare this resulting distribution to a known null distribution (the distribution of outcomes we would have observed had treatment had no effect). The resulting range of <span class="math inline">\(A\)</span>’s for which our test continues to reject the null hypothesis of no effect provides a range of effects that are attributable to our treatment.</p>
+<p>We conclude with a brief discussion of an alternative quantity of causal interest that may be particularly useful with binary outcomes: the attributable effect <span class="citation" data-cites="rosenbaum_2010">(<a href="#ref-rosenbaum_2010" role="doc-biblioref">Rosenbaum, n.d.</a>)</span>. Consider a simple case with a dichotomous outcome and treatment. Let <span class="math inline">\(A\)</span> be the number of outcomes attributable to treatment, that is, the number of cases in which <span class="math inline">\(Y_i\)</span> equaled 1 among treated subjects which would not have occurred had these units been assigned to control. For a range of <span class="math inline">\(A\)</span>’s, we adjust the observed contingency table of outcomes among the treated, and compare this resulting distribution to a known null distribution (the distribution of outcomes we would have observed had treatment had no effect). The resulting range of <span class="math inline">\(A\)</span>’s for which our test continues to reject the null hypothesis of no effect provides a range of effects that are attributable to our treatment.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -634,101 +608,101 @@ Y           0        1
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-abadie_angrist_imbens_2002" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-abadie_angrist_imbens_2002" class="csl-entry" role="listitem">
 Abadie, Alberto, Joshua Angrist, and Guido W. Imbens. 2002. <span>“Instrumental Variables Estimates of the Effect of Subsidized Training on the Quantiles of Trainee Earnings.”</span> <em>Econometrica</em> 70 (1): 91–117.
 </div>
-<div id="ref-abbring_heckman_2007" class="csl-entry" role="doc-biblioentry">
+<div id="ref-abbring_heckman_2007" class="csl-entry" role="listitem">
 Abbring, Jaap H., and James J. Heckman. 2007. <span>“Handbook of Econometrics.”</span> In, 6:5145–5303. Elsevier.
 </div>
-<div id="ref-angrist_pischke_2008" class="csl-entry" role="doc-biblioentry">
+<div id="ref-angrist_pischke_2008" class="csl-entry" role="listitem">
 Angrist, Joshua, and Jörn-Steffen Pischke. 2008. <em>Mostly Harmless Econometrics: An Empiricist’s Companion</em>. Princeton University Press.
 </div>
-<div id="ref-aronow_middleton_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-aronow_middleton_2013" class="csl-entry" role="listitem">
 Aronow, Peter M., and Joel A. Middleton. 2013. <span>“A Class of Unbiased Estimators of the Average Treatment Effect in Randomized Experiments.”</span> <em>Journal of Causal Inference</em> 1 (1): 135–54.
 </div>
-<div id="ref-baron_kenny_1986" class="csl-entry" role="doc-biblioentry">
+<div id="ref-baron_kenny_1986" class="csl-entry" role="listitem">
 Baron, Ruben M., and David A. Kenny. 1986. <span>“The Moderator–Mediator Variable Distinction in Social Psychological Research: Conceptual, Strategic, and Statistical Considerations.”</span> <em>Journal of Personality and Social Psychology</em> 51 (6): 1173–82.
 </div>
-<div id="ref-bound_jaeger_baker_1995" class="csl-entry" role="doc-biblioentry">
+<div id="ref-bound_jaeger_baker_1995" class="csl-entry" role="listitem">
 Bound, John, David A. Jaeger, and Regina M. Baker. 1995. <span>“Problems with Instrumental Variables Estimation When the Correlation Between the Instruments and the Endogenous Explanatory Variable Is Weak.”</span> <em>Journal of the American Statistical Association</em> 90 (430): 443–50.
 </div>
-<div id="ref-brambor_clark_golder_2006" class="csl-entry" role="doc-biblioentry">
+<div id="ref-brambor_clark_golder_2006" class="csl-entry" role="listitem">
 Brambor, Thomas, William R. Clark, and Matt Golder. 2006. <span>“Understanding Interaction Models: Improving Empirical Analyses.”</span> <em>Political Analysis</em> 14 (1): 63–82.
 </div>
-<div id="ref-bullock_green_ha_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-bullock_green_ha_2010" class="csl-entry" role="listitem">
 Bullock, John G., Donald P. Green, and Shang E. Ha. 2010. <span>“Yes, but What’s the Mechanism? (Don’t Expect an Easy Answer).”</span> <em>Journal of Personality and Social Psychology</em> 98 (4).
 </div>
-<div id="ref-dunning_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-dunning_2010" class="csl-entry" role="listitem">
 Dunning, Thad. 2010. <span>“Design-Based Inference: Beyond the Pitfalls of Regression Analysis?”</span> In <em>Rethinking Social Inquiry: Diverse Tools, Shared Standards</em>, 2nd Ed. Lanham, MD: Rowman; Littlefield.
 </div>
-<div id="ref-freedman_2008b" class="csl-entry" role="doc-biblioentry">
+<div id="ref-freedman_2008b" class="csl-entry" role="listitem">
 Freedman, David A. 2008. <span>“Randomization Does Not Justify Logistic Regression.”</span> <em>Statistical Science</em> 23 (2): 237–49.
 </div>
-<div id="ref-frolich_melly_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-frolich_melly_2010" class="csl-entry" role="listitem">
 Frölich, Markus, and Blaise Melly. 2010. <span>“Estimation of Quantile Treatment Effects with Stata.”</span> <em>Stata Journal</em> 10 (3).
 </div>
-<div id="ref-gerber_green_2012" class="csl-entry" role="doc-biblioentry">
+<div id="ref-gerber_green_2012" class="csl-entry" role="listitem">
 Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. WW Norton.
 </div>
-<div id="ref-glynn_quinn_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-glynn_quinn_2010" class="csl-entry" role="listitem">
 Glynn, Adam N., and Kevin M. Quinn. 2010. <span>“An Introduction to the Augmented Inverse Propensity Weighted Estimator an Introduction to the Augmented Inverse Propensity Weighted Estimator.”</span> <em>Political Analysis</em> 18 (1): 36–56.
 </div>
-<div id="ref-hansen_bowers_2009" class="csl-entry" role="doc-biblioentry">
+<div id="ref-hansen_bowers_2009" class="csl-entry" role="listitem">
 Hansen, Ben, and Jake Bowers. 2009. <span>“Attributing Effects to a Cluster-Randomized Get-Out-the-Vote Campaign.”</span> <em>Journal of the American Statistical Association</em> 104 (487): 873–85.
 </div>
-<div id="ref-hartman_et_al_2015" class="csl-entry" role="doc-biblioentry">
+<div id="ref-hartman_et_al_2015" class="csl-entry" role="listitem">
 Hartman, Erin, R. D. Grieve, R. Ramsahai, and Jasjeet S. Sekhon. 2015. <span>“From SATE to PATT: Combining Experimental with Observational Studies.”</span> <em>Journal of the Royal Statistical Society</em>.
 </div>
-<div id="ref-hirano_imbens_ridder_2003" class="csl-entry" role="doc-biblioentry">
+<div id="ref-hirano_imbens_ridder_2003" class="csl-entry" role="listitem">
 Hirano, Keisuke, Guido W. Imbens, and Geert Ridder. 2003. <span>“Efficient Estimation of Average Treatment Effects Using the Estimated Propensity Score.”</span> <em>Econometrica</em> 71 (4): 1161–89.
 </div>
-<div id="ref-holland_1986" class="csl-entry" role="doc-biblioentry">
+<div id="ref-holland_1986" class="csl-entry" role="listitem">
 Holland, Paul W. 1986. <span>“Statistics and Causal Inference.”</span> <em>Journal of the American Statistical Association</em> 81 (396): 945–60.
 </div>
-<div id="ref-imai_et_al_2011" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imai_et_al_2011" class="csl-entry" role="listitem">
 Imai, Kosuke, Luke Keele, Dustin Tingley, and Teppei Yamamoto. 2011. <span>“Unpacking the Black Box of Causality: Learning about Causal Mechanisms from Experimental and Observational Studies.”</span> <em>American Political Science Review</em> 105 (4): 765–89.
 </div>
-<div id="ref-imai_keele_yamamoto_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imai_keele_yamamoto_2010" class="csl-entry" role="listitem">
 Imai, Kosuke, Luke Keele, and Teppei Yamamoto. 2010. <span>“Identification, Inference and Sensitivity Analysis for Causal Mediation Effects.”</span> <em>Statistical Science</em>, 51–71.
 </div>
-<div id="ref-imai_king_stuart_2008" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imai_king_stuart_2008" class="csl-entry" role="listitem">
 Imai, Kosuke, Gary King, and Elizabeth A. Stuart. 2008. <span>“Misunderstandings Between Experimentalists and Observationalists about Causal Inference.”</span> <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em> 171 (2): 481–502.
 </div>
-<div id="ref-imai_tingley_yamamoto_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imai_tingley_yamamoto_2013" class="csl-entry" role="listitem">
 Imai, Kosuke, Dustin Tingley, and Teppei Yamamoto. 2013. <span>“Experimental Designs for Identifying Causal Mechanisms.”</span> <em>Journal of the Royal Statistical Society: Series A (Statistics in Society)</em> 176 (1): 5–51.
 </div>
-<div id="ref-imai_yamamoto_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imai_yamamoto_2013" class="csl-entry" role="listitem">
 Imai, Kosuke, and Teppei Yamamoto. 2013. <span>“Identification and Sensitivity Analysis for Multiple Causal Mechanisms: Revisiting Evidence from Framing Experiments.”</span> <em>Political Analysis</em> 21 (2): 141–71.
 </div>
-<div id="ref-imbens_wooldridge_2007" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imbens_wooldridge_2007" class="csl-entry" role="listitem">
 Imbens, Guido W., and Jeffrey M. Wooldridge. 2007. <span>“What’s New in Econometrics?”</span> <em>National Bureau of Economic Research Summer Institute</em>.
 </div>
-<div id="ref-koenker_hallock_2001" class="csl-entry" role="doc-biblioentry">
+<div id="ref-koenker_hallock_2001" class="csl-entry" role="listitem">
 Koenker, Roger, and Kevin Hallock. 2001. <span>“Quantile Regression: An Introduction.”</span> <em>Journal of Economic Perspectives</em> 15 (4): 43–56.
 </div>
-<div id="ref-lin_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-lin_2013" class="csl-entry" role="listitem">
 Lin, Winston. 2013. <span>“Agnostic Notes on Regression Adjustments to Experimental Data: Reexamining Freedman’s Critique.”</span> <em>The Annals of Applied Statistics</em> 7 (1): 295–318.
 </div>
-<div id="ref-nickerson_2008" class="csl-entry" role="doc-biblioentry">
+<div id="ref-nickerson_2008" class="csl-entry" role="listitem">
 Nickerson, D. W. 2008. <span>“Is Voting Contagious? Evidence from Two Field Experiments.”</span> <em>American Political Science Review</em> 102 (1).
 </div>
-<div id="ref-rosenbaum_2002a" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum_2002a" class="csl-entry" role="listitem">
 Rosenbaum, Paul R. 2002a. <span>“Attributing Effects to Treatment in Matched Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 97 (457): 183–92.
 </div>
-<div id="ref-rosenbaum_2002b" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum_2002b" class="csl-entry" role="listitem">
 ———. 2002b. <em>Observational Studies</em>. Springer.
 </div>
-<div id="ref-rosenbaum_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum_2010" class="csl-entry" role="listitem">
 ———. n.d. <em>Design of Observational Studies</em>. New York, NY: Springer.
 </div>
-<div id="ref-rosenbaum_rubin_1983" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum_rubin_1983" class="csl-entry" role="listitem">
 Rosenbaum, Paul R., and Donald B. Rubin. 1983. <span>“The Central Role of the Propensity Score in Observational Studies for Causal Effects.”</span> <em>Biometrika</em> 70 (1): 41–55.
 </div>
-<div id="ref-rosenbaum_silber_2008" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum_silber_2008" class="csl-entry" role="listitem">
 Rosenbaum, Paul R., and Jeffrey H. Silber. 2008. <span>“Aberrant Effects of Treatment.”</span> <em>Journal of the American Statistical Association</em> 103 (481): 240–47.
 </div>
-<div id="ref-tingley_et_al_2014" class="csl-entry" role="doc-biblioentry">
+<div id="ref-tingley_et_al_2014" class="csl-entry" role="listitem">
 Tingley, Dustin, Teppei Yamamoto, Kentaro Hirose, Luke Keele, and Kosuke Imai. 2014. <span>“Mediation: R Package for Causal Mediation Analysis.”</span> <em>Journal of Statistical Software</em> 59 (5): 1–38.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
@@ -785,9 +759,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -852,6 +840,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

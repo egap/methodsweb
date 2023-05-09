@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,14 +18,15 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -39,8 +40,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -79,6 +79,7 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
@@ -98,29 +99,31 @@ div.csl-indent {
     <span class="navbar-title">Methods</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html">
+    <a class="nav-link" href="../../guides.html" rel="" target="">
  <span class="menu-text">Guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html">
+    <a class="nav-link" href="../../software.html" rel="" target="">
  <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html">
+    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
  <span class="menu-text">Coursebook</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -169,7 +172,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
-             <p>Abby Long </p>
+             <p><a href="https://www.linkedin.com/in/abby-long-834677a">Abby Long</a> </p>
           </div>
   </div>
     
@@ -181,7 +184,7 @@ div.csl-indent {
 </header>
 
 <p>This guide gives basic information to help you understand how to interpret the results of ordinary least squares (OLS) regression in social science research. The guide focuses on regression but also discusses general concepts such as confidence intervals.</p>
-<p>The table below that will be used throughout this methods guide is adapted from a study done by EGAP members Miriam Golden, Eric Kramon and their colleagues (<span class="citation" data-cites="asunka_et_al_2013">Asunka et al. (<a href="#ref-asunka_et_al_2013" role="doc-biblioref">2013</a>)</span>). The authors performed a field experiment in Ghana in 2012 to test the effectiveness of domestic election observers on combating two common electoral fraud problems: ballot stuffing and overvoting. Ballot stuffing occurs when more ballots are found in a ballot box than are known to have been distributed to voters. Overvoting occurs when more votes are cast at a polling station than the number of voters registered. This table reports a multiple regression (this is a concept that will be further explained below) from their experiment that explores the effects of domestic election observers on ballot stuffing. The sample consists of 2,004 polling stations.</p>
+<p>The table below that will be used throughout this methods guide is adapted from a study done by EGAP members Miriam Golden, Eric Kramon and their colleagues <span class="citation" data-cites="asunka_et_al_2013">(<a href="#ref-asunka_et_al_2013" role="doc-biblioref">Asunka et al. 2013</a>)</span>. The authors performed a field experiment in Ghana in 2012 to test the effectiveness of domestic election observers on combating two common electoral fraud problems: ballot stuffing and overvoting. Ballot stuffing occurs when more ballots are found in a ballot box than are known to have been distributed to voters. Overvoting occurs when more votes are cast at a polling station than the number of voters registered. This table reports a multiple regression (this is a concept that will be further explained below) from their experiment that explores the effects of domestic election observers on ballot stuffing. The sample consists of 2,004 polling stations.</p>
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/reg-table/reg.png" class="img-fluid"></p>
 <section id="what-is-regression" class="level1">
 <h1>1. What is regression?</h1>
@@ -296,110 +299,110 @@ div.csl-indent {
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-abadie_et_al_2014" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-abadie_et_al_2014" class="csl-entry" role="listitem">
 Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey M. Wooldridge. 2014. <span>“Finite Population Causal Standard Errors.”</span> <em>NBER Working Paper No. 20325</em>.
 </div>
-<div id="ref-anderson_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-anderson_2013" class="csl-entry" role="listitem">
 Anderson, Richard G. 2013. <span>“Registration and Replication: A Comment.”</span> <em>Political Analysis</em> 21 (1): 38–39. <a href="http://www.jstor.org/stable/23359689">http://www.jstor.org/stable/23359689</a>.
 </div>
-<div id="ref-angrist_2001" class="csl-entry" role="doc-biblioentry">
+<div id="ref-angrist_2001" class="csl-entry" role="listitem">
 Angrist, Joshua D. 2001. <span>“Estimation of Limited Dependent Variable Models with Dummy Endogenous Regressors: Simple Strategies for Empirical Practice.”</span> <em>Journal of Business &amp; Economic Statistics</em> 19 (1): 2–28.
 </div>
-<div id="ref-angrist_pischke_2009" class="csl-entry" role="doc-biblioentry">
+<div id="ref-angrist_pischke_2009" class="csl-entry" role="listitem">
 Angrist, Joshua D., and Jörn-Steffen Pischke. 2009. <em>Mostly Harmless Econometrics</em>. Princeton University Press.
 </div>
-<div id="ref-angrist_pischke_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-angrist_pischke_2010" class="csl-entry" role="listitem">
 ———. 2010. <span>“The Credibility Revolution in Empirical Economics.”</span> <em>Journal of Economic Perspectives</em> 24 (2): 3–30.
 </div>
-<div id="ref-angrist_pischke_2015" class="csl-entry" role="doc-biblioentry">
+<div id="ref-angrist_pischke_2015" class="csl-entry" role="listitem">
 ———. 2015. <em>Mastering ’Metrics: The Path from Cause to Effect</em>. Princeton University Press.
 </div>
-<div id="ref-asunka_et_al_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-asunka_et_al_2013" class="csl-entry" role="listitem">
 Asunka, Joseph, Sarah Brierley, Miriam Golden, Eric Kramon, and George Ofosu. 2013. <span>“Protecting the Polls: The Effect of Observers on Election Fraud.”</span>
 </div>
-<div id="ref-berk_et_al_2014" class="csl-entry" role="doc-biblioentry">
+<div id="ref-berk_et_al_2014" class="csl-entry" role="listitem">
 Berk, R. A., L. D. Brown, A. Buja, E. I. George, E. Pitkin, K. Zhang, and L. Zhao. 2014. <span>“Misspecified Mean Function Regression: Making Good Use of Regression Models That Are Wrong.”</span> <em>Sociological Methods Research</em> 43 (3): 422–51.
 </div>
-<div id="ref-buja_et_al_2015" class="csl-entry" role="doc-biblioentry">
+<div id="ref-buja_et_al_2015" class="csl-entry" role="listitem">
 Buja, A., R. A. Berk, L. D. Brown, E. I. George, E. Pitkin, M. Traskin, L. Zhao, and K. Zhang. 2015. <span>“Models as Approximations - a Conspiracy of Random Regressors and Model Deviations Against Classical Inference in Regression.”</span> <em>Statistical Science</em>, 1–44.
 </div>
-<div id="ref-coffman_2015" class="csl-entry" role="doc-biblioentry">
+<div id="ref-coffman_2015" class="csl-entry" role="listitem">
 Coffman, Lucas C., and Muriel Niederle. 2015. <span>“Pre-Analysis Plans Have Limited Upside, Especially Where Replications Are Feasible.”</span> <em>Journal of Economic Perspectives</em> 29 (3): 81–98.
 </div>
-<div id="ref-findley_et_al_2016" class="csl-entry" role="doc-biblioentry">
+<div id="ref-findley_et_al_2016" class="csl-entry" role="listitem">
 Findley, Michael G., Nathan M. Jensen, Edmund J. Malesky, and Thomas B. Pepinsky. 2016. <span>“Can Results-Free Review Reduce Publication Bias? The Results and Implications of a Pilot Study.”</span> <em>Comparative Political Studies</em> 49 (13): 1667–1703. <a href="https://doi.org/10.1177/0010414016655539">https://doi.org/10.1177/0010414016655539</a>.
 </div>
-<div id="ref-freedman_1991" class="csl-entry" role="doc-biblioentry">
+<div id="ref-freedman_1991" class="csl-entry" role="listitem">
 Freedman, David A. 1991. <span>“Statistical Models and Shoe Leather.”</span> <em>Sociological Methodology</em> 21: 291–358.
 </div>
-<div id="ref-gelman_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-gelman_2013" class="csl-entry" role="listitem">
 Gelman, Andrew. 2013. <span>“Preregistration of Studies and Mock Reports.”</span> <em>Political Analysis</em> 21 (1): 40–41. <a href="http://www.jstor.org/stable/23359690">http://www.jstor.org/stable/23359690</a>.
 </div>
-<div id="ref-gelman_loken_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-gelman_loken_2013" class="csl-entry" role="listitem">
 Gelman, Andrew, and Eric Loken. 2013. <span>“The Garden of Forking Paths: Why Multiple Comparisons Can Be a Problem, Even When There Is No ’Fishing Expedition’ or ’p-Hacking’ and the Research Hypothesis Was Posited Ahead of Time.”</span>
 </div>
-<div id="ref-gelman_pardoe_2007" class="csl-entry" role="doc-biblioentry">
+<div id="ref-gelman_pardoe_2007" class="csl-entry" role="listitem">
 Gelman, Andrew, and Iain Pardoe. 2007. <span>“Average Predictive Comparisons for Models with Nonlinearity, Interactions, and Variance Components.”</span> <em>Sociological Methodology</em> 37: 23–51.
 </div>
-<div id="ref-gerber_green_2012" class="csl-entry" role="doc-biblioentry">
+<div id="ref-gerber_green_2012" class="csl-entry" role="listitem">
 Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. W.W. Norton.
 </div>
-<div id="ref-greenland_et_al_2016" class="csl-entry" role="doc-biblioentry">
+<div id="ref-greenland_et_al_2016" class="csl-entry" role="listitem">
 Greenland, Sander, Stephen J. Senn, Kenneth J. Rothman, John B. Carlin, Charles Poole, Steven N. Goodman, and Douglas G. Altman. 2016. <span>“Statistical Tests, p Values, Confidence Intervals, and Power: A Guide to Misinterpretations.”</span> <em>European Journal of Epidemiology</em> 31 (4): 337–50. <a href="https://doi.org/10.1007/s10654-016-0149-3">https://doi.org/10.1007/s10654-016-0149-3</a>.
 </div>
-<div id="ref-hansen_2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-hansen_2022" class="csl-entry" role="listitem">
 Hansen, Bruce. 2022. <em>Econometrics</em>. Princeton University Press.
 </div>
-<div id="ref-humphreys_et_al_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-humphreys_et_al_2013" class="csl-entry" role="listitem">
 Humphreys, Macartan, Raul Sanchez de la Sierra, and Peter van der Windt. 2013. <span>“Fishing, Commitment, and Communication: A Proposal for Comprehensive Nonbinding Research Registration.”</span> <em>Political Analysis</em> 21: 1–20.
 </div>
-<div id="ref-imbens_2015" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imbens_2015" class="csl-entry" role="listitem">
 Imbens, Guido W. 2015. <span>“Matching Methods in Practice: Three Examples.”</span> <em>Journal of Human Resources</em> 50: 373–419.
 </div>
-<div id="ref-imbens_kolesar_2016" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imbens_kolesar_2016" class="csl-entry" role="listitem">
 Imbens, Guido W., and Michal Kolesár. 2016. <span>“Robust Standard Errors in Small Samples: Some Practical Advice.”</span> <em>Review of Economics and Statistics</em> 98: 701–12.
 </div>
-<div id="ref-imbens_wooldridge_2009" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imbens_wooldridge_2009" class="csl-entry" role="listitem">
 Imbens, Guido W., and Jeffrey M. Wooldridge. 2009. <span>“Recent Developments in the Econometrics of Program Evaluation.”</span> <em>Journal of Economic Literature</em> 47: 5–86.
 </div>
-<div id="ref-james_et_al_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-james_et_al_2013" class="csl-entry" role="listitem">
 James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2013. <em>An Introduction to Statistical Learning: With Applications in r</em>. Springer.
 </div>
-<div id="ref-judkins_porter_2016" class="csl-entry" role="doc-biblioentry">
+<div id="ref-judkins_porter_2016" class="csl-entry" role="listitem">
 Judkins, David R., and Kristin E. Porter. 2016. <span>“Robustness of Ordinary Least Squares in Randomized Clinical Trials.”</span> <em>Statistics in Medicine</em> 35: 1763–73.
 </div>
-<div id="ref-lin_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-lin_2013" class="csl-entry" role="listitem">
 Lin, Winston. 2013. <span>“Agnostic Notes on Regression Adjustments to Experimental Data: Reexamining Freedman’s Critique.”</span> <em>Annals of Applied Statistics</em> 7: 295–318.
 </div>
-<div id="ref-monogan_2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-monogan_2013" class="csl-entry" role="listitem">
 Monogan, James E. 2013. <span>“A Case for Registering Studies of Political Outcomes: An Application in the 2010 House Elections.”</span> <em>Political Analysis</em> 21 (1): 21–37. <a href="http://www.jstor.org/stable/23359688">http://www.jstor.org/stable/23359688</a>.
 </div>
-<div id="ref-nyhan_2015" class="csl-entry" role="doc-biblioentry">
+<div id="ref-nyhan_2015" class="csl-entry" role="listitem">
 Nyhan, Brendan. 2015. <span>“Increasing the Credibility of Political Science Research: A Proposal for Journal Reforms.”</span> <em>PS: Political Science and Politics</em> 48 (S1): 78–83.
 </div>
-<div id="ref-olken_2015" class="csl-entry" role="doc-biblioentry">
+<div id="ref-olken_2015" class="csl-entry" role="listitem">
 Olken, Benjamin A. 2015. <span>“Promises and Perils of Pre-Analysis Plans.”</span> <em>Journal of Economic Perspectives</em> 29 (3): 61–80.
 </div>
-<div id="ref-reichardt_gollob_1999" class="csl-entry" role="doc-biblioentry">
+<div id="ref-reichardt_gollob_1999" class="csl-entry" role="listitem">
 Reichardt, Charles S., and Harry F. Gollog. 1999. <span>“Justifying the Use and Increasing the Power of a t Test for a Randomized Experiment with a Convenience Sample.”</span> <em>Psychological Methods</em> 4: 117–28.
 </div>
-<div id="ref-rosenbaum_1984" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenbaum_1984" class="csl-entry" role="listitem">
 Rosenbaum, Paul R. 1984. <span>“The Consquences of Adjustment for a Concomitant Variable That Has Been Affected by the Treatment.”</span> <em>Ournal of the Royal Statistical Society. Series A (General)</em> 147: 656–66.
 </div>
-<div id="ref-rosenthal_1979" class="csl-entry" role="doc-biblioentry">
+<div id="ref-rosenthal_1979" class="csl-entry" role="listitem">
 Rosenthal, Robert. 1979. <span>“The ’File Drawer Problem’ and Tolerance for Null Results.”</span> <em>Psychological Bulletin</em> 86: 638–41.
 </div>
-<div id="ref-samii_aronow_2012" class="csl-entry" role="doc-biblioentry">
+<div id="ref-samii_aronow_2012" class="csl-entry" role="listitem">
 Samii, Cyrus, and Peter M. Aronow. 2012. <span>“On Equivalencies Between Design-Based and Regression-Based Variance Estimators for Randomized Experiments.”</span> <em>Statistics and Probability Letters</em> 82: 365–70.
 </div>
-<div id="ref-simmons_et_al_2011" class="csl-entry" role="doc-biblioentry">
+<div id="ref-simmons_et_al_2011" class="csl-entry" role="listitem">
 Simmons, Joseph P., Leif D. Nelson, and Uri Simonsohn. 2011. <span>“False-Positive Psychology: Undisclosed Flexibility in Data Collection and Analysis Allows Presenting Anything as Significant.”</span> <em>Psychological Science</em> 22: 1359–66.
 </div>
-<div id="ref-stock_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-stock_2010" class="csl-entry" role="listitem">
 Stock, James H. 2010. <span>“The Other Transformation in Econometric Practice: Robust Tools for Inference.”</span> <em>Journal of Economic Perspectives</em> 24 (2): 83–94.
 </div>
-<div id="ref-white_1980" class="csl-entry" role="doc-biblioentry">
+<div id="ref-white_1980" class="csl-entry" role="listitem">
 White, Halbert. 1980. <span>“A Heteroskedasticity- Consistent Covariance Matrix Estimator and a Direct Test for Heteroskedasticity.”</span> <em>Econometrica</em> 48 (4): 817–38.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
@@ -451,9 +454,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -518,6 +535,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

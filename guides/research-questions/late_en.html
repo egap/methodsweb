@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,9 +18,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,48 +48,19 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -102,8 +74,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -160,29 +131,31 @@ div.csl-indent {
     <span class="navbar-title">Methods</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html">
+    <a class="nav-link" href="../../guides.html" rel="" target="">
  <span class="menu-text">Guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html">
+    <a class="nav-link" href="../../software.html" rel="" target="">
  <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html">
+    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
  <span class="menu-text">Coursebook</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -225,7 +198,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
-             <p>Peter van der Windt </p>
+             <p><a href="https://egap.org/member/peter-van-der-windt/">Peter van der Windt</a> </p>
           </div>
   </div>
     
@@ -337,50 +310,50 @@ Wald test:    32 on 1 and 98 DF,  p-value: 1.528e-07 </code></pre>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-angrist_2006" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-angrist_2006" class="csl-entry" role="listitem">
 Angrist, J. D. 2006. <span>“Instrumental Variables Methods in Experimental Criminological Research: What, Why and How.”</span> <em>Journal of Experimental Criminology</em> 2: 23–44.
 </div>
-<div id="ref-angrist_evans_1998" class="csl-entry" role="doc-biblioentry">
+<div id="ref-angrist_evans_1998" class="csl-entry" role="listitem">
 Angrist, J. D., and W. N. Evans. 1998. <span>“Children and Their Parents’ Labor Supply: Evidence from Exogenous Variation in Family Size.”</span> <em>American Economic Review</em> 88 (3): 450–77.
 </div>
-<div id="ref-angrist_et_al_1996" class="csl-entry" role="doc-biblioentry">
+<div id="ref-angrist_et_al_1996" class="csl-entry" role="listitem">
 Angrist, J. D., G. W. Imbens, and D. B. Rubin. 1996. <span>“Identification of Causal Effects Using Instrumental Variables.”</span> <em>Journal of the American Statistical Association</em> 91: 444–72.
 </div>
-<div id="ref-angrist_pischke_2009" class="csl-entry" role="doc-biblioentry">
+<div id="ref-angrist_pischke_2009" class="csl-entry" role="listitem">
 Angrist, J. D., and J.-S. Pischke. 2009. <em>Mostly Harmless Econometrics</em>.
 </div>
-<div id="ref-baiocchi_et_al_2014" class="csl-entry" role="doc-biblioentry">
+<div id="ref-baiocchi_et_al_2014" class="csl-entry" role="listitem">
 Baiocchi, M., J. Cheng, and D. S. Small. 2014. <span>“Instrumental Variable Methods for Causal Inference.”</span> <em>Statistics in Medicine</em> 33: 2297–2340.
 </div>
-<div id="ref-dunning_2012" class="csl-entry" role="doc-biblioentry">
+<div id="ref-dunning_2012" class="csl-entry" role="listitem">
 Dunning, T. 2012. <em>Natural Experiments in the Social Sciences</em>.
 </div>
-<div id="ref-gerber_et_al_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-gerber_et_al_2010" class="csl-entry" role="listitem">
 Gerber, Alan S., Donald P. Green, Edward H. Kaplan, and Holger L. Kern. 2010. <span>“Baseline, Placebo, and Treatment: Efficient Estimation for Three-Group Experiments.”</span> <em>Political Analysis</em> 18 (3): 297–315.
 </div>
-<div id="ref-green_gerber_2002" class="csl-entry" role="doc-biblioentry">
+<div id="ref-green_gerber_2002" class="csl-entry" role="listitem">
 Green, Donald P., and Alan S. Gerber. 2002. <span>“The Downstream Benefits of Experimentation.”</span> <em>Political Analysis</em> 10 (4): 394–402.
 </div>
-<div id="ref-hirano_et_al_2000" class="csl-entry" role="doc-biblioentry">
+<div id="ref-hirano_et_al_2000" class="csl-entry" role="listitem">
 Hirano, K., G. W. Imbens, D. B. Rubin, and X. Zhou. 2000. <span>“Assessing the Effect of an Influenza Vaccine in an Encouragement Design.”</span> <em>Biostatistics</em> 1 (1): 69–88.
 </div>
-<div id="ref-imbens_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imbens_2010" class="csl-entry" role="listitem">
 Imbens, G. W. 2010. <span>“Better LATE Than Nothing: Some Comments on Deaton (2009) and Heckman and Urzua (2009).”</span> <em>Journal of Economic Literature</em> 48 (2): 399–423.
 </div>
-<div id="ref-imbens_angrist_1994" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imbens_angrist_1994" class="csl-entry" role="listitem">
 Imbens, G. W., and J. D. Angrist. 1994. <span>“Identification and Estimation of Local Average Treatment Effects.”</span> <em>Econometrica</em> 62 (2): 467–75.
 </div>
-<div id="ref-imbens_wooldridge_2007" class="csl-entry" role="doc-biblioentry">
+<div id="ref-imbens_wooldridge_2007" class="csl-entry" role="listitem">
 Imbens, G. W., and J. J. Wooldridge. 2007. <span>“Lecture Notes and Slides.”</span>
 </div>
-<div id="ref-jin_rubin_2008" class="csl-entry" role="doc-biblioentry">
+<div id="ref-jin_rubin_2008" class="csl-entry" role="listitem">
 Jin, H., and D. B. Rubin. 2008. <span>“Principal Stratification for Causal Inference with Extended Partial Compliance.”</span> <em>Journal of the American Statistical Association</em> 103: 101–11.
 </div>
-<div id="ref-jin_rubin_2009" class="csl-entry" role="doc-biblioentry">
+<div id="ref-jin_rubin_2009" class="csl-entry" role="listitem">
 ———. 2009. <span>“Public Schools Versus Private Schools: Causal Inference with Partial Compliance.”</span> <em>Journal of Educational and Behavioral Statistics</em> 34: 24–45.
 </div>
-<div id="ref-qi_long_et_al_2010" class="csl-entry" role="doc-biblioentry">
+<div id="ref-qi_long_et_al_2010" class="csl-entry" role="listitem">
 Qi Long, Roderick, J. A. Little, and Xihong Lin. 2010. <span>“Estimating Causal Effects in Trials Involving Multi-Treatment Arms Subject to Non-Compliance: A Bayesian Framework.”</span> <em>Journal of the Royal Statistical Society: Series C (Applied Statistics)</em> 59 (3): 513–31.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
@@ -422,9 +395,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -489,6 +476,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
