@@ -16,8 +16,8 @@ Le guide est un document vivant et peut être mis à jour par les membres de EGA
 
 [^1]: Lewis, David. "Causation." The journal of philosophy (1973): 556-567.
 
-1. Une assertion causale est une déclaration sur ce qui ne s'est pas produit.
-==
+# Une assertion causale est une déclaration sur ce qui ne s'est pas produit. 
+
 Pour la plupart des expérimentalistes, la déclaration "$X$ a causé $Y$" signifie que $Y$ est présent *et* $Y$ n'aurait pas été présent si $X$ n'avait pas été présent.
 Cette définition requiert une notion de ce qui aurait pu arriver, mais ne s'est pas produit.[^2]
 De même, "l'effet" de $X$ sur $Y$ est la différence entre la valeur que $Y$ aurait prise étant donné une valeur de $X$ et la valeur que $Y$ aurait prise étant donné une autre valeur de $X$.
@@ -32,8 +32,8 @@ Un traitement a un effet causal (positif ou négatif) sur $Y$ pour l'unité $i$ 
 
 [^2]: Holland, Paul W. "Statistics and causal inference." Journal of the American Statistical Association 81.396 (1986): 945-960.
 
-2. Pas de causalité sans manipulation.
-==
+# Pas de causalité sans manipulation. 
+
 La définition "contrefactuelle" de la causalité exige que l'on soit capable de réfléchir aux résultats qui peuvent entraîner des conditions différentes.
 Quelle serait la situation si un parti plutôt qu'un autre était élu ?
 Les déclarations causales de tous les jours ne répondent souvent pas à cette exigence de l'une des deux manières suivantes.
@@ -54,8 +54,8 @@ Par exemple, alors que nous pourrions avoir des difficultés avec l'affirmation 
 
 [^111]: Holland, Paul W. "Statistics and causal inference." Journal of the American Statistical Association 81.396 (1986): 945-960.
 
-3. Les causes sont non rivales.
-==
+# Les causes sont non rivales. 
+
 
 Même si nous pouvons nous concentrer sur l'effet d'une seule cause $X$ sur un résultat $Y$, nous ne nous attendons généralement pas à ce qu'il n'y ait qu'une seule cause de $Y$.[^5]
 De plus, si vous additionnez les effets causaux de différentes causes, il n'y a aucune raison de s'attendre à ce qu'ils totalisent 100 %.
@@ -71,8 +71,8 @@ En d'autres termes, ces deux facteurs sont simultanément les causes des mêmes 
 [^5]: Certains appellent cela le "problème des causes de prodigalité".
 
 
-4. $X$ peut causer $Y$ même si $X$ n'est pas une condition nécessaire ou une condition suffisante pour $Y$.
-==
+# $X$ peut causer $Y$ même si $X$ n'est pas une condition nécessaire ou une condition suffisante pour $Y$. 
+
 On parle souvent des relations causales en termes déterministes.
 Même la citation de Lewis en haut de cette page semble suggérer une relation déterministe entre les causes et les effets.
 On pense parfois que les relations causales impliquent des conditions nécessaires (pour que $Y$ se produise, $X$ doit se produire); on pense parfois que de telles relations impliquent des conditions suffisantes (si $X$ se produit, alors $Y$ se produit).
@@ -88,16 +88,16 @@ alors que composer seul sans connexion ne suffirait pas (I), ni avoir un connexi
 Il existe bien sûr d'autres moyens de contacter quelqu'un sans passer d'appels téléphoniques (S).
 Mackie, John L. "The cement of the universe." London: Oxford Uni (1974).
 
-5. Le problème fondamental de l'inférence causale.
-==
+# Le problème fondamental de l'inférence causale. 
+
 
 Si les effets causaux sont des déclarations sur la différence entre ce qui s'est produit et ce qui aurait pu se produire, alors les effets causaux ne peuvent pas être mesurés. Mauvaise nouvelle !
 De manière prospective, vous pouvez organiser les choses de manière à observer ce qui se passe si une personne reçoit un traitement ou ce qui se passe si elle ne reçoit pas le traitement.
 Pourtant, pour la même personne, vous ne pourrez jamais observer ces deux résultats et leur différence.
 Cette incapacité à observer les effets causaux au niveau de l'unité est souvent appelée le "problème fondamental de l'inférence causale".
 
-6. Vous pouvez estimer l'effet causal moyen même si vous ne pouvez observer aucun effet causal individuel.
-==
+# Vous pouvez estimer l'effet causal moyen même si vous ne pouvez observer aucun effet causal individuel. 
+
 
 Même si vous ne pouvez pas observer si $X$ cause $Y$ pour une unité donnée, il est peut-être toujours possible de déterminer si $X$ cause $Y$ en moyenne.
 L'effet causal moyen est égal à la différence entre le résultat moyen pour toutes les unités si elles étaient toutes dans la condition de contrôle et le résultat moyen pour toutes les unités si elles étaient toutes dans la condition de traitement.
@@ -109,8 +109,8 @@ Les termes à l'intérieur de l'opérateur d'espérance dans la deuxième quanti
 
 [^3]: Holland, Paul W. "Statistics and causal inference." Journal of the American Statistical Association 81.396 (1986): 945-960.
 
-7. L'estimation de l'effet causal moyen ne nécessite pas que les groupes de traitement et de contrôle soient identiques.
-==
+# L'estimation de l'effet causal moyen ne nécessite pas que les groupes de traitement et de contrôle soient identiques. 
+
 Une stratégie que les gens utilisent pour en savoir plus sur l'effet causal moyen consiste à créer des groupes de traitement et de contrôle par randomisation (voir [10 Stratégies pour déterminer si X a causé Y](http://egap.org/resource/10-strategies-for-figuring-out-if-x-caused-y)).
 Ce faisant, les chercheurs s'inquiètent parfois s'ils constatent que les groupes de traitement et de contrôle qui en résultent ne sont pas comparables sur certaines dimensions importantes.
 
@@ -122,8 +122,8 @@ En pratique, les groupes de traitement et de contrôle réels ne seront pas iden
 En cas de doute sur la mise en œuvre correcte d'une procédure randomisée, ces tests peuvent être utilisés pour tester l'hypothèse selon laquelle les données ont bien été générées par une procédure randomisée.
 Ces tests peuvent alors être particulièrement importants pour des expériences de terrain où les chaînes de communication entre la personne randomisant et la personne mettant en œuvre l'assignation du traitement peuvent être longues et complexes.
 
-8. La corrélation n'est pas la causalité.
-==
+# La corrélation n'est pas la causalité. 
+
 
 Une corrélation entre $X$ et $Y$ est une déclaration sur les relations entre les résultats réels, et non sur la relation entre les résultats réels et les résultats contrefactuels.
 Ainsi, les déclarations sur les causes et les corrélations n'ont pas grand-chose à voir les unes avec les autres.
@@ -136,8 +136,8 @@ En l'absence d'informations sur la manière dont le traitement a été assigné,
 Ce qui importe est de savoir si $\frac{∑_i D_i×Y_i(1)}{∑_iD_i}$ est une bonne estimation de $\frac{∑_i 1×Y_i(1)}{∑_i1}$ et si $\frac {∑_i (1−D_i)×Y_i(0)}{∑_i (1−D_i)}$ est une bonne estimation de $\frac{∑_i 1×Y_i(0)}{∑_i1}$.
 Cela pourrait être le cas si ceux qui ont reçu un traitement sont un échantillon représentatif de toutes les unités, mais sinon il n'y a aucune raison de s'attendre à ce qu'il le soit.
 
-9. Si vous savez qu'en moyenne $A$ cause $B$ et $B$ cause $C$, cela ne veut pas dire qu'en moyenne $A$ cause $C$.
-==
+# Si vous savez qu'en moyenne $A$ cause $B$ et $B$ cause $C$, cela ne veut pas dire qu'en moyenne $A$ cause $C$. 
+
 
 Vous pourriez vous attendre à ce que si $A$ cause $B$ et $B$ cause $C$, alors $A$ cause $C$.[^12]
 Mais il n'y a aucune raison que les relations causales moyennes soient transitives.
@@ -146,8 +146,8 @@ Ensuite, en moyenne, $A$ cause $B$ et $B$ cause $C$, mais $A$ ne cause pas $C$ �
 
 [^12]: Interprétez "$A$ cause $B$, en moyenne" comme "l'effet moyen de $A$ sur $B$ est positif".
 
-10. Il est plus facile d'en apprendre davantage sur les "effets des causes" que sur les "causes des effets".
-==
+# Il est plus facile d'en apprendre davantage sur les "effets des causes" que sur les "causes des effets". 
+
 
 Bien que cela puisse sembler être deux façons de dire la même chose, il y a une différence entre comprendre quel est l'effet de $X$ sur $Y$ (les "effets d'une cause") et si un résultat $Y$ était *dû* à une cause $X$ (la "cause d'un effet").[^6] Considérez l'exemple suivant.
 Supposons que nous menions une expérience avec un échantillon qui contient un nombre égal d'hommes et de femmes.

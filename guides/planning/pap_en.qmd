@@ -24,8 +24,8 @@ color: black;
 This guide introduces the idea of a pre-analysis plan (PAP), offers a model and guiding questions for writing pre-analysis plans for your studies, and explains the uses of a pre-analysis plan. Links to PAP registries with example plans are provided at the end of this document.
 
 
-1. What is a Pre-Analysis Plan (PAP)
-==
+# What is a Pre-Analysis Plan (PAP) 
+
 
 A PAP is a document that formalizes and declares the design and analysis plan for your study.  It is written before the analysis is conducted and is generally registered on a third-party website.[^TOP]
 
@@ -38,8 +38,8 @@ In the following sections, we provide guidelines for the details you should incl
 [^DD]: Resources like the DeclareDesign project can assist you with simulating and analyzing fake data that mimics the real data your project will gather.  [Power analysis](https://methods.egap.org/guides/assessing-designs/power_en.html), an important component of a PAP, requires simulated data.
 
 
-2. What is in a PAP? Study Design Overview
-==
+# What is in a PAP? Study Design Overview 
+
 
 The first section of a PAP should provide a brief overview of your study design.  If this study is an experiment, describe the randomization procedure and the intervention or experimental procedure.  If the study is not an experiment, describe the data.  These descriptions should include: (1) unit of analysis, population, and inclusion/exclusion criteria, (2) method (observational, experimental, quasi-experimental), (3) experimental intervention or explanatory variable, and (4) outcomes of interest.
 
@@ -53,8 +53,8 @@ Our main outcome is tax compliance, which we study as city tax payments.  We con
 </p>
 
 
-3. What is in a PAP? Hypotheses
-==
+# What is in a PAP? Hypotheses 
+
 
 The PAP should specify your hypotheses -- the relationship(s) you expect to observe between variables.  The formulation of a hypothesis should make clear whether it involves one- or two-tailed tests (i.e. predict an increase, decrease, or change in the outcome variable).
 
@@ -99,8 +99,8 @@ We also create a "government attitudes" index using inverse-covariance weights (
 </p>
 
 
-5. What is in a PAP? Estimation Procedure
-==
+# What is in a PAP? Estimation Procedure 
+
 
 Now that you have described your study design, hypotheses, and variables, you are ready to discuss your testing and estimation procedures.  
 
@@ -116,8 +116,8 @@ $Y_{i,j} = \beta_0 + \beta_1Z_{i,j} + X_{i,j}+ \epsilon_{i,j}$<br><br>
 where $i$ is the individual in neighborhood $j$, $Z$ is the treatment indicator, and $Y$ is the outcome. $X$ is the baseline outcome for individual $i$. We will use regression weights proportional to the size of the neighborhoods $j$. If baseline and endline outcomes are not balanced, we will use the change score, $Y_i = Y_{i,endline} - Y_{i,baseline}$ and we will not use $X$. 
 </p>
 
-6. What is in a PAP? Inference Criteria{#infcrit}
-==
+# What is in a PAP? Inference Criteria{#infcrit} 
+
 
 Inference criteria are decision rules for determining the detectability of effects (i.e. if an explanatory variable really affects an outcome variable).  Establishing inference criteria requires making several choices about when to believe the estimated effect is "statistically significantly different" from the null hypothesis.  We recommend clearly specifying and justifying answers to the following questions:
 
@@ -134,8 +134,8 @@ We use HC2 standard errors with our block-randomized experiment because it is eq
 As a check on the HC2 standard errors, we also calculate $p$-values directly using [randomization inference](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html), with the difference-in-means as our test statistic. 
 </p>
 
-7. What is in a PAP? Procedures for Data Issues
-==
+# What is in a PAP? Procedures for Data Issues 
+
 
 Experiments and data collection often do not go the way that one expects or hopes.  The PAP gives you an opportunity to think through what those issues might be, and specify how you plan to address them.
 
@@ -174,8 +174,8 @@ If we still have outcome questions with especially high nonresponse rate of over
 </ol>
 </ol>
 
-8. What is in a PAP? Power Analysis
-==
+# What is in a PAP? Power Analysis 
+
 
 A [power analysis](https://methods.egap.org/guides/assessing-designs/power_en.html) is commonly included in PAPs.  Statistical power is the likelihood that your study will detect an effect, if there is an effect to be detected.
 
@@ -183,8 +183,8 @@ There are [tools](https://egap.shinyapps.io/Power_Calculator/) to help you calcu
 
 In many ways, the computational power analysis implements all of the specifications you made in your PAP into code.  In fact, you can combine code for a computational power analysis with the code written for other sections of the PAP, and create a computational PAP.  Such a tool, which can be implemented with software like [DeclareDesign](https://declaredesign.org), can then help you diagnose potential problems, teach you more about your design, and strengthen your PAP. 
 
-9. Why make a PAP?
-==
+# Why make a PAP? 
+
 
 You may have heard arguments for and against PAPs.  This discussion offers some thoughts that address the benefits and costs of PAPs.
 
@@ -232,8 +232,8 @@ A PAP _is_ a substantial time-investment upfront, but PAPs can reduce analysis a
 
 More discussion of the pros and cons of PAPs can be found in chapter 19 of @rosenbaum2010 and in @olken2015. 
 
-10. When and where do you register a PAP?
-==
+# When and where do you register a PAP? 
+
 
 Your PAP is now complete and you are ready to register it!  For experimental studies, the latest you should register the PAP is before final data are collected.  For observational studies, the latest you should register the PAP is before any analyses are done, including looking at descriptive statistics.  You can revise PAPs through an amendment at any time.
 

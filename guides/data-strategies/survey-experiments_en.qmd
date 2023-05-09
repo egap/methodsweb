@@ -22,8 +22,8 @@ color: black;
 This guide discusses techniques for using randomization to create experiments within the text of a survey (i.e. survey experiments).  These survey experiments are distinct from studies that use surveys to gather information related to an experiment that occurs outside of the survey.  The guide distinguishes between survey experiments that are used mainly for measuring sensitive attitudes, like list experiments, and those that are mainly used to learn about causal effects, like conjoint experiments.  Survey experiments for measurement attempt to ensure honest responses to sensitive questions by providing anonymity to respondents.  Survey experiments for causal identification randomize images and text to learn how the image or text influences respondents.  Both types of survey experiments face challenges, such as respondents not perceiving anonymity or not interpreting images and text as the researcher intended.  New experimental techniques seek to address these challenges.
 
 
-1. What is a Survey Experiment
-==
+# What is a Survey Experiment 
+
 
 A survey experiment is an experiment conducted within a survey.  In an experiment, a researcher randomly assigns participants to at least two experimental conditions.  The researcher then treats each condition differently.  Due to random assignment, the researcher can assume that the only difference between conditions is the difference in treatment.  For example, a medical experiment may learn about the effect of a pill by creating two experimental conditions and giving the pill to participants in only one condition.  In a survey experiment, the randomization and treatment occur within a survey questionnaire.
 
@@ -34,8 +34,8 @@ Survey experiments for measurement attempt to provide respondents with anonymity
 Survey experiments to measure causal relationships are just like any other experiment, except the experimental intervention and outcome measurement occur within the context of a survey.  Researchers randomly assign respondents to one or more experimental conditions or a control group, administer treatments, and measure outcomes.  As their experimental manipulation, survey experiments tend to present a randomized stimulus (such as text, short videos, audio clips, or other stimuli that can easily fit into a survey format) in the context of a survey question or use variation in question wording and question ordering.  They often administer these randomized manipulations by using survey questionnaire software or by providing different physical survey forms to enumerators.
 
 
-2. Survey Experiments to Measure Sensitive Topics: List Experiment
-==
+# Survey Experiments to Measure Sensitive Topics: List Experiment 
+
 
 List experiments (also known as the item-count technique) measure a sensitive attitude or behavior when the researcher expects the respondent to lie if asked a direct question about the attitude or behavior.  For example, respondents may be reluctant to admit racial animus [@kuklinski1997list] or illegal behavior [@garcia2020weed] even after being assured of the survey's anonymity.
 
@@ -77,8 +77,8 @@ _Visual aids_ also help reduce satisficing and ensure that respondents follow th
 <!--**Conclusion**: Can be effective; needs attention to design; needs attention to psychological biases that prevent lists from working.-->
 
 
-3. Survey Experiments to Measure Sensitive Topics: Randomized Response
-==
+# Survey Experiments to Measure Sensitive Topics: Randomized Response 
+
 
 The randomized response technique is also used to measure a sensitive attitude or behavior when the researcher expects the respondent to lie if asked a direct question.^[See @warner1965randomized, @boruch1971assuring, @cpo2015rr, and @gingerich2010understanding.]
 
@@ -111,8 +111,8 @@ The _Crosswise model_ modifies the randomized response technique so that respond
 <!--**Conclusion**: Crosswise model should ensure anonymity and is minimally confusing.  But it, and all RR techniques, require some randomization device, either a physical item like a coin or dice or a non-sensitive question for which the population mean is known.-->
 
 
-4. Survey Experiments to Measure Sensitive Topics: Priming Experiment
-==
+# Survey Experiments to Measure Sensitive Topics: Priming Experiment 
+
 
 List experiments and randomized response techniques do not uncover implicit attitudes, but many sensitive topics appear so sensitive that an individual’s conscious, explicit attitudes may differ from their implicit attitudes [@greenwald1995implicit].  Even many nonsensitive attitudes seem to be beyond an individual’s conscious awareness [@nisbett1977telling]. Whereas techniques to measure explicit attitudes seek to provide respondents with anonymity, techniques to measure implicit attitudes seek to keep the respondent consciously unaware of the implicit attitude being measured. To do so, researchers often use priming experiments. 
 
@@ -172,8 +172,8 @@ As with priming experiments, to ensure information equivalence and to reduce con
 <!--**Conclusion**: Endorsement experiments are a flexible survey experiment that can be used to measure explicit or implicit attitudes.  Designing them takes substantial pilot testing.-->
 
 
-6. Limitations of Survey Experiments as a Measurement Technique
-==
+# Limitations of Survey Experiments as a Measurement Technique 
+
 
 Survey experiments induce less bias than direct questions when measuring sensitive attitudes.^[See @blair2015design, @rosenfeld2016empirical, and @lensvelt2005meta.]  They are not a panacea, however, and researchers must still ask themselves several questions when using survey experiments to measure sensitive outcomes.
 
@@ -186,8 +186,8 @@ Researchers also need to think about the numerous pitfalls of survey questions t
 Lastly, researchers must also ask about measurement validity: how does one verify that a measure accurately represents a concept of interest?  For some outcomes, such as voter turnout, researchers can compare their measure with population estimates [@rosenfeld2016empirical]. But for other outcomes, such as racism or the effect that political parties have on citizens’ policy preferences, there exists no population estimate with which to validate measures.
 
 
-7. Survey Experiments to Determine a Causal Relationship: Vignette and Factorial Designs
-==
+# Survey Experiments to Determine a Causal Relationship: Vignette and Factorial Designs 
+
 
 Not all survey experiments share the goal of accurately measuring one concept of interest.  Some survey experiments, like lab experiments, are interested in how an experimental manipulation impacts outcomes of interest.  These survey experiments for causal inference randomize a treatment and then measure outcomes.  When measuring outcomes, they may use techniques like list experiments.
 
@@ -218,8 +218,8 @@ Researchers can _block treatment by enumerator_ so that enumerator effects canno
 _Conjoint experiments_ maintain many benefits of factorial experiments, but increase power by presenting multiple choice tasks instead of one.  We discuss conjoint experiments in the next section.
 
 
-8. Survey Experiments to Determine a Causal Relationship: Conjoint Experiments
-==
+# Survey Experiments to Determine a Causal Relationship: Conjoint Experiments 
+
 
 Conjoint experiments^[See @hainmueller2014causal and @green1971conjoint.] have gained popularity in response to the limits of vignette and factorial designs.  Vignette and factorial designs suffer from a lack of information equivalence if they do not provide sufficient details about potentially confounding aspects of the scenario or a lack of statistical power if they do vary several traits.  A typical conjoint experiment attempts to solve these problems by repeatedly asking respondents to choose between two distinct options and randomly varying the characteristics of those two options.  Respondents may also be asked to rate each option on a scale.  In both cases, respondents express their preferences towards a large number of pairings with randomized attributes, drastically increasing statistical power to detect effects of any one attribute relative to a one-shot factorial design.
 
@@ -242,8 +242,8 @@ Conjoint experiments also create _unrealistic combinations_ and those unrealisti
 Other potential pitfalls can occur if the researcher varies too many characteristics.  More randomly varied characteristics means a large number of potential hypothesis tests.  The necessity of applying multiple hypothesis corrections to the vast number of potential hypothesis tests could decrease statistical power to detect specific effects, especially if researchers are interested in interactions between traits being varied.
 
 
-9. Limitations of Survey Experiments for Causal Identification
-==
+# Limitations of Survey Experiments for Causal Identification 
+
 
 Survey experiments to determine causal relationships have the same benefits and drawbacks as other experiments, as well as benefits and drawbacks that derive from the survey context.  The biggest three drawbacks generally applicable to survey experiments are confounding, information equivalence, and pre-treatment contamination [@diaz2020survey]. Researchers should think about these factors when designing and interpreting results from survey experiments.
 
@@ -254,8 +254,8 @@ Survey experiments to determine causal relationships have the same benefits and 
 *Pre-treatment contamination*: Respondents may encounter the treatment outside of the experiment, causing similar outcomes in the control group and treatment group even if the treatment affects outcomes [@gaines2007logic].
 
 
-10. Considerations when using Survey Experiments
-==
+# Considerations when using Survey Experiments 
+
 
 Survey experiments can be an effective tool for researchers to measure sensitive attitudes and learn about causal relationships.  They are cost-effective, can be done quickly and iteratively, can be included on mass online surveys because they do not require in-person contact to implement.  This means that a researcher can plan a sequence of online survey experiments, changing the intervention and measured outcomes from one experiment to the next to learn about the mechanisms behind the treatment effect very quickly [@sniderman2018some].
 

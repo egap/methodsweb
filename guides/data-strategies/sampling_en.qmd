@@ -19,8 +19,8 @@ library(kableExtra)
 
 Researchers are rarely able to collect measurements on all units that make up the target population of a study. Time and budget constraints typically require the selection of a subset of units --- a process called sampling. This guide provides an overview of different ways to sample and how these affect what can be learned from a study. Particular attention is paid to questions about sampling and randomized experiments.
 
-1. What is random sampling?
-==
+# What is random sampling? 
+
 
 Random sampling, also referred to as probability sampling, is one way of selecting a subset of units from a target population. The key characteristic of random sampling is that each unit in the population has a *known* and *non-zero* probability of being included in the sample. This goal is achieved by using some randomization mechanism --- be it a coin flip, a random number table, or a computer program --- to decide which units are going to be part of the sample.
 
@@ -76,8 +76,8 @@ Figure \@ref(fig:thebarplot) plots the distribution of income estimates that res
 
 For example, we may calculate a 95\% confidence interval for the average income. Even though we would not be certain that our particular sample confidence interval contains the true underlying population parameter, we would know that, were we to repeat the process of known random sampling and confidence interval creation many times, at least 95\% of confidence intervals should contain the true population parameter.
 
-2. What distinguishes random sampling and random assignment?
-==
+# What distinguishes random sampling and random assignment? 
+
 
 The core feature of both random sampling and random assignment is that units are selected from some larger pool with known probabilities between zero and one. Yet, there are several key differences. In random sampling, units are selected at random from a population in order to infer characteristics of the population from the sample. Random assignment, on the other hand, is used in experiments to allocate  units from a pool of experimental subjects to experimental conditions --- in the simplest case to a treatment and a control group. The goal of random assignment is to draw inferences about causal effects, typically an estimate of an average causal effect of the treatment on some outcome or a confidence interval or test relating to such causal effects (see ["10 Strategies for Figuring out if X Caused Y"](https://methods.egap.org/guides/causal-inference/x-cause-y_en.html) or ["10 Things to Know About Hypothesis Testing"](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html) for details).^[On a deeper level, however, random assignment has much in common of with random sampling. The process of randomly assigning units to a treatment group can be thought of as a process of drawing a random sample of treated potential outcomes in order to estimate the average treated potential outcome in the entire experimental subject pool (see @splawa1990application). ]
 
@@ -86,8 +86,8 @@ The subject pool of an experiment may or may not be a random sample from a large
 
 Another advantage of randomly sampling experimental units is that units who have not been sampled can serve as additional control units. To illustrate, consider again the population of six units from the stylized example above. Suppose we would like to conduct an experiment, but  we only have research funds to measure outcomes for four units. Hence, we randomly sample, say, units A, B, C and E, and then randomly assign units B and E to treatment. In principle, the control group of our experiment consists of units A and C. Units D and F, however, by  virtue of not being sampled, have also been chosen to not receive the treatment through a random process. Hence, they can be used as additional control group units should more funds for outcome measurement become available at a later stage.
 
-3. How to obtain a random sample?
-==
+# How to obtain a random sample? 
+
 
 Obtaining a random sample is rarely as straightforward as the above description makes it seem. In practice, the *survey population* --- the set of units for which data can realistically be collected --- is often more restrictive than the *target population*. For example, the target population may consist of all adult residents of a country, but it may be infeasible to sample certain groups like prisoners or residents of areas with a difficult security situation.
 
@@ -117,8 +117,8 @@ Suppose we would like to estimate the average income among residents of a city. 
 
 Instead of sampling all units in a cluster, one may draw a sub-sample of units. For example, instead of interviewing all members, one could sample two members in each sampled household. Additional stages can be added to this approach. For instance, we could first draw a sample of city blocks, then a sub-sample of households within each sampled city block and finally a sub-sample of household members within each sampled household. In this example, households would be referred to as *secondary sampling units* and household members as *tertiary sampling units*. One advantage of multi-stage sampling is that it allows researchers to navigate the trade-off between precision and cost-effectiveness. Increasing the number of clusters and sub-sampling fewer units per cluster can yield a more diverse sample and hence reduce sampling variability. Yet, doing so may also increase survey costs.
 
-4. What to do if there does not exist an obvious sampling frame?
-==
+# What to do if there does not exist an obvious sampling frame? 
+
 
 In many cases, an obvious sampling frame in the form of a list of units or clusters of units does not exist. In such cases, researchers often rely on some variant of multi-stage *area sampling*. For example, they may first randomly sample districts, then randomly select villages within districts, then households within villages and finally individuals within households. Lists of administrative units often exist at higher levels of aggregation, but the problem of non-existent frames kicks in for  more fine-grained stages of the process. The advantage of the multi-stage approach is that sampling materials have to only be created for units that have actually been sampled. Mapping all households in a country, for example, may be infeasible. Doing so in the subset of villages in the sample, however, may be realistic.
 
@@ -130,8 +130,8 @@ Irrespective of whether the next larger sampling unit was pre-existing or self-c
 
 **Household listing.** The more principled option is to create a list of all households in the sampling unit. Households can then be randomly selected from this list prior to the start of the survey. A listing exercise can be expensive, but is also more likely to allow the researcher to approximate a random sample. Sampling from a full list of households avoids problems of geographic clustering and unknown sampling probabilities. Moreover, separating the listing from the enumeration step makes it easier to guard against unwarranted replacements. At the listing stage, enumerators have fewer incentives to skip houses, since it is not yet clear whether a household will cooperate at the survey stage. That a record of all households within and outside the sample exists prior to the start of survey activities can also make it easier to  detect instances in which enumerators interviewed the incorrect household. Finally, it is sometimes possible to re-use household lists to draw additional random samples in the future, at least in places where mobility is low. This feature opens up the possibility of sharing the costs of a listing exercise across multiple studies.
 
-5. What to consider when putting a sampling strategy into practice?
-==
+# What to consider when putting a sampling strategy into practice? 
+
 
 The practical implementation of any sampling strategy typically presents numerous obstacles. Many unforeseen problems can occur and these are often context-specific. Hence, pre-testing one's sampling strategy is at least as if not more important than pre-testing one's questionnaire. Here are some examples of difficulties that one may be able to discover and address during a pre-test:
 
@@ -142,8 +142,8 @@ The practical implementation of any sampling strategy typically presents numerou
 
 In general, try to keep your sampling strategy simple. Sophisticated sampling strategies may offer gains in precision, but these gains will not be realized if a sampling strategy cannot be implemented as intended. Clear and simple instructions to survey staff are of crucial importance. It often helps to separate tasks and assign them to specialized teams.  Sampling-related tasks such as listing households, drawing the sample of households, sampling household members and making appointments can be complex. Having separate teams for sampling and interviewing avoids overburdening enumerators and may allow for more in-depth training. See ["10 Things to Know About Survey Implementation"](https://methods.egap.org/guides/implementation/survey-implementation_en.html) for more on how to manage survey fieldwork.
 
-6. How does one's sampling strategy affect one's analysis strategy?
-==
+# How does one's sampling strategy affect one's analysis strategy? 
+
 Experimentalists are accustomed to the notion that one's random assignment strategy affects one's analysis strategy. Similar logics apply when it comes to sampling. Here are two common examples:
 
 **1. Weight by the inverse of a unit's probability of being sampled if sampling probabilities vary across units.**
@@ -163,8 +163,8 @@ Note also that stratification is not the only possible source of variation in sa
 
 Again, the logic extends to cases in which the target of inference is a PATE. In randomized experiments, researchers often need to adjust their uncertainty estimates to reflect the additional variability induced by cluster random assignment (see ["10 Things to Know About Cluster Randomization"](https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html)). If the experimental subject pool is a random sample from a larger population, however, researchers may have to adjust for clustering at a level higher than that of treatment assignment if sampling was clustered at higher levels (see @abadie2017should).
 
-7. How to take into account  variability from both random sampling and random assignment?
-==
+# How to take into account  variability from both random sampling and random assignment? 
+
 If the units in an experiment are a random sample from a larger population, then our realized estimate of the effect of a randomized treatment on the population may deviate from the true PATE for two reasons:
 
 1. We have drawn one of many possible samples instead of performing our analysis on the entire population.
@@ -288,8 +288,8 @@ Since there are 15 possible samples and six ways of randomly assigning treatment
 
 If we would like to make inferences to population quantities, our uncertainty estimates should reflect both kinds of uncertainty. If we use permutation-based randomization inference to calculate $p$-values to test sharp null hypotheses, for example, we only consider variability that stems from the random assignment of units to treatment and not from the sampling of units itself. If we use a bootstrap-based random sampling inference, we will tend to ignore the uncertainty arising from random assignment. One could combine *both* bootstrap re-sampling and randomization-justified permutations to reflect the two sources of uncertainty, although this might be computationaly complex and time consuming. Alternatively, the standard Neyman estimator of the variance of the difference-in-means estimator produces standard errors that are conservative if we presume that all uncertainty comes from random assignment. These standard errors will provide unbiased variance estimates if we can conceive of the experimental subject pool as a random sample from a population that is infinite. This assumption seems plausible when the experimental subject pool is a random sample that is small relative to the population. Where the size of the experimental sample is large relative to the population, Neyman standard errors will be conservative as well. See @aronow2014sharp and @abadie2020sampling for more on how to obtain unbiased variance estimates when sampling from a finite population.
 
-8. How can sampling help with problems of non-response?
-==
+# How can sampling help with problems of non-response? 
+
 
 Non-response --- the inability to obtain measurements for some units in the sample --- is a common problem. Where non-response is not random, it has the potential to introduce bias, because it essentially undoes the random selection of units from the population. @hansen1946problem were the first to propose *two-phase sampling*, also called *double sampling*, as a way to deal with non-response that requires minimal additional assumptions. The basic approach works as follows. First, draw a random sample of size $n$ from a population and conduct a relatively inexpensive first attempt to obtain measurements for all $n$ units in the sample. This first measurement phase may consist of, say, a phone survey. Let $n_R$ be the number of units for which measurements can be obtained during this first phase and $n_M$ the number of units for which measurements remain missing. Second, take a sub-sample of $x\%$ of the $n_M$  missing units and make intensive efforts to obtain measurements on all units of the sub-sample. For example, this second phase may consist of in-person interviews. If all responses in the sub-sample can be obtained, the following provides an unbiased estimator of the population average
 
@@ -299,8 +299,8 @@ where $\hat{\mu}_R$ is the sample average among the original respondents and $\h
 
 The two-phase sampling approach is based on the core insight that concentrating efforts on a randomly selected sub-sample of non-respondents and obtaining responses from all of them is more helpful than attempting to obtain responses from all non-respondents which is bound to result in leftover missingness.  @hansen1946problem provide results on the optimal size of the original and follow-up sample given parameters such as the probability of non-response in the first phase and the cost of initial and follow-up data collection efforts.  @coppock2017combining show how two-phase sampling can be combined with worst case bounds to partially identify average treatment effects in randomized experiments. They generalize the approach by allowing for non-response not only in the initial but also in the follow-up sample.
 
-9. How to sample difficult-to-reach populations?
-==
+# How to sample difficult-to-reach populations? 
+
 
 Populations that are rare or stigmatized are difficult to study through random sampling. Classic examples include injecting drug users and sex workers. Sampling frames are not generally available for populations of this kind and a random sample of the general population is likely to contain only few of their members. Respondent-driven-sampling (RDS) has emerged as one prominent solution to this problem.^[See @lohr2009sampling[chapter 14] for an overview of other approaches and @tran2015sampling for a comparison of RDS to time-location sampling as a major alternative.]
 
@@ -310,8 +310,8 @@ RDS does not yield a true random sample, because sampling probabilities remain u
 
 This model is known to be false in many ways. For example, it presumes sampling with replacement, i.e., the model does not take into account that a respondent who has been sampled in a previous wave cannot be sampled again. @gile2018methods describe a range of subsequent approaches that seek to relax this and other assumptions.
 
-10. What else to consider when designing a sampling strategy for a randomized experiment?
-==
+# What else to consider when designing a sampling strategy for a randomized experiment? 
+
 
 In many cases, randomized experiments do not rely on random samples from a larger population. Yet, even if experimental subjects are sampled in non-random ways, there are important considerations to take into account when designing a sampling strategy.
 

@@ -13,8 +13,8 @@ The table below that will be used throughout this methods guide is adapted from 
 
 ![](https://raw.githubusercontent.com/egap/methods-guides/master/reg-table/reg.png)
 
-1. What is regression?
-==
+# What is regression? 
+
 Regression is a method for calculating the line of best fit. The regression line uses the “independent variables” to predict the outcome or “dependent variable.” The dependent variable represents the output or response. The independent variables represent inputs or predictors, or they are variables that are tested to see if they predict the outcome.
 
 Independent and dependent variables have many synonyms, so it helps to be familiar with them. They are the explanatory and response variables, input and output variables, right hand side and left hand side variables, explanans and explanandum, regressor and regressand, predictor and criterion variable, among many others. The first thing you need to do when you see a regression table is to figure out what the dependent variable is---this is often written at the top of the column. Afterwards identify the most important independent variables. You will base your interpretation on these.
@@ -25,8 +25,8 @@ Use the app below to get a feel for what a regression is and what it does. Below
 
 <iframe height="500" src="https://egap.shinyapps.io/Regression101/" width="850"></iframe>
 
-2. What is a regression equation?
-==
+# What is a regression equation? 
+
 This is the formula for a regression that contains only two variables:
 
 $$Y=α+βX+ε$$
@@ -41,8 +41,8 @@ A regression with one dependent variable and more than one independent variable 
 
 The example table above examines how the dependent variable, fraud in the form of ballot stuffing, is associated with the following factors/independent variables: election observers, how saturated the area is, the electoral competition in the area, and the density. The regression will show if any of these independent variables help to predict the dependent variable.
 
-3. What are the main purposes of regression?
-==
+# What are the main purposes of regression? 
+
 Regressions can be run for any of several distinct purposes, including (1) to give a **descriptive summary** of how the outcome varies with the explanatory variables; (2) to **predict** the outcome, given a set of values for the explanatory variables; (3) to **estimate the parameters of a model** describing a process that generates the outcome; and (4) to **study causal relationships**. As [Terry Speed](https://web.archive.org/web/20151109231342/http://bulletin.imstat.org/2012/09/terence%E2%80%99s-stuff-multiple-linear-regression-part-2/) writes, the "core" textbook approach to regression "is unlikely to be the right thing in any of these cases. Sharpening the question is just as necessary when considering regression as it is with any other statistical analysis."
 
 For **descriptive summaries**, there's a narrow technical sense in which ordinary least squares (OLS) regression gets the job done: OLS shows us the best-fitting linear relationship, where "best" is defined as minimizing the sum of squares of the residuals (the differences between the actual outcomes and the values predicted from the explanatory variables). Furthermore, if we have a sufficiently large sample that was randomly drawn from a much larger population, OLS estimates the best-fitting line in the population, and we can use the estimated coefficients and "robust" standard errors to construct confidence intervals (see section 5) for the coefficients of the population line.^[For in-depth discussions, see: @angrist_pischke_2009, chapters 3 and 8; @berk_et_al_2014; @buja_et_al_2015; @hansen_2022] However, the summary provided by OLS may miss important features of the data, such as outliers or nonlinear relationships; see the famous graphs of [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
@@ -51,8 +51,8 @@ Similarly, for **prediction**, OLS regression gives the best linear predictor in
 
 **Estimating the parameters of a model** is the purpose that receives the most discussion in traditional textbooks. However, **studying causal relationships** is often the real motivation for regression. Many researchers use regression for causal inference but are not interested in all the parameters of the regression model. To estimate an average causal effect of one particular explanatory variable (the **treatment**) on the outcome, the researchers may regress the outcome on a treatment indicator and other explanatory variables known as **covariates**. The covariates are included in the regression to reduce bias (in an observational study) or variance (in a randomized experiment), but the coefficients on the covariates are typically not of interest in themselves. Strong assumptions are needed for regression to yield valid inferences about treatment effects in observational studies, but weaker assumptions may suffice in randomized experiments.^[On regression in observational studies, see: [10 Strategies for Figuring out if X Caused Y](https://methods.egap.org/guides/causal-inference/x-cause-y_en.html); @freedman_1991; @angrist_pischke_2015; @angrist_pischke_2009; @imbens_wooldridge_2009; @imbens_2015. On regression adjustment in randomized experiments, see [10 Things to Know About Covariate Adjustment](https://methods.egap.org/guides/analysis-procedures/covariates_en.html) and Winston Lin's Development Impact blog posts ([here](https://web.archive.org/web/20151024055802/http://blogs.worldbank.org/impactevaluations/node/847) and [here](https://web.archive.org/web/20151024022122/http://blogs.worldbank.org/impactevaluations/node/849)).]
 
-4. What are the standard errors, t-statistics, p-values, and degrees of freedom?
-==
+# What are the standard errors, t-statistics, p-values, and degrees of freedom? 
+
 
 ## Standard Error
 
@@ -80,8 +80,8 @@ The bottom section of the table includes a row with the heading "F(5, 59)", the 
 
 The numbers 5 and 59 in parentheses are the degrees of freedom (df) associated with the numerator and denominator in the F-statistic formula. The numerator df (5) is the number of parameters that the null hypothesis claims are zero. In this example, those parameters are the coefficients on the 5 explanatory variables shown in the table. The denominator df (59) equals the sample size minus the total number of parameters estimated. (In this example, the sample size is 2,004 and there are only 6 estimated parameters shown in the table, but the regression also included many dummy variables for constituencies that were used in blocking.)
 
-5. What the confidence intervals mean
-==
+# What the confidence intervals mean 
+
 
 Confidence intervals (CIs) are frequently reported in social science research papers and occasionally shown in regression tables. They communicate some of the uncertainty in estimation: for example, the **point estimate** of the coefficient on "Observer Present" is a specific value, --0.037, but the CI (calculated as the point estimate plus or minus a **margin of error**) is the range of values from --0.09 to 0.01, implying that any value in that range is compatible with the data. (In other words, having an observer present may have reduced the rate of ballot stuffing by 9 percentage points, or it may have actually increased the rate by 1 percentage point, or the effect may have been somewhere in between.) The **coverage probability** (or confidence level) of a CI is the probability that the CI contains the true value of the parameter. Reported CIs usually have a nominal (claimed) coverage probability of 95%, so they are called **95% confidence intervals**.
 
@@ -100,8 +100,8 @@ In an instructive and entertaining paper, @simmons_et_al_2011 use simulations as
 
 One remedy is for researchers to pre-specify and publicly archive their decisions about data collection and analysis (e.g., stopping rules, outcome measures, covariates, regression models, sample exclusions, and subgroup definitions) before they see the outcome data (and, ideally, before they assign treatments). Documents of these decisions are known as **pre-analysis plans** (PAPs). Critics of PAPs worry that they inhibit [exploratory data analysis](https://en.wikipedia.org/wiki/Exploratory_data_analysis). Proponents argue that deviations from the plans are not prohibited, but should be fully disclosed and highlighted, to help readers distinguish between [exploratory and confirmatory analyses](http://www.jstor.org/stable/2682991). For valuable discussions, see the symposia in [_Political Analysis_](https://www.jstor.org/stable/i23359619) (Winter 2013)^[See @humphreys_et_al_2013, @monogan_2013, @anderson_2013, and @gelman_2013.] and [_Journal of Economic Perspectives_](https://www.aeaweb.org/issues/381) (Summer 2015)^[See @olken_2015 and @coffman_2015.]. Also take a look at [our guide on pre-registration](https://methods.egap.org/guides/planning/pap_en.html).
 
-7. Watch out for other possible biases
-==
+# Watch out for other possible biases 
+
 Just because you use a regression to estimate a relationship does not mean that the relationship you estimate truly captures the type of relationship you are interested in. Here are some of the possible sources of bias to be aware of:
 
 * **Selection bias** can arise when there are systematic, unmeasured differences in characteristics between the individuals who are selected into the sample or the treatment and those who are not selected. In other words, selection bias can refer to either of two concerns:
@@ -118,20 +118,20 @@ Just because you use a regression to estimate a relationship does not mean that 
 
 * [**Publication bias**](https://en.wikipedia.org/wiki/Publication_bias), also known as the file drawer problem, arises when entire studies go unpublished not because their quality is any lower than that of other studies on the same topic, but because of the nature of their results (e.g., because the results are considered unsurprising, or because they do not reach conventional thresholds for statistical significance). As Robert Rosenthal wrote in a classic article, "The extreme view of the 'file drawer problem' is that journals are filled with the 5% of the studies that show [Type I errors](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors#Type_I_error), while the file drawers are filled with the 95% of the studies that show nonsignificant results."^[@rosenthal_1979. On reforms to counter publication bias, see: @nyhan_2015; @findley_et_al_2016.]
 
-8. What the  R²  means
-==
+# What the  R²  means 
+
 R² is the squared multiple correlation coefficient, also known as the Coefficient of Determination. R² shows the proportion of the variance of the outcome that is "explained" by the regression. In other words, it is the variance of the outcome values predicted from the explanatory variables, divided by the variance of the actual outcome values. The larger the R² is, the better the fit of the regression model. And a model fits the data well if the differences between the actual values and the values predicted by the regression are small. The R² is generally of secondary importance, unless your main concern is using the regression equation to make accurate predictions. It is always between 0 and 1, so if the independent variables are strong predictors, the R² will be closer to 1. It is possible, however, that a statistically significant relationship between X and Y is found even though the R² is low; this just means we have evidence of a relationship between X and Y, but X does not explain a large proportion of the variation in Y.
 
 In the example table, the R² value is .011, showing that in this case, the explanatory variables account for only a small portion of the variance of the outcome. If a model could explain all of the variance, the values predicted by the regression would always equal the actual values observed, so the regression line would fit the data perfectly and the R² would equal 1.
 
 Although R² summarizes how well the model fits the data, any single-number summary has limitations. In [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet), all four regressions have the same R², but the four graphs look very different.
 
-9. Be careful when comparing coefficients
-==
+# Be careful when comparing coefficients 
+
 If one coefficient is bigger than another, does that mean the outcome is more sensitive to that explanatory variable? No---the interpretation of coefficients depends on the scales the variables are measured on. If you convert an explanatory variable from feet to miles, the coefficient will get a lot bigger, without any real change in the underlying relationship between the explanatory variable and the outcome.
 
-10. Meet the whole family
-==
+# Meet the whole family 
+
 So far, this guide has focused on ordinary least squares regression, one of the most commonly used estimation methods in the social sciences. In fact, there are many other regression methods, including weighted least squares and generalized least squares, as well as all sorts of nonlinear models for **limited dependent variables**---outcomes that are limited to a particular range of values, such as **binary** (0/1), **categorical** (A,B,C,…), or **count** (0,1,2,…) outcomes.
 
 * Researchers might use a weighted least squares regression when the variance of ε differs from one observation to another and can be modeled as a function of one or more predictors (this is called heteroskedasticity, which generally looks something like this).^[Weighting by the inverse of the variance of ε is a form of [generalized least squares](https://en.wikipedia.org/wiki/Generalized_least_squares) (GLS). The classical argument is that GLS is more **efficient** (i.e., has lower variance) than OLS under heteroskedasticity. However, when the goal is to estimate an average treatment effect, some researchers question the relevance of the classical theory, because if treatment effects are **heterogeneous**, GLS and OLS are not just more efficient and less efficient ways to estimate the same treatment effect. Instead, they estimate different weighted average treatment effects. In other words, they answer different questions, and choosing GLS for efficiency is arguably like [looking for your keys where the light's better](https://en.wikipedia.org/wiki/Streetlight_effect). @angrist_pischke_2010 write: "Today's applied economists have the benefit of a less dogmatic understanding of regression analysis. Specifically, an emerging grasp of the sense in which regression and two-stage least squares produce average effects even when the underlying relationship is heterogeneous and/or nonlinear has made functional form concerns less central. The linear models that constitute the workhorse of contemporary empirical practice usually turn out to be remarkably robust, a feature many applied researchers have long sensed and that econometric theory now does a better job of explaining. **Robust standard errors**, automated clustering, and larger samples have also taken the steam out of issues like heteroskedasticity and serial correlation. A legacy of @white_1980's paper on robust standard errors, one of the most highly cited from the period, is the **near death of generalized least squares in cross-sectional applied work**. In the interests of replicability, and to reduce the scope for errors, **modern applied researchers often prefer simpler estimators** though they might be giving up asymptotic efficiency." Similarly, @stock_2010 comments: "The 1970s procedure for handling potential heteroskedasticity was either to ignore it or to test for it, to model the variance as a function of the regressors, and then to use weighted least squares. While in theory weighted least squares can yield more statistically efficient estimators, modeling heteroskedasticity in a multiple regression context is difficult, and statistical inference about the effect of interest becomes hostage to the required subsidiary modeling assumptions. @white_1980's important paper showed how to get valid standard errors whether there is heteroskedasticity or not, without modeling the heteroskedasticity. This paper had a tremendous impact on econometric practice: **today, the use of heteroskedasticity-robust standard errors is standard, and one rarely sees weighted least squares used to correct for heteroskedasticity.**" (Emphasis added in both quotations.)]

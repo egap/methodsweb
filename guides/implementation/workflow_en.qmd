@@ -7,12 +7,12 @@ bibliography: workflow.bib
 image: workflow.png
 ---
 
-1.	People have limited memories
-==
+# People have limited memories 
+
 There are limits to human memory. Since most experimental research requires at least months if not years of design, monitoring, analysis, and reporting, few researchers can   maintain mental oversight of all of a project’s moving pieces over time. Introduce additional investigators into the mix, and the questions of who did what, when, and why (if not how) multiply and become harder to answer. As replication becomes more important (by the original project team or outside researchers), maintaining a written record of decisions, actions, and questions becomes essential. @bowers_voors_2016 provide a framework and steps for improving  project’s workflow; this guide draws upon their paper and upon additional tools aimed at documenting the important choices made by researchers and effectively communicating those choices to the project team.
 
-2.	Effective data analysis is aided by coding
-==
+# Effective data analysis is aided by coding 
+
 The best way to leave an easy-to-retrace path (for your future self and others) in data analysis is to produce all outputs through code. Opening Excel to make one change to one table may seem the quickest way to complete the task, but when you are trying to remember what you did months later, you will be glad to have updated your R script or do file to make the desired edit. To maximize re-traceability, leave comments in your code file to explain the purpose of each line, as in the example below.
 
 ```{r, eval=FALSE}
@@ -34,8 +34,8 @@ please-close-pdf()
 
 Coding has other benefits. It saves time by systematically completing repetitive tasks that could be done manually but with greater time investment. It leads to smoother collaboration by communicating progress and next steps. Finally, it helps researchers avoid making mistakes by combining multiple steps into one file where the order of steps and the relationships among steps is clear.
 
-3.	Coding is communication: to yourself, to co-investigators, and to the future
-==
+# Coding is communication: to yourself, to co-investigators, and to the future 
+
 Data analysis requires a series of decisions, large and small. These decisions will be made both by individual researchers and by research teams. The why and how questions that will arise when you or others attempt to reproduce your work can only be answered if you can remember and communicate about these decisions.
 
 One way to record decisions made during the coding process is to use the **comment** feature of whichever analysis software you are using (for example, lines beginning with * in Stata, # in R are not executed but are understood as notes). Comments are unexecuted text within the script, and can explain the purpose of each line or section to your collaborators or future self. You can see some commented code in the chunk of R code in point 2.
@@ -48,20 +48,20 @@ Coding and communication can be linked even tighter by combining them in the sam
 
 [^4]: There are many ways to type text that includes code such that parenthesis are automatically closed, spelling is checked, or even help is provided about the code itself. RStudio is an integrated development environment (IDE) that includes a nice editor. Some of us use older tools that are more widespread such as vim, or eMacs. Others any of the contemporary improvements on those old tools such as Atom.
 
-4.	A useful tool for combining code and writeup: R Markdown
-==
+# A useful tool for combining code and writeup: R Markdown 
+
 R Markdown is a format for making documents within R using a plain text format. When compiled, these text formats end up looking like nice, formatted PDFs. You can use Markdown on Windows and Mac OSX, and you can also edit the file in an ordinary text editor. 
 
 For more information, see the [Metaketa III committee R Markdown Manual](https://github.com/egap/methods-guides/blob/master/workflow/metaketa3_Rmarkdown.pdf).
 
-5.	Data analysis requires clear routes between inputs and outputs
-==
+# Data analysis requires clear routes between inputs and outputs 
+
 Nearly every script begins by calling in the relevant data for analysis. This should be done with a line that produces the same output on every computer. This, in turn, requires that collaborators need to have access to a shared file structure for storing project materials, about which more in section 7.
 
 Within that shared file structure, the organization of files can be a very helpful map for identifying what went where. @nagler_1995 outlines the principle of modularity, which suggest that you separate files by function (namely making data cleaning/processing/recoding/merging distinct from analysis). Storing the original data file in a folder labeled “raw” and the cleaned/recoded datafile in one marked “clean” tells you and your collaborators where to find each without searching too hard. If the folder structure starts to get overly complicated, consider using a README file (a brief text file) to explain where the relevant input and output files for your analysis are stored.
 
-6.	Version control keeps track of who did what and when, and makes sure that work is not overwritten
-==
+# Version control keeps track of who did what and when, and makes sure that work is not overwritten 
+
 Even teams with perfect file structure in their shared folder can run into issues without effective version control. Version control allows teams to:
 
 * Determine what changed between different versions of the same document;
@@ -77,24 +77,24 @@ In situations with less reliable internet access, Dropbox[^6] can provide shared
 
 [^6]: https://www.dropbox.com
 
-7.	A useful tool for version control: GitHub
-==
+# A useful tool for version control: GitHub 
+
 When collaboration involves plain text files (i.e., code or files that combine code and prose), we recommend following the best practices of community of software developers (who make a living from working together in teams to write reliable code in an efficient way). Currently, the standard tool to enable this collaboration is Github.
 
 GitHub is a code hosting platform to streamline issues related to version control and working as a group. It lets you and others work together on projects from anywhere. The core GitHub workflow includes each user copying, or “cloning”, a version of a folder (or folder structure) to their own desktop, so that the latest version from the repository is on a local device, making changes to the desired files, and pushing those files to the shared repository. At the beginning of a work session one “pulls” or “synchronizes” any changes made by other team members online with the local copy. The git system tracks all changes, and contains functionality to revert back to previous versions as needed.
 
 For more information, see [Metaketa III committee GitHub Manual](https://github.com/egap/methods-guides/blob/master/workflow/metaketa3_github.pdf).
 
-8.	Your future self--and others--will want to be able to access your data
-==
+# Your future self--and others--will want to be able to access your data 
+
 Science involves learning from the work of others in addition to remembering about the past work of oneself. If one works in such a way that a future self can remember, then, often that work will be easy to use by others as they themselves attempt to extend the science or even just learn how to apply your good ideas to their own context.[^7] There are a number of tools to make storing and sharing files for replication easier, including GitHub and the Center for Open Science’s Open Science Framework (OSF). OSF recently ran a [replication project](http://www.socialsciencesreplicationproject.com) aimed at understanding “predictors of reproducibility of research results, and how low reproducibility may inhibit efficient accumulation of knowledge.”
 
 Data should be stored in places like a Dataverse or the ICPSR or other places with a plan for daily backups band also a plan for data to be preserved and made available for many years into the future (in contrast to your favorite homemade website).
 
 [^7]: See @king_1995.
 
-9.	To minimize error, build testing into the code
-==
+# To minimize error, build testing into the code 
+
 Testing ensures that errors from bugs and typos are caught before it is too late, and including that testing in your coding makes sure that it is done.
 
 Below is a simple example of this testing on a function designed to multiply a number by 2. 
@@ -122,8 +122,8 @@ test.times.2.fn()
 ```
 This tells you to go back and review the function, where we see a + instead of a *. Testing can be even more effective if we code the script to stop when an error occurs instead of generating an error message. In R, the stopifnot function will do just that.
 
-10.	Research should remove speculation
-==
+# Research should remove speculation 
+
 Ultimately, the point of doing research is to move things from the realm of opinion into the realm of knowledge. Thus, effective research should have findings that are not a matter of opinion, and at which others can arrive. If, in the future, somebody disagrees with your analysis, you can hand them the raw data files and analysis scripts and watch them arrive at the same result.
 
 # References

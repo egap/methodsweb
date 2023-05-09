@@ -10,8 +10,8 @@ bibliography: randomization.bib
 This guide will help you design and execute different types of randomization in your experiments. We focus on the big ideas and provide examples and tools that you can use in R. For why to do randomization see [this methods guide](https://methods.egap.org/guides/causal-inference/x-cause-y_en.html).
 
 
-1. Some ways are better than others
-==
+# Some ways are better than others 
+
 There are many ways to randomize. The simplest is to flip a coin each time you want to determine whether a given subject gets treatment or not. This ensures that each subject has a .5 probability of receiving the treatment and a .5 probability of not receiving it. Done this way, whether one subject receives the treatment in no way affects whether the next subject receives the treatment, every subject has an equal chance of getting the treatment, and the treatment will be independent from all confounding factors — at least in expectation.
 
 This is not a bad approach but it has shortcomings. First, using this method, you cannot know in advance how many units will be in treatment and how many in control. If you want to know this, you need some way to do selections so that the different draws are not statistically independent from each other (like drawing names from a hat). Second, you may want to assert control over the exact share of units assigned to treatment and control.  That’s hard to do with a coin. Third, you might want to be able to replicate your randomization to show that there was no funny business. That’s hard to do with coins and hats. Finally, as we show below, there are all sorts of ways to do randomization to improve power and ensure balance in various ways that are very hard to achieve using coins and hats. 
@@ -27,8 +27,8 @@ set.seed(343)
 complete_ra(100, 34)
 ```
 
-2. Block randomization: You can ensure that treatment and control groups are balanced
-==
+# Block randomization: You can ensure that treatment and control groups are balanced 
+
 It is possible, when randomizing, to specify the balance of particular factors you care about between treatment and control groups, even though it is not possible to specify which particular units are selected for either group.
 
 For example, you can specify that treatment and control groups contain equal ratios of men to women. In doing so, you avoid any randomization that might produce a distinctly male treatment group and a distinctly female control group, or vice-versa.
@@ -72,8 +72,8 @@ with(dat, table(Z_block_2, block_id))
 
 You can check the mean of the variable on which you blocked for treatment and control to see that treatment and control groups are in fact perfectly balanced on gender.
 
-3. Factorial designs: You can randomize multiple treatments at the same time without using up power
-==
+# Factorial designs: You can randomize multiple treatments at the same time without using up power 
+
 Suppose there are multiple components of a treatment that you want to test. For example, you may want to evaluate the impact of a microfinance program. Two specific treatments might be lending money to women and providing them with training. A factorial design looks at all possible combinations of these treatments: (1) Loans, (2) Training, (3) Loans + Training, and (4) Control. Subjects are then randomly assigned to one of these four conditions.
 
 ![](https://raw.githubusercontent.com/egap/methods-guides/master/randomization/factorial-table.png)
@@ -91,8 +91,8 @@ dat <-
 with(dat, table(Z_loan, Z_training))
 ```
 
-4. You can randomize whole clusters together (but the bigger your clusters, the weaker tends to be your power)
-==
+# You can randomize whole clusters together (but the bigger your clusters, the weaker tends to be your power) 
+
 Sometimes it is impossible to randomize at the level of the individual. For example, a radio appeal to get individuals to a polling station must inherently be broadcast to a whole media market; it is impossible to broadcast just to some individuals but not others. Whether it is by necessity or by choice, sometimes you will randomize clusters instead of individuals.
 
 The disadvantage of cluster randomization is that it reduces your power, since the number of randomly assigned units now reflects the number of clusters and not simply your total number of subjects. If your sample consisted of two clusters of 1,000 individuals each, the functional number of units might be closer to 2, not 2,000. For this reason, it is preferable to make clusters as small as possible.
@@ -192,14 +192,14 @@ block_cluster <- data %>% ggplot(aes(x = as.factor(placementIDx), y = as.factor(
 grid.arrange(simple, block, cluster, block_cluster, nrow = 2, ncol = 2)
 ```
 
-5. You can randomize in a way that makes it easier to see if there are spillovers
-==
+# You can randomize in a way that makes it easier to see if there are spillovers 
+
 When designing your experiment, think critically about whether “spillovers” pose a threat to your ability to identify the causal effect of your treatment. Spillovers arise if one units outcome is affected by the treatment status of another unit. This can be tricky if units have the ability to interact with each other: one member of a village may learn of another villager’s receipt of a cash grant and may change their behavior accordingly.
 
 One way to make spillovers more evident is to use double randomization. You would first randomly assign some clusters to treatment and others to control, and within clusters, you would assign some individuals to treatment and others to control. Comparing control individuals in your treatment cluster to individuals in your control cluster will enable you to assess the role of spillovers in your experiment.
 
-6. Different units can be assigned to treatment with different probabilities
-==
+# Different units can be assigned to treatment with different probabilities 
+
 Sometimes people think that “random” means that two events are equally likely, but in fact, random assignment is “random” so long as the probability of assignment to treatment is strictly between 0 and 1. If a subject has a 0 or a 100 percent chance of being assigned to treatment, that subject should be excluded from your experimental analysis because there is no randomization occurring. However, all subjects with a probability of assignment to treatment strictly between 0 and 1 may be included, even if their probabilities differ, so long as their probabilities are known.
 
 Why might you want to assign different probabilities of assignment to treatment? Suppose you are working with an implementing partner to randomize the allocation of election observers in order to measure the effect on electoral fraud. Your implementing partner can afford to send only a few election observers to a rural part of the country. You could address this constraint by blocking on geographic area and assigning a higher probability of assignment to treatment to more proximate villages to which it is less costly to travel. So long as the probability of assignment to treatment for more accessible villages is less than 1, the probability of assignment to treatment for less accessible villages is greater than zero, and these probabilities are known, it is possible to estimate the effect of the treatment.
@@ -229,12 +229,12 @@ dat %>%
   )
 ```
 
-7. Restricted randomization: If you don’t like what you get you can start over
-==
+# Restricted randomization: If you don’t like what you get you can start over 
+
 Sometimes you might want to make sure that randomization does not produce particular types of pattern (for example, too many people who know each other all being in treatment).  But the patterns you care about might be too hard to set up in advance. What you can do is take a random draw and then check whether the draw meets the criteria you care about. If it doesn’t, then draw again.  Be warned, though, that if you do this, you create a couple of complications: (1)  each unit will not necessarily be assigned to treatment with the same probability, (2) units may not be independently assigned to treatment.  You need to take into account both of these facts in your analysis. You can do so by generating inverse probability weights as we did in point 6. Here, you will need to use the same restricted randomization code that you used to assign treatment to figure out how likely it is that each subject is assigned to treatment under these restrictions. You simply run the code a large number of times and calculate the proportion of times that a given unit is assigned to treatment across all repetitions. Next, you use the distribution of possible treatment assignments to implement randomization inference. These analyses are complex so proceed with caution.
 
-8. Write randomization code that lets you simulate many possible randomizations
-==
+# Write randomization code that lets you simulate many possible randomizations 
+
 A benefit of using R code to randomize is that you can perform thousands of possible randomizations in seconds. Why is this beneficial?
 
 1. It can be useful as a way to check whether your randomization code worked. For example, if one or more subjects in your experiment never received treatment over 10,000 possible random assignments, then you would suspect a flaw in your randomization code.
@@ -250,8 +250,8 @@ To maintain the ability to block and therefore the ability to assert control ove
 
 [^3]: For a more detalied walkthrough on the randomization procedures available in the R package randomizr, [see here](https://declaredesign.org/r/randomizr/articles/randomizr_vignette.html).
 
-10. Randomization can sometimes be an ethical way of assigning a treatment, but sometimes it isn’t
-==
+# Randomization can sometimes be an ethical way of assigning a treatment, but sometimes it isn’t 
+
 Randomization is the key ingredient for isolating the causal effect of a treatment from a research design perspective, but it is also important to consider the ethical implications of randomization as well. When we think about the long-term effects of an experiment, randomization enables us to test which programs are most effective so that resources can be directed to programs that make the most difference in the lives of future populations. In the short term, randomizing access to a program (as opposed to distributing based on arbitrary characteristics) can be a particularly ethical way of distributing scarce goods that cannot be extended to everyone.
 
 However, sometimes, it is the neediest populations that need to be served by an intervention in an experiment. A randomized design that treats equal numbers of low-income and high-income participants with loans is letting resources flow to less rather than more needy individuals. If we believe there are beneficial effects of the loan, then this raises concerns about the ethics of allocating resources away from the neediest.[^4] One would need a strong case for social benefits of the research and would also seek designs that provide benefits ultimately to control groups.
