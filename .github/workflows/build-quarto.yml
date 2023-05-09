@@ -5,13 +5,13 @@ on:
 name: Build Site
 
 jobs:
-  ecodown:
+  quarto:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -48,7 +48,7 @@ jobs:
         
       - name: Cache R packages
         if: runner.os != 'Windows'
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
