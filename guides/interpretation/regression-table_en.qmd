@@ -91,8 +91,9 @@ Coverage probabilities are easy to misinterpret. In the example table, (--0.09, 
 
 The [CONSORT Explanation and Elaboration](http://doi.org/10.1136/bmj.c869) document notes that in medicine, "Many journals require or strongly encourage the use of confidence intervals." In the social sciences, CIs aren't always explicitly reported; some authors report only point estimates and standard errors. If the degrees of freedom for the distribution of the t-statistic are reported, readers with sufficient technical background can construct a CI on their own (although it would obviously be more helpful if authors reported CIs explicitly). In our example table, the df for the t-statistics is the same as the denominator df (59) for the F-statistic. To construct the margin of error for a 95% CI, we multiply the SE by the appropriate **critical value**, the 0.975 quantile of the t-distribution with 59 degrees of freedom, which is 2.001 (in R, use the command `qt(.975, df = 59)`). Thus, the rule of thumb that we mentioned in the section on SEs ("the margin of error for a 95% CI is approximately twice the SE") works well here. However, if we had, say, only 20 degrees of freedom, the appropriate critical value would be about 2.09, and the 95% CI should be wider than the rule of thumb would suggest.
 
-6. Watch out for "researcher degrees of freedom"
-== 
+# Watch out for "researcher degrees of freedom"
+
+ 
 
 The SEs, p-values, significance tests, and CIs reported in regression tables typically assume that the researchers would have made all the same analytic decisions (which observations and variables to include in the regression, which hypothesis to test, etc.) if the outcome data had shown different patterns or if (in a randomized experiment) different units had been randomly assigned to treatment. This assumption is credible if all those decisions were **pre-specified** before the researchers saw any data on outcomes or treatment assignments. Otherwise, researchers may make decisions that consciously or unconsciously tilt a study toward a desired result. This problem is known as "fishing"^[See, e.g., @humphreys_et_al_2013.], "researcher degrees of freedom,"^[@simmons_et_al_2011.] or "the garden of forking paths."^[@gelman_loken_2013.]
 

@@ -137,8 +137,9 @@ where the coefficient $\delta$ is the interaction effect and is interpreted as t
 
 The model with the interaction also allows us to back out the values of the CATEs. The ATE of the job training program among subjects who do not receive a scholarship is $\beta$. The ATE of the job training program among subjects who receive a scholarship is $(\beta + \delta)$.
 
-6. Hypothesis Testing for Interaction Effects
-==	     
+# Hypothesis Testing for Interaction Effects
+
+	     
 To test whether the estimated interaction effect could have occurred by chance, one can use randomization inference: First generate a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then simulate random assignment a large number of times and calculate how often the simulated estimate of the interaction effect is at least as large (in absolute value) as the actual estimate.
 
 One can also conduct randomization inference in a regression framework. One method suitable for two-sided tests involves using the $F$-statistic as the test statistic, where the null model is

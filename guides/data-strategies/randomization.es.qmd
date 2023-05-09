@@ -176,8 +176,9 @@ dat %>%
 
 Descartar una asignación aleatoria porque no nos gusta lo que resultó puede parecer incoherente con la idea general de la aleatorización. Pero a veces tiene sentido hacerlo. Puede que quiera asegurarse de que la aleatorización no produzca patrones particulares (por ejemplo, demasiadas personas que se conocen entre sí y todas reciben el tratamiento). Pero los patrones que le interesan pueden ser demasiado difíciles de especificar de antemano. Lo que puede hacer entonces es hacer un sorteo al azar y luego ver si la asignación sorteada cumple con los criterios que necesita o no,  de no ser así, puede  volver a sortear. Sin embargo, tenga en cuenta que si hace esto, genera un par de complicaciones: (1) puede que las unidad no tengan la misma probabilidad de asignación y (2) es posible que las unidades no se asignen de forma independiente al tratamiento. Debe tener en cuenta estos dos hechos en su análisis. Por ejemplo, generando ponderaciones de probabilidad inversa como hicimos en el punto 6, pero usando el mismo código de aleatorización restringido para determinar qué tan probable es que cada sujeto sea asignado al tratamiento bajo estas restricciones. Luego, utilizar la distribución de posibles asignaciones al tratamiento para hacer poder inferencia basada en la aleatorización (randomization inference). Estos análisis son complejos, así que proceda con precaución.
 
-8. Escriba un código para aleatorizar que le permita simular muchas aleatorizaciones posibles
-==
+# Escriba un código para aleatorizar que le permita simular muchas aleatorizaciones posibles
+
+
 Una ventaja de utilizar código de R para aleatorizar es que puede realizar miles de aleatorizaciones en segundos. ¿Cuál es el benificio de esto?
 
 1. Puede ser útil como una forma de verificar si su código para aleatorizar  funcionó bien. Por ejemplo, si uno o más sujetos en su experimento no recibieron el tratamiento en ninguna de las 10,000 posibles asignaciones aleatorias, entonces hay razones para sospechar que puede haber un error en su código de aleatorización.

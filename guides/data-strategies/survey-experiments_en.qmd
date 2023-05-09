@@ -137,8 +137,9 @@ To ensure information equivalence and to reduce confounding the prime with an as
 <!--**Conclusion**: Priming experiments can help determine respondents' attitudes in cases where respondents do not have conscious access to the attitude that the researcher is interested in.
 -->
 
-5. Survey Experiments to Measure Sensitive Topics: Endorsement Experiments
-== 
+# Survey Experiments to Measure Sensitive Topics: Endorsement Experiments
+
+ 
 
 Endorsement experiments measure sensitive attitudes towards an attitude object, like a political actor or a policy.  They were first developed to study partisan bias^[See @cohen2003party and @kam2005toes.] but have since been used to measure support for militant groups.^[See @bullock2011statistical and @lyall2013explaining.]  They have also been inverted to measure support for a policy rather than a political actor [@rosenfeld2016empirical].<!--They resulted from literature in psychology about source cues and persuasion [@chaiken1980heuristic; @wegener1998attitude] -->
 

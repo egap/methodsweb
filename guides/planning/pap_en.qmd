@@ -82,8 +82,9 @@ In addition to overall improved attitudes toward government, we expect that resi
 <!--We could also list exploratory hypotheses about the mechanism through which the treatment affects tax compliance, such as: (1) increased belief in city service capacity, (2) increased belief in city enforcement capacity, (3) increased belief that the city deserves to collect taxes, (4) increased knowledge about the connection between taxes and services, and (5) increased satisfaction with city government.  For example, "Households for which treatment increases their satisfaction with city government are most likely to increase tax compliance. "The greater a households increase in satisfaction with city government, the more likely that the household increases tax compliance." -->
 </ul>
 
-4. What is in a PAP? Measures and Index Construction
-== 
+# What is in a PAP? Measures and Index Construction
+
+ 
 
 The PAP should specify the way you measure or operationalize variables of interest, including outcomes, covariates, and explanatory variables.  These operationalizations can be included as its own section, or the operationalization of variables can be included after the hypothesis for which each variable is relevant.
 

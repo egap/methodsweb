@@ -28,8 +28,9 @@ Resumen
 
 Esta guía explica qué es un Plan de Análisis Previo (PAP) y para qué se usa, presenta preguntas orientativas para facilitar la redacción de planes de preanálisis para sus estudios y ofrece un modelo de PAP. Al final de este documento se incluyen enlaces a registros de PAP aprobados que pueden servir como ejemplos prácticos.
 
-1. ¿Qué es un Plan de Análisis Previo (PAP)?
-==
+# ¿Qué es un Plan de Análisis Previo (PAP)?
+
+
 
 Un PAP es un documento que declara y formaliza el plan de diseño y análisis de un estudio.  Se redacta antes de realizar el análisis y suele registrarse en un sitio web de terceros.[^TOP]
 
@@ -42,8 +43,9 @@ En las siguientes seciones proporcionaremos información y ejemplos sobre los de
 [^DD]: Recursos como el proyecto DeclareDesign pueden ayudarle a simular y analizar datos falsos que imitan los datos reales que su proyecto recogerá. El [análisis de poder](https://egap.org/resource/10-cosas-que-debe-saber-sobre-el-poder-estadistico), un componente importante de un PAP, requiere datos simulados.
 
 
-2. ¿Qué incluye un PAP? Resumen del diseño de investigación.
-==
+# ¿Qué incluye un PAP? Resumen del diseño de investigación.
+
+
 
 La primera sección de un PAP debe presentar un breve resumen del diseño de su investigación. Si el estudio es un experimento, describa el procedimiento de aleatorización y la intervención o procedimiento experimental. Si el estudio no es un experimento, describa los datos. Estas descripciones deben incluir: (1) unidad de análisis, población y criterios de inclusión/exclusión, (2) tipo de método (observacional, experimental, cuasi-experimental), (3) intervención experimental o variable explicativa y (4) variables de resultado de interés.
 
@@ -57,8 +59,9 @@ Antes y después de la intervención realizamos una encuesta y recogemos datos a
 </p>
 
 
-3. ¿Qué incluye un PAP? Hipótesis.
-==
+# ¿Qué incluye un PAP? Hipótesis.
+
+
 
 El PAP debe especificar sus hipótesis; es decir, cuále(s) es(son) la(s) relación(es) que se espera observar entre variables. La formulación de una hipótesis debe dejar claro si se trabaja con pruebas de una o dos colas (por ejemplo, predecir un aumento, una disminución o un cambio en la variable de resultado).
 Hay dos tipos de hipótesis que debe considerar en su PAP: confirmatorias y exploratorias. Las hipótesis confirmatorias son el objetivo principal de la mayoría de los estudios; son las hipótesis que su estudio está diseñado para comprobar. Las pruebas de análisis sobre estas hipótesis tendrán un gran poder estadístico y, por lo general, tendrán una teoría sólida que conduce a estas hipótesis a priori.
@@ -85,8 +88,9 @@ A través de las siguientes hipótesis exploratorias, nos gustaría explorar qu�
 <!--También podríamos enumerar las hipótesis exploratorias sobre el mecanismo a través del cual el tratamiento afecta al cumplimiento fiscal, como por ejemplo (1) aumento de la creencia en la capacidad de servicio de la ciudad, (2) aumento de la creencia en la capacidad de ejecución de la ciudad, (3) aumento de la creencia de que la ciudad merece recaudar impuestos, (4) aumento del conocimiento sobre la conexión entre impuestos y servicios, y (5) aumento de la satisfacción con el gobierno de la ciudad. Por ejemplo, "los hogares en los que el tratamiento aumenta su satisfacción con el gobierno de la ciudad, tienen más probabilidades de aumentar el cumplimiento fiscal". "Cuanto mayor sea el aumento de la satisfacción de los hogares con el gobierno de la ciudad, más probable será que el hogar aumente el cumplimiento fiscal.”-->
 </ul>
 
-4. ¿Qué incluye un PAP? Construcción de índices y mediciones.
-== 
+# ¿Qué incluye un PAP? Construcción de índices y mediciones.
+
+ 
 
 El PAP debe especificar la forma en que se mide u operacionalizan las variables de interés, incluidos las variables de resultados, las covariables y las variables explicativas. Estas operacionalizaciones pueden ser incluidas en una sección propia, o luego de la presentación de la hipótesis para la que cada variable es relevante.
 
@@ -100,8 +104,9 @@ Nuestra variable explicativa es la asignación al tratamiento, en donde a los in
 También creamos un índice de "actitudes hacia el gobierno" utilizando ponderaciones de covarianza inversa (Inverse Covariance Weights, ICW) de 6 preguntas de la encuesta, en donde los valores más altos significan actitudes más positivas hacia el gobierno. El índice ICW pondera las preguntas de la línea de base por la covarianza de las respuestas en el grupo de control de base, y pondera las preguntas de la línea final por la covarianza de las respuestas en el grupo de control de la línea final. A continuación estandarizamos la escala de ICW por una desviación estándar, de modo que un 1 en la línea de base significa 1 desviación estándar (DE) por encima de la media de la línea de base, y un 1 en la línea final significa 1 DE por encima de la media de la línea final.</p>
 
 
-5. ¿Qué incluye un PAP? Procedimiento de estimación.
-==
+# ¿Qué incluye un PAP? Procedimiento de estimación.
+
+
 
 Una vez que ha especificado el diseño del estudio, las hipótesis y las variables, está listo para discutir los procedimientos de pruebas y estimaciones.
 Esta sección debe especificar de manera clara lo que se está estimando (es decir, el estimando) y cómo se pretende estimarlo (es decir, el estimador). Por ejemplo, muchos estudios estiman el efecto promedio del tratamiento de una intervención experimental utilizando la regresión lineal de mínimos cuadrados ordinarios como estimador.. 
@@ -116,8 +121,9 @@ $Y_{i,j} = \beta_0 + \beta_1Z_{i,j} + X_{i,j}+ \epsilon_{i,j}$<br><br>
 donde $i$ es el individuo en el vecindario $j$, $Z$ es el indicador del tratamiento, y $Y$ la variable de resultado. $X$ es la variable de resultado de referencia inicial para el individuo $i$. Utilizaremos pesos de regresión proporcionales al tamaño de los vecindarios $j$. Si las variables de resultado de referencia inicial y final no están balanceadas, utilizaremos la puntuación de cambio, $Y_i = Y_{i,endline} - Y_{i,baseline}$ y no usaremos $X$. 
 </p>
 
-6. ¿Qué incluye un PAP? Criterios de Inferencia{#infcrit}
-==
+# ¿Qué incluye un PAP? Criterios de Inferencia{#infcrit}
+
+
 
 Los criterios de inferencia son reglas de decisión que determinan la detectabilidad de los efectos (es decir, si una variable explicativa afecta realmente a una variable de resultado). Se requiere tomar varias decisiones para establecer  criterios de inferencia, respecto a cuándo aceptar que el efecto estimado es "estadísticamente y significativamente diferente" con respecto a las hipótesis nulas. Se recomienda especificar y justificar de manera clara las respuestas a las siguientes preguntas:
 
@@ -135,8 +141,9 @@ Utilizamos los errores estándar HC2 con nuestro experimento aleatorio en bloque
 Como comprobación de los errores estándar  HC2, también calculamos los valores $p$ utilizando directamente la [inferencia por aleatorización](https://egap.org/resource/10-things-to-know-about-randomization-inference), con la diferencia de medias como prueba estadística.
 </p>
 
-7. ¿Qué incluye un PAP? Procedimientos para Problemas de Datos
-==
+# ¿Qué incluye un PAP? Procedimientos para Problemas de Datos
+
+
 
 A veces los experimentos y la recopilación de datos no resultan como uno espera. Los PAP le dan la oportunidad de reflexionar sobre cuáles pueden ser esos problemas, y especificar de qué manera piensa resolverlos.
 
@@ -176,8 +183,9 @@ Si aún tenemos preguntas sobre la variable de resultado, con tasas particularme
 </ol>
 </ol>
 
-8. ¿Qué incluye un PAP? Análisis de poder.
-==
+# ¿Qué incluye un PAP? Análisis de poder.
+
+
 
 En los PAP se suele incluir un [análisis de poder](https://egap.org/resource/10-cosas-que-debe-saber-sobre-el-poder-estadistico).  El poder estadístico es la probabilidad de que su estudio pueda detectar un efecto, si es que hay un efecto que detectar.
 
@@ -185,8 +193,9 @@ Existen [herramientas](https://egap.shinyapps.io/Power_Calculator/) que ayudan a
 
 En muchos sentidos, el análisis de poder computacional implementa en el código todas las especificaciones que se hicieron en el PAP previamente. De hecho, se puede combinar el código para un análisis de poder computacional con el código escrito para otras secciones del PAP, y así crear un PAP computacional. Esta herramienta, que puede implementarse con un software como [DeclareDesign](https://declaredesign.org), puede ayudar a diagnosticar problemas potenciales, enseñarle más sobre su diseño y reforzar su PAP.
 
-9.¿Por qué hacer un PAP?
-==
+# ¿Por qué hacer un PAP?
+
+
 
 Es posible que  haya escuchado argumentos a favor y en contra de los PAP. Este debate ofrece algunas reflexiones que abordan los beneficios y los costes de los PAP.
 
@@ -235,8 +244,9 @@ Al inicio del proceso, los PAP _son_ una inversión de tiempo considerable, pero
 
 En el capítulo 19 de @rosenbaum2010 y en @olken2015 se pueden encontrar más discusiones sobre los pros y los contras de los PAP.
 
-10. ¿Cómo y dónde se registran los PAP?
-==
+# ¿Cómo y dónde se registran los PAP?
+
+
 
 ¡Su PAP ya está completo y listo para registrarse!  En el caso de los estudios experimentales, la fecha límite para registrar el PAP es antes de que se recojan los datos finales. En el caso de los estudios observacionales, lo más tarde que debe registrar el PAP es antes de realizar cualquier análisis, incluyendo la revisión de las estadísticas descriptivas. En cualquier momento puede ajustar un PAP mediante una enmienda.
 

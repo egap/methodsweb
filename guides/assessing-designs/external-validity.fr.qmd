@@ -14,8 +14,9 @@ Après des mois ou des années de développement et de mise en œuvre, naviguant
 En comparant les groupes de traitement et de contrôle, vous trouvez un résultat substantiellement et statistiquement significatif pour un résultat d'intérêt théorique.
 Avant de pouvoir sabrer le champagne pour célébrer une intervention bien évaluée, un collègue sympathique demande : "mais qu'est-ce que cela nous apprend sur le monde ?"
 
-1. Qu'est-ce que la validité externe ?
-==
+# Qu'est-ce que la validité externe ?
+
+
 La validité externe est un autre nom pour la généralisation des résultats, demandant "si une relation causale tient pour une variation des personnes, des paramètres, des traitements et des résultats".[^1]
 Un exemple classique de problème de validité externe est de savoir si les expériences traditionnelles en laboratoire d'économie ou de psychologie menées sur des étudiants universitaires produisent des résultats généralisables au grand public.
 Dans l'économie politique du développement, nous pourrions considérer comment un programme de développement communautaire en Inde pourrait s'appliquer (ou non) en Afrique de l'Ouest ou en Amérique centrale.
@@ -26,8 +27,9 @@ La validité externe devient particulièrement importante lors de la formulation
 L'extrapolation des effets causaux d'une ou plusieurs études à un contexte politique donné nécessite un examen attentif à la fois de la théorie et des preuves empiriques.
 Ce guide des méthodes aborde certains concepts clés, les pièges à éviter et les références utiles à prendre en compte lors du passage d'un effet moyen local du traitement au monde plus vaste.
 
-2. En quoi est-elle différente de la validité interne ?
-==
+# En quoi est-elle différente de la validité interne ?
+
+
 
 La validité interne fait référence à la qualité des inférences causales faites pour un groupe de sujets donné.
 Comme l'a postulé à l'origine Campbell[^2], la validité interne pose la question suivante : "le stimulus expérimental a-t-il en fait causé une différence significative dans ce cas spécifique ?" Ce concept concorde avec l'approche contrefactuelle de la causalité que les expérimentalistes utilisent généralement, qui demande si les résultats changent en fonction de la présence ou de l'absence d'un traitement.[^3]
@@ -39,8 +41,9 @@ Avant de pouvoir extrapoler un effet causal à une population distincte, il est 
 Pour la plupart des expérimentalistes, l'assignation aléatoire fournit la variation d'identification requise, à condition qu'il n'y ait ni attrition, ni interférence, ni contamination ou autres menaces à l'inférence.
 Pour les études observationnelles, des hypothèses d'identification supplémentaires sont nécessaires, telles que l'indépendance conditionnelle du traitement par rapport aux résultats potentiels.
 
-3. Faire des compromis entre validité interne et externe
-==
+# Faire des compromis entre validité interne et externe
+
+
 
 Il y a débat au sein des sciences sociales concernant l'importance relative de l'identification de résultats valides en interne, qui par définition s'appliquent à un échantillon local, et la génération de résultats qui peuvent être extrapolés à des populations d'intérêt plus larges.
 Il est utile de se familiariser avec cette discussion lorsque l'on considère les compromis de conception qui surgissent inévitablement dans les interventions à ressources limitées.
@@ -56,8 +59,9 @@ Manski[^5] écrit que "ce qui compte, c'est le caractère informatif d'une étud
 
 [^5]: Manski, C. F. (2013). Response to the review of ‘public policy in an uncertain world’. The Economic Journal 123: F412–F415.
 
-4. Théorie et généralisation
-==
+# Théorie et généralisation
+
+
 L'extrapolation d'une découverte à un contexte, un résultat, une population ou un traitement distincts n'est pas un processus mécanique.
 Comme discuté par Samii[^6] et Rosenbaum,[^7] une théorie pertinente doit être utilisée pour guider la généralisation, en prenant les preuves existantes pertinentes et en faisant des prédictions pour d'autres contextes d'une manière fondée sur des principes.
 Les théories font d'un problème complexe une représentation plus parcimonieuse, aidant ainsi à élucider les facteurs qui comptent.
@@ -67,8 +71,9 @@ Quelles covariables importent ? Quelles informations contextuelles sont importan
 [^6]: Samii, Cyrus. (2016). "Causal Empiricism in Quantitative Research." Journal of Politics 78(3):941–955.
 [^7]: Rosenbaum, Paul R. (1999). "Choice as an Alternative to Control in Observational Studies" (avec discussion). Statistical Science 14(3): 259–304.
 
-5. Comment puis-je déterminer où mes résultats s'appliquent ?
-==
+# Comment puis-je déterminer où mes résultats s'appliquent ?
+
+
 
 Il existe deux principaux moyens de généraliser les résultats, l'un basé sur les covariables des unités de l'étude et l'autre basé sur la manipulation expérimentale réelle des variables modératrices.
 L'observation de la variation d'un effet de traitement sur une variable de pré-traitement non randomisée peut décrire l'hétérogénéité de l'effet de traitement, qui peut suggérer où ou pour qui l'intervention est susceptible d'être la plus efficace, au-delà de l'échantillon d'origine.
@@ -85,8 +90,9 @@ En effet, avec certaines hypothèses fortes, l'extrapolation peut fournir des r�
 [^10]: Bisbee, James; Rajeev Dehejia; Cristian Pop-Eleches & Cyrus Samii. (2016). "Local Instruments, Global Extrapolation: External Validity of the Labor Supply-Fertility Local Average Treatment Effect." Journal of Labor Economics
 [^11]: Kern, H. L., Stuart, E. A., Hill, J., & Green, D. P. (2016). Assessing methods for generalizing experimental impact estimates to target populations. Journal of Research on Educational Effectiveness, 9(1), 103-127.
 
-6. Un comportement stratégique peut faire échouer vos extrapolations
-==
+# Un comportement stratégique peut faire échouer vos extrapolations
+
+
 L'extrapolation d'un résultat local à un contexte différent peut s'avérer difficile, même avec un profil de covariable convaincant auquel vous souhaitez généraliser les effets.
 Une manipulation expérimentale randomisée dans une zone locale génère un "effet d'équilibre partiel". Les dynamiques stratégiques, y compris les comportements compensatoires ou les contrecoups, en dehors du contexte local d'une intervention expérimentale peuvent compliquer les efforts de généralisation d'un résultat.
 Supposons, par exemple, qu'une intervention de transfert monétaire inconditionnel augmente le bien-être, l'entrepreneuriat et l'emploi dans un échantillon de 200 villages.
@@ -96,8 +102,9 @@ Dans le même ordre d'idées, les relations causales ne fonctionnent parfois que
 Par exemple, imaginez un programme de compétences professionnelles qui fonctionne très bien (par rapport à ceux qui ne l'ont pas reçu), que se passerait-il s'il était étendu à tous les travailleurs ? Même s'il y a des effets positifs sur tous les participants, les effets moyens pourraient être réduits ou nuls, car les emplois les plus qualifiés sont déjà pourvus par le premier lot et le deuxième lot est contraint de conserver son emploi précédent, en étant désormais surqualifié.
 En bref, dans des conditions d'équilibre général, nous pourrions nous attendre à des résultats différents même lorsque le profil de covariable correspond.
 
-7. Ne pas confondre la validité externe avec la validité de construit ou la validité écologique
-==
+# Ne pas confondre la validité externe avec la validité de construit ou la validité écologique
+
+
 La validité interne et externe ne sont pas les seules préoccupations de "validité" qui peuvent être soulevées dans le travail expérimental, et bien que pertinentes, elles sont également distinctes.
 La validité écologique, telle que définie par Shadish, Cook et Campbell[^12], concerne le fait qu'une intervention semble artificielle ou déplacée lorsqu'elle est déployée dans un nouveau contexte.
 Par exemple, un atelier d'information dans une ville rurale mené par des expérimentalistes ressemble-t-il à la manière habituelle de partager l'information pour cette population ? De même, si le même atelier se tenait dans une grande ville, semblerait-il déplacé ?
@@ -108,15 +115,17 @@ La validité de construit considère si un concept théorique testé dans une é
 Si votre expérience teste l'effet de la colère sur la réciprocité politique et que vous manipulez en fait la peur ou la confiance dans votre traitement, la validité de construit peut être violée.
 La validité de construit et la validité écologique sont toutes deux pertinentes pour les généralisations, et donc utiles pour affirmer la validité externe.
 
-8. Extrapolation entre les traitements et les résultats
-==
+# Extrapolation entre les traitements et les résultats
+
+
 Bien qu'une grande partie de ce guide se soit implicitement centrée sur le transfert d'un traitement donné à un nouveau lieu ou moment, la validité externe prend également en compte les variations dans les traitements et les résultats.
 C'est-à-dire, imaginez que nous ayons mené la même expérience sur le même échantillon, mais avec une variation sur le traitement, prédirions-nous que l'effet causal local sera similaire ? De même, pouvons-nous prédire si un traitement donné produira des effets causaux identiques ou différents sur un résultat différent ? Parfois, nous pouvons répondre à ces préoccupations en menant des expériences qui évaluent les traitements alternatifs et leurs résultats.
 Lorsque les expériences de suivi sont rares, ces problèmes doivent être réglés analytiquement.
 Plutôt que de considérer les caractéristiques des sujets, l'extrapolation dans ce cas nécessite de réfléchir, à l'aide de la théorie, aux caractéristiques des traitements ou des résultats et de faire des prédictions raisonnables.
 
-9. La reproductibilité est importante
-==
+# La reproductibilité est importante
+
+
 Aucune étude n'a le dernier mot sur une question scientifique.
 Suivant la logique de la mise à jour bayésienne, des preuves supplémentaires en faveur ou contre une théorie donnée permettent à la communauté scientifique et politique de mettre à jour leurs croyances sur la force et la validité d'une relation causale.
 
@@ -127,8 +136,9 @@ L'Open Science Collaboration[^13] a constaté, par exemple, que lors de la repro
 
 [^13]: Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. Science, 349(6251), aac4716.
 
-10. N'oubliez pas le temps
-==
+# N'oubliez pas le temps
+
+
 Lorsque l'on réfléchit aux relations causales d'intérêt, il est également important de considérer le temps : les choses que nous apprenons sur le passé s'étendent-elles au futur ? Comment les résultats potentiels d'un individu changent-ils au fil du temps ?
 Des lois immuables régissent les mondes physique et chimique ; par conséquent, ce que nous apprenons sur ces lois aujourd'hui restera toujours vrai.
 En revanche, nous comprenons beaucoup moins les moteurs sous-jacents du comportement social et s'ils restent constants de la même manière.
