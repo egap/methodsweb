@@ -1,6 +1,8 @@
 ---
 title: "10 Things to Know About Hypothesis Testing"
-author: "Jake Bowers"
+author: 
+  - name: "Jake Bowers"
+    url: https://jakebowers.org
 bibliography: hypothesis-testing.bib
 image: hypothesis-testing.png
 ---

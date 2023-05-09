@@ -1,15 +1,10 @@
 ---
-bibliography: ./hypothesistesting.bib
-output:
-  bookdown::html_document2:
-    number_sections: true
-    toc: true
-    theme: journal
-    extensions: +implicit_figure
-    code_folding: hide
-    fig_caption: true
-    includes:
-        after_body: ../linking_script.html
+title: "10 choses à savoir sur les tests d'hypothèses"
+author: 
+  - name: "Jake Bowers"
+    url: https://jakebowers.org
+bibliography: hypothesis-testing.bib
+image: hypothesis-testing.png
 ---
 
 <!-- title: "10 choses à savoir sur les tests d'hypothèses" -->

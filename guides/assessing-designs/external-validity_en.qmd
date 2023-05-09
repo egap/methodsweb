@@ -2,12 +2,12 @@
 title: "10 Things You Need to Know About External Validity"
 author: 
   - name: "Renard Sexton"
-    url: https://egap.org/member/renard-sexton/
+    url: https://renardsexton.com/
 image: external-validity.png
 bibliography: external-validity.bib
+abstract: | 
+  After months or years under development and implementation, navigating the practical, theoretical and inferential pitfalls of experimental social science research, your experiment has finally been completed. Comparing the treatment and control groups, you find a substantively and statistically significant result on an outcome of theoretical interest. Before you can pop the champagne in celebration of an intervention well evaluated, a friendly colleague asks: “But what does this tell us about the world?”
 ---
-
-After months or years under development and implementation, navigating the practical, theoretical and inferential pitfalls of experimental social science research, your experiment has finally been completed. Comparing the treatment and control groups, you find a substantively and statistically significant result on an outcome of theoretical interest. Before you can pop the champagne in celebration of an intervention well evaluated, a friendly colleague asks: “But what does this tell us about the world?”
 
 # What is external validity? 
 

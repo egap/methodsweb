@@ -1,18 +1,19 @@
 ---
-title: ""
+title: "10 choses à savoir sur la validité externe"
 author: 
-  - name: ""
+  - name: "Renard Sexton"
+    url: https://renardsexton.com/
+image: external-validity.png
+bibliography: external-validity.bib
+abstract: | 
+  Après des mois ou des années de développement et de mise en œuvre, naviguant entre les écueils pratiques, théoriques et inférentiels de la recherche expérimentale en sciences sociales, votre expérience est enfin terminée.
+  En comparant les groupes de traitement et de contrôle, vous trouvez un résultat substantiellement et statistiquement significatif pour un résultat d'intérêt théorique.
+  Avant de pouvoir sabrer le champagne pour célébrer une intervention bien évaluée, un collègue sympathique demande : "mais qu'est-ce que cela nous apprend sur le monde ?"
 ---
   
 
 <!-- title: "10 choses à savoir sur la validité externe" -->
 <!-- author: 'Auteur du guide des méthodes: Renard Sexton' -->
-
-Résumé
-==
-Après des mois ou des années de développement et de mise en œuvre, naviguant entre les écueils pratiques, théoriques et inférentiels de la recherche expérimentale en sciences sociales, votre expérience est enfin terminée.
-En comparant les groupes de traitement et de contrôle, vous trouvez un résultat substantiellement et statistiquement significatif pour un résultat d'intérêt théorique.
-Avant de pouvoir sabrer le champagne pour célébrer une intervention bien évaluée, un collègue sympathique demande : "mais qu'est-ce que cela nous apprend sur le monde ?"
 
 # Qu'est-ce que la validité externe ?
 

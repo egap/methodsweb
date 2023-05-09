@@ -5,9 +5,10 @@ author:
     url: https://lindsayrdolan.com/
 image: covariates.png
 bibliography: covariates.bib
+abstract: | 
+  This guide will help you think through when it makes sense to try to “control for other things” when estimating treatment effects using experimental data. We focus on the big ideas and provide examples in R.
 ---
 
-This guide will help you think through when it makes sense to try to “control for other things” when estimating treatment effects using experimental data. We focus on the big ideas and provide examples in R.
 
 # What is covariate adjustment? 
 

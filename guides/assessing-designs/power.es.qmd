@@ -1,19 +1,17 @@
 ---
-title: ""
+title: "10 cosas que debes saber sobre el poder estadístico"
 author: 
-  - name: ""
+  - name: "Alexander Coppock"
+    url: https://egap.org/member/alexander-coppock/
+image: power.png
+bibliography: power.bib
+abstract: | 
+  Esta guía[^1] es un herramienta que le servirá para evaluar y mejorar el poder de sus experimentos. Nos enfocaremos  en ideas generales y presentaremos ejemplos y herramientas que puede utilizar en R y Google Spreadsheets.
 ---
   
 
 <!-- title: "10 Things You Need to Know About Statistical Power" -->
 <!-- author: 'Methods Guide Author: Alexander Coppock' -->
-
-Resumen
-==
-
-Esta guía[^1] es un herramienta que le servirá para evaluar y mejorar el poder de sus experimentos. Nos enfocaremos  en ideas generales y presentaremos ejemplos y herramientas que puede utilizar en R y Google Spreadsheets.
-
-[^1]: Autor original: Alex Coppock, 20 de noviembre de 2013. Esta guía es un documento dinámico y por lo tanto puede ser modificada por los miembros de EGAP en cualquier momento. Coppock no se hace responsable de las ediciones posteriores de esta guía.
 
 
 # Qué es el poder estadístico

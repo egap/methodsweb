@@ -1,21 +1,18 @@
 ---
-title: ""
+title: "10 choses à savoir sur la puissance statistique"
 author: 
-  - name: ""
+  - name: "Alexander Coppock"
+    url: https://egap.org/member/alexander-coppock/
+image: power.png
+bibliography: power.bib
+abstract: | 
+  Ce guide[^1] vous aidera à évaluer et à améliorer la puissance statistique de vos expériences.
+  Nous nous concentrons sur les grandes idées et fournissons des exemples et des outils que vous pouvez utiliser dans R et Google Spreadsheets.
 ---
   
 
 <!-- title: "10 choses à savoir sur la puissance statistique" -->
 <!-- author: 'Auteur du guide des méthodes: Alexander Coppock' -->
-
-Résumé
-==
-Ce guide[^1] vous aidera à évaluer et à améliorer la puissance statistique de vos expériences.
-Nous nous concentrons sur les grandes idées et fournissons des exemples et des outils que vous pouvez utiliser dans R et Google Spreadsheets.
-
-[^1]: Auteur : Alex Coppock, 20 novembre 2013.
-Le guide est un document vivant et susceptible d'être mis à jour par les membres de EGAP à tout moment.
-Coppock n'est pas responsable des modifications ultérieures apportées à ce guide.
 
 # Qu'est-ce qu'est la puissance statistique?
 
