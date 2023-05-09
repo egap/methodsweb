@@ -262,7 +262,7 @@ You can also reduce the numbers of CATEs and interactions under consideration fo
 ==
 Machine learning methods are useful to automate the search for systematic variation in treatment effects. These automated approaches are attractive because they minimize researchers' use of ad hoc discretion in selecting and testing interactions, and are useful for conducting exploratory analyses.
 
-Popular machine learning methods include support vector machines (R package [FindIt](http://cran.r-project.org/web/packages/FindIt/index.html)),[^9] Bayesian additive regression trees (R package [BayesTree](http://cran.r-project.org/web/packages/BayesTree/index.html)),[^10] classification and regression trees (R package [causalTree](https://github.com/susanathey/causalTree)),^[See @athey_imbens_2016.] random forests,^[See @wager_athey_2016.] and kernel regularized least squares (R package [KRLS](http://cran.r-project.org/web/packages/KRLS/index.html)).[^11]
+Popular machine learning methods include support vector machines (R package [FindIt](http://cran.r-project.org/web/packages/FindIt/index.html)),[^9] Bayesian additive regression trees (R package [BayesTree](http://cran.r-project.org/web/packages/BayesTree/index.html)),[^10] classification and regression trees (R package [causalTree](https://github.com/susanathey/causalTree)) [@athey_imbens_2016] random forests [@wager_athey_2016] and kernel regularized least squares (R package [KRLS](http://cran.r-project.org/web/packages/KRLS/index.html)).[^11]
 
 [^9]: See, for example, @imai_ratkovic_2013.
 
