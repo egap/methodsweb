@@ -40,4 +40,6 @@ format:
     toc: true
     code-overflow: wrap
 
+execute:
+  freeze: auto
 
