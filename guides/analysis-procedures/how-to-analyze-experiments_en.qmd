@@ -55,7 +55,40 @@ If you choose to make edits to values in your data, you should make sure you're 
 # Checking for balance on pre-treatment covariates
 ==
 
-After inspecting and cleaning treatment assignment, treatment receipt, covariate, and outcome data, it's crucial to check for balance on pre-treatment covariates. 
+After inspecting and cleaning treatment assignment, treatment receipt, covariate, and outcome data, it's crucial to check for balance on pre-treatment covariates between treatment arms. "Balance tests" are a way of providing evidence that your randomization worked as expected. They seek to probe an observable implication of random assignment of treatment: that treatment and control groups look the same, on average, in terms of pre-treatment characteristics.^[See the methods guide on balance tests for more on this. However, the key (unobservable) assumption that we seek to test is whether or not treatment assignment is independent of potential outcomes.] Balance tests, which can be implemented in a number of different ways, ask whether imbalances in pre-treatment covariates across different experimental conditions are larger than what would be expected by chance.
+
+The balance test you run depends on your experimental design. In a set-up where you have a binary treatment and all units have the same probability of assignment to treatment, you can run a regression of the treatment assignment variable on your covariates, and run an F-test that tests the null hypothesis that all covariates are jointly 0. The p-value of the F-statistic can be found via randomization inference. If you conducted a block randomization with treatment probabilities that vary by block, you would have to adjust for this in the regression specification. 
+
+We are interested in the F-test because we care about overall balance of covariates. However, you are likely to come across covariate-by-covariate analyses that conduct t-tests comparing means among control units and treated units. Though this is standard practice, it is undesirable for several reasons. First, it is not unlikely that a covariate will come up as significantly different among treated and control units: due to the often numerous number of tests conducted, statistical significance can arise by chance. Here, it is important to emphasize that if you detect imbalance on a covariate that is significantly different than what would arise by chance, it's not always cause for panic. Second, this approach treats each covariate as equally important and informative about potential outcomes, rather than taking into account the prognosticness of the covariate. One may consider running equivalence tests, which more accurately test the implications of randomization.^[cite Erin's paper] 
+
+
+What you expect to see and what to do if it's okay, good to go
+
+What to do if there's evidence of imbalance
+
+
+things to look into:
+
+- ex balance
+- RItools, xbalance that can do with and without stratification, kind of complicated
+- cobalt
+- look at cluster randomization guide by Jake
+- add the overall p value from the F test
+
+```{r}
+## insert code for balance test here
+## t tests ? 
+## permutation tests ?
+## equivalence tests ? 
+## simply showing standardized differences ?
+```
+
+
+---- 
+
+** NOTE **
+the rest of the file is from before, not updated, just keeping for formatting shortcuts 
+
 
 6. Control for prognostic covariates regardless of whether they show imbalances
 ==
