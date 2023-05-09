@@ -5,6 +5,8 @@ author:
     url: https://lindsayrdolan.com/
 image: mechanisms.png
 bibliography: mechanisms.bib
+abstract: | 
+  As social scientists, we are fascinated by causal questions. As soon as we learn that X causes Y, we want to better understand *why* X causes Y. This guide explores the role of “mechanisms” in causal analysis and will help you to understand what kinds of conclusions you may draw about them.
 ---
 
 ```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
@@ -21,8 +23,6 @@ opts_chunk$set(strip.white=TRUE,
                prompt=FALSE,
                results='markup')
 ```
-
-As social scientists, we are fascinated by causal questions. As soon as we learn that X causes Y, we want to better understand *why* X causes Y. This guide explores the role of “mechanisms” in causal analysis and will help you to understand what kinds of conclusions you may draw about them.
 
 # Mechanisms are pathways through which X causes outcome Y.
 

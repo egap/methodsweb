@@ -1,24 +1,19 @@
 ---
-title: ""
+title: "10 types d'effets de traitement à connaître"
 author: 
-  - name: ""
+  - name: "Paul Testa"
+    url: https://paultesta.org/
+image: effect-types.png
+bibliography: effect-types.bib
+abstract: | 
+  Voir ce guide^[Voir Holland (1986), Angrist et Pischke, Angrist, Joshua et Jörn-Steffen Pischke (2008). Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton University Press.] pour une discussion plus formelle sur l'indépendance et les hypothèses nécessaires pour estimer les effets causaux.
+  Ce guide décrit dix types distincts d'effets causaux que les chercheurs peuvent souhaiter estimer.
+  Comme discuté dans notre guide sur l'inférence causale, la randomisation simple permet de produire des estimations de la moyenne des effets causaux au niveau de l'unité dans un échantillon.
+  Cet effet causal moyen ou effet moyen du traitement (average treatment effect, ATE) est un concept puissant car c'est une solution à l'impossibilité d'observer tous les contrefactuels pertinents.
+  Pourtant, ce n'est pas la seule manière efficace de faire face à ce problème.
+  En fait, il existe de nombreux types différents de quantités d'intérêt causal.
+  L'objectif de ce guide est de vous aider à choisir des paramètres (i.e. des paramètres d'intérêt) et des estimateurs (procédures pour calculer des estimations de ces paramètres) qui sont appropriés et significatifs pour vos données.
 ---
-  
-
-<!-- title: "10 types d'effets de traitement à connaître" -->
-<!-- author: "Auteur du guide des méthodes: Paul Testa" -->
-
-Résumé
-==
-Voir ce guide[^1] pour une discussion plus formelle sur l'indépendance et les hypothèses nécessaires pour estimer les effets causaux.
-Ce guide décrit dix types distincts d'effets causaux que les chercheurs peuvent souhaiter estimer.
-Comme discuté dans notre guide sur l'inférence causale, la randomisation simple permet de produire des estimations de la moyenne des effets causaux au niveau de l'unité dans un échantillon.
-Cet effet causal moyen ou effet moyen du traitement (average treatment effect, ATE) est un concept puissant car c'est une solution à l'impossibilité d'observer tous les contrefactuels pertinents.
-Pourtant, ce n'est pas la seule manière efficace de faire face à ce problème.
-En fait, il existe de nombreux types différents de quantités d'intérêt causal.
-L'objectif de ce guide est de vous aider à choisir des paramètres (i.e. des paramètres d'intérêt) et des estimateurs (procédures pour calculer des estimations de ces paramètres) qui sont appropriés et significatifs pour vos données.
-
-[^1]: Voir Holland (1986), Angrist et Pischke, Angrist, Joshua et Jörn-Steffen Pischke (2008). Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton University Press.
 
 1 Effet moyen du traitement
 ==

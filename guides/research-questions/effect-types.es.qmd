@@ -1,21 +1,13 @@
 ---
-title: ""
+title: "10 tipos de los efectos causales que debe conocer"
 author: 
-  - name: ""
+  - name: "Paul Testa"
+    url: https://paultesta.org/
+image: effect-types.png
+bibliography: effect-types.bib
+abstract: |
+  Esta guía^[Puede consultar Holland (1986), Angrist y Pischke  Angrist, Joshua y Jörn-Steffen Pischke. 2008. Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton University Press.] presenta una discusión más formal de la independencia y de los supuestos necesarios para estimar los efectos causales. Además, describe diez tipos distintos de efectos causales en los que podríamos estar interesados. Como demostramos en nuestra guía de inferencia causal, la aleatorización simple permite producir estimaciones del promedio de los efectos causales al nivel de la unidad en una muestra. Este efecto causal promedio o efecto promedio del tratamiento (Average Treatment Effect, ATE) es un concepto poderoso porque provee una solución al problema de no poder observar todos los contrafactuales relevantes para la estimación. Sin embargo, no es la unica forma de abordar este problema. De hecho, hay muchas cantidades  de interés causal diferentes. El objetivo de esta guía es ayudarlo a elegir estimandos (un parámetro de interés) y estimadores (procedimientos para calcular estimaciones de esos parámetros) que sean apropiados y significativos para sus datos.
 ---
-  
-
-<!-- title: "10 Types of Treatment Effect You Should Know About" -->
-<!-- author: "Methods Guide Author: Paul Testa" -->
-
-Resumen
-==
-Esta guía [^1] presenta una discusión más formal de la independencia y de los supuestos necesarios para estimar los efectos causales. Además, describe diez tipos distintos de efectos causales en los que podríamos estar interesados. Como demostramos en nuestra guía de inferencia causal, la aleatorización simple permite producir estimaciones del promedio de los efectos causales al nivel de la unidad en una muestra. Este efecto causal promedio o efecto  promedio del tratamiento (Average Treatment Effect, ATE) es un concepto poderoso porque provee una solución al problema de no poder observar todos los contrafactuales relevantes para la estimación. Sin embargo, no es la unica forma de abordar este problema. De hecho, hay muchas cantidades  de interés causal diferentes. El objetivo de esta guía es ayudarlo a elegir estimandos (un parámetro de interés) y estimadores (procedimientos para calcular estimaciones de esos parámetros) que sean apropiados y significativos para sus datos.
-
-
-
-[^1]: Puede consultar Holland (1986), Angrist y Pischke  Angrist, Joshua y Jörn-Steffen Pischke. 2008. Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton University Press.
-
 
 1 Efecto promedio del tratamiento
 ==
