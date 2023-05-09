@@ -1,15 +1,12 @@
 ---
-title: "10 Things to Know About Heterogeneous Treatment Effects"
+title: "10 Things to Know About Heterogeneous Treatment Effects^[This guide draws heavily from @gerber_green_2012 and from Don Green's course notes on experimental methods at Columbia University.]"
 author: 
   - name: "Albert Fang"
     url: https://albertfang.com/
+abstract: "This guide discusses methods for analyzing heterogeneous treatment effects: testing for heterogeneity, estimating subgroup treatment effects and their differences, and addressing the pitfalls of multiple comparisons and ad hoc specification search."
 image: heterogeneous-effects.png
 bibliography: heterogeneous-effects.bib
 ---
-
-This guide discusses methods for analyzing heterogeneous treatment effects: testing for heterogeneity, estimating subgroup treatment effects and their differences, and addressing the pitfalls of multiple comparisons and ad hoc specification search.[^1]
-
-[^1]: This guide draws heavily from @gerber_green_2012 and from Don Green's course notes for Experimental Methods at Columbia University.
 
 # What Is Treatment Effect Heterogeneity? 
 

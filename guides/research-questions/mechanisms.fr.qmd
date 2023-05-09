@@ -1,14 +1,14 @@
 ---
-output:
-  bookdown::html_document2:
-    number_sections: true
-    toc: true
-    theme: journal
-    extensions: +implicit_figure
-    code_folding: show
-    fig_caption: true
-    includes:
-        after_body: ../linking_script.html
+title: "10 choses sur les mécanismes"
+author: 
+  - name: "Lindsay Dolan"
+    url: https://lindsayrdolan.com/
+abstract: |
+  En tant que chercheurs en sciences sociales, nous sommes fascinés par les questions causales.
+  Dès que nous apprenons que X cause Y, nous voulons mieux comprendre *pourquoi* X cause Y.
+  Ce guide explore le rôle des 'mécanismes' dans l'analyse causale et vous aidera à comprendre les types de conclusions que vous pouvez en tirer.
+image: mechanisms.png
+bibliography: mechanisms.bib
 ---
 
 <!-- title: "10 choses sur les mécanismes" -->
@@ -29,9 +29,6 @@ opts_chunk$set(strip.white=TRUE,
                results='markup')
 ```
 
-En tant que chercheurs en sciences sociales, nous sommes fascinés par les questions causales.
-Dès que nous apprenons que X cause Y, nous voulons mieux comprendre *pourquoi* X cause Y.
-Ce guide explore le rôle des "mécanismes" dans l'analyse causale et vous aidera à comprendre les types de conclusions que vous pouvez en tirer.
 
 # Les mécanismes sont des voies par lesquelles X cause le résultat Y.
 

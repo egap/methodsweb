@@ -1,14 +1,10 @@
 ---
-output:
-  bookdown::html_document2:
-    number_sections: true
-    toc: true
-    theme: journal
-    extensions: +implicit_figure
-    code_folding: show
-    fig_caption: true
-    includes:
-        after_body: ../linking_script.html
+title: "10 cosas sobre los mecanismos"
+author: 
+  - name: "Lindsay Dolan"
+    url: https://lindsayrdolan.com/
+image: mechanisms.png
+bibliography: mechanisms.bib
 ---
 
 <!-- title: "10 Things about Mechanisms" -->
