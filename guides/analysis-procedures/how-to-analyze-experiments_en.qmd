@@ -9,6 +9,13 @@ bibliography: how-to-analyze-experiments.bib
 
 This guide will provide practical tools on what to do with your data once you've run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers to project managers. If you're not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are analyzing the data, this guide provides instructions and `R` code on how to do so.
 
+# BEFORE seeing (or receiving) your data, file an amendment if changes to the design or planned analysis arise
+
+Before you look at the data, back up and ask yourself: what changed from what I had planned and pre-registered - in terms of both design and analysis - and what are the consequences of those changes for the accuracy of my pre-analysis plan? If you think changes to the PAP are required, then you can file an amendment to the PAP at the registry where you initially pre-registered your experiment. It's good to do this prior to even receiving the data, if possible. To read more on PAPs, see [10 Things to Know About Pre-Analysis Plans
+](https://methods.egap.org/guides/planning/pap_en.html). 
+
+Things can change from conception to implementation. Perhaps you had planned to randomize at the individual-level, but instead you end up having to conduct a cluster randomization. Alternatively, did an event happen that cut your study short, reducing your sample size? Both of these design changes would have implications for how you should analyze the data. In the first instance, you should file an amendment reflecting the cluster-randomization and corresponding changes to your analyses. In the second instance, you may consider the implications for your reduced sample size for power, and whether or not you need to change your main specification (perhaps by adding covariates, or focusing on a main effect rather than an interaction effect) in order to be powered enough to detect effects should they exist.
+
 # Treatment variable: Confirm its randomization
 ==
 
@@ -23,7 +30,8 @@ In addition to verifying that the treatment was correctly assigned in the softwa
 
 If you are in a context where non-compliance with treatment is possible, you should also inspect the variable that indicates treatment receipt. In a field experiment, if a subject was assigned to a skills training (treatment assignment = 1), did they actually attend and receive the intended information on skills (treatment receipt = 1)? In a survey experiment, did a subject assigned to receive watch a video to provoke positive emotions (treatment assignment = 1) actually report watching the video and internalizing its content (treatment receipt = 1)? A variable that indicates whether a subject actually _received_ the treatment it was assigned to is key for thinking about things like complier average causal effects (see [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html)). Understanding what the treatment receipt variable means, and what each of its values corresponds to (does 1 correspond to treatment receipt, and 0 to lack of receipt?), is crucial.
 
-It's also useful to inspect the outcome and covariate variables that you plan on using in your analysis. This might include renaming them for easier coding and interpretation of your analysis code. If someone looks at your analysis code, it is generally easier for them to understand what a variable called "gender" means, rather than if it is called "question_26_c_1". In addition, making sure that missing data are consistently coded with "NA" rather than a numeric value is important to ensure the integrity of data analysis. Sometimes, survey software may code missing data with 0 or 888; if you do not change these values to "NAs", your data analysis will think that they correspond to numeric values of the variable of interest.
+It's also useful to inspect the outcome and covariate variables that you plan on using in your analysis. This might include renaming them for easier coding and interpretation of your analysis code. If someone looks at your analysis code, it is generally easier for them to understand what a variable called "gender" means, rather than if it is called "question_26_c_1". In addition, making sure that missing data are consistently coded with "NA" rather than a numeric value is important to ensure the integrity of data analysis. Sometimes, survey software may code missing data with 0 or 888; if you do not change these values to "NAs", your data analysis will think that they correspond to numeric values of the variable of interest. If you have covariates that are missing, though this need not bias your estimation of the impact of the treatment, there are several ways you may go about addressing this missingness; for more on this, see [10 Things to Know About Missing Data
+](https://methods.egap.org/guides/data-strategies/missing-data_en.html).
 
 # Did treatment assignment go according to plan?
 ==
@@ -68,6 +76,36 @@ Were you unable to measure outcomes for all of your experimental subjects? Somet
 ](https://methods.egap.org/guides/data-strategies/missing-data_en.html). We'd like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it's not, we might worry about bias. Further, the more missingness there is, the more the risk of bias. 
 
 There main way that researchers probe whether outcome data may be plausibly missing at random is to to examine whether there exists an observable relationship between treatment assignment and missingness of outcomes. The way to do this is to code up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examine whether treatment assignment impacts the propensity for outcome data to be missing. To complement this analysis, researchers generally assess covariate balance between treated and control units who are not missing, or by assess covariate balance between units with missing vs non-missing outcomes.
+
+# Adjust estimation procedure according to deviations from planned analysis
+==
+
+In practice, there may be differences between what you planned for your experiment, and what actually happened. These differences may have implications for how you should go about your estimation strategy.
+
+Control for variables upon which imbalance (unlucky draw)
+Some measurement gets messed up, so dont include it
+Run an additional model that they hadn’t thought about before; error in judgment in the original PAP; learned more about the technique and this happens
+If it makes more sense to do this other way and had not thought about it
+Sometimes, deviations can be around things being underspecified; hadn’t given the details on what they’d do (the transformation not specified ex ante); or 5 category transformation and instead do 2 groups bc data looks lumped into 2 groups; underspecified or guessed wrong
+
+
+# Write replicable code to analyze data
+==
+
+Hopefully this is done w/ PAP
+But otherwise do now
+List best practice -> point to the replication file
+annotations , versions of packages, where to find which tables and figures etc etc 
+
+
+
+# Write up deviations from preanalysis plan and justify
+==
+
+Pre-registered report should exist (so analyze AS pre-registered, even if not good)
+Cite this in your manuscript
+As you do analysis, you’ll come up w things that you change
+Keep a list of what you change; all of these could be highlighted and justified
 
 
 
@@ -253,6 +291,8 @@ names <-
 # using lm_robust we get robust standard errors 
 
 
+# TODO, implement the balance test after hearing back from others
+
 # first, RI
 
 # declare randomization 
@@ -345,7 +385,7 @@ library(stargazer)
 
 t1_experiment_df %>%
   dplyr::select(e_voted_2019) %>%
-  skim() 
+  skim()
 
 # is attrition different across treatment conditions?
 # we can inspect this descriptively, comparing a variable
@@ -377,6 +417,7 @@ t1attr1 <- lm(i_attrition ~ i_t1, data = t1_experiment_df)
             float.env = "table",
             notes.label = "")
   
+## TODO: add in balance (missingness on treatment by covariate interaction, then F stat?)
 
 ```
 
