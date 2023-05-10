@@ -1,0 +1,63 @@
+<header id="title-block-header" class="quarto-title-block default">
+$if(title)$
+<div class="quarto-title">
+<h1 class="title">$title$</h1>
+</div>
+$endif$
+
+<div class="quarto-title-meta">
+  $if(originalauthor)$
+  <div>
+    <div class="quarto-title-meta-heading">Original authors</div>
+    <div class="quarto-title-meta-contents">
+      $for(originalauthor)$
+      <p class="author"><a href="${originalauthor.url}" target="_blank">${originalauthor.name}</a>&nbsp;&nbsp;<span style="font-size: 75%; color: darkgray">${originalauthor.date}</span></p>
+      $endfor$
+    </div>
+  </div>
+  $endif$
+  
+  $if(majoredits)$
+  <div>
+    <div class="quarto-title-meta-heading">Major revisions by</div>
+    <div class="quarto-title-meta-contents">
+      $for(majoredits)$
+      <p class="author"><a href="$majoredits.url$" target="_blank">$majoredits.name$</a>&nbsp;&nbsp;<span style="font-size: 75%; color: darkgray">$majoredits.datetext$</span></p>
+      $endfor$
+    </div>
+  </div>
+  $endif$
+  
+  $if(minoredits)$
+  <div>
+    <div class="quarto-title-meta-heading">Minor revisions by</div>
+    <div class="quarto-title-meta-contents">
+      $for(minoredits)$
+      <p class="author"><a href="$minoredits.url$" target="_blank">$minoredits.name$</a>&nbsp;&nbsp;<span style="font-size: 75%; color: darkgray">$minoredits.datetext$</span></p>
+      $endfor$
+    </div>
+  </div>
+  $endif$
+  
+  $if(translator)$
+  <div>
+    <div class="quarto-title-meta-heading">Translators</div>
+    <div class="quarto-title-meta-contents">
+      $for(translator)$
+      <p class="author"><span style="font-size: 80%">${translator.language}</span> <a href="$translator.url$" target="_blank">$translator.name$</a>&nbsp;&nbsp;<span style="font-size: 75%; color: darkgray">$translator.datetext$</span></p>
+      $endfor$
+    </div>
+  </div>
+  $endif$
+  
+</div>
+  
+$if(abstract)$
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    $abstract$
+  </div>
+</div>
+$endif$
+</header>

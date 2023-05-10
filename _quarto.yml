@@ -42,6 +42,9 @@ format:
     toc-location: body
     code-overflow: wrap
     number-sections: true
+    abstract-title: Summary
+    template-partials:
+      - title-block.html
 
 execute:
   freeze: auto
