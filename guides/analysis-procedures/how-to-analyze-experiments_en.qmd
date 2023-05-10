@@ -49,6 +49,12 @@ You should also inspect the variable that indicates treatment receipt. In a fiel
 
 It's also useful to inspect the outcome and covariate variables that you plan on using in your analysis. This might include renaming them for easier coding and interpretation of your analysis code. If someone looks at your analysis code, it is generally easier for them to understand what a variable called "gender" means, rather than if it is called "question_26_c_1". In addition, making sure that missing data are consistently coded with "NA" rather than a numeric value is important to ensure the integrity of data analysis. Sometimes, survey software may code missing data with 0 or 888; if you do not change these values to "NAs", your data analysis will think that they correspond to numeric values of the variable of interest.
 
+
+```{r}
+
+```
+
+
 # Did treatment assignment go according to plan?
 ==
 
