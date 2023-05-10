@@ -167,6 +167,13 @@ E[R_i(1)-R_i(0)] &= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 
 If we find no difference in reporting across treatment groups, this test provides no evidence that $\pi_T \neq \pi_U$. However, to further justify that the complete observations in the data are those of "always reporters," we further must know that $\pi_T = \pi_U = 0$. We cannot test this by examining the relationship between reporting and treatment assignment. As such, we generally complement this test with a justification of why reporting should not be endogenous to treatment assignment: for example by assessing covariate balance between treated and control units who are not missing, or by assessing covariate balance between units with missing vs non-missing outcomes. If reporting is not endogenous, then in principle the assumption that $\pi_T = \pi_U = 0$ holds. As such, if we find no evidence of differential levels of reporting and see no way that reporting should be endogenous to treatment, we can justify that the $E[Y_i(1)|R_i(1) = 1] - E[Y_i(0)|R_i(0) = 1]$ estimates the LATE among always reporters.
 
+Practically, one can test for differential attrition using randomization inference. For this demonstration, we use data from @eisenbarth2021can ([replication data](https://osf.io/td2p3/)). For the purposes of this exercise, we focus on the outcome of getting a penalty...
+
+TODO: Need to reshape household survey from long to wide, assess attrition on the gotpenalty variable. Check to see if there are new households in baseline in the papers. Next, write a model with some covariates (can find in the Do file). Interact covariates with the treatment, get f-stat. Run RI to find a p-value.
+
+```{r, message=FALSE, warning=F}
+
+```
 
 
 7. What is imputation?
@@ -259,6 +266,22 @@ coef(lower)[2]
 ```
 
 Our interval estimate of the ATE using Manski bounds is thus [`r round(coef(lower)[2], 2)`, `r round(coef(upper)[2], 2)`].
+
+An alternative approach to getting Manski bounds is to use the attrition package:
+
+```{r, warning=F, message=F}
+library(attrition)
+R <- abs(1 - missing)
+boundData <- as.data.frame(cbind(Yobs, Z, R))
+estimator_ev(Y = Yobs, Z = Z, R = R, minY = min(Yobs, na.rm = T), maxY = max(Yobs, na.rm = T), data = boundData)[c(3,4)]
+```
+
+As Manski bounds provide a highly conservative estimate of the ATE, one might want to use trimming bounds (also known as Lee bounds), which give bounds on the ATE for always reporters. Trimming bounds add the assumption of monotonic attrition $(r_i(1) \geq r_i(0) \text{ or } r_i(1) \leq r_i(0))$, getting rid of if treated reporters or if untreated reporters. Using the attrition package, we can get Lee bounds using the estimator_trim function:
+
+```{r, warning=F, message=F}
+estimator_trim(Y = Yobs, Z = Z, R = R, data = boundData)[c(2,1)]
+```
+
 
 10. Multiple imputation for missing outcomes allows for point estimation of ATEs, but relies on stronger assumptions than bounding.
 ==
