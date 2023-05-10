@@ -1,16 +1,14 @@
 ---
 title: "10 Types of Treatment Effect You Should Know About"
-author: 
+originalauthor: 
   - name: "Paul Testa"
-    url: https://paultesta.org/
+    url: https://paultesta.org
 image: effect-types.png
 bibliography: effect-types.bib
+sidebar: effect-types
+abstract: |
+  This guide^[For a more formal discussion of independence and the assumptions necessary to estimate causal effects, see @holland_1986 and @angrist_pischke_2008.] describes ten distinct types of causal effects that researchers may want to estimate. Simple randomization allows one to produce estimates of the average of the unit level causal effects in a sample (see [10 Things to Know About Causal Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html)). This average causal effect or average treatment effect (ATE) is a powerful concept because it is one solution to the problem of not observing all relevant counterfactuals. Yet, it is not the only productive engagement with this problem. In fact, there are many different types of quantities of causal interest. The goal of this guide is to help you choose estimands (a parameter of interest) and estimators (procedures for calculating estimates of those parameters) that are appropriate and meaningful for your data.
 ---
-
-This guide[^1] describes ten distinct types of causal effects that researchers may want to estimate. As discussed in our guide [10 Things to Know About Causal Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html), simple randomization allows one to produce estimates of the average of the unit level causal effects in a sample. This average causal effect or average treatment effect (ATE) is a powerful concept because it is one solution to the problem of not observing all relevant counterfactuals. Yet, it is not the only productive engagement with this problem. In fact, there are many different types of quantities of causal interest. The goal of this guide is to help you choose estimands (a parameter of interest) and estimators (procedures for calculating estimates of those parameters) that are appropriate and meaningful for your data.
-
-
-[^1]:  For a more formal discussion of independence and the assumptions necessary to estimate causal effects, see @holland_1986 and @angrist_pischke_2008.
 
 # Average Treatment Effects 
 

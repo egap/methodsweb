@@ -4,6 +4,7 @@ author:
   - name: "Paul Testa"
     url: https://paultesta.org/
 image: effect-types.png
+sidebar: effect-types
 bibliography: effect-types.bib
 abstract: | 
   Voir ce guide^[Voir Holland (1986), Angrist et Pischke, Angrist, Joshua et Jörn-Steffen Pischke (2008). Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton University Press.] pour une discussion plus formelle sur l'indépendance et les hypothèses nécessaires pour estimer les effets causaux.

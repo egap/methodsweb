@@ -5,6 +5,7 @@ author:
     url: https://jakebowers.org
 bibliography: hypothesis-testing.bib
 image: hypothesis-testing.png
+sidebar: hypothesis-testing
 ---
 
 \newcommand{\bX}{\mathbf{X}}

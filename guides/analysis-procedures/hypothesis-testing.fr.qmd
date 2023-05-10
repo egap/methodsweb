@@ -5,6 +5,7 @@ author:
     url: https://jakebowers.org
 bibliography: hypothesis-testing.bib
 image: hypothesis-testing.png
+sidebar: hypothesis-testing
 ---
 
 <!-- title: "10 choses à savoir sur les tests d'hypothèses" -->

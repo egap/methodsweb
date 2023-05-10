@@ -4,32 +4,32 @@ toc-location: right
 number-sections: false
 listing: 
   - id: analysis-procedures
-    contents: "guides/analysis-procedures/*_en.qmd"
+    contents: "guides/analysis-procedures/*en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
   - id: assessing-designs
-    contents: "guides/assessing-designs/*_en.qmd"
+    contents: "guides/assessing-designs/*en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
   - id: causal-inference
-    contents: "guides/causal-inference/*_en.qmd"
+    contents: "guides/causal-inference/*en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
   - id: data-strategies
-    contents: "guides/data-strategies/*_en.qmd"
+    contents: "guides/data-strategies/*en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
   - id: implementation
-    contents: "guides/implementation/*_en.qmd"
+    contents: "guides/implementation/*en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
   - id: interpretation
-    contents: "guides/interpretation/*_en.qmd"
+    contents: "guides/interpretation/*en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
