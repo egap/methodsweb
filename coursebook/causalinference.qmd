@@ -1,6 +1,6 @@
 ---
 sidebar: coursebook
-toc: false
+toc-depth: -1
 bibliography: coursebook.bib
 ---
 

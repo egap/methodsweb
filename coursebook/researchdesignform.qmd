@@ -1,7 +1,7 @@
 ---
 sidebar: coursebook
-toc: false
 bibliography: coursebook.bib
+toc-depth: -1
 ---
 
 # Research Design Process {.unlisted}
