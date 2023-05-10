@@ -14,4 +14,4 @@ dat <- dat %>%
   subset(treat_assign == "C" | treat_assign == "TG")
 
 ## Export the data set to a csv file
-write.csv(dat, file = "~/Downloads/EGAP_hackathon/Young_2019.csv")
+write.csv(dat, file = "~/Documents/GitHub/methodsweb/guides/Young_2019.csv")
