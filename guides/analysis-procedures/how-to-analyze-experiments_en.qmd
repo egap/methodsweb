@@ -240,21 +240,80 @@ names <-
 # we regress the treatment indicator on the covariates above
 # using lm_robust we get robust standard errors 
 
-t1bal <- 
-    summary(lm(as.formula(paste("i_t1 ~", paste(c(names(names)), collapse = "+"))),
-       data = t1_experiment_df, subset = i_attrition==0))
+
+# first, RI
+
+# declare randomization 
+library(randomizr)
+library(ri2)
+
+# rename Z as treatment variable
+t1_experiment_df %<>% mutate(
+  Z = i_t1
+)
+
+
+N <- nrow(t1_experiment_df)
+
+simple_dec <- declare_ra(N = N, simple = TRUE)
+
+sims <- 10
+
+set.seed(343)
+
+balance_fun <- function(data) {
+  summary(lm_robust(Z ~ b_owns_village_property + b_has_village_voter_id, data = data))$fstatistic[1]
+}
+
+ri_out <-
+  conduct_ri(
+    test_function = balance_fun,
+    declaration = simple_dec,
+    data = t1_experiment_df,
+    sims = sims
+  )
+
+summary(ri_out)
+
+plot(ri_out)
+
+
+
+##### all below needs to be revisited after Don Green response
+
+## do we get the same thing
+
+# first way
+
+fstat1_not_robust_SE <- summary(lm(Z ~ b_owns_village_property + b_has_village_voter_id, data = t1_experiment_df))$f[1]
+
+# second way
+fit <- lm(Z ~ b_owns_village_property + b_has_village_voter_id, singular.ok = FALSE, data = t1_experiment_df)
+Rbeta.hat <- coef(fit)[-1]
+RVR <- vcovHC(fit, type <- 'HC0')[-1,-1]
+W_obs_SOP_green <- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))
+
+# third way
+fstat_robust_SE <- summary(lm_robust(Z ~ b_owns_village_property + b_has_village_voter_id, data = t1_experiment_df))$fstatistic[1]
+
+
+fstat1_not_robust_SE
+W_obs_SOP_green
+fstat_robust_SE
+
 
 # to ask, whether or not to have robust lm in order to get the F stat
 # look at donald green SOP
 # versus what is shown in the ri guide
 
-# TO ASK should we subset on attrition here?
 
-# we can display 
+t1bal <- 
+    lm(as.formula(paste("i_t1 ~", paste(c(names(names)), collapse = "+"))),
+       data = t1_experiment_df)
 
-
-
-
+Rbeta.hat <- coef(t1bal)[-1]
+RVR <- vcovHC(t1bal, type <- 'HC0')[-1,-1]
+W_obs <- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))
 
 ```
 
