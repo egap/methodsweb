@@ -1,5 +1,7 @@
 ---
 title: "Methods guides"
+toc-location: right
+number-sections: false
 listing: 
   - id: analysis-procedures
     contents: "guides/analysis-procedures/*_en.qmd"

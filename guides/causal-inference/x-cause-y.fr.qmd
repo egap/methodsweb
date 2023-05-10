@@ -2,7 +2,7 @@
 title: "10 stratégies pour déterminer si X cause Y"
 author: 
   - name: "Macartan Humphreys"
-    url: https://egap.org/member/macartan-humphreys/
+    url: https://macartan.github.io
 image: x-cause-y.png
 abstract: "Experiments are a way of figuring out if something causes something else. The basic idea is: try it and find out. The tricky thing is figuring out how to try it out in a way that allows for confidence in beliefs about causal effects. A strategy that holds pride of place in the researcher’s toolkit is the randomized intervention. This is the strategy that is at the heart of most of the experimental research done by EGAP members. But there are other strategies that are sometimes more appropriate. Here we describe the ten most prominent strategies for figuring out causal effects."
 bibliography: x-cause-y.bib
@@ -138,3 +138,4 @@ L'avantage est que la causalité peut être établie même en présence de facte
 La difficulté cependant est que la stratégie nécessite une confiance forte en vos croyances sur la structure des relations causales.
 Pour en savoir plus, voir [Pearl (2000)](https://books.google.com/books?id=wnGU_TsW3BQC&hl=en).
 
+# References {.unnumbered .unlisted}

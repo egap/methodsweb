@@ -1,5 +1,6 @@
 ---
 toc: false
+number-sections: false
 listing: 
   - id: guides
     contents: 
