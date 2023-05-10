@@ -56,9 +56,9 @@ If you choose to make edits to values in your data, you should make sure you're 
 
 After inspecting and cleaning treatment assignment, treatment receipt, covariate, and outcome data, it's crucial to check for balance on pre-treatment covariates between treatment arms. "Balance tests" are a way of providing evidence that your randomization worked as expected. They seek to probe an observable implication of random assignment of treatment: that treatment and control groups look the same, on average, in terms of pre-treatment characteristics.^[See the methods guide on balance tests for more on this. However, the key (unobservable) assumption that we seek to test is whether or not treatment assignment is independent of potential outcomes.] Balance tests, which can be implemented in a number of different ways, ask whether imbalances in pre-treatment covariates across different experimental conditions are larger than what would be expected by chance.
 
-The balance test you run depends on your experimental design. In a set-up where you have a binary treatment and all units have the same probability of assignment to treatment, you can run a regression of the treatment assignment variable on your covariates, and run an F-test that tests the null hypothesis that all covariates are jointly 0. The p-value of the F-statistic can be found via randomization inference. If you conducted a block randomization with treatment probabilities that vary by block, you would have to adjust for this in the regression specification. 
+The balance test you run depends on your experimental design. In a set-up where you have a binary treatment and all units have the same probability of assignment to treatment, you can run a regression of the treatment assignment variable on your covariates, and run an F-test that tests the null hypothesis that all covariates are jointly 0. The p-value of the F-statistic can be found via randomization inference. If, for example, you conducted a block randomization with treatment probabilities that vary by block, you should adjust for this in the regression specification. 
 
-We are interested in the F-test because we care about overall balance of covariates. However, you are likely to come across covariate-by-covariate analyses that conduct t-tests comparing means among control units and treated units. Though this is standard practice, it is undesirable for several reasons. First, it is not unlikely that a covariate will come up as significantly different among treated and control units: due to the often numerous number of tests conducted, statistical significance can arise by chance. Here, it is important to emphasize that if you detect imbalance on a covariate that is significantly different than what would arise by chance, it's not always cause for panic. Second, this approach treats each covariate as equally important and informative about potential outcomes, rather than taking into account the prognosticness of the covariate. One may consider running equivalence tests, which more accurately test the implications of randomization.^[cite Erin's paper] 
+We are interested in the F-test because we care about overall balance of covariates. However, you are likely to come across covariate-by-covariate analyses that conduct t-tests comparing means among control units and treated units. Though this is standard practice, it is undesirable for several reasons. First, it is not unlikely that a covariate will come up as significantly different among treated and control units: due to the often numerous number of tests conducted, statistical significance can arise by chance. Here, it is important to emphasize that if you detect imbalance on a covariate that is significantly different than what would arise by chance, it's not always cause for panic. Second, this approach treats each covariate as equally important and informative about potential outcomes, rather than taking into account the prognosticness of the covariate. One may consider running equivalence tests instead of conventional balance tests.^[@hartman_hidalgo_2018 write on the meaning and implications of equivalence tests, vis-a-vis conventional balance tests.] 
 
 
 What you expect to see and what to do if it's okay, good to go
@@ -83,85 +83,10 @@ things to look into:
 ```
 
 
----- 
-
-** NOTE **
-the rest of the file is from before, not updated, just keeping for formatting shortcuts 
-
-
-6. Control for prognostic covariates regardless of whether they show imbalances
-==
-
-Covariates should generally be chosen on the basis of their expected ability to help predict outcomes, regardless of whether they show "imbalances" (i.e., regardless of whether there are any noteworthy differences between the treatment group and control group in average values or other aspects of covariate distributions). There are two reasons for this recommendation:
-
-1. Frequentist statistical inference (standard errors, confidence intervals, p-values, etc.) assumes that the analysis follows a pre-specified strategy. Choosing covariates on the basis of observed imbalances makes it more difficult to obtain inferences that reflect your actual strategy. For example, suppose you choose not to control for gender because the treatment and control groups have similar gender composition, but you _would have_ controlled for gender if there'd been a noticeable imbalance. Typical methods for estimating standard errors will incorrectly assume that you'd never control for gender no matter how much imbalance you saw.
-
-2. Adjusting for a highly prognostic covariate tends to improve precision, as we explained above. To receive due credit for this precision improvement, you should adjust for the covariate even if there's no imbalance. For example, suppose gender is highly correlated with your outcome, but it happens that the treatment group and control group have exactly the same gender composition. In this case, the unadjusted estimate of the ATE will be exactly the same as the adjusted estimate from a regression of the outcome on treatment and gender, but their standard errors will differ. The SE of the unadjusted estimate tends to be larger because it assumes that even if the treatment and control groups had very different gender compositions, you'd still use the unadjusted treatment--control difference in mean outcomes (which would likely be far from the true ATE in that case). If you pre-specify that you'll adjust for gender regardless of how much or how little imbalance you see, you'll tend to get smaller SEs, tighter confidence intervals, and more powerful significance tests.
-
-Assuming that random assignment was implemented correctly, should examination of imbalances play _any_ role in choosing which covariates to adjust for? Here's a sampling of views:
-
-- @mutz_et_al_2017 argue that, unless there is differential attrition, the practice of selecting covariates on the basis of observed imbalances is "not only unnecessary" but "not even helpful ... and may in fact be damaging," because it invalidates confidence intervals, worsens precision (relative to pre-specified adjustment for prognostic covariates), and opens the door to fishing.
-
-- @permutt_1990, using theory and simulations to study specific scenarios, finds that when a balance test is used to decide whether to adjust for a covariate, the significance test for the treatment effect is conservative (i.e., it has a true Type I error probability below its nominal level). He writes, "Greater power can be achieved by always adjusting for a covariate that is highly correlated with the response regardless of its distribution between groups." However, he doesn't completely rule out considering observed imbalances: "Choosing covariates on the basis of the difference between the means in the treatment and control groups is not irrational. After all, some type I errors may be more serious than others. Reporting a significant difference in outcome which can be explained away as the effect of a covariate may be a more embarrassing error than reporting one that happens to go away on replication but without an easy explanation. Similar considerations may apply to type II errors. A positive result that depends on adjustment for a covariate may be seen as less convincing than a positive two-sample test anyway, so that the error of failing to draw such a positive conclusion may be less serious. These justifications, however, come from outside the formal theory of testing hypotheses."
-
-- @altman_2005 writes, "It seems far preferable to choose which variables to adjust for without regard to the actual data set to hand." He recommends controlling for highly prognostic covariates, as well as any that were used in blocking. However, he also discusses a dilemma: "In practice, imbalance may arise when the possible need for adjustment has not been anticipated. What should the researchers do? They might choose to ignore the imbalance; as noted, this would be entirely proper. The difficulty then is one of credibility. Readers of their paper (including reviewers and editors) may question whether the observed finding has been influenced by the unequal distribution of one or more baseline covariates. It is still possible, and arguably advisable, to carry out an adjusted analysis, but now with the explicit acknowledgment that this is an exploratory rather than definitive analysis, and that the unadjusted analysis should be taken as the primary one. Obviously, if the simple and adjusted analyses yield substantially the same result, then there is no difficulty of interpretation. This will usually be the case. However, if the results of the two analyses differ, then there is a real problem. The existence of such a discrepancy must cast some doubt on the veracity of the overall (unadjusted) result. The situation is similar to the difficulties of interpretation that arise with unplanned subgroup comparisons. One suggestion in such circumstances is to try to mimic what would have been done if the problem had been anticipated, namely to adjust not for variables that are observed to be unbalanced, but for all variables that would have been identified in advance as prognostic. An independent source could be used to identify such variables. Alternatively, the trial data could be used to determine which variables are prognostic. This strategy too could be prespecified in the study protocol. Because this analysis would be performed conditionally on the observed imbalance, it does not remove bias and thus cannot be considered fully satisfactory."
-
-- @tukey_1991 notes that observed imbalances may justify adjustment as a robustness check: Although "most statisticians" would accept an analysis of a randomized clinical trial that doesn't adjust for covariates, "Some clinicians, and some statisticians it would seem, would like to be more sceptical, (perhaps as a supplemental analysis) asking for an analysis that takes account of observed imbalances in these recorded covariates. Feeling more secure about the results of such an analysis is indeed appropriate, since the degree of protection against either the consequences of inadequate randomization or the (random) occurrence of an unusual randomization is considerably increased by adjustment. _Greater security, rather than increased precision ... will often be the basic reason for covariance adjustment in a randomized trial._ ... The main purpose of allowing [adjusting] for covariates in a _randomized_ trial is defensive: to make it clear that analysis has met its scientific obligations."
-
-- Some statisticians argue that our inferences should be conditional on a measure of covariate imbalance---in other words, when assessing the bias, variance, and mean squared error of a point estimate or the coverage probability of a confidence interval, instead of considering all possible randomizations, it may be more relevant to consider only those randomizations that would yield a covariate imbalance similar to the one we observe. From this perspective, observed imbalances may be relevant to the choice of estimator.^[See, e.g.: @cox_reed_2000, (pp. 29-32), @holt_smith_1979, and @royall_1976. For an introduction to philosophical disagreements about statistical inference, see @efron_1978.]
-
-- @lin_et_al_2016 write: "Covariates should generally be chosen on the basis of their expected ability to help predict outcomes, regardless of whether they appear well-balanced or imbalanced across treatment arms. But there may be occasions when the covariate list specified in the PAP [pre-analysis plan] omitted a potentially important covariate (due to either an oversight or the need to keep the list short when N is small) with a nontrivial imbalance. Protection against ex post bias (conditional on the observed imbalance) is then a legitimate concern." However, they recommend that if observed imbalances are allowed to influence the choice of covariates, "the balance checks and decisions about adjustment should be finalized before we see unblinded outcome data," "the _direction_ of the observed imbalance (e.g., whether the treatment group or the control group appears more advantaged at baseline) should not be allowed to influence decisions about adjustment," and the originally pre-specified estimator should "always be reported and labeled as such, even if alternative estimates are also reported."^[@lin_et_al_2016. Italics in the original.]
-
-7. When not to do it
-==
-It is a bad idea to adjust for covariates when you think those covariates could have been influenced by your treatment. This is one of the reasons that many covariates are collected from baseline surveys; sometimes covariates that are collected from surveys after intervention could reflect the effects of the treatment rather than underlying characteristics of the subject. Adjusting for covariates that are affected by the treatment---“post-treatment” covariates---can cause bias.
-
-Suppose, for example, that Giné and Mansuri had collected data on how many political rallies a woman attended after receiving the treatment. In estimating the treatment effect on independence of political choice, you may be tempted to include this variable as a covariate in your regression. But including this variable, even if it strongly predicts the outcome, may distort the estimated effect of the treatment.
-
-Let’s create this fake variable, which is correlated (like the outcome measure) with baseline covariates and also with treatment. Here, by construction, the treatment effect on number of political rallies attended is 2. When we included the rallies variable as a covariate, the estimated average treatment effect on independence of candidate choice averaged 0.54 across the 10,000 replications. Recall that the true treatment effect on this outcome is 1. This is severe bias, all because we controlled for a post-treatment covariate!^[The estimated bias is $-$ 0.459 with a margin of error (at the 95% confidence level) of 0.002.] This bias results from the fact that the covariate is correlated with treatment.
-
-```{r, error=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
-# Create post-treatment covariate that's correlated with pre-treatment covariates
-rallies0 = round(.5*owns.id.card + has.formal.schooling + 1.5*TV.access + log(age))
-rallies1 = rallies0 + 2
-rallies.mat = rallies1 * Z.mat + rallies0 * (1-Z.mat)
- 
-# Estimate ATE with new model that includes the post-treatment covariate
-adjust.for.post = function(Y, Z, X) {
-  coef(lm(Y ~ Z + X + owns.id.card + has.formal.schooling + age + TV.access))[2]
-}
-post.adjusted.estimates = rep(NA, Replications)
-for (i in 1:Replications) {
-  post.adjusted.estimates[i]  =  adjust.for.post(Y.mat[,i], Z.mat[,i], rallies.mat[,i])
-}
-# Estimated bias of the new estimator
-mean(post.adjusted.estimates) - true.treatment.effect
-# Margin of error (at 95% confidence level) for the estimated bias
-1.96 * sd(post.adjusted.estimates) / sqrt(Replications)
-```
-
-Just because you should not adjust for post-treatment covariates does not mean you cannot collect covariate data post-treatment, but you must exercise caution. Some measures could be collected post-treatment but are unlikely to be affected by treatment (e.g., age and gender). Be careful about measures that may be subject to evaluation-driven effects, though: for example, treated women may be more acutely aware of the expectation of political participation and may retrospectively report that they were more politically active than they actually were several years prior.
-
-8. Concerns about small-sample bias
-==
-In small samples, regression adjustment may produce a biased estimate of the average treatment effect.^[See @freedman_2008. See also Winston Lin's blog posts ([part I](https://web.archive.org/web/20151024055802/http://blogs.worldbank.org/impactevaluations/node/847) and [part II](https://web.archive.org/web/20151024022122/http://blogs.worldbank.org/impactevaluations/node/849)) discussing his response to Freedman.] Some simulations have suggested that this bias tends to be negligible when the number of randomly assigned units is greater than twenty [@green_aronow_2011]. If you’re working with a small sample, you may want to use an unbiased covariate adjustment method such as post-stratification (splitting the sample into subgroups based on the values of one or more baseline covariates, computing the treatment--control difference in mean outcomes for each subgroup, and taking a weighted average of these subgroup-specific treatment effect estimates, with weights proportional to sample size) [@miratrix_et_al_2013].
-
-9. How to make your covariate adjustment decisions transparent
-==
-In the interests of transparency, if you adjust for covariates, pre-specify your models and report both unadjusted and covariate-adjusted estimates.
-
-The simulations above have demonstrated that results may change slightly or not-so-slightly depending on which covariates you choose to include in your model. We’ve highlighted some rules of thumb here: include only pre-treatment covariates that are predictive of outcomes. Deciding which covariates to include, though, is often a subjective rather than an objective enterprise, so another rule of thumb is to be totally transparent about your covariate decisions. Always include the simplest model---the simple regression of outcome on treatment without controlling for covariates---in your paper or appendix to supplement the findings of your model including covariates.
-
-Another way to minimize your readers’ concern that you went fishing for the particular combination of covariates that gave results favorable to your hypotheses is to pre-specify your models in a pre-analysis plan.^[For more discussion of pre-analysis plans, see, e.g., @olken_2015.] This gives you the opportunity to explain before you see the findings which pre-treatment covariates you expect to be predictive of the outcome. You can even write these regressions out in R using fake data, as done here, so that when your results from the field arrive, all you need to do is run your code on the real data. These efforts are a useful way of binding your own hands as a researcher and improving your credibility.
-
-10. Covariates can help you investigate the integrity of the random assignment
-==
-Sometimes it is unclear whether random assignment actually occurred (or whether it occurred using the procedure that the researcher envisions).  For example, when scholars analyze naturally occurring random assignments (e.g., those conducted by a government agency), it is useful to assess statistically whether the degree of imbalance between the treatment and control groups is within the expected margin of error.  One statistical test is to regress treatment assignment on all of the covariates and calculate the F-statistic.  The significance of this statistic can be assessed by simulating a large number of random assignments and for each one calculating the F-statistic; the resulting distribution can be used to calculate the p-value of the observed F-statistic.  For example, if 10,000 simulations are conducted, and just 30 simulations generate an F-statistic larger than what one actually obtained from the data, the p-value is 0.003, which suggests that the observed level of imbalance is highly unusual. In such cases, one may wish to investigate the randomization procedure more closely.
-
-For further reading, see @athey_imbens_2017, @gerber_green_2012[chapter 4], @hennessy_et_al_2016, @judkins_porter_2016, @raudenbush_1997, and @wager_et_al_2016.
 
 
 # Example code
+==
 
 In this example, we use data from @gaikwad_nellis_2021. They employ a door-to-door field experiment in two Indian cities to increase the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which whether an individual voted in India's 2019 national election.
 
@@ -181,7 +106,10 @@ t1_experiment_df <- readRDS("gaikwad-nellis-2021-data-t1-experiment-df.Rds")
 # with p = 0.5 for all subjects
 
 prop.table(table(t1_experiment_df$i_t1))
+```
 
+
+```{r}
 ### step 2 ###
 # outcome and covariate inspection
 
@@ -229,8 +157,10 @@ summary(t1_experiment_df$e_voted_2019)
     scale_x_discrete(labels = c("Original")) +
     xlab("") +
     ylab("Income (000s INR)")
+```
 
 
+```{r}
 ### step 3 ###
 # dealing with outliers
 
@@ -265,11 +195,65 @@ summary(t1_experiment_df$e_voted_2019)
     scale_x_discrete(labels = c("Original", "Winsorized")) +
     xlab("") +
     ylab("Income (000s INR)")
+  
+```
 
 
+```{r}
 ### step 4 ###
 # checking for imbalance
+
+# Gaikwad and Nellis inspect balance on a number of additional variables,
+# which we include below
+
+# create a vector of variable names
+
+names <-
+      list(
+      # experimental covariates
+      "b_female" = "Female",
+      "b_age" = "Age",
+      "b_muslim" = "Muslim",
+      "b_sc_st" = "SC/ST",
+      "b_primary_edu" = "Primary education",
+      "b_income_000_OUTLIER_FIXED" = "Income (INR 000s)",
+      "b_married" = "Married",
+      "b_length_residence" = "Length of residence in city",
+      "b_owns_home" = "Owns home in city",
   
+    # lagged DVs
+      "b_not_voted_previously" = "Hadn't voted previously",
+      "b_vote_mc_elecs_how_likely" = "How likely to vote in city if registered",
+      "b_political_interest" = "Political interest",
+      "b_political_efficacy" = "Sense of political efficacy",
+      "b_political_trust" = "Political trust index",
+      "b_inter_ethnic_tolerance_meal" = "Shared meal with non-coethnic",
+    
+    # summary variables
+      "b_has_village_voter_id" = "Has hometown voter ID",
+      "b_pol_active_village" = "Returned to vote in hometown",
+      "b_more_at_home_village" = "More at home in hometown",
+      "b_kms_to_home" = "Straight-line distance to home district",
+      "b_still_gets_village_schemes" = "Still receives hometown schemes",
+      "b_owns_village_property" = "Owns hometown property")
+
+# we regress the treatment indicator on the covariates above
+# using lm_robust we get robust standard errors 
+
+t1bal <- 
+    summary(lm(as.formula(paste("i_t1 ~", paste(c(names(names)), collapse = "+"))),
+       data = t1_experiment_df, subset = i_attrition==0))
+
+# to ask, whether or not to have robust lm in order to get the F stat
+# look at donald green SOP
+# versus what is shown in the ri guide
+
+# TO ASK should we subset on attrition here?
+
+# we can display 
+
+
+
 
 
 ```
