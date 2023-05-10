@@ -17,6 +17,29 @@ First things first, it is important to verify that your treatment was successful
 First, you should trace back to the code or software that was responsible for generating the randomization. If this was done in Qualtrics or on SurveyCTO, this would involve going back to the original software and ensuring that the particular survey module was coded correctly. If you worked with a provider to code up your online survey, you could schedule a meeting with them to walk through verifying the coding of the randomization. If this was done in `R`, there should be at least 2 lines of code: one that set a seed so that the randomization would be reproducible, and another that actually randomizes the treatment assignment. Note that the second line of code depends on the type of randomization you'd conducted (see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html)).
 
 
+```{r}
+
+library(randomizr)
+
+## read in the experimental data 
+
+experiment_data <- read.csv("data_for_analysis.csv")
+
+## in R, an example of where we would locate the code to confirm
+## the (complete) randomization is:
+
+# set seed for reproducibility
+
+set.seed(123) 
+
+# the assignment to treatment using 'complete_ra'
+
+experiment_data$treatment_complete <- complete_ra(N = nrow(experiment_data), 
+                                                  prob = 0.5)
+
+```
+
+
 # Variable inspection: Locating and understanding your data variables
 ==
 
