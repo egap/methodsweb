@@ -22,6 +22,14 @@ isid pscode
 * merge the two data set Asunka et al. 2017 used
 merge 1:1 pscode using "${path}\Asunka et al. 2017\EC_data.dta", nogen
 
+* We use data from the paper "Electoral Fraud or Violence: The Effect of Observers on Party Manipulation Strategies" by Asunka et al. (2017). The replication data and code for this study can be accessed from: Replication Data for: Electoral Fraud or Violence: The Effect of Observers on Party Manipulation Strategies.
+
+* Unique ID
+isid pscode
+
+* merge the two data set Asunka et al. 2017 used
+merge 1:1 pscode using "${path}\Asunka et al. 2017\EC_data.dta", nogen
+
 
 * Simple randomization
 set seed 123 
@@ -41,26 +49,31 @@ simple_ra Treatment, replace num_arms(4)
 **********************************
 * The "complete_ra" function of stata will allow you to perform a complete randomization. The syntax of this command is similar to the one used to perform the simple randomization: "simple_ra".
 
-*To select a sample of 70 individuals from a population of 200 sampled individuals in Stata, you can use the "sample" command. The syntax for this command is as follows:
+*To select a sample of 1000 polling stations from all the 2,310 polling stations, you can use the "sample" command. The syntax for this command is as follows:
 set seed 123
-complete_ra Treatment, m(70) replace
+complete_ra Treatment, m(1000) replace
 
-* To perform a complete randomization in Stata for selecting 50 individuals in the first group, 60 individuals in the second group, and 90 individuals in the third group, you can use the "complete_ra" function. Simply specify the desired group sizes using the "m_each()" option, where the total of "m_each" must equal the population size, which in this case is 200.
+* To perform a complete randomization in Stata for selecting 700 polling stations in the first group, 840 polling stations in the second group, and 770 polling stations in the third group, you can use the "complete_ra" function. Simply specify the desired group sizes using the "m_each()" option, where the total of "m_each" must equal the population size, which in this case is 200.
 set seed 123
-complete_ra Treatment, m_each(50 60 90) replace
+complete_ra Treatment, m_each(700 840 770) replace
 
 **********************************
 * Block randomization
 **********************************
 * The "block_ra" function of stata will allow you to perform a block randomization. The following syntax allows you to perform block randomization by randomly assigning individuals to treatment or control groups within each block. In this case, the blocks are the urban and rural areas.
 set seed 123
-block_ra Treatment, block_var(area_residence) replace
+block_ra Treatment, block_var(stationdensity) replace
 
 * If you intend to have multiple treatment in each Block, you can perform the following syntax:
 set seed 123
-block_ra Treatment, block_var(area_residence) num_arms(4) replace
+block_ra Treatment, block_var(stationdensity) num_arms(4) replace
 
 **********************************
-* chuster randomization
-**********************************
+* Cluster assignment
+*********************************
+
+*Assuming that the constituencies (the variable renamed "const") are the clusters, we will use the "cluster_ra" function to perform a cluster randomization
+
+
+cluster_ra Treatment_clust, cluster_var(sat) num_arms(3) replace
 
