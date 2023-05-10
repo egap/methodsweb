@@ -4,7 +4,7 @@ toc: false
 bibliography: coursebook.bib
 ---
 
-# Hypothesis Testing {.tabset} {.unlisted}
+# Hypothesis Testing  {.unlisted}
 
 
 We cannot directly observe causal effects because of the *fundamental problem of counterfactual causal inference* ([causal inference module](causal-inference.html)).  So how can we learn about these *unobserved causal effects* using what we do observe?  In a randomized experiment, we can assess *guesses* or *hypotheses* about the unobserved causal effects by comparing what we observe in a given experiment to what we would observe if we were able to repeat the experimental manipulation and the guess or hypothesis were true.
