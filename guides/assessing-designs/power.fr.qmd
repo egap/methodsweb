@@ -5,6 +5,7 @@ author:
     url: https://egap.org/member/alexander-coppock/
 image: power.png
 bibliography: power.bib
+sidebar: power
 abstract: | 
   Ce guide[^1] vous aidera à évaluer et à améliorer la puissance statistique de vos expériences.
   Nous nous concentrons sur les grandes idées et fournissons des exemples et des outils que vous pouvez utiliser dans R et Google Spreadsheets.

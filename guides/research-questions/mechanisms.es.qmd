@@ -5,6 +5,7 @@ author:
     url: https://lindsayrdolan.com/
 image: mechanisms.png
 bibliography: mechanisms.bib
+sidebar: mechanisms
 abstract: | 
   A los científicos sociales nos encantan las preguntas causales. Tan pronto nos enteramos de que X causa Y, queremos entender *por qué* X causa Y. Esta guía explora el papel de los "mecanismos" en el análisis causal, y además le ayudará a entender qué tipo de conclusiones puede sacar sobre estos.
 ---

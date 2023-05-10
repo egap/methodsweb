@@ -8,6 +8,7 @@ abstract: |
   Dès que nous apprenons que X cause Y, nous voulons mieux comprendre *pourquoi* X cause Y.
   Ce guide explore le rôle des 'mécanismes' dans l'analyse causale et vous aidera à comprendre les types de conclusions que vous pouvez en tirer.
 image: mechanisms.png
+sidebar: mechanisms
 bibliography: mechanisms.bib
 ---
 

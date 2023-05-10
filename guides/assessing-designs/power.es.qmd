@@ -5,6 +5,7 @@ author:
     url: https://egap.org/member/alexander-coppock/
 image: power.png
 bibliography: power.bib
+sidebar: power
 abstract: | 
   Esta guía[^1] es un herramienta que le servirá para evaluar y mejorar el poder de sus experimentos. Nos enfocaremos  en ideas generales y presentaremos ejemplos y herramientas que puede utilizar en R y Google Spreadsheets.
 ---

@@ -5,6 +5,7 @@ author:
     url: https://egap.org/member/alexander-coppock/
 image: power.png
 bibliography: power.bib
+sidebar: power
 abstract: | 
   This guide will help you assess and improve the power of your experiments. We focus on the big ideas and provide examples and tools that you can use in R and Google Spreadsheets.
 ---
