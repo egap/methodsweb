@@ -73,7 +73,20 @@ block_ra Treatment, block_var(stationdensity) num_arms(4) replace
 *********************************
 
 *Assuming that the constituencies (the variable renamed "const") are the clusters, we will use the "cluster_ra" function to perform a cluster randomization
+set seed 123
+cluster_ra Treatment_clust, cluster_var(const) 
+
+tab Treatment_clust sat
+
+**********************************
+* Block and Cluster assignment
+*********************************
+
+* To perform block randomization by environment of residence (block) and constituency (cluster), you can use the following syntax. This will ensure that clusters are assigned to either the treatment or control group within each block (urban or rural), based on their residence environment.
+
+set seed 123
+block_and_cluster_ra Treatment_clust_block , block_var(stationdensity) cluster_var(const) replace
 
 
-cluster_ra Treatment_clust, cluster_var(sat) num_arms(3) replace
+
 
