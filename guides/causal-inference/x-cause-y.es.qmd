@@ -4,6 +4,7 @@ author:
   - name: "Macartan Humphreys"
     url: https://macartan.github.io
 image: x-cause-y.png
+sidebar: xcausey
 abstract: |
   Les expériences sont un moyen de déterminer si quelque chose cause quelque chose d'autre.
   L'idée de base, c'est d'essayer pour savoir. Ce qui est délicat, c'est d'essayer d'une manière qui permette d'avoir assez confiance pour croire les effets causaux.
