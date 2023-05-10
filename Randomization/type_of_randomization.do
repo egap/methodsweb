@@ -8,11 +8,15 @@ version 16
 
 *Set path
 
-clear all
-
-
-global path "C:\Users\Horace Gninafon\Documents\GitHub\methodsweb\Types of Randomization"
+global path "C:\Users\Horace Gninafon\Videos\10-types-randomization"
 use "${path}\Asunka et al. 2017\AsunkaEtAl_replication.dta", clear
+
+* Unique ID
+isid pscode
+
+* merge the two data set Asunka et al. 2017 used
+merge 1:1 pscode using "${path}\Asunka et al. 2017\EC_data.dta", nogen
+
 
 * We use data from the paper "Electoral Fraud or Violence: The Effect of Observers on Party Manipulation Strategies" by Asunka et al. (2017). The replication data and code for this study can be accessed from: Replication Data for: Electoral Fraud or Violence: The Effect of Observers on Party Manipulation Strategies.
 
@@ -61,8 +65,11 @@ set seed 123
 block_ra Treatment, block_var(stationdensity) num_arms(4) replace
 
 **********************************
-* Block and cluster assignment
-**********************************
+* Cluster assignment
+*********************************
+
+*Assuming that the constituencies (the variable renamed "const") are the clusters, we will use the "cluster_ra" function to perform a cluster randomization
+
 
 cluster_ra Treatment_clust, cluster_var(sat) num_arms(3) replace
 
