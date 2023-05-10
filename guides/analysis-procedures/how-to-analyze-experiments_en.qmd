@@ -64,6 +64,11 @@ What to do if there's evidence of imbalance
 # Checking for differential attrition
 ==
 
+Were you unable to measure outcomes for all of your experimental subjects? Sometimes, subjects leave the study or "attrit", and we're unable to measure their outcome. In general, missingness of the outcome variable(s) can induce bias in our estimates of causal effects. Read more on attrition, what can lead to it, its consequences and how to address it in [10 Things to Know About Missing Data
+](https://methods.egap.org/guides/data-strategies/missing-data_en.html). We'd like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it's not, we might worry about bias. Further, the more missingness there is, the more the risk of bias. 
+
+There main way that researchers probe whether outcome data may be plausibly missing at random is to to examine whether there exists an observable relationship between treatment assignment and missingness of outcomes. The way to do this is to code up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examine whether treatment assignment impacts the propensity for outcome data to be missing. To complement this analysis, researchers generally assess covariate balance between treated and control units who are not missing, or by assess covariate balance between units with missing vs non-missing outcomes.
+
 
 
 # Example code
@@ -72,8 +77,9 @@ What to do if there's evidence of imbalance
 In this example, we use data from @gaikwad_nellis_2021. They employ a door-to-door field experiment in two Indian cities to increase the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which whether an individual voted in India's 2019 national election.
 
 ```{r}
+library(kableExtra)
 # load in the experimental data from Gaikwad and Nellis (2021)
-# this coad draws heavily on their reproduction code, found in their
+# this code draws heavily on their reproduction code, found in their
 # supplementary materials here: 
 # https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/G1JCKK
 
@@ -86,10 +92,11 @@ t1_experiment_df <- readRDS("gaikwad-nellis-2021-data-t1-experiment-df.Rds")
 # around 50 percent assigned to each condition, consistent with simple randomization
 # with p = 0.5 for all subjects
 
-t1_experiment_df %>%                              
+t1_experiment_df %>%                             
   group_by(i_t1) %>%
   summarise(n = n()) %>%
-  mutate(freq = n / sum(n))
+  mutate(freq = n / sum(n)) %>%
+  kable()
 
 ```
 
@@ -323,6 +330,55 @@ W_obs <- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))
 ```
 
 
+```{r}
+### step 4 ###
+# checking for attrition
+
+library(stargazer)
+
+# as we showed above, the outcome variable (that we are working with in this example)
+# has some missing entries, as Gaikwad and Nellis (2021) point out and address in 
+# their paper
+
+# the code below shows that there are 186 missing observations, reflecting a 
+# rate of completeness of around 92 % 
+
+t1_experiment_df %>%
+  dplyr::select(e_voted_2019) %>%
+  skim() 
+
+# is attrition different across treatment conditions?
+# we can inspect this descriptively, comparing a variable
+# for missingness across treatment conditions
+# at a quick glance, rates look similar across treatment and control
+
+t1_experiment_df %>%                              
+  group_by(i_t1, i_attrition) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+
+# compare attrition across T1 treatment arms using OLS regression
+# it doesn't appear that there is a big threat attrition being related to treatment assignment
+
+t1attr1 <- lm(i_attrition ~ i_t1, data = t1_experiment_df)
+
+# print the table, code from reproduction materials of Gaikwad and Nellis (2021)
+  stargazer(t1attr1, 
+            se = starprep(t1attr1), 
+            type='latex',
+            title = "Comparison of attrition rates across T1 treatment arms using OLS regression. The analysis includes all subjects randomized to T1 treatment or control. Robust standard errors in parentheses.",
+            dep.var.labels = "Attrition Indicator",
+            single.row = TRUE,
+            omit.stat = c("ser", "f", "rsq"),
+            omit = c("Constant"),
+            covariate.labels = "Assigned to T1 treatment",
+            font.size = "small",
+            header = FALSE,
+            float.env = "table",
+            notes.label = "")
+  
+
+```
 
 
 # References
