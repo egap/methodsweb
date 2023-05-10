@@ -63,4 +63,4 @@ table(data$s2, data$s1)
 
 #Implementing restricted randomization
 
-# Maybe a while loop using RI?
+# Maybe a while loop using RI? Randomizr help file might have an example.
