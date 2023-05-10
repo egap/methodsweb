@@ -4,7 +4,7 @@ author:
   - name: "name"
     url: https://methods.egap.org/guides.html
 image: covariates.png
-bibliography: covariates.bib
+bibliography: how-to-analyze-experiments.bib
 ---
 
 This guide will provide practical tools on what to do with your data once you've run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers to project managers. If you're not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are analyzing the data, this guide provides instructions and `R` code on how to do so.
@@ -17,27 +17,6 @@ First things first, it is important to verify that your treatment was successful
 First, you should trace back to the code or software that was responsible for generating the randomization. If this was done in Qualtrics or on SurveyCTO, this would involve going back to the original software and ensuring that the particular survey module was coded correctly. If you worked with a provider to code up your online survey, you could schedule a meeting with them to walk through verifying the coding of the randomization. If this was done in `R`, there should be at least 2 lines of code: one that set a seed so that the randomization would be reproducible, and another that actually randomizes the treatment assignment. Note that the second line of code depends on the type of randomization you'd conducted (see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html)).
 
 
-```{r}
-
-library(randomizr)
-
-## read in the experimental data 
-
-experiment_data <- read.csv("data_for_analysis.csv")
-
-## in R, an example of where we would locate the code to confirm
-## the (complete) randomization is:
-
-# set seed for reproducibility
-
-set.seed(123) 
-
-# the assignment to treatment using 'complete_ra'
-
-experiment_data$treatment_complete <- complete_ra(N = nrow(experiment_data), 
-                                                  prob = 0.5)
-
-```
 
 
 # Variable inspection: Locating and understanding your data variables
@@ -45,15 +24,9 @@ experiment_data$treatment_complete <- complete_ra(N = nrow(experiment_data),
 
 In addition to verifying that the treatment was correctly assigned in the software that you used, it's important to verify what the treatment variable in your data set - produced by the code or software - actually means. This means checking that values of the treatment assignment variable correspond to the values assigned in the randomization process in `R` or in the software used to assign treatment. Does a 1 produced by the software correspond to treatment, and 0 to control? For a three-arm experiment, softwares like SurveyCTO may produces values 1, 2, and 3 for the treatment assignment variable. It's crucial that analysts verify that what they think they're analyzing corresponds to the actual treatment assigned.
 
-You should also inspect the variable that indicates treatment receipt. In a field experiment, if a subject was assigned to a skills training (treatment assignment = 1), did they actually attend and receive the intended information on skills (treatment receipt = 1)? In a survey experiment, did a subject assigned to receive watch a video to provoke positive emotions (treatment assignment = 1) actually report watching the video and internalizing its content (treatment receipt = 1)? A variable that indicates whether a subject actually _received_ the treatment it was assigned to is key for thinking about things like complier average causal effects (see [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html)). Understanding what the treatment receipt variable means, and what each of its values corresponds to (does 1 correspond to treatment receipt, and 0 to lack of receipt?), is crucial.
+If you are in a context where non-compliance with treatment is possible, you should also inspect the variable that indicates treatment receipt. In a field experiment, if a subject was assigned to a skills training (treatment assignment = 1), did they actually attend and receive the intended information on skills (treatment receipt = 1)? In a survey experiment, did a subject assigned to receive watch a video to provoke positive emotions (treatment assignment = 1) actually report watching the video and internalizing its content (treatment receipt = 1)? A variable that indicates whether a subject actually _received_ the treatment it was assigned to is key for thinking about things like complier average causal effects (see [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html)). Understanding what the treatment receipt variable means, and what each of its values corresponds to (does 1 correspond to treatment receipt, and 0 to lack of receipt?), is crucial.
 
 It's also useful to inspect the outcome and covariate variables that you plan on using in your analysis. This might include renaming them for easier coding and interpretation of your analysis code. If someone looks at your analysis code, it is generally easier for them to understand what a variable called "gender" means, rather than if it is called "question_26_c_1". In addition, making sure that missing data are consistently coded with "NA" rather than a numeric value is important to ensure the integrity of data analysis. Sometimes, survey software may code missing data with 0 or 888; if you do not change these values to "NAs", your data analysis will think that they correspond to numeric values of the variable of interest.
-
-
-```{r}
-
-```
-
 
 # Did treatment assignment go according to plan?
 ==
@@ -62,24 +35,21 @@ It's generally good practice to inspect whether or not your treatment assignment
 
 For example, if you conducted a complete randomization where 25 experimental subjects were to be assigned to control, and 25 to treatment, did this play out in practice? You can run a simple cross-tabulation of the treatment assignment variable, and observe whether or not this is the case. Alternatively, if you conducted a block randomization by gender and wanted to assign half of women to treatment and the other half to control (and the same for men), you can look at the distribution of treatment assignment values by gender. Though uncommon in field experimental design where complete randomization prevails, some survey experimental software conducts simple randomization. In a survey experiment with two arms, the software will assign each respondent to treatment or control by flipping a Bernoulli coin that has a 50 percent chance of landing on heads (treatment), and a 50 percent chance of landing on tails (control).^[Note: the Bernoulli coin need not be defined by 50-50 chances; the researcher defines ex-ante the probability of receiving treatment versus control, which could be 70-30 instead.] In this case, it's okay if exactly 50 percent of your respondents don't end up in treatment - we'd expect some variability due to the nature of the randomization. However, the percentage of units treated shouldn't be _too far_ from 50 percent - this would induce doubt that the randomization actually worked.
 
-```{r}
-## Write code here for complete, blocked, and simple randomization?
-```
-
 
 # Checking outcome and covariate variables for outliers
 ==
 
-Next, one should inspect the outcome and covariate variables for outlier values and decide what to do about these outliers. Plotting the distribution of the values of each variable (via a histogram), or asking your statistical software to produce a "summary" of the variable, are ways of going about this.
+Next, one should inspect the outcome and covariate variables for outlier values and decide what to do about these outliers. Plotting the distribution of the values of each variable (via a histogram or boxplot, for example), or asking your statistical software to produce a "summary" of the variable, are ways of going about this.
 
 To adjudicate about outliers requires substantive knowledge about what reasonable ranges are for the variables. For an age variable of a survey of only adults, for example, ranges from 18 to 85 might be reasonable. If a subject has a reported age of 2 or 1000, for example, this would raise concerns. Similarly, reported salary values outside of the range reasonable for the context that you work in might raise questions. As a note, it's possible to program your survey software such that values entered must abide by certain rules (for example, percent of the time one spends doing household labor can only be between 0 and 100, inclusive). See guide on [10 Things to Know About Survey Design](https://methods.egap.org/guides/planning/survey-design_en.html) for more on designing surveys smartly.
 
 If you think a value of a variable is incorrectly coded, you can try to figure out what the correct value was. First, it's possible to do detective work to discover what the correct value was. Sometimes an enumerator may accidentally add an extra digit to an otherwise correct value, for example. One can follow-up with enumerators to clarify whether or not they made a mistake. Alternatively, one can go back to the source to verify the correct value of the variable for a certain observation. Imagine that an outcome variable is the result of an election, which was coded manually from archival resources or online images. In this case, it is relatively straightforward to return to the original newspaper source and/or image to verify the result of the election for the given observation. 
 
-However, much of the time it's not possible to retrospectively find the correct value of a variable for a given unit. Further, it may not always be clear that the value in question is in fact an incorrect - perhaps there really was a respondent who had an annual salary of 1 million dollars. Many times, best practice is to leave the value alone; editing the value would bias results. In the case that, thanks to contextual knowledge, you are certain that a value has been incorrectly coded and you are unable to locate the correct value, you may consider marking the value as missing. 
+However, much of the time it's not possible to retrospectively find the correct value of a variable for a given unit. Further, it may not always be clear that the value in question is in fact an incorrect - perhaps there really was a respondent who had an annual salary of 1 million dollars. Many times, best practice is to leave the value alone; editing the value would bias results. In the case that, thanks to contextual knowledge, you are certain that a value has been incorrectly coded and you are unable to locate the correct value, you may consider marking the value as missing. Other times, researchers use techniques like winsorizing a variable. This approach transforms data with the goal of limiting the impact of outliers. Concretely, winsorization changes extreme values to less extreme values. Another approach is to trim outlier values, which means to remove them entirely. 
 
 If you choose to make edits to values in your data, you should make sure you're doing 2 things. First, you should be blind to results and the treatment condition of the observation(s) when you edit or inspect data. See [Standard operating procedures for Don Green’s lab at Columbia
 ](https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html#missing-covariate-values) for more helpful insight on this. Second, you should never completely overwrite the raw data as you make edits. Instead, you should keep a code file that documents exactly the changes you make, and producing a cleaned data file (while retaining the raw data file). This is key to the transparency and reproducibility of your results. One way to organize the data and code for your experiment is to have a raw data file, then the code scripts that clean the data, and the intermediate/final (clean) data that you then run the analysis on. _Never overwrite the raw data_.
+
 
 # Checking for balance on pre-treatment covariates
 ==
@@ -189,5 +159,122 @@ Another way to minimize your readers’ concern that you went fishing for the pa
 Sometimes it is unclear whether random assignment actually occurred (or whether it occurred using the procedure that the researcher envisions).  For example, when scholars analyze naturally occurring random assignments (e.g., those conducted by a government agency), it is useful to assess statistically whether the degree of imbalance between the treatment and control groups is within the expected margin of error.  One statistical test is to regress treatment assignment on all of the covariates and calculate the F-statistic.  The significance of this statistic can be assessed by simulating a large number of random assignments and for each one calculating the F-statistic; the resulting distribution can be used to calculate the p-value of the observed F-statistic.  For example, if 10,000 simulations are conducted, and just 30 simulations generate an F-statistic larger than what one actually obtained from the data, the p-value is 0.003, which suggests that the observed level of imbalance is highly unusual. In such cases, one may wish to investigate the randomization procedure more closely.
 
 For further reading, see @athey_imbens_2017, @gerber_green_2012[chapter 4], @hennessy_et_al_2016, @judkins_porter_2016, @raudenbush_1997, and @wager_et_al_2016.
+
+
+# Example code
+
+In this example, we use data from @gaikwad_nellis_2021. They employ a door-to-door field experiment in two Indian cities to increase the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which whether an individual voted in India's 2019 national election.
+
+```{r}
+# load in the experimental data from Gaikwad and Nellis (2021)
+# this coad draws heavily on their reproduction code, found in their
+# supplementary materials here: 
+# https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/G1JCKK
+
+t1_experiment_df <- readRDS("gaikwad-nellis-2021-data-t1-experiment-df.Rds")
+
+### step 1 ###
+# inspect the treatment variable
+
+# values are 0 and 1
+# around 50 percent assigned to each condition, consistent with simple randomization
+# with p = 0.5 for all subjects
+
+prop.table(table(t1_experiment_df$i_t1))
+
+### step 2 ###
+# outcome and covariate inspection
+
+# outcome variable, turnout in 2019 national election
+# values of 0 or 1, no strange values
+# 186 NAs which we'll investigate more later
+summary(t1_experiment_df$e_voted_2019)
+
+# covariates
+# they use 10 of them in their main specification:
+# 1) lagged outcome (voted previously), 2) whether female,
+# 3) age, 4) whether muslim, 5) whether SC/ST, 6) whether has primary education,
+# 7) income, 8) whether married, 9) length of residence, 10) whether owns a home
+# here, we investigate 3 of them: age, female, and income
+
+# age
+# range 18-88, no NAs
+  summary(t1_experiment_df$b_age)
+
+# female
+# range 0-1, no NAs 
+  summary(t1_experiment_df$b_female)
+
+# income
+# authors are interested in income as 000s of rupees, so we transform the variable
+# range 1-150, no NAs
+# there seems to be some extreme outliers
+  t1_experiment_df %<>% mutate(
+    b_income_000 = b_income/1000)
+  
+  summary(t1_experiment_df$b_income_000)
+
+  t1_experiment_df %>% 
+    select(b_income_000) %>% 
+    pivot_longer(
+      cols = c("b_income_000"),
+      values_to = "count") %>% 
+    ggplot(aes(x = factor(name), y = count, fill = factor(name))) +
+    geom_boxplot() +
+    labs(xlab = "") +
+    scale_fill_grey() + 
+    scale_color_grey() +
+    theme_bw() +  
+    theme(legend.position="none") + 
+    scale_x_discrete(labels = c("Original")) +
+    xlab("") +
+    ylab("Income (000s INR)")
+
+
+### step 3 ###
+# dealing with outliers
+
+# income
+# as we mentioned before, and as Gaikwad and Nellis (2021) mention in their paper
+# there are some outliers in the income variable that we want to address
+# they choose to winsorize it 
+
+# winsorize income variable
+# using the "squish" function via the "scales" package
+# Gaikwad and Nellis winsorize by setting all values higher than the 
+# 99th percentile at the 99th percentile
+  t1_experiment_df %<>%
+    mutate(b_income_000_winsorized = squish(b_income_000, 
+                                                quantile(b_income_000, 
+                                                         c(0, .99))))
+
+# inspect comparison of distributions of original vs. winsorized variable
+
+  t1_experiment_df %>% 
+    select(b_income_000, b_income_000_winsorized) %>% 
+    pivot_longer(
+      cols = c("b_income_000", "b_income_000_winsorized"),
+      values_to = "count") %>% 
+    ggplot(aes(x = factor(name), y = count, fill = factor(name)))+
+    geom_boxplot() +
+    labs(xlab = "") +
+    scale_fill_grey() + 
+    scale_color_grey() +
+    theme_bw() +  
+    theme(legend.position="none") + 
+    scale_x_discrete(labels = c("Original", "Winsorized")) +
+    xlab("") +
+    ylab("Income (000s INR)")
+
+
+### step 4 ###
+# checking for imbalance
+  
+
+
+```
+
+
+
 
 # References
