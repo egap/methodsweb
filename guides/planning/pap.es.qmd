@@ -1,8 +1,12 @@
 ---
 title: ""
-author: 
-  - name: ""
+originalauthor:
+  - name: "Nuole (Lula) Chen"
+    url: https://lulachen.github.io/
+  - name: "Christopher Grady"
+    url: https://publish.illinois.edu/cdgrady2/
 bibliography: pap.bib
+sidebar: pap
 ---
 
 <style>

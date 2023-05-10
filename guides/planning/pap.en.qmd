@@ -1,12 +1,13 @@
 ---
 title: "10 Things to Know About Pre-Analysis Plans"
-author:
+originalauthor:
   - name: "Nuole (Lula) Chen"
     url: https://lulachen.github.io/
   - name: "Christopher Grady"
     url: https://publish.illinois.edu/cdgrady2/
 bibliography: pap.bib
 image: pap.png
+sidebar: pap
 abstract: | 
   This guide introduces the idea of a pre-analysis plan (PAP), offers a model and guiding questions for writing pre-analysis plans for your studies, and explains the uses of a pre-analysis plan. Links to PAP registries with example plans are provided at the end of this document.
 ---
