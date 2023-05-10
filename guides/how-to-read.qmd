@@ -1,0 +1,26 @@
+---
+title: "How to Read the Methods Guides"
+image: effect-types.png
+---
+
+# Who are these for?
+
+- academic researchers
+- measurement and evaluation practitioners
+- partner organizations
+- policymakers
+
+# How each guide is organized
+
+- first two sections are at a general level
+- what?
+- why?
+- details
+- how? [code]
+
+# Getting set up to use the code
+
+```{r, eval = FALSE}
+install.packages(c("tidyverse", "estimatr", "DeclareDesign"))
+```
+
