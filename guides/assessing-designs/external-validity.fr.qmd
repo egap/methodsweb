@@ -5,6 +5,7 @@ author:
     url: https://renardsexton.com/
 image: external-validity.png
 bibliography: external-validity.bib
+sidebar: external-validity
 abstract: | 
   Après des mois ou des années de développement et de mise en œuvre, naviguant entre les écueils pratiques, théoriques et inférentiels de la recherche expérimentale en sciences sociales, votre expérience est enfin terminée.
   En comparant les groupes de traitement et de contrôle, vous trouvez un résultat substantiellement et statistiquement significatif pour un résultat d'intérêt théorique.

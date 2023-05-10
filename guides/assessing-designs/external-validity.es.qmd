@@ -5,6 +5,7 @@ author:
     url: https://renardsexton.com/
 image: external-validity.png
 bibliography: external-validity.bib
+sidebar: external-validity
 abstract: |
   Luego de años de desarrollo y ejecución, después de sortear obstáculos prácticos, teóricos y de inferencia de la investigación experimental en las ciencias sociales, su experimento ha finalizado. Al comparar los grupos de tratamiento y de control, encuentra un resultado sustancial y estadísticamente significativo en una variable de resultado de interés teórico. Antes de que pueda abrir la champaña para celebrar, un amable colega le pregunta: "Pero ¿qué nos dice esto sobre el mundo?".
 ---

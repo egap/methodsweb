@@ -5,24 +5,20 @@ author:
     url: https://renardsexton.com/
 image: external-validity.png
 bibliography: external-validity.bib
+sidebar: external-validity
 abstract: | 
   After months or years under development and implementation, navigating the practical, theoretical and inferential pitfalls of experimental social science research, your experiment has finally been completed. Comparing the treatment and control groups, you find a substantively and statistically significant result on an outcome of theoretical interest. Before you can pop the champagne in celebration of an intervention well evaluated, a friendly colleague asks: “But what does this tell us about the world?”
 ---
 
 # What is external validity? 
 
-External validity is another name for the generalizability of results, asking “whether a causal relationship holds over variation in persons, settings, treatments and outcomes.”[^1] A classic example of an external validity concern is whether traditional economics or psychology lab experiments carried out on college students produce results that are generalizable to the broader public. In the political economy of development, we might consider how a community-driven development program in India might apply (or not) in West Africa, or Central America.
-
-[^1]: See @shadish_et_al_2002.
+External validity is another name for the generalizability of results, asking “whether a causal relationship holds over variation in persons, settings, treatments and outcomes.” [@shadish_et_al_2002]. A classic example of an external validity concern is whether traditional economics or psychology lab experiments carried out on college students produce results that are generalizable to the broader public. In the political economy of development, we might consider how a community-driven development program in India might apply (or not) in West Africa, or Central America.
 
 External validity becomes particularly important when making policy recommendations that come from research. Extrapolating causal effects from one or more studies to a given policy context requires careful consideration of both theory and empirical evidence. This methods guide discusses some key concepts, pitfalls to avoid, and useful references to consider when going from a Local Average Treatment Effect to the larger world. 
 
 # How is this different than internal validity? 
 
-Internal validity refers to the quality of causal inferences being made for a given subject pool. As originally posited by Campbell,[^2] internal validity asks, “did in fact the experimental stimulus make some significant difference in this specific instance.” This concept dovetails with the counterfactual approach to causality that experimentalists typically use, which asks whether outcomes change depending on the presence or absence of a treatment.[^3]
-
-[^2]: See @campbell_1957.
-[^3]: More details can be found in the [causal inference methods guide](https://methods.egap.org/guides/causal-inference/causal-inference_en.html).
+Internal validity refers to the quality of causal inferences being made for a given subject pool. As originally posited by Campbell [@campbell_1957], internal validity asks, “did in fact the experimental stimulus make some significant difference in this specific instance.” This concept dovetails with the counterfactual approach to causality that experimentalists typically use, which asks whether outcomes change depending on the presence or absence of a treatment.^[More details can be found in the [causal inference methods guide](https://methods.egap.org/guides/causal-inference/causal-inference_en.html).]
 
 Before you can extrapolate a causal effect to a distinct population, it is vital that the original Average Treatment Effect be based on a well-identified result. For most experimentalists, random assignment provides the requisite identifying variation, provided no attrition, interference, spillovers, or other threats to inference. For observational studies, additional identifying assumptions are needed, such as conditional independence of the treatment from potential outcomes. 
 
@@ -40,15 +36,9 @@ Extrapolating a result to a distinct context, outcome, population or treatment i
 
 # How can I determine where my results apply? 
 
-There are two primary means of generalizing results, one based on the covariates of units in the study and the other based on actual experimental manipulation of moderating variables. Observing how a treatment effect varies over a non-randomized pre-treatment variable can describe treatment effect heterogeneity, which can be highly suggestive about where or for whom the intervention is likely to be most effective, beyond the original sample. Note, however, that this type of analysis cannot pin down whether the treatment-effect heterogeneity is caused by that pre-treatment variable. The concern—endemic to observational research—is that the non-randomized covariate may be correlated with an unobserved variable, and it is this “unseen” factor that in fact is responsible for the heterogeneous impacts of the treatment.[^4] Ideally, therefore, we want to leverage exogenous variation in the moderator of interest, thereby ruling out the possibility of such confounding. A factorial experimental design in which the researcher assigns the moderator independently of the main treatment of interest can generate especially compelling evidence about a moderator’s role. Though, of course, considerations of cost and statistical power may preclude this approach in practice.
+There are two primary means of generalizing results, one based on the covariates of units in the study and the other based on actual experimental manipulation of moderating variables. Observing how a treatment effect varies over a non-randomized pre-treatment variable can describe treatment effect heterogeneity, which can be highly suggestive about where or for whom the intervention is likely to be most effective, beyond the original sample. Note, however, that this type of analysis cannot pin down whether the treatment-effect heterogeneity is caused by that pre-treatment variable. The concern—endemic to observational research—is that the non-randomized covariate may be correlated with an unobserved variable, and it is this “unseen” factor that in fact is responsible for the heterogeneous impacts of the treatment [@gerber_green_2012]. Ideally, therefore, we want to leverage exogenous variation in the moderator of interest, thereby ruling out the possibility of such confounding. A factorial experimental design in which the researcher assigns the moderator independently of the main treatment of interest can generate especially compelling evidence about a moderator’s role. Though, of course, considerations of cost and statistical power may preclude this approach in practice.
 
-[^4]: See @gerber_green_2012.
-
-Because generalization is primarily a prediction exercise, asking where we can expect a causal relationship similar to one observed locally, extrapolating heterogeneous effects based on similar covariates is often reasonable, provided theory does not indicate sources of confounding.[^5] Nonetheless, the strongest evidence for the generalizability of a result comes from a well-identified interaction between an exogenous moderator and the treatment, then projected across the covariate profile of a target population.  Indeed, with some strong assumptions extrapolation can provide as good or better results than carrying out a second experiment in situ.[^6] The calculation of an extrapolated estimate can often be best performed using machine learning, although linear regression also performs reasonably well.[^7]
-
-[^5]: See @bisbee_et_al_2016.
-[^6]: See @bisbee_et_al_2016
-[^7]: See @kern_et_al_2016
+Because generalization is primarily a prediction exercise, asking where we can expect a causal relationship similar to one observed locally, extrapolating heterogeneous effects based on similar covariates is often reasonable, provided theory does not indicate sources of confounding [@bisbee_et_al_2016]. Nonetheless, the strongest evidence for the generalizability of a result comes from a well-identified interaction between an exogenous moderator and the treatment, then projected across the covariate profile of a target population.  Indeed, with some strong assumptions extrapolation can provide as good or better results than carrying out a second experiment in situ [@bisbee_et_al_2016]. The calculation of an extrapolated estimate can often be best performed using machine learning, although linear regression also performs reasonably well [@kern_et_al_2016].
 
 # Strategic behavior can scuttle your extrapolations 
 
