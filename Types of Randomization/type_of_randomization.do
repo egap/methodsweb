@@ -84,7 +84,7 @@ tab Treatment_clust sat
 
 * To perform block randomization by environment of residence (block) and constituency (cluster), you can use the following syntax. This will ensure that clusters are assigned to either the treatment or control group within each block (urban or rural), based on their residence environment.
 
-set seed 123
+set seed 232
 block_and_cluster_ra Treatment_clust_block , block_var(stationdensity) cluster_var(const) replace
 
 
