@@ -1,10 +1,15 @@
-# Threats to the Internal Validity of Randomized Experiments {.tabset}
+---
+sidebar: coursebook
+bibliography: coursebook.bib
+---
+
+# Threats to the Internal Validity of Randomized Experiments {.tabset .unlisted} {.unlisted}
 
 Randomized experiments can run into issues that undermine their ability to demonstrate causal effects -- that is, threaten the internal validity of randomized experiments.  Some units might be missing outcome data and that missingness may be due to the treatment.  They may not take the treatment status assigned to them or be subject to spillover effects from a treated neighbor. 
 
 In this module, we cover some common threats and some best practices to avoid or work around them.
 
-## Core Content {.tabset}
+## Core Content 
 
  - Review the three core assumptions discussed in the [causal inference ](causal-inference.html) module.
 

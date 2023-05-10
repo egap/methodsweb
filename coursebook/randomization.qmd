@@ -1,4 +1,10 @@
-# Randomization {.tabset}
+---
+sidebar: coursebook
+toc: false
+bibliography: coursebook.bib
+---
+
+# Randomization {.tabset} {.unlisted}
 
 The module on [causal inference](causal-inference.html) discussed the crucial role of randomization for drawing valid inferences from a comparison of treated and untreated groups.  In this module, we move from theory to the first of many concrete choices for your research design.  
 

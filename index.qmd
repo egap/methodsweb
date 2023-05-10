@@ -1,12 +1,11 @@
 ---
-toc: false
 number-sections: false
 listing: 
   - id: guides
     contents: 
-      - causal-inference_en.qmd
-      - covariates_en.qmd
-      - external-validity_en.qmd
+      - causal-inference.en.qmd
+      - covariates.en.qmd
+      - external-validity.en.qmd
     type: grid
     sort-ui: false
     fields: [image, title, author]
@@ -20,7 +19,7 @@ Evidence in Governance and Politics (EGAP) is a global research, evaluation, and
 
 **Our methods resources are aimed at learners and teachers of all levels. Guides are for self-learning, and our coursebook is for teachers of impact evaluation methods.**
 
-# Methods guides
+# Methods guides {.unlisted}
 
 Learn methods for impact evaluations just-in-time to use them with guides for impact evaluation methods -- for researchers, evidence users, and students
 
@@ -29,13 +28,13 @@ Learn methods for impact evaluations just-in-time to use them with guides for im
 
 [More...](/guides.html)
 
-# Software 
+# Software {.unlisted}
 
 Software tools in R and Stata can be useful for designing, implementing, analysis, and reporting on impact evaluations. We collected relevant software and provide a search interface for it.
 
 [More...](/software.html)
 
-# Teaching coursebook
+# Teaching coursebook {.unlisted}
 
 ![Learning days host cities (red) and participant home countries (blue).](/img/ldmap.svg)
 

@@ -19,17 +19,33 @@ website:
         text: Coursebook
       
   sidebar:
+
+    - title: ""
+      # contents: 
+      #   - text: "How to read this guide"
+      #     href: /guides/how-to-read.html
+        
+        
     - title: "Coursebook"
       contents:
-        - coursebook/index.qmd
-        - coursebook/researchdesignform.qmd
-        - coursebook/causalinference.qmd
-        - coursebook/randomization.qmd
-        - coursebook/hypothesistesting.qmd
-        - coursebook/estimation.qmd
-        - coursebook/statisticalpower.qmd
-        - coursebook/measurement.qmd
-        - coursebook/references.qmd
+        - text: "Coursebook"
+        # - coursebook/index.qmd
+        - text: "1 Research design"
+          href: coursebook/researchdesignform.qmd
+        - text: "2 Causal inference"
+          href: coursebook/causalinference.qmd
+        - text: "3 Randomization"
+          href: coursebook/randomization.qmd
+        - text: "4 Hypothesis testing"
+          href: coursebook/hypothesistesting.qmd
+        - text: "5 Estimation"
+          href: coursebook/estimation.qmd
+        - text: "6 Statistical power"          
+          href: coursebook/statisticalpower.qmd
+        - text: "7 Measurement"
+          href: coursebook/measurement.qmd
+        - text: "References"
+          href: coursebook/references.qmd
         
     - title: "Guides"
     

@@ -1,12 +1,13 @@
 ---
 title: "Theory and Practice of Field Experiments"
-author: 
+sidebar: coursebook
+---
+
+Authors
+
   - Jake Bowers
   - Maarten Voors
   - Nahomi Ichino
----
-
-## Introduction {.unnumbered}
 
 Over the past decade, [Evidence in Governance and Politics (EGAP)](http://egap.org/) has organized [Learning Days](https://egap.org/learning-days/) workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) -- both researchers and practitioners -- in Africa and Latin America.  By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members.
 

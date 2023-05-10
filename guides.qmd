@@ -1,6 +1,6 @@
 ---
 title: "Methods guides"
-toc-location: right
+# toc-location: right
 number-sections: false
 listing: 
   - id: analysis-procedures

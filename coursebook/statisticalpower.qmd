@@ -1,4 +1,10 @@
-# Statistical Power and Design Diagnosands {.tabset}
+---
+sidebar: coursebook
+toc: false
+bibliography: coursebook.bib
+---
+
+# Statistical Power and Design Diagnosands {.tabset} {.unlisted}
 
 Before we run a study, we would like to know whether a particular design has the statistical power to detect an effect if it exists.  It is difficult to learn from an under-powered study, since it would be unclear whether a null result indicates that there was no effect or just that we failed to detect a non-zero effect that exists.  A power analysis can help you improve your design and allocate your resources better; it may even help you decide against conducting the study.
 

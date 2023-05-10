@@ -1,4 +1,10 @@
-# Measurement {.tabset}
+---
+sidebar: coursebook
+toc: false
+bibliography: coursebook.bib
+---
+
+# Measurement {.tabset} {.unlisted}
 
 To estimate effects and test hypotheses, we often use an outcome of interest measured with quantitative data from surveys, behavioral games, or administrative records. For causal questions, we typically use data on immediate and final outcomes and core mechanisms.  We use baseline data to identify relevant subgroups, adjust our estimates, or help block-randomize our treatment.  Measurements should be valid and reliable.  Be aware that data can be noisy (random error) and/or biased (systematic error).  
 
