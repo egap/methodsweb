@@ -16,9 +16,6 @@ First things first, it is important to verify that your treatment was successful
 
 First, you should trace back to the code or software that was responsible for generating the randomization. If this was done in Qualtrics or on SurveyCTO, this would involve going back to the original software and ensuring that the particular survey module was coded correctly. If you worked with a provider to code up your online survey, you could schedule a meeting with them to walk through verifying the coding of the randomization. If this was done in `R`, there should be at least 2 lines of code: one that set a seed so that the randomization would be reproducible, and another that actually randomizes the treatment assignment. Note that the second line of code depends on the type of randomization you'd conducted (see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html)).
 
-
-
-
 # Variable inspection: Locating and understanding your data variables
 ==
 
@@ -35,7 +32,6 @@ It's generally good practice to inspect whether or not your treatment assignment
 
 For example, if you conducted a complete randomization where 25 experimental subjects were to be assigned to control, and 25 to treatment, did this play out in practice? You can run a simple cross-tabulation of the treatment assignment variable, and observe whether or not this is the case. Alternatively, if you conducted a block randomization by gender and wanted to assign half of women to treatment and the other half to control (and the same for men), you can look at the distribution of treatment assignment values by gender. Though uncommon in field experimental design where complete randomization prevails, some survey experimental software conducts simple randomization. In a survey experiment with two arms, the software will assign each respondent to treatment or control by flipping a Bernoulli coin that has a 50 percent chance of landing on heads (treatment), and a 50 percent chance of landing on tails (control).^[Note: the Bernoulli coin need not be defined by 50-50 chances; the researcher defines ex-ante the probability of receiving treatment versus control, which could be 70-30 instead.] In this case, it's okay if exactly 50 percent of your respondents don't end up in treatment - we'd expect some variability due to the nature of the randomization. However, the percentage of units treated shouldn't be _too far_ from 50 percent - this would induce doubt that the randomization actually worked.
 
-
 # Checking outcome and covariate variables for outliers
 ==
 
@@ -50,6 +46,7 @@ However, much of the time it's not possible to retrospectively find the correct 
 If you choose to make edits to values in your data, you should make sure you're doing 2 things. First, you should be blind to results and the treatment condition of the observation(s) when you edit or inspect data. See [Standard operating procedures for Don Green’s lab at Columbia
 ](https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html#missing-covariate-values) for more helpful insight on this. Second, you should never completely overwrite the raw data as you make edits. Instead, you should keep a code file that documents exactly the changes you make, and producing a cleaned data file (while retaining the raw data file). This is key to the transparency and reproducibility of your results. One way to organize the data and code for your experiment is to have a raw data file, then the code scripts that clean the data, and the intermediate/final (clean) data that you then run the analysis on. _Never overwrite the raw data_.
 
+It's important to note that changing the values of outliers is strongly discouraged when it comes to the outcome variable! In the coding example, we do so with a covariate - income.
 
 # Checking for balance on pre-treatment covariates
 ==
@@ -60,28 +57,12 @@ The balance test you run depends on your experimental design. In a set-up where 
 
 We are interested in the F-test because we care about overall balance of covariates. However, you are likely to come across covariate-by-covariate analyses that conduct t-tests comparing means among control units and treated units. Though this is standard practice, it is undesirable for several reasons. First, it is not unlikely that a covariate will come up as significantly different among treated and control units: due to the often numerous number of tests conducted, statistical significance can arise by chance. Here, it is important to emphasize that if you detect imbalance on a covariate that is significantly different than what would arise by chance, it's not always cause for panic. Second, this approach treats each covariate as equally important and informative about potential outcomes, rather than taking into account the prognosticness of the covariate. One may consider running equivalence tests instead of conventional balance tests.^[@hartman_hidalgo_2018 write on the meaning and implications of equivalence tests, vis-a-vis conventional balance tests.] 
 
-
 What you expect to see and what to do if it's okay, good to go
 
 What to do if there's evidence of imbalance
 
-
-things to look into:
-
-- ex balance
-- RItools, xbalance that can do with and without stratification, kind of complicated
-- cobalt
-- look at cluster randomization guide by Jake
-- add the overall p value from the F test
-
-```{r}
-## insert code for balance test here
-## t tests ? 
-## permutation tests ?
-## equivalence tests ? 
-## simply showing standardized differences ?
-```
-
+# Checking for differential attrition
+==
 
 
 
@@ -105,42 +86,59 @@ t1_experiment_df <- readRDS("gaikwad-nellis-2021-data-t1-experiment-df.Rds")
 # around 50 percent assigned to each condition, consistent with simple randomization
 # with p = 0.5 for all subjects
 
-prop.table(table(t1_experiment_df$i_t1))
+t1_experiment_df %>%                              
+  group_by(i_t1) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
+
 ```
 
 
 ```{r}
+library(skimr)
 ### step 2 ###
 # outcome and covariate inspection
 
-# outcome variable, turnout in 2019 national election
+# NOTE: Gaikwad and Nellis (2021) look at the impact of the treatment on several outcomes,
+# one of which whether an individual voted in India's 2019 national election.
+# We're choosing to use this one for exposition here.
+
+# outcome variable:
+# turnout in 2019 national election
 # values of 0 or 1, no strange values
 # 186 NAs which we'll investigate more later
-summary(t1_experiment_df$e_voted_2019)
 
-# covariates
+# covariates: 
 # they use 10 of them in their main specification:
 # 1) lagged outcome (voted previously), 2) whether female,
 # 3) age, 4) whether muslim, 5) whether SC/ST, 6) whether has primary education,
 # 7) income, 8) whether married, 9) length of residence, 10) whether owns a home
 # here, we investigate 3 of them: age, female, and income
 
+# transforming income, the authors are interested in 1000 of rupees
+
+t1_experiment_df %<>% mutate(
+    b_income_000 = b_income/1000)
+
 # age
 # range 18-88, no NAs
-  summary(t1_experiment_df$b_age)
 
 # female
 # range 0-1, no NAs 
-  summary(t1_experiment_df$b_female)
 
 # income
 # authors are interested in income as 000s of rupees, so we transform the variable
 # range 1-150, no NAs
 # there seems to be some extreme outliers
-  t1_experiment_df %<>% mutate(
-    b_income_000 = b_income/1000)
-  
-  summary(t1_experiment_df$b_income_000)
+
+# we can summarize the outcome variable, as well as covariates, using the
+# skim function in the skimr package
+
+t1_experiment_df %>%
+  dplyr::select(e_voted_2019, b_age, b_female, b_income_000) %>%
+  skim()
+
+# let's further inspect the income variable to check out outliers
 
   t1_experiment_df %>% 
     select(b_income_000) %>% 
@@ -157,6 +155,8 @@ summary(t1_experiment_df$e_voted_2019)
     scale_x_discrete(labels = c("Original")) +
     xlab("") +
     ylab("Income (000s INR)")
+
+
 ```
 
 
@@ -164,15 +164,20 @@ summary(t1_experiment_df$e_voted_2019)
 ### step 3 ###
 # dealing with outliers
 
+# It's important to note that changing the values of outliers is strongly
+# discouraged when it comes to the outcome variable! 
+# here, we're doing so with a covariate: income
+
 # income
 # as we mentioned before, and as Gaikwad and Nellis (2021) mention in their paper
 # there are some outliers in the income variable that we want to address
-# they choose to winsorize it 
+# they choose to winsorize it
 
 # winsorize income variable
 # using the "squish" function via the "scales" package
 # Gaikwad and Nellis winsorize by setting all values higher than the 
 # 99th percentile at the 99th percentile
+
   t1_experiment_df %<>%
     mutate(b_income_000_winsorized = squish(b_income_000, 
                                                 quantile(b_income_000, 
