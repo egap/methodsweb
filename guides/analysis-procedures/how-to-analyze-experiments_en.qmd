@@ -77,10 +77,14 @@ Were you unable to measure outcomes for all of your experimental subjects? Somet
 
 There main way that researchers probe whether outcome data may be plausibly missing at random is to to examine whether there exists an observable relationship between treatment assignment and missingness of outcomes. The way to do this is to code up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examine whether treatment assignment impacts the propensity for outcome data to be missing. To complement this analysis, researchers generally assess covariate balance between treated and control units who are not missing, or by assess covariate balance between units with missing vs non-missing outcomes.
 
+
 # Adjust estimation procedure according to deviations from planned analysis
 ==
 
-In practice, there may be differences between what you planned for your experiment, and what actually happened. These differences may have implications for how you should go about your estimation strategy.
+Once you have already looked at your data, you may realize that you should complete some analyses differently than you had planned in your PAP. This happens regularly. 
+
+One example of this is that researchers sometimes decide to control for a covariate in a regression analysis if they see that it is imbalanced in standard balance tests. This is impossible to know ex-ante, because researchers don't know what sort of draw they'll get in their actualized randomization.^[However, protecting against 'bad draws' is possible through blocked designs: see [10 Things You Need to Know About Randomization
+](https://methods.egap.org/guides/data-strategies/randomization_en.html).] Alternatively, one might realize that
 
 Control for variables upon which imbalance (unlucky draw)
 Some measurement gets messed up, so dont include it
@@ -88,16 +92,15 @@ Run an additional model that they hadn’t thought about before; error in judgme
 If it makes more sense to do this other way and had not thought about it
 Sometimes, deviations can be around things being underspecified; hadn’t given the details on what they’d do (the transformation not specified ex ante); or 5 category transformation and instead do 2 groups bc data looks lumped into 2 groups; underspecified or guessed wrong
 
-
 # Write replicable code to analyze data
 ==
 
 Hopefully this is done w/ PAP
 But otherwise do now
-List best practice -> point to the replication file
-annotations , versions of packages, where to find which tables and figures etc etc 
-
-
+(Don't actually include code here)
+List best practice -> point to the replication file of Gaikwad and Nellis (2021)
+annotations , versions of packages, where to find which tables and figures etc etc should all be noted
+raw data kept, cleaning file separate, etc
 
 # Write up deviations from preanalysis plan and justify
 ==
@@ -106,8 +109,6 @@ Pre-registered report should exist (so analyze AS pre-registered, even if not go
 Cite this in your manuscript
 As you do analysis, you’ll come up w things that you change
 Keep a list of what you change; all of these could be highlighted and justified
-
-
 
 # Example code
 ==
@@ -331,9 +332,10 @@ plot(ri_out)
 
 
 
-##### all below needs to be revisited after Don Green response
+##### all below needs to be revisited after various others responses' on the 
+# best test statistic
 
-## do we get the same thing
+## do we get the same thing - running the 3 different versions we've come across 
 
 # first way
 
@@ -354,18 +356,19 @@ W_obs_SOP_green
 fstat_robust_SE
 
 
-# to ask, whether or not to have robust lm in order to get the F stat
+# to ask, whether or not to have robust lm in order to get the test stat
 # look at donald green SOP
 # versus what is shown in the ri guide
+# need to wait to hear back about this part
 
 
-t1bal <- 
-    lm(as.formula(paste("i_t1 ~", paste(c(names(names)), collapse = "+"))),
-       data = t1_experiment_df)
-
-Rbeta.hat <- coef(t1bal)[-1]
-RVR <- vcovHC(t1bal, type <- 'HC0')[-1,-1]
-W_obs <- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))
+# t1bal <- 
+#     lm(as.formula(paste("i_t1 ~", paste(c(names(names)), collapse = "+"))),
+#        data = t1_experiment_df)
+# 
+# Rbeta.hat <- coef(t1bal)[-1]
+# RVR <- vcovHC(t1bal, type <- 'HC0')[-1,-1]
+# W_obs <- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))
 
 ```
 
@@ -418,6 +421,7 @@ t1attr1 <- lm(i_attrition ~ i_t1, data = t1_experiment_df)
             notes.label = "")
   
 ## TODO: add in balance (missingness on treatment by covariate interaction, then F stat?)
+  # need to wait to hear back about this part
 
 ```
 
