@@ -18,19 +18,19 @@ There are different types of randomization methods, including simple randomizati
 
 # Complete vs simple randomization
 
-Simple randomization involves flipping a coin or using a random number generator to assign each unit in a population to either the treatment or control group. However, this approach may not guarantee an equal probability of assignment to each group, as the coin may not be fair or the random number generator may be flawed. 
+Simple randomization involves flipping a coin or using a random number generator to assign each unit in a population to either the treatment or control group. The potential issue with this type of randomization is that there is no guarantee of a predetermined number of units allocated to the treatment or control group. 
 
 Conversely, complete randomization ensures that a fixed number of units (m) out of the total population (N) are assigned to the treatment group. In contrast, the remaining units (N-m) are assigned to the control group. This method is commonly used in public lotteries, where a certain number of individuals are randomly selected to receive a specific intervention.
 
 # 2.	When you should select different randomization schemes
 
-The selection of randomization schemes depends on various factors, including the research question, the study design, the context of the country or locality in which the study will take place, as well as the characteristics of the study population.
+The selection of randomization schemes depends on various factors, including the research question, the study design, the context of the country or locality in which the study will take place, as well as the characteristics of the study population. This subsection aims to outline the different types of common randomizations and specify the circumstances in which they are applicable.
 
 **Simple randomization:** is a type of randomization that is commonly used in studies with small sample sizes. It is ideal when the probability of assignment to the treatment or control group is equal. However, it is important to note that if certain characteristics of the study population predict the outcome variables, simple randomization may no longer be suitable. In such cases, block randomization or other types of randomization should be considered.
 
 **Complete randomization:** is typically employed when a fixed number of units must be randomly selected from a large population to receive a specific intervention. Public lotteries often use this method, where the government or an NGO randomly selects certain units to receive the intervention.
 
-**Block randomization:** is a type of randomization used for two main reasons. The first reason is to ensure an adequate number of subjects in each group. For example, in a study aimed at reducing hesitancy to vaccinate against measles by educating households about the benefits of the measles vaccine, there is a risk of finding no household with children suffering from measles in a context where the prevalence of cholera is low if simple or complete randomization is used. In such a scenario, block randomization can be implemented by splitting the population into blocks A and B representing areas with a high and low prevalence of measles, respectively.
+**Block randomization:** is a type of randomization used for two main reasons. The first reason is to ensure an adequate number of subjects in each group. For example, in a study aimed at reducing hesitancy to vaccinate against measles by educating households about the benefits of the measles vaccine, there is a risk of finding no household with children suffering from measles in a context where the prevalence of measles is low if simple or complete randomization is used. In such a scenario, block randomization can be implemented by splitting the population into blocks A and B representing areas with a high and low prevalence of measles, respectively.
 
 The second reason for using block randomization is that it can increase the precision of estimates, especially when the features used to create the block predict the outcome variables. This is because block randomization ensures that each block has a similar distribution of those features, which in turn reduces the variability between treatment and control groups. 
 
@@ -38,7 +38,7 @@ The second reason for using block randomization is that it can increase the prec
 
 # 3.	Level of randomization vs level of measurement
 
-The level at which units are randomized may not always match the level at which we measure the outcome variable in an experimental study. Simple randomization involves randomizing units at the same level we measure the outcome variable. However, in certain designs, it may not be possible to assign treatment and measure outcomes at the same level. For example, in a study on the impact of teacher motivation on children's school performance, the intervention may be assigned at the teacher level. Still, the outcome variable may need to be measured at the student level. This limitation may require alternative randomization schemes, such as cluster randomization or stratified randomization
+The level at which units are randomized may not always match the level at which we measure the outcome variable in an experimental study. Simple randomization required randomizing units at the same level we measure the outcome variable. However, in certain designs, it may not be possible to assign treatment and measure outcomes at the same level. For example, in a cluster randomization design investigating the effects of financial motivation on teacher performance, the intervention is implemented at the teacher level. However, to measure the impact of the intervention on school performance, the outcome is measured at the student level.
 
 # 4.	Block
 
