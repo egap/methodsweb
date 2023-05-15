@@ -42,11 +42,20 @@ The level at which units are randomized may not always match the level at which 
 
 # 4.	Block
 
+# Why block-randomized trial design?
+
+Blocking can help reduce estimation error and increase statistical power in experiments. Blocked experiments usually offer higher statistical power than unblocked experiments in most contexts (Moore 2012; Gerber and Green 2012). Blocking is particularly useful when there is variation in the outcome, and the blocks are related to this variation.
+In multisite trials, pre-existing sites define blocks, and researchers cannot purposely construct them to reduce variation. However, researchers can hope and expect that sites naturally explain some between-site variation. For instance, if certain schools have higher outcomes than others, blocked randomization using the school as a block can improve efficiency over complete randomization.
+Randomizing with purposefully created blocks or pre-existing sites also enables analysts to learn how treatment effects may vary across different sites or groups of people categorized into blocks. For example, if a new treatment is expected to benefit the lowest performing students, but most students in a given study are not the lowest performing, researchers may prefer to create blocks of students within schools based on their previous performance. This within-site blocking enables researchers to compare the treatment effects on the relatively rare lowest-performing students with the treatment effects on the relatively rare highest-performing students.
+
+# Why not block?
+
+Randomizing within site is often the only option for an analyst in multisite trials where site administrators, such as school principals, administer treatment. However, in other studies, researchers have the freedom to choose and construct blocking criteria. While blocking generally offers benefits, it can also have harmful effects in certain settings, as shown by Pashley and Miratrix (2022).
+One possible downside of blocking is the reduction in degrees of freedom. This issue is typically not significant in practice unless the experiment is very small (Imai, King, and Stuart 2008). Using blocking requires the analyst to keep track of the blocks and account for them in subsequent analysis. Failing to consider the blocks when estimating average treatment effects from a block-randomized experiment may lead to biased estimates of the targeted estimands. Biases can arise from different approaches to weighting by blocks, as demonstrated in "The trouble with 'controlling for blocks'" and "Estimating Average Treatment Effects in Block Randomized Experiments.
 
 # 5.	Factorial
 
 Factorial design is a useful approach when researchers want to investigate the effects of multiple interventions, as well as the interactions between these interventions. With this method, it is possible to randomize different types of interventions simultaneously. For instance, if researchers aim to examine how micro-credit programs may enhance school attendance and reduce gender inequalities in education, they can randomize households to receive two treatments and assess as many combinations of these treatments as possible.
-
 
 
 

@@ -379,9 +379,9 @@ randomization and complete randomization.</p>
 <h1>Complete vs simple randomization</h1>
 <p>Simple randomization involves flipping a coin or using a random
 number generator to assign each unit in a population to either the
-treatment or control group. However, this approach may not guarantee an
-equal probability of assignment to each group, as the coin may not be
-fair or the random number generator may be flawed.</p>
+treatment or control group. The potential issue with this type of
+randomization is that there is no guarantee of a predetermined number of
+units allocated to the treatment or control group.</p>
 <p>Conversely, complete randomization ensures that a fixed number of
 units (m) out of the total population (N) are assigned to the treatment
 group. In contrast, the remaining units (N-m) are assigned to the
@@ -394,7 +394,9 @@ specific intervention.</p>
 <p>The selection of randomization schemes depends on various factors,
 including the research question, the study design, the context of the
 country or locality in which the study will take place, as well as the
-characteristics of the study population.</p>
+characteristics of the study population. This subsection aims to outline
+the different types of common randomizations and specify the
+circumstances in which they are applicable.</p>
 <p><strong>Simple randomization:</strong> is a type of randomization
 that is commonly used in studies with small sample sizes. It is ideal
 when the probability of assignment to the treatment or control group is
@@ -413,7 +415,7 @@ of subjects in each group. For example, in a study aimed at reducing
 hesitancy to vaccinate against measles by educating households about the
 benefits of the measles vaccine, there is a risk of finding no household
 with children suffering from measles in a context where the prevalence
-of cholera is low if simple or complete randomization is used. In such a
+of measles is low if simple or complete randomization is used. In such a
 scenario, block randomization can be implemented by splitting the
 population into blocks A and B representing areas with a high and low
 prevalence of measles, respectively.</p>
@@ -432,17 +434,60 @@ intervention at an individual or household level.</p>
 <h1>3. Level of randomization vs level of measurement</h1>
 <p>The level at which units are randomized may not always match the
 level at which we measure the outcome variable in an experimental study.
-Simple randomization involves randomizing units at the same level we
+Simple randomization required randomizing units at the same level we
 measure the outcome variable. However, in certain designs, it may not be
 possible to assign treatment and measure outcomes at the same level. For
-example, in a study on the impact of teacher motivation on children’s
-school performance, the intervention may be assigned at the teacher
-level. Still, the outcome variable may need to be measured at the
-student level. This limitation may require alternative randomization
-schemes, such as cluster randomization or stratified randomization</p>
+example, in a cluster randomization design investigating the effects of
+financial motivation on teacher performance, the intervention is
+implemented at the teacher level. However, to measure the impact of the
+intervention on school performance, the outcome is measured at the
+student level.</p>
 </div>
 <div id="block" class="section level1">
 <h1>4. Block</h1>
+</div>
+<div id="why-block-randomized-trial-design" class="section level1">
+<h1>Why block-randomized trial design?</h1>
+<p>Blocking can help reduce estimation error and increase statistical
+power in experiments. Blocked experiments usually offer higher
+statistical power than unblocked experiments in most contexts (Moore
+2012; Gerber and Green 2012). Blocking is particularly useful when there
+is variation in the outcome, and the blocks are related to this
+variation. In multisite trials, pre-existing sites define blocks, and
+researchers cannot purposely construct them to reduce variation.
+However, researchers can hope and expect that sites naturally explain
+some between-site variation. For instance, if certain schools have
+higher outcomes than others, blocked randomization using the school as a
+block can improve efficiency over complete randomization. Randomizing
+with purposefully created blocks or pre-existing sites also enables
+analysts to learn how treatment effects may vary across different sites
+or groups of people categorized into blocks. For example, if a new
+treatment is expected to benefit the lowest performing students, but
+most students in a given study are not the lowest performing,
+researchers may prefer to create blocks of students within schools based
+on their previous performance. This within-site blocking enables
+researchers to compare the treatment effects on the relatively rare
+lowest-performing students with the treatment effects on the relatively
+rare highest-performing students.</p>
+</div>
+<div id="why-not-block" class="section level1">
+<h1>Why not block?</h1>
+<p>Randomizing within site is often the only option for an analyst in
+multisite trials where site administrators, such as school principals,
+administer treatment. However, in other studies, researchers have the
+freedom to choose and construct blocking criteria. While blocking
+generally offers benefits, it can also have harmful effects in certain
+settings, as shown by Pashley and Miratrix (2022). One possible downside
+of blocking is the reduction in degrees of freedom. This issue is
+typically not significant in practice unless the experiment is very
+small (Imai, King, and Stuart 2008). Using blocking requires the analyst
+to keep track of the blocks and account for them in subsequent analysis.
+Failing to consider the blocks when estimating average treatment effects
+from a block-randomized experiment may lead to biased estimates of the
+targeted estimands. Biases can arise from different approaches to
+weighting by blocks, as demonstrated in “The trouble with ‘controlling
+for blocks’” and “Estimating Average Treatment Effects in Block
+Randomized Experiments.</p>
 </div>
 <div id="factorial" class="section level1">
 <h1>5. Factorial</h1>
