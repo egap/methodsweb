@@ -1,6 +1,7 @@
 library(randomizr)
 library(foreign)
 library(dplyr)
+library(DeclareDesign)
 
 #Different randomization approaches with example data from Asunka et al (2019).
 set.seed(1234)
