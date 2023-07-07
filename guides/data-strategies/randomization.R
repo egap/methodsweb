@@ -40,27 +40,77 @@ data$ZBlockCluster <- block_and_cluster_ra(blocks = as.factor(data$stationdensit
 table(data$ZBlockCluster, data$stationdensity)
 table(data$const, data$ZBlockCluster)
 
-#Implementing multi-stage using cluster randomization in stage one with three levels and then block randomization in the second stage. This is what is used in the actual study!
+#Implementing multi-stage using cluster randomization in stage one with three levels and then block randomization in the second stage.
+
 #First stage: cluster random assignment of const into saturation levels
 data$s1 <- cluster_ra(clusters = data$const, conditions = c("low", "medium", "high"))
+
 #set probability of treatment assignment by saturation
 data$s1prob <- ifelse(data$s1 == "low", 0.3, ifelse(data$s1 == "medium", 0.5, 0.8))
+
 #Get vector of probabilities of treatment assignment
 blockprobs <- unique(as.data.frame(cbind(data$const, data$s1prob)))
 blockprobs <- blockprobs[order(blockprobs$V1),]
+
 #Second stage: use block randomization with probabilities from above
 data$s2 <- block_ra(blocks = data$const, block_prob = c(as.numeric(blockprobs[,2])))
+
 #check treatment by saturation level
 table(data$s2, data$s1)
 
 #Implementing stepped-wedge randomization
+#In order to show the next few types of randomization, I will use DeclareDesign to simulate the data rather than using the actual data from Asunka et al (2019)
 
-# For next steps: https://book.declaredesign.org/library/experimental-causal.html#stepped-wedge-experiments
+stepped_wedge <-
+  declare_model(
+    units = add_level(
+      N = 100, 
+      U_unit = rnorm(N)
+    ),
+    periods = add_level(
+      N = 3,
+      time = 1:max(periods),
+      U_time = rnorm(N),
+      nest = FALSE
+    ),
+    unit_period = cross_levels(
+      by = join_using(units, periods),
+      U = rnorm(N),
+      potential_outcomes(
+        Y ~ scale(U_unit + U_time + time + U) + effect_size * Z
+      )
+    )
+  ) +
+  declare_assignment(
+    wave = cluster_ra(clusters = units, conditions = 1:max(periods)),
+    Z = if_else(time >= wave, 1, 0)
+  ) +
+  declare_inquiry(ATE = mean(Y_Z_1 - Y_Z_0), subset = time < max(time)) + 
+  declare_measurement(Y = reveal_outcomes(Y ~ Z)) +
+  declare_estimator(Y ~ Z, fixed_effects = ~ periods + units, 
+                    clusters = units, 
+                    subset = time < max(time),
+                    inquiry = "ATE", label = "TWFE") 
+
+sw_data <- draw_data(stepped_wedge)
+
+table(sw_data$time, sw_data$Z) 
+#subjects move from control to treatment until all are treated in the final time period
+
+
+# The code above and more description of stepped wedge implementation can be found here: https://book.declaredesign.org/library/experimental-causal.html#stepped-wedge-experiments
 
 #Implementing factorial design randomization
 
 #For next steps: https://declaredesign.org/r/designlibrary/articles/factorial.html
 
+#Suppose that there are 3 treatment arms (factors), each with equal probability
+
+data$ZFactorial <- complete_ra(N = nrow(data), conditions = 1:(2^3), prob_each = c(0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125)) 
+table(data$ZFactorial) #Approximately equal number of subjects in each possible assortment of arms. One could assign each possible arm to a set of treatment assignements, so if ZFactorial == 8 all treatments are received.
+
 #Implementing restricted randomization
+
+## NOTE: I COULD NOT FIGURE THIS OUT
 
 # Maybe a while loop using RI? Randomizr help file might have an example.
