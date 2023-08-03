@@ -5,16 +5,10 @@ author:
     url: https://cabs.mdrc.org/team/rekha-balu
 bibliography: null-results.bib
 image: null-results.png
-format:
-  html:
-    toc: true
-    theme:
-      - default
-      - custom.scss
+abstract: |
+  After the excitement and hard work of running a field experiment is over, it’s not uncommon to hear policymakers and researchers express disappointment when they end up hearing that the intervention did not have a detectable impact.
+  This guide explains that a null result rarely means “the intervention didn’t work,” even though that tends to be the shorthand many people use. Instead, a null result can reflect the myriad design choices that policy implementers and researchers make in the course of developing and testing an intervention.    After all, people tend to label [hypothesis tests](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html) with high p-values as “null results”, and hypothesis tests (as summaries of information about design and data) can produce large p-values for many reasons. Policymakers can make better decisions about what to do with a null result when they understand how and why they got that result.
 ---
-
-After the excitement and hard work of running a field experiment is over, it’s not uncommon to hear policymakers and researchers express disappointment when they end up hearing that the intervention did not have a detectable impact.
-This guide explains that a null result rarely means “the intervention didn’t work,” even though that tends to be the shorthand many people use. Instead, a null result can reflect the myriad design choices that policy implementers and researchers make in the course of developing and testing an intervention. After all, people tend to label [hypothesis tests](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html) with high p-values as “null results”, and hypothesis tests (as summaries of information about design and data) can produce large p-values for many reasons. Policymakers can make better decisions about what to do with a null result when they understand how and why they got that result.
 
 Imagine you lead the department of education for a government and are wondering about how to boost student attendance. You decide to consider a text message intervention that offers individual students counseling. Counselors at each school can help students address challenges specifically related to school attendance. Your team runs a randomized trial of the intervention, and tells you there is a null result. 
 

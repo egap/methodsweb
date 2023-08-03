@@ -2,12 +2,12 @@
 title: "10 Things to Know About Measurement in Experiments"
 author: 
   - name: "Tara Slough"
-    url: https://egap.org/member/tara-slough/
+    url: http://taraslough.com
 bibliography: measurement.bib
 image: measurement.png
 ---
 
-# 1. The validity of inferences we draw from an experiment depend on the validity of the measures used.
+# The validity of inferences we draw from an experiment depend on the validity of the measures used.
 
 We typically experiment in order to estimate the causal effect of a treatment, $Z$, on an outcome, $Y$. Yet, the reason that we care about estimating this causal effect is, in principle, to understand characteristics of the relationship between two theoretical, unobserved, concepts measured by observed variables $Z$ and $Y$. 
 
@@ -55,7 +55,7 @@ ggplot() +
         axis.text = element_blank())
 ```
 
-# 2. Measurement is the link between a researcher’s substantive and/or theoretical argument and an (experimental) research design.
+# Measurement is the link between a researcher’s substantive and/or theoretical argument and an (experimental) research design.
 
 
 When we consider the design of an experiment, we tend to focus on the process by which the randomly assigned treatment, $Z$ is assigned and the joint distribution of $Z$ and an outcome, $Y$. In other words, we tend to divorce scores of $Z$ and $Y$ from broader concepts when considering the statistical properties of a research design. In this telling, two completely separate experiments with the same distribution of $Z$ and $Y$ could have identical properties. 
@@ -67,7 +67,7 @@ However, when we consider measurement as a fundamental component of research des
 
 
 
-# 3. Measuring treatments includes the operationalization of treatment as well as compliance with treatment assignment.
+# Measuring treatments includes the operationalization of treatment as well as compliance with treatment assignment.
 
 In an experiment, treatments are typically designed, or at a minimum, described, by the researcher. Consumers of experimental research should be interested the characteristics of the treatment and how it manipulates a concept of interest. Most treatments in social science are compound, or include a bundle of attributes. We may be interested in the effect of providing voters with information on their elected officials' performance. Yet, providing information also includes the mode of delivery and who was delivering the information. To understand the degree to which the treatment manipulates a concept, we must also understand what else the treatment could be manipulating. 
 
@@ -79,7 +79,7 @@ For example, consider a door-to-door canvassing campaign that distributes inform
 
 
 
-# 4. Most outcomes of interest in social science are latent.
+# Most outcomes of interest in social science are latent.
 
 In contrast to measuring treatment indicators and compliance, measuring outcomes in experimental research follows much more closely the process outlined in the figure above. We theorize how the treatment may influence an outcome concept. We then operationalize the concept and record scores or values to complete our measurement of the outcome. 
 
@@ -88,7 +88,7 @@ One particular challenge in the measurement of outcomes is that many of the most
 Because these variables are latent, it is challenging to devise appropriate indicators. Poor operationalization has rather drastic consequences for the validity of our inferences about the concept of interest for two reasons. As in section #1 above, if these indicators do not conceptually measure the concept of interest, then inferences we make about the relationship between $Z$ and $Y$ (even with a "perfect" design in terms of statistical power and missing data,etc.) may not teach us about the "ultimate inference" we are seeking to make. Furthermore, measurement error may undermine our ability to estimate the effect of $Z$ and $Y$ leading to incorrect inferences. The remainder of this guide focuses on the latter problem.
  
  
-# 5. There are two types of measurement error that we should consider.
+# There are two types of measurement error that we should consider.
 
 We can formalize measurement challenges quite simply. Suppose a treatment, $Z_i$ is hypothesized to change preferences for democratic norms, $\nu_i$. In principle, the quantity that we would like to estimate is $E[\nu_i|Z_i = 1] - E[\nu_i|Z_i =0]$, the ATE of our treatment on preferences for democratic norms. However, $\nu_i$ is a latent variable: we cannot measure it directly. Instead we ask about support for various behaviors thought to correspond to these norms. This indicator, $Y_i$, can be decomposed into the latent variable, $\nu_i$ and two forms of measurement error:
 
@@ -98,7 +98,7 @@ We can formalize measurement challenges quite simply. Suppose a treatment, $Z_i$
 
 $$Y_i = \underbrace{\nu_i}_{\text{Latent outcome}} + \underbrace{\delta_i}_{\substack{\text{Non-systematic} \\ \text{measurement error}}} + \underbrace{\kappa_i}_{\substack{\text{Systematic} \\ \text{measurement error}}}$$
 
-# 6. Measurement error reduces the power of your experiment. 
+# Measurement error reduces the power of your experiment. 
 
 Non-systematic measurement error, represented by $\delta_i$ above, refers to the noise with which we are measuring the latent variable. In the absence of systematic measurement error, we measure:
 
@@ -116,7 +116,7 @@ So long as $Cov(\nu_i, \delta_i)\geq 0$ (we often assume $Cov(\nu_i, \delta_i)= 
 
 What about the case in which $Cov(\nu_i, \delta_i) < 0$? While this reduces $Var(Y_i)$ (holding $Var(\nu_i)$ and $Var(\delta_i)$ constant), it also attenuates the variation that we measure in $Y_i$. In principle, this should attenuate the numerator $|\mu_t-\mu_c|$, which, if sufficient relative to the reduction in variance, will also reduce power.
 
-# 7. Systematic measurement error biases estimates of causal effects of interests.
+# Systematic measurement error biases estimates of causal effects of interests.
 
 If we are estimating the Average Treatment Effect (ATE) of our treatment $Z_i$, on preferences for democratic norms, $\nu_i$, we are trying to recover the ATE, or $E[\nu_i|Z_i = 1] - E[\nu_i|Z_i =0]$. However, in the presence of **systematic** measurement error, where measurement error is related to the treatment assignment itself (say, the outcome is measured differently in the treatment group than in the control group) a difference-in-means estimator on the observed outcome, $Y_i$, recovers a biased estimate of the ATE. The effect of the treatment now includes the measurement difference as well as the difference between treated and control groups:
 
@@ -130,7 +130,7 @@ There are various sources of non-systematic measurement error in experiments. [D
 
 When designing an experiment, researchers can take various steps to limit systematic measurement error. First and foremost, they can attempt to use identical measurement strategies across all experimental groups. To limit demand and Hawthorne effects, researchers often aim to design treatments and measurement strategies that are as naturalistic and unobtrusive as possible. For example, sometimes it can be beneficial to avoid baseline surveys at the outset of an experiment that would reveal the purpose of a study to participants. Researchers may also want to separate treatment from outcome measurement phases to limit the apparent connection between the two. Ensuring that study staff are blind towards the treatment status of study participants can also help maintain measurement symmetry across treatment conditions. The use of placebo treatments sometimes helps to hide their treatment status even from study participants themselves. Finally, researchers sometimes supplement outcome measures such as survey questions that are particularly susceptible to demand effects with behavioral measures for which experimenter demand may be less of a concern. See @de_quidt_et_al_2018 for a way to assess the robustness of your experimental results to demand effects.  
 
-# 8. Leverage multiple indicators to assess the validity of a measure but be aware of the limitations of such tests.
+# Leverage multiple indicators to assess the validity of a measure but be aware of the limitations of such tests.
 
 Beyond consideration of the quality of the mapping between a concept and a measure, we can often assess the quality of the measure by comparing it to measures from alternate operationalizations of the same concept, closely related concepts, or distinct concepts. In *convergent tests* of the validity of a measure, we assess the correlation between alternate measures of a concept. If they are coded in the same direction, we expect the correlation to be positive and validity of both measures increases as the magnitude of the correlation increases. One limitation of convergent tests of validity is if two measures are weakly correlated, absent additional information, we do not know whether one measure is valid (and which) or whether both measures are invalid.
 
@@ -141,7 +141,7 @@ Finally, we may want to determine whether we are measuring the concept of intere
 In sum, the addition of more measures can help validate an indicator, but these validation tests are limited in what they tell us when they fail. To this extent, we should remain cognizant of the limitations in addition to the utility of collecting additional measures to simply validate an indicator.
 
 
-# 9. The use of multiple indicators often improves the power of your experiment, but may introduce a bias-efficiency tradeoff.
+# The use of multiple indicators often improves the power of your experiment, but may introduce a bias-efficiency tradeoff.
 
 Gathering multiple indicators of a concept or outcome may also improve the power of your experiment. If multiple indicators measure the same concept but are measured with (non-systematic) error, we can improve the precision with which we measure the latent variable by leveraging multiple measures. 
 
@@ -229,7 +229,7 @@ data.frame(est = c(sims["est_index",], sims["est_Y1",], sims["est_Y2",]),
 
 We have examined an index composed of just two indicators. In principle, there are further efficiency gains to be made by incorporating more indicators into your index. Yet, as we increase the number of indicators, we should consider the degree to which the amalgamation of indicators adheres to the original concept. By adding measures to leverage efficiency gains, we may introduce bias into the measure of the latent concept. Researchers must navigate this tradeoff. Pre-registration of the components of an index provides one principled way to navigate the issue which forces thorough consideration of the concept in the absence of data. This also avoids the ex-post questions about the choice of indicators for an index.
 
-# 10. While concepts may be global, many indicators are context-specific. 
+# While concepts may be global, many indicators are context-specific. 
 
 Many studies in the social sciences focus on concepts that are typically assumed to be latent including preferences, knowledge, and attitudes. To the extent that we work on common concepts, there is a tendency to draw from existing operationalizations from studies on related concepts in different contexts. In studies in multiple contexts, as in EGAP's [Metaketa Initiative](https://egap.org/our-work-0/the-metaketa-initiative/), researchers aim to study the same causal relationship in multiple national contexts. But a desire to study common concepts need not imply that the same indicators should be used across contexts.
 

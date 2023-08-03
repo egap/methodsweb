@@ -7,7 +7,7 @@ bibliography: multisite-experiments.bib
 image: multisite-experiments.png
 ---
 
-# 1. What is a multisite or block randomized trial?
+# What is a multisite or block randomized trial?
 
 A multisite or block-randomized trial is a randomized experiment "in which sample members are randomly assigned to a program or a control group *within* each of a number of sites" [@Raudenbush2015].
 
@@ -58,7 +58,7 @@ The choice of estimand impacts the substantive conclusion that a researcher make
 The choice of estimator and standard error estimator results in different statistical properties, including a potential trade off between bias and variance.
 This guide summarizes material using the framework provided by @Miratrix2020.
 
-# 2. A multisite trial is a type of a blocked or stratified randomized experiment.
+# A multisite trial is a type of a blocked or stratified randomized experiment.
 
 ## A multisite trial is fundamentally a blocked or stratified RCT.
 
@@ -117,7 +117,7 @@ In other studies, the construction and choice of blocking criteria is a choice.
 Blocking does result in fewer degrees of freedom, but in practice this reduction is rarely an issue, unless an experiment is very small [@Imai2008].
 Any use of blocking requires that an analyst keep track of the blocks and also that an analyst reflect the blocks in subsequent analysis: in many circumstances estimating average treatment effects from a block-randomized experiment while ignoring the blocks will yield biased estimates of the underlying targeted estimands (see ["The trouble with 'controlling for blocks'"](https://declaredesign.org/blog/biased-fixed-effects.html)  and ["Estimating Average Treatment Effects in Block Randomized Experiments"](https://egap.org/resource/sd-block-rand) for demonstrations of bias arising from different approaches to weighting by blocks).
 
-# 3. Analysis can either target the population in the experiment, or a broader population.
+# Analysis can either target the population in the experiment, or a broader population.
 
 The first choice a researcher must make in defining their estimand is the population of interest.
 The researcher may want to focus on the **finite population**: only those units in the experimental pool or sample.
@@ -149,7 +149,7 @@ Although the point estimates from either perspective will often be the same, the
 
 For more discussion of the consequence of the super population and finite population frameworks, see @Schochet2016 and @Pashley2021.
 
-# 4. The average site effect is not the same as the average person effect.
+# The average site effect is not the same as the average person effect.
 
 The second choice a researcher makes is the target of inference: is the researcher interested in the **average student**, or
 the **average site** [@Miratrix2020]?
@@ -171,7 +171,7 @@ Note that in the case where all sites are of the same size, or all sites have th
 To summarize, this section and the prior section have given two axes of choices: the population of interest (FP or SP for finite and super population), and the target of inference (persons or sites).
 These choices result in four possible estimands: FP-persons, SP-persons, FP-sites, and SP-sites.
 
-# 5. There are many widely-used estimators that target the same estimands, including design-based, linear regression, and multilevel models.
+# There are many widely-used estimators that target the same estimands, including design-based, linear regression, and multilevel models.
 
 After choosing an *estimand*, the researcher must then choose an *estimator*, a process to arrive at the estimate of interest.
 There are three main categories of estimators: **design based**, **linear regression**, and **multilevel modeling**.
@@ -269,7 +269,7 @@ For example, a fixed-effects model can weigh each person by their inverse chance
 Weighted regression for traditional regression is discussed in @Miratrix2020, and weighted regression for multilevel models is discussed in @Raudenbush2020.
 
 
-# 6. Some estimators attempt to reduce variance by increasing bias.
+# Some estimators attempt to reduce variance by increasing bias.
 
 Each category of estimator (design, regression, and multilevel) results in a different estimation approach.
 One way to characterize the categories is the weights induced by the choice of estimator.
@@ -342,7 +342,7 @@ for more information about these additional estimators, see @Miratrix2020.
 | Random-effect precision-weighting | $w_j \propto \left[\hat{\tau} + N_j p_j (1 - p_j)\right]^{-1}$ \ (approximately) | $\hat{\beta}_{ML-FIRC}$, $\hat{\beta}_{ML-RIRC}$ |
 | Unbiased site-weighting           | $w_j \propto 1$                 | $\hat{\beta}_{DB-FP-site}$, $\hat{\beta}_{DB-SP-site}$, $\hat{\beta}_{FE-weight-site}$, $\hat{\beta}_{FE-inter-site}$ |
 
-# 7. For each estimator that achieves a point estimator, there may be multiple options for estimating standard errors.
+# For each estimator that achieves a point estimator, there may be multiple options for estimating standard errors.
 
 The difference between the finite population and super population framework comes into focus when calculating the standard error of various estimators.
 In general, the super population framework results in larger estimates of error because of the additional uncertainty induced by assuming the sites observed are randomly drawn from a larger population.
@@ -380,7 +380,7 @@ Generally, maximum likelihood theory is applied, which "requires a complete mode
 FIRC and RIRC models naturally produce standard errors under the super population framework, while RICC essentially takes a
 finite population framework because the treatment impacts are not assumed to be drawn from a super population, as they are assumed to be consistent across sites.
 
-# 8. The analyst's choices of estimand, estimator, and standard error estimator matter in some cases, and matter less in others.
+# The analyst's choices of estimand, estimator, and standard error estimator matter in some cases, and matter less in others.
 
 After discussing the different choices a researcher can make in analyzing a multisite trial, a big question remains: how do these choices impact empirical results?
 Which of these choices have a substantial impact on the conclusion we reach, and which do not matter as much?
@@ -447,7 +447,7 @@ The authors further conclude that for super population site-weighted estimands, 
 Through a simulation study, they find that super population standard errors can underestimate the true error.
 The design-based super population standard error estimator is particularly prone to underestimate the standard error compared to multilevel models, and can be unstable, in that it estimates a wide range of different values across simulations.
 
-# 9. The choice of estimator impacts power.
+# The choice of estimator impacts power.
 
 Given the discussion thus far, it is not surprising that modeling choices made by the analyst also impacts statistical power.
 
@@ -480,7 +480,7 @@ The package also calculates sample size requirements and minimum detectable effe
 The newly-developed PUMP package (from @Hunter2022) extends the functionality of PowerUpR! to experiments with multiple outcomes, in addition to providing user-friendly tools for exploring the sensitivity of power to different assumptions.
 
 
-# 10. Takeaway advice for researchers on multisite trials
+# Takeaway advice for researchers on multisite trials
 
 Many research plans and analyses do not clearly specify an estimand.
 This lack of clarity can both obscure the goal, and result in poor analysis choices.

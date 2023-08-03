@@ -1,4 +1,10 @@
-# Ethical Considerations {.tabset}
+---
+sidebar: coursebook
+toc-depth: -1
+bibliography: coursebook.bib
+---
+
+# Ethical Considerations  {.unlisted}
 
 *A randomized experiment involves one group of humans changing the lives of another group humans.*  Those working in government do this as a matter of course --- their very job is to provide food, shelter, safety, justice, etc., to their people.  Academics, whose work does not usually have immediate impacts on the public, must remember to also carefully consider how their research might change the lives of those exposed to the intervention, as well as those not exposed.  When one person influences the life of another, the influencer has responsibilities not to harm the person being influenced.  
 

@@ -11,7 +11,7 @@ bibliography: pilots.bib
 image: pilots.png
 ---
 
-# 1. What is a pilot, and what is it good for?
+# What is a pilot, and what is it good for?
 
 During the process of planning an experiment, researchers often face questions regarding their study's theoretical and conceptual underpinnings, its measurement approach, and associated logistics. Pilot studies can help you to consider and improve these elements of your research whether you are running a survey, lab, or field experiment. In particular, *a pilot study is a smaller scale preliminary test or trial run, used to assist with the preparation of a more comprehensive investigation*. Pilots are typically administered before a research design is finalized in order to evaluate and improve the feasibility, reliability, and validity of the proposed study.
 
@@ -56,7 +56,7 @@ In the sections below, we review these many benefits. First, we consider how pil
 | Assessing security of data and other study materials | Informing interested scholars and other stakeholders |
 |  | Educating students about research practices |
 
-# 2. Pilots are useful for improving your study’s measurement approach in relation to your theory
+# Pilots are useful for improving your study’s measurement approach in relation to your theory
 
 Fewer things are more frustrating for a researcher than investing significant resources and time into a study only to find that one's outcome measures lack reliability to accurately assess the concepts of interest, or that participants did not receive treatments in the way that was anticipated. Unexpected results are common, even when one approaches measurement carefully, as operationalizing concepts into an [effective measurement strategy](https://methods.egap.org/guides/data-strategies/measurement_en.html) in the social sciences is a complex endeavor.
 
@@ -66,7 +66,7 @@ When refining one's approach to measuring treatments, outcomes, and covariates, 
 
 When you begin a pilot study, you may have an initial conception of your research questions, hypotheses, and measurement approach; but with a careful pilot, you have the opportunity to refine all of these aspects in a way that can increase your (and others') confidence in the overall quality of the study.
 
-# 3. Pilots can also help you to prepare for the logistics of running your experiment
+# Pilots can also help you to prepare for the logistics of running your experiment
 
 Perhaps the most often emphasized purpose of pilots is to work out any logistical kinks that might impede the main study [@thabane_et_al_2010]. Logistical considerations include those implicating a project's overall resources, the study team, the participants, and the administration of study instruments.
 
@@ -76,7 +76,7 @@ Similar considerations apply to your study team and partners. Do they understand
 
 While the specific logistical considerations will vary depending on whether your research design is centered around a field experiment, survey experiment, lab experiment, or something else, pilots will help you ensure that your experiment goes as planned. Thus, when constructing a pilot study, consider making a list of the logistical elements you want to evaluate and designing the pilot to facilitate answering associated questions. Asking your participants whether they were able to "hear the video" or "understood the instructions" can make your research easier down the road.
 
-# 4. You can use pilots for power analysis or for calculating minimum detectable effects
+# You can use pilots for power analysis or for calculating minimum detectable effects
 
 Another common purpose of pilot studies, in light of limited resources, is assessing [statistical power](https://methods.egap.org/guides/assessing-designs/power_en.html), which helps to avoid the risk of false negatives (or false positives) from underpowered studies. As described in the [EGAP methods guide about power analysis](https://methods.egap.org/guides/assessing-designs/power_en.html), a researcher's goal is to answer the following: "supposing there truly is a treatment effect and you were to run your experiment a huge number of times, how often will you get a statistically significant result?" To improve the likelihood that your main study will achieve a typical target power value of 80%, you can use a pilot study combined with careful simulations. These results are helpful for determining appropriate sample sizes, the extent to which you can subset your sample for various analyses, and whether adjustments may be necessary for increasing power.
 
@@ -111,13 +111,13 @@ Based on the hypothetical standard deviations in the control and treatment group
 
 MDE calculations are based on the design of the pilot and the specific outcome measures. Thus, you may need to perform MDE calculations for each estimand of interest to determine what sample sizes are needed and which hypotheses can be addressed with sufficient power given your experimental design. Keep in mind that as you use pilot results to refine your study design, including treatments and outcomes, the relevant standard deviations of the outcome measures and the resultant MDE calculations may change. Another quick pilot is an option, though it is important to take resource constraints into account.
  
-# 5. Piloting may help you secure funding and support for your research
+# Piloting may help you secure funding and support for your research
 
 Pilots are not only helpful for improving the quality of your main study, they may also help to ensure you have the support and funding to enable your study to go forward. Given a general trend of tightening of per-researcher funding, particularly for smaller projects [@bloch_sorensen_2015], and a movement towards evidence-based decision-making, you may wish to draw on pilots to provide initial evidence that your study is worthwhile. For example, the National Science Foundation (NSF) recognizes the need for more early-stage exploratory studies that can provide a basis for future larger-scale studies, and [Time-sharing Experiments for the Social Sciences (TESS)](https://www.tessexperiments.org/) notes that "Proposals that report trial runs of novel and focal ideas will be viewed as more credible." 
 
 This does not entail that one needs to show that effect sizes are large enough nor that hypotheses are likely to be confirmed. Instead, a pilot can demonstrate that your research project is feasible in terms of time and resources, that your study design is adequate for answering the research questions proposed, and that your research team has the expertise and capacity to administer the study, perform analyses, and even present results in a compelling fashion [@van_teijlingen_et_al_2001]. In a similar fashion, piloting can help you to recruit study team members and organizational partners, or solicit institutional support.
 
-# 6. You can use a pilot to get feedback on your study design
+# You can use a pilot to get feedback on your study design
 
 Sharing initial findings, successes, and challenges is a great way to help you prepare for your main study. In light of the growth of the open science movement [@christensen_et_al_2020], conferences and workshops are increasingly open to accepting submissions based on pre-analysis plans and pilot results. Whether through these more formal venues, or by reaching out to colleagues or experts, you can use pilot results to receive feedback about your study design, such as strategies to address possible challenges and unexplored theoretical or empirical directions that you can incorporate in your main study. 
 
@@ -125,7 +125,7 @@ Further, it can take a long time to complete an experimental study and publish r
 
 Ultimately, the design and piloting stage is the **best** time to receive feedback, as you still have time to make improvements. In contrast, most key research design decisions will already have been finalized by the time your study undergoes formal peer review for publication.
 
-# 7. Keep an eye out for ethical considerations when piloting
+# Keep an eye out for ethical considerations when piloting
 
 When you design your study initially, all of the relevant [ethical considerations](https://egap.org/wp-content/uploads/2020/05/egap-committee-memo-on-the-report-of-the-apsa-ad-hoc-committee-on-human-subjects-research.pdf) and risks may not be immediately apparent. The piloting stage is thus a good opportunity to review whether any risks or harms you anticipated may come into play and whether still other ethical considerations should be incorporated into your main study.
 
@@ -136,7 +136,7 @@ In addition, the piloting process is a good time to practice your procedures aro
 Note that this doesn't imply any less ethical consideration should be given to your pilot itself. All appropriate safeguards, including IRB review, apply to human subjects research for a pilot study as well.
 
 
-# 8. Be transparent about how your pilot informs the design of your main study
+# Be transparent about how your pilot informs the design of your main study
 
 As noted, it's helpful to pre-identify a set of questions about logistics, measurement, or other features of your study that you believe a pilot can help to answer. Putting these questions into writing, designing your pilot to facilitate answering them, and reporting on how the answers shape any modifications to your main study is a way in which you can promote transparency in research. This includes transparency *within* one's study team about the purposes of a pilot, as well as for external audiences such as funders or peer reviewers. Transparency helps to alleviate concerns such as the file drawer problem, for example by demonstrating that a pilot study does not function as a method for cherry-picking statistically significant results. It also facilitates understanding and receipt of feedback.
 
@@ -149,7 +149,7 @@ The table below is a simple illustrative example of how one could transparently 
 | Which video treatments from the available options are best to use? | Participants were more familiar with some politicians in the videos than others. | We will randomize subjects to a more familiar or less familiar politician and may explore heterogeneous effects by politician familiarity. |
 | What is the best way to measure uncertainty as an outcome? | Respondents appear to have been confused by bidirectional scales and questions with reversed scales. | We will use unidirectional scales and also consider the distribution (variance) of other key outcome measures. |
 
-# 9. Explore unknowns
+# Explore unknowns
 
 While you may begin your study with a set of preestablished questions---or "known unknowns"--- that your pilot can help to address, keep in mind that there is a whole universe of "unknown unknowns" left to be explored. Of course, not all of these will be relevant to your study, but some are likely to be. For example, you may find that the participants have vastly different interpretations of an informational treatment, understand survey scales differently, or are reluctant to share responses given a perceived political bias.
 
@@ -159,7 +159,7 @@ Through this process, you may identify novel research questions, potential theor
 
 Overall, pilots afford a wonderful opportunity for open-ended exploration and idea generation.
 
-# 10. A pilot is part of a broader sequence of research activities
+# A pilot is part of a broader sequence of research activities
 
 While we've talked about research in terms of "pilots" and "main studies," this is an oversimplification of the research process. Indeed one can (and often should) employ multiple pilot studies, perhaps with different sample sizes, to evaluate different questions and to continue refining one's research design as new questions and possibilities emerge. Pilot studies certainly do set the stage for main studies as well as subsequent "follow-up" studies, but there may not be a sharp demarcation between these kinds of studies. As depicted in the graphic, pilot studies do not merely lead to main studies. They can also help one develop new ideas and they may serve as a venue through which one can contribute to or coordinate with the broader research community around topics of shared interest. 
 

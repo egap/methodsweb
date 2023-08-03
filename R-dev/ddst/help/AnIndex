@@ -1,0 +1,16 @@
+ddst-package	ddst-package
+ddst	ddst-package
+ddst.base.cos	ddst-package
+ddst.base.legendre	ddst-package
+ddst.exp.Nk	ddst.exp.test
+ddst.exp.test	ddst.exp.test
+ddst.extr.Nk	ddst.extr.test
+ddst.extr.test	ddst.extr.test
+ddst.IIC	ddst-package
+ddst.norm.Nk	ddst.norm.test
+ddst.norm.test	ddst.norm.test
+ddst.phi	ddst-package
+ddst.uniform.Nk	ddst.uniform.test
+ddst.uniform.test	ddst.uniform.test
+Nmax	ddst-package
+tabNorm	ddst.norm.test

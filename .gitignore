@@ -9,3 +9,6 @@
 /_site/
 *_cache
 *figure-html*
+site_libs/*
+*.rmarkdown
+*_files

@@ -5,9 +5,6 @@ author:
     url: https://egap.org/member/jake-bowers/
 bibliography: cluster-randomization.bib
 image: cluster-randomization.png
-format:
-  html:
-    code-fold: true
 ---
 
 ```{r,echo=FALSE, message=FALSE}
@@ -16,7 +13,7 @@ library(knitr)
 library(lme4)
 ```
 
-# 1. What clustering is
+# What clustering is
 
 Cluster randomized experiments allocate treatments to groups, but measure
 outcomes at the level of the individuals that compose the groups. It is this
@@ -59,7 +56,7 @@ at the design and analysis phases can overcome the challenges posed by cluster
 randomized designs.
 
 
-# 2. Why clustering can matter I: information reduction
+# Why clustering can matter I: information reduction
 
 We commonly think of the information contained in studies in terms of the sample
 size and the characteristics of the units within the sample. Yet two studies
@@ -195,7 +192,7 @@ it a) greatly restricts the number of ways in which subjects can be assigned to
 treatment and control groups, and b) produces units whose outcomes are strongly
 related to the cluster they are a member of (i.e. when it increases the ICC).
 
-# 3. What to do about information reduction
+# What to do about information reduction
 
 One way to limit the extent to which clustering reduces the information
 contained in our design would be to form clusters in such a way that the
@@ -471,7 +468,7 @@ conservative, rejecting the null with a probability of 1. Another drawback of
 the cluster-level approach is that it does not allow for the estimation of
 unit-level quantities of interest, such as heterogeneous treatment effects.
 
-# 4. Why clustering can matter II: different cluster sizes and bias
+# Why clustering can matter II: different cluster sizes and bias
 
 When clusters are of different sizes, this can pose a unique class of problems
 related to the estimation of the treatment effect. Especially when the size of
@@ -629,7 +626,7 @@ clusters must be unequal: when $\sum_{i =
 1}^{n_{2k}}(Y_{i2k}(1)-Y_{i2k}(0))/n_{2k}$ for all $k$, the bias is also reduced
 to 0.
 
-# 5. What to do about different cluster sizes
+# What to do about different cluster sizes
 
 Two other approaches work to alleviate this problem of bias from the correlation
 of cluster size and treatment effect: (1) condition on cluster size directly and
@@ -754,7 +751,7 @@ post](https://declaredesign.org/blog/bias-cluster-randomized-trials.html)
 demonstrates conditioning on cluster-size without strict pairing.
 
 
-# 6. Why clustering can matter III: within-cluster spillovers
+# Why clustering can matter III: within-cluster spillovers
 
 In many, or most experiments, we would like to estimate the average causal
 effect of the treatment within a population or a sample.
@@ -872,7 +869,7 @@ Generally speaking, this issue is true of any cluster-randomized study:
 in order to make the claim that we identify the individual-level effect of the
 treatment, we must assume that $Y_{11}=Y_{1}$ and $Y_{00}=Y_{0}$.
 
-# 7. What to do about within-cluster spillovers
+# What to do about within-cluster spillovers
 
 If there are strong reasons to believe that intra-cluster spillovers occur,
 then researchers can take different approaches depending on the manner in
@@ -943,7 +940,7 @@ estimate the effects of intra-cluster spillover, $Y_{11} - Y_{01}$ and
  when defining their estimand to take account of the potential for
  intra-cluster spillover.
 
-# 8. Performance of design- vs. model-based analyses of clustered studies
+# Performance of design- vs. model-based analyses of clustered studies
 
 In our discussion of information loss, we assessed
 approaches that require (1) that treatment was randomized as planned and
@@ -1175,7 +1172,7 @@ kable(error_comparison,align = "c")
 In our simple setup, the individual-level approaches behave about the same way: neither the design-based nor the model-based approach produces valid statistical inferences until the number of clusters is at least 30. This makes sense: both approaches rely on central limit theorems so that a Normal law can describe the distribution of the test statistic under the null hypothesis. The cluster-level approach is always valid, but sometimes produces overly large confidence intervals (when the number of clusters is small). When the number of clusters is large (say, 100), then all approaches are equivalent in terms of their error rates. Designs with few clusters should consider either the cluster-level approach using the normal approximation shown here or even direct permutation based approaches to statistical inference.
 
 
-# 9. Power analysis for clustered designs
+# Power analysis for clustered designs
 
 We want designs that are likely to reject hypotheses inconsistent with the data, and unlikely to reject hypotheses consistent with the data. We’ve seen that the assumptions required for the validity of common tests (typically, large numbers of observations, or large quantities of information in general) are challenged by clustered designs, and the tests which account for clustering can be invalid if the number of clusters is small (or information is low at the cluster level in general). We’ve also seen that we can produce valid statistical tests for hypotheses about the average treatment effect using either Robust Clustered Standard Errors (RCSE), multilevel models or using the cluster-level approach described by @hansen2008covariate, and that pair-matching can drastically minimize bias in designs with unequal cluster sizes.
 
@@ -1400,7 +1397,7 @@ legend("top", legend = colnames(error_ICC),col = 1:2 ,pch=1,horiz = TRUE)
 As this example illustrates, high ICC can severely diminish the
 statistical power of the study, even with many large clusters.
 
-# 10. How to check balance in clustered designs
+# How to check balance in clustered designs
 
 Randomization checks in clustered designs follow the same form as the preceding discussion. A valid test for a treatment effect is a valid test for placebo or covariate balance. The only difference from our preceding discussion is that one uses a background covariate or baseline outcome --- some variable putatively uninfluenced by the treatment --- in place of the outcome itself. So, randomization tests with small numbers of clusters may be too quick to declare an experiment ill-randomized if the analyst is not aware of the methods of error-rate analysis that we described above.
 

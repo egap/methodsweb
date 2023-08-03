@@ -1,8 +1,8 @@
 \cleardoublepage 
 
-# (APPENDIX) Appendix {-}
+# (APPENDIX) Appendix {-} {.unlisted}
 
-# Glossary of Terms {.tabset}
+# Glossary of Terms  {.unlisted}
 
 Below are some core terms frequently used throughout the book and more broadly in discussions of randomized field experiments.
 

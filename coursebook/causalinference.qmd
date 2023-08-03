@@ -1,10 +1,16 @@
-# Causal Inference {.tabset}
+---
+sidebar: coursebook
+toc-depth: -1
+bibliography: coursebook.bib
+---
+
+# Causal Inference  {.unlisted}
 
 Much of social science is about causality.  We might ask questions like whether [voter registration increases political participation](https://egap.org/resource/electoral-administration-in-kenya/), whether [bottom-up accountability can improve health outcomes](https://egap.org/resource/does-bottom-up-accountability-work-evidence-from-uganda/), or whether [personal narratives of immigrants help reduce prejudicial attitudes towards them](https://egap.org/resource/brief-70-how-personal-narratives-reduce-negative-attitudes-towards-immigrants-in-kenya/).
+  
+  Over the past decade, social science has become much more serious about how causal claims are made, building on a long history of work on causality dating back to the classic writings of [Fisher and Rubin](#causalinference-classics). We make greater use of experiments, and randomization has become the gold standard for addressing causal questions. 
 
-Over the past decade, social science has become much more serious about how causal claims are made, building on a long history of work on causality dating back to the classic writings of [Fisher and Rubin](#causalinference-classics). We make greater use of experiments, and randomization has become the gold standard for addressing causal questions. 
-
-In this module, we introduce the counterfactual approach to causal inference and how statements with causal claims can be interpreted. We introduce the potential outcome framework and how random assignment helps us make claims about what would have happened in the absence of the policy, action or program we study. We discuss the three core assumptions for causal inference: random assignment of subjects to treatment, non-interference, and excludability. 
+  In this module, we introduce the counterfactual approach to causal inference and how statements with causal claims can be interpreted. We introduce the potential outcome framework and how random assignment helps us make claims about what would have happened in the absence of the policy, action or program we study. We discuss the three core assumptions for causal inference: random assignment of subjects to treatment, non-interference, and excludability. 
 
 ## Core Content
 
@@ -64,19 +70,19 @@ You can also see the slides used in previous EGAP Learning Days:
 
 #### Classics {#causalinference-classics}
 
-- [@fisher_design_1935]. Fisher introduces the idea of randomization and hypothesis testing as a way to learn about causal inference.
+- @fisher_design_1935: Fisher introduces the idea of randomization and hypothesis testing as a way to learn about causal inference.
 
-- [@rubin:1974]. Rubin introduces the idea of potential outcomes and links counterfactual conceptualizations of causality to statistical inference.
+- @rubin:1974: Rubin introduces the idea of potential outcomes and links counterfactual conceptualizations of causality to statistical inference.
 
 #### Contemporary Overviews
 
-- [@brady2008causation].
+- @brady2008causation
 
-- [@gerber_field_2012, Chapter 1]. This book is a great resource for many topics in experimental design.
+- @gerber_field_2012, Chapter 1: This book is a great resource for many topics in experimental design.
 
-- [@morgan_counterfactuals_2007, Chapter 1].  This book includes nice examples of thinking through making causal claims from observational data.
+- @morgan_counterfactuals_2007, Chapter 1: This book includes nice examples of thinking through making causal claims from observational data.
 
-- [@glennerster_running_2013].  This is a great introduction to running field experiments and discusses many examples.
+- @glennerster_running_2013: This is a great introduction to running field experiments and discusses many examples.
 
 ### EGAP Policy Briefs
 

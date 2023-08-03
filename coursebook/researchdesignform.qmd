@@ -1,4 +1,10 @@
-# The Research Design Process
+---
+sidebar: coursebook
+bibliography: coursebook.bib
+toc-depth: -1
+---
+
+# Research Design Process {.unlisted}
 
 This book aims to help you understand and design randomized field experiments.  But before we dive into the details of research design, we need a good research question -- a question that will advance knowledge or help make a policy decision or both.  There is no simple recipe for finding or developing a good scientific or policy question, but our theories are important for articulating good questions that underlie impactful research.  After formulating our question, we develop the best design possible within our resource constraints, using our knowledge of causal inference and statistics from the modules that follow.  
 

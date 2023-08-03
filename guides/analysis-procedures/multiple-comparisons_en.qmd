@@ -5,19 +5,14 @@ author:
     url: https://egap.org/member/alexander-coppock/
 image: multiple-comparisons.png
 bibliography: multiple-comparisons.bib
-format:
-  html:
-    code-fold: true
+abstract: | 
+  The “Multiple Comparisons Problem” is the problem  that standard statistical procedures can be misleading when researchers conduct a large group of hypothesis tests. When a researcher does more than one test of a hypothesis (or set of closely related hypotheses), the chances are that some finding will appear “significant” even when there’s nothing going on.
+  [Classical hypothesis tests](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html) assess statistical significance by calculating the probability under a null hypothesis of obtaining estimates as large or larger as the observed estimate. When multiple tests are conducted, however, classical p-values can mislead --- they no longer reflect the true probability under the null.
+  This guide will help you guard against drawing false conclusions from your experiments. We focus on the big ideas and provide examples and tools that you can use in R.
 ---
 
-The “Multiple Comparisons Problem” is the problem  that standard statistical procedures can be misleading when researchers conduct a large group of hypothesis tests. When a researcher does more than one test of a hypothesis (or set of closely related hypotheses), the chances are that some finding will appear “significant” even when there’s nothing going on.
+# Almost every social science experiment faces a multiple comparisons problem 
 
-[Classical hypothesis tests](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html) assess statistical significance by calculating the probability under a null hypothesis of obtaining estimates as large or larger as the observed estimate. When multiple tests are conducted, however, classical p-values can mislead --- they no longer reflect the true probability under the null.
-
-This guide will help you guard against drawing false conclusions from your experiments. We focus on the big ideas and provide examples and tools that you can use in R.
-
-1. Almost every social science experiment faces a multiple comparisons problem
-==
 Typically, researchers are not interested in just one treatment versus control comparison per experiment. There are three main ways that comparisons proliferate:
 
 1. **Multiple treatment arms.** When an experiment has $n$ treatment arms, there are $n(n-1)/2$ possible comparisons between the arms.
@@ -30,8 +25,8 @@ These concerns are especially problematic when making a “family claim,” that
 
 The multiple comparisons problem is related to, but different from, the problem of “fishing.”  Fishing occurs when an unscrupulous analyst conducts many tests but only reports the “interesting” ones. In essence, fishing withholds the necessary information we would need in order to correct for multiple comparisons.
 
-2. Why multiple comparisons are a problem
-==
+# Why multiple comparisons are a problem 
+
 
 Let's set up 1 test: we have 1 coin and we will flip it 10 times.  We don't know if the coin is fair but decide that if we flip over 9 heads and 1 tails, we will say that the coin is unfair.  Let's suppose that this is a fair coin; a coin that has a 50% chance of showing a head in a single flip.  We are therefore not likely to flip over 9 heads and 1 tails and will most likely find that the coin is fair.  
 
@@ -45,7 +40,7 @@ In this guide, we will describe three main approaches for addressing the multipl
 2. Pre-analysis plans. These plans are a powerful design-based tool that enables an analyst to pro-actively manage the multiple comparisons problem.
 3. Replication. If we are concerned that a finding is simply an artifact of sampling variability that we happened to discover because of a naive repeated application of classical hypothesis testing, then the best way to resolve the question is to conduct the experiment again.
 
-# 3. Don't mix up the FWER and FDR!
+# Don't mix up the FWER and FDR!
 
 In classical hypothesis testing, the “$\alpha$ level” describes how willing the researcher is to make a certain kind of mistake: a false positive or a "Type I error" where a researcher falsely concludes that an observed difference is “real,” when in fact there is no difference. From the coin flipping example, concluding that we have an unfair coin because we flipped 9 heads and 1 tails when in reality we have fair coins is an example of a Type I error or false positive error.  After setting the $\alpha$ level, the researcher conducts a hypothesis test and if the p-value $\leq \alpha$, we call the result "statistically significant". In many social science applications, the alpha level, or Type I error rate, is set to 0.05. This means that the researcher is willing to commit a Type I error 5% of the time.
 
@@ -63,8 +58,8 @@ The FDR is subtly different. It is the expected proportion of false discoveries 
 
 [^3]: Formally $E[FP/R|R>0]P(R>0)$ to avoid dividing by 0.
 
-4. Control the FWER with Bonferroni-style corrections (including the Holm correction)
-==
+# Control the FWER with Bonferroni-style corrections (including the Holm correction) 
+
 
 The Bonferroni correction is a simple and commonly-used approach for addressing the multiple comparisons problem although it usually understates how much information is available to detect an effect. If you conduct $m$ tests but want to make sure that you make no more than $\alpha$ errors out of the total $m$ tests, the target significance level should be $\alpha/m$, or, equivalently, you multiply your p-values by $m$, and apply the standard $\alpha$ level. (The trouble with multiplying the p-values is sometimes you end up with values over one, rendering the interpretation of the p-values incoherent so software just replaces those p-values with the number 1.)
 
@@ -85,8 +80,8 @@ $$0.122>\frac{0.05}{3+1−3}=0.050$$
 
 Under the Holm correction, the first two tests are significant, but the last test is not.
 
-5. Control the FDR with Benjamini-Hochberg
-==
+# Control the FDR with Benjamini-Hochberg 
+
 
 The Benjamini–Hochberg (B-H) procedure controls the FDR. Like the Holm correction, you also begin by ordering $m$ p-values. Then you find the largest p-value that satisfies:  $p_{k}≤\frac{k}{m}\alpha$. This test, and all tests with smaller p-values are declared significant.
 
@@ -96,8 +91,8 @@ $$0.122>\frac{3}{3}0.05=0.050$$
 
 Using the Benjamini–Hochberg procedure, the first two tests are significant, but the third is not. Notice that the FDR does not control the same error rate as the FWER. It is common for those controlling the FDR error rate to take "significant tests" to indicate places to direct more attention for confirmatory tests (which, would then be analyzed using the stricter FWER control). The idea that one uses the FDR to explore and FWER to confirm is also common in genetics and other applications of large scale hypothesis testing.
 
-6. It’s easy to implement these procedures
-==
+# It’s easy to implement these procedures 
+
 
 In R, the `p.adjust()` function contains many of the corrections devised by statisticians to address the multiple comparisons problem. The `p.adjust()` function is in base R, so no additional packages are required. The `p.adjust()` function gives adjusted p-values after implementing a correction. 
 ```{r}
@@ -181,8 +176,8 @@ This calculator works best in Firefox. To use full-screen, go [here](https://ega
 <iframe height="500" src="https://egap.shinyapps.io/multiple-comparisons-app/" width="850"></iframe>
 
 
-7. A better way to control the FWER is simulation
-==
+# A better way to control the FWER is simulation 
+
 
 The trouble with the corrections above is that they struggle to address the extent to which the multiple comparisons are correlated with one another. A straightforward method of addressing this problem is simulation under the sharp null hypothesis of no effect for any unit on any dependent variable. Note that this is a **family-wise** sharp null.
 
@@ -246,8 +241,8 @@ Here are some guidelines and tips for writing your own simulation.
 2. Each simulation should return a set of p-values. (this was accomplished in the permute_treat() function above.)
 3. Be sure to count up the number of simulations in which at least one test was deemed significant, not the average number of tests across all simulations deemed significant.
 
-8. Alternative ways to control FDR and variants of FDR
-==
+# Alternative ways to control FDR and variants of FDR 
+
 
 Recall from earlier that the Benjamini-Hochberg procedure to control FDR can also be too conservative when all null hypotheses are true. There are a number of different variants of the FDR and with each variant, their own procedures for control.  In general, these are more powerful than the B-H procedure. Below is a table of a few types: 
 
@@ -259,8 +254,8 @@ FDR Variants| Methods for Control | Software
 
 There is the increased chance of accepting more false discoveries with these other methods over the basic B-H approach.  However, in cases with many, many tests, where the researcher might be willing to accept a few more false discoveries along with making more true discoveries, these methods for controlling FDR are good alternatives. 
 
-9. Creating an index is a way to get a single comparison out of many
-==
+# Creating an index is a way to get a single comparison out of many 
+
 
 Suppose[^2] a researcher measures $k>1$ dependent variables. Indexing allows the researcher to reduce these $k$ outcomes into a single measure (or several thematically-grouped measures). These indexing methods effectively condense the number of dependent variables that investigators test in order to address the multiple comparisons problem. There are a number of ancillary benefits of these indexing methods:
 
@@ -411,8 +406,8 @@ colnames(table) <- c("Estimate", "Std. Error", "p-value")
 knitr::kable(table, digits = 3)
 ```
 
-10. Use Design Based approaches
-==
+# Use Design Based approaches 
+
 
 There are also two design based approaches for thinking about this problem. One is to use pre-analysis plans to describe in advance which comparisons will be made; the number of tests implicated in a Bonferroni or Bonferroni-style correction is specified before any data analysis is conducted. A pre-analysis plan, among its many benefits, helps to clarify the multiple comparisons problem.
 
