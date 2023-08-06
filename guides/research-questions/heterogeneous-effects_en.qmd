@@ -8,13 +8,190 @@ image: heterogeneous-effects.png
 bibliography: heterogeneous-effects.bib
 ---
 
-# What Is Treatment Effect Heterogeneity? 
+This guide discusses the theoretical and policy relevance of heterogeneous treatment effects. It also discusses and demonstrates methods for analyzing them: from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc specification search.[^1]
 
-Any given treatment might affect different experimental subjects in different ways. The study of treatment effect heterogeneity is the study of these differences across subjects: For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects? Research on such questions can help inform theories about the conditions under which treatments are especially effective or ineffective; it can also help inform ways of designing and deploying policies so as to maximize their effectiveness.
+[^1]: This guide draws heavily from @gerber_green_2012 and from Don Green's course notes for Experimental Methods at Columbia University.
+
+# What is treatment effect heterogeneity, and when might we want to learn about it?
+==
+
+Any given treatment might affect different experimental subjects in different ways. The study of treatment effect heterogeneity is the study of these differences across subjects: For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects? 
 
 # Testing for Heterogeneity 
 
 As a first step, one might be interested in whether the variance of the treatment effect $\tau_i$ across subjects is statistically distinguishable from zero and seek to test the null hypothesis that $Var(\tau_i) = 0$ (which is equivalent to the hypothesis of a constant treatment effect, i.e., $\tau_i = \tau, \forall i$). However, it is not possible to estimate $Var(\tau_i)$ in an experimental setting because you never get to see the treatment effect for any particular individual. Instead, you only get to see the outcome for each person either in the treatment or in the control condition.[^2]
+
+For example, Eric Kramon, Sarah Brierley, George Ofosu in their study of [The Moderating Effect of Debates in Ghana](https://egap.org/resource/the-moderating-effect-of-debates-in-ghana/) uncover that partisanship of individuals condition the impact of viewing parliamentary debates on candidate evaluation and vote choice. In addition, the policy brief on [Reducing Clientelism in Benin](https://egap.org/resource/brief-13-reducing-clientelism-in-benin/) details how the effectiveness of different anti-clientelistic policies can depend on the incumbency status of candidates. 
+
+Research on such questions can help inform theories about the conditions under which treatments are especially effective or ineffective. It can also help inform ways of designing and deploying policies so as to maximize their effectiveness. If resources will be utilized to deploy a large-scale policy intervention, there are good arguments to be made for deploying it where we have reasonable evidence that it will work. 
+
+
+# Conditional average treatment effects (CATEs)
+==
+
+A structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is an average treatment effect specific to a subgroup of subjects, where the subgroup is defined by subjects' attributes (e.g., the ATE among female subjects) or attributes of the context in which the experiment occurs (e.g., the ATE among subjects at a specific site in a multi-site field experiment). Here, it's important that conditioning occurs only on pre-treatment covariates, and not variables whose values could have been affected by the treatment itself (called post-treatment variables). This is to ensure the unbiased estimation of conditional average treatment effects.
+
+Some researchers may be interested in post-treatment effect modification, or the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants' levels of depression during the followup period? However, conditioning on a post-treatment covariate may lead to bias; estimation of both the main effect and the interaction effects may be biased when a post-treatment covariate is included as a regressor. See _cite angrist and pischke_ for more on bad controls.
+
+<!-- This is especially likely when the covariate is affected by the treatment. -->
+
+There is a burgeoning body of methodological research on the conditions under which CATEs involving post-treatment covariates are identified. These methods rely on model-based identification.[^13]
+
+[^13]: For further reading (at an advanced technical level), see @vansteelandt_goetghebeur_2003; @vansteelandt_goetghebeur_2004; @vansteelandt_2010; @stephens_et_al_2016.
+
+# Interaction effects
+
+In addition to CATEs, researchers are also interested in treatment-by-covariate interaction effects, or the difference between two CATEs when the covariate partitioning subjects into subgroups is not experimentally manipulated. For example, one might estimate an ATE for female subjects and an ATE for male subjects but actually care about whether the difference in ATEs between the female and male subgroups is statistically distinguishable from zero. A treatment-by-covariate interaction can be interpreted as a _descriptive_ measure of association between the covariate and the treatment effect, but does not necessarily represent the _causal_ effect of a change in the covariate value on the ATE if the covariate is not randomly assigned.^[See @bansak2021 for more on causal interpretations of moderators.]
+
+In contrast to treatment-by-covariate interactions, treatment-by-treatment interactions are differences in CATEs where the personal or contextual attribute partitioning subjects into subgroups is experimentally manipulated. Because the covariate is randomly assigned, treatment-by-treatment interactions may be interpreted causally. Factorial and partial factorial designs allow researchers to randomly assign subjects to different combinations of "cross-cutting" treatment conditions and to estimate treatment-by-treatment interactions as allowed by the design.^[Note, however, that partial factorials may have issues. See @Muralidharanetal2020 for more on this.]
+
+# Estimation
+==
+
+Estimating CATEs and interaction effects is straightforward. The CATE may be estimated by calculating the ATE among subjects in the specific subgroup of interest. Interaction effects may be estimated by differencing relevant CATEs. 
+
+CATEs and interaction effects may also be estimated in a regression framework. Here is an example for a hypothetical experiment evaluating the effect of a job training program on future earnings. Let $Y$ be the outcome (future earnings), $Z$ be the treatment variable (1=job training program, 0=control), and $X$ be a pre-treatment covariate (1=scholarship receipt, 0=no scholarship). The model
+$$
+\begin{aligned}
+Y_i &= \alpha + \beta Z_i + \gamma X_i + \varepsilon_i \label{null}
+\end{aligned}
+$$
+allows us to estimate the ATE ($\beta$) only. We can add an additional term interacting $Z$ and $X$, which yields
+$$
+\begin{aligned}
+Y_i &= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i \label{alt}
+\end{aligned}
+$$
+where the coefficient $\delta$ is the interaction effect and is interpreted as the difference between the ATE of the job training program among subjects receiving a scholarship and the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarship receipt is randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarship receipt is not randomly assigned.
+
+The model with the interaction also allows us to back out the values of the CATEs. The ATE of the job training program among subjects who do not receive a scholarship is $\beta$. The ATE of the job training program among subjects who receive a scholarship is $(\beta + \delta)$.
+
+# Hypothesis testing
+==
+
+To test whether the estimated interaction effect could have occurred by chance, one can use randomization inference: First generate a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then simulate random assignment a large number of times and calculate how often the simulated estimate of the interaction effect is at least as large (in absolute value) as the actual estimate.
+
+One can also conduct randomization inference in a regression framework. One method suitable for two-sided tests involves using the $F$-statistic as the test statistic, where the null model is
+$$
+\begin{aligned}
+Y_i &= \alpha + \beta Z_i + \gamma X_i + \varepsilon_i
+\end{aligned}
+$$
+and the alternative model is
+$$
+\begin{aligned}
+Y_i &= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i .
+\end{aligned}
+$$
+
+```{r, message=FALSE, error=FALSE, warning=FALSE, cache=TRUE}
+# Sample code for RI using F-stat as test statistic
+# Code adapted from: http://isps.its.yale.edu/isps/public/Gerber_Green_FEDAI_2012/
+#                    Chapter-9/GerberGreenBook_Chapter9_PlotandFtest_Figure_9_1.R
+rm(list = ls(all = TRUE))
+set.seed(1234567)
+# Let:
+# Y = observed outcome
+# Z = treatment assignment (complete randomization)
+# X = covariate
+n <- 1000
+Z <- sample( rep(c(1, 0), each = n/2) )
+X <- sample( rep(c(1, 0), each = n/2) )
+Y <- rnorm(n)
+numiter <- 1000 # No. of RI iterations (use more for greater precision, fewer for greater speed)
+# estimate ATE
+estate <- mean(Y[Z==1]) - mean(Y[Z==0])
+# construct hypothetical schedule of potential outcomes
+# using constant effects assumption where tau_i == estate
+Y0 <- Y - estate*Z
+Y1 <- Y + estate*(1-Z)
+# estimate CATEs
+estcate0 <- mean(Y[X==0 & Z==1]) - mean(Y[X==0 & Z==0])
+estcate1 <- mean(Y[X==1 & Z==1]) - mean(Y[X==1 & Z==0])
+lm1  <- lm(Y~Z*X)  # alternative model
+lm2  <- lm(Y~Z+X)  # null model
+Ftest <- (sum(lm2$residuals^2) - sum(lm1$residuals^2)) / (sum(lm1$residuals^2) / (n - 4))
+# or alternatively
+# library(lmtest)
+# Ftest <- waldtest(lm1,lm2)$F[2]
+Fdist <- rep(NA,numiter)
+for (i in 1:numiter) {
+	Zri <- sample(Z)
+	Yri <- Y0*(1-Zri) + Y1*Zri
+	estcate0ri <- mean(Yri[X==0 & Zri==1]) - mean(Yri[X==0 & Zri==0]) 
+	estcate1ri <- mean(Yri[X==1 & Zri==1]) - mean(Yri[X==1 & Zri==0])
+	
+	lm1ri  <- lm(Yri~Zri*X)
+	lm2ri  <- lm(Yri~Zri+X)
+	Fdist[i] <- (sum(lm2ri$residuals^2) - sum(lm1ri$residuals^2)) / (sum(lm1ri$residuals^2) / (n - 4))
+	# or alternatively
+	# Fdist[i] <- waldtest(lm1ri, lm2ri)$F[2]	
+	}
+#p-value
+mean(Fdist >= Ftest)
+```
+
+For one-sided tests, the coefficient on the interaction term may be used as the test statistic, given the appropriate model.
+
+# Multiple comparisons
+==
+
+Researchers interested in heterogeneous treatment effects are likely to encounter the problem of multiple comparisons: for example, when numerous subgroup analyses are conducted, the probability that at least one result looks statistically significant at the 5 percent level may be considerably greater than 5 percent even when the treatment has no effect on anyone.^[For more background and a range of views on the multiple comparisons problem, see, e.g.: [10 Things You Need to Know About Multiple Comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html); @cook_farewell_1996; @schulz_grimes_2005a; @schulz_grimes_2005b; @anderson_2008; @westfall_et_al_2011; @gelman_et_al_2012.]
+
+One way to mitigate the multiple comparisons problem is to reduce the number of tests conducted (e.g., by analyzing a small number of pre-specified subgroups). Another approach is to adjust the $p$-values to account for the fact that multiple hypotheses are being tested simultaneously. For more on how to implement various methods of adjustment for multiple comparisons, see [10 Things You Need to Know About Multiple Comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html).
+
+<!-- **7.1 Familywise error rate (FWER) control methods** -->
+
+<!-- Familywise error rate (FWER) control methods limit the probability of making at least one type I error given the number of tests conducted. Suppose one is testing $K$ hypotheses, $H_1, H_2, \ldots, H_K$, and $K_0$ of the $K$ hypotheses are true, where $K_0 \le K$. The familywise error rate is the probability that at least one of the $K_0$ true hypotheses is falsely rejected. The FWER increases in the number of hypotheses tested. FWER control methods adjust the $p$-values so that, for example, if we reject a hypothesis only when the adjusted $p$-value is less than 0.05, the FWER will not exceed 5 percent. -->
+
+<!-- The most conservative FWER control method is the **Bonferroni correction**, which multiplies the $p$-values by the number of tests conducted. (If the result exceeds 1, the adjusted $p$-value is set to 1.) For example, suppose we tested the significance of four interaction effects and found unadjusted $p$-values of 0.02, 0.04, 0.2, and 0.3. The adjusted $p$-values would then be 0.08, 0.16, 0.8, and 1. This approach has limitations because one quickly loses statistical power with just a few tests. -->
+
+<!-- The **Westfall--Young step-down procedure** is an alternative FWER control method that can be more powerful than the Bonferroni correction because it takes into account correlations between the tests.^[The Westfall--Young method's ability to control the FWER depends on a "subset pivotality" assumption that may be violated when outcomes are heteroskedastic or when there are multiple treatment arms. @westfall_et_al_2011 (p. 421) write: "However, this theoretical shortcoming is only rarely a practical one for continuously distributed data. Experience shows that this issue is most likely to arise in cases with extreme heteroscedasticity and unbalanced sample sizes. ... These issues can become even more problematic when testing binary data." See also @bretz_et_al_2011, pp. 133--137. Bootstrap methods that relax the subset pivotality assumption are discussed in: @romano_wolf_2005a; @romano_wolf_2005b; @romano_wolf_2016; @list_et_al_2016.] The procedure involves the following steps:^[This description of the algorithm is adapted from @anderson_2008 and @gubits_et_al_2014.] -->
+
+<!-- 1. Given a family of $K$ null hypotheses (where each hypothesis corresponds to a subgroup or interaction of interest), sort the hypotheses in order of decreasing statistical significance (increasing $p$-value): $p_1 \leq p_2 \leq \ldots \leq p_K$. -->
+
+<!-- 2. Simulate the sharp null hypothesis of no treatment effect by performing a large number $L$ of replications of random assignment of treatment, leaving the outcome and covariate data unchanged. -->
+
+<!-- 3. For each replication, compute a set of simulated $p$-values, $p_1^*, \ldots, p_K^*$. (Do not sort the simulated $p$-values. Keep the ordering of hypotheses from step 1, so that, e.g., $p_1^*$ corresponds to the same hypothesis as $p_1$.) -->
+
+<!-- 4. Compute the adjusted $p$-values as follows: -->
+
+<!-- $$ p_1^{adj} = \frac{\mbox{No. of replications where } \min (p_1^*, \ldots, p_K^*) \leq p_1}{L}$$ -->
+
+<!-- $$ p_2^{adj} = \max \left(p_1^{adj}, \ \frac{\mbox{No. of replications where } \min (p_2^*, \ldots, p_K^*) \leq p_2}{L} \right)$$ -->
+
+<!-- $$ p_3^{adj} = \max \left(p_2^{adj}, \ \frac{\mbox{No. of replications where } \min (p_3^*, \ldots, p_K^*) \leq p_3}{L} \right)$$ -->
+
+<!-- $$ \ldots $$ -->
+
+<!-- $$ p_K^{adj} = \max \left(p_{K-1}^{adj} \, , \ \frac{\mbox{No. of replications where } p_K^* \leq p_K}{L} \right)$$ -->
+
+<!-- R functions to implement the Westfall--Young step-down procedure are available in @porter_2016 and the package [multtest](http://www.bioconductor.org/packages/release/bioc/html/multtest.html).^[See @pollard_et_al_2004; @dudoit_van_der_laan_2008.] -->
+
+<!-- **7.2 False discovery rate (FDR) control methods** -->
+
+<!-- False discovery rate (FDR) control methods control the expected proportion of rejected null hypotheses that are type I errors. Formally, $FDR = E[V \, / \, R]$ where $V$ is the number of rejected nulls that are actually true, $R$ is the total number of rejected nulls, and $V \, / \, R$ is defined as $0$ if $R = 0$. An equivalent definition is $FDR = Pr[R > 0] \times E[V \, / \, R \mid R > 0]$. -->
+
+<!-- The basic procedure developed by @benjamini_hochberg_1995 involves the following steps to control the FDR. As in the setup to control the FWER, specify $K$ hypotheses $H_1, \ldots, H_K$ and index the hypotheses in order of decreasing statistical significance so that $p_1 \leq p_2 \leq \ldots \leq p_K$. Let $q \in (0,1)$ be the desired upper limit on the FDR. Let $c$ be the largest index for which $p_c \leq (cq \, / \, K)$. Reject $H_1, \ldots, H_c$ but do not reject any other hypotheses in the family. This procedure controls the FDR at level $q\, (K_0 \, / \, K) \leq q$ where $K_0$ is the number of true null hypotheses.^[Strictly speaking, to guarantee that the Benjamini--Hochberg procedure controls the FDR, we need to assume either that the $p$-values corresponding to the true null hypotheses are independent or that they obey a positive dependence condition. For a brief overview of work addressing dependence, see section 3.2 of @benjamini_2010.] -->
+
+<!-- FDR control tends to be less conservative than FWER control and is popular in fields such as genomics, where, as @westfall_et_al_2011 write (p. 14), "the number of hypotheses can easily be in the thousands or millions, [and] you usually do not expect that every significant result is real and replicable. Rather, you just want to ensure that a controlled high proportion (e.g., 0.95 or more) of the significant results is real and replicable." FDR control methods have also been used in the social sciences---for example, @anderson_2008 uses FDR control for exploratory analyses and FWER control for confirmatory analyses. However, the concept of the FDR can be difficult to interpret, for several reasons: -->
+
+<!-- - As noted above, the FDR is equivalent to $Pr[R > 0] \times E[V \, / \, R \mid R > 0]$. Thus, @westfall_et_al_2011 (p. 496) note that interpreting the FDR as "the expected proportion of false rejections" is reasonable when thousands or millions of null hypotheses are tested and $Pr[R > 0]$ (the probability that at least one null is rejected) is close to 1, but "in cases where $R$ can be $0$ with reasonably high probability, the interpretation of FDR is unclear" (because then $E[V \, / \, R \mid R > 0]$ can be much higher than the FDR) and "it is better to use FWE-controlling methods in these cases" because they "have more straightforward interpretation." -->
+
+<!-- - The FDR is defined as an expectation: the average value of $V \, / \, R$ across an infinite number of hypothetical replications of the study. "Controlling the FDR" means keeping this expectation less than or equal to some threshold $q$. But this says nothing about the _variability_ of $V \, / \, R$ across replications and thus does not by itself control the _probability_ that $V \, / \, R$ substantially exceeds $q$ (@efron_2010, pp. 51, 55--57). -->
+
+<!-- - As @gelman_et_al_2012 write: "Methods that control for the FDR may make particular sense in fields like genetics where one would expect to see a number of real effects amidst a vast quantity of zero effects such as when examining the effect of a treatment on differential gene expression. ... They may be less useful in social science applications when we are less likely to be testing thousands of hypotheses at a time and when there are less likely to be effects that are truly zero (or at least the distinction between zero and not-zero may be more blurry)." -->
+
+# PAP
+==
+
+Pre-specifying the investigation of heterogeneous treatment effects is important. First, you can reduce the numbers of CATEs and interactions under consideration for hypothesis testing by pre-specifying the tests of primary interest in a registered pre-analysis plan (PAP). Additional subgroup analyses can be conceptualized and specified as exploratory or descriptive analyses in the PAP. Another bonus is that if you prefer a one-sided test, you can commit to that choice in the PAP before seeing the outcome data, so that you "cannot be justly accused of cherry-picking the test after the fact" [@olken_2015]. See our guide [10 Things to Know About Pre-Analysis Plans](https://methods.egap.org/guides/planning/pap_en.html) for more on pre-registration. Further, if you want to demonstrate that heterogeneous effects do not exist (and are not, for example, what is driving a null result), pre-specifying theoretically derived expectations around lack of treatment effect heterogeneity can be useful.
+
+
+# Testing for heterogeneity
+==
+
+As mentioned above, one might be interested in whether the variance of the treatment effect $\tau_i$ across subjects is statistically distinguishable from zero and seek to test the null hypothesis that $Var(\tau_i) = 0$ (which is equivalent to the hypothesis of a constant treatment effect, i.e., $\tau_i = \tau, \forall i$). However, it is not possible to estimate $Var(\tau_i)$ in an experimental setting because you never get to see the treatment effect for any particular individual. Instead, you only get to see the outcome for each person either in the treatment or in the control condition.[^2]
 
 [^2]: This is known as the Fundamental Problem of Causal Inference. For more background, see [10 Things You Need to Know About Causal Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html).
 
@@ -107,158 +284,10 @@ is appropriate for testing the hypothesis that the true treatment effect is cons
 
 The second key change that @ding_et_al_2016 suggest is the FRT CI method, which addresses the problem that the true ATE may differ from the estimated ATE. The basic idea is that instead of using just one value for the hypothesized constant treatment effect to create the full schedule of potential outcomes for a randomization test, we can try a range of hypothesized constant treatment effects and find the maximum $p$-value over all the resulting randomization tests. They first construct a 99.9% confidence interval for the ATE (using the Neyman variance estimator), which becomes the range of hypothesized constant treatment effects. They then find the maximum $p$-value over all the resulting randomization tests and add an increment of 100% - 99.9% = 0.001. This method is guaranteed to yield a valid test of the constant treatment effect hypothesis if the confidence interval used is exactly valid. In practice, the CI is only approximately valid, but the FRT CI method with the shifted KS statistic still yields an exact or conservative test in their simulations.
 
-# Conditional Average Treatment Effects (CATEs) 
+# Automate search for heterogeneous effects
+==
 
-A more structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is an average treatment effect specific to a subgroup of subjects, where the subgroup is defined by subjects' attributes (e.g., the ATE among female subjects) or attributes of the context in which the experiment occurs (e.g., the ATE among subjects at a specific site in a multi-site field experiment).
-
-# Interaction Effects: Treatment-by-Covariate versus Treatment-by-Treatment 
-
-In addition to CATEs, researchers are also interested in treatment-by-covariate interaction effects, or the difference between two CATEs when the covariate partitioning subjects into subgroups is not experimentally manipulated. For example, one might estimate an ATE for female subjects and an ATE for male subjects but actually care about whether the difference in ATEs between the female and male subgroups is statistically distinguishable from zero. To ensure unbiased estimation of CATEs and of interaction effects, the covariate used to partition subjects into subgroups must be a pre-treatment covariate and must be measured using the same procedure for all subjects across experimental groups. A treatment-by-covariate interaction can be interpreted as a _descriptive_ measure of association between the covariate and the treatment effect, but does not necessarily represent the _causal_ effect of a change in the covariate value on the ATE if the covariate is not randomly assigned.
-
-In contrast to treatment-by-covariate interactions, treatment-by-treatment interactions are differences in CATEs where the personal or contextual attribute partitioning subjects into subgroups is experimentally manipulated. Because the covariate is randomly assigned, treatment-by-treatment interactions may be interpreted causally. Factorial and partial factorial designs allow researchers to randomly assign subjects to different combinations of "cross-cutting" treatment conditions and to estimate treatment-by-treatment interactions as allowed by the design.
-
-# Estimating CATEs and Interaction Effects 
-
-Estimating CATEs and interaction effects is straightforward. Nonparametrically, the CATE may be estimated by calculating the ATE among subjects in the specific subgroup of interest. Interaction effects may be estimated by differencing relevant CATEs. 
-
-CATEs and interaction effects may also be estimated in a regression framework. Here is an example for a hypothetical experiment evaluating the effect of a job training program on future earnings. Let $Y$ be the outcome (future earnings), $Z$ be the treatment variable (1=job training program, 0=control), and $X$ be a pre-treatment covariate (1=scholarship receipt, 0=no scholarship). The model
-$$
-\begin{aligned}
-Y_i &= \alpha + \beta Z_i + \gamma X_i + \varepsilon_i \label{null}
-\end{aligned}
-$$
-allows us to estimate the ATE ($\beta$) only. We can add an additional term interacting $Z$ and $X$, which yields
-$$
-\begin{aligned}
-Y_i &= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i \label{alt}
-\end{aligned}
-$$
-where the coefficient $\delta$ is the interaction effect and is interpreted as the difference between the ATE of the job training program among subjects receiving a scholarship and the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarship receipt is randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarship receipt is not randomly assigned.
-
-The model with the interaction also allows us to back out the values of the CATEs. The ATE of the job training program among subjects who do not receive a scholarship is $\beta$. The ATE of the job training program among subjects who receive a scholarship is $(\beta + \delta)$.
-
-# Hypothesis Testing for Interaction Effects
-
-	     
-To test whether the estimated interaction effect could have occurred by chance, one can use randomization inference: First generate a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then simulate random assignment a large number of times and calculate how often the simulated estimate of the interaction effect is at least as large (in absolute value) as the actual estimate.
-
-One can also conduct randomization inference in a regression framework. One method suitable for two-sided tests involves using the $F$-statistic as the test statistic, where the null model is
-$$
-\begin{aligned}
-Y_i &= \alpha + \beta Z_i + \gamma X_i + \varepsilon_i
-\end{aligned}
-$$
-and the alternative model is
-$$
-\begin{aligned}
-Y_i &= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i .
-\end{aligned}
-$$
-
-```{r, message=FALSE, error=FALSE, warning=FALSE, cache=TRUE}
-# Sample code for RI using F-stat as test statistic
-# Code adapted from: http://isps.its.yale.edu/isps/public/Gerber_Green_FEDAI_2012/
-#                    Chapter-9/GerberGreenBook_Chapter9_PlotandFtest_Figure_9_1.R
-rm(list = ls(all = TRUE))
-set.seed(1234567)
-# Let:
-# Y = observed outcome
-# Z = treatment assignment (complete randomization)
-# X = covariate
-n <- 1000
-Z <- sample( rep(c(1, 0), each = n/2) )
-X <- sample( rep(c(1, 0), each = n/2) )
-Y <- rnorm(n)
-numiter <- 1000 # No. of RI iterations (use more for greater precision, fewer for greater speed)
-# estimate ATE
-estate <- mean(Y[Z==1]) - mean(Y[Z==0])
-# construct hypothetical schedule of potential outcomes
-# using constant effects assumption where tau_i == estate
-Y0 <- Y - estate*Z
-Y1 <- Y + estate*(1-Z)
-# estimate CATEs
-estcate0 <- mean(Y[X==0 & Z==1]) - mean(Y[X==0 & Z==0])
-estcate1 <- mean(Y[X==1 & Z==1]) - mean(Y[X==1 & Z==0])
-lm1  <- lm(Y~Z*X)  # alternative model
-lm2  <- lm(Y~Z+X)  # null model
-Ftest <- (sum(lm2$residuals^2) - sum(lm1$residuals^2)) / (sum(lm1$residuals^2) / (n - 4))
-# or alternatively
-# library(lmtest)
-# Ftest <- waldtest(lm1,lm2)$F[2]
-Fdist <- rep(NA,numiter)
-for (i in 1:numiter) {
-	Zri <- sample(Z)
-	Yri <- Y0*(1-Zri) + Y1*Zri
-	estcate0ri <- mean(Yri[X==0 & Zri==1]) - mean(Yri[X==0 & Zri==0]) 
-	estcate1ri <- mean(Yri[X==1 & Zri==1]) - mean(Yri[X==1 & Zri==0])
-	
-	lm1ri  <- lm(Yri~Zri*X)
-	lm2ri  <- lm(Yri~Zri+X)
-	Fdist[i] <- (sum(lm2ri$residuals^2) - sum(lm1ri$residuals^2)) / (sum(lm1ri$residuals^2) / (n - 4))
-	# or alternatively
-	# Fdist[i] <- waldtest(lm1ri, lm2ri)$F[2]	
-	}
-#p-value
-mean(Fdist >= Ftest)
-```
-
-For one-sided tests, the coefficient on the interaction term may be used as the test statistic, given the appropriate model.
-
-# Multiple Comparisons 
-
-Researchers interested in heterogeneous treatment effects are likely to encounter the problem of multiple comparisons: for example, when numerous subgroup analyses are conducted, the probability that at least one result looks statistically significant at the 5 percent level may be considerably greater than 5 percent even when the treatment has no effect on anyone.^[For more background and a range of views on the multiple comparisons problem, see, e.g.: [10 Things You Need to Know About Multiple Comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html); @cook_farewell_1996; @schulz_grimes_2005a; @schulz_grimes_2005b; @anderson_2008; @westfall_et_al_2011; @gelman_et_al_2012.]
-
-One way to mitigate the multiple comparisons problem is to reduce the number of tests conducted (e.g., by analyzing a small number of pre-specified subgroups). Another approach is to adjust the $p$-values to account for the fact that multiple hypotheses are being tested simultaneously.
-
-**7.1 Familywise error rate (FWER) control methods**
-
-Familywise error rate (FWER) control methods limit the probability of making at least one type I error given the number of tests conducted. Suppose one is testing $K$ hypotheses, $H_1, H_2, \ldots, H_K$, and $K_0$ of the $K$ hypotheses are true, where $K_0 \le K$. The familywise error rate is the probability that at least one of the $K_0$ true hypotheses is falsely rejected. The FWER increases in the number of hypotheses tested. FWER control methods adjust the $p$-values so that, for example, if we reject a hypothesis only when the adjusted $p$-value is less than 0.05, the FWER will not exceed 5 percent.
-
-The most conservative FWER control method is the **Bonferroni correction**, which multiplies the $p$-values by the number of tests conducted. (If the result exceeds 1, the adjusted $p$-value is set to 1.) For example, suppose we tested the significance of four interaction effects and found unadjusted $p$-values of 0.02, 0.04, 0.2, and 0.3. The adjusted $p$-values would then be 0.08, 0.16, 0.8, and 1. This approach has limitations because one quickly loses statistical power with just a few tests.
-
-The **Westfall--Young step-down procedure** is an alternative FWER control method that can be more powerful than the Bonferroni correction because it takes into account correlations between the tests.^[The Westfall--Young method's ability to control the FWER depends on a "subset pivotality" assumption that may be violated when outcomes are heteroskedastic or when there are multiple treatment arms. @westfall_et_al_2011 (p. 421) write: "However, this theoretical shortcoming is only rarely a practical one for continuously distributed data. Experience shows that this issue is most likely to arise in cases with extreme heteroscedasticity and unbalanced sample sizes. ... These issues can become even more problematic when testing binary data." See also @bretz_et_al_2011, pp. 133--137. Bootstrap methods that relax the subset pivotality assumption are discussed in: @romano_wolf_2005a; @romano_wolf_2005b; @romano_wolf_2016; @list_et_al_2016.] The procedure involves the following steps:^[This description of the algorithm is adapted from @anderson_2008 and @gubits_et_al_2014.]
-
-1. Given a family of $K$ null hypotheses (where each hypothesis corresponds to a subgroup or interaction of interest), sort the hypotheses in order of decreasing statistical significance (increasing $p$-value): $p_1 \leq p_2 \leq \ldots \leq p_K$.
-
-2. Simulate the sharp null hypothesis of no treatment effect by performing a large number $L$ of replications of random assignment of treatment, leaving the outcome and covariate data unchanged.
-
-3. For each replication, compute a set of simulated $p$-values, $p_1^*, \ldots, p_K^*$. (Do not sort the simulated $p$-values. Keep the ordering of hypotheses from step 1, so that, e.g., $p_1^*$ corresponds to the same hypothesis as $p_1$.)
-
-4. Compute the adjusted $p$-values as follows:
-
-$$ p_1^{adj} = \frac{\mbox{No. of replications where } \min (p_1^*, \ldots, p_K^*) \leq p_1}{L}$$
-
-$$ p_2^{adj} = \max \left(p_1^{adj}, \ \frac{\mbox{No. of replications where } \min (p_2^*, \ldots, p_K^*) \leq p_2}{L} \right)$$
-
-$$ p_3^{adj} = \max \left(p_2^{adj}, \ \frac{\mbox{No. of replications where } \min (p_3^*, \ldots, p_K^*) \leq p_3}{L} \right)$$
-
-$$ \ldots $$
-
-$$ p_K^{adj} = \max \left(p_{K-1}^{adj} \, , \ \frac{\mbox{No. of replications where } p_K^* \leq p_K}{L} \right)$$
-
-R functions to implement the Westfall--Young step-down procedure are available in @porter_2016 and the package [multtest](http://www.bioconductor.org/packages/release/bioc/html/multtest.html).^[See @pollard_et_al_2004; @dudoit_van_der_laan_2008.]
-
-**7.2 False discovery rate (FDR) control methods**
-
-False discovery rate (FDR) control methods control the expected proportion of rejected null hypotheses that are type I errors. Formally, $FDR = E[V \, / \, R]$ where $V$ is the number of rejected nulls that are actually true, $R$ is the total number of rejected nulls, and $V \, / \, R$ is defined as $0$ if $R = 0$. An equivalent definition is $FDR = Pr[R > 0] \times E[V \, / \, R \mid R > 0]$.
-
-The basic procedure developed by @benjamini_hochberg_1995 involves the following steps to control the FDR. As in the setup to control the FWER, specify $K$ hypotheses $H_1, \ldots, H_K$ and index the hypotheses in order of decreasing statistical significance so that $p_1 \leq p_2 \leq \ldots \leq p_K$. Let $q \in (0,1)$ be the desired upper limit on the FDR. Let $c$ be the largest index for which $p_c \leq (cq \, / \, K)$. Reject $H_1, \ldots, H_c$ but do not reject any other hypotheses in the family. This procedure controls the FDR at level $q\, (K_0 \, / \, K) \leq q$ where $K_0$ is the number of true null hypotheses.^[Strictly speaking, to guarantee that the Benjamini--Hochberg procedure controls the FDR, we need to assume either that the $p$-values corresponding to the true null hypotheses are independent or that they obey a positive dependence condition. For a brief overview of work addressing dependence, see section 3.2 of @benjamini_2010.]
-
-FDR control tends to be less conservative than FWER control and is popular in fields such as genomics, where, as @westfall_et_al_2011 write (p. 14), "the number of hypotheses can easily be in the thousands or millions, [and] you usually do not expect that every significant result is real and replicable. Rather, you just want to ensure that a controlled high proportion (e.g., 0.95 or more) of the significant results is real and replicable." FDR control methods have also been used in the social sciences---for example, @anderson_2008 uses FDR control for exploratory analyses and FWER control for confirmatory analyses. However, the concept of the FDR can be difficult to interpret, for several reasons:
-
-- As noted above, the FDR is equivalent to $Pr[R > 0] \times E[V \, / \, R \mid R > 0]$. Thus, @westfall_et_al_2011 (p. 496) note that interpreting the FDR as "the expected proportion of false rejections" is reasonable when thousands or millions of null hypotheses are tested and $Pr[R > 0]$ (the probability that at least one null is rejected) is close to 1, but "in cases where $R$ can be $0$ with reasonably high probability, the interpretation of FDR is unclear" (because then $E[V \, / \, R \mid R > 0]$ can be much higher than the FDR) and "it is better to use FWE-controlling methods in these cases" because they "have more straightforward interpretation."
-
-- The FDR is defined as an expectation: the average value of $V \, / \, R$ across an infinite number of hypothetical replications of the study. "Controlling the FDR" means keeping this expectation less than or equal to some threshold $q$. But this says nothing about the _variability_ of $V \, / \, R$ across replications and thus does not by itself control the _probability_ that $V \, / \, R$ substantially exceeds $q$ (@efron_2010, pp. 51, 55--57).
-
-- As @gelman_et_al_2012 write: "Methods that control for the FDR may make particular sense in fields like genetics where one would expect to see a number of real effects amidst a vast quantity of zero effects such as when examining the effect of a treatment on differential gene expression. ... They may be less useful in social science applications when we are less likely to be testing thousands of hypotheses at a time and when there are less likely to be effects that are truly zero (or at least the distinction between zero and not-zero may be more blurry)."
-
-# Use a Pre-Analysis Plan To Reduce the Number of Hypothesis Tests 
-
-You can also reduce the numbers of CATEs and interactions under consideration for hypothesis testing by pre-specifying the tests of primary interest in a registered pre-analysis plan (PAP). Additional subgroup analyses can be conceptualized and specified as exploratory or descriptive analyses in the PAP. Another bonus is that if you prefer a one-sided test, you can commit to that choice in the PAP before seeing the outcome data, so that you "cannot be justly accused of cherry-picking the test after the fact" [@olken_2015]. See our guide [10 Things to Know About Pre-Analysis Plans](https://methods.egap.org/guides/planning/pap_en.html) for more on pre-registration.
-
-# Automate the Search for Interactions 
-
-Machine learning methods are useful to automate the search for systematic variation in treatment effects. These automated approaches are attractive because they minimize researchers' use of ad hoc discretion in selecting and testing interactions, and are useful for conducting exploratory analyses.
+Machine learning methods are useful to automate the search for systematic variation in treatment effects. These automated approaches are attractive because they minimize researchers' use of ad hoc discretion in selecting and testing interactions, and are useful for conducting exploratory analyses. These analyses are rarely pre-specified due to their exploratory nature.
 
 Popular machine learning methods include support vector machines (R package [FindIt](http://cran.r-project.org/web/packages/FindIt/index.html)),[^9] Bayesian additive regression trees (R package [BayesTree](http://cran.r-project.org/web/packages/BayesTree/index.html)),[^10] classification and regression trees (R package [causalTree](https://github.com/susanathey/causalTree)) [@athey_imbens_2016] random forests [@wager_athey_2016] and kernel regularized least squares (R package [KRLS](http://cran.r-project.org/web/packages/KRLS/index.html)).[^11]
 
@@ -271,15 +300,5 @@ Popular machine learning methods include support vector machines (R package [Fin
 In addition to single machine learning methods, ensemble methods may be used. Ensemble methods estimate a weighted average of multiple machine learning estimates of heterogeneous effects where the weights are a function of out-of-sample prediction performance.[^12]
 
 [^12]: See @van_der_laan_et_al_2007; @grimmer_et_al_2014.
-
-# A Note on Interactions between Treatment and Post-Treatment Covariates 
-
-The discussion thus far has assumed that the treatment effect heterogeneity of interest involves pre-treatment covariates, to ensure unbiased estimation of CATEs and treatment-by-covariate interaction effects. 
-
-Some researchers may be interested in post-treatment effect modification, or the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants' levels of depression during the followup period? Conditioning on a post-treatment covariate may lead to bias, because biased estimation of both the main effect and the interaction effects is possible when a post-treatment covariate is included as a regressor. This is especially likely when the covariate is affected by the treatment.
-
-There is a burgeoning body of methodological research on the conditions under which CATEs involving post-treatment covariates are identified. These methods rely on model-based identification.[^13]
-
-[^13]: For further reading (at an advanced technical level), see @vansteelandt_goetghebeur_2003; @vansteelandt_goetghebeur_2004; @vansteelandt_2010; @stephens_et_al_2016.
 
 # References
