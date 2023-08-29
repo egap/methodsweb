@@ -22,7 +22,7 @@ A first quantity of interest is the individual treatment effect. For this estima
 
 A quantity that we can learn about, however, is the average treatment effect (ATE) across all observations in our experiment:
 
-$$ATE≡\frac{1}{N}∑^{N}_{i=1}τ_{i}=\frac{∑^{N}_{1}Y_{i}(1)}{N}−\frac{∑^{N}_{1}Y_{i}(0)}{N}$$
+$$\mathrm{ATE}≡\frac{1}{N}∑^{N}_{i=1}τ_{i}=\frac{∑^{N}_{1}Y_{i}(1)}{N}−\frac{∑^{N}_{1}Y_{i}(0)}{N}$$
 Importantly, the average treatment effect gives the mean of the treatment effects for *all* units.
 
 See [10 Strategies for Figuring out if X Causes Y](https://methods.egap.org/guides/causal-inference/x-cause-y_en.html) for information on how we can estimate the ATE (and other estimands).
@@ -53,7 +53,7 @@ Informally, the ATT is the effect for those that we treated; ATC is what the eff
 ==
 Outside of a controlled laboratory setting, the subjects we assign to treatment often are not the same as the subjects who actually receive the treatment. We call this issue non-compliance[^3]. The intent-to-treat effect (ITT) is the effect of giving someone the opportunity to receive treatment. In the absence of noncompliance, the ITT is the same as the ATE. We can define ITT as:
 
-$$ITT = E[Y_i(z=1)] - E[Y_i(z=0)]$$
+$$\mathrm{ITT} = E[Y_i(z=1)] - E[Y_i(z=0)]$$
 
 [^3]: See [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html) for more on non-compliance.
 
@@ -110,7 +110,7 @@ Equivalently,
 10. Eliminated effect
 ==
 
-When interested in indirect effects, one potential estiamnd is the eliminated effect. From section 9 it is clear to see that getting at the indirect effect is, at minimum, challenging. It is not immediately clear what it means to have the mediator respond to the treatment without the treatment being received as in $Y_i(0,M_i(1))$. These cross-world potential outcomes are not possible to observe.
+When interested in indirect effects, one potential estimand is the eliminated effect. From section 9 it is clear to see that getting at the indirect effect is, at minimum, challenging. It is not immediately clear what it means to have the mediator respond to the treatment without the treatment being received as in $Y_i(0,M_i(1))$. These cross-world potential outcomes are not possible to observe.
 
 Despite this difficulty, it might be possible in some settings to manipulate the mediator, getting at controlled direct effects, where the researcher forces the mediator to respond in a certain way. Let the potential outcome where the subject is assigned to treatment and the mediator is forced to respond as if assigned to control be written as $Y_i(10)$. The eliminated effect is the total effect minus the controlled direct effect.
 
