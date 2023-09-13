@@ -25,15 +25,18 @@ A quantity that we can learn about, however, is the average treatment effect (AT
 $$ATE≡\frac{1}{N}∑^{N}_{i=1}τ_{i}=\frac{∑^{N}_{1}Y_{i}(1)}{N}−\frac{∑^{N}_{1}Y_{i}(0)}{N}$$
 Importantly, the average treatment effect gives the mean of the treatment effects for *all* units.
 
-See [10 Strategies for Figuring out if X Causes Y](https://methods.egap.org/guides/causal-inference/x-cause-y_en.html) for information on how we can estimate the ATE (and other estimands).
+See [10 Strategies for Figuring out if X Causes Y](https://methods.egap.org/guides/causal-inference/x-cause-y_en.html) for information on how we can estimate the ATE (and other estimands).[^1]
+
+
+[^1]: See Chapter 2 of @gerber_green_2012 or Chapter 2 of @angrist_pischke_2008 for more information
 
 4. Population and sample average treatment effects
 ==
-When defining the average treatment effect, it isn't immediately clear who is included in the *all* part of all subjects. Often we want to generalize from our sample to make statements about some broader population of interest.[^1] Let $S_i$ be an indicator for whether an subject is in our sample. The sample average treatment effect (SATE) is defined simply as $SATE = E(Y_i(1)−Y_i(0)|S_i=1)$ and the population $PATE = E(Y_i(1)−Y_i(0))$. If we are interested in the effect of the treatment within our sample, we would be interested in the sample average treatment effect. For generalizing our results, we would instead be interested in the population average treatment effect. With a large random sample from a well-defined population with full compliance with treatment, our SATE and PATE are equal in expectation.[^2]
+When defining the average treatment effect, it isn't immediately clear who is included in the *all* part of all subjects. Often we want to generalize from our sample to make statements about some broader population of interest.[^2] Let $S_i$ be an indicator for whether an subject is in our sample. The sample average treatment effect (SATE) is defined simply as $SATE = E(Y_i(1)−Y_i(0)|S_i=1)$ and the population $PATE = E(Y_i(1)−Y_i(0))$. If we are interested in the effect of the treatment within our sample, we would be interested in the sample average treatment effect. For generalizing our results, we would instead be interested in the population average treatment effect. With a large random sample from a well-defined population with full compliance with treatment, our SATE and PATE are equal in expectation.[^3]
 
-[^1]: See @imai_king_stuart_2008 for a more detailed review of the issues discussed in this section.
+[^2]: See @imai_king_stuart_2008 and @coppock2019generalizing for a more detailed review of the issues discussed in this section.
 
-[^2]: See @imbens_wooldridge_2007.
+[^3]: See @imbens_wooldridge_2007.
 
 5. Conditional average treatment effects
 ==
@@ -48,14 +51,15 @@ $$ATC=E(Y_i(1)-Y_i(0)|D_i=0)=E(Y_i(1)|D_i=0)-E(Y_i(0)|D_i=0)$$
 
 Informally, the ATT is the effect for those that we treated; ATC is what the effect *would* be for those we did not treat.
 
+Those interested in further reading on conditional average treatment effects should see chapter 9 of @gerber_green_2012.
 
 6. Intent-to-treat effects
 ==
-Outside of a controlled laboratory setting, the subjects we assign to treatment often are not the same as the subjects who actually receive the treatment. We call this issue non-compliance[^3]. The intent-to-treat effect (ITT) is the effect of giving someone the opportunity to receive treatment. In the absence of noncompliance, the ITT is the same as the ATE. We can define ITT as:
+Outside of a controlled laboratory setting, the subjects we assign to treatment often are not the same as the subjects who actually receive the treatment. We call this issue non-compliance[^4]. The intent-to-treat effect (ITT) is the effect of giving someone the opportunity to receive treatment. In the absence of noncompliance, the ITT is the same as the ATE. We can define ITT as:
 
 $$ITT = E[Y_i(z=1)] - E[Y_i(z=0)]$$
 
-[^3]: See [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html) for more on non-compliance.
+[^4]: See [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html) for more on non-compliance.
 
 Where z is an indicator for whether a subject has been *assigned* to treatment rather than indicating whether they *received* treatment. 
 
@@ -70,7 +74,9 @@ ITT =& E[Y_i(d(1)) - Y_i(d(0))|d_i(1)=d_i(0)=0]\pi_{NT} + \nonumber \\
 \end{align}
 
 
-Where $d_i(z)$ returns 1 if the subject receives treatment for the given assignment $z$ and 0 if they do not receive treatment for that assignment.
+Where $d_i(z)$ returns 1 if the subject receives treatment for the given assignment $z$ and 0 if they do not receive treatment for that assignment.[^5]
+
+[^5]: With slightly different terminology, @angrist1996identification provide more information about ITT.
 
 7. Complier average causal effects
 ==
@@ -79,15 +85,18 @@ What if you are interested in figuring out the effects of a treatment on those p
 
 $$CACE= E[Y_i(1)-Y_i(0)|d_i(1)-d_i(0) = 1]$$
 
-Which is the average effect conditional on the subject being a complier, a type that takes the treatment when assigned to treatment and does not take the treatment when assigned to control.
+Which is the average effect conditional on the subject being a complier, a type that takes the treatment when assigned to treatment and does not take the treatment when assigned to control.[^6]
 
+[^6]: Detailed discussion of both ITT and CACE can be found in chapters 5 and 6 of @gerber_green_2012.
 
 8. Average marginal component effect
 ==
 
 For a conjoint experiment (see [10 Things to Know About Survey Experiments](https://methods.egap.org/guides/data-strategies/survey-experiments_en.html)), one might be interested in the marginal effect of changing one attribute. The average marginal component effect (AMCE) gives  the average causal effect of changing an attribute from one value to another, while holding equal the joint distribution of the other attributes in the design, averaged over this distribution.
 
-The probabilities associated with each factor are also informed by the choice of estimand. For the uniform AMCE (uAMCE),  each factor is independently and uniformly marginalized. In contrast, the population AMCE (pAMCE) is marginalized over the target population distribution of profiles. The AMCE is always defined with respect to the distribution used for the random assignment; so if you change the randomization distribution, the interpretation changes.
+The probabilities associated with each factor are also informed by the choice of estimand. For the uniform AMCE (uAMCE),  each factor is independently and uniformly marginalized. In contrast, the population AMCE (pAMCE) is marginalized over the target population distribution of profiles. The AMCE is always defined with respect to the distribution used for the random assignment; so if you change the randomization distribution, the interpretation changes.[^7]
+
+[^7]: For more on the AMCe and conjoint experiments, see @bansak2022using and @liu2023multiple
 
 
 9. Direct and indirect effects
@@ -106,6 +115,8 @@ Equivalently,
 \begin{align}
 \underbrace{Y_i(1)-Y_i(0)}_{\text{Total Effect}} = \underbrace{Y_i(0,M_i(1))-Y_i(0,M_i(0))}_{\text{Indirect Effect}}+\underbrace{Y_i(1,M_i(1))-Y_i(0,M_i(1))}_{\text{Direct Effect}} \nonumber
 \end{align}
+
+Recent advances in mediation analysis can be found in @glynn2021advances.
 
 10. Eliminated effect
 ==
@@ -128,6 +139,8 @@ Equivalently:
 &+ \underbrace{[(Y_i(11)-Y_i(01)) - (Y_i(10)- Y_i(00))]*M_i(1)}_{\text{Mediated Interaction}} \nonumber
 \end{align}
 
-This effect can be observed, as both the total effect and the controlled direct effect can be obtained so long as the mediator is able to be manipulated.
+This effect can be observed, as both the total effect and the controlled direct effect can be obtained so long as the mediator is able to be manipulated.[^8]
+
+[^8]: See @acharya2018analyzing.
 
 # References
