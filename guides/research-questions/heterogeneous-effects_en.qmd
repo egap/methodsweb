@@ -32,7 +32,7 @@ What might this look like in practice? As an example, Eric Kramon, Sarah Brierle
 # Treatment effect heterogeneity: Conditional average treatment effects (CATEs)
 ==
 
-Second, we might want to know if specific groups of experimental subjects are impacted differently by our treatment, on average. A structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is an average treatment effect specific to a subgroup of subjects, where the subgroup is defined by subjects' attributes (e.g., the ATE among female subjects), attributes of the context in which the experiment occurs (e.g., the ATE among subjects at a specific site in a multi-site field experiment), or subjects' treatment status (e.g., the ATE among subjects who were assigned to treatment, also called the ATT).
+Second, we might want to know if specific groups of experimental subjects are impacted differently by our treatment, on average. A structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is is often considered to be an average treatment effect specific to a subgroup of subjects, where the subgroup is defined by subjects' attributes (e.g., the ATE among female subjects) or attributes of the context in which the experiment occurs (e.g., the ATE among subjects at a specific site in a multi-site field experiment). Though we do not focus on it in this guide, another version of a CATE can be specific to subjects' treatment status (e.g., the ATE among subjects who were assigned to treatment, also called the ATT or average treatment effect on the treated).
 
 _An important aside on estimation_: When estimating CATEs that condition on attributes (of subjects or of their contexts), it's important that conditioning occurs only on pre-treatment covariates. One should avoid conditioning on variables whose values could have been affected by the treatment itself (called post-treatment variables). This is to ensure the unbiased estimation of conditional average treatment effects. Some researchers may be interested in post-treatment effect modification, or (in the regression context) the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants' levels of depression during the follow-up period? However, conditioning on a post-treatment covariate may lead to bias. See _cite angrist and pischke_ for more on so-called "bad" controls. There is a burgeoning body of methodological research on the conditions under which CATEs involving post-treatment covariates are identified. These methods rely on model-based identification.[^13]
 
@@ -40,9 +40,9 @@ _An important aside on estimation_: When estimating CATEs that condition on attr
 
 # Treatment effect heterogeneity: Differences between CATEs
 
-Third, we might be interested in the difference between two CATEs (sometimes called an interaction effect). Does our treatment work differently on average for men and women? Stated differently, we might want to know whether the difference in ATEs between female and male experimental subjects is equal to zero. Or perhaps we'd like to know whether the average treatment effect among rural study participants is different from the average treatment effect among urban participants.
+Third, we might be interested in the difference between two CATEs (sometimes called an interaction effect). Does our treatment work differently on average for men and women? Stated differently, we might want to know whether the difference in ATEs between female and male experimental subjects is equal to (or different from) zero. Or perhaps we'd like to know whether the average treatment effect among rural study participants is different from the average treatment effect among urban participants.
 
-_An important aside on interpretation_: The variable(s) that define the subgroups that you compare may or may not have been experimentally manipulated. Much of the time, a treatment-by-covariate interaction can be interpreted as a _descriptive_ measure of association between the covariate and the treatment effect, but does not necessarily represent the _causal_ effect of a change in the covariate value on the ATE if the covariate is not randomly assigned.^[See @bansak2021 for more on causal interpretations of moderators.] Treatment-by-treatment interactions are differences in CATEs where the personal or contextual attribute defining subgroups _is_ experimentally manipulated. Because the covariate is randomly assigned, treatment-by-treatment interactions may be interpreted causally. Factorial and partial factorial designs allow researchers to randomly assign subjects to different combinations of "cross-cutting" treatment conditions and to estimate treatment-by-treatment interactions as allowed by the design.^[Note, however, that partial factorials may have issues. See @Muralidharanetal2020 for more on this.]
+_An aside on causal interpretation_: The variable(s) that define the subgroups that you compare may or may not have been experimentally manipulated. Much of the time, a treatment-by-covariate interaction can be interpreted as a _descriptive_ measure of association between the covariate and the treatment effect, but does not necessarily represent the _causal_ effect of a change in the covariate value on the ATE if the covariate is not randomly assigned.^[See @bansak2021 for more on causal interpretations of moderators.] Treatment-by-treatment interactions are differences in CATEs where the personal or contextual attribute defining subgroups _is_ experimentally manipulated. Because the covariate is randomly assigned, treatment-by-treatment interactions may be interpreted causally. Factorial and partial factorial designs allow researchers to randomly assign subjects to different combinations of "cross-cutting" treatment conditions and to estimate treatment-by-treatment interactions as allowed by the design.^[Note, however, that partial factorials may have issues. See @Muralidharanetal2020 for more on this.]
 
 # Estimation
 ==
@@ -59,9 +59,7 @@ Y_i &= \alpha + \beta Z_i + \varepsilon_i \label{null}
 $$
 allows us to estimate the ATE ($\beta$).
 
-We can modify this model in order to estimate the CATE and interaction effects. 
-
-We can add an additional term interacting $Z$ and $X$, which yields
+We can modify this model in order to estimate the CATE and interaction effects. We can add an additional term interacting $Z$ and $X$, which yields
 $$
 \begin{aligned}
 Y_i &= \alpha + \eta Z_i + \gamma X_i + \delta Z_iX_i + \varupsilon_i \label{alt}
@@ -71,6 +69,9 @@ $$.
 This model allows us to back out the values of the CATEs. The ATE of the job training program among subjects who do not receive a scholarship is $\eta$. The ATE of the job training program among subjects who receive a scholarship is $(\beta + \delta)$. The ATE of the job training program among subjects who receive a scholarship is $(\eta + \delta)$.
 
 The coefficient $\delta$ is the interaction effect and is interpreted as the difference between the ATE of the job training program among subjects receiving a scholarship and the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarships are randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarships are not randomly assigned.
+
+An additional method used for covariate adjustment is that of @lin2013, which employs a full set of treatment by covariate interactions. 
+
 
 # Hypothesis testing: CATEs and differences in CATEs
 ==
