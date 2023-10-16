@@ -34,8 +34,10 @@ Software tools in R and Stata can be useful for designing, implementing, analysi
 
 [More...](/software.html)
 
-# Teaching coursebook {.unlisted}
+# Teaching materials {.unlisted}
 
 ![Learning days host cities (red) and participant home countries (blue).](/img/ldmap.svg)
 
-Over the past decade, Evidence in Governance and Politics (EGAP) has organized Learning Days workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) – both researchers and practitioners – in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members. **The teaching coursebook**, which grew out of a desire to share the materials we developed for the Learning Days, is a comprehensive overview of causal inference methods for researchers developing an experimental research design.  
+Over the past decade, Evidence in Governance and Politics (EGAP) has organized Learning Days workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) – both researchers and practitioners – in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members. **The Learning Days Book**, which grew out of a desire to share the materials we developed for the Learning Days, is a comprehensive overview of causal inference methods for researchers developing an experimental research design.  
+
+[More...](/book/)
