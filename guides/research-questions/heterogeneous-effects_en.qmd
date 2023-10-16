@@ -8,7 +8,7 @@ image: heterogeneous-effects.png
 bibliography: heterogeneous-effects.bib
 ---
 
-This guide discusses the theoretical and policy relevance of heterogeneous treatment effects. It also discusses and demonstrates methods for analyzing them: [TODO revamp] from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc specification search.[^1]
+This guide discusses the theoretical and policy relevance of heterogeneous treatment effects. It also discusses and demonstrates methods for estimating them and interpreting results: from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc specification search.[^1]
 
 [^1]: This guide draws heavily from @gerber_green_2012 and from Don Green's course notes for Experimental Methods at Columbia University.
 
@@ -20,24 +20,14 @@ A treatment may affect experimental subjects in different ways: this is treatmen
 #  Why is treatment effect heterogeneity important?
 ==
 
-Studying treatment effect heterogeneity is important for theoretical and practical reasons. COME BACK TO THIS AFTER FINALIZING THE GUIDE AND MAKE IT AN OUTLINE FOR THE REST.
-
-[this was originally under the second point] Research on such questions can inform theories about the conditions under which treatments are especially effective or ineffective. It can also help inform ways of designing and deploying policies so as to maximize their effectiveness. If resources will be utilized to deploy a large-scale policy intervention, there are good arguments to be made for deploying it where we have reasonable evidence that it will work. 
-
-
-1. Are there differences? 
-2. Do different subgroups react differently?
-humble about extrapolation - perhaps it helps some, hurts others. sometimes specifically we care about sub-groups (tie to research question); targeting; theoretical expectations (previewed)
-
-The second point should be written in a way that invites readers to the rest of the methods guide.
-
+Investigating treatment effect heterogeneity can inform (or be used to test predictions of) our theories about the conditions under which treatments are especially effective or ineffective. It can also help in designing and deploying policies so as to maximize their effectiveness. If resources will be utilized to deploy a large-scale policy intervention, there are good arguments to be made for deploying it where we have reasonable evidence that it will work.
 
 
 # Treatment effect heterogeneity: The general case
 
 First, we might want to know if the treatment effect is the same for all subjects. Stated differently: whether or not the variance of the individual level treatment effect $\tau_i$ across all subjects is statistically distinguishable from zero. We can test the null hypothesis that $Var(\tau_i) = 0$. This is equivalent to the hypothesis of a constant treatment effect, i.e., $\tau_i = \tau, \forall i$. However, it is not possible to estimate $Var(\tau_i)$ in an experimental setting because you never get to see the treatment effect for any particular individual. Instead, you only get to see the outcome for each person either in the treatment or in the control condition.[^2]
 
-What might this look like in practice? As an example, Eric Kramon, Sarah Brierley, George Ofosu in their study of [The Moderating Effect of Debates in Ghana](https://egap.org/resource/the-moderating-effect-of-debates-in-ghana/) uncover that individuals' partisanship condition the impact of viewing parliamentary debates on candidate evaluation and vote choice. In addition, the policy brief on [Reducing Clientelism in Benin](https://egap.org/resource/brief-13-reducing-clientelism-in-benin/) details how the effectiveness of different anti-clientelistic policies can depend on the incumbency status of candidates. In a third example, LACK OF EVIDENCE FOR HETEROGENEITY (cite meta-keta policing one)
+What might this look like in practice? As an example, Eric Kramon, Sarah Brierley, George Ofosu in their study of [The Moderating Effect of Debates in Ghana](https://egap.org/resource/the-moderating-effect-of-debates-in-ghana/) uncover that individuals' partisanship condition the impact of viewing parliamentary debates on candidate evaluation and vote choice. In addition, the policy brief on [Reducing Clientelism in Benin](https://egap.org/resource/brief-13-reducing-clientelism-in-benin/) details how the effectiveness of different anti-clientelistic policies can depend on the incumbency status of candidates. In a third example, @blair2021 failed to find evidence of heterogeneous treatment effects of community policing interventions across six geographic sites in the Global South.
 
 # Treatment effect heterogeneity: Conditional average treatment effects (CATEs)
 ==
