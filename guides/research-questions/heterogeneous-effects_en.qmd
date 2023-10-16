@@ -87,9 +87,9 @@ The coefficient $\delta$ is the interaction effect and is interpreted as the dif
 
 We might want to know whether an estimated CATE, or an estimated interaction effect, is just the result of noise in the data, rather than reflecting a true CATE or difference in CATEs.
 
-To test whether the estimated interaction effect is just the result of noise in the data, rather than reflecting a true difference in CATEs, we can take one of two approaches. First, Second, one can use randomization inference. First generate a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then simulate random assignment a large number of times and calculate how often the simulated estimate of the interaction effect is at least as large (in absolute value) as the actual estimate.
+To test whether the estimated interaction effect is just the result of noise in the data, rather than reflecting a true difference in CATEs, we can take one of two approaches. First, we can take the regression approach, by locating the standard error that corresponds to the interaction coefficient in one's regression output. This is common under a regression framework. For more on how to read regression table output, see [10 Things You Need to Know About Reading a Regression Table](https://methods.egap.org/guides/interpretation/regression-table_en.html). Second, one can use randomization inference. This entails generating a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then simulating random assignment a large number of times, and calculating how often the simulated estimate of the interaction effect is at least as large (in absolute value) as the actual estimate. For more on randomization inference, see [10 Things You Need to Know About Randomization Inference](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html).
 
-One can also conduct randomization inference in a regression framework. One method suitable for two-sided tests involves using the $F$-statistic as the test statistic, where the null model is
+One can also combine these two methods, conducting randomization inference in a regression framework. One method suitable for two-sided tests involves using the $F$-statistic as the test statistic, where the null model is
 $$
 \begin{aligned}
 Y_i &= \alpha + \beta Z_i + \gamma X_i + \varepsilon_i
@@ -101,53 +101,6 @@ $$
 Y_i &= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i .
 \end{aligned}
 $$
-
-```{r, message=FALSE, error=FALSE, warning=FALSE, cache=TRUE}
-# Sample code for RI using F-stat as test statistic
-# Code adapted from: http://isps.its.yale.edu/isps/public/Gerber_Green_FEDAI_2012/
-#                    Chapter-9/GerberGreenBook_Chapter9_PlotandFtest_Figure_9_1.R
-rm(list = ls(all = TRUE))
-set.seed(1234567)
-# Let:
-# Y = observed outcome
-# Z = treatment assignment (complete randomization)
-# X = covariate
-n <- 1000
-Z <- sample( rep(c(1, 0), each = n/2) )
-X <- sample( rep(c(1, 0), each = n/2) )
-Y <- rnorm(n)
-numiter <- 1000 # No. of RI iterations (use more for greater precision, fewer for greater speed)
-# estimate ATE
-estate <- mean(Y[Z==1]) - mean(Y[Z==0])
-# construct hypothetical schedule of potential outcomes
-# using constant effects assumption where tau_i == estate
-Y0 <- Y - estate*Z
-Y1 <- Y + estate*(1-Z)
-# estimate CATEs
-estcate0 <- mean(Y[X==0 & Z==1]) - mean(Y[X==0 & Z==0])
-estcate1 <- mean(Y[X==1 & Z==1]) - mean(Y[X==1 & Z==0])
-lm1  <- lm(Y~Z*X)  # alternative model
-lm2  <- lm(Y~Z+X)  # null model
-Ftest <- (sum(lm2$residuals^2) - sum(lm1$residuals^2)) / (sum(lm1$residuals^2) / (n - 4))
-# or alternatively
-# library(lmtest)
-# Ftest <- waldtest(lm1,lm2)$F[2]
-Fdist <- rep(NA,numiter)
-for (i in 1:numiter) {
-	Zri <- sample(Z)
-	Yri <- Y0*(1-Zri) + Y1*Zri
-	estcate0ri <- mean(Yri[X==0 & Zri==1]) - mean(Yri[X==0 & Zri==0]) 
-	estcate1ri <- mean(Yri[X==1 & Zri==1]) - mean(Yri[X==1 & Zri==0])
-	
-	lm1ri  <- lm(Yri~Zri*X)
-	lm2ri  <- lm(Yri~Zri+X)
-	Fdist[i] <- (sum(lm2ri$residuals^2) - sum(lm1ri$residuals^2)) / (sum(lm1ri$residuals^2) / (n - 4))
-	# or alternatively
-	# Fdist[i] <- waldtest(lm1ri, lm2ri)$F[2]	
-	}
-#p-value
-mean(Fdist >= Ftest)
-```
 
 For one-sided tests, the coefficient on the interaction term may be used as the test statistic, given the appropriate model.
 
@@ -200,13 +153,13 @@ One way to mitigate the multiple comparisons problem is to reduce the number of 
 
 <!-- - As @gelman_et_al_2012 write: "Methods that control for the FDR may make particular sense in fields like genetics where one would expect to see a number of real effects amidst a vast quantity of zero effects such as when examining the effect of a treatment on differential gene expression. ... They may be less useful in social science applications when we are less likely to be testing thousands of hypotheses at a time and when there are less likely to be effects that are truly zero (or at least the distinction between zero and not-zero may be more blurry)." -->
 
-# PAP
+# Pre-Analysis Plans
 ==
 
 Pre-specifying the investigation of heterogeneous treatment effects is important. First, you can reduce the numbers of CATEs and interactions under consideration for hypothesis testing by pre-specifying the tests of primary interest in a registered pre-analysis plan (PAP). Additional subgroup analyses can be conceptualized and specified as exploratory or descriptive analyses in the PAP. Another bonus is that if you prefer a one-sided test, you can commit to that choice in the PAP before seeing the outcome data, so that you "cannot be justly accused of cherry-picking the test after the fact" [@olken_2015]. See our guide [10 Things to Know About Pre-Analysis Plans](https://methods.egap.org/guides/planning/pap_en.html) for more on pre-registration. Further, if you want to demonstrate that heterogeneous effects do not exist (and are not, for example, what is driving a null result), pre-specifying theoretically derived expectations around lack of treatment effect heterogeneity can be useful.
 
 
-# Testing for heterogeneity
+<!-- # Testing for heterogeneity
 ==
 
 As mentioned above, one might be interested in whether the variance of the treatment effect $\tau_i$ across subjects is different from zero and seek to test the null hypothesis that $Var(\tau_i) = 0$ (which is equivalent to the hypothesis of a constant treatment effect, i.e., $\tau_i = \tau, \forall i$). However, it is not possible to estimate $Var(\tau_i)$ in an experimental setting because you never get to see the treatment effect for any particular individual. Instead, you only get to see the outcome for each person either in the treatment or in the control condition.[^2]
@@ -300,12 +253,12 @@ where $\hat{F}_0(\cdot)$ and $\hat{F}_1(\cdot)$ denotes the empirical CDFs of th
 $$ t_{SKS} = \max_y | \hat{F}_0(y) - \hat{F}_1(y + \hat{\tau}) | $$
 is appropriate for testing the hypothesis that the true treatment effect is constant and equal to the estimated ATE.
 
-The second key change that @ding_et_al_2016 suggest is the FRT CI method, which addresses the problem that the true ATE may differ from the estimated ATE. The basic idea is that instead of using just one value for the hypothesized constant treatment effect to create the full schedule of potential outcomes for a randomization test, we can try a range of hypothesized constant treatment effects and find the maximum $p$-value over all the resulting randomization tests. They first construct a 99.9% confidence interval for the ATE (using the Neyman variance estimator), which becomes the range of hypothesized constant treatment effects. They then find the maximum $p$-value over all the resulting randomization tests and add an increment of 100% - 99.9% = 0.001. This method is guaranteed to yield a valid test of the constant treatment effect hypothesis if the confidence interval used is exactly valid. In practice, the CI is only approximately valid, but the FRT CI method with the shifted KS statistic still yields an exact or conservative test in their simulations.
+The second key change that @ding_et_al_2016 suggest is the FRT CI method, which addresses the problem that the true ATE may differ from the estimated ATE. The basic idea is that instead of using just one value for the hypothesized constant treatment effect to create the full schedule of potential outcomes for a randomization test, we can try a range of hypothesized constant treatment effects and find the maximum $p$-value over all the resulting randomization tests. They first construct a 99.9% confidence interval for the ATE (using the Neyman variance estimator), which becomes the range of hypothesized constant treatment effects. They then find the maximum $p$-value over all the resulting randomization tests and add an increment of 100% - 99.9% = 0.001. This method is guaranteed to yield a valid test of the constant treatment effect hypothesis if the confidence interval used is exactly valid. In practice, the CI is only approximately valid, but the FRT CI method with the shifted KS statistic still yields an exact or conservative test in their simulations. -->
 
 # Automate search for heterogeneous effects
 ==
 
-Machine learning methods are useful to automate the search for systematic variation in treatment effects. These automated approaches are attractive because they minimize researchers' use of ad hoc discretion in selecting and testing interactions, and are useful for conducting exploratory analyses. These analyses are rarely pre-specified due to their exploratory nature.
+Machine learning methods are useful to automate the search for systematic variation in treatment effects. These automated approaches are attractive because they minimize researchers' use of discretion in selecting and testing interactions, and are useful for conducting exploratory analyses. These analyses are rarely pre-specified due to their exploratory nature.
 
 Popular machine learning methods include support vector machines (R package [FindIt](http://cran.r-project.org/web/packages/FindIt/index.html)),[^9] Bayesian additive regression trees (R package [BayesTree](http://cran.r-project.org/web/packages/BayesTree/index.html)),[^10] classification and regression trees (R package [causalTree](https://github.com/susanathey/causalTree)) [@athey_imbens_2016] random forests [@wager_athey_2016] and kernel regularized least squares (R package [KRLS](http://cran.r-project.org/web/packages/KRLS/index.html)).[^11]
 
@@ -318,5 +271,55 @@ Popular machine learning methods include support vector machines (R package [Fin
 In addition to single machine learning methods, ensemble methods may be used. Ensemble methods estimate a weighted average of multiple machine learning estimates of heterogeneous effects where the weights are a function of out-of-sample prediction performance.[^12]
 
 [^12]: See @van_der_laan_et_al_2007; @grimmer_et_al_2014.
+
+
+
+<!-- ```{r, message=FALSE, error=FALSE, warning=FALSE, cache=TRUE}
+# Sample code for RI using F-stat as test statistic
+# Code adapted from: http://isps.its.yale.edu/isps/public/Gerber_Green_FEDAI_2012/
+#                    Chapter-9/GerberGreenBook_Chapter9_PlotandFtest_Figure_9_1.R
+rm(list = ls(all = TRUE))
+set.seed(1234567)
+# Let:
+# Y = observed outcome
+# Z = treatment assignment (complete randomization)
+# X = covariate
+n <- 1000
+Z <- sample( rep(c(1, 0), each = n/2) )
+X <- sample( rep(c(1, 0), each = n/2) )
+Y <- rnorm(n)
+numiter <- 1000 # No. of RI iterations (use more for greater precision, fewer for greater speed)
+# estimate ATE
+estate <- mean(Y[Z==1]) - mean(Y[Z==0])
+# construct hypothetical schedule of potential outcomes
+# using constant effects assumption where tau_i == estate
+Y0 <- Y - estate*Z
+Y1 <- Y + estate*(1-Z)
+# estimate CATEs
+estcate0 <- mean(Y[X==0 & Z==1]) - mean(Y[X==0 & Z==0])
+estcate1 <- mean(Y[X==1 & Z==1]) - mean(Y[X==1 & Z==0])
+lm1  <- lm(Y~Z*X)  # alternative model
+lm2  <- lm(Y~Z+X)  # null model
+Ftest <- (sum(lm2$residuals^2) - sum(lm1$residuals^2)) / (sum(lm1$residuals^2) / (n - 4))
+# or alternatively
+# library(lmtest)
+# Ftest <- waldtest(lm1,lm2)$F[2]
+Fdist <- rep(NA,numiter)
+for (i in 1:numiter) {
+	Zri <- sample(Z)
+	Yri <- Y0*(1-Zri) + Y1*Zri
+	estcate0ri <- mean(Yri[X==0 & Zri==1]) - mean(Yri[X==0 & Zri==0]) 
+	estcate1ri <- mean(Yri[X==1 & Zri==1]) - mean(Yri[X==1 & Zri==0])
+	
+	lm1ri  <- lm(Yri~Zri*X)
+	lm2ri  <- lm(Yri~Zri+X)
+	Fdist[i] <- (sum(lm2ri$residuals^2) - sum(lm1ri$residuals^2)) / (sum(lm1ri$residuals^2) / (n - 4))
+	# or alternatively
+	# Fdist[i] <- waldtest(lm1ri, lm2ri)$F[2]	
+	}
+#p-value
+mean(Fdist >= Ftest)
+``` 
+-->
 
 # References
