@@ -69,22 +69,25 @@ Y_i &= \alpha + \beta Z_i + \varepsilon_i \label{null}
 $$
 allows us to estimate the ATE ($\beta$).
 
-We can modify this model in order to estimate interaction effects. using the framework of @lin2013. 
+We can modify this model in order to estimate the CATE and interaction effects. 
 
 We can add an additional term interacting $Z$ and $X$, which yields
 $$
 \begin{aligned}
-Y_i &= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varupsilon_i \label{alt}
+Y_i &= \alpha + \eta Z_i + \gamma X_i + \delta Z_iX_i + \varupsilon_i \label{alt}
 \end{aligned}
-$$
-where the coefficient $\delta$ is the interaction effect and is interpreted as the difference between the ATE of the job training program among subjects receiving a scholarship and the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarship receipt is randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarship receipt is not randomly assigned.
+$$.
 
-The model with the interaction also allows us to back out the values of the CATEs. The ATE of the job training program among subjects who do not receive a scholarship is $\beta$. The ATE of the job training program among subjects who receive a scholarship is $(\beta + \delta)$.
+This model allows us to back out the values of the CATEs. The ATE of the job training program among subjects who do not receive a scholarship is $\eta$. The ATE of the job training program among subjects who receive a scholarship is $(\beta + \delta)$. The ATE of the job training program among subjects who receive a scholarship is $(\eta + \delta)$.
 
-# Hypothesis testing
+The coefficient $\delta$ is the interaction effect and is interpreted as the difference between the ATE of the job training program among subjects receiving a scholarship and the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarships are randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarships are not randomly assigned.
+
+# Hypothesis testing: CATEs and differences in CATEs
 ==
 
-To test whether the estimated interaction effect could have occurred by chance, one can use randomization inference: First generate a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then simulate random assignment a large number of times and calculate how often the simulated estimate of the interaction effect is at least as large (in absolute value) as the actual estimate.
+We might want to know whether an estimated CATE, or an estimated interaction effect, is just the result of noise in the data, rather than reflecting a true CATE or difference in CATEs.
+
+To test whether the estimated interaction effect is just the result of noise in the data, rather than reflecting a true difference in CATEs, we can take one of two approaches. First, Second, one can use randomization inference. First generate a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then simulate random assignment a large number of times and calculate how often the simulated estimate of the interaction effect is at least as large (in absolute value) as the actual estimate.
 
 One can also conduct randomization inference in a regression framework. One method suitable for two-sided tests involves using the $F$-statistic as the test statistic, where the null model is
 $$
