@@ -70,8 +70,7 @@ This model allows us to back out the values of the CATEs. The ATE of the job tra
 
 The coefficient $\delta$ is the interaction effect and is interpreted as the difference between the ATE of the job training program among subjects receiving a scholarship and the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarships are randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarships are not randomly assigned.
 
-An additional method used for covariate adjustment is that of @lin2013, which employs a full set of treatment by covariate interactions. 
-
+An additional method used for covariate adjustment is that of @lin2013, which employs a  set of treatment by covariate interactions, with demeaned covariates.
 
 # Hypothesis testing: CATEs and differences in CATEs
 ==
@@ -94,6 +93,8 @@ Y_i &= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i .
 $$
 
 For one-sided tests, the coefficient on the interaction term may be used as the test statistic, given the appropriate model.
+
+_An aside on interpretation_: Here, it's important to distinguish between difference in significance and difference in effects. If, for example, our evidence suggests that the ATE among female study participants is significantly different from zero, but that the ATE among male participants isn't, this _doesn't_ necessarily mean that the two CATEs are different from each other.
 
 # Multiple comparisons
 ==
