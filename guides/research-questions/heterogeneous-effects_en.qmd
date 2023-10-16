@@ -8,30 +8,43 @@ image: heterogeneous-effects.png
 bibliography: heterogeneous-effects.bib
 ---
 
-This guide discusses the theoretical and policy relevance of heterogeneous treatment effects. It also discusses and demonstrates methods for analyzing them: from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc specification search.[^1]
+This guide discusses the theoretical and policy relevance of heterogeneous treatment effects. It also discusses and demonstrates methods for analyzing them: [TODO revamp] from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc specification search.[^1]
 
 [^1]: This guide draws heavily from @gerber_green_2012 and from Don Green's course notes for Experimental Methods at Columbia University.
 
-# What is treatment effect heterogeneity, and when might we want to learn about it?
+# What is treatment effect heterogeneity?
 ==
 
-Any given treatment might affect different experimental subjects in different ways. The study of treatment effect heterogeneity is the study of these differences across subjects: For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects? 
+A treatment may affect experimental subjects in different ways: this is treatment effect heterogeneity. The study of treatment effect heterogeneity is the study of these differences across subjects. For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects? 
 
-# Testing for Heterogeneity 
-
-As a first step, one might be interested in whether the variance of the treatment effect $\tau_i$ across subjects is statistically distinguishable from zero and seek to test the null hypothesis that $Var(\tau_i) = 0$ (which is equivalent to the hypothesis of a constant treatment effect, i.e., $\tau_i = \tau, \forall i$). However, it is not possible to estimate $Var(\tau_i)$ in an experimental setting because you never get to see the treatment effect for any particular individual. Instead, you only get to see the outcome for each person either in the treatment or in the control condition.[^2]
-
-For example, Eric Kramon, Sarah Brierley, George Ofosu in their study of [The Moderating Effect of Debates in Ghana](https://egap.org/resource/the-moderating-effect-of-debates-in-ghana/) uncover that partisanship of individuals condition the impact of viewing parliamentary debates on candidate evaluation and vote choice. In addition, the policy brief on [Reducing Clientelism in Benin](https://egap.org/resource/brief-13-reducing-clientelism-in-benin/) details how the effectiveness of different anti-clientelistic policies can depend on the incumbency status of candidates. 
-
-Research on such questions can help inform theories about the conditions under which treatments are especially effective or ineffective. It can also help inform ways of designing and deploying policies so as to maximize their effectiveness. If resources will be utilized to deploy a large-scale policy intervention, there are good arguments to be made for deploying it where we have reasonable evidence that it will work. 
-
-
-# Conditional average treatment effects (CATEs)
+#  Why is treatment effect heterogeneity important?
 ==
 
-A structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is an average treatment effect specific to a subgroup of subjects, where the subgroup is defined by subjects' attributes (e.g., the ATE among female subjects) or attributes of the context in which the experiment occurs (e.g., the ATE among subjects at a specific site in a multi-site field experiment). Here, it's important that conditioning occurs only on pre-treatment covariates, and not variables whose values could have been affected by the treatment itself (called post-treatment variables). This is to ensure the unbiased estimation of conditional average treatment effects.
+Studying treatment effect heterogeneity is important for theoretical and practical reasons. COME BACK TO THIS AFTER FINALIZING THE GUIDE AND MAKE IT AN OUTLINE FOR THE REST.
 
-Some researchers may be interested in post-treatment effect modification, or the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants' levels of depression during the followup period? However, conditioning on a post-treatment covariate may lead to bias; estimation of both the main effect and the interaction effects may be biased when a post-treatment covariate is included as a regressor. See _cite angrist and pischke_ for more on bad controls.
+[this was originally under the second point] Research on such questions can inform theories about the conditions under which treatments are especially effective or ineffective. It can also help inform ways of designing and deploying policies so as to maximize their effectiveness. If resources will be utilized to deploy a large-scale policy intervention, there are good arguments to be made for deploying it where we have reasonable evidence that it will work. 
+
+
+1. Are there differences? 
+2. Do different subgroups react differently?
+humble about extrapolation - perhaps it helps some, hurts others. sometimes specifically we care about sub-groups (tie to research question); targeting; theoretical expectations (previewed)
+
+The second point should be written in a way that invites readers to the rest of the methods guide.
+
+
+
+# Treatment effect heterogeneity: The general case
+
+First, we might want to know if the treatment effect is the same for all subjects. Stated differently: whether or not the variance of the individual level treatment effect $\tau_i$ across all subjects is statistically distinguishable from zero. We can test the null hypothesis that $Var(\tau_i) = 0$. This is equivalent to the hypothesis of a constant treatment effect, i.e., $\tau_i = \tau, \forall i$. However, it is not possible to estimate $Var(\tau_i)$ in an experimental setting because you never get to see the treatment effect for any particular individual. Instead, you only get to see the outcome for each person either in the treatment or in the control condition.[^2]
+
+What might this look like in practice? As an example, Eric Kramon, Sarah Brierley, George Ofosu in their study of [The Moderating Effect of Debates in Ghana](https://egap.org/resource/the-moderating-effect-of-debates-in-ghana/) uncover that individuals' partisanship condition the impact of viewing parliamentary debates on candidate evaluation and vote choice. In addition, the policy brief on [Reducing Clientelism in Benin](https://egap.org/resource/brief-13-reducing-clientelism-in-benin/) details how the effectiveness of different anti-clientelistic policies can depend on the incumbency status of candidates. In a third example, LACK OF EVIDENCE FOR HETEROGENEITY
+
+# Treatment effect heterogeneity: Conditional average treatment effects (CATEs)
+==
+
+Second, we might want to know if specific groups of experimental subjects are impacted differently by our treatment, on average. A structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is an average treatment effect specific to a subgroup of subjects, where the subgroup is defined by subjects' attributes (e.g., the ATE among female subjects), attributes of the context in which the experiment occurs (e.g., the ATE among subjects at a specific site in a multi-site field experiment), or subjects' treatment status (e.g., the ATE among subjects who were assigned to treatment, also called the ATT).
+
+_An important aside on estimation_: When estimating CATEs that condition on attributes (of subjects or of their contexts), it's important that conditioning occurs only on pre-treatment covariates. One should avoid conditioning on variables whose values could have been affected by the treatment itself (called post-treatment variables). This is to ensure the unbiased estimation of conditional average treatment effects. Some researchers may be interested in post-treatment effect modification, or (in the regression context) the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants' levels of depression during the follow-up period? However, conditioning on a post-treatment covariate may lead to bias. See _cite angrist and pischke_ for more on so-called "bad" controls.
 
 <!-- This is especially likely when the covariate is affected by the treatment. -->
 
