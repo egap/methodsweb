@@ -69,7 +69,7 @@ Y_i &= \alpha + \beta Z_i + \varepsilon_i \label{null}
 $$
 allows us to estimate the ATE ($\beta$).
 
-We can modify this model in order to estimate interaction effects using the framework of @lin2013.
+We can modify this model in order to estimate interaction effects. using the framework of @lin2013. 
 
 We can add an additional term interacting $Z$ and $X$, which yields
 $$
