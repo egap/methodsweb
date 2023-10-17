@@ -98,10 +98,9 @@ What are some best practices in writing up one's analysis code? In general, the 
 # Write up deviations from preanalysis plan and justify
 ==
 
-Pre-registered report should exist (so analyze AS pre-registered, even if not good)
-Cite this in your manuscript
-As you do analysis, you’ll come up w things that you change
-Keep a list of what you change; all of these could be highlighted and justified
+As mentioned earlier, it's normal to deviate from one's pre-analysis plan. What is crucial is to _document_ and _report_ all such deviations. As you're conducting your analysis, we'd recommend keeping a list of where you deviate from your PAP. Each deviation should be highlighted and justified.
+
+Moreover, a pre-registered report of your experiment, where you analyze the data as you'd pre-registered your analysis, should exist. It's best practice to cite this report in your study manuscript so readers can access it. TODO: IS THERE AN EXAMPLE OF THIS
 
 # Example code
 ==
@@ -110,12 +109,24 @@ In this example, we use data from @gaikwad_nellis_2021. They employ a door-to-do
 
 ```{r}
 library(kableExtra)
+library(dplyr)
+library(skimr)
+library(ggplot2)
+library(tidyr)
+library(scales)
+library(randomizr)
+library(ri2)
+# load in libraries
 # load in the experimental data from Gaikwad and Nellis (2021)
 # this code draws heavily on their reproduction code, found in their
 # supplementary materials here: 
 # https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/G1JCKK
 
 t1_experiment_df <- readRDS("gaikwad-nellis-2021-data-t1-experiment-df.Rds")
+```
+
+
+```{r}
 
 ### step 1 ###
 # inspect the treatment variable
@@ -134,13 +145,13 @@ t1_experiment_df %>%
 
 
 ```{r}
-library(skimr)
+
 ### step 2 ###
 # outcome and covariate inspection
 
 # NOTE: Gaikwad and Nellis (2021) look at the impact of the treatment on several outcomes,
 # one of which whether an individual voted in India's 2019 national election.
-# We're choosing to use this one for exposition here.
+# We're choosing to use just this one for exposition here.
 
 # outcome variable:
 # turnout in 2019 national election
@@ -154,11 +165,6 @@ library(skimr)
 # 7) income, 8) whether married, 9) length of residence, 10) whether owns a home
 # here, we investigate 3 of them: age, female, and income
 
-# transforming income, the authors are interested in 1000 of rupees
-
-t1_experiment_df %<>% mutate(
-    b_income_000 = b_income/1000)
-
 # age
 # range 18-88, no NAs
 
@@ -170,12 +176,18 @@ t1_experiment_df %<>% mutate(
 # range 1-150, no NAs
 # there seems to be some extreme outliers
 
+t1_experiment_df <- t1_experiment_df %>% mutate(
+    b_income_000 = b_income/1000)
+
 # we can summarize the outcome variable, as well as covariates, using the
 # skim function in the skimr package
 
-t1_experiment_df %>%
-  dplyr::select(e_voted_2019, b_age, b_female, b_income_000) %>%
-  skim()
+data_for_inpection <- t1_experiment_df %>%
+  dplyr::select(e_voted_2019, b_age, b_female, b_income_000)
+
+skim(data_for_inpection)
+
+#TODO : GRAEME , help 
 
 # let's further inspect the income variable to check out outliers
 
@@ -200,6 +212,7 @@ t1_experiment_df %>%
 
 
 ```{r}
+
 ### step 3 ###
 # dealing with outliers
 
@@ -217,7 +230,7 @@ t1_experiment_df %>%
 # Gaikwad and Nellis winsorize by setting all values higher than the 
 # 99th percentile at the 99th percentile
 
-  t1_experiment_df %<>%
+  t1_experiment_df <- t1_experiment_df %>%
     mutate(b_income_000_winsorized = squish(b_income_000, 
                                                 quantile(b_income_000, 
                                                          c(0, .99))))
@@ -244,6 +257,7 @@ t1_experiment_df %>%
 
 
 ```{r}
+
 ### step 4 ###
 # checking for imbalance
 
@@ -260,7 +274,7 @@ names <-
       "b_muslim" = "Muslim",
       "b_sc_st" = "SC/ST",
       "b_primary_edu" = "Primary education",
-      "b_income_000_OUTLIER_FIXED" = "Income (INR 000s)",
+      "b_income_000_winsorized" = "Income (INR 000s)",
       "b_married" = "Married",
       "b_length_residence" = "Length of residence in city",
       "b_owns_home" = "Owns home in city",
@@ -281,35 +295,36 @@ names <-
       "b_still_gets_village_schemes" = "Still receives hometown schemes",
       "b_owns_village_property" = "Owns hometown property")
 
-# we regress the treatment indicator on the covariates above
-# using lm_robust we get robust standard errors 
 
+# For each simulation,
+# regress the treatment indicator on the covariates above
+# using lm_robust and extract F statistic
+# declare randomization
+# define this function first, "balance_fun"
 
-# TODO, implement the balance test after hearing back from others
+balance_fun <- function(data) {
+  summary(lm_robust(as.formula(paste("Z ~", paste(c(names(names)), collapse = "+"))),
+data = data))$fstatistic[1]
+}
 
-# first, RI
-
-# declare randomization 
-library(randomizr)
-library(ri2)
+# next, declare the type of randomization
+# 
 
 # rename Z as treatment variable
-t1_experiment_df %<>% mutate(
+t1_experiment_df <- t1_experiment_df %>% mutate(
   Z = i_t1
 )
 
-
+# get the number of subjects
 N <- nrow(t1_experiment_df)
 
+# declare simple randomization
 simple_dec <- declare_ra(N = N, simple = TRUE)
 
-sims <- 10
+sims <- 1000
 
 set.seed(343)
 
-balance_fun <- function(data) {
-  summary(lm_robust(Z ~ b_owns_village_property + b_has_village_voter_id, data = data))$fstatistic[1]
-}
 
 ri_out <-
   conduct_ri(
@@ -322,46 +337,6 @@ ri_out <-
 summary(ri_out)
 
 plot(ri_out)
-
-
-
-##### all below needs to be revisited after various others responses' on the 
-# best test statistic
-
-## do we get the same thing - running the 3 different versions we've come across 
-
-# first way
-
-fstat1_not_robust_SE <- summary(lm(Z ~ b_owns_village_property + b_has_village_voter_id, data = t1_experiment_df))$f[1]
-
-# second way
-fit <- lm(Z ~ b_owns_village_property + b_has_village_voter_id, singular.ok = FALSE, data = t1_experiment_df)
-Rbeta.hat <- coef(fit)[-1]
-RVR <- vcovHC(fit, type <- 'HC0')[-1,-1]
-W_obs_SOP_green <- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))
-
-# third way
-fstat_robust_SE <- summary(lm_robust(Z ~ b_owns_village_property + b_has_village_voter_id, data = t1_experiment_df))$fstatistic[1]
-
-
-fstat1_not_robust_SE
-W_obs_SOP_green
-fstat_robust_SE
-
-
-# to ask, whether or not to have robust lm in order to get the test stat
-# look at donald green SOP
-# versus what is shown in the ri guide
-# need to wait to hear back about this part
-
-
-# t1bal <- 
-#     lm(as.formula(paste("i_t1 ~", paste(c(names(names)), collapse = "+"))),
-#        data = t1_experiment_df)
-# 
-# Rbeta.hat <- coef(t1bal)[-1]
-# RVR <- vcovHC(t1bal, type <- 'HC0')[-1,-1]
-# W_obs <- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))
 
 ```
 
