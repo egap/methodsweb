@@ -61,21 +61,19 @@ Changing the values of outliers is strongly discouraged when it comes to the out
 
 After inspecting and cleaning treatment assignment, treatment receipt, covariate, and outcome data, it's crucial to check for balance on pre-treatment covariates between treatment arms. "Balance tests" are a way of providing evidence that your randomization worked as expected. They seek to probe an observable implication of random assignment of treatment: that treatment and control groups look the same, on average, in terms of pre-treatment characteristics.^[See the methods guide on balance tests for more on this. Note, however, that the key (unobservable) assumption that we seek to test is whether or not treatment assignment is independent of potential outcomes.] Balance tests, which can be implemented in a number of different ways, ask whether imbalances in pre-treatment covariates across different experimental conditions are larger than what would be expected by chance.
 
-The balance test you run depends on your experimental design. In a set-up where you have a binary treatment and all units have the same probability of assignment to treatment, you can run a regression of the treatment assignment variable on your covariates, and run an F-test that tests the null hypothesis that all covariates are jointly equal to zero. The p-value of the F-statistic can be found via randomization inference. If, for example, you conducted a block randomization with treatment probabilities that vary by block, you should adjust for this in the regression specification. 
+The balance test you run depends on your experimental design. In a set-up where you have a binary treatment and all units have the same probability of assignment to treatment, you can run a regression of the treatment assignment variable on your covariates, and run an F-test that tests the null hypothesis that all covariates are jointly equal to zero. The p-value of the F-statistic can be found via randomization inference. This is the approach we document in the example code in this guide. If, for example, you conducted a block randomization with treatment probabilities that vary by block, you should adjust for this in the regression specification. 
 
-We are interested in the F-test because we care about overall balance of covariates. However, you are likely to come across covariate-by-covariate analyses that conduct t-tests comparing means among control units and treated units. Though this is standard practice, it is undesirable for several reasons. First, it is not unlikely that a the mean of a covariate will come up as significantly different among treated and control units: due to the often numerous number of tests conducted, statistical significance can arise by chance. Here, it is important to emphasize that if you detect imbalance on a covariate that is significantly different than what would arise by chance, it's not always cause for panic (it necessarily doesn't mean your randomization didn't work as planned). Second, this approach treats each covariate as equally important and informative about potential outcomes, rather than taking into account the prognosticness of the covariate. One may consider running equivalence tests instead of conventional balance tests.^[@hartman_hidalgo_2018 write on the meaning and implications of equivalence tests, vis-a-vis conventional balance tests.] 
+We are interested in the F-test because we care about overall balance of covariates. However, you are likely to come across covariate-by-covariate analyses that conduct t-tests comparing means among control units and treated units. Though this is standard practice, it is undesirable for several reasons. First, it is not unlikely that a the mean of a covariate will come up as significantly different among treated and control units: due to the often numerous number of tests conducted, statistical significance can arise by chance. Here, it is important to emphasize that if you detect imbalance on a covariate that is significantly different than what would arise by chance, it's not always cause for panic (it necessarily doesn't mean your randomization didn't work as planned). Second, this approach treats each covariate as equally important and informative about potential outcomes, rather than taking into account the prognosticness of the covariate. One may consider running equivalence tests instead of conventional balance tests.^[@hartman_hidalgo_2018 write on the meaning and implications of equivalence tests, vis-a-vis conventional balance tests.]
 
-What you expect to see and what to do if it's okay, good to go
-
-What to do if there's evidence of imbalance
+How should we interpret the result of balance tests? If imbalance isn't detected, then it makes sense to proceed to the next step in the analytic pipeline. If it is, additional work may be required. One conventional approach is to adjust for imbalanced covariates in the regression estimating the ATE; this is often used when balance tests are conducted via covariate-by-covariate analyses. Some pre-specify such adjustments. However, it should be noted that there aren't settled guidelines on how to proceed if one detects imbalance (regardless of the method used to test for imbalance). One path forward is to comprehensively investigate whether the random assignment procedure and data handling went according to plan, or whether there were errors. If this investigation reveals no mistakes, then proceeding with one's pre-specified analysis is a sensible path forward, while reporting that, due to chance, the realization of treatment assignment led to imbalance on covariates.
 
 # Checking for differential attrition
 ==
 
 Were you unable to measure outcomes for all of your experimental subjects? Sometimes, subjects leave the study or "attrit", and we're unable to measure their outcome. In general, missingness of the outcome variable(s) can induce bias in our estimates of causal effects. Read more on attrition, what can lead to it, its consequences and how to address it in [10 Things to Know About Missing Data
-](https://methods.egap.org/guides/data-strategies/missing-data_en.html). We'd like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it's not, we might worry about bias. Further, the more missingness there is, the more the risk of bias. 
+](https://methods.egap.org/guides/data-strategies/missing-data_en.html). We'd like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it's not, we might worry about bias. Further, the more missingness there is, the higher the risk of bias.
 
-The main way that researchers probe whether outcome data may be plausibly missing at random (or missing completely at random) is to to examine whether there exists an observable relationship between treatment assignment and missingness of outcomes. The way to do this is to code up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examine whether treatment assignment impacts the propensity for outcome data to be missing. To complement this analysis, researchers generally assess covariate balance between treated and control units who are not missing, or by assess covariate balance between units with missing vs non-missing outcomes.
+Several diagnostics exist for researchers to probe whether the attrition they face may be problematic. One approach is to to examine whether there exists an observable relationship between treatment assignment and missingness of outcomes. This entails coding up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examining whether treatment assignment impacts the propensity for outcome data to be missing. Another approach is to include covariates, and/or treatment by covariate interactions in these models. Here, it is conventional practice to include all covariates that were pre-specified to be used in the balance test. In these approaches, one can use randomization inference to estimate p-values via extracted F statitistics from model simulations.
 
 
 # Adjust estimation procedure according to deviations from planned analysis
@@ -375,38 +373,46 @@ t1_experiment_df %>%
   summarise(n = n()) %>%
   mutate(freq = n / sum(n))
 
-# compare attrition across T1 treatment arms using OLS regression
-# it doesn't appear that there is a big threat of attrition being 
-# related to treatment assignment
+# Run regressions to understand what if anything predicts missingness
 
-# run without interactions
+# simplest version: regress missingness on treatment status
 t1attr1 <- lm_robust(i_attrition ~ i_t1, data = t1_experiment_df)
 
-# run with treatment and covariates
-t1attr2 <- lm_robust(i_attrition ~ i_t1 + , data = t1_experiment_df)
+# more complex version: regress missingness on treatment status and covariates
+# for exposition, here we've selected some (not exhaustive of all covariates used in
+# Gaikwad and Nellis's paper)
+t1attr2 <- lm_robust(i_attrition ~ i_t1 + b_female + b_age + b_muslim + b_sc_st +
+      b_primary_edu + b_income_000_winsorized + b_married + b_length_residence +
+      b_owns_home, data = t1_experiment_df)
 
-# run with treatment by covariate interactions (differential attrition by subgroups)
+# more complex version: run with treatment by covariate interactions
+t1attr3 <- lm_robust(i_attrition ~ i_t1*(b_female + b_age + b_muslim + b_sc_st +
+      b_primary_edu + b_income_000_winsorized + b_married + b_length_residence +
+      b_owns_home), data = t1_experiment_df)
 
 
-# then look w/in each block if blocked design
+# TO NOTE: The way you investigate attrition can depend on your design
+# for example, if you have a blocked design, you'd want to look at 
+# attrition by block; note here that it's possible that an entire block
+# could go missing
 
-# note that an entire block could go missing
+models <- list(
+  "(1)" = t1attr1, 
+  "(2)" = t1attr2, 
+  "(3)" = t1attr3)
 
+cm = c("i_t1" = "Treatment",
+      "b_female" = "Female",
+      "b_age" = "Age",
+      "b_muslim" = "Muslim",
+      "b_sc_st" = "SC/ST",
+      "b_primary_edu" = "Primary education",
+      "b_income_000_winsorized" = "Income (INR 000s)",
+      "b_married" = "Married",
+      "b_length_residence" = "Length of residence in city",
+      "b_owns_home" = "Owns home in city")
 
-# print the table, code from reproduction materials of Gaikwad and Nellis (2021)
-  stargazer(t1attr1, 
-            se = starprep(t1attr1), 
-            type='latex',
-            title = "Comparison of attrition rates across T1 treatment arms using OLS regression. The analysis includes all subjects randomized to T1 treatment or control. Robust standard errors in parentheses.",
-            dep.var.labels = "Attrition Indicator",
-            single.row = TRUE,
-            omit.stat = c("ser", "f", "rsq"),
-            omit = c("Constant"),
-            covariate.labels = "Assigned to T1 treatment",
-            font.size = "small",
-            header = FALSE,
-            float.env = "table",
-            notes.label = "")
+msummary(models, coef_map = cm, stars=TRUE)
 
 ```
 
