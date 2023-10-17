@@ -116,6 +116,8 @@ library(tidyr)
 library(scales)
 library(randomizr)
 library(ri2)
+library(modelsummary)
+
 # load in libraries
 # load in the experimental data from Gaikwad and Nellis (2021)
 # this code draws heavily on their reproduction code, found in their
@@ -308,44 +310,49 @@ data = data))$fstatistic[1]
 }
 
 # next, declare the type of randomization
-# 
+# using declare design
 
-# rename Z as treatment variable
+# required for this: rename Z as treatment variable
 t1_experiment_df <- t1_experiment_df %>% mutate(
   Z = i_t1
 )
 
-# get the number of subjects
+# required for this: get the number of subjects
 N <- nrow(t1_experiment_df)
 
 # declare simple randomization
 simple_dec <- declare_ra(N = N, simple = TRUE)
 
-sims <- 1000
+# then use ri2 package to conduct randomization inference
+# set the number of simulations
 
-set.seed(343)
+sims <- 10000
 
+set.seed(42) # set seed for replicability
 
 ri_out <-
   conduct_ri(
-    test_function = balance_fun,
-    declaration = simple_dec,
-    data = t1_experiment_df,
-    sims = sims
+    test_function = balance_fun, # use the function we wrote above
+    declaration = simple_dec, # use the randomization we declared
+    data = t1_experiment_df, # our dataset
+    sims = sims # the number of times to run the model and extract F stat
   )
 
-summary(ri_out)
 
-plot(ri_out)
+# final step: observe results of randomization inference
+# and interpret
+
+summary(ri_out) # what proportion of simulations produce an F-stat as extreme
+# as the one we actually observed? 0.17
+
+plot(ri_out) # we can also visualize this
 
 ```
 
 
 ```{r}
-### step 4 ###
+### step 5 ###
 # checking for attrition
-
-library(stargazer)
 
 # as we showed above, the outcome variable (that we are working with in this example)
 # has some missing entries, as Gaikwad and Nellis (2021) point out and address in 
@@ -369,9 +376,22 @@ t1_experiment_df %>%
   mutate(freq = n / sum(n))
 
 # compare attrition across T1 treatment arms using OLS regression
-# it doesn't appear that there is a big threat attrition being related to treatment assignment
+# it doesn't appear that there is a big threat of attrition being 
+# related to treatment assignment
 
-t1attr1 <- lm(i_attrition ~ i_t1, data = t1_experiment_df)
+# run without interactions
+t1attr1 <- lm_robust(i_attrition ~ i_t1, data = t1_experiment_df)
+
+# run with treatment and covariates
+t1attr2 <- lm_robust(i_attrition ~ i_t1 + , data = t1_experiment_df)
+
+# run with treatment by covariate interactions (differential attrition by subgroups)
+
+
+# then look w/in each block if blocked design
+
+# note that an entire block could go missing
+
 
 # print the table, code from reproduction materials of Gaikwad and Nellis (2021)
   stargazer(t1attr1, 
@@ -387,9 +407,6 @@ t1attr1 <- lm(i_attrition ~ i_t1, data = t1_experiment_df)
             header = FALSE,
             float.env = "table",
             notes.label = "")
-  
-## TODO: add in balance (missingness on treatment by covariate interaction, then F stat?)
-  # need to wait to hear back about this part
 
 ```
 
