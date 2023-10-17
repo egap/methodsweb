@@ -1,5 +1,5 @@
 ---
-title: " 10 Things on Your Checklist for Analyzing an Experiment"
+title: "10 Things on Your Checklist for Analyzing an Experiment"
 author: 
   - name: "name"
     url: https://methods.egap.org/guides.html
@@ -91,14 +91,9 @@ What's important to note is that, in doing so, you _must indicate where you devi
 # Write replicable code to analyze data
 ==
 
-The next step is to write up the code to analyze your data. In general, the clearer, simpler, and more documented the code, the better. It's best practice to have written the code when filing the pre-analysis plan (in this case, it would be ready to go), but if this isn't the case, it's fine to write the code in its entirety now.
+The next step is to write up the code to analyze your data, if you haven't already done so at the pre-analysis plan stage. It's best practice to have written the code when filing the pre-analysis plan (in this case, it would be ready to go), but if this isn't the case, it's fine to write the code in its entirety now.
 
-What are some best practices in writing up one's analysis code? An example of well-documented, simple and transparent experimental code can be found in the replication materials of @gaikwad_nellis_2021. 
-
-
-List best practice -> point to the replication file of Gaikwad and Nellis (2021)
-annotations , versions of packages, where to find which tables and figures etc etc should all be noted
-raw data kept, cleaning file separate, etc
+What are some best practices in writing up one's analysis code? In general, the clearer, simpler, and more documented the code, the better. An example of well-documented, simple and transparent experimental code can be found in the replication materials of @gaikwad_nellis_2021. First, one should never overwrite one's raw experimental data. We'd recommend keeping the raw data in a separate folder within a replication file, writing and making publicly available the (separate) code that cleans the raw data, and then drawing on the cleaned data in the analysis code. Second, annotating one's code is key. This includes both "macro" and "micro"-level comments. At a macro-level, it's useful to signpost where we can find all analyses in the paper and appendices, by breaking up the code into sections that correspond to the sections in what you'll write up. That way, no guesswork is required to locate the code that produced tables and figures that you write up. At a micro-level, writing in-line comments for specific lines of code also aids with transparency. For example, we recommend writing in-line comments for key analyses as well as the reasoning underlying variable transformations. While there's such a thing as having too much annotation, generally more is better and only increases the accessibility and legibility of your code. TODO: Versions of packages? ask about this point @ Nahomi .
 
 # Write up deviations from preanalysis plan and justify
 ==
