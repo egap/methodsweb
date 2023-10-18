@@ -50,24 +50,18 @@ Estimating CATEs and differences between CATEs (interaction effects) is straight
 
 CATEs and differences in CATEs (interaction effects) may also be estimated in a regression framework. 
 
-Imagine a hypothetical experiment evaluating the effect of a job training program on future earnings. Let $Y$ be the outcome (future earnings), $Z$ be the treatment variable (1=job training program, 0=control), and $X$ be a pre-treatment covariate (1=scholarship receipt, 0=no scholarship). The model
-$$
-\begin{aligned}
-Y_i &= \alpha + \beta Z_i + \varepsilon_i \label{null}
-\end{aligned}
-$$
-allows us to estimate the ATE ($\beta$).
+Imagine a hypothetical experiment evaluating the effect of a job training program on future earnings. Let $Y$ be the outcome (future earnings), $Z$ be the treatment variable (1=job training program, 0=control), and $X$ be a pre-treatment covariate (1=scholarship receipt, 0=no scholarship).
 
-We can modify this model in order to estimate the CATE and interaction effects. We can add an additional term interacting $Z$ and $X$, which yields
+We can write down a regression model that can aid us in estimating the CATEs (the ATE among those who did receive a scholarship, and those who did not) and the interaction effect (the difference between these two CATEs).
 $$
 \begin{aligned}
-Y_i &= \alpha + \eta Z_i + \gamma X_i + \delta Z_iX_i + \varupsilon_i \label{alt}
+Y_i &= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i \label{alt}
 \end{aligned}
 $$.
 
-This model allows us to back out the values of the CATEs. The ATE of the job training program among subjects who do not receive a scholarship is $\eta$. The ATE of the job training program among subjects who receive a scholarship is $(\beta + \delta)$. The ATE of the job training program among subjects who receive a scholarship is $(\eta + \delta)$.
+The ATE of the job training program among subjects who do not receive a scholarship is $\beta$. The ATE of the job training program among subjects who do receive a scholarship is $(\beta + \delta)$.
 
-The coefficient $\delta$ is the interaction effect and is interpreted as the difference between the ATE of the job training program among subjects receiving a scholarship and the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarships are randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarships are not randomly assigned.
+The coefficient $\delta$ is the interaction effect and is interpreted as the ATE of the job training program among subjects receiving a scholarship minus the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarships are randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarships are not randomly assigned.
 
 An additional method used for covariate adjustment is that of @lin2013, which employs a  set of treatment by covariate interactions, with demeaned covariates.
 
