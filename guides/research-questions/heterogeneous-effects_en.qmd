@@ -65,10 +65,10 @@ The coefficient $\delta$ is the interaction effect and is interpreted as the ATE
 
 An additional method used for covariate adjustment is that of @lin2013, which employs a  set of treatment by covariate interactions, with demeaned covariates.
 
-# Hypothesis testing: CATEs and differences in CATEs
+# Hypothesis testing: Differences in CATEs
 ==
 
-We might want to know whether an estimated CATE, or an estimated interaction effect, is just the result of noise in the data, rather than reflecting a true CATE or difference in CATEs.
+We might want to know whether an estimated interaction effect is just the result of noise in the data rather than reflecting a true difference in CATEs.
 
 To test whether the estimated interaction effect is just the result of noise in the data, rather than reflecting a true difference in CATEs, we can take one of two approaches. First, we can take the regression approach, by locating the standard error that corresponds to the interaction coefficient in one's regression output. This is common under a regression framework. For more on how to read regression table output, see [10 Things You Need to Know About Reading a Regression Table](https://methods.egap.org/guides/interpretation/regression-table_en.html). Second, one can use randomization inference. This entails generating a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then simulating random assignment a large number of times, and calculating how often the simulated estimate of the interaction effect is at least as large (in absolute value) as the actual estimate. For more on randomization inference, see [10 Things You Need to Know About Randomization Inference](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html).
 
