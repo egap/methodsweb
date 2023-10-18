@@ -1,58 +1,45 @@
 ---
-title: "10 Things You Need to Know About Project Workflow"
+title: "10 Things You Need to Know About Research Workflow for Experiments"
 author: 
   - name: "Matthew Lisiecki"
-    url: https://egap.org/member/matthew-lisiecki/
+    url: https://egap.org/member/matthew-lisiecki
+# add a fn like: @bowers_voors_2016 provide a framework and steps for improving project’s workflow; this guide draws upon their paper and upon additional tools aimed at documenting the important choices made by researchers and effectively communicating those choices to the project team.
 bibliography: workflow.bib
 image: workflow.png
 ---
 
-# People have limited memories 
+# What is a reproducible workflow?
 
-There are limits to human memory. Since most experimental research requires at least months if not years of design, monitoring, analysis, and reporting, few researchers can   maintain mental oversight of all of a project’s moving pieces over time. Introduce additional investigators into the mix, and the questions of who did what, when, and why (if not how) multiply and become harder to answer. As replication becomes more important (by the original project team or outside researchers), maintaining a written record of decisions, actions, and questions becomes essential. @bowers_voors_2016 provide a framework and steps for improving  project’s workflow; this guide draws upon their paper and upon additional tools aimed at documenting the important choices made by researchers and effectively communicating those choices to the project team.
+An experiment that is reproducible is one that someone else -- another researcher or yourself in the future -- could run again from start to finish just with the details you provide about the study. The idea is that they could do so without talking to you, so a scientist on the other side of the world could run it again it ten years. To make an experiment reproducible typically requires a workflow in which details are recorded along the way, rather than trying to recall them and write them down after the fact. An experiment is fully reproducible if the data strategy -- sampling, treatment assignment, treatment implementation, and measurement procedures -- could be run again and if the analysis strategy can be rerun with the data that resulted from the experiment and return the same results as the original authors. An archive is often produced to aid reproducibility that includes code, treatment protocols, measurement materials such as survey instruments, and the data.
 
-# Effective data analysis is aided by coding 
+# Why should you adopt a reproducible workflow?
 
-The best way to leave an easy-to-retrace path (for your future self and others) in data analysis is to produce all outputs through code. Opening Excel to make one change to one table may seem the quickest way to complete the task, but when you are trying to remember what you did months later, you will be glad to have updated your R script or do file to make the desired edit. To maximize re-traceability, leave comments in your code file to explain the purpose of each line, as in the example below.
+There are limits to human memory. Since most experimental research requires at least months if not years of design, monitoring, analysis, and reporting, few researchers can maintain mental oversight of all of a project’s moving pieces over time. Introduce additional investigators into the mix, and the questions of who did what, when, and why (if not how) multiply and become harder to answer. As replication becomes more important -- by the original project team or outside researchers -- maintaining a written record of decisions, actions, and questions becomes essential.
 
-```{r, eval=FALSE}
-# This file produces a plot relating the explanatory variable to the outcome.
-## Read the data
-thedata <- read.csv(“Data/thedata-15-03-2011.csv”)
-## begin writing to the pdf file
-please-open-pdf(“g1.pdf”)
-please-plot(outcome by explanatory using thedata. red lines
-please.)
-please-add-a-line(using model1)
-## Note to self: a quadratic term does not add to the substance
-## model2 <- please-fit(outcome by explanatory+explanatory^2
-using thedata
-## summary(abs(fitted(model1)-fitted(model2)))
-## stop writing to the pdf file
-please-close-pdf()
-```
+## Coding is communication: to yourself, to co-investigators, and to the future 
+
+<!-- Implementing an experiment requires a series of decisions, large and small. These decisions will be made both by individual researchers and by research teams. The why and how questions that will arise when you or others attempt to reproduce your work can only be answered if you can remember and communicate about these decisions. -->
+
+The best way to leave an easy-to-retrace path for your future self and others in designing, implementing, and analyzing the data from an experiment is to produce all outputs through code. Opening Excel to make one change to one table may seem the quickest way to complete the task, but when you are trying to remember what you did months later, you will be glad to have updated your code to make the desired edit. To maximize re-traceability, leave comments in your code file to explain the purpose of each line.
 
 Coding has other benefits. It saves time by systematically completing repetitive tasks that could be done manually but with greater time investment. It leads to smoother collaboration by communicating progress and next steps. Finally, it helps researchers avoid making mistakes by combining multiple steps into one file where the order of steps and the relationships among steps is clear.
 
-# Coding is communication: to yourself, to co-investigators, and to the future 
+# Organize code to communicate with yourself, collaborators, and future analysts
 
-Data analysis requires a series of decisions, large and small. These decisions will be made both by individual researchers and by research teams. The why and how questions that will arise when you or others attempt to reproduce your work can only be answered if you can remember and communicate about these decisions.
+Valuable as coding is, there is little benefit if the code cannot be read and interpreted by you or others later on. Four rules of thumb can help make code easier to understand and reuse: (1) give files and folders names that say their purpose and; (2) add a README file to each folder to indicate what files should be run in what order and the purpose of the collective purpose of the code files in the folder; (3) add a section to each file explaining its purpose and what it accomplishes; and (4) comment each file so that someone could read the comments alone and understand each step of the code. Together, these are often known as literate programming. 
 
-One way to record decisions made during the coding process is to use the **comment** feature of whichever analysis software you are using (for example, lines beginning with * in Stata, # in R are not executed but are understood as notes). Comments are unexecuted text within the script, and can explain the purpose of each line or section to your collaborators or future self. You can see some commented code in the chunk of R code in point 2.
+# Code your research plans in advance to diagnose them--and you're ready to implement
 
-Coding and communication can be linked even tighter by combining them in the same file. Using markup systems  like R Markdown (see section 4 below) or R+LaTeX[^2], you can place a code chunk that produces a table or figure right where that table/figure will be in the document. If you make a change to the code that produces that table/figure, it appears in the document without any additional work. The R code in point 2 starts with ` ```{r codechunk1}` which tells R+markdown that the next bit of text is R code to be executed and ends with ` ``` ` which tells R+markdown to go back to interpreting the text as prose. For example, in markdown one uses two asterisks to make text **bold** (```**like this**```) but two asterisks would confuse R (there is no R command with two asterisks), so the idea of a code chunk allows two or more kinds of text to be mixed in a single document. Coauthors and editors can also review the manuscript together with the tables and figures, rather than scrolling back and forth between the two. When it comes time to produce the final version of the document, the code chunks can be hidden to display only the relevant table/figure.[^3] The idea is to type the document in plain text but that external programs (including R) can compile so that they end up looking like nice, formatted PDFs. You can use Markdown on Windows and Mac OSX, and you can also edit the file in an ordinary text editor. Jupyter notebooks are another recent open source approach to mixing prose text and code text which emphasize the python language but which can also include R.[^4]
+Experimental researchers often operate under tight timelines and immovable deadlines like elections. If you need to write the code to randomly assign units to treatment the night before you implement the treatment it will be difficult to comment and document the process. But there is another reason to write your code in advance for data strategy and analysis procedures: assessing whether your design is the best one you can choose given financial, ethical, and practical constraints. Writing code and then using simulation to assess the statistical power, bias, cost, and risk to participants can highlight problems before it is too late, and enable pivoting to a better design. Once written to diagnose the design in this way, the code can then be used in implementing the experiment too. When written in advance and tested in this way, there is time to document and test the code, making it more likely to be reproducible later. 
 
-[^2]: Called, anachronistically, Sweave
+# Use random seeds to be sure you can reproduce sampling and randomization
 
-[^3]: Note that all of the EGAP methods guides that produce figures or tables are produced this way (see https://github.com/egap/methods-guides)
+If we could provide one single piece of advice to make your code more reproducible for an experiment it would be: set a random seed before you sample units and randomly assign them to treatment. Random assignment is 
 
-[^4]: There are many ways to type text that includes code such that parenthesis are automatically closed, spelling is checked, or even help is provided about the code itself. RStudio is an integrated development environment (IDE) that includes a nice editor. Some of us use older tools that are more widespread such as vim, or eMacs. Others any of the contemporary improvements on those old tools such as Atom.
+# You can make your treatment and data collection plans reproducible too
 
-# A useful tool for combining code and writeup: R Markdown 
-
-R Markdown is a format for making documents within R using a plain text format. When compiled, these text formats end up looking like nice, formatted PDFs. You can use Markdown on Windows and Mac OSX, and you can also edit the file in an ordinary text editor. 
-
-For more information, see the [Metaketa III committee R Markdown Manual](https://github.com/egap/methods-guides/blob/master/workflow/metaketa3_Rmarkdown.pdf).
+- Turn implementation decisions and activities into data [record when things happened and who did them, like enumerator names and treatment implementation schedules]
+- record treatment materials 
 
 # Data analysis requires clear routes between inputs and outputs 
 
@@ -77,13 +64,20 @@ In situations with less reliable internet access, Dropbox[^6] can provide shared
 
 [^6]: https://www.dropbox.com
 
-# A useful tool for version control: GitHub 
-
 When collaboration involves plain text files (i.e., code or files that combine code and prose), we recommend following the best practices of community of software developers (who make a living from working together in teams to write reliable code in an efficient way). Currently, the standard tool to enable this collaboration is Github.
 
 GitHub is a code hosting platform to streamline issues related to version control and working as a group. It lets you and others work together on projects from anywhere. The core GitHub workflow includes each user copying, or “cloning”, a version of a folder (or folder structure) to their own desktop, so that the latest version from the repository is on a local device, making changes to the desired files, and pushing those files to the shared repository. At the beginning of a work session one “pulls” or “synchronizes” any changes made by other team members online with the local copy. The git system tracks all changes, and contains functionality to revert back to previous versions as needed.
 
 For more information, see [Metaketa III committee GitHub Manual](https://github.com/egap/methods-guides/blob/master/workflow/metaketa3_github.pdf).
+
+# To minimize errors, build testing into the code 
+
+Testing ensures that errors from bugs and typos are caught before it is too late, and including that testing in your coding makes sure that it is done.
+
+Below is a simple example of this testing on a function designed to multiply a number by 2. 
+
+This tells you to go back and review the function, where we see a + instead of a *. Testing can be even more effective if we code the script to stop when an error occurs instead of generating an error message. In R, the stopifnot function will do just that.
+
 
 # Your future self--and others--will want to be able to access your data 
 
@@ -93,37 +87,5 @@ Data should be stored in places like a Dataverse or the ICPSR or other places wi
 
 [^7]: See @king_1995.
 
-# To minimize error, build testing into the code 
-
-Testing ensures that errors from bugs and typos are caught before it is too late, and including that testing in your coding makes sure that it is done.
-
-Below is a simple example of this testing on a function designed to multiply a number by 2. 
-
-```{r, eval=FALSE}
-##  The test function:
-test.times.2.fn <- function(){
-    ##  This function tests times.2.fn
-    if (times.2.fn(thenumber = 4) == 8 &
-        times.2.fn(thenumber = -4) == -8) {
-        print(“It works!”)
-        } else { print(“It does not work!”)
-}
-}
-##  The actual function is:
-times.2.fn <- function(thenumber){
-    ##  This function multiplies a scalar number by 2
-    ##  thenumber is a scalar number
-    thenumber+2
-```
-What happens when running the test function?
-```{r, eval=FALSE}
-test.times.2.fn()
-[1] “It does not work!”
-```
-This tells you to go back and review the function, where we see a + instead of a *. Testing can be even more effective if we code the script to stop when an error occurs instead of generating an error message. In R, the stopifnot function will do just that.
-
-# Research should remove speculation 
-
-Ultimately, the point of doing research is to move things from the realm of opinion into the realm of knowledge. Thus, effective research should have findings that are not a matter of opinion, and at which others can arrive. If, in the future, somebody disagrees with your analysis, you can hand them the raw data files and analysis scripts and watch them arrive at the same result.
 
 # References
