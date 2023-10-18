@@ -3,11 +3,11 @@ title: "10 Things to Know About Heterogeneous Treatment Effects^[This guide draw
 author: 
   - name: "Alyssa René Heinze"
     url: alyssaheinze.github.io
+abstract: | 
+  This guide discusses the theoretical and policy relevance of heterogeneous treatment effects. It also discusses and demonstrates methods for estimating them and interpreting results: from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc specification search.^[This guide draws heavily from @gerber_green_2012 and [Don Green](http://www.donaldgreen.com/)'s course notes for Experimental Methods at Columbia University and builds on an older version of this guide by [Albert Fang](https://albertfang.com/).]
 image: heterogeneous-effects.png
 bibliography: heterogeneous-effects.bib
 ---
-
-This guide discusses the theoretical and policy relevance of heterogeneous treatment effects. It also discusses and demonstrates methods for estimating them and interpreting results: from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc specification search.^[This guide draws heavily from @gerber_green_2012 and [Don Green](http://www.donaldgreen.com/)'s course notes for Experimental Methods at Columbia University and builds on an older version of this guide by [Albert Fang](https://albertfang.com/).]
 
 # What is treatment effect heterogeneity?
 ==
