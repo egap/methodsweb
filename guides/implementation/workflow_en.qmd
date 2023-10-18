@@ -1,8 +1,9 @@
 ---
 title: "10 Things You Need to Know About Research Workflow for Experiments"
 author: 
+  - name: "Graeme Blair"
+    url: https://graemeblair.com
   - name: "Matthew Lisiecki"
-    url: https://egap.org/member/matthew-lisiecki
 # add a fn like: @bowers_voors_2016 provide a framework and steps for improving project’s workflow; this guide draws upon their paper and upon additional tools aimed at documenting the important choices made by researchers and effectively communicating those choices to the project team.
 bibliography: workflow.bib
 image: workflow.png
@@ -16,7 +17,7 @@ An experiment that is reproducible is one that someone else -- another researche
 
 There are limits to human memory. Since most experimental research requires at least months if not years of design, monitoring, analysis, and reporting, few researchers can maintain mental oversight of all of a project’s moving pieces over time. Introduce additional investigators into the mix, and the questions of who did what, when, and why (if not how) multiply and become harder to answer. As replication becomes more important -- by the original project team or outside researchers -- maintaining a written record of decisions, actions, and questions becomes essential.
 
-## Coding is communication: to yourself, to co-investigators, and to the future 
+# Coding is communication to yourself, to co-investigators, and to the future 
 
 <!-- Implementing an experiment requires a series of decisions, large and small. These decisions will be made both by individual researchers and by research teams. The why and how questions that will arise when you or others attempt to reproduce your work can only be answered if you can remember and communicate about these decisions. -->
 
@@ -34,20 +35,23 @@ Experimental researchers often operate under tight timelines and immovable deadl
 
 # Use random seeds to be sure you can reproduce sampling and randomization
 
-If we could provide one single piece of advice to make your code more reproducible for an experiment it would be: set a random seed before you sample units and randomly assign them to treatment. Random assignment is 
+If we could provide one single piece of advice to make your code more reproducible for an experiment it would be: set a random seed before you sample units and randomly assign them to treatment. Documenting that the treatment was, in fact, randomized, and which specific procedure was used is an important step both in demonstrating that an estimate of a treatment effect is a credible one and ensuring the correct analysis procedure is used (one that follows from the random assignment procedure). A time stamped code file with a random seed that takes in a dataset with the study units and constructs the random assignment of units to treatments is the best evidence you can have. Without it, researchers can second guess themselves about what specific procedure was used and potentially mis-analyze the data as a result. The same advice goes for any procedure that involves randomness in code. With a random seed, you can reproduce the results and be sure your code is the documentation of the procedure. 
 
-# You can make your treatment and data collection plans reproducible too
+# You can make your treatment and data collection plans are reproducible too
 
-- Turn implementation decisions and activities into data [record when things happened and who did them, like enumerator names and treatment implementation schedules]
-- record treatment materials 
+To reproduce a study from start to finish, more than code is needed. Study materials are needed that document how to implement the treatment and the research procedures. And logs of who received treatments, who interviewed respondents, and other details of how the study was in fact implemented can become important in analyzing the data.
+
+For sampling procedures, how study units are sampled from a population can be documented in code, but how and when they are approached can affect who joins the study. When reproducing the treatment, this same set of details are needed about how treatment is delivered to study units. If these details are not reproduced, which units receive the treatment may differ. In addition, the content of the treatment itself should be documented, otherwise the treatment effects may differ. Finally, the materials used to collect outcome measures are needed, such as survey instruments, are needed to avoid changing not only the levels of the outcomes but also the treatments since the same treatment may affect different outcomes differently.
+
+Records about how the study was realized, separate from the materials that document what was planned, can change how the data should be analyzed. The spreadsheets used to record when attempts were made to sample units can be used to estimate contact rates and those that record who answered the door or opened an email can be used to calculate compliance rates. Information on enumerator names and identities can help assessing whether responses to surveys differ by enumerator or according to whether the enumerator and respondent have the same gender. In short, any implementation details that can be recorded should be, and retained as the experiment goes along. Many turn out to be useful later, certainly to analyze the data correctly but also to understand how to reproduce it.
 
 # Data analysis requires clear routes between inputs and outputs 
 
 Nearly every script begins by calling in the relevant data for analysis. This should be done with a line that produces the same output on every computer. This, in turn, requires that collaborators need to have access to a shared file structure for storing project materials, about which more in section 7.
 
-Within that shared file structure, the organization of files can be a very helpful map for identifying what went where. @nagler_1995 outlines the principle of modularity, which suggest that you separate files by function (namely making data cleaning/processing/recoding/merging distinct from analysis). Storing the original data file in a folder labeled “raw” and the cleaned/recoded datafile in one marked “clean” tells you and your collaborators where to find each without searching too hard. If the folder structure starts to get overly complicated, consider using a README file (a brief text file) to explain where the relevant input and output files for your analysis are stored.
+Within that shared file structure, the organization of files can be a very helpful map for identifying what went where. @nagler_1995 outlines the principle of modularity, which suggest that you separate files by function (namely making data cleaning/processing/recoding/merging distinct from analysis). Storing the original data file in a folder labeled “raw” and the cleaned/recoded datafile in one marked “clean” tells you and your collaborators where to find each without searching too hard.
 
-# Version control keeps track of who did what and when, and makes sure that work is not overwritten 
+# Version control: Keep track of who did what and when, and makes sure that work is not overwritten 
 
 Even teams with perfect file structure in their shared folder can run into issues without effective version control. Version control allows teams to:
 
@@ -68,24 +72,22 @@ When collaboration involves plain text files (i.e., code or files that combine c
 
 GitHub is a code hosting platform to streamline issues related to version control and working as a group. It lets you and others work together on projects from anywhere. The core GitHub workflow includes each user copying, or “cloning”, a version of a folder (or folder structure) to their own desktop, so that the latest version from the repository is on a local device, making changes to the desired files, and pushing those files to the shared repository. At the beginning of a work session one “pulls” or “synchronizes” any changes made by other team members online with the local copy. The git system tracks all changes, and contains functionality to revert back to previous versions as needed.
 
-For more information, see [Metaketa III committee GitHub Manual](https://github.com/egap/methods-guides/blob/master/workflow/metaketa3_github.pdf).
-
 # To minimize errors, build testing into the code 
 
 Testing ensures that errors from bugs and typos are caught before it is too late, and including that testing in your coding makes sure that it is done.
 
-Below is a simple example of this testing on a function designed to multiply a number by 2. 
-
-This tells you to go back and review the function, where we see a + instead of a *. Testing can be even more effective if we code the script to stop when an error occurs instead of generating an error message. In R, the stopifnot function will do just that.
 
 
-# Your future self--and others--will want to be able to access your data 
+<!-- Below is a simple example of this testing on a function designed to multiply a number by 2.  -->
+
+<!-- This tells you to go back and review the function, where we see a + instead of a *. Testing can be even more effective if we code the script to stop when an error occurs instead of generating an error message. In R, the stopifnot function will do just that. -->
+
+# Your future self--and others--will want to be able to access your data so use an archive
 
 Science involves learning from the work of others in addition to remembering about the past work of oneself. If one works in such a way that a future self can remember, then, often that work will be easy to use by others as they themselves attempt to extend the science or even just learn how to apply your good ideas to their own context.[^7] There are a number of tools to make storing and sharing files for replication easier, including GitHub and the Center for Open Science’s Open Science Framework (OSF). OSF recently ran a [replication project](http://www.socialsciencesreplicationproject.com) aimed at understanding “predictors of reproducibility of research results, and how low reproducibility may inhibit efficient accumulation of knowledge.”
 
-Data should be stored in places like a Dataverse or the ICPSR or other places with a plan for daily backups band also a plan for data to be preserved and made available for many years into the future (in contrast to your favorite homemade website).
+Data should be stored in archives like the Open Science Framework, Dataverse, the ICPSR, or other places with a plan for daily backups and also a plan for data to be preserved and made available for many years into the future (in contrast to a homemade website that may disappear). You also want to have a permanent identifier like a DOI for your archive, and use that identifier rather than a URL to share the archive so it can be found even if the URL for an archive changes.
 
 [^7]: See @king_1995.
-
 
 # References
