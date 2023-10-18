@@ -7,11 +7,11 @@ image: covariates.png
 bibliography: how-to-analyze-experiments.bib
 ---
 
-This guide will provide practical tools on what to do with your data once you've run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers to project managers. If you're not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are analyzing the data, this guide provides instructions and `R` code on how to do so.
+This guide provides practical tools on what to do with your data once you've run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers and project managers. If you're not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are the one analyzing the data, this guide provides instructions and `R` code on how to do so.
 
 # BEFORE seeing (or receiving) your data, file an amendment if changes to the design or planned analysis arise
 
-Before you look at the data, back up and ask yourself: what changed from what I had planned and pre-registered - in terms of both design and analysis - and what are the consequences of those changes for the accuracy of my pre-analysis plan? If you think changes to the PAP are required, then you can file an amendment to the PAP at the registry where you initially pre-registered your experiment. It's good to do this prior to even receiving the data, if possible. To read more on PAPs, see [10 Things to Know About Pre-Analysis Plans
+Before you look at the data (even better: before you receive it), back up and ask yourself: what changed from what I had planned and pre-registered - in terms of both design and analysis - and what are the consequences of those changes for the accuracy of my pre-analysis plan? If you think changes to the PAP are required, then you can file an amendment to the PAP at the registry where you initially pre-registered your experiment. It's good to do this prior to even receiving the data, if possible. To read more on PAPs, see [10 Things to Know About Pre-Analysis Plans
 ](https://methods.egap.org/guides/planning/pap_en.html). 
 
 Things can change from conception to implementation. Perhaps you had planned to randomize at the individual-level, but instead you end up having to conduct a cluster randomization. Alternatively, did an event happen that cut your study short, reducing your sample size? Both of these design changes would have implications for how you should analyze the data. In the first instance, you should file an amendment reflecting the cluster-randomization and corresponding changes to your analyses. In the second instance, you may consider the implications for your reduced sample size for power, and whether or not you need to change your main specification (perhaps by adding covariates, or focusing on a main effect rather than an interaction effect) in order to be powered enough to detect effects should they exist.
@@ -38,7 +38,7 @@ It's also useful to inspect the outcome and covariate variables that you plan on
 
 It's generally good practice to inspect whether or not your treatment assignment did in fact work according to your expectations, depending on the design. This is separate from verifying the code or software that produced the randomization, as in 1 above. Instead, you can check the distribution of the values of treatment assignment; you should see whether it corresponds to what you'd designed (see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html)). 
 
-For example, if you conducted a complete randomization where 25 experimental subjects were to be assigned to control, and 25 to treatment, did this play out in practice? You can run a simple cross-tabulation of the treatment assignment variable, and observe whether or not this is the case. Alternatively, if you conducted a block randomization by gender and wanted to assign half of women to treatment and the other half to control (and the same for men), you can look at the distribution of treatment assignment values by gender. Though uncommon in field experimental design where complete randomization prevails, some survey experimental software uses simple randomization. In a survey experiment with two arms, the software will assign each respondent to treatment or control by flipping a Bernoulli coin that has a 50 percent chance of landing on heads (treatment), and a 50 percent chance of landing on tails (control).^[Note: the Bernoulli coin need not be defined by 50-50 chances; the researcher defines ex-ante the probability of receiving treatment versus control, which could be 70-30 instead.] In this case, it's okay if exactly 50 percent of your respondents don't end up in treatment - we'd expect some variability due to the nature of the randomization. However, the percentage of units treated shouldn't be _too far_ from 50 percent. This would induce doubt that the randomization actually worked.
+For example, if you conducted a complete randomization where 25 experimental subjects were to be assigned to control, and 25 to treatment, did this play out in practice? You can run a simple tabulation of the treatment assignment variable, and observe whether or not this is the case. Alternatively, if you conducted a block randomization by gender and wanted to assign half of women to treatment and the other half to control (and the same for men), you can look at the distribution of treatment assignment values by gender. Though uncommon in field experimental design where complete randomization prevails, some survey experimental software uses simple randomization. In a survey experiment with two arms, the software will assign each respondent to treatment or control by flipping a Bernoulli coin that has a 50 percent chance of landing on heads (treatment), and a 50 percent chance of landing on tails (control).^[Note: the Bernoulli coin need not be defined by 50-50 chances; the researcher defines ex-ante the probability of receiving treatment versus control, which could be 70-30 instead.] In this case, it's okay if exactly 50 percent of your respondents don't end up in treatment - we'd expect some variability due to the nature of the randomization. However, the percentage of units treated shouldn't be _too far_ from 50 percent. This would induce doubt that the randomization actually worked.
 
 # Checking outcome and covariate variables for outliers
 ==
@@ -106,15 +106,7 @@ Moreover, a pre-registered report of your experiment, where you analyze the data
 In this example, we use data from @gaikwad_nellis_2021. They employ a door-to-door field experiment in two Indian cities to increase the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which whether an individual voted in India's 2019 national election.
 
 ```{r}
-library(kableExtra)
-library(dplyr)
-library(skimr)
-library(ggplot2)
-library(tidyr)
-library(scales)
-library(randomizr)
-library(ri2)
-library(modelsummary)
+library(tidyverse)
 
 # load in libraries
 # load in the experimental data from Gaikwad and Nellis (2021)
@@ -127,6 +119,8 @@ t1_experiment_df <- readRDS("gaikwad-nellis-2021-data-t1-experiment-df.Rds")
 
 
 ```{r}
+
+library(kableExtra)
 
 ### step 1 ###
 # inspect the treatment variable
@@ -145,6 +139,8 @@ t1_experiment_df %>%
 
 
 ```{r}
+
+library(skimr)
 
 ### step 2 ###
 # outcome and covariate inspection
@@ -187,8 +183,6 @@ data_for_inpection <- t1_experiment_df %>%
 
 skim(data_for_inpection)
 
-#TODO : GRAEME , help 
-
 # let's further inspect the income variable to check out outliers
 
   t1_experiment_df %>% 
@@ -212,6 +206,7 @@ skim(data_for_inpection)
 
 
 ```{r}
+library(scales)
 
 ### step 3 ###
 # dealing with outliers
@@ -257,6 +252,8 @@ skim(data_for_inpection)
 
 
 ```{r}
+library(randomizr)
+library(ri2)
 
 ### step 4 ###
 # checking for imbalance
@@ -349,6 +346,9 @@ plot(ri_out) # we can also visualize this
 
 
 ```{r}
+
+library(modelsummary)
+
 ### step 5 ###
 # checking for attrition
 
