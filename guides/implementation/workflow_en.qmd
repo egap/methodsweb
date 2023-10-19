@@ -60,9 +60,9 @@ Even teams with perfect file structure in their shared folder can run into issue
 * Produce multiple versions of the same document (such as one for a journal and one for a conference);
 * Work on a file without undoing the work that someone else on your team happened to do at the same time.
 
-One way to practice effective version control is to use the “track changes” function within word processors. This allows one author to make edits in a way that others can quickly identify, review, and “accept” or “reject.” In Google Docs^[https://docs.google.com], this feature (which Google calls “suggestion” mode) can be combined with the ability for multiple authors to work on the document at the same time, assuming that everyone has a reliable internet connection.
+One way to practice effective version control is to use the “track changes” function within word processors. This allows one author to make edits in a way that others can quickly identify, review, and “accept” or “reject.” In Google Docs^[https://docs.google.com], for example, this feature (which Google calls “suggestion” mode) can be combined with the ability for multiple authors to work on the document at the same time, assuming that everyone has a reliable internet connection.
  
-In situations with less reliable internet access, Dropbox^[https://www.dropbox.com] can provide shared access to a folder or series of folders where project materials are stored. One author can make an edit and sync their account, and then another can view the latest version. Authors cannot make changes at the same time, but they can hand off to each other with greater ease. This can be aided by adopting a file naming structure that tells you when the latest changes were made. Naming a file ```document.docx``` does not communicate this; naming it ```yyyymmdd_document.docx``` does. It also allows you to sort the folder by name and see the most recently edited version first. If the versions start to pile up, consider creating an archive subfolder to store all but the most recent version.
+In situations with less reliable internet access, Dropbox^[https://www.dropbox.com] or Box^[https://www.box.com] can provide shared access to a folder or series of folders where project materials are stored. One author can make an edit and sync their account, and then another can view the latest version. Authors cannot make changes at the same time, but they can hand off to each other with greater ease. This can be aided by adopting a file naming structure that tells you when the latest changes were made. Naming a file ```document.docx``` does not communicate this; naming it ```yyyymmdd_document.docx``` does. It also allows you to sort the folder by name and see the most recently edited version first. If the versions start to pile up, consider creating an archive subfolder to store all but the most recent version.
 
 When collaboration involves plain text files (i.e., code or files that combine code and prose), you might consider following the best practices of community of software developers, who make a living from working together in teams to write reliable code in an efficient way. Currently, the standard tool to enable this collaboration is Github.
 
@@ -72,7 +72,7 @@ GitHub is a code hosting platform to streamline issues related to version contro
 
 Testing ensures that errors from bugs and typos are caught before it is too late, and including that testing in your coding makes sure that it is done.
 
-
+For each line of code, one or more tests can confirm that the result is as you expected. These tests can take many forms. One type is checking whether the data type is correct -- if you expected numbers, is the result numerical. Another is 
 
 <!-- Below is a simple example of this testing on a function designed to multiply a number by 2.  -->
 
