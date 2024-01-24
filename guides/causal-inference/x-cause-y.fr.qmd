@@ -1,5 +1,5 @@
 ---
-title: "10 stratégies pour déterminer si X cause Y"
+title: "10 stratégies pour déterminer si X est la cause de Y"
 author: 
   - name: "Macartan Humphreys"
     url: https://macartan.github.io
