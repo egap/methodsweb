@@ -1,153 +1,148 @@
 ---
-title: " 10 Things on Your Checklist for Analyzing an Experiment"
+title: "10 Things on Your Checklist for Analyzing an Experiment"
 author: 
   - name: "name"
     url: https://methods.egap.org/guides.html
 image: covariates.png
 bibliography: how-to-analyze-experiments.bib
+abstract: | 
+  This guide provides practical tools on what to do with your data once you've run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers and project managers. If you're not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are the one analyzing the data, this guide provides instructions and `R` code on how to do so.
 ---
-
-This guide will provide practical tools on what to do with your data once you've run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers to project managers. If you're not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are analyzing the data, this guide provides instructions and `R` code on how to do so.
 
 # BEFORE seeing (or receiving) your data, file an amendment if changes to the design or planned analysis arise
 
-Before you look at the data, back up and ask yourself: what changed from what I had planned and pre-registered - in terms of both design and analysis - and what are the consequences of those changes for the accuracy of my pre-analysis plan? If you think changes to the PAP are required, then you can file an amendment to the PAP at the registry where you initially pre-registered your experiment. It's good to do this prior to even receiving the data, if possible. To read more on PAPs, see [10 Things to Know About Pre-Analysis Plans
-](https://methods.egap.org/guides/planning/pap_en.html). 
+Before you look at the data (even better: before you receive it), back up and ask yourself: what changed from what I had planned and pre-registered - in terms of both design and analysis - and what are the consequences of those changes for the accuracy of my pre-analysis plan? If you think changes to the PAP are required, then you can file an amendment to the PAP at the registry where you initially pre-registered your experiment. It's good to do this prior to even receiving the data, if possible. To read more on PAPs, see [10 Things to Know About Pre-Analysis Plans](https://methods.egap.org/guides/planning/pap_en.html). 
 
-Things can change from conception to implementation. Perhaps you had planned to randomize at the individual-level, but instead you end up having to conduct a cluster randomization. Alternatively, did an event happen that cut your study short, reducing your sample size? Both of these design changes would have implications for how you should analyze the data. In the first instance, you should file an amendment reflecting the cluster-randomization and corresponding changes to your analyses. In the second instance, you may consider the implications for your reduced sample size for power, and whether or not you need to change your main specification (perhaps by adding covariates, or focusing on a main effect rather than an interaction effect) in order to be powered enough to detect effects should they exist.
+Things can change from conception to implementation. Perhaps you had planned to randomize at the individual-level, but instead you end up having to conduct a cluster randomization. Alternatively, did an event happen that cut your study short, reducing your sample size? Both of these design changes would have implications for how you should analyze the data. In the first instance, we recommend filing an amendment reflecting the cluster-randomization and corresponding changes to your analyses. In the second instance, you may consider the implications for your reduced sample size for power, and whether or not you need to change your main specification (perhaps by adding covariates, or focusing on a main effect rather than an interaction effect) in order to be powered enough to detect effects if they exist.
 
 # Treatment variable: Confirm its randomization
-==
 
 First things first, it is important to verify that your treatment was successfully randomized according to what you'd planned in your design. Randomization plays a key role in the fundamentals of experimental design and analysis, so it's key that you (and others) can verify that your treatment was assigned randomly in the way that you planned. Without this, it's hard for the research community and policymakers to have confidence in your inferences. 
 
-First, you should trace back to the code or software that was responsible for generating the randomization. If this was done in Qualtrics or on SurveyCTO, this would involve going back to the original software and ensuring that the particular survey module was coded correctly. If you worked with a provider to code up your online survey, you could schedule a meeting with them to walk through verifying the coding of the randomization. If this was done in `R`, there should be at least 2 lines of code: one that set a seed so that the randomization would be reproducible, and another that actually randomizes the treatment assignment. Note that the second line of code depends on the type of randomization you'd conducted (see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html)).
+First, you can trace back to the code or software that was responsible for generating the randomization. If this was done in Qualtrics or on SurveyCTO, this would involve going back to the original software and ensuring that the particular survey module was coded correctly. If you worked with a provider to code up your online survey, you could schedule a meeting with them to walk through verifying the coding of the randomization. If this was done in `R`, there should be at least 2 lines of code: one that set a seed so that the randomization would be reproducible, and another that actually randomizes the treatment assignment. Note that the second line of code depends on the type of randomization you'd conducted (see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html)).
 
 # Variable inspection: Locating and understanding your data variables
-==
 
-In addition to verifying that the treatment was correctly assigned in the software that you used, it's important to verify what the treatment variable in your data set - produced by the code or software - actually means. This means checking that values of the treatment assignment variable correspond to the values assigned in the randomization process in `R` or in the software used to assign treatment. Does a 1 produced by the software correspond to treatment, and 0 to control? For a three-arm experiment, softwares like SurveyCTO may produces values 1, 2, and 3 for the treatment assignment variable. It's crucial that analysts verify that what they think they're analyzing corresponds to the actual treatment assigned.
+## Checking the values of your variables
+In addition to verifying that the treatment was correctly assigned in the software that you used, it's important to verify what the treatment variable in your data set - produced by the code or software - actually means. This means checking that values of the treatment assignment variable correspond to the values assigned in the randomization process in `R` or in the software used to assign treatment. Does a 1 produced by the software correspond to treatment, and 0 to control? For a three-arm experiment, softwares like SurveyCTO may produces values 1, 2, and 3 for the treatment assignment variable. It's advisable that analysts verify that what they think they're analyzing corresponds to the actual treatment assigned.
 
-If you are in a context where non-compliance with treatment is possible, you should also inspect the variable that indicates treatment receipt. In a field experiment, if a subject was assigned to a skills training (treatment assignment = 1), did they actually attend and receive the intended information on skills (treatment receipt = 1)? In a survey experiment, did a subject assigned to receive watch a video to provoke positive emotions (treatment assignment = 1) actually report watching the video and internalizing its content (treatment receipt = 1)? A variable that indicates whether a subject actually _received_ the treatment it was assigned to is key for thinking about things like complier average causal effects (see [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html)). Understanding what the treatment receipt variable means, and what each of its values corresponds to (does 1 correspond to treatment receipt, and 0 to lack of receipt?), is crucial.
+## Dealing with (non)-compliance
+If you are in a context where non-compliance with treatment is possible, it's advisable to also inspect the variable that indicates treatment receipt. In a field experiment, if a subject was assigned to a skills training (treatment assignment = 1), did they actually attend and receive the intended information on skills (treatment receipt = 1)? In a survey experiment, did a subject assigned to receive watch a video to provoke positive emotions (treatment assignment = 1) actually report watching the video and internalizing its content (treatment receipt = 1)? A variable that indicates whether a subject actually _received_ the treatment it was assigned to is key for thinking about things like complier average causal effects (see [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html)). Understanding what the treatment receipt variable means, and what each of its values corresponds to (does 1 correspond to treatment receipt, and 0 to lack of receipt?), is advisable.
 
-It's also useful to inspect the outcome and covariate variables that you plan on using in your analysis. This might include renaming them for easier coding and interpretation of your analysis code. If someone looks at your analysis code, it is generally easier for them to understand what a variable called "gender" means, rather than if it is called "question_26_c_1". In addition, making sure that missing data are consistently coded with "NA" rather than a numeric value is important to ensure the integrity of data analysis. Sometimes, survey software may code missing data with 0 or 888; if you do not change these values to "NAs", your data analysis will think that they correspond to numeric values of the variable of interest. If you have covariates that are missing, though this need not bias your estimation of the impact of the treatment, there are several ways you may go about addressing this missingness; for more on this, see [10 Things to Know About Missing Data
+It's worth emphasizing that coming up with the definition of what it means to comply in a given experiment - and how to measure this compliance - is non-trivial. This is something you define ex-ante, and it derives from your theory about what it is that actually constitutes your treatment. Further, you may have to construct your measure of compliance from your data. If your intervention is a series of financial literacy trainings, maybe someone counts as having complied if she has attended at least half of these trainings. This could be constructed via data on each subject's attendance at each individual meeting. This choice should be justified by your theory of change, and should ideally have been included in your pre-analysis plan. Having clear conceptualizations and valid measures of compliance in your experiment is not only helpful for estimating CACEs (as mentioned above), but also in helping you understand potential null results of your experiment. Perhaps your intervention didn't have an impact because of a compliance issue - data on this may help you understand that the theory of change broke down at that first step.
+
+## Variable naming, coding, and missing data
+It's also useful to inspect the outcome and covariate variables that you plan on using in your analysis. This might include renaming them for easier coding and interpretation of your analysis code. If someone looks at your analysis code, it is generally easier for them to understand what a variable called "gender" means, rather than if it is called "question_26_c_1". Moreover, double checking the coding of one's variables is best practice at this stage. For example, if gender is the variable, make sure that the coding of the variable corresponds to what you think it does: does 1 indicate female, and 0 male, or has it been coded the other way around? The same goes for all variables in your data set. In addition, making sure that missing data are consistently coded with "NA" rather than a numeric value is important to ensure the integrity of data analysis. Sometimes, survey software may code missing data with 0 or 888; if you do not change these values to "NAs", your data analysis will think that they correspond to numeric values of the variable of interest. If you have covariates that are missing, though this need not bias your estimation of the impact of the treatment, there are several ways you may go about addressing this missingness; for more on this, see [10 Things to Know About Missing Data
 ](https://methods.egap.org/guides/data-strategies/missing-data_en.html).
 
 # Did treatment assignment go according to plan?
-==
 
-It's generally good practice to inspect whether or not your treatment assignment did in fact work in accordance with your expectations, depending on the design. This is separate from verifying the code or software that produced the randomization, as in 1 above. Instead, you can check the distribution of the values of treatment assignment; you should see whether it corresponds to what you'd designed (see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html)). 
+It's generally good practice to inspect whether or not your treatment assignment did in fact work according to your expectations, depending on the design. This is separate from verifying the code or software that produced the randomization, as in 1 above. Instead, you can check the distribution of the values of treatment assignment, and see whether it corresponds to what you'd designed (see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html)). 
 
-For example, if you conducted a complete randomization where 25 experimental subjects were to be assigned to control, and 25 to treatment, did this play out in practice? You can run a simple cross-tabulation of the treatment assignment variable, and observe whether or not this is the case. Alternatively, if you conducted a block randomization by gender and wanted to assign half of women to treatment and the other half to control (and the same for men), you can look at the distribution of treatment assignment values by gender. Though uncommon in field experimental design where complete randomization prevails, some survey experimental software conducts simple randomization. In a survey experiment with two arms, the software will assign each respondent to treatment or control by flipping a Bernoulli coin that has a 50 percent chance of landing on heads (treatment), and a 50 percent chance of landing on tails (control).^[Note: the Bernoulli coin need not be defined by 50-50 chances; the researcher defines ex-ante the probability of receiving treatment versus control, which could be 70-30 instead.] In this case, it's okay if exactly 50 percent of your respondents don't end up in treatment - we'd expect some variability due to the nature of the randomization. However, the percentage of units treated shouldn't be _too far_ from 50 percent - this would induce doubt that the randomization actually worked.
+For example, if you conducted a complete randomization where 25 experimental subjects were to be assigned to control, and 25 to treatment, did this play out in practice? You can run a simple tabulation of the treatment assignment variable, and observe whether or not this is the case. Alternatively, if you conducted a block randomization by gender and wanted to assign half of women to treatment and the other half to control (and the same for men), you can look at the distribution of treatment assignment values by gender. Though uncommon in field experimental design where complete randomization prevails, some survey experimental software uses simple randomization. In a survey experiment with two arms, the software will assign each respondent to treatment or control by flipping a Bernoulli coin that has a 50 percent chance of landing on heads (treatment), and a 50 percent chance of landing on tails (control).^[Note: the Bernoulli coin need not be defined by 50-50 chances; the researcher defines ex-ante the probability of receiving treatment versus control, which could be 70-30 instead.] In this case, it's okay if exactly 50 percent of your respondents don't end up in treatment - we'd expect some variability due to the nature of the randomization. However, the percentage of units treated shouldn't be _too far_ from 50 percent. This would induce doubt that the randomization actually worked.
 
 # Checking outcome and covariate variables for outliers
-==
 
-Next, one should inspect the outcome and covariate variables for outlier values and decide what to do about these outliers. Plotting the distribution of the values of each variable (via a histogram or boxplot, for example), or asking your statistical software to produce a "summary" of the variable, are ways of going about this.
+Next, we'd recommend that you inspect the outcome and covariate variables for outlier values and decide what to do about these outliers. Plotting the distribution of the values of each variable (via a histogram or boxplot, for example), or asking your statistical software to produce a "summary" of the variable, are ways of going about this.
 
-To adjudicate about outliers requires substantive knowledge about what reasonable ranges are for the variables. For an age variable of a survey of only adults, for example, ranges from 18 to 85 might be reasonable. If a subject has a reported age of 2 or 1000, for example, this would raise concerns. Similarly, reported salary values outside of the range reasonable for the context that you work in might raise questions. As a note, it's possible to program your survey software such that values entered must abide by certain rules (for example, percent of the time one spends doing household labor can only be between 0 and 100, inclusive). See guide on [10 Things to Know About Survey Design](https://methods.egap.org/guides/planning/survey-design_en.html) for more on designing surveys smartly.
+To adjudicate about outliers requires substantive knowledge about what reasonable ranges are for the variables. For an age variable of a survey of only adults, for example, ranges from 18 to 85 might be reasonable. If a subject has a reported age of 2 or 1000, for example, this would raise concerns. Similarly, reported salary values outside of the range reasonable for the context that you work in might raise questions. As a note, it's possible to program your survey software such that values entered must abide by certain rules (for example, percent of one's time spent on household labor can only be between 0 and 100, inclusive). See guide on [10 Things to Know About Survey Design](https://methods.egap.org/guides/planning/survey-design_en.html) for more on designing surveys smartly.
 
 If you think a value of a variable is incorrectly coded, you can try to figure out what the correct value was. First, it's possible to do detective work to discover what the correct value was. Sometimes an enumerator may accidentally add an extra digit to an otherwise correct value, for example. One can follow-up with enumerators to clarify whether or not they made a mistake. Alternatively, one can go back to the source to verify the correct value of the variable for a certain observation. Imagine that an outcome variable is the result of an election, which was coded manually from archival resources or online images. In this case, it is relatively straightforward to return to the original newspaper source and/or image to verify the result of the election for the given observation. 
 
-However, much of the time it's not possible to retrospectively find the correct value of a variable for a given unit. Further, it may not always be clear that the value in question is in fact an incorrect - perhaps there really was a respondent who had an annual salary of 1 million dollars. Many times, best practice is to leave the value alone; editing the value would bias results. In the case that, thanks to contextual knowledge, you are certain that a value has been incorrectly coded and you are unable to locate the correct value, you may consider marking the value as missing. Other times, researchers use techniques like winsorizing a variable. This approach transforms data with the goal of limiting the impact of outliers. Concretely, winsorization changes extreme values to less extreme values. Another approach is to trim outlier values, which means to remove them entirely. 
+However, much of the time it's not possible to retrospectively find the correct value of a variable for a given unit. Further, it may not always be clear that the value in question is in fact incorrect. Perhaps there really was a respondent who had an annual salary of 1 million dollars. Many times, best practice is to leave the value alone; editing the value would bias results. In the case that, thanks to contextual knowledge, you are certain that a value has been incorrectly coded and you are unable to locate the correct value, you may consider marking the value as missing. Other times, researchers use techniques like winsorizing a variable. This approach transforms data with the goal of limiting the impact of outliers. Concretely, winsorization changes extreme values to less extreme values. Another approach is to trim outlier values, which means to remove them entirely. 
 
-If you choose to make edits to values in your data, you should make sure you're doing 2 things. First, you should be blind to results and the treatment condition of the observation(s) when you edit or inspect data. See [Standard operating procedures for Don Green’s lab at Columbia
-](https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html#missing-covariate-values) for more helpful insight on this. Second, you should never completely overwrite the raw data as you make edits. Instead, you should keep a code file that documents exactly the changes you make, and producing a cleaned data file (while retaining the raw data file). This is key to the transparency and reproducibility of your results. One way to organize the data and code for your experiment is to have a raw data file, then the code scripts that clean the data, and the intermediate/final (clean) data that you then run the analysis on. _Never overwrite the raw data_.
+If you choose to make edits to values in your data, it's useful to make sure you're doing two things. First, you should be blind to results and the treatment condition of the observation(s) when you edit or inspect data. See [Standard operating procedures for Don Green’s lab at Columbia
+](https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html#missing-covariate-values) for more helpful insight on this. Second, you should never completely overwrite the raw data as you make edits. Instead, you can keep a code file that documents exactly the changes you make, and producing a cleaned data file (while retaining the raw data file). This is key to the transparency and reproducibility of your results. One way to organize the data and code for your experiment is to have a raw data file, then the code scripts that clean the data, and the intermediate/final (clean) data that you then run the analysis on. _Never overwrite the raw data_.
 
-It's important to note that changing the values of outliers is strongly discouraged when it comes to the outcome variable! In the coding example, we do so with a covariate - income.
+Changing the values of outliers is strongly discouraged when it comes to the outcome variable. With that said, if you have reason to believe that an experimental subject has a particularly strange value on the outcome variable, or there was an error in its coding, then one may investigate this observation. Speaking with enumerators and implementers or calling the original respondent to verify the value are two ways to proceed. If you don't find evidence to suggest that a revision of the value is necessary, then leaving it and proceeding with your pre-registered analysis is the best way forward. If you do find evidence of an error, then correcting this error and reporting it in the main report of your experiment is best practice. Other options are to run the same analysis with the outlier(s), and without the outlier(s), reporting these results in an appendix; one may also consider whether using test statistics that are less vulnerable to outliers make sense in supplementary analyses (again, it's important to report analysis that was initially planned in the PAP).
 
 # Checking for balance on pre-treatment covariates
-==
 
-After inspecting and cleaning treatment assignment, treatment receipt, covariate, and outcome data, it's crucial to check for balance on pre-treatment covariates between treatment arms. "Balance tests" are a way of providing evidence that your randomization worked as expected. They seek to probe an observable implication of random assignment of treatment: that treatment and control groups look the same, on average, in terms of pre-treatment characteristics.^[See the methods guide on balance tests for more on this. However, the key (unobservable) assumption that we seek to test is whether or not treatment assignment is independent of potential outcomes.] Balance tests, which can be implemented in a number of different ways, ask whether imbalances in pre-treatment covariates across different experimental conditions are larger than what would be expected by chance.
+After inspecting and cleaning treatment assignment, treatment receipt, covariate, and outcome data, we should next check for balance on pre-treatment covariates between treatment arms. "Balance tests" are a way of providing evidence that your randomization worked as expected. They seek to probe an observable implication of random assignment of treatment: that treatment and control groups look the same, on average, in terms of pre-treatment characteristics.^[See the methods guide on balance tests for more on this. Note, however, that the key assumption that we seek to test is whether or not treatment assignment is independent of potential outcomes.] Balance tests can be implemented in a number of different ways. In general, they ask whether imbalances in pre-treatment covariates across different experimental conditions are larger than what would be expected by chance.
 
-The balance test you run depends on your experimental design. In a set-up where you have a binary treatment and all units have the same probability of assignment to treatment, you can run a regression of the treatment assignment variable on your covariates, and run an F-test that tests the null hypothesis that all covariates are jointly 0. The p-value of the F-statistic can be found via randomization inference. If, for example, you conducted a block randomization with treatment probabilities that vary by block, you should adjust for this in the regression specification. 
+The balance test you run depends on your experimental design. In a set-up where you have a binary treatment and all units have the same probability of assignment to treatment, you can run a regression of the treatment assignment variable on your covariates, and run an F-test that tests the null hypothesis that all covariates are jointly equal to zero. The p-value of the F-statistic can be found via randomization inference. This is the approach we document in the example code in this guide. If, for example, you conducted a block randomization with treatment probabilities that vary by block, you should adjust for this in the regression specification. We are interested in the F-test because we care about overall balance of covariates.
 
-We are interested in the F-test because we care about overall balance of covariates. However, you are likely to come across covariate-by-covariate analyses that conduct t-tests comparing means among control units and treated units. Though this is standard practice, it is undesirable for several reasons. First, it is not unlikely that a covariate will come up as significantly different among treated and control units: due to the often numerous number of tests conducted, statistical significance can arise by chance. Here, it is important to emphasize that if you detect imbalance on a covariate that is significantly different than what would arise by chance, it's not always cause for panic. Second, this approach treats each covariate as equally important and informative about potential outcomes, rather than taking into account the prognosticness of the covariate. One may consider running equivalence tests instead of conventional balance tests.^[@hartman_hidalgo_2018 write on the meaning and implications of equivalence tests, vis-a-vis conventional balance tests.] 
+How to interpret the result of balance tests? If imbalance isn't detected, then it makes sense to proceed to the next step in the analytic pipeline. If it is, additional work may be required. One conventional approach is to adjust for imbalanced covariates in the regression estimating the ATE; this is often used when balance tests are conducted via covariate-by-covariate analyses. Some pre-specify such adjustments. However, there aren't settled guidelines on how to proceed if one detects imbalance (regardless of the method used to test for imbalance). One path forward is to comprehensively investigate whether the random assignment procedure and data handling went according to plan, or whether there were errors. If this investigation reveals no mistakes, then proceeding with one's pre-specified analysis is a sensible path forward, while reporting that, due to chance, the realization of treatment assignment led to imbalance on covariates.
 
-What you expect to see and what to do if it's okay, good to go
+_An aside on conventional balance test approaches_: You are likely to come across covariate-by-covariate analyses that conduct t-tests comparing means among control units and treated units. Though this is standard practice, it is undesirable for several reasons. First, it is not unlikely that a the mean of a covariate will come up as significantly different among treated and control units: due to the often numerous number of tests conducted, statistical significance can arise by chance. Here, it is important to emphasize that if you detect imbalance on a covariate that is significantly different than what would arise by chance, it's not always cause for panic (it necessarily doesn't mean your randomization didn't work as planned). Second, this approach treats each covariate as equally important and informative about potential outcomes, rather than taking into account the prognosticness of the covariate.^[@bicalhobouyamourndunning2022 write on the importance of integrating covariate prognosticness into tests of balance and put forth a method for doing so.]
 
-What to do if there's evidence of imbalance
+One may consider running equivalence tests instead of conventional balance tests.^[@hartman_hidalgo_2018 write on the meaning and implications of equivalence tests, vis-a-vis conventional balance tests.]
 
 # Checking for differential attrition
-==
 
 Were you unable to measure outcomes for all of your experimental subjects? Sometimes, subjects leave the study or "attrit", and we're unable to measure their outcome. In general, missingness of the outcome variable(s) can induce bias in our estimates of causal effects. Read more on attrition, what can lead to it, its consequences and how to address it in [10 Things to Know About Missing Data
-](https://methods.egap.org/guides/data-strategies/missing-data_en.html). We'd like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it's not, we might worry about bias. Further, the more missingness there is, the more the risk of bias. 
+](https://methods.egap.org/guides/data-strategies/missing-data_en.html). We'd like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it's not, we might worry about bias. Further, the more missingness that is associated with potential outcomes there is, the higher the risk of bias. With that said, a relatively small degree of differential attrition may lead to an arbitrary amoung of bias. The main takeaway is that it's advisable for researchers to investigate and seek to understand the potential implications of any amount of differential attrition.    TODO NAHOMI how does this sound?
 
-There main way that researchers probe whether outcome data may be plausibly missing at random is to to examine whether there exists an observable relationship between treatment assignment and missingness of outcomes. The way to do this is to code up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examine whether treatment assignment impacts the propensity for outcome data to be missing. To complement this analysis, researchers generally assess covariate balance between treated and control units who are not missing, or by assess covariate balance between units with missing vs non-missing outcomes.
-
+Several diagnostics exist for researchers to probe whether the attrition they face may be problematic. One approach is to to examine whether there exists an observable relationship between treatment assignment and missingness of outcomes. This entails coding up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examining whether treatment assignment impacts the propensity for outcome data to be missing. Another approach is to include covariates, and/or treatment by covariate interactions in these models. Here, it is conventional practice to include all covariates that were pre-specified to be used in the balance test. In these approaches, one can use randomization inference to estimate p-values via extracted F statitistics from model simulations.
 
 # Adjust estimation procedure according to deviations from planned analysis
-==
 
-Once you have already looked at your data, you may realize that you should complete some analyses differently than you had planned in your PAP. This happens regularly. 
+Once you have already looked at your data, you may realize that you wish to complete some analyses differently than you had planned in your PAP. This happens regularly. 
 
 One example of this is that researchers sometimes decide to control for a covariate in a regression analysis if they see that it is imbalanced in standard balance tests. This is impossible to know ex-ante, because researchers don't know what sort of draw they'll get in their actualized randomization.^[However, protecting against 'bad draws' is possible through blocked designs: see [10 Things You Need to Know About Randomization
-](https://methods.egap.org/guides/data-strategies/randomization_en.html).] Alternatively, one might realize that
+](https://methods.egap.org/guides/data-strategies/randomization_en.html).] Alternatively, one might realize that the measurement of a variable did not go according to plan; in these cases, it may make sense to exclude such variables from the analysis. In addition, it's common for much learning to occur between the moment a pre-analysis plan is filed, and the moment experimental data is ready to be analyzed. We learn more about a technique and how it should be implemented, a better way to specify our particular model, or another model that should be specified due to additional theoretical reflections. It also happens that we make mistakes or guess wrong about how things will play out in the data: maybe we'd planned to transform a variable into five categories, but the distribution of the variable is lumped into two groups. These are all reasonable cases in which it would make sense to deviate from one's pre-analysis plan.
 
-Control for variables upon which imbalance (unlucky draw)
-Some measurement gets messed up, so dont include it
-Run an additional model that they hadn’t thought about before; error in judgment in the original PAP; learned more about the technique and this happens
-If it makes more sense to do this other way and had not thought about it
-Sometimes, deviations can be around things being underspecified; hadn’t given the details on what they’d do (the transformation not specified ex ante); or 5 category transformation and instead do 2 groups bc data looks lumped into 2 groups; underspecified or guessed wrong
+What's important to note is that, in doing so, it's best practice to _indicate where you deviated from the PAP_. This will enhance the transparency and the reproducibility of your research. We touch more on this in a point below.
 
 # Write replicable code to analyze data
-==
 
-Hopefully this is done w/ PAP
-But otherwise do now
-(Don't actually include code here)
-List best practice -> point to the replication file of Gaikwad and Nellis (2021)
-annotations , versions of packages, where to find which tables and figures etc etc should all be noted
-raw data kept, cleaning file separate, etc
+The next step is to write up the code to analyze your data, if you haven't already done so at the pre-analysis plan stage. It's best practice to have written the code when filing the pre-analysis plan (in this case, it would be ready to go), but if this isn't the case, it's fine to write the code in its entirety now. For more on how to write replicable and transparent code, see [10 Things You Need to Know About Project Workflow
+](https://methods.egap.org/guides/implementation/workflow_en.html).
+
+What are some best practices in writing up one's analysis code? In general, the clearer, simpler, and more documented the code, the better. An example of well-documented, simple and transparent experimental code can be found in the replication materials of @gaikwad_nellis_2021. First, one should never overwrite one's raw experimental data. We'd recommend keeping the raw data in a separate folder within a replication file, writing and making publicly available the (separate) code that cleans the raw data, and then drawing on the cleaned data in the analysis code. Second, annotating one's code is key. This includes both "macro" and "micro"-level comments. At a macro-level, it's useful to signpost where we can find all analyses in the paper and appendices, by breaking up the code into sections that correspond to the sections in what you'll write up. That way, no guesswork is required to locate the code that produced tables and figures that you write up. At a micro-level, writing in-line comments for specific lines of code also aids with transparency. For example, we recommend writing in-line comments for key analyses as well as the reasoning underlying variable transformations. While there's such a thing as having too much annotation, generally more is better and only increases the accessibility and legibility of your code. Finally, it is best practice to indicate what version of packages were used in the analysis at the point that it was written. The reason for this is that packages may be modified in such a way that your analysis could break if an updated version of the package is being used.
 
 # Write up deviations from preanalysis plan and justify
-==
 
-Pre-registered report should exist (so analyze AS pre-registered, even if not good)
-Cite this in your manuscript
-As you do analysis, you’ll come up w things that you change
-Keep a list of what you change; all of these could be highlighted and justified
+As mentioned earlier, it's normal to deviate from one's pre-analysis plan. We recommend _documenting_ and _reporting_ all such deviations. As you're conducting your analysis, we'd recommend keeping a list of where you deviate from your PAP. It's best practice to highlight and justify each deviation. 
+
+Moreover, we recommend writing a pre-registered report of your experiment, where you analyze the data as you'd pre-registered your analysis. It's best practice to cite this report in your study manuscript so readers can access it. Concretely, one path forward is to follow the guidance of @banerjeeetal2020, creating a short, publicly available report that they reference as a "populated PAP" that "populates the PAP to the extent possible and briefly discusses any barriers to doing so."
+
+A great example of a study that documents deviations from the pre-analysis plan in a transparent way, and shows the original analyses that were in the pre-analysis plan, is @schiffschiffbueno2022's study on politicians' use of fake news and accountability. 
 
 # Example code
-==
 
-In this example, we use data from @gaikwad_nellis_2021. They employ a door-to-door field experiment in two Indian cities to increase the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which whether an individual voted in India's 2019 national election.
+In this example, we use data from @gaikwad_nellis_2021.^[The example draws heavily on their reproduction code at https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/G1JCKK] They employ a door-to-door field experiment in two Indian cities to increase the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which whether an individual voted in India's 2019 national election.
 
 ```{r}
-library(kableExtra)
+# load data analysis and graphing packages
+library(tidyverse)
+
 # load in the experimental data from Gaikwad and Nellis (2021)
-# this code draws heavily on their reproduction code, found in their
-# supplementary materials here: 
-# https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/G1JCKK
+t1_experiment_df <- read_rds("gaikwad-nellis-2021-data-t1-experiment-df.Rds")
+```
 
-t1_experiment_df <- readRDS("gaikwad-nellis-2021-data-t1-experiment-df.Rds")
 
-### step 1 ###
-# inspect the treatment variable
+## Inspect the treatment variable
 
+```{r, results = "hide"}
 # values are 0 and 1
 # around 50 percent assigned to each condition, consistent with simple randomization
 # with p = 0.5 for all subjects
 
-t1_experiment_df %>%                             
-  group_by(i_t1) %>%
-  summarise(n = n()) %>%
-  mutate(freq = n / sum(n)) %>%
-  kable()
+library(knitr)
 
+t1_experiment_df |>                             
+  group_by(i_t1) |>
+  summarise(n = n()) |>
+  mutate(freq = n / sum(n))
 ```
 
+```{r, echo = FALSE}
+t1_experiment_df |> 
+  group_by(i_t1) |> 
+  summarise(n = n()) |>
+  mutate(freq = n / sum(n)) |> 
+  kable(digits = 2)
+```
+
+## Outcome and covariate inspection
 
 ```{r}
 library(skimr)
-### step 2 ###
-# outcome and covariate inspection
 
 # NOTE: Gaikwad and Nellis (2021) look at the impact of the treatment on several outcomes,
 # one of which whether an individual voted in India's 2019 national election.
-# We're choosing to use this one for exposition here.
+# We're choosing to use just this one for exposition here.
 
 # outcome variable:
 # turnout in 2019 national election
@@ -159,12 +154,8 @@ library(skimr)
 # 1) lagged outcome (voted previously), 2) whether female,
 # 3) age, 4) whether muslim, 5) whether SC/ST, 6) whether has primary education,
 # 7) income, 8) whether married, 9) length of residence, 10) whether owns a home
+# 
 # here, we investigate 3 of them: age, female, and income
-
-# transforming income, the authors are interested in 1000 of rupees
-
-t1_experiment_df %<>% mutate(
-    b_income_000 = b_income/1000)
 
 # age
 # range 18-88, no NAs
@@ -177,38 +168,43 @@ t1_experiment_df %<>% mutate(
 # range 1-150, no NAs
 # there seems to be some extreme outliers
 
+t1_experiment_df <- 
+  t1_experiment_df |> 
+  mutate(b_income_000 = b_income / 1000)
+
 # we can summarize the outcome variable, as well as covariates, using the
 # skim function in the skimr package
 
-t1_experiment_df %>%
-  dplyr::select(e_voted_2019, b_age, b_female, b_income_000) %>%
-  skim()
+data_for_inpection <- 
+  t1_experiment_df |>
+  select(e_voted_2019, b_age, b_female, b_income_000)
+
+skim(data_for_inpection)
 
 # let's further inspect the income variable to check out outliers
 
-  t1_experiment_df %>% 
-    select(b_income_000) %>% 
-    pivot_longer(
-      cols = c("b_income_000"),
-      values_to = "count") %>% 
-    ggplot(aes(x = factor(name), y = count, fill = factor(name))) +
-    geom_boxplot() +
-    labs(xlab = "") +
-    scale_fill_grey() + 
-    scale_color_grey() +
-    theme_bw() +  
-    theme(legend.position="none") + 
-    scale_x_discrete(labels = c("Original")) +
-    xlab("") +
-    ylab("Income (000s INR)")
-
-
+t1_experiment_df |> 
+  select(b_income_000) |> 
+  pivot_longer(
+    cols = c("b_income_000"),
+    values_to = "count"
+  ) |> 
+  ggplot(aes(x = factor(name), y = count, fill = factor(name))) +
+  geom_boxplot() +
+  labs(xlab = "") +
+  scale_fill_grey() +
+  scale_color_grey() +
+  theme_bw() +
+  theme(legend.position = "none") +
+  scale_x_discrete(labels = c("Original")) +
+  xlab("") +
+  ylab("Income (000s INR)")
 ```
 
+# Dealing with outliers
 
 ```{r}
-### step 3 ###
-# dealing with outliers
+library(scales)
 
 # It's important to note that changing the values of outliers is strongly
 # discouraged when it comes to the outcome variable! 
@@ -224,18 +220,18 @@ t1_experiment_df %>%
 # Gaikwad and Nellis winsorize by setting all values higher than the 
 # 99th percentile at the 99th percentile
 
-  t1_experiment_df %<>%
+  t1_experiment_df <- t1_experiment_df |>
     mutate(b_income_000_winsorized = squish(b_income_000, 
                                                 quantile(b_income_000, 
                                                          c(0, .99))))
 
 # inspect comparison of distributions of original vs. winsorized variable
 
-  t1_experiment_df %>% 
-    select(b_income_000, b_income_000_winsorized) %>% 
+  t1_experiment_df |> 
+    select(b_income_000, b_income_000_winsorized) |> 
     pivot_longer(
       cols = c("b_income_000", "b_income_000_winsorized"),
-      values_to = "count") %>% 
+      values_to = "count") |> 
     ggplot(aes(x = factor(name), y = count, fill = factor(name)))+
     geom_boxplot() +
     labs(xlab = "") +
@@ -251,6 +247,9 @@ t1_experiment_df %>%
 
 
 ```{r}
+library(randomizr)
+library(ri2)
+
 ### step 4 ###
 # checking for imbalance
 
@@ -267,7 +266,7 @@ names <-
       "b_muslim" = "Muslim",
       "b_sc_st" = "SC/ST",
       "b_primary_edu" = "Primary education",
-      "b_income_000_OUTLIER_FIXED" = "Income (INR 000s)",
+      "b_income_000_winsorized" = "Income (INR 000s)",
       "b_married" = "Married",
       "b_length_residence" = "Length of residence in city",
       "b_owns_home" = "Owns home in city",
@@ -288,96 +287,69 @@ names <-
       "b_still_gets_village_schemes" = "Still receives hometown schemes",
       "b_owns_village_property" = "Owns hometown property")
 
-# we regress the treatment indicator on the covariates above
-# using lm_robust we get robust standard errors 
 
+# For each simulation,
+# regress the treatment indicator on the covariates above
+# using lm_robust and extract F statistic
+# declare randomization
+# define this function first, "balance_fun"
 
-# TODO, implement the balance test after hearing back from others
+balance_fun <- function(data) {
+  summary(lm_robust(as.formula(paste("Z ~", paste(c(names(names)), collapse = "+"))),
+data = data))$fstatistic[1]
+}
 
-# first, RI
+# next, declare the type of randomization
+# using declare design
 
-# declare randomization 
-library(randomizr)
-library(ri2)
-
-# rename Z as treatment variable
-t1_experiment_df %<>% mutate(
+# required for this: rename Z as treatment variable
+t1_experiment_df <- t1_experiment_df |> mutate(
   Z = i_t1
 )
 
-
+# required for this: get the number of subjects
 N <- nrow(t1_experiment_df)
 
+# declare simple randomization
 simple_dec <- declare_ra(N = N, simple = TRUE)
 
-sims <- 10
+# then use ri2 package to conduct randomization inference
 
-set.seed(343)
+# set the number of simulations
+# here, 10,000 is best practice, see randomization inference 
+# methods guide by Alexander Coppock for more:
+# https://egap.org/resource/10-randomization-inference-procedures-with-ri2/
 
-balance_fun <- function(data) {
-  summary(lm_robust(Z ~ b_owns_village_property + b_has_village_voter_id, data = data))$fstatistic[1]
-}
+sims <- 10000
+
+set.seed(42) # set seed for replicability
 
 ri_out <-
   conduct_ri(
-    test_function = balance_fun,
-    declaration = simple_dec,
-    data = t1_experiment_df,
-    sims = sims
+    test_function = balance_fun, # use the function we wrote above
+    declaration = simple_dec, # use the randomization we declared
+    data = t1_experiment_df, # our dataset
+    sims = sims # the number of times to run the model and extract F stat
   )
 
-summary(ri_out)
 
-plot(ri_out)
+# final step: observe results of randomization inference
+# and interpret
 
+summary(ri_out) # what proportion of simulations produce an F-stat as extreme
+# as the one we actually observed? 0.17
 
-
-##### all below needs to be revisited after various others responses' on the 
-# best test statistic
-
-## do we get the same thing - running the 3 different versions we've come across 
-
-# first way
-
-fstat1_not_robust_SE <- summary(lm(Z ~ b_owns_village_property + b_has_village_voter_id, data = t1_experiment_df))$f[1]
-
-# second way
-fit <- lm(Z ~ b_owns_village_property + b_has_village_voter_id, singular.ok = FALSE, data = t1_experiment_df)
-Rbeta.hat <- coef(fit)[-1]
-RVR <- vcovHC(fit, type <- 'HC0')[-1,-1]
-W_obs_SOP_green <- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))
-
-# third way
-fstat_robust_SE <- summary(lm_robust(Z ~ b_owns_village_property + b_has_village_voter_id, data = t1_experiment_df))$fstatistic[1]
-
-
-fstat1_not_robust_SE
-W_obs_SOP_green
-fstat_robust_SE
-
-
-# to ask, whether or not to have robust lm in order to get the test stat
-# look at donald green SOP
-# versus what is shown in the ri guide
-# need to wait to hear back about this part
-
-
-# t1bal <- 
-#     lm(as.formula(paste("i_t1 ~", paste(c(names(names)), collapse = "+"))),
-#        data = t1_experiment_df)
-# 
-# Rbeta.hat <- coef(t1bal)[-1]
-# RVR <- vcovHC(t1bal, type <- 'HC0')[-1,-1]
-# W_obs <- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))
+plot(ri_out) # we can also visualize this
 
 ```
 
 
 ```{r}
-### step 4 ###
-# checking for attrition
 
-library(stargazer)
+library(modelsummary)
+
+### step 5 ###
+# checking for attrition
 
 # as we showed above, the outcome variable (that we are working with in this example)
 # has some missing entries, as Gaikwad and Nellis (2021) point out and address in 
@@ -386,8 +358,8 @@ library(stargazer)
 # the code below shows that there are 186 missing observations, reflecting a 
 # rate of completeness of around 92 % 
 
-t1_experiment_df %>%
-  dplyr::select(e_voted_2019) %>%
+t1_experiment_df |>
+  dplyr::select(e_voted_2019) |>
   skim()
 
 # is attrition different across treatment conditions?
@@ -395,33 +367,51 @@ t1_experiment_df %>%
 # for missingness across treatment conditions
 # at a quick glance, rates look similar across treatment and control
 
-t1_experiment_df %>%                              
-  group_by(i_t1, i_attrition) %>%
-  summarise(n = n()) %>%
+t1_experiment_df |>                              
+  group_by(i_t1, i_attrition) |>
+  summarise(n = n()) |>
   mutate(freq = n / sum(n))
 
-# compare attrition across T1 treatment arms using OLS regression
-# it doesn't appear that there is a big threat attrition being related to treatment assignment
+# Run regressions to understand what if anything predicts missingness
 
-t1attr1 <- lm(i_attrition ~ i_t1, data = t1_experiment_df)
+# simplest version: regress missingness on treatment status
+t1attr1 <- lm_robust(i_attrition ~ i_t1, data = t1_experiment_df)
 
-# print the table, code from reproduction materials of Gaikwad and Nellis (2021)
-  stargazer(t1attr1, 
-            se = starprep(t1attr1), 
-            type='latex',
-            title = "Comparison of attrition rates across T1 treatment arms using OLS regression. The analysis includes all subjects randomized to T1 treatment or control. Robust standard errors in parentheses.",
-            dep.var.labels = "Attrition Indicator",
-            single.row = TRUE,
-            omit.stat = c("ser", "f", "rsq"),
-            omit = c("Constant"),
-            covariate.labels = "Assigned to T1 treatment",
-            font.size = "small",
-            header = FALSE,
-            float.env = "table",
-            notes.label = "")
-  
-## TODO: add in balance (missingness on treatment by covariate interaction, then F stat?)
-  # need to wait to hear back about this part
+# more complex version: regress missingness on treatment status and covariates
+# for exposition, here we've selected some (not exhaustive of all covariates used in
+# Gaikwad and Nellis's paper)
+t1attr2 <- lm_robust(i_attrition ~ i_t1 + b_female + b_age + b_muslim + b_sc_st +
+      b_primary_edu + b_income_000_winsorized + b_married + b_length_residence +
+      b_owns_home, data = t1_experiment_df)
+
+# more complex version: run with treatment by covariate interactions
+t1attr3 <- lm_robust(i_attrition ~ i_t1*(b_female + b_age + b_muslim + b_sc_st +
+      b_primary_edu + b_income_000_winsorized + b_married + b_length_residence +
+      b_owns_home), data = t1_experiment_df)
+
+
+# TO NOTE: The way you investigate attrition can depend on your design
+# for example, if you have a blocked design, you'd want to look at 
+# attrition by block; note here that it's possible that an entire block
+# could go missing
+
+models <- list(
+  "(1)" = t1attr1, 
+  "(2)" = t1attr2, 
+  "(3)" = t1attr3)
+
+cm = c("i_t1" = "Treatment",
+      "b_female" = "Female",
+      "b_age" = "Age",
+      "b_muslim" = "Muslim",
+      "b_sc_st" = "SC/ST",
+      "b_primary_edu" = "Primary education",
+      "b_income_000_winsorized" = "Income (INR 000s)",
+      "b_married" = "Married",
+      "b_length_residence" = "Length of residence in city",
+      "b_owns_home" = "Owns home in city")
+
+msummary(models, coef_map = cm, stars=TRUE)
 
 ```
 
