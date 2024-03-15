@@ -3,69 +3,78 @@ title: "10 Things Your Null Results Might Mean"
 author: 
   - name: "Jennifer A. Hamilton"
     url: https://sites.google.com/view/jennifer-a-hamilton/
-abstract: "A null result is when a hypothesis test indicates that there is not enough evidence to say an intervention (treatment) changed outcomes in a study. Null results might occur because the intervention truly has no effect or because there is not enough information to tell that an effect exists."
-bibliography: null_results.bib 
-format: docx
-always_allow_html: yes
+bibliography: null-results.bib 
 ---
+
+A null result is when a [hypothesis test](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html) indicates that there is not enough evidence to say an intervention (treatment) changed outcomes in a study. Null results might occur because the intervention truly has no effect or because there is not enough information to detect an effect that exists.
 
 # A null result indicates that a study did not generate evidence to conclude that an intervention changed outcomes.
 
-There may not be evidence either because the intervention does not, in fact, change outcomes or because the study failed to gather adequate evidence of an effect that actually exists. Findings, including null results, are a function of both how the world works and the approaches used to learn about it.
+There may not be evidence either because the intervention does not, in fact, change outcomes or because the study failed to gather adequate evidence of an effect that actually exists.  Null results, like all other findings, are a function of both how the world works and the research design and statistical methods used to learn about the world.  
+<!-- Among these methods are hypothesis tests.  To learn more about hypothesis testing, see [10 Things to Know About Hypothesis Testing](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html). -->
 
-To learn more about hypothesis testing and see sample code, see [10 Things to Know About Hypothesis Testing](https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html).
+# Well-designed studies with null effects are important contributions to knowledge about the world.
 
-# Well-designed studies with null effects are important contributions to expanding knowledge and understanding of the world.
+Researchers sometimes think of null results as neither interesting nor useful, but it is important to make publicly available results from all experiments.  Studies with null results are underrepresented in published research.[^1]  When studies with null results are not disseminated, other researchers might conduct similar studies thinking they are exploring new ground instead of directing their time and resources in more fruitful directions.  The under-representation of null results also means that impression of effect sizes given by the published literature is too large.
 
-Researchers sometimes think of null results as neither interesting nor useful. However, when studies with null results are not published,[^1] researchers might waste limited time and resources conducting similar studies. The underrepresentation of null results also means that the published literature tends to overestimate true effect sizes. It is therefore important for researchers to write up and make publicly available results from each experiment they conduct.
+[^1]:  To learn more about *publication bias* in the social sciences, see @franco_2014.
 
-[^1]: Currently, studies with null results are underrepresented in published research. To learn more about *publication bias* in the social sciences, see @franco_2014.
+# Sometimes null results are an artifact of true zero effects: 
 
-# Sometimes null results are an artifact of true zero effects: null results might reflect that an intervention in fact does not move outcomes.
+# a. Null results might reflect that an intervention in fact does not move outcomes.
 
 If the intervention does not work, is too weak, or if the outcomes of interest are resistant to change, an intervention may simply not affect outcomes. For example, [Metaketa I](https://egap.org/our-work/the-metaketa-initiative/round1-information-accountability/) theorized that providing citizens with information about incumbent performance would enhance political accountability. In Benin, one research team found that a light-touch information intervention did not change voter behavior [@adida_2020].
 
-# Sometimes null results are an artifact of true zero effects: null results might not generalize: the intervention truly does not work in the study context but it may work in others
+<!-- # Sometimes null results are an artifact of true zero effects:  -->
+# b. However, the intervention may work in other contexts - the null result might not generalize.
 
-Context matters! The same study carried out in two different places or at two different times can generate different results. Sometimes an intervention that is ineffective in one setting will work in other contexts. Because of this, researchers should not conclude an intervention can never change outcomes on the basis of one study.
+The same study carried out in two different places or at two different times can generate different results. Sometimes an intervention that is ineffective in one setting will work in other contexts. Because of this, researchers should not conclude an intervention can never change outcomes on the basis of one study. For example, several studies in Africa tested whether community-based monitoring of health services improve healthcare uptake and outcomes. @bjorkman_2009 initially found promising results in Uganda. Ten years later, a Sierra Leonean study also found promising results [@christensen_2021] , but a [Ugandan replication study](https://egap.org/resource/does-bottom-up-accountability-work-evidence-from-uganda/) had largely null findings.
+ 
+<!-- # Sometimes null results are an artifact of true zero effects:  -->
+# c. Null effects might result from some units reponding positively and other units negatively to the intervention. 
+<!-- flect opposite reactions to the intervention by different units in the study. -->
 
-One illustration of this scenario is a series of studies in Africa testing whether community-based monitoring of health services improve healthcare uptake and outcomes. One initial study in Uganda found promising results [@bjorkman_2009]. Ten years later, two additional teams replicated the intervention in Sierra Leone [@christensen_2021] and [Uganda](https://egap.org/resource/does-bottom-up-accountability-work-evidence-from-uganda/). The Sierra Leonean study also found promising results. In contrast, the Ugandan replication study had largely null findings.
+Randomized experiments generally focus on average treatment effects. However, the average treatment effect might mask important variation in effects across units within the study. Positive effects among some units may cancel out negative effects among other units, producing an average treatment effect indistinguishable from zero. For example, some respondents in an experiment in the United States felt more warmly toward the candidate after learning about a political candidate's partisanship, while others felt more cold toward the candidate. The direction of the effect depended on the respondent's own partisanship [@lelkes_2021]. Studies that fail to take into account how the direction of the effect depends on characteristics of individual subjects may generate null effects overall, even though the treatment shifted outcomes for many units. Even a larger sample size would have produced a null finding.  To learn more about heterogeneous treatment effects, see [10 Things to Know about Heterogeneous Treatment Effects](https://methods.egap.org/guides/research-questions/heterogeneous-effects_en.html).
 
-# Sometimes null results are an artifact of true zero effects: null effects might reflect opposite reactions to the intervention by different units in the study.
+# Sometimes null results are an artifact of research design: Null results might reflect an underpowered research design.
 
-Studies often focus on average treatment effects. However, the average treatment effect might mask important variation in effects across units within the study. Positive effects among some units may cancel out negative effects among other units, producing an average treatment effect indistinguishable from zero. For example, some respondents in an experiment in the United States felt more warmly toward the candidate after learning about a political candidate's partisanship, while others felt more cold toward the candidate. The direction of the effect depended on the respondent's own partisanship [@lelkes_2021]. Studies that fail to take into account how the direction of the effect depends on unit characteristics may generate null effects overall, even though the treatment shifted outcomes for many units. Even a larger sample size would have produced a null average treatment effect.
+A research design is under-powered when design features undermine the ability to reliably detect a true effect. Inadequate power is a ubiquitous problem in social science research. In a recent working paper reviewing 16,000 hypothesis tests from 2,000 political science articles, @arel-bundock_2023 found that even with generous assumptions the median study had only 10% power. In other words, studies of an intervention with a true effect will generate null results nine out of ten times simply because of insufficient sample size. Only 10% of the studies in the review were powered at 80%, a commonly-used threshold for adequate power. 
 
-To learn more about heterogeneous treatment effects and see sample code, see [10 Things to Know about Heterogeneous Treatment Effects](https://methods.egap.org/guides/research-questions/heterogeneous-effects_en.html).
+Features of research design may contribute to the lack of statistical power. First, 
+<!-- research designs with imprecise measurement strategies are more likely to yield null results. M -->
+measurement strategies may not be sensitive enough to capture the changes that occurred. For example, consider whether exercise improves cardiovascular health in 6 months. It will be easier to detect improvements in cardiovascular health through finer measures like resting heart rate than through more blunt measures like whether the individual died. To learn more about measurement, see [10 Things to Know About Measurement in Experiments](https://methods.egap.org/guides/data-strategies/measurement_en.html).
+<!-- To learn more about indices and see sample code, see [10 Things to Know About Indices](https://methods.egap.org/guides/data-strategies/indices_en.html).  -->
 
-# Sometimes null results are an artifact of research design: null results might reflect an underpowered research design.
+Second, research designs with small samples can produce null results even with sensitive measurement strategies. More units are needed to distinguish between a small average effect and a true zero effect than between a large average effect and a true zero effect. To learn more about statistical power, see [10 Things to Know about Statistical Power](https://methods.egap.org/guides/assessing-designs/power_en.html).
+<!-- An effect may be small on average if an intervention produces small effects among many treated units or if it produces larger effects among only a few treated units. -->
 
-A research design is underpowered when design features undermine the ability to reliably detect a true effect. Inadequate power is a ubiquitous problem in social science research. In a recent working paper reviewing 16,000 hypothesis tests from 2,000 political science articles, @arel-bundock_2023 found that the median study has only 10% power. In other words, studies of an intervention with a true effect will generate null results nine out of ten times simply because of insufficient sample size. Only 10% of the studies in the review were powered at 80%, a commonly-used threshold for minimum levels of power. Several features of research design may contribute to lack of statistical power. To learn more about statistical power and see sample code, see [10 Things to Know about Statistical Power](https://methods.egap.org/guides/assessing-designs/power_en.html).
+# Sometimes null results because designs interact with the real world in unexpected ways: 
 
-First, research designs with imprecise measurement strategies are more likely to yield null results. Measurement strategies may not be sensitive enough to capture the changes that occurred. For example, consider a study examining whether exercise improves cardiovascular health. In the short term, it will be easier to detect improvements in cardiovascular health through more finer measures like resting heart rate compared to more blunt measures like whether the individual died. To learn more about indices and see sample code, see [10 Things to Know About Indices](https://methods.egap.org/guides/data-strategies/indices_en.html). To learn more about measurement generally, see [10 Things to Know About Measurement in Experiments](https://methods.egap.org/guides/data-strategies/measurement_en.html).
+# a. Null results might result from treatments or their effects spilling over from units in one experimental condition to another.
 
-Second, research designs with small samples can produce null results even with sensitive measurement strategies. More units are needed to distinguish between a small average effect and a true zero effect than between a large average effect and a true zero effect. An effect may be small on average if an intervention produces small effects among many treated units or if it produces larger effects among only a few treated units.
+The intervention or its effects may spill over to units that were not assigned to receive that intervention. For example, if an intervention provides cash transfers to treated units, treated units may share the cash with other units not assigned to that intervention. If an intervention reduces racial prejudice, social connections among units may create shifts in racial attitudes and norms among units assigned to control as well as those assigned to treatment. Although the intervention produces real changes in these situations, the spillovers from the intervention targets to other units makes the changes difficult to detect when comparing study units in one condition to one another.  Some research designs anticipate and measure spillovers. To learn more about spillovers, see [10 Things to Know About Spillovers](https://methods.egap.org/guides/data-strategies/spillovers_en.html).
 
-# Sometimes null results because designs interact with the real world in unexpected ways: null results might reflect because treatments or their effects spill over from units in one experimental condition to another.
+<!-- # Sometimes null results because designs interact with the real world in unexpected ways:  -->
 
-The intervention or its effects may spill over to units that were not assigned to receive that intervention. For example, if an intervention provides cash transfers to treated units, treated units may share the cash with other units not assigned to that intervention. If an intervention reduces racial prejudice, social connections among units may create shifts in racial attitudes and norms among units assigned to control as well as those assigned to treatment. Although the intervention produces real changes in these situations, the spillovers from the intervention targets to other units makes the changes difficult to detect when comparing study units to one another.
+# b. Null results might reflect incomplete implementation of the intervention.
 
-Some research designs anticipate and measure spillovers. To learn more about spillovers, see [10 Things to Know About Spillovers](https://methods.egap.org/guides/data-strategies/spillovers_en.html).
+Units randomly assigned to control may inadvertently receive treatment or units assigned to treatment might not receive it.
+<!-- [^2] -->
+For example, one [study](https://www.gsb.stanford.edu/insights/everything-can-go-wrong-field-experiment-what-do-about-it) aimed to examine the effects of conditional cash transfer programs to improve school attendance. In the control condition, participants should have received unconditional cash transfers regardless of school attendance. However, the government implementing the transfer programs required families to enroll children in school in order to receive the "unconditional" funds, thus making the control group similar to the treatment group. This can bias results toward null findings even if there is actually an effect.
 
-# Sometimes null results because designs interact with the real world in unexpected ways: null results might reflect incomplete intervention implementation.
+<!-- [^2]: To learn more about *non-compliance* (when whether a unit received treatment does not match whether it was assigned to receive treatment), see [How to design and implement an experiment (life cycle)](https://methods.egap.org/guides/data-strategies/how-to_en.html). -->
 
-Designated control units may inadvertently receive treatment or units assigned to treatment might not receive it.[^2] For example, one [study](https://www.gsb.stanford.edu/insights/everything-can-go-wrong-field-experiment-what-do-about-it) aimed to examine the effects of conditional cash transfer programs to improve school attendance. In the control condition, participants should have received unconditional cash transfers regardless of school attendance. However, the government implementing the transfer programs required families to enroll children in school in order to receive the "unconditional" funds, thus making the control group similar to the treatment group. This dynamic can bias results toward null findings even if there is actually an effect.
+<!-- # Sometimes null results because designs interact with the real world in unexpected ways:  -->
 
-[^2]: To learn more about *non-compliance* (when whether a unit received treatment status does not match whether it was assigned to receive treatment), see [How to design and implement an experiment (life cycle)](https://methods.egap.org/guides/data-strategies/how-to_en.html).
+# c. Null results might reflect differential attrition.
 
-# Sometimes null results because designs interact with the real world in unexpected ways: null results might reflect differential attrition.
+An intervention or its effects may cause treated units to drop out of the study. If units where the treatment was effective are less likely to complete the study, such as when a successful training program might lead a subject to move outside the study area for work, then the study will likely underestimate the treatment's impacts. Differential attrition may then explain null results. To learn more about attrition and see sample code, see [10 Things to Know About Missing Data](https://methods.egap.org/guides/data-strategies/missing-data_en.html).
 
-An intervention or its effects may cause treated units to drop out of the study. If units where the treatment was effective are less likely to complete the study, then the study will likely underestimate the treatment's impacts. Differential attrition may then explain null results.
+# Understanding why an intervention did not work is difficult.
 
-To learn more about attrition and see sample code, see [10 Things to Know About Missing Data](https://methods.egap.org/guides/data-strategies/missing-data_en.html).
+Understanding why an intervention didn't work as expected can be harder than understanding why it did. Researchers design studies based on their model of how the world works. If a study generates null results, researchers should first investigate whether this may be due to failures in research design, as @humphreys_exporting_2019 do.  Researchers can then engage in theory-building to explain their findings. Talking to implementing partners and study participants or conducting additional statistical analyses like balance tests or tests for heterogeneous treatment effects might help researchers identify or rule out some explanations. After this process, researchers can design additional studies to test new explanations and theories.
 
-# Understanding why an intervention did not work is hard.
 
-Understanding why an intervention didn't work as expected can be harder than understanding why it did. Researchers design studies to confirm theories about how the world works. If a study generates null results, researchers must again engage in theory building to explain their findings. Talking to implementing partners and study participants or conducting additional statistical analyses (like balance tests or tests for heterogeneous treatment effects) might help researchers identify or rule out some explanations. After this process, researchers can design additional studies to test new explanations and theories.
 
 # References {.unnumbered .unlisted}
 
