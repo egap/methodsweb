@@ -1,7 +1,7 @@
 ---
 title: "10 Things on Your Checklist for Analyzing an Experiment"
 author: 
-  - name: "Alyssa Heinze"
+  - name: "Alyssa R. Heinze"
     url: https://alyssaheinze.github.io/
 image: covariates.png
 bibliography: how-to-analyze-experiments.bib
