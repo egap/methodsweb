@@ -3,8 +3,6 @@ title: "10 Things You Need to Know About Regression Tables"
 author: 
   - name: "Eddy S. F. Yeung"
     url: https://eddy-yeung.github.io/
-  - name: "Nahomi Ichino"
-    url: https://nahomi.github.io/
 image: regression-table.png
 bibliography: regression-table.bib
 abstract: | 
@@ -13,9 +11,9 @@ abstract: |
 
 # What Is a Regression Table?
 
-Linear regression, a statistical technique, is often used to estimate the average effect of a treatment on an outcome in an experiment and the uncertainty around this estimate. In some cases, the regression also controls for pretreatment variables to improve the precision of the estimate; in others, features of the experimental design are accommodated in the regression. Output from the regression is often used to test whether there is sufficient evidence to reject the hypothesis of zero average effect.
+Linear regression, a statistical technique, is often used to estimate the average effect of a treatment on an outcome in an experiment and the uncertainty around this estimate.  Features of the experimental design are accommodated in the regression.  In some cases, the regression also controls for pretreatment variables to improve the precision of the estimate.  Output from the regression is often used to test whether there is sufficient evidence to reject the hypothesis of zero average treatment effect.
 
-A regression table presents the results of the regression and the choices the researcher made to produce the results. A single table may present results from multiple analyses, with each column referring to a separate analysis. Analyses might be run for multiple outcomes, subsets of data, or assessing different combinations of treatments.
+A regression table presents the results of the regression and the choices the researcher made to produce the results. A single table may present results from multiple analyses, with each column referring to a separate analysis. Analyses might be run for multiple outcomes, subsets of data, or to assess different combinations of treatments.
 
 # Why Are Regression Tables Important?
 
@@ -29,50 +27,49 @@ When we run a regression, we estimate $b$, and this is our estimate of the avera
 
 There is a deep connection between this simple regression equation and just taking the difference between the average outcome for treated units and the average outcome for the control units in a randomized experiment. These methods will produce the same estimate for the treatment effect for most simple designs.
 
-A variation of a regression equation is of the following form: $Y_i = a + bT_i + cM_i + dT_iM_i + e_i$, where $M_i$ is a moderator and all other variables are as before. The moderator could be an individual unit's pretreatment characteristic, such as the age, gender, or race. Researchers estimate this equation when they are interested in how the average treatment effect may differ for units with different values of the moderator. We will discuss how to interpret regressions with interaction terms in @sec-interaction.
+A variation of a regression equation is of the following form: $Y_i = a + bT_i + cM_i + dT_i*M_i + e_i$, where $M_i$ is a moderator and all other variables are as before. The moderator could be a pretreatment characteristic of an individual unit, such as the age, gender, or race. Researchers might estimate this equation when they are interested in how the average treatment effect may differ for units with different values of the moderator. We will discuss how to interpret regressions with interaction terms in @sec-interaction.
 
 # How a Regression Table Is Usually Laid Out
 
-The table below, taken from @albertson_2023 [p. 450], shows an example of a regression table presenting experimental results. The authors ran an online survey experiment to replicate the effect of question wording on Americans' support for welfare spending. In the treatment group, they asked respondents whether the US was spending too much (1), too little (-1), or about the right amount (0) on "welfare." In the control group, they asked the same question except that the question wording changed from "welfare" to "assistance to the poor."
+The table below, reproduced from @albertson_2023 [p. 450], is an example of a regression table of experimental results. The authors ran an online survey experiment to replicate the effect of question wording on Americans' support for welfare spending. In the treatment group, they asked respondents whether the US was spending too much (1), too little (-1), or about the right amount (0) on "welfare." In the control group, they asked the same question except that the question wording changed from "welfare" to "assistance to the poor."
 
 <center>
 
-![An Example of a Regression Table from Albertson and Jessee (2023)](regression-table-ex1.png){width="80%"}
+![Regression Table from Albertson and Jessee (2023)](regression-table-ex1.png){width="80%"}
 
 </center>
 
 The regression table contains the following features:
 
 -   **Each column is a model.** Column 1 estimates the average treatment effect of the "welfare" wording on spending views. Column 2 also estimates the average treatment effect but it additionally controls for racial resentment. Column 3 includes an interaction term between treatment assignment and racial resentment to explore how racial resentment moderates the average treatment effect.
--   **Each row contains information about a variable.** In the table, the main row of interest is *"Welfare" wording*, which shows the coefficient estimates of the treatment variable. The next row corresponds to the covariate, racial resentment, included in the regression models. The first row, *Intercept*, indicates the average value of the outcome variable when all other variables are at value zero.
--   **Each entry is the estimated coefficient.** In the table, each entry (or the numbers within each cell of the table) corresponds to the estimated coefficient from linear regression. Information about the uncertainty of the coefficient estimates is also included below each entry. In this example, the standard errors of the estimates are reported in parentheses underneath each estimated coefficient. In some other cases, researchers may instead report the confidence intervals in brackets \[ \] beneath each estimated coefficient.
--   **There is additional information at the bottom of each column.** In this example, the authors include the sample size, residual standard error, and F-statistic for each regression model they estimate.
+-   **Each row contains information about a variable.** The main row of interest is *"Welfare" wording*, which shows the coefficient estimates of the treatment variable. The next row corresponds to the covariate, racial resentment, included in the regression models. The first row, *Intercept*, indicates the average value of the outcome variable when all other variables are at value zero.
+-   **Each entry is the estimated coefficient.** Each entry (or the numbers within each cell of the table) corresponds to the estimated coefficient from linear regression. Information about the uncertainty of the coefficient estimates is also included below each entry. Here the standard errors of the estimates are reported in parentheses beneath each estimated coefficient. In some other cases, confidence intervals might be reported in brackets \[ \] beneath each estimated coefficient.
+-   **There is additional information at the bottom of each column.** Here the authors include the sample size, residual standard error, and F-statistic for each regression model they estimate.
 
-# Focus on the Estimate of the Treatment Effect and Uncertainty of This Estimate
+# Focus on the Estimate of the Average Treatment Effect and Uncertainty of This Estimate
 
 When interpreting a regression table, the reader should focus on the row that contains information about the treatment variable. The estimated coefficient for the treatment variable tells us about the size and direction of the average treatment effect. The estimated standard errors inform us about the uncertainty of this estimated average treatment effect.
 
-In the example, Column 1 reports that the estimated average treatment effect is 0.27 and that the standard error of this estimate is 0.04. With a sample size of 1,590 respondents, the average treatment effect estimate is statistically significant at the 0.001 level, as indicated by the authors using three asterisks beside the coefficient estimate. Given the positive average treatment effect estimate and the small uncertainty around this estimate, the experiment provides evidence that the "welfare" wording---compared to the "assistance to the poor" wording---increased self-reported beliefs that the US was overspending on social assistance.
+In the example, Column 1 reports that the estimated average treatment effect is 0.27 and that the standard error of this estimate is 0.04. With a sample size of 1,590 respondents, the average treatment effect estimate is statistically significant at the 0.001 level, as indicated by the three asterisks beside the coefficient estimate. The positive average treatment effect estimate and the small uncertainty around this estimate provide evidence that the "welfare" wording---compared to the "assistance to the poor" wording---increased self-reported beliefs that the US was overspending on social assistance.
 
-Column 2 reports that the estimated average treatment effect, when controlling for racial resentment, is 0.30 with a standard error of 0.03. Note that the average treatment effect estimate does not substantively change here. With randomization, including covariates in regression generally does not bias estimates of the average treatment effect and can often help improve statistical precision.[^1]
+Column 2 reports that the estimated average treatment effect, when controlling for racial resentment, is 0.30 with a standard error of 0.03. Note that the estimate does not change much from Column 1. With randomization, including covariates in regression generally does not bias estimates of the average treatment effect and can often help improve statistical precision.[^1]
 
 [^1]: See <https://egap.org/resource/10-things-to-know-about-covariate-adjustment> for a detailed discussion.
 
 # Do Not Interpret Estimates on the Covariates Causally
 
-Because the covariates in an experiment are not randomized in the first place, we cannot interpret their coefficient estimates causally. The usual inferential challenges in observational studies, such as omitted variable bias and reverse causality, also apply to covariates in an experimental setting. In Albertson and Jessee's [-@albertson_2023] study, although the estimated coefficient for racial resentment is positive and statistically significant, we should not claim that racial resentment *caused* respondents to believe that the US was spending too much. For one, racial resentment and spending views may be linked to a third variable, such as partisanship or political ideology. Because this third variable may explain both racial resentment and spending views, a statistical relationship between racial resentment and spending views may be driven by their independent relationships with the third variable. Individuals' beliefs about government overspending could also drive racial resentment, not the other way around.
+Because the covariates in an experiment are not randomized in the first place, we cannot interpret their coefficient estimates causally. The usual inferential challenges in observational studies, such as omitted variable bias and reverse causality, also apply to covariates in an experimental setting. In Albertson and Jessee's [-@albertson_2023] study, although the estimated coefficient for racial resentment is positive and statistically significant, we should not claim that racial resentment *caused* respondents to believe that the US was spending too much. A third variable, such as partisanship or political ideology, might drive both racial resentment and spending views.  Then we might find a positive association between racial resentment and spending views through each variable's association with the third variable, even though they have no direct relationship.  Individuals' beliefs about government overspending could also drive racial resentment, not the other way around.
 
 # Interpreting Regression with Interaction Terms {#sec-interaction}
 
-In an experiment, researchers are sometimes interested in studying [heterogeneous treatment effects](https://egap.org/resource/10-things-to-know-about-heterogeneous-treatment-effects/). When the moderator is a variable that takes on discrete values (such as just 1 or 0), we can estimate the conditional average treatment effect---an average treatment effect specific to a subgroup of subjects. We can then estimate the heterogeneous treatment effect, or the interaction effect, by differencing the relevant conditional average treatment effects. This interaction effect is captured by the term $d$ in the regression model $Y_i = a + bT_i + cM_i + dT_iM_i + e_i$, where $T_i$ is the treatment variable and $M_i$ is the moderator.
+In an experiment, researchers are sometimes interested in studying [heterogeneous treatment effects](https://egap.org/resource/10-things-to-know-about-heterogeneous-treatment-effects/). When the moderator is a variable that takes on discrete values (such as just 1 or 0), we can estimate the conditional average treatment effect---an average treatment effect specific to a subgroup of subjects. We can then estimate the interaction effect by taking the difference between the relevant conditional average treatment effects. This interaction effect is captured by the term $d$ in the regression model $Y_i = a + bT_i + cM_i + dT_i*M_i + e_i$, where $T_i$ is the treatment variable and $M_i$ is the moderator.
 
 Suppose $M_i = 1$ if the subject is male and $M_i = 0$ if the subject is female. Then, the average treatment effect for males is $b + d$ and the average treatment effect for females is $b$. The difference in these conditional average treatment effects, $d$, captures how the average treatment effect differs by gender. If $d > 0$, then the average treatment effect of $T$ on $Y$ is more positive (or less negative) among males than among females. If $d < 0$, then the average treatment effect of $T$ on $Y$ is less positive (or more negative) among males than among females. If $d$ is zero, then the average treatment effects are not different between males and females.
 
 # Interpreting Regression with More Than One Treatment
 
-When there are multiple treatment arms, we can estimate the average treatment effects using the following regression equation: $Y_i = a + b_1T1_i + b_2T2_i + e_i$, where $T1_i$ indicates the first treatment arm and $T2_i$ indicates the second treatment arm. There is also a control condition. By convention, $T1_i = 1$ when a unit is randomly assigned to receive the first treatment and 0 otherwise, and $T2_i = 1$ when a unit is randomly assigned to receive the second treatment and 0 otherwise. If a unit is not assigned to receive any treatment, then both $T1_i$ and $T2_i$ equal zero for that unit. This means that $Y_i = a + e_i$ when a unit is in the control group, $Y_i = a + b_1 + e_i$ when a unit is in the first treatment arm, and $Y_i = a + b_2 + e_i$ when a unit is in the second treatment arm. The average treatment effects of $T1$ and $T2$ are $b_1$ and $b_2$, respectively.
+When there are multiple treatment arms, we can estimate the average treatment effects using the following regression equation: $Y_i = a + b_1T1_i + b_2T2_i + e_i$, where $T1$ indicates the first treatment arm and $T2$ indicates the second treatment arm. There is also a control condition. By convention, $T1_i = 1$ when a unit is randomly assigned to receive the first treatment and 0 otherwise, and $T2_i = 1$ when a unit is randomly assigned to receive the second treatment and 0 otherwise. If a unit is not assigned to receive any treatment, then both $T1_i$ and $T2_i$ equal zero for that unit. This means that $Y_i = a + e_i$ when a unit is in the control group, $Y_i = a + b_1 + e_i$ when a unit is in the first treatment arm, and $Y_i = a + b_2 + e_i$ when a unit is in the second treatment arm. The average treatment effects of $T1$ and $T2$ relative to control are $b_1$ and $b_2$, respectively.
 
-Regression produces estimates of $b_1$ and $b_2$, the average treatment effects of $T1$ and $T2$ on $Y$ for the units in our study.
 
 # Other Information You Can (Often) Get out of a Regression Table
 
