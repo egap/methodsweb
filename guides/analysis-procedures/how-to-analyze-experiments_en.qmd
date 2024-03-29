@@ -1,13 +1,13 @@
 ---
 title: " 10 Things on Your Checklist for Analyzing an Experiment"
 author: 
-  - name: "name"
-    url: https://methods.egap.org/guides.html
+  - name: "Alyssa Heinze"
+    url: https://alyssaheinze.github.io/
 image: covariates.png
 bibliography: how-to-analyze-experiments.bib
+abstract: | 
+  This guide will provide practical tools on what to do with your data once you've run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers to project managers. If you're not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are analyzing the data, this guide provides instructions and `R` code on how to do so.
 ---
-
-This guide will provide practical tools on what to do with your data once you've run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers to project managers. If you're not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are analyzing the data, this guide provides instructions and `R` code on how to do so.
 
 # BEFORE seeing (or receiving) your data, file an amendment if changes to the design or planned analysis arise
 
