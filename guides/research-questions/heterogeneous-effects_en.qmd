@@ -1,57 +1,65 @@
 ---
-title: "10 Things to Know About Heterogeneous Treatment Effects"
+title: "10 Things to Know About Heterogeneous Treatment Effects^[This guide draws heavily from @gerber_green_2012 and from [Don Green](http://www.donaldgreen.com/)'s course notes on experimental methods at Columbia University, and builds on an older version of this guide by [Albert Fang](https://albertfang.com/).]"
 author: 
   - name: "Alyssa René Heinze"
     url: alyssaheinze.github.io
 abstract: | 
-  This guide discusses the theoretical and policy relevance of heterogeneous treatment effects, which is when effects vary by individual or group. It also discusses and demonstrates methods for estimating how effects vary and interpreting results: from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc searches for heterogeneity.^[This guide draws heavily from @gerber_green_2012 and from [Don Green](http://www.donaldgreen.com/)'s course notes on experimental methods at Columbia University and builds on an older version of this guide by [Albert Fang](https://albertfang.com/).]
+  This guide discusses the theoretical and policy relevance of heterogeneous treatment effects. It also discusses and demonstrates methods for estimating them and interpreting results: from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc specification search.^[This guide draws heavily from @gerber_green_2012 and [Don Green](http://www.donaldgreen.com/)'s course notes for Experimental Methods at Columbia University and builds on an older version of this guide by [Albert Fang](https://albertfang.com/).]
 image: heterogeneous-effects.png
 bibliography: heterogeneous-effects.bib
 ---
 
 # What is treatment effect heterogeneity?
 
-A treatment may affect individuals or groups in different ways: this is treatment effect heterogeneity. The study of treatment effect heterogeneity involves estimating how treatment effects vary across individuals or groups within an experiment. For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects?
+A treatment may affect experimental subjects in different ways: this is treatment effect heterogeneity. The study of treatment effect heterogeneity is the study of these differences across subjects. For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects?
 
 # Why is treatment effect heterogeneity important?
 
-By investigating treatment effect heterogeneity, we may be able to learn about the conditions under which treatments are especially effective or ineffective. The results can contribute to program design decisions and enable deploying resources more effectively, for example to individuals for whom the treatment is likely to be effective.
+By investigating treatment effect heterogeneity, we may be able to learn about the conditions under which treatments are especially effective or ineffective. This can also help design policies and deploy resources under conditions where we have reasonable evidence that it will work.
 
 # Treatment effect heterogeneity: The general case
 
-First, we might want to know whether the treatment effect is the same for all individuals and groups within a study. We can state this in terms of the *variance* of individual-level treatment effects: if the treatment effect is the same for all individuals, then the variance of these effects would be zero. To probe this, we can test the null hypothesis that the variance of the individual-level treatment effects is zero. But we never get to see the treatment effect for any particular individual, only the outcome for each person either in the treatment or in the control condition.^[This is known as the Fundamental Problem of Causal Inference. For more background, see [10 Things You Need to Know About Causal Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html).]
+First, we might want to know whether the treatment effect is the same for all experimental subjects. We can state this in terms of the *variance* of individual-level treatment effects: if the treatment effect is the same for all individuals, then the variance of these effects would be zero. To probe this, we can test the null hypothesis that the variance of the individual-level treatment effects is zero. But we never get to see the treatment effect for any particular individual, only the outcome for each person either in the treatment or in the control condition.[^1]
+
+[^1]: This is known as the Fundamental Problem of Causal Inference. For more background, see [10 Things You Need to Know About Causal Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html).
 
 What might treatment effect heterogeneity look like in practice? In one example, Eric Kramon, Sarah Brierley, and George Ofosu find in [The Moderating Effect of Debates in Ghana](https://egap.org/resource/the-moderating-effect-of-debates-in-ghana/) that the impact of viewing parliamentary debates on candidate evaluation and vote choice vary by partisanship. In another example, @blair2021 failed to find evidence of heterogeneous treatment effects of community policing interventions across six geographic sites in the Global South.
 
 # Treatment effect heterogeneity: Conditional average treatment effects (CATEs)
 
-Second, we might want to know whether specific groups of individuals in the study are impacted differently by our treatment. A structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is an average treatment effect specific to a subgroup of individuals, where the subgroup is defined by the attributes of the individuals, such as the average treatment effect (ATE) among women. These attributes may also be attributes of the context in which the experiment occurs (e.g., the ATE among individuals at a specific site in a multi-site field experiment).^[We can also define ATEs for subgroups defined by the individuals' treatment status (e.g., the ATE among those who were assigned to treatment, also called the ATT or average treatment effect on the treated) or individuals' post-treatment outcomes. We do not focus on these types of CATEs because of estimation challenges described below.]
+Second, we might want to know if specific groups of experimental subjects are impacted differently by our treatment. A structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is an average treatment effect specific to a subgroup of subjects, where the subgroup is defined by subjects' attributes, such as the average treatment effect (ATE) among female subjects. These attributes may also be attributes of the context in which the experiment occurs (e.g., the ATE among subjects at a specific site in a multi-site field experiment).[^2]
 
-*An important aside on estimation*: It is generally a good idea to avoid conditioning on variables whose values could have been affected by the treatment itself (called post-treatment variables). This is to ensure the unbiased estimation of conditional average treatment effects. Some researchers may be interested in post-treatment effect modification, or (in the regression context) the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants' levels of depression during the follow-up period? However, conditioning on a post-treatment covariate may lead to bias. See @angristpischke for more on so-called "bad" controls. There is a burgeoning body of methodological research on the conditions under which CATEs involving post-treatment covariates are identified. These methods rely on model-based identification.^[For further reading (at an advanced technical level), see @vansteelandt_goetghebeur_2003; @vansteelandt_goetghebeur_2004; @vansteelandt_2010; @stephens_et_al_2016.]
+[^2]: We can also define ATEs for subgroups defined by the subjects' treatment status (e.g., the ATE among subjects who were assigned to treatment, also called the ATT or average treatment effect on the treated) or subjects' post-treatment outcomes. We do not focus on these types of CATEs because of estimation challenges described below.
+
+*An important aside on estimation*: It is generally a good idea to avoid conditioning on variables whose values could have been affected by the treatment itself (called post-treatment variables). This is to ensure the unbiased estimation of conditional average treatment effects. Some researchers may be interested in post-treatment effect modification, or (in the regression context) the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants' levels of depression during the follow-up period? However, conditioning on a post-treatment covariate may lead to bias. See @angristpischke for more on so-called "bad" controls. There is a burgeoning body of methodological research on the conditions under which CATEs involving post-treatment covariates are identified. These methods rely on model-based identification.[^3]
+
+[^3]: For further reading (at an advanced technical level), see @vansteelandt_goetghebeur_2003; @vansteelandt_goetghebeur_2004; @vansteelandt_2010; @stephens_et_al_2016.
 
 # Treatment effect heterogeneity: Differences between CATEs
 
-Third, we might be interested in the difference between two CATEs. For example, does our treatment work differently on average for men versus women? Stated differently, we might want to know whether the difference in ATEs between women and men in the experiment (sometimes called the interaction effect between the treatment and gender) is equal to or different from zero.
+Third, we might be interested in the difference between two CATEs. Does our treatment work differently on average for men and women? Stated differently, we might want to know whether the difference in ATEs between female and male experimental subjects (sometimes called the interaction effect between the treatment and gender) is equal to or different from zero.
 
-*An aside on causal interpretation*: The variable(s) that define the subgroups that you compare may or may not have been experimentally manipulated. If it was not, then we have a treatment-by-covariate interaction that can be interpreted as a *descriptive* measure of association between the covariate and the treatment effect, but should not be interpreted as the *causal* effect of a change in the covariate value on the ATE.^[See @bansak2021 for more on causal moderation.] Treatment-by-treatment interactions are differences in CATEs where the personal or contextual attribute defining subgroups *is* experimentally manipulated. Because that other treatment is randomly assigned, treatment-by-treatment interactions may be interpreted causally. Factorial and partial factorial designs allow researchers to randomly assign individuals to different combinations of "cross-cutting" treatment conditions and to estimate treatment-by-treatment interactions. 
-<!-- as allowed by the design. -->
-<!-- Changed referring to the other factor as a covariate and referred to it as the other treatment -->
+*An aside on causal interpretation*: The variable(s) that define the subgroups that you compare may or may not have been experimentally manipulated. If it was not, then we have a treatment-by-covariate interaction that can be interpreted as a *descriptive* measure of association between the covariate and the treatment effect, but should not be interpreted as the *causal* effect of a change in the covariate value on the ATE.[^4] Treatment-by-treatment interactions are differences in CATEs where the personal or contextual attribute defining subgroups *is* experimentally manipulated. Because the covariate is randomly assigned, treatment-by-treatment interactions may be interpreted causally. Factorial and partial factorial designs allow researchers to randomly assign subjects to different combinations of "cross-cutting" treatment conditions and to estimate treatment-by-treatment interactions as allowed by the design.[^5]
+
+[^4]: See @bansak2021 for more on causal moderation.
+
+[^5]: Note, however, that partial factorials may have issues. See @Muralidharanetal2020 for more on this.
 
 # Estimation
 
-Estimating CATEs and differences between CATEs (interaction effects) is straightforward. For the CATE, estimate the ATE among individuals in the specific subgroup of interest. For differences in CATEs, take the difference between relevant estimated CATEs. CATEs and differences in CATEs (interaction effects) may also be estimated in a regression framework.
+Estimating CATEs and differences between CATEs (interaction effects) is straightforward. For the CATE: estimate the ATE among subjects in the specific subgroup of interest. For differences in CATEs: take the difference between relevant estimated CATEs. CATEs and differences in CATEs (interaction effects) may also be estimated in a regression framework.
 
 Imagine a hypothetical experiment evaluating the effect of a job training program on future earnings. Let $Y$ be the outcome (future earnings), $Z$ be the treatment variable (1=job training program, 0=control), and $X$ be a pre-treatment covariate (1=scholarship receipt, 0=no scholarship).
 
-We can write down a regression model that can aid us in estimating the CATEs (the ATE of the job training program among those who receive a scholarship and among those who do not) and the interaction effect (the difference between these two CATEs). 
+We can write down a regression model that can aid us in estimating the CATEs (the ATE of the job training program among those who receive a scholarship and among those who do not) and the interaction effect (the difference between these two CATEs). $$
 \begin{aligned}
 Y_i &= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i \label{alt}
 \end{aligned}
+$$.
 
+The ATE of the job training program among subjects who do not receive a scholarship is $\beta$. The ATE of the job training program among subjects who do receive a scholarship is $(\beta + \delta)$.
 
-The ATE of the job training program among individuals who do not receive a scholarship is $\beta$. The ATE of the job training program among individuals who do receive a scholarship is $\beta + \delta$.
-
-The coefficient $\delta$ is the interaction effect and is interpreted as the ATE of the job training program among individuals receiving a scholarship minus the ATE of the job training program among individuals not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarships are randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarships are not randomly assigned.
+The coefficient $\delta$ is the interaction effect and is interpreted as the ATE of the job training program among subjects receiving a scholarship minus the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., $\delta$ is a treatment-by-treatment interaction) when scholarships are randomly assigned and a descriptive interpretation (i.e., $\delta$ is a treatment-by-covariate interaction) when scholarships are not randomly assigned.
 
 # Hypothesis testing: Differences in CATEs
 
@@ -69,11 +77,13 @@ $$
 
 The coefficient on the interaction term may be used as the test statistic for one-sided tests, given the appropriate model.
 
-*An aside on interpretation*: It's important to distinguish between difference in significance and difference in effects. If, for example, our evidence suggests that the ATE among female study participants is significantly different from zero, but that the ATE among male participants is not, this *doesn't* necessarily mean that the two CATEs are different from each other. Instead, we should use a test of the difference between CATEs as described above.
+*An aside on interpretation*: It's important to distinguish between difference in significance and difference in effects. If, for example, our evidence suggests that the ATE among female study participants is significantly different from zero, but that the ATE among male participants is not, this *doesn't* necessarily mean that the two CATEs are different from each other.
 
 # Multiple comparisons
 
-Researchers interested in heterogeneous treatment effects are likely to encounter the problem of multiple comparisons: for example, when numerous subgroup analyses are conducted, the probability that at least one result looks statistically significant may be considerably greater than the specified alpha level (typically 5 percent) even when the treatment has no effect on anyone.^[For more background and a range of views on the multiple comparisons problem, see, e.g.: [10 Things You Need to Know About Multiple Comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html); @cook_farewell_1996; @schulz_grimes_2005a; @schulz_grimes_2005b; @anderson_2008; @westfall_et_al_2011; @gelman_et_al_2012.]
+Researchers interested in heterogeneous treatment effects are likely to encounter the problem of multiple comparisons: for example, when numerous subgroup analyses are conducted, the probability that at least one result looks statistically significant may be considerably greater than the specified alpha level (typically 5 percent) even when the treatment has no effect on anyone.[^6]
+
+[^6]: For more background and a range of views on the multiple comparisons problem, see, e.g.: [10 Things You Need to Know About Multiple Comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html); @cook_farewell_1996; @schulz_grimes_2005a; @schulz_grimes_2005b; @anderson_2008; @westfall_et_al_2011; @gelman_et_al_2012.
 
 One way to mitigate the multiple comparisons problem is to reduce the number of tests conducted, for example, by analyzing a small number of pre-specified subgroups. Another approach is to adjust the $p$-values to account for the fact that multiple hypotheses are being tested simultaneously. For more on how to implement various methods of adjustment for multiple comparisons, see [10 Things You Need to Know About Multiple Comparisons](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html).
 
@@ -85,8 +95,16 @@ Pre-specifying the investigation of heterogeneous treatment effects has many ben
 
 Machine learning methods can be used to automate the search for systematic variation in treatment effects. These automated approaches are attractive because they minimize researchers' discretion in selecting and testing interactions. They are also useful for conducting exploratory analyses, since these types of analyses are rarely pre-specified.
 
-Popular machine learning methods for heterogeneous treatment effects include support vector machines (R package [FindIt](http://cran.r-project.org/web/packages/FindIt/index.html)),^[See, for example, @imai_ratkovic_2013.] Bayesian additive regression trees (R package [BayesTree](http://cran.r-project.org/web/packages/BayesTree/index.html)),^[See @chipman_et_al_2010; @hill_2011; @green_kern_2012.] classification and regression trees (R package [causalTree](https://github.com/susanathey/causalTree)) [@athey_imbens_2016] random forests or "causal forests" [@wager_athey_2016], and kernel regularized least squares (R package [KRLS](http://cran.r-project.org/web/packages/KRLS/index.html)).^[See @hainmueller_hazlett_2013.]
+Popular machine learning methods include support vector machines (R package [FindIt](http://cran.r-project.org/web/packages/FindIt/index.html)),[^7] Bayesian additive regression trees (R package [BayesTree](http://cran.r-project.org/web/packages/BayesTree/index.html)),[^8] classification and regression trees (R package [causalTree](https://github.com/susanathey/causalTree)) [@athey_imbens_2016] random forests [@wager_athey_2016] and kernel regularized least squares (R package [KRLS](http://cran.r-project.org/web/packages/KRLS/index.html)).[^9]
 
-In addition to single machine learning methods, ensemble methods may be used. Ensemble methods estimate a weighted average of multiple machine learning estimates of heterogeneous effects where the weights are a function of out-of-sample prediction performance.^[See @van_der_laan_et_al_2007; @grimmer_et_al_2014.]
+[^7]: See, for example, @imai_ratkovic_2013.
+
+[^8]: See @chipman_et_al_2010; @hill_2011; @green_kern_2012.
+
+[^9]: See @hainmueller_hazlett_2013.
+
+In addition to single machine learning methods, ensemble methods may be used. Ensemble methods estimate a weighted average of multiple machine learning estimates of heterogeneous effects where the weights are a function of out-of-sample prediction performance.[^10]
+
+[^10]: See @van_der_laan_et_al_2007; @grimmer_et_al_2014.
 
 # References
