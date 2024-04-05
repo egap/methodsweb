@@ -1,0 +1,128 @@
+AsymptoticTestStatistic-class
+                        S4 AsymptoticTestStatistic class
+ParameterPvals-class    Parameter P-value class
+ParameterizedTest-class
+                        the RandomizationDistribution object
+RItest                  Test a sharp hypothesis
+RandomizationDistribution-class
+                        RandomizationDistribution
+RandomizationDistributionConfInt-class
+                        Randomization Distribution Confidence Interval
+Randomizationdistributionconfint
+                        functions for RandomizationDistribution
+SharpNullTest-class     SharpNullTest class
+SparseMMFromFactor      Sparse matrix dummy coding of a factor variable
+                        (omitting the intercept)
+StratumWeightedDesignOptions-class
+                        Stratum Weighted DesignOptions
+UniformityModel         Create new UniformityModel
+UniformityModel-class   The most generic type of model is a
+                        "UniformityModel" which is a function that
+                        takes y and z (and possibly parameters) and
+                        returns the uniformity trial the @inverse slot
+                        contains a function that given the uniformity
+                        trial data, z, and params returns the observed
+                        data implied by the model.
+adBackEnd               The adTestStatistic with ad.test as a potential
+                        backend
+adTestStatistic         Anderson-Darling Test Statistic
+attributable.effect.helpers
+                        Attribute Effects helper functions
+attributableEffects     Attributed Effects
+balanceTest             Standardized Differences for Stratified
+                        Comparisons
+balanceTest.make.stratwts
+                        balanceTest helper function
+balanceTestEngine       xBalance helper function
+balanceplot             Create a plot of the balance on variables
+                        across different stratifications.
+clusterRandomSampler    Cluster Random Sampler
+constant.multiplicative.model
+                        Helper function
+cvmBackEnd              cvm BackEnd
+cvmTestStatistic        CVM Test Statistic
+d.stat                  d stat
+ddstTestStatistic       ddst test Statistic
+entropyRelDistTestStatistic
+                        entropy relative distance
+farray                  Fill in an array from a function that takes the
+                        indices as arguments.
+flatten.xbalresult      Flattens xBalance output.
+formula.xbal            Returns 'formula' attribute of an 'xbal'
+                        object.
+getApplyFunction        Get proper apply function
+getLApplyFunction       Get proper lapply function
+givenParams             Generic function givenParms
+givenParams,UniformityModel-method
+                        givenParams for UniformityModel
+givenParams,function-method
+                        givenParams for function
+h.weights               Helper function
+independentProbabilitySampler
+                        Independent Probability Sampler
+invertModel             Invert a model
+ipr                     Infer inverse probability/odds of assignment
+                        weights in randomized designs
+iqrDiff                 IQR Difference
+ksBackEnd               this borrowed from ks.test
+ksTestStatistic         KS Test Statistic
+madDiff                 Median Absolute Deviation
+makePval                Get p-value for Z-stats
+make_args_mtx           Helper function
+mann.whitney.u          Man Whitney U
+min.max.model           Min Max Model
+model.effect.helper     Helper function for model.effect
+naImpute                Impute NA's
+nuclearplants           Nuclear Power Station Construction Data
+odds.ratio              Odds ratio
+p-value                 P-value gnerators
+p.values                Generate p-values
+parallelLoaded          Helper function to check if parallel package is
+                        loaded
+parameterSensitivity    Compares the predictions of a model over the
+                        parameter space.
+parameterSensitivityBreakoutPlot
+                        Plots the results of the parameter sensitivity
+                        on the original parameter space.
+plot.ParameterPvals     Plot function for ParameterPvals
+plot.ParameterizedTest
+                        Plot the results of RItest.
+plot.parameterSensitivity
+                        Plots the results of 'parameterSensitivity' as
+                        a 2D histogram.
+plot.xbal               Plot of balance across multiple strata
+point                   Generic point method
+point,ParameterizedTest-method
+                        point for ParameterizedTest
+print.ParameterizedTest
+                        Print ParameterizedTest
+print.SharpNullTest     Print for SharpNullTest
+print.xbal              Printing xBalance Objects
+quantileAbsoluteDifference
+                        Quantile Absolute Difference
+quantileDifference      Quantile Difference
+quasireldist            Quasi Relative Distance
+rank.sum.functions      Rank based functions
+returnTau               helper function for all the models that have a
+                        "tau" direct effect
+returnZero              Returns 0
+show,SharpNullTest-method
+                        Show for SharpNullTest class
+simpleRandomSampler     Simple Random Sampler
+slm.fit.csr.fixed       slm.fit.csr with a fix
+slm.wfit.csr            slm.wfit with two fixes
+snowLoaded              Helper function to check if snow package is
+                        loaded
+ssrBackEnd              ssr backEnd
+ssrTSmaker              Sum of Squared Residuals
+subset.xbal             Select variables, strata, and statistics from a
+                        'xbal' object
+subsetStatistic         Subset / subgroup Analysis
+test.stat.means         Mean functions
+testSize                testSize
+tidy.xbal               [broom::tidy()/glance()] methods for
+                        [RItools::balanceTest()/xBalance()] results
+wilcoxBackEnd           Wilcox BackEnd
+withOptions             Safe way to temporarily override options()
+xBalanceBackEnd         xBalanceBackEnd
+xtable.xbal             An 'xtable' method for 'xbal' objects

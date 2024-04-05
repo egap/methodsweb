@@ -115,8 +115,11 @@ Keep a list of what you change; all of these could be highlighted and justified
 
 In this example, we use data from @gaikwad_nellis_2021. They employ a door-to-door field experiment in two Indian cities to increase the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which whether an individual voted in India's 2019 national election.
 
-```{r}
+```{r, eval = FALSE}
+library(tidyverse)
+library(magrittr)
 library(kableExtra)
+library(scales)
 # load in the experimental data from Gaikwad and Nellis (2021)
 # this code draws heavily on their reproduction code, found in their
 # supplementary materials here: 
@@ -140,7 +143,7 @@ t1_experiment_df %>%
 ```
 
 
-```{r}
+```{r, eval = FALSE}
 library(skimr)
 ### step 2 ###
 # outcome and covariate inspection
@@ -206,7 +209,7 @@ t1_experiment_df %>%
 ```
 
 
-```{r}
+```{r, eval = FALSE}
 ### step 3 ###
 # dealing with outliers
 
@@ -250,7 +253,7 @@ t1_experiment_df %>%
 ```
 
 
-```{r}
+```{r, eval = FALSE}
 ### step 4 ###
 # checking for imbalance
 
@@ -373,7 +376,7 @@ fstat_robust_SE
 ```
 
 
-```{r}
+```{r, eval = FALSE}
 ### step 4 ###
 # checking for attrition
 

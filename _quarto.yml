@@ -51,8 +51,8 @@ website:
           contents: 
             - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
               href: /guides/analysis-procedures/hypothesis-testing.en.html
-            - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
-              href: /guides/analysis-procedures/hypothesis-testing.fr.html
+            # - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
+            #   href: /guides/analysis-procedures/hypothesis-testing.fr.html
             - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
               href: /guides/analysis-procedures/hypothesis-testing.es.html
 
