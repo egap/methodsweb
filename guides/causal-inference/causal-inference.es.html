@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Macartan Humphreys">
+
+<title>Methods - 10 cosas que debe saber sobre la inferencia causal</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 cosas que debe saber sobre la inferencia causal</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 cosas que debe saber sobre la inferencia causal</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>El filósofo David Lewis describió la causalidad como “algo que marca la diferencia, y esa diferencia que hace, debe ser la diferencia entre lo que fue y lo que hubiera sido sin ese algo”. Esta es la interpretación que dan a la causalidad la mayoría de los experimentalistas. Aunque la definición parece simple, tiene muchas implicaciones sutiles. Aquí les presentamos diez ideas implícitas en esta noción de causalidad que son importantes para el diseño de investigación.</p>
+  </div>
+</div>
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#una-afirmación-causal-es-un-enunciado-sobre-lo-que-no-sucedió" id="toc-una-afirmación-causal-es-un-enunciado-sobre-lo-que-no-sucedió"><span class="header-section-number">1</span> Una afirmación causal es un enunciado sobre lo que no sucedió</a></li>
+  <li><a href="#no-hay-relación-causal-sin-manipulación." id="toc-no-hay-relación-causal-sin-manipulación."><span class="header-section-number">2</span> No hay relación causal sin manipulación.</a></li>
+  <li><a href="#las-causas-no-tienen-por-qué-ser-rivales." id="toc-las-causas-no-tienen-por-qué-ser-rivales."><span class="header-section-number">3</span> Las causas no tienen por qué ser rivales.</a></li>
+  <li><a href="#x-puede-causar-y-incluso-si-x-no-es-una-condición-necesaria-o-una-condición-suficiente-para-que-y-ocurra." id="toc-x-puede-causar-y-incluso-si-x-no-es-una-condición-necesaria-o-una-condición-suficiente-para-que-y-ocurra."><span class="header-section-number">4</span> <span class="math inline">\(X\)</span> puede causar <span class="math inline">\(Y\)</span> incluso si <span class="math inline">\(X\)</span> no es una condición necesaria o una condición suficiente para que <span class="math inline">\(Y\)</span> ocurra.</a></li>
+  <li><a href="#existe-un-problema-fundamental-de-la-inferencia-causal" id="toc-existe-un-problema-fundamental-de-la-inferencia-causal"><span class="header-section-number">5</span> Existe un problema fundamental de la inferencia causal</a></li>
+  <li><a href="#usted-puede-estimar-el-efecto-causal-promedio-aun-cuando-no-pueda-observar-ningún-efecto-causal-individual." id="toc-usted-puede-estimar-el-efecto-causal-promedio-aun-cuando-no-pueda-observar-ningún-efecto-causal-individual."><span class="header-section-number">6</span> Usted puede estimar el efecto causal promedio aun cuando no pueda observar ningún efecto causal individual.</a></li>
+  <li><a href="#la-estimación-del-efecto-causal-promedio-no-requiere-que-los-grupos-de-tratamiento-y-control-sean-idénticos." id="toc-la-estimación-del-efecto-causal-promedio-no-requiere-que-los-grupos-de-tratamiento-y-control-sean-idénticos."><span class="header-section-number">7</span> La estimación del efecto causal promedio no requiere que los grupos de tratamiento y control sean idénticos.</a></li>
+  <li><a href="#correlación-no-es-igual-a-causalidad." id="toc-correlación-no-es-igual-a-causalidad."><span class="header-section-number">8</span> Correlación no es igual a causalidad.</a></li>
+  <li><a href="#si-usted-sabe-que-en-promedio-a-causa-b-y-b-causa-c-esto-no-significa-que-en-promedio-a-cause-c." id="toc-si-usted-sabe-que-en-promedio-a-causa-b-y-b-causa-c-esto-no-significa-que-en-promedio-a-cause-c."><span class="header-section-number">9</span> Si usted sabe que, en promedio, <span class="math inline">\(A\)</span> causa $ B $ y <span class="math inline">\(B\)</span> causa <span class="math inline">\(C\)</span>, esto no significa que, en promedio, <span class="math inline">\(A\)</span> cause <span class="math inline">\(C\)</span>.</a></li>
+  <li><a href="#es-más-fácil-aprender-sobre-los-efectos-de-las-causas-que-aprender-sobre-las-causas-de-los-efectos." id="toc-es-más-fácil-aprender-sobre-los-efectos-de-las-causas-que-aprender-sobre-las-causas-de-los-efectos."><span class="header-section-number">10</span> Es más fácil aprender sobre los “efectos de las causas” que aprender sobre las “causas de los efectos”.</a></li>
+  </ul>
+</nav>
+<section id="una-afirmación-causal-es-un-enunciado-sobre-lo-que-no-sucedió" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Una afirmación causal es un enunciado sobre lo que no sucedió</h1>
+<p>Para la mayoría de investigadores que realizan experimentos, el enunciado “<span class="math inline">\(X\)</span> causó <span class="math inline">\(Y\)</span>” significa que <span class="math inline">\(Y\)</span> ocurrió <em>y</em> que no habría ocurrido si <span class="math inline">\(X\)</span> no hubiera estado presente. Esta definición requiere que tengamos una noción de lo que podría haber sucedido, pero no sucedió.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> De manera similar, el “efecto” de <span class="math inline">\(X\)</span> en <span class="math inline">\(Y\)</span> se considera la diferencia entre el valor que <span class="math inline">\(Y\)</span> habría tomado dado un valor de <span class="math inline">\(X\)</span> y el valor que <span class="math inline">\(Y\)</span> habría tomado dado otro valor de <span class="math inline">\(X\)</span>. Debido al enfoque en la diferencia de los resultados, este enfoque a veces se conoce como el enfoque de causalidad basado en “hacer diferencias” o en lo “contrafactual”.</p>
+<p><strong>Nota técnica:</strong> Los estadísticos emplean el marco de “resultados potenciales” para describir las relaciones contrafactuales. En este marco, dejamos que <span class="math inline">\(Y_i(1)\)</span> denote el valor que la unidad <span class="math inline">\(i\)</span> tomaría bajo la condición uno (por ejemplo, si la unidad <span class="math inline">\(i\)</span> recibió un tratamiento) y <span class="math inline">\(Y_i(0)\)</span> el valor que habría sido observado en otra condición (por ejemplo, si la unidad <span class="math inline">\(i\)</span> no recibió el tratamiento). Un efecto causal del tratamiento para la unidad <span class="math inline">\(i\)</span> puede ser una simple diferencia de los resultados potenciales <span class="math inline">\(\tau_i = Y_i(1)-Y_(0)\)</span>. Un tratamiento tiene un efecto causal (positivo o negativo) en <span class="math inline">\(Y\)</span> para la unidad <span class="math inline">\(i\)</span> si <span class="math inline">\(Y_i (1) \neq Y_i (0)\)</span>.</p>
+</section>
+<section id="no-hay-relación-causal-sin-manipulación." class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> No hay relación causal sin manipulación.</h1>
+<p>La definición “contrafactual” de causalidad requiere que uno sea capaz de pensar qué valores podemos observar en diferentes condiciones. ¿Cómo serían las cosas si se eligiera un partido en lugar de otro? Las declaraciones causales cotidianas a menudo no cumplen con este requisito en alguna de estas dos formas:</p>
+<ul>
+<li><p>Primero, algunas declaraciones no especifican condiciones contrafactuales claras. Por ejemplo, la afirmación de que “la recesión fue causada por Wall Street” no apunta a un contrafactual obvio: ¿debemos considerar si habría habido una recesión si Wall Street no existiera? ¿O es la afirmación realmente una afirmación sobre acciones particulares que Wall Street podría haber tomado pero no lo hizo? Si es así, ¿qué acciones? Es difícil evaluar la validez de tales declaraciones. Además, puede depender de qué condiciones contrafactuales estén implícitas en una afirmación.</p></li>
+<li><p>En segundo lugar, algunos enunciados implican condiciones contrafactuales que no son posibles de imaginar. Por ejemplo, la afirmación de que Peter consiguió el trabajo porque es Peter implica una consideración de lo que habría sucedido si Peter no fuera Peter. Alternativamente, la afirmación de que Peter consiguió el trabajo porque es un hombre requiere considerar a Peter como algo diferente de un hombre. El problema es que los contrafactuales en estos casos implican un cambio no solo en la condición que enfrenta un individuo sino en el propio individuo.</p></li>
+</ul>
+<p>Para evitar estos problemas, algunos estadísticos instan a restringir las afirmaciones causales a los tratamientos que pueden manipularse, al menos en la imaginación, y no necesariamente en la práctica.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Por ejemplo, si bien podríamos tener dificultades con la afirmación de que Peter consiguió el trabajo porque es hombre, no tendríamos las mismas dificultades con la afirmación de que Peter consiguió el trabajo porque la agencia de contratación pensó que era hombre</p>
+</section>
+<section id="las-causas-no-tienen-por-qué-ser-rivales." class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Las causas no tienen por qué ser rivales.</h1>
+<p>Aunque nos podemos centrar en el efecto de una sola causa <span class="math inline">\(X\)</span> en un variable de resultado <span class="math inline">\(Y\)</span>, generalmente no esperamos que <span class="math inline">\(Y\)</span> tenga solo una causa.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Además, si sumamos los efectos causales de diferentes causas, no hay razón para esperar que sumen el 100%. Por lo tanto, no tiene mucho sentido tratar de “distribuir” los resultados entre diferentes factores causales. En otras palabras, las causas no tienen por qué ser rivales. La Asociación Nacional del Rifle de Estados Unidos sostiene, por ejemplo, que las armas no matan a la gente, la gente mata a la gente. Esa afirmación no tiene mucho sentido en el marco hipotético. Quita las armas y no tendrás muertes por heridas de bala. Entonces las armas son una causa. Quita a la gente y tampoco tendrás muertes por heridas de bala, por lo que las personas también son una causa. Dicho de otra manera, estos dos factores son simultáneamente causas de los mismos resultados.</p>
+</section>
+<section id="x-puede-causar-y-incluso-si-x-no-es-una-condición-necesaria-o-una-condición-suficiente-para-que-y-ocurra." class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> <span class="math inline">\(X\)</span> puede causar <span class="math inline">\(Y\)</span> incluso si <span class="math inline">\(X\)</span> no es una condición necesaria o una condición suficiente para que <span class="math inline">\(Y\)</span> ocurra.</h1>
+<p>A menudo hablamos de relaciones causales en términos deterministas. Incluso la cita de Lewis en la parte superior de esta página parece sugerir una relación determinista entre causas y efectos. A veces se piensa que las relaciones causales implican condiciones necesarias (para <span class="math inline">\(Y\)</span> que ocurra, <span class="math inline">\(X\)</span> tiene que suceder ); a veces se piensa que tales relaciones implican condiciones suficientes (si ocurre <span class="math inline">\(X\)</span>, entonces ocurre <span class="math inline">\(Y\)</span>). Pero una vez que hablamos de múltiples unidades, hay al menos dos formas en las que podemos pensar en que <span class="math inline">\(X\)</span> causa <span class="math inline">\(Y\)</span> incluso si <span class="math inline">\(X\)</span> no es una condición necesaria ni suficiente para <span class="math inline">\(Y.\)</span> La primera es reinterpretar todo en términos probabilísticos: que <span class="math inline">\(X\)</span> cause <span class="math inline">\(Y\)</span>, simplemente quiere decir que la probabilidad de <span class="math inline">\(Y\)</span> es mayor cuando <span class="math inline">\(X\)</span> está presente. Otra forma es permitir contingencias. Por ejemplo, <span class="math inline">\(X\)</span> puede causar <span class="math inline">\(Y\)</span> si la condición <span class="math inline">\(Z\)</span> está presente, pero no de otra manera.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+</section>
+<section id="existe-un-problema-fundamental-de-la-inferencia-causal" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Existe un problema fundamental de la inferencia causal</h1>
+<p>Si los efectos causales son enunciados sobre la diferencia entre lo que sucedió y lo que podría haber sucedido, entonces no los podemos medir. Malas noticias. De manera prospectiva, puede organizar las cosas para que pueda observar lo que sucede si alguien recibe un tratamiento o lo que sucede si no recibe el tratamiento. Sin embargo, para la misma persona nunca podrá observar ambos resultados y, por lo tanto, tampoco la diferencia entre ellos. Esta incapacidad para observar efectos causales a nivel de la unidad de estudio a menudo se denomina “problema fundamental de la inferencia causal”.</p>
+</section>
+<section id="usted-puede-estimar-el-efecto-causal-promedio-aun-cuando-no-pueda-observar-ningún-efecto-causal-individual." class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Usted puede estimar el efecto causal promedio aun cuando no pueda observar ningún efecto causal individual.</h1>
+<p>Aunque no pueda observar si <span class="math inline">\(X\)</span> causa <span class="math inline">\(Y\)</span> para una unidad determinada, sí es posible determinar si <span class="math inline">\(X\)</span> causa <span class="math inline">\(Y\)</span> en promedio. La idea clave aquí es que el efecto causal promedio es igual a la diferencia entre la variable de resultado promedio para todas las unidades, si todas están en la condición de control y la variable de resultado promedio para todas las unidades si todas están en la condición de tratamiento. Muchas estrategias para la identificación causal (ver <a href="http://egap.org/resource/10-strategies-for-figuring-out-if-x-caused-y">10 estrategias para determinar si X causó Y</a>) se enfocan en formas de aprender acerca de estas resultados potenciales promedio.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p><a href="https://egap.org/resource/10-things-to-know-about-hypothesis-testing/">10 cosas que debe saber sobre las pruebas de hipótesis</a> nos muestra cómo podemos aprender acerca de efectos causales individuales en vez de efectos promediodato el problema fundamental de la inferencia causal.</p>
+</section>
+<section id="la-estimación-del-efecto-causal-promedio-no-requiere-que-los-grupos-de-tratamiento-y-control-sean-idénticos." class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> La estimación del efecto causal promedio no requiere que los grupos de tratamiento y control sean idénticos.</h1>
+<p>Una estrategia que la gente usa para aprender acerca del efecto causal promedio es crear grupos de tratamiento y control a través de la aleatorización (ver <a href="http://egap.org/resource/10-strategies-for-%20determinar-si-x-causó-y">10 estrategias para determinar si X causó Y</a>). Es común que algunos investigadores se preocupen por que los grupos de tratamiento y control resultantes no sean similares en dimensiones relevantes.</p>
+<p>La buena noticia es que la razón por la cual las diferencias en los resultados promedio entre los grupos de control y tratamiento asignados aleatoriamente capturan los efectos promedio del tratamiento (en valor esperado a través de aleatorizaciones repetidas dentro del mismo grupo de unidades) <em>no</em> se basa en que los grupos de tratamiento y control sean similares en las características observadas. Sino que se basa únicamente en la idea de que, en promedio, los resultados en los grupos tratados y de control capturarán los resultados promedio para todas las unidades en el grupo experimental si estuvieran, respectivamente, en tratamiento o en control. En la práctica, los grupos de tratamiento y de control no serán idénticos.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+</section>
+<section id="correlación-no-es-igual-a-causalidad." class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Correlación no es igual a causalidad.</h1>
+<p>Una correlación entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> es un enunciado sobre las relaciones entre los valores reales de estas variables y no sobre la relación entre los valores reales y los valores contrafactuales. Entonces las afirmaciones sobre causas y correlaciones no tienen mucho que ver entre sí. Las correlaciones positivas pueden ser consistentes con efectos causales positivos, efectos causales nulos o incluso con efectos causales negativos. Por ejemplo, tomar medicamentos para la tos se correlaciona positivamente con la tos, pero es de esperar que tenga un efecto causal negativo sobre la tos.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+</section>
+<section id="si-usted-sabe-que-en-promedio-a-causa-b-y-b-causa-c-esto-no-significa-que-en-promedio-a-cause-c." class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Si usted sabe que, en promedio, <span class="math inline">\(A\)</span> causa $ B $ y <span class="math inline">\(B\)</span> causa <span class="math inline">\(C\)</span>, esto no significa que, en promedio, <span class="math inline">\(A\)</span> cause <span class="math inline">\(C\)</span>.</h1>
+<p>Se podría esperar que si <span class="math inline">\(A\)</span> causa <span class="math inline">\(B\)</span> y <span class="math inline">\(B\)</span> causa <span class="math inline">\(C\)</span>, entonces <span class="math inline">\(A\)</span> causa <span class="math inline">\(C\)</span>.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> Pero no hay razón para creer que las relaciones causales promedio sean transitivas. Para entender por qué, imagine que <span class="math inline">\(A\)</span> causó <span class="math inline">\(B\)</span> en los hombres pero no en las mujeres y <span class="math inline">\(B\)</span> causó <span class="math inline">\(C\)</span> en las mujeres pero no en los hombres. Entonces, en promedio, <span class="math inline">\(A\)</span> causa <span class="math inline">\(B\)</span> y <span class="math inline">\(B\)</span> causa <span class="math inline">\(C\)</span>, pero es posible que no haya nadie para quien <span class="math inline">\(A\)</span> tenga un efecto en <span class="math inline">\(C\)</span> mediado por <span class="math inline">\(B\)</span>.</p>
+</section>
+<section id="es-más-fácil-aprender-sobre-los-efectos-de-las-causas-que-aprender-sobre-las-causas-de-los-efectos." class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Es más fácil aprender sobre los “efectos de las causas” que aprender sobre las “causas de los efectos”.</h1>
+<p>Aunque puedan parecer dos formas de decir exactamente lo mismo, existe una diferencia entre comprender cuál es el efecto de <span class="math inline">\(X\)</span> en <span class="math inline">\(Y\)</span> (los “efectos de una causa”) y si <em>el valor que tomó <span class="math inline">\(Y\)</span></em> se debió a <span class="math inline">\(X\)</span> (la “causa de un efecto”).<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> Considere el siguiente ejemplo. Supongamos que realizamos un experimento con una muestra que contiene el mismo número de hombres y mujeres. El experimento asigna aleatoriamente a hombres y mujeres a un tratamiento binario <span class="math inline">\(X\)</span> y mide una variable de resultado binaria <span class="math inline">\(Y\)</span>. Además suponga que <span class="math inline">\(X\)</span> tiene un efecto positivo de 1 para todos los hombres, es decir, el resultado potencial del control de los hombres es cero (<span class="math inline">\(Y_i(0) = 0\)</span>) y la salida potencial cuando son tratados es uno (<span class="math inline">\(Y_i(1) = 1\)</span>). Para todas las mujeres, <span class="math inline">\(X\)</span> tiene un efecto negativo de <span class="math inline">\(-1\)</span>, es decir, la salida potencial de las mujeres bajo el control es uno (<span class="math inline">\(Y_i (0) = 1\)</span>) y su salida potencial cuando son tratadas es cero (<span class="math inline">\(Y_i (1) = 0\)</span>) En este ejemplo, el efecto promedio de <span class="math inline">\(X\)</span> en $ Y $ es cero. Pero la razón para que los participantes en el grupo de tratamiento tengan <span class="math inline">\(Y= 1\)</span>, es <em>porque</em> <span class="math inline">\(X = 1\)</span>. De manera similar, todos los participantes en el grupo de tratamiento con <span class="math inline">\(Y = 0\)</span>, tienen <span class="math inline">\(Y = 0\)</span> <em>porque</em> <span class="math inline">\(X = 1\)</span>. Los experimentos nos permiten obtener una respuesta exacta a la pregunta sobre los “efectos de una causa”, pero en general no es posible obtener una respuesta exacta a la pregunta sobre la “causa de un efecto”.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Holland, Paul W. “Statistics and causal inference.” Journal of the American Statistical Association 81.396 (1986): 945-960.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Holland, Paul W. “Statistics and causal inference.” Journal of the American Statistical Association 81.396 (1986): 945-960.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Esto se conoce a veces como el “Problema de las causas excesivas”.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>De acuerdo a Mackie, a veces se invoca la idea de condiciones “INUS” para capturar la dependencia de las causas de otras causas. Según esta explicación, una causa puede ser parte Insuficiente pero Necesaria de una condición que en sí misma es Innecesaria pero Suficiente. Por ejemplo, marcar un número de teléfono es una causa de contacto con alguien, ya que tener una conexión y marcar un número es suficiente (S) para hacer una llamada telefónica, mientras que marcar solo sin una conexión no sería suficiente (I), ni tener una conexión (N). Por supuesto, hay otras formas de contactar a alguien sin hacer llamadas telefónicas (U). Mackie, John L. “El cemento del universo”. Londres: Oxford Uni (1974).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><strong>Nota técnica:</strong> La idea técnica clave es que la diferencia de promedios es la misma que el promedio de diferencias. Es decir, usando el “operador de expectativas”, <span class="math inline">\(\text{E}(\tau_i) = \text{E}(Y_i (1) -Y_i (0)) = \text{E}(Y_i (1)) - \text{E}(Y_i (0))\)</span>. Los términos dentro del operador de esperanzas en la segunda cantidad no se pueden estimar, pero los términos dentro de los operadores de expectativas en la tercera cantidad si se pueden ser estimados<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Vea la ilustración [aquí] (https://raw.githubusercontent.com/egap/ guías-métodos / maestro / inferencia-causal / PO.jpg).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Por esta razón usar las pruebas <span class="math inline">\(t\)</span> para verificar si “la asignación aleatoria funcionó bien” no tiene mucho sentido, al menos si se sabe que se siguió una procedimiento aleatorio: por simple chance, 1 de cada 20 de esas pruebas mostrará diferencias estadísticamente detectables entre los grupos tratados y de control. Si existen dudas sobre si la asignación aleatoria se realizó correctamente, estas pruebas se pueden utilizar para probar la hipótesis de que los datos se generaron efectivamente mediante un procedimiento aleatorio. Esta última razón para las pruebas de aleatorización puede ser especialmente importante en experimentos de campo donde las cadenas de comunicación entre la persona que crea los números aleatorios y la persona que implementa la asignación del tratamiento son largas y complejas.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><strong>Nota técnica:</strong> Sea <span class="math inline">\(D_i\)</span> un indicador de si la unidad <span class="math inline">\(i\)</span> ha recibido un tratamiento o no. Entonces la diferencia en los resultados promedio entre los que reciben el tratamiento y los que no lo reciben se puede escribir como <span class="math inline">\(\frac{\sum_i D_i × Y_i (1)} {\sum_iD_i} - \frac {\sum_i(1 - D_i) \times Y_i (0)}{\sum_i (1 - D_i)}\)</span>. Sin información sobre cómo se asignó el tratamiento, no hay mucho por decir sobre si esta diferencia es un buen estimador del efecto promedio del tratamiento. Es decir, de la diferencia en los resultados potenciales promedio de las unidades en el grupo de tratamiento y control para todas las unidades. Lo que importa es si <span class="math inline">\(\frac{\sum_i D_i × Y_i (1)} {\sum_iD_i}\)</span> es una buena estimación de <span class="math inline">\(\frac{\sum_i 1 × Y_i (1)} {\sum_i1}\)</span> y si <span class="math inline">\(\frac{\sum_i (1 - D_i) × Y_i (0)}{\sum_i(1 - D_i)}\)</span> es una buena estimación de <span class="math inline">\(\frac{\sum_i 1 × Y_i (0)} {\sum_i1}\)</span>. Este puede ser el caso si los que recibieron tratamiento son una muestra representativa de todas las unidades, pero de lo contrario no hay razón para esperar que así sea.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Entiéndase la expresión “<span class="math inline">\(A\)</span> causa <span class="math inline">\(B\)</span>, en promedio” como “el efecto promedio de <span class="math inline">\(A\)</span> sobre <span class="math inline">\(B\)</span> es positivo”.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>A veces se reinterpreta la pregunta “causas de los efectos” en el sentido de: ¿cuáles son las causas que tienen efectos sobre las variable de resultado? Véase Andrew Gelman and Guido Imbens, “Why ask why? Forward causal inference and reverse causal questions”, NBER Working Paper No.&nbsp;19614 (Nov.&nbsp;2013).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Ver, por ejemplo, Tian, J., Pearl, J. 2000. “Probabilities of Causation: Bounds and Identification.” Annals of Mathematics and Artificial Intelligence 28:287–313.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

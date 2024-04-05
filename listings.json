@@ -4,17 +4,16 @@
     "items": [
       "/guides/analysis-procedures/ri2_en.html",
       "/guides/analysis-procedures/multiple-comparisons_en.html",
+      "/guides/analysis-procedures/how-to-analyze-experiments_en.html",
       "/guides/analysis-procedures/meta-analysis_en.html",
       "/guides/analysis-procedures/covariates_en.html",
-      "/guides/analysis-procedures/hypothesis-testing_en.html",
       "/guides/analysis-procedures/randomization-inference_en.html",
-      "/guides/assessing-designs/external-validity_en.html",
-      "/guides/assessing-designs/power_en.html",
-      "/guides/causal-inference/x-cause-y_en.html",
+      "/guides/assessing-designs/external-validity.en.html",
+      "/guides/assessing-designs/power.en.html",
+      "/guides/causal-inference/x-cause-y.en.html",
       "/guides/causal-inference/causal-inference_en.html",
       "/guides/data-strategies/randomization_en.html",
       "/guides/data-strategies/adaptive-design_en.html",
-      "/guides/data-strategies/cluster-randomization_en.html",
       "/guides/data-strategies/measurement_en.html",
       "/guides/data-strategies/missing-data_en.html",
       "/guides/data-strategies/multisite-experiments_en.html",
@@ -27,20 +26,15 @@
       "/guides/interpretation/null-results_en.html",
       "/guides/interpretation/regression-table_en.html",
       "/guides/planning/pilots_en.html",
-      "/guides/planning/pap_en.html",
       "/guides/planning/survey-design_en.html",
       "/guides/research-questions/late_en.html",
-      "/guides/research-questions/heterogeneous-effects_en.html",
-      "/guides/research-questions/mechanisms_en.html",
-      "/guides/research-questions/effect-types_en.html"
+      "/guides/research-questions/heterogeneous-effects_en.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
-      "/guides/causal-inference/causal-inference_en.html",
-      "/guides/assessing-designs/external-validity_en.html",
-      "/guides/analysis-procedures/covariates_en.html"
+      "/guides/assessing-designs/external-validity.en.html"
     ]
   }
 ]

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Macartan Humphreys">
+
+<title>Methods - 10 stratégies pour déterminer si X cause Y</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/causal-inference/x-cause-y.en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/causal-inference/x-cause-y.fr.html"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/how-to-read.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to read this guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+ <span class="menu-text">Language</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/causal-inference/x-cause-y.en.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/gb.png" width="20px">&nbsp;&nbsp;English</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/causal-inference/x-cause-y.fr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/causal-inference/x-cause-y.es.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/es.png" width="20px">&nbsp;&nbsp;Spanish</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/causal-inference/x-cause-y.en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/causal-inference/x-cause-y.fr.html"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">10 stratégies pour déterminer si X cause Y</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    Experiments are a way of figuring out if something causes something else. The basic idea is: try it and find out. The tricky thing is figuring out how to try it out in a way that allows for confidence in beliefs about causal effects. A strategy that holds pride of place in the researcher’s toolkit is the randomized intervention. This is the strategy that is at the heart of most of the experimental research done by EGAP members. But there are other strategies that are sometimes more appropriate. Here we describe the ten most prominent strategies for figuring out causal effects.
+  </div>
+</div>
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#randomisation" id="toc-randomisation"><span class="header-section-number">1</span> Randomisation</a></li>
+  <li><a href="#contrôle-expérimental-homogénéité-unitaire-induite" id="toc-contrôle-expérimental-homogénéité-unitaire-induite"><span class="header-section-number">2</span> Contrôle expérimental (homogénéité unitaire induite)</a></li>
+  <li><a href="#expériences-naturelles-randomisation-supposée" id="toc-expériences-naturelles-randomisation-supposée"><span class="header-section-number">3</span> Expériences naturelles (randomisation supposée)</a></li>
+  <li><a href="#comparaisons-avantaprès" id="toc-comparaisons-avantaprès"><span class="header-section-number">4</span> Comparaisons avant/après</a></li>
+  <li><a href="#contrôle-ex-post-i-régression" id="toc-contrôle-ex-post-i-régression"><span class="header-section-number">5</span> Contrôle ex post I : régression</a></li>
+  <li><a href="#contrôle-ex-post-ii-appariement-et-pondération" id="toc-contrôle-ex-post-ii-appariement-et-pondération"><span class="header-section-number">6</span> Contrôle ex post II: appariement et pondération</a></li>
+  <li><a href="#variables-instrumentales" id="toc-variables-instrumentales"><span class="header-section-number">7</span> Variables instrumentales</a></li>
+  <li><a href="#la-méthode-de-régression-par-discontinuité-regression-discontinuity-design-rdd" id="toc-la-méthode-de-régression-par-discontinuité-regression-discontinuity-design-rdd"><span class="header-section-number">8</span> La méthode de régression par discontinuité (regression discontinuity design, RDD)</a></li>
+  <li><a href="#traçage-de-processus" id="toc-traçage-de-processus"><span class="header-section-number">9</span> Traçage de processus</a></li>
+  <li><a href="#stratégies-porte-dentrée-argument-basé-sur-les-mécanismes" id="toc-stratégies-porte-dentrée-argument-basé-sur-les-mécanismes"><span class="header-section-number">10</span> Stratégies “porte d’entrée” (argument basé sur les mécanismes)</a></li>
+  </ul>
+</nav>
+<!-- title: "10 stratégies pour déterminer si X cause Y" -->
+<!-- author: "Auteur du guide des méthodes: Macartan Humphreys" -->
+<section id="randomisation" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Randomisation</h1>
+<p>La stratégie utilisée dans les essais randomisés contrôlés (interventions randomisées, expériences randomisées) consiste à utiliser une forme de loterie pour déterminer qui, dans un groupe, aura ou n’aura pas accès à un traitement ou à un programme (ou peut-être qui aura accès en premier et qui aura accès plus tard, ou qui aura accès à une version et qui aura accès à une autre). L’élégance de l’approche est qu’elle utilise le hasard pour déterminer quels sont les effets systématiques d’un programme. Le caractère aléatoire réduit le risque qu’une relation observée entre le traitement et les résultats soit due à des “facteurs de confusion” - i.e.&nbsp;d’autres différences entre les groupes (par exemple, on pourrait craindre que les choses s’améliorent dans les zones de traitement précisément parce que les programmes choisissent une zone qui fonctionne déjà bien, mais savoir que la sélection est aléatoire efface complètement cette préoccupation). La randomisation est puissante car elle garantit qu’il n’y a pas de relation systématique entre le traitement et toutes les autres caractéristiques qui peuvent affecter les résultats, que vous en soyez conscient ou non. Pour cette raison, c’est souvent considéré comme l’étalon-or. Cependant, la randomisation ne peut être utilisée toujours et partout, à la fois pour des raisons éthiques et pratiques. Mais elle peut être utilisée dans beaucoup plus de situations que les gens ne le pensent. Voir <a href="http://www.columbia.edu/~mh2245/papers1/HW_ARPS09.pdf">Humphreys et Weinstein</a> pour une discussion sur les forces et les limites de l’approche en économie politique du développement.</p>
+</section>
+<section id="contrôle-expérimental-homogénéité-unitaire-induite" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Contrôle expérimental (homogénéité unitaire induite)</h1>
+<p>Une deuxième stratégie plus utilisée en laboratoire et également en sciences physiques consiste à utiliser un contrôle expérimental pour s’assurer que deux unités sont identiques à tous les égards pertinents, à l’exception du traitement. Par exemple, si vous vouliez voir si une balle lourde tombe plus vite qu’une balle plus légère, vous pouvez vous assurer qu’elles ont la même forme et la même taille et les laisser tomber toutes les deux en même temps, dans les mêmes conditions météorologiques, et ainsi de suite. Vous attribuez ensuite toute différence de résultats à la caractéristique que vous n’avez pas maintenue constante entre les deux unités. Cette stratégie est fondamentalement différente de celle utilisée dans les essais randomisés. Dans les essais randomisés, vous abandonnez l’idée de tout garder fixe et cherchez plutôt à vous assurer que la variation naturelle - sur des variables que vous pouvez ou ne pouvez pas observer - ne produit pas de biais dans vos estimations ; en outre, vous cherchez à évaluer les effets moyens pour une plage de conditions de base plutôt que pour un ensemble fixe de conditions de base. Les mérites de l’approche du contrôle expérimental dépendent de votre confiance dans le contrôle effectif de tous les facteurs pertinents ; si le contrôle n’est pas effectif, alors une approche randomisée peut être meilleure.</p>
+</section>
+<section id="expériences-naturelles-randomisation-supposée" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Expériences naturelles (randomisation supposée)</h1>
+<p>Parfois, les chercheurs ne sont pas en mesure de randomiser, mais l’inférence causale est toujours possible car la nature a fait la randomisation pour vous. La caractéristique clé de l’approche “expérience naturelle” est que vous avez des raisons de croire que la variation de certains traitements naturels est “supposée aléatoire”. Par exemple, disons que les places dans une école sont attribuées par tirage au sort. Ensuite, vous pourrez peut-être analyser les effets de la fréquentation scolaire comme s’il s’agissait d’un essai randomisé contrôlé. Une étude intelligente des effets des conflits sur les enfants par <a href="http://www.chrisblattman.com/documents/research/2010.Consequences.RESTAT.pdf">Annan et Blattman</a> a utilisé le fait que la Lord’s Resistance Army (LRA) en Ouganda a enlevé des enfants de façon assez aléatoire. Une autre étude intelligente sur les programmes de Désarmement, Démobilisation et Réintégration (DDR) par <a href="http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1911968">Gilligan, Mvukiyehe et Samii</a> a utilisé le fait que les opérations d’une ONG ont été interrompues en raison d’un différend contractuel, ce qui a donné lieu à un groupe de contrôle “naturel” d’ex-combattants qui n’ont pas bénéficié de programmes de démobilisation. Voir <a href="http://www.cambridge.org/us/academic/subjects/politics-international-relations/research-methods-politics/natural-experiments-social-sciences-design-based-approach">le livre de Dunning</a> pour trouver et analyser des expériences naturelles.</p>
+</section>
+<section id="comparaisons-avantaprès" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Comparaisons avant/après</h1>
+<p>Souvent, la première chose vers laquelle les gens se tournent pour déterminer les effets causaux est la comparaison des unités avant et après le contrôle. Ici, vous utilisez le passé comme un contrôle pour le présent. L’idée de base est très intuitive : vous éteignez la lumière et vous voyez la lumière s’éteindre ; attribuer le changement de lumière à l’action semble facile même en l’absence de toute randomisation ou contrôle. Mais pour de nombreuses interventions sociales, l’approche n’est pas si fiable, en particulier dans des environnements changeants. Le problème est que les choses s’améliorent ou empirent pour de nombreuses raisons sans rapport avec les traitements ou les programmes qui vous intéressent. En fait, il est possible qu’en raison de toutes les autres choses qui changent, les choses peuvent empirer dans un domaine du programme même si les programmes ont eu un effet positif (donc les choses empirent mais ne sont toujours pas aussi mauvaises qu’elles l’auraient été sans le programme!). Une approche plus sophistiquée que la simple comparaison avant/après est appelée “méthode des doubles différences” – en gros, vous comparez la différence avant/après dans les zones de traitement avec celles dans les zones de contrôle. C’est une bonne approche mais vous devez toujours être sûr que vous avez de bons groupes de contrôle et en particulier que les groupes de contrôle et de traitement ne sont pas susceptibles de changer différemment pour des raisons autres que le traitement.</p>
+</section>
+<section id="contrôle-ex-post-i-régression" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Contrôle ex post I : régression</h1>
+<p>L’approche la plus courante de l’identification causale dans les travaux de statistique appliqués est peut-être l’utilisation de la régression multiple pour contrôler les facteurs de confusion possibles. L’idée est d’essayer d’utiliser toutes les informations dont vous disposez sur les raisons pour lesquelles les zones de traitement et de contrôle ne sont pas facilement comparables et d’ajuster statistiquement ces différences. Cette approche fonctionne bien dans la mesure où vous pouvez déterminer et mesurer les facteurs de confusion et savoir comment ils sont liés au traitement, mais elle n’est pas correcte si vous ne savez pas quels sont les facteurs de confusion. En général, nous ne savons tout simplement pas quels sont tous les facteurs de confusion et cela expose cette approche à toutes sortes de biais (en effet, si vous contrôlez les mauvaises variables, il est possible <em>d’introduire</em> un biais là où il n’y en avait pas auparavant).</p>
+</section>
+<section id="contrôle-ex-post-ii-appariement-et-pondération" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Contrôle ex post II: appariement et pondération</h1>
+<p>Diverses approches alternatives cherchent à tenir compte des variables de confusion en associant soigneusement les unités de traitement à une ou plusieurs unités de contrôle. L’appariement présente certains avantages par rapport à la régression (par exemple, les estimations peuvent être moins sensibles aux choix de la forme fonctionnelle), mais l’idée de base est néanmoins similaire. En effet, les méthodes d’appariement peuvent être mises en œuvre dans un cadre de régression en utilisant des poids appropriés. Comme la régression, cette stratégie repose sur la conviction qu’il n’y a pas de variables de confusion importantes que le chercheur ignore ou est incapable de mesurer. Les méthodes spécifiques comprennent :</p>
+<ul>
+<li><a href="http://dept.stat.lsa.umich.edu/~bbh/hansen2004.pdf">appariement complet optimal</a>, voir le <a href="https://github.com/markmfredrickson/optmatch">package optmatch</a></li>
+<li><a href="https://projecteuclid.org/euclid.aoas/1396966284">appariement optimal avec équilibrage précis via une programmation mixte en nombres entiers</a>, voir aussi <a href="https://cran.rstudio.com/web/packages/designmatch">le package designmatch</a> et <a href="http://jrzubizarreta.com/evaluation.pdf">l’article comparant les approches</a></li>
+<li><a href="https://projecteuclid.org/euclid.aoas/1536652962">appariement multi-niveaux optimal (pour les conceptions avec des écoles et des étudiants)</a></li>
+<li><a href="https://www.stat.berkeley.edu/~spi/software.html">appariement creux optimal</a></li>
+<li><a href="https://arxiv.org/abs/1703.03882">appariement généralisé complet</a></li>
+<li><a href="http://gking.harvard.edu/cem">appariement grossier exact</a></li>
+<li><a href="http://sekhon.berkeley.edu/papers/GenMatch.pdf">appariement génétique</a></li>
+<li><a href="http://web.stanford.edu/~jhain/Paper/PA2012.pdf">équilibre d’entropie</a></li>
+<li><a href="http://pan.oxfordjournals.org/content/18/1/36.short">pondération inverse du score de propension</a></li>
+<li><a href="http://www.columbia.edu/~jz2313/sbw.pdf">pondération de l’équilibre stable</a></li>
+<li><a href="http://web.stanford.edu/~jhain/Paper/AJPS2015a.pdf">contrôles synthétiques</a>.</li>
+</ul>
+</section>
+<section id="variables-instrumentales" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Variables instrumentales</h1>
+<p>Une approche très différente pour estimer les effets causaux peut être utilisée si les chercheurs peuvent trouver une caractéristique qui explique pourquoi un groupe donné a reçu un traitement mais qui n’est par ailleurs pas liée au résultat d’intérêt. Une telle caractéristique est appelée un instrument. Par exemple, disons que vous êtes intéressé par l’effet sur l’emploi d’un programme d’aide à la précarité, et que la plupart des personnes ont accédé à ce programme parce qu’elles avaient un lien de parenté avec un agent travaillant pour ce programme particulier. Ensuite, s’il n’y avait pas d’autres façons d’établir une relation entre le lien de parenté de cette personne et ses perspectives d’emploi, alors vous pouvez déterminer l’effet du programme en calculant l’effet d’être un parent de cette personne sur les perspectives d’emploi. Cela a été une approche assez populaire, mais l’enthousiasme pour cette approche est un peu retombé, essentiellement parce qu’il est difficile de trouver un bon instrument. Une application intelligente pour examiner les effets de la pauvreté sur les conflits a utilisé les précipitations en Afrique comme instrument de revenu/croissance. Bien que l’on s’inquiète que la corrélation entre conflit et pauvreté soit due au fait que le conflit pourrait causer la pauvreté, il ne semble pas plausible que le conflit provoque des précipitations ! Ainsi, l’utilisation des précipitations comme instrument ici a augmenté la certitude qu’il existe réellement une relation causale, et pas seulement une corrélation, entre <a href="http://emiguel.econ.berkeley.edu/research/economic-shocks-and-civil-conflict-an-instrumental-variables-approach">pauvreté et conflit</a>.</p>
+</section>
+<section id="la-méthode-de-régression-par-discontinuité-regression-discontinuity-design-rdd" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> La méthode de régression par discontinuité (regression discontinuity design, RDD)</h1>
+<p>La régression par discontinuité est l’une des approches les plus sous-utilisées, mais elle a un potentiel énorme. La stratégie fonctionne comme suit. Disons qu’un programme va être mis à la disposition d’un ensemble de bénéficiaires potentiels. Ces bénéficiaires potentiels sont tous classés selon un ensemble de critères pertinents, tels que le niveau d’éducation antérieur, le statut d’emploi, etc. Ces critères peuvent être quantitatifs ; mais ils peuvent également inclure des informations qualitatives telles que des évaluations issues d’entretiens. Ces critères individuels sont ensuite agrégés en un seul score et un seuil est identifié. Les candidats dont le score est supérieur à ce seuil sont admis au programme, tandis que les autres ne le sont pas. Les groupes “projet” et “comparaison” sont ensuite identifiés en sélectionnant des candidats proches de ce seuil de part et d’autre. En utilisant cette méthode, nous pouvons être sûrs que les unités traitées et témoins sont similaires, au moins autour du seuil. De plus, nous avons une mesure directe de la principale caractéristique sur laquelle ils diffèrent (leur score sur les critères de sélection). Cette information fournit la clé pour estimer l’effet d’un programme en comparant les résultats entre ces deux groupes. L’avantage de cette approche est que tout ce qui est nécessaire est que l’organisme en charge utilise un ensemble clair de critères (qui peuvent être transformés en un score) sur lesquels ils prennent la décision d’assignation au traitement. L’inconvénient est que des estimations vraiment fiables de l’impact ne peuvent être faites que pour les unités situées juste autour du seuil. Pour un aperçu de la régression par discontinuité, voir <a href="http://www-personal.umich.edu/~titiunik/papers/SkovronTitiunik2015.pdf">Skovron et Titiunik</a>, <a href="http://econ.sites.olt.ubc.ca/files/2014/02/Lee-Lemieux-rev.pdf">Lee et Lemieux</a>. Pour deux applications intéressantes, voir <a href="http://emiguel.econ.berkeley.edu/research/government-transfers-and-political-support">Manacorda et al.&nbsp;en Uruguay</a> et <a href="http://journals.cambridge.org/action/displayAbstract?fromPage=online&amp;aid=8963107">Samii au Burundi</a>.</p>
+</section>
+<section id="traçage-de-processus" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Traçage de processus</h1>
+<p>Dans de nombreux travaux qualitatifs, les chercheurs essaient d’établir la causalité en cherchant à savoir si le fait d’être dans un programme est associé à de meilleurs résultats, mais aussi (a) en recherchant les étapes du processus qui montreraient que le programme a eu les effets que vous pensez qu’il a eu (b) et en recherchant des preuves d’autres résultats qui devraient être observés si (ou peut-être : si et seulement si) le programme était efficace. Par exemple, ils veulent savoir si les personnes participant à un programme d’aide à la précarité ont obtenu un emploi, mais aussi si elles ont été formées à quelque chose d’utile, ont obtenu de l’aide des personnes participant au programme pour trouver un employeur dans ce domaine, etc. Si toutes ces étapes sont présentes, cela donne l’assurance que la relation est causale et non fausse. Si un programme a été mis en œuvre mais que personne n’y a réellement participé, cela peut laisser penser que toute corrélation entre le traitement et les résultats est fausse. La difficulté avec cette approche est qu’il peut être difficile de savoir si un élément de preuve au sein du processus a une valeur probante. Par exemple, un programme peut avoir des effets positifs (ou négatifs) à travers de nombreux processus dont vous ne savez rien et des processus que vous jugez importants, peuvent ne pas l’être. Voir <a href="http://www.columbia.edu/%7Emh2245/papers1/BIQQ.pdf">Humphreys et Jacobs</a> pour une description de la logique bayésienne sous-jacente au traçage des processus et des illustrations sur la façon de le combiner avec d’autres approches statistiques.</p>
+</section>
+<section id="stratégies-porte-dentrée-argument-basé-sur-les-mécanismes" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Stratégies “porte d’entrée” (argument basé sur les mécanismes)</h1>
+<p>Une dernière approche, conceptuellement proche du traçage de processus, consiste à argumenter à partir des mécanismes. Supposons que vous sachiez que seul <span class="math inline">\(A\)</span> peut causer <span class="math inline">\(C\)</span> uniquement via <span class="math inline">\(B\)</span>. De plus, vous savez que rien d’autre ne cause à la fois <span class="math inline">\(B\)</span> et <span class="math inline">\(C\)</span> (autre que, peut-être, via <span class="math inline">\(A\)</span>) et que rien d’autre ne cause à la fois <span class="math inline">\(A\)</span> et <span class="math inline">\(B\)</span>. Ensuite, la covariation entre <span class="math inline">\(A\)</span> et <span class="math inline">\(B\)</span> et entre <span class="math inline">\(B\)</span> et <span class="math inline">\(C\)</span> peut être utilisée pour évaluer l’effet de <span class="math inline">\(A\)</span> sur <span class="math inline">\(C\)</span>. L’avantage est que la causalité peut être établie même en présence de facteurs de confusion — par exemple si des variables non observées causent à la fois <span class="math inline">\(A\)</span> et <span class="math inline">\(C\)</span>. La difficulté cependant est que la stratégie nécessite une confiance forte en vos croyances sur la structure des relations causales. Pour en savoir plus, voir <a href="https://books.google.com/books?id=wnGU_TsW3BQC&amp;hl=en">Pearl (2000)</a>.</p>
+</section>
+<section id="references" class="level1 unnumbered unlisted">
+<h1 class="unnumbered unlisted">References</h1>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

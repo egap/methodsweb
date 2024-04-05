@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,6 +25,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -65,7 +66,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -74,8 +81,10 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -83,13 +92,13 @@ div.csl-indent {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
     </a>
@@ -104,62 +113,46 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html" rel="" target="">
- <span class="menu-text">Guides</span></a>
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html" rel="" target="">
- <span class="menu-text">Software</span></a>
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
- <span class="menu-text">Coursebook</span></a>
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 Things Your Null Result Might Mean</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#intervention-design" id="toc-intervention-design" class="nav-link active" data-scroll-target="#intervention-design">Intervention Design</a>
-  <ul class="collapse">
-  <li><a href="#your-intervention-theory-and-approach-are-mismatched-to-the-problem." id="toc-your-intervention-theory-and-approach-are-mismatched-to-the-problem." class="nav-link" data-scroll-target="#your-intervention-theory-and-approach-are-mismatched-to-the-problem.">1. Your intervention theory and approach are mismatched to the problem.</a></li>
-  <li><a href="#your-intervention-strength-or-dosage-is-too-low-for-the-problem-or-outcome-of-interest." id="toc-your-intervention-strength-or-dosage-is-too-low-for-the-problem-or-outcome-of-interest." class="nav-link" data-scroll-target="#your-intervention-strength-or-dosage-is-too-low-for-the-problem-or-outcome-of-interest.">2. Your intervention strength or dosage is too low for the problem or outcome of interest.</a></li>
-  <li><a href="#your-intervention-does-not-represent-a-large-enough-enhancement-over-usual-services." id="toc-your-intervention-does-not-represent-a-large-enough-enhancement-over-usual-services." class="nav-link" data-scroll-target="#your-intervention-does-not-represent-a-large-enough-enhancement-over-usual-services.">3. Your intervention does not represent a large enough enhancement over usual services.</a></li>
-  </ul></li>
-  <li><a href="#intervention-implementation" id="toc-intervention-implementation" class="nav-link" data-scroll-target="#intervention-implementation">Intervention Implementation</a>
-  <ul class="collapse">
-  <li><a href="#your-implementation-format-was-not-reliable." id="toc-your-implementation-format-was-not-reliable." class="nav-link" data-scroll-target="#your-implementation-format-was-not-reliable.">4. Your implementation format was not reliable.</a></li>
-  <li><a href="#your-intervention-and-outcome-measure-are-mismatched-to-your-randomization-design." id="toc-your-intervention-and-outcome-measure-are-mismatched-to-your-randomization-design." class="nav-link" data-scroll-target="#your-intervention-and-outcome-measure-are-mismatched-to-your-randomization-design.">5. Your intervention and outcome measure are mismatched to your randomization design.</a></li>
-  </ul></li>
-  <li><a href="#study-design" id="toc-study-design" class="nav-link" data-scroll-target="#study-design">Study Design</a>
-  <ul class="collapse">
-  <li><a href="#your-study-sample-includes-people-whose-behavior-could-not-be-moved-by-the-intervention." id="toc-your-study-sample-includes-people-whose-behavior-could-not-be-moved-by-the-intervention." class="nav-link" data-scroll-target="#your-study-sample-includes-people-whose-behavior-could-not-be-moved-by-the-intervention.">6. Your study sample includes people whose behavior could not be moved by the intervention.</a></li>
-  <li><a href="#your-measure-is-not-validated-or-reliable-it-varies-too-much-and-systematically-across-sites." id="toc-your-measure-is-not-validated-or-reliable-it-varies-too-much-and-systematically-across-sites." class="nav-link" data-scroll-target="#your-measure-is-not-validated-or-reliable-it-varies-too-much-and-systematically-across-sites.">7. Your measure is not validated or reliable: It varies too much and systematically across sites.</a></li>
-  <li><a href="#your-outcome-is-not-validated-or-reliable-it-varies-too-little." id="toc-your-outcome-is-not-validated-or-reliable-it-varies-too-little." class="nav-link" data-scroll-target="#your-outcome-is-not-validated-or-reliable-it-varies-too-little.">8. Your outcome is not validated or reliable: It varies too little.</a></li>
-  <li><a href="#your-statistical-power-is-insufficient-to-detect-an-effect-for-the-intervention-as-implemented." id="toc-your-statistical-power-is-insufficient-to-detect-an-effect-for-the-intervention-as-implemented." class="nav-link" data-scroll-target="#your-statistical-power-is-insufficient-to-detect-an-effect-for-the-intervention-as-implemented.">9. Your statistical power is insufficient to detect an effect for the intervention as implemented.</a></li>
-  </ul></li>
-  <li><a href="#not-all-nulls-are-the-result-of-a-flaw-in-design-or-implementation" id="toc-not-all-nulls-are-the-result-of-a-flaw-in-design-or-implementation" class="nav-link" data-scroll-target="#not-all-nulls-are-the-result-of-a-flaw-in-design-or-implementation">Not all nulls are the result of a flaw in design or implementation!</a>
-  <ul class="collapse">
-  <li><a href="#your-null-needs-to-be-published." id="toc-your-null-needs-to-be-published." class="nav-link" data-scroll-target="#your-null-needs-to-be-published.">10. Your null needs to be published.</a></li>
-  </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -169,80 +162,87 @@ div.csl-indent {
 <h1 class="title">10 Things Your Null Result Might Mean</h1>
 </div>
 
-
-
 <div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://cabs.mdrc.org/team/rekha-balu">Rekha Balu</a> </p>
-          </div>
-  </div>
     
-  
     
-  </div>
+    
+    
+</div>
   
-
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>After the excitement and hard work of running a field experiment is over, it’s not uncommon to hear policymakers and researchers express disappointment when they end up hearing that the intervention did not have a detectable impact. This guide explains that a null result rarely means “the intervention didn’t work,” even though that tends to be the shorthand many people use. Instead, a null result can reflect the myriad design choices that policy implementers and researchers make in the course of developing and testing an intervention. After all, people tend to label <a href="https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html">hypothesis tests</a> with high p-values as “null results”, and hypothesis tests (as summaries of information about design and data) can produce large p-values for many reasons. Policymakers can make better decisions about what to do with a null result when they understand how and why they got that result.</p>
+  </div>
+</div>
 </header>
 
-<p>After the excitement and hard work of running a field experiment is over, it’s not uncommon to hear policymakers and researchers express disappointment when they end up hearing that the intervention did not have a detectable impact. This guide explains that a null result rarely means “the intervention didn’t work,” even though that tends to be the shorthand many people use. Instead, a null result can reflect the myriad design choices that policy implementers and researchers make in the course of developing and testing an intervention. After all, people tend to label <a href="https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html">hypothesis tests</a> with high p-values as “null results”, and hypothesis tests (as summaries of information about design and data) can produce large p-values for many reasons. Policymakers can make better decisions about what to do with a null result when they understand how and why they got that result.</p>
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#intervention-design" id="toc-intervention-design"><span class="header-section-number">1</span> Intervention Design</a></li>
+  <li><a href="#intervention-implementation" id="toc-intervention-implementation"><span class="header-section-number">2</span> Intervention Implementation</a></li>
+  <li><a href="#study-design" id="toc-study-design"><span class="header-section-number">3</span> Study Design</a></li>
+  <li><a href="#not-all-nulls-are-the-result-of-a-flaw-in-design-or-implementation" id="toc-not-all-nulls-are-the-result-of-a-flaw-in-design-or-implementation"><span class="header-section-number">4</span> Not all nulls are the result of a flaw in design or implementation!</a></li>
+  <li><a href="#references" id="toc-references"><span class="header-section-number">5</span> References</a></li>
+  </ul>
+</nav>
 <p>Imagine you lead the department of education for a government and are wondering about how to boost student attendance. You decide to consider a text message intervention that offers individual students counseling. Counselors at each school can help students address challenges specifically related to school attendance. Your team runs a randomized trial of the intervention, and tells you there is a null result.</p>
 <p>How should you understand the null result, and what should you do about it? It could be a result of unmet challenges at several stages of your work – in the way the intervention is designed, the way the intervention is implemented, or the way study is designed Below are 10 things to consider when interpreting your null result.</p>
-<section id="intervention-design" class="level1">
-<h1>Intervention Design</h1>
-<section id="your-intervention-theory-and-approach-are-mismatched-to-the-problem." class="level2">
-<h2 class="anchored" data-anchor-id="your-intervention-theory-and-approach-are-mismatched-to-the-problem.">1. Your intervention theory and approach are mismatched to the problem.</h2>
+<section id="intervention-design" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Intervention Design</h1>
+<section id="your-intervention-theory-and-approach-are-mismatched-to-the-problem." class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="your-intervention-theory-and-approach-are-mismatched-to-the-problem."><span class="header-section-number">1.1</span> 1. Your intervention theory and approach are mismatched to the problem.</h2>
 <p>You delivered a counseling intervention because you thought that students needed support to address challenges in their home life. However, students who had the greatest needs never actually met with a counselor, in part because they did not trust adults at the school. The theory of change assumed that absenteeism was a function primarily of a student’s personal decisions or family circumstances and that the offer of counseling without changes to school climate would be sufficient; it did not account appropriately for low levels of trust in teacher-student relationships. Therefore, this null effect does not suggest that counseling per se cannot boost attendance, but that counseling in the absence of other structural or policy changes or in the context of low-trust schools may not be sufficient.</p>
 <p><strong><em>How can you tell if</em></strong>…you have a mismatch between your theory of change and the problem that needs to be solved? List all potential barriers and consider how they connect. Does the intervention as designed address only one of those barriers, and, if so, can it succeed without addressing others? Are there assumptions made about one source or one cause that may undermine the success of the intervention?</p>
 </section>
-<section id="your-intervention-strength-or-dosage-is-too-low-for-the-problem-or-outcome-of-interest." class="level2">
-<h2 class="anchored" data-anchor-id="your-intervention-strength-or-dosage-is-too-low-for-the-problem-or-outcome-of-interest.">2. Your intervention strength or dosage is too low for the problem or outcome of interest.</h2>
+<section id="your-intervention-strength-or-dosage-is-too-low-for-the-problem-or-outcome-of-interest." class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="your-intervention-strength-or-dosage-is-too-low-for-the-problem-or-outcome-of-interest."><span class="header-section-number">1.2</span> 2. Your intervention strength or dosage is too low for the problem or outcome of interest.</h2>
 <p>After talking to experts, you learn that counseling interventions can build trust, but usually require meetings that are more frequent and regular than your intervention offered to have the potential for an effect. Maybe your “dose” of services is too small.</p>
 <p><strong><em>How can you tell if</em></strong>…you did not have a sufficient “dose”? Even if no existing services tackle your problem of interest, consider what is a minimum level, strength, or dose that is both feasible to implement and could yield an effect. When asking sites what they are willing to take on, beware of defaulting to the lowest dose. The more complex the problem or outcome is to move, the stronger or more comprehensive the intervention may need to be.</p>
 </section>
-<section id="your-intervention-does-not-represent-a-large-enough-enhancement-over-usual-services." class="level2">
-<h2 class="anchored" data-anchor-id="your-intervention-does-not-represent-a-large-enough-enhancement-over-usual-services.">3. Your intervention does not represent a large enough enhancement over usual services.</h2>
+<section id="your-intervention-does-not-represent-a-large-enough-enhancement-over-usual-services." class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="your-intervention-does-not-represent-a-large-enough-enhancement-over-usual-services."><span class="header-section-number">1.3</span> 3. Your intervention does not represent a large enough enhancement over usual services.</h2>
 <p>In your position at the state department of education, you learn that students at the target schools were already receiving some counseling and support services. Even though the existing services were not sufficient to boost attendance to the targeted levels, the new intervention did not add enough content or frequency of the counseling services to reach those levels either—the intervention yielded show-up rates that were about the same as existing services. So this null effect does not reflect that counseling has no effect, but rather that the version of counseling your intervention offered was not effective over and above existing counseling services.</p>
 <p><strong><em>How can you tell if</em></strong>…the relative strength of your intervention was not sufficient to yield an effect? Take stock of the structure and content of existing services, and consider if the extent or form in which clients respond to existing services indicates that the theory of change or approach needs to be revised. If the theory holds, use existing services as a benchmark and consider whether your proposed intervention needs to include something supplementary and/or something complementary.</p>
 </section>
 </section>
-<section id="intervention-implementation" class="level1">
-<h1>Intervention Implementation</h1>
+<section id="intervention-implementation" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Intervention Implementation</h1>
 <p>Programs rarely rollout exactly as intended, but some variations are more problematic than others.</p>
-<section id="your-implementation-format-was-not-reliable." class="level2">
-<h2 class="anchored" data-anchor-id="your-implementation-format-was-not-reliable.">4. Your implementation format was not reliable.</h2>
+<section id="your-implementation-format-was-not-reliable." class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="your-implementation-format-was-not-reliable."><span class="header-section-number">2.1</span> 4. Your implementation format was not reliable.</h2>
 <p>In the schools in your study, counseling interventions sometimes occurred in person, sometimes happened by text message, sometimes by phone. Anticipating and allowing for some variation and adaptation is important. Intervention dosage and strength is often not delivered as designed nor to as many people as expected.</p>
 <p>But unplanned variations in format can reflect a host of selection bias issues, such that you cannot disentangle whether counseling as a concept does not work or whether certain formats of outreach did not work. This is especially important to guard against if you intend to test specific channels or mechanisms critical to your theory of change.</p>
 <p><strong><em>How can you tell if</em></strong>…an unreliable format is the reason for your null? Were you able to specify or standardize formats in a checklist? Could you leave enough discretion but still incentivize fidelity? Pre-specifying what the intervention should look like can help staff and researchers monitor along the way and correct inconsistencies or deviations that may affect the results. This could include a training protocol for those implementing the intervention. If nothing was specified or no one was trained, then the lack of consistency may be part of the explanation.</p>
 </section>
-<section id="your-intervention-and-outcome-measure-are-mismatched-to-your-randomization-design." class="level2">
-<h2 class="anchored" data-anchor-id="your-intervention-and-outcome-measure-are-mismatched-to-your-randomization-design.">5. Your intervention and outcome measure are mismatched to your randomization design.</h2>
+<section id="your-intervention-and-outcome-measure-are-mismatched-to-your-randomization-design." class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="your-intervention-and-outcome-measure-are-mismatched-to-your-randomization-design."><span class="header-section-number">2.2</span> 5. Your intervention and outcome measure are mismatched to your randomization design.</h2>
 <p>You expected counseling to be more effective in schools with higher student-to-teacher ratios, but did not block randomize by class size (for more on block randomization, see our guide on <a href="https://egap.org/resource/10-things-to-know-about-randomization/">10 Things to Know About Randomization</a>). then it may no longer have the potential to be more effective for students in high class size schools.</p>
 <p><strong><em>How can you tell if</em></strong>…you have a mismatch between your intervention and randomization design? Consider whether treatment effects could vary, or service delivery might occur in a <a href="https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html">cluster</a>, or intervention concepts could <a href="https://methods.egap.org/guides/data-strategies/spillovers_en.html">spill over</a>, and to what extent your randomization design accounted for that.</p>
 </section>
 </section>
-<section id="study-design" class="level1">
-<h1>Study Design</h1>
-<section id="your-study-sample-includes-people-whose-behavior-could-not-be-moved-by-the-intervention." class="level2">
-<h2 class="anchored" data-anchor-id="your-study-sample-includes-people-whose-behavior-could-not-be-moved-by-the-intervention.">6. Your study sample includes people whose behavior could not be moved by the intervention.</h2>
+<section id="study-design" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Study Design</h1>
+<section id="your-study-sample-includes-people-whose-behavior-could-not-be-moved-by-the-intervention." class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="your-study-sample-includes-people-whose-behavior-could-not-be-moved-by-the-intervention."><span class="header-section-number">3.1</span> 6. Your study sample includes people whose behavior could not be moved by the intervention.</h2>
 <p>You ask schools to randomize students into an intervention or control (business-as-usual) group. Some students in both your intervention and control groups will always attend school, while some students will rarely attend school, regardless of what interventions are or are not offered to them. Your intervention’s success depends on not just whether students actually receive the message and/or believe it, but also on whether it can shift behavior among such potential responders.</p>
 <p>If the proportion of potential responders is too small, then it may be difficult to detect an effect. In addition, your intervention may need to be targeted and modified in some way to address the needs of potential responders.</p>
 <p><strong><em>How can you tell if</em></strong>…the proportion of potential responders may be too small? Take a look at the pre-intervention attendance rate. If it is extremely low, does that rate reflect low demand or structural barriers that may limit the potential for response? Is it so high that it tells us that most people who could respond have already done so (say, 85% or higher)? Even if there is a large proportion of hypothetical potential responders, is it lower when you consider existing barriers preventing students from using counseling services that your intervention is not addressing?</p>
 </section>
-<section id="your-measure-is-not-validated-or-reliable-it-varies-too-much-and-systematically-across-sites." class="level2">
-<h2 class="anchored" data-anchor-id="your-measure-is-not-validated-or-reliable-it-varies-too-much-and-systematically-across-sites.">7. Your measure is not validated or reliable: It varies too much and systematically across sites.</h2>
+<section id="your-measure-is-not-validated-or-reliable-it-varies-too-much-and-systematically-across-sites." class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="your-measure-is-not-validated-or-reliable-it-varies-too-much-and-systematically-across-sites."><span class="header-section-number">3.2</span> 7. Your measure is not validated or reliable: It varies too much and systematically across sites.</h2>
 <p>As a leader of the state’s department of education, you want to measure the effectiveness of your intervention using survey data on student attitudes related to attendance. You learn that only some schools administer a new survey measuring student attitudes, and those with surveys changed the survey items so that there is not the same wording across surveys or schools. If you observe no statistically significant difference on a survey measure that is newly developed or used by only select schools, it may be difficult to know whether the intervention “has no effect” or whether the outcome is measuring something different in each school because of different wording.</p>
 <p><strong><em>How can you tell if</em></strong>… outcome measurement is the problem? Check to see whether the outcome is (1) collected in the same way across your sites and (2) if it means the same thing to the participants as it means to you. In addition, check on any reporting bias and if your study participants or sites face any pressure from inside or outside of their organizations to report or answer in a particular way.</p>
 </section>
-<section id="your-outcome-is-not-validated-or-reliable-it-varies-too-little." class="level2">
-<h2 class="anchored" data-anchor-id="your-outcome-is-not-validated-or-reliable-it-varies-too-little.">8. Your outcome is not validated or reliable: It varies too little.</h2>
+<section id="your-outcome-is-not-validated-or-reliable-it-varies-too-little." class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="your-outcome-is-not-validated-or-reliable-it-varies-too-little."><span class="header-section-number">3.3</span> 8. Your outcome is not validated or reliable: It varies too little.</h2>
 <p>Given the problems with the survey measure, you then decide to use administrative data from student records to measure whether students show up on time to school. But it turns out that schools used a generic definition of “on time” such that almost every student looks like they arrive on time. An outcome that does not have enough variation in it to detect an effect between intervention and control groups can be especially limiting if your intervention potentially could have had different effects on different types of students, but the outcome measure used in the study lacks the precision to capture the effects on different subgroups.</p>
 <p><strong><em>How can you tell if</em></strong>…your null result arises from measures that are too coarse or subject to response biases? Pressures to report a certain kind of outcome faced by people at your sites could again yield this kind of problem with outcome measurement. So, it is again worth investigating the meaning of the outcomes as reported by the sites from the perspective of those doing the reporting. This problem differs from the kind of ceiling and floor effects discussed elsewhere in this guide; it arises more from the strategic calculations of those producing administrative data and less from the natural behavior of those students whose behavior you are trying to change.</p>
 </section>
-<section id="your-statistical-power-is-insufficient-to-detect-an-effect-for-the-intervention-as-implemented." class="level2">
-<h2 class="anchored" data-anchor-id="your-statistical-power-is-insufficient-to-detect-an-effect-for-the-intervention-as-implemented.">9. Your <a href="https://methods.egap.org/guides/assessing-designs/power_en.html">statistical power</a> is insufficient to detect an effect for the intervention as implemented.</h2>
+<section id="your-statistical-power-is-insufficient-to-detect-an-effect-for-the-intervention-as-implemented." class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="your-statistical-power-is-insufficient-to-detect-an-effect-for-the-intervention-as-implemented."><span class="header-section-number">3.4</span> 9. Your <a href="https://methods.egap.org/guides/assessing-designs/power_en.html">statistical power</a> is insufficient to detect an effect for the intervention as implemented.</h2>
 <p>This may sound obvious to people with experience testing interventions at scale. But researchers and policymakers can fall into two traps:</p>
 <ol type="1">
 <li><p>Thinking about statistical significance rather than what represents a meaningful and feasible effect. Although a study with an incredibly large sample size can detect small effects with precision, one does not want to trade precision for meaning. Moreover, an intervention known to be weak during the intervention design is likely to be weaker when implemented, especially across multiple sites or months. So it may not be sufficient to simply enroll more subjects to study an intervention known to be weak (even though strong research design cannot compensate for a weak intervention in any easy or direct way);</p></li>
@@ -253,10 +253,10 @@ div.csl-indent {
 <p>A different test statistic can also change a null result into a positive result if, say, the effect is large but it is not an effect that shifts means as much as moves people who are extreme, or has the effect of making moderate students extreme. A classic example of this problem occurs with outcomes that have very long tails – such as those involving money, like annual earnings or auction spending. <a href="https://oes.gsa.gov/projects/gsa-auctions/">A t-test might produce a p-value of .20 but a rank-based test might produce a p-value of &lt; .01</a>. The t-test is using evidence of a shift in averages (means) to reflect on the null hypothesis of no effects. The rank-based test is merely asking whether the treatment group outcomes tend to be bigger than (or smaller than) the control group outcomes (whether or not they differ in means).</p>
 </section>
 </section>
-<section id="not-all-nulls-are-the-result-of-a-flaw-in-design-or-implementation" class="level1">
-<h1>Not all nulls are the result of a flaw in design or implementation!</h1>
-<section id="your-null-needs-to-be-published." class="level2">
-<h2 class="anchored" data-anchor-id="your-null-needs-to-be-published.">10. Your null needs to be published.</h2>
+<section id="not-all-nulls-are-the-result-of-a-flaw-in-design-or-implementation" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Not all nulls are the result of a flaw in design or implementation!</h1>
+<section id="your-null-needs-to-be-published." class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="your-null-needs-to-be-published."><span class="header-section-number">4.1</span> 10. Your null needs to be published.</h2>
 <p>If you addressed all the issues above related to intervention design, sample size and research design, and have a precisely estimated, statistically significant null result, it is time to publish. Your colleagues and other researchers <a href="https://oes.gsa.gov/assets/files/unexpected-results-2-pager.pdf">need to learn from this finding</a>, so do not keep it to yourself.</p>
 <p>When you have a precise null, you do not have a gap in evidence–you are generating evidence.</p>
 <p><strong><em>What can you do to convince editors and reviewers they should publish your null results?</em></strong> This guide should help you reason about your null results and thus explain their importance. If other studies on your topic exist, you can also contextualize your results; for example, follow some of the ideas from <span class="citation" data-cites="abadie_2020">Abadie (<a href="#ref-abadie_2020" role="doc-biblioref">2020</a>)</span>.</p>
@@ -264,14 +264,14 @@ div.csl-indent {
 <p>If you are unable to find a publication willing to include a study with null results in their journal, you can still contribute to the evidence base on the policy area under examination by making your working paper, data, and/or analysis code publicly available. Many researchers choose to do so via their personal websites; in addition, there are repositories (such as the <a href="https://osf.io/">Open Science Framework</a>) that provide a platform for researchers to share their in-progress and unpublished work.</p>
 </section>
 </section>
-<section id="references" class="level1">
+<section id="references" class="level1" data-number="5">
 
 
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">5 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-abadie_2020" class="csl-entry" role="listitem">
 Abadie, Alberto. 2020. <span>“Statistical Nonsignificance in Empirical Economics.”</span> <em>American Economic Review: Insights</em> 2 (2): 193–208.
 </div>
@@ -361,10 +361,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -374,8 +391,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -387,7 +413,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -431,6 +580,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -456,6 +606,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -516,6 +692,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

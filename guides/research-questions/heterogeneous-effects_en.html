@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Albert Fang">
+<meta name="author" content="Alyssa René Heinze">
 
 <title>Methods - 10 Things to Know About Heterogeneous Treatment Effects</title>
 <style>
@@ -21,44 +21,11 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -99,7 +66,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -108,24 +81,53 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
     </a>
@@ -140,50 +142,46 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html" rel="" target="">
- <span class="menu-text">Guides</span></a>
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html" rel="" target="">
- <span class="menu-text">Software</span></a>
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
- <span class="menu-text">Coursebook</span></a>
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 Things to Know About Heterogeneous Treatment Effects</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-is-treatment-effect-heterogeneity" id="toc-what-is-treatment-effect-heterogeneity" class="nav-link active" data-scroll-target="#what-is-treatment-effect-heterogeneity">What Is Treatment Effect Heterogeneity?</a></li>
-  <li><a href="#testing-for-heterogeneity" id="toc-testing-for-heterogeneity" class="nav-link" data-scroll-target="#testing-for-heterogeneity">Testing for Heterogeneity</a></li>
-  <li><a href="#conditional-average-treatment-effects-cates" id="toc-conditional-average-treatment-effects-cates" class="nav-link" data-scroll-target="#conditional-average-treatment-effects-cates">Conditional Average Treatment Effects (CATEs)</a></li>
-  <li><a href="#interaction-effects-treatment-by-covariate-versus-treatment-by-treatment" id="toc-interaction-effects-treatment-by-covariate-versus-treatment-by-treatment" class="nav-link" data-scroll-target="#interaction-effects-treatment-by-covariate-versus-treatment-by-treatment">Interaction Effects: Treatment-by-Covariate versus Treatment-by-Treatment</a></li>
-  <li><a href="#estimating-cates-and-interaction-effects" id="toc-estimating-cates-and-interaction-effects" class="nav-link" data-scroll-target="#estimating-cates-and-interaction-effects">Estimating CATEs and Interaction Effects</a></li>
-  <li><a href="#hypothesis-testing-for-interaction-effects" id="toc-hypothesis-testing-for-interaction-effects" class="nav-link" data-scroll-target="#hypothesis-testing-for-interaction-effects">6. Hypothesis Testing for Interaction Effects</a></li>
-  <li><a href="#multiple-comparisons" id="toc-multiple-comparisons" class="nav-link" data-scroll-target="#multiple-comparisons">Multiple Comparisons</a></li>
-  <li><a href="#use-a-pre-analysis-plan-to-reduce-the-number-of-hypothesis-tests" id="toc-use-a-pre-analysis-plan-to-reduce-the-number-of-hypothesis-tests" class="nav-link" data-scroll-target="#use-a-pre-analysis-plan-to-reduce-the-number-of-hypothesis-tests">Use a Pre-Analysis Plan To Reduce the Number of Hypothesis Tests</a></li>
-  <li><a href="#automate-the-search-for-interactions" id="toc-automate-the-search-for-interactions" class="nav-link" data-scroll-target="#automate-the-search-for-interactions">Automate the Search for Interactions</a></li>
-  <li><a href="#a-note-on-interactions-between-treatment-and-post-treatment-covariates" id="toc-a-note-on-interactions-between-treatment-and-post-treatment-covariates" class="nav-link" data-scroll-target="#a-note-on-interactions-between-treatment-and-post-treatment-covariates">A Note on Interactions between Treatment and Post-Treatment Covariates</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -193,141 +191,76 @@ div.csl-indent {
 <h1 class="title">10 Things to Know About Heterogeneous Treatment Effects</h1>
 </div>
 
-
-
 <div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://albertfang.com/">Albert Fang</a> </p>
-          </div>
-  </div>
     
-  
     
-  </div>
+    
+    
+</div>
   
-
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>This guide discusses the theoretical and policy relevance of heterogeneous treatment effects, which is when effects vary by individual or group. It also discusses and demonstrates methods for estimating how effects vary and interpreting results: from testing for heterogeneity, to estimating subgroup treatment effects and their differences, to addressing the pitfalls of multiple comparisons and ad hoc searches for heterogeneity.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+  </div>
+</div>
 </header>
 
-<p>This guide discusses methods for analyzing heterogeneous treatment effects: testing for heterogeneity, estimating subgroup treatment effects and their differences, and addressing the pitfalls of multiple comparisons and ad hoc specification search.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<section id="what-is-treatment-effect-heterogeneity" class="level1">
-<h1>What Is Treatment Effect Heterogeneity?</h1>
-<p>Any given treatment might affect different experimental subjects in different ways. The study of treatment effect heterogeneity is the study of these differences across subjects: For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects? Research on such questions can help inform theories about the conditions under which treatments are especially effective or ineffective; it can also help inform ways of designing and deploying policies so as to maximize their effectiveness.</p>
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#what-is-treatment-effect-heterogeneity" id="toc-what-is-treatment-effect-heterogeneity"><span class="header-section-number">1</span> What is treatment effect heterogeneity?</a></li>
+  <li><a href="#why-is-treatment-effect-heterogeneity-important" id="toc-why-is-treatment-effect-heterogeneity-important"><span class="header-section-number">2</span> Why is treatment effect heterogeneity important?</a></li>
+  <li><a href="#treatment-effect-heterogeneity-the-general-case" id="toc-treatment-effect-heterogeneity-the-general-case"><span class="header-section-number">3</span> Treatment effect heterogeneity: The general case</a></li>
+  <li><a href="#treatment-effect-heterogeneity-conditional-average-treatment-effects-cates" id="toc-treatment-effect-heterogeneity-conditional-average-treatment-effects-cates"><span class="header-section-number">4</span> Treatment effect heterogeneity: Conditional average treatment effects (CATEs)</a></li>
+  <li><a href="#treatment-effect-heterogeneity-differences-between-cates" id="toc-treatment-effect-heterogeneity-differences-between-cates"><span class="header-section-number">5</span> Treatment effect heterogeneity: Differences between CATEs</a></li>
+  <li><a href="#estimation" id="toc-estimation"><span class="header-section-number">6</span> Estimation</a></li>
+  <li><a href="#hypothesis-testing-differences-in-cates" id="toc-hypothesis-testing-differences-in-cates"><span class="header-section-number">7</span> Hypothesis testing: Differences in CATEs</a></li>
+  <li><a href="#multiple-comparisons" id="toc-multiple-comparisons"><span class="header-section-number">8</span> Multiple comparisons</a></li>
+  <li><a href="#pre-analysis-plans" id="toc-pre-analysis-plans"><span class="header-section-number">9</span> Pre-analysis plans</a></li>
+  <li><a href="#automate-exploratory-search-for-heterogeneous-effects" id="toc-automate-exploratory-search-for-heterogeneous-effects"><span class="header-section-number">10</span> Automate exploratory search for heterogeneous effects</a></li>
+  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  </ul>
+</nav>
+<section id="what-is-treatment-effect-heterogeneity" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> What is treatment effect heterogeneity?</h1>
+<p>A treatment may affect individuals or groups in different ways: this is treatment effect heterogeneity. The study of treatment effect heterogeneity involves estimating how treatment effects vary across individuals or groups within an experiment. For whom are there big effects? For whom are there small effects? For whom does treatment generate beneficial or adverse effects?</p>
 </section>
-<section id="testing-for-heterogeneity" class="level1">
-<h1>Testing for Heterogeneity</h1>
-<p>As a first step, one might be interested in whether the variance of the treatment effect <span class="math inline">\(\tau_i\)</span> across subjects is statistically distinguishable from zero and seek to test the null hypothesis that <span class="math inline">\(Var(\tau_i) = 0\)</span> (which is equivalent to the hypothesis of a constant treatment effect, i.e., <span class="math inline">\(\tau_i = \tau, \forall i\)</span>). However, it is not possible to estimate <span class="math inline">\(Var(\tau_i)\)</span> in an experimental setting because you never get to see the treatment effect for any particular individual. Instead, you only get to see the outcome for each person either in the treatment or in the control condition.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p>To illustrate this, we can rewrite <span class="math inline">\(Var(\tau_i)\)</span> as <span class="math display">\[
-\begin{aligned}
-Var(\tau_i) &amp;= Var(Y_i(1) - Y_i(0)) \\
-&amp;= Var(Y_i(1)) + Var(Y_i(0)) - 2Cov(Y_i(1),Y_i(0))
-\end{aligned}
-\]</span> The term <span class="math inline">\(Cov(Y_i(1),Y_i(0))\)</span> on the right-hand side cannot be estimated in an experiment because we only observe a subject’s treated potential outcome or untreated potential outcome, not both.</p>
-<p>Although we cannot estimate <span class="math inline">\(Var(\tau_i)\)</span>, the hypothesis that <span class="math inline">\(Var(\tau_i) = 0\)</span> does have the testable implication that the distributions of the treated and untreated potential outcomes are identical except for a constant shift <span class="math inline">\(\tau\)</span>. Randomization inference (Fisher 1935) allows us to test this implication without additional modeling assumptions, asymptotics, or regularity conditions.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<p><strong>1. Compare treatment and control outcome variances.</strong> Under the null hypothesis of a constant treatment effect, the variances of the treated and untreated potential outcomes are equal: <span class="math inline">\(Var(Y_i(1)) = Var(Y_i(0))\)</span>. This is because <span class="math display">\[
-\begin{aligned}
-Var(Y_i(1)) &amp;= Var(Y_i(0) + \tau_i) \\
-&amp;= Var(Y_i(0)) + Var(\tau_i) + 2 \cdot Cov(Y_i(0),\tau_i)
-\end{aligned}
-\]</span> and under the null hypothesis, <span class="math inline">\(Var(\tau_i) = 0\)</span> and <span class="math inline">\(Cov(Y_i(0),\tau_i) = 0\)</span>. Thus, we can test the null by testing the implication that <span class="math inline">\(Var(Y_i(1)) = Var(Y_i(0))\)</span>.</p>
-<p>To implement the test, first use the experimental data to estimate the average treatment effect (ATE) and the difference in variances <span class="math inline">\(Var(Y_i(1)) - Var(Y_i(0))\)</span>. Next, create a full hypothetical schedule of potential outcomes assuming that the true treatment effect is constant and equal to the estimated ATE. Finally, to obtain a <span class="math inline">\(p\)</span>-value, simulate random assignment a large number of times and calculate how often the simulated estimate of the difference in variances is at least as large (in absolute value) as the actual estimate.</p>
-<div class="cell" data-hash="heterogeneous-effects_en_cache/html/unnamed-chunk-1_dcadd90e68e7bf83dd9cac26d29e7d57">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="at">all =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234567</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data generating process</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">100</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">=</span> Y0 <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">:</span>n)<span class="sc">/</span>n  <span class="co"># Treatment effect ranging from 0.02 to 2</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="fu">sample</span>( <span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">each =</span> n<span class="sc">/</span><span class="dv">2</span>) )  <span class="co"># Randomly assign treatment</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> t <span class="sc">*</span> Y1 <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> t) <span class="sc">*</span> Y0  <span class="co"># Observed outcome</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate ATE</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>diff.mean <span class="ot">=</span> <span class="cf">function</span>(treated, Y) {</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(Y[treated]) <span class="sc">-</span> <span class="fu">mean</span>(Y[<span class="sc">!</span>treated])</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>est.ate <span class="ot">=</span> <span class="fu">diff.mean</span>(t, Y)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>est.ate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.282838</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate absolute value of the difference in variances</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>abs.diff.var <span class="ot">=</span> <span class="cf">function</span>(treated, Y) {</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>( <span class="fu">var</span>(Y[treated]) <span class="sc">-</span> <span class="fu">var</span>(Y[<span class="sc">!</span>treated]) )</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>observed.stat <span class="ot">=</span> <span class="fu">abs.diff.var</span>(t, Y)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>observed.stat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3654271</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create hypothetical schedule of potential outcomes assuming that</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the true treatment effect is constant and equal to est.ate</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Y0.hyp  <span class="ot">=</span>  Y <span class="sc">-</span> est.ate <span class="sc">*</span> t</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Y1.hyp  <span class="ot">=</span>  Y <span class="sc">+</span> est.ate <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> t)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate p-value</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>p.value <span class="ot">=</span> <span class="cf">function</span>(observed.stat, treated, Y1, Y0, <span class="at">sims =</span> <span class="dv">1000</span>) {</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  sim.stats <span class="ot">=</span> <span class="fu">numeric</span>(sims)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>sims) {</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    t.sim  <span class="ot">=</span>  <span class="fu">sample</span>(treated)  <span class="co"># Simulate random assignment</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    Y.sim  <span class="ot">=</span>  t.sim <span class="sc">*</span> Y1  <span class="sc">+</span>  (<span class="dv">1</span> <span class="sc">-</span> t.sim) <span class="sc">*</span> Y0</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    sim.stats[i]  <span class="ot">=</span>  <span class="fu">abs.diff.var</span>(t.sim, Y.sim)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(sim.stats <span class="sc">&gt;=</span> observed.stat)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">p.value</span>(<span class="at">observed.stat =</span> observed.stat, <span class="at">treated =</span> t, <span class="at">Y1 =</span> Y1.hyp, <span class="at">Y0 =</span> Y0.hyp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.203</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional code to calculate power</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>reps <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sim.p.values <span class="ot">=</span> <span class="fu">numeric</span>(reps)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>reps) {</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  t.sim  <span class="ot">=</span>  <span class="fu">sample</span>(t)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  Y.sim  <span class="ot">=</span>  t.sim <span class="sc">*</span> Y1  <span class="sc">+</span>  (<span class="dv">1</span> <span class="sc">-</span> t.sim) <span class="sc">*</span> Y0</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  est.ate.sim <span class="ot">=</span> <span class="fu">diff.mean</span>(t.sim, Y.sim)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  Y0.hyp.sim  <span class="ot">=</span>  Y.sim <span class="sc">-</span> est.ate.sim <span class="sc">*</span> t.sim</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  Y1.hyp.sim  <span class="ot">=</span>  Y.sim <span class="sc">+</span> est.ate.sim <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> t.sim)    </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  sim.p.values[i] <span class="ot">=</span> <span class="fu">p.value</span>(<span class="at">observed.stat =</span> <span class="fu">abs.diff.var</span>(t.sim, Y.sim), <span class="at">treated =</span> t.sim,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                            <span class="at">Y1 =</span> Y1.hyp.sim, <span class="at">Y0 =</span> Y0.hyp.sim)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sim.p.values <span class="sc">&lt;</span> <span class="fl">0.05</span>)  <span class="co"># Estimated power</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.181</code></pre>
-</div>
-</div>
-<p>This approach is limited because power for tests of differences in variances is weaker than power for tests of differences in means; thus you might often fail to reject the null hypothesis of a constant treatment effect even when there is real heterogeneity in effects. Another limitation of this method is that it is uninformative when heterogeneous treatment effects exist but the variances of <span class="math inline">\(Y_i(0)\)</span> and <span class="math inline">\(Y_i(1)\)</span> are equal. A third limitation, discussed by <span class="citation" data-cites="ding_et_al_2016">Ding, Feller, and Miratrix (<a href="#ref-ding_et_al_2016" role="doc-biblioref">2016</a>)</span>, is that because the hypothetical schedule of potential outcomes is based on the estimated ATE instead of the unknown true ATE, the approach is not guaranteed to yield a valid test of the constant treatment effect hypothesis. To address this problem, they suggest a “Fisher randomization test confidence interval” (FRT CI) method, described below.</p>
-<p><strong>2. Compare treatment and control marginal cumulative distribution functions.</strong> As an alternative to comparing variances, one can compare the marginal cumulative distribution functions (CDFs) of the outcome between treatment and control. Under the null hypothesis of a constant treatment effect, the two CDFs differ only by a constant shift.</p>
-<p>The first key change to the randomization inference procedure detailed above is the use of a different test statistic. <span class="citation" data-cites="ding_et_al_2016">Ding, Feller, and Miratrix (<a href="#ref-ding_et_al_2016" role="doc-biblioref">2016</a>)</span> suggest using a Kolmogorov-Smirnov (KS) statistic to measure the maximum pointwise distance between the treatment and control CDFs after shifting the treatment CDF by a constant treatment effect <span class="math inline">\(\tau\)</span>. The test statistic is <span class="math display">\[ t_{KS}(\tau) = \max_y | \hat{F}_0(y) - \hat{F}_1(y + \tau) | \]</span> where <span class="math inline">\(\hat{F}_0(\cdot)\)</span> and <span class="math inline">\(\hat{F}_1(\cdot)\)</span> denotes the empirical CDFs of the outcome in the control group and treatment group, respectively.</p>
-<p><span class="citation" data-cites="ding_et_al_2016">Ding, Feller, and Miratrix (<a href="#ref-ding_et_al_2016" role="doc-biblioref">2016</a>)</span> suggest plugging in the estimated average treatment effect <span class="math inline">\(\hat{\tau}\)</span> for <span class="math inline">\(\tau\)</span>. Their “shifted” KS statistic <span class="math display">\[ t_{SKS} = \max_y | \hat{F}_0(y) - \hat{F}_1(y + \hat{\tau}) | \]</span> is appropriate for testing the hypothesis that the true treatment effect is constant and equal to the estimated ATE.</p>
-<p>The second key change that <span class="citation" data-cites="ding_et_al_2016">Ding, Feller, and Miratrix (<a href="#ref-ding_et_al_2016" role="doc-biblioref">2016</a>)</span> suggest is the FRT CI method, which addresses the problem that the true ATE may differ from the estimated ATE. The basic idea is that instead of using just one value for the hypothesized constant treatment effect to create the full schedule of potential outcomes for a randomization test, we can try a range of hypothesized constant treatment effects and find the maximum <span class="math inline">\(p\)</span>-value over all the resulting randomization tests. They first construct a 99.9% confidence interval for the ATE (using the Neyman variance estimator), which becomes the range of hypothesized constant treatment effects. They then find the maximum <span class="math inline">\(p\)</span>-value over all the resulting randomization tests and add an increment of 100% - 99.9% = 0.001. This method is guaranteed to yield a valid test of the constant treatment effect hypothesis if the confidence interval used is exactly valid. In practice, the CI is only approximately valid, but the FRT CI method with the shifted KS statistic still yields an exact or conservative test in their simulations.</p>
+<section id="why-is-treatment-effect-heterogeneity-important" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Why is treatment effect heterogeneity important?</h1>
+<p>By investigating treatment effect heterogeneity, we may be able to learn about the conditions under which treatments are especially effective or ineffective. The results can contribute to program design decisions and enable deploying resources more effectively, for example to individuals for whom the treatment is likely to be effective.</p>
 </section>
-<section id="conditional-average-treatment-effects-cates" class="level1">
-<h1>Conditional Average Treatment Effects (CATEs)</h1>
-<p>A more structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is an average treatment effect specific to a subgroup of subjects, where the subgroup is defined by subjects’ attributes (e.g., the ATE among female subjects) or attributes of the context in which the experiment occurs (e.g., the ATE among subjects at a specific site in a multi-site field experiment).</p>
+<section id="treatment-effect-heterogeneity-the-general-case" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Treatment effect heterogeneity: The general case</h1>
+<p>First, we might want to know whether the treatment effect is the same for all individuals and groups within a study. We can state this in terms of the <em>variance</em> of individual-level treatment effects: if the treatment effect is the same for all individuals, then the variance of these effects would be zero. To probe this, we can test the null hypothesis that the variance of the individual-level treatment effects is zero. But we never get to see the treatment effect for any particular individual, only the outcome for each person either in the treatment or in the control condition.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>What might treatment effect heterogeneity look like in practice? In one example, Eric Kramon, Sarah Brierley, and George Ofosu find in <a href="https://egap.org/resource/the-moderating-effect-of-debates-in-ghana/">The Moderating Effect of Debates in Ghana</a> that the impact of viewing parliamentary debates on candidate evaluation and vote choice vary by partisanship. In another example, <span class="citation" data-cites="blair2021">Blair (<a href="#ref-blair2021" role="doc-biblioref">2021</a>)</span> failed to find evidence of heterogeneous treatment effects of community policing interventions across six geographic sites in the Global South.</p>
 </section>
-<section id="interaction-effects-treatment-by-covariate-versus-treatment-by-treatment" class="level1">
-<h1>Interaction Effects: Treatment-by-Covariate versus Treatment-by-Treatment</h1>
-<p>In addition to CATEs, researchers are also interested in treatment-by-covariate interaction effects, or the difference between two CATEs when the covariate partitioning subjects into subgroups is not experimentally manipulated. For example, one might estimate an ATE for female subjects and an ATE for male subjects but actually care about whether the difference in ATEs between the female and male subgroups is statistically distinguishable from zero. To ensure unbiased estimation of CATEs and of interaction effects, the covariate used to partition subjects into subgroups must be a pre-treatment covariate and must be measured using the same procedure for all subjects across experimental groups. A treatment-by-covariate interaction can be interpreted as a <em>descriptive</em> measure of association between the covariate and the treatment effect, but does not necessarily represent the <em>causal</em> effect of a change in the covariate value on the ATE if the covariate is not randomly assigned.</p>
-<p>In contrast to treatment-by-covariate interactions, treatment-by-treatment interactions are differences in CATEs where the personal or contextual attribute partitioning subjects into subgroups is experimentally manipulated. Because the covariate is randomly assigned, treatment-by-treatment interactions may be interpreted causally. Factorial and partial factorial designs allow researchers to randomly assign subjects to different combinations of “cross-cutting” treatment conditions and to estimate treatment-by-treatment interactions as allowed by the design.</p>
+<section id="treatment-effect-heterogeneity-conditional-average-treatment-effects-cates" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Treatment effect heterogeneity: Conditional average treatment effects (CATEs)</h1>
+<p>Second, we might want to know whether specific groups of individuals in the study are impacted differently by our treatment. A structured, theory-driven inquiry of treatment effect heterogeneity involves pre-specifying and investigating conditional average treatment effects (CATEs). A CATE is an average treatment effect specific to a subgroup of individuals, where the subgroup is defined by the attributes of the individuals, such as the average treatment effect (ATE) among women. These attributes may also be attributes of the context in which the experiment occurs (e.g., the ATE among individuals at a specific site in a multi-site field experiment).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><em>An important aside on estimation</em>: It is generally a good idea to avoid conditioning on variables whose values could have been affected by the treatment itself (called post-treatment variables). This is to ensure the unbiased estimation of conditional average treatment effects. Some researchers may be interested in post-treatment effect modification, or (in the regression context) the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants’ levels of depression during the follow-up period? However, conditioning on a post-treatment covariate may lead to bias. See <span class="citation" data-cites="angristpischke">Angrist and Pischke (<a href="#ref-angristpischke" role="doc-biblioref">2009</a>)</span> for more on so-called “bad” controls. There is a burgeoning body of methodological research on the conditions under which CATEs involving post-treatment covariates are identified. These methods rely on model-based identification.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 </section>
-<section id="estimating-cates-and-interaction-effects" class="level1">
-<h1>Estimating CATEs and Interaction Effects</h1>
-<p>Estimating CATEs and interaction effects is straightforward. Nonparametrically, the CATE may be estimated by calculating the ATE among subjects in the specific subgroup of interest. Interaction effects may be estimated by differencing relevant CATEs.</p>
-<p>CATEs and interaction effects may also be estimated in a regression framework. Here is an example for a hypothetical experiment evaluating the effect of a job training program on future earnings. Let <span class="math inline">\(Y\)</span> be the outcome (future earnings), <span class="math inline">\(Z\)</span> be the treatment variable (1=job training program, 0=control), and <span class="math inline">\(X\)</span> be a pre-treatment covariate (1=scholarship receipt, 0=no scholarship). The model <span class="math display">\[
-\begin{aligned}
-Y_i &amp;= \alpha + \beta Z_i + \gamma X_i + \varepsilon_i \label{null}
-\end{aligned}
-\]</span> allows us to estimate the ATE (<span class="math inline">\(\beta\)</span>) only. We can add an additional term interacting <span class="math inline">\(Z\)</span> and <span class="math inline">\(X\)</span>, which yields <span class="math display">\[
-\begin{aligned}
+<section id="treatment-effect-heterogeneity-differences-between-cates" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Treatment effect heterogeneity: Differences between CATEs</h1>
+<p>Third, we might be interested in the difference between two CATEs. For example, does our treatment work differently on average for men versus women? Stated differently, we might want to know whether the difference in ATEs between women and men in the experiment (sometimes called the interaction effect between the treatment and gender) is equal to or different from zero.</p>
+<p><em>An aside on causal interpretation</em>: The variable(s) that define the subgroups that you compare may or may not have been experimentally manipulated. If it was not, then we have a treatment-by-covariate interaction that can be interpreted as a <em>descriptive</em> measure of association between the covariate and the treatment effect, but should not be interpreted as the <em>causal</em> effect of a change in the covariate value on the ATE.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Treatment-by-treatment interactions are differences in CATEs where the personal or contextual attribute defining subgroups <em>is</em> experimentally manipulated. Because that other treatment is randomly assigned, treatment-by-treatment interactions may be interpreted causally. Factorial and partial factorial designs allow researchers to randomly assign individuals to different combinations of “cross-cutting” treatment conditions and to estimate treatment-by-treatment interactions. <!-- as allowed by the design. --> <!-- Changed referring to the other factor as a covariate and referred to it as the other treatment --></p>
+</section>
+<section id="estimation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Estimation</h1>
+<p>Estimating CATEs and differences between CATEs (interaction effects) is straightforward. For the CATE, estimate the ATE among individuals in the specific subgroup of interest. For differences in CATEs, take the difference between relevant estimated CATEs. CATEs and differences in CATEs (interaction effects) may also be estimated in a regression framework.</p>
+<p>Imagine a hypothetical experiment evaluating the effect of a job training program on future earnings. Let <span class="math inline">\(Y\)</span> be the outcome (future earnings), <span class="math inline">\(Z\)</span> be the treatment variable (1=job training program, 0=control), and <span class="math inline">\(X\)</span> be a pre-treatment covariate (1=scholarship receipt, 0=no scholarship).</p>
+We can write down a regression model that can aid us in estimating the CATEs (the ATE of the job training program among those who receive a scholarship and among those who do not) and the interaction effect (the difference between these two CATEs).
+<span class="math display">\[\begin{aligned}
 Y_i &amp;= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i \label{alt}
-\end{aligned}
-\]</span> where the coefficient <span class="math inline">\(\delta\)</span> is the interaction effect and is interpreted as the difference between the ATE of the job training program among subjects receiving a scholarship and the ATE of the job training program among subjects not receiving a scholarship. This has a causal interpretation (i.e., <span class="math inline">\(\delta\)</span> is a treatment-by-treatment interaction) when scholarship receipt is randomly assigned and a descriptive interpretation (i.e., <span class="math inline">\(\delta\)</span> is a treatment-by-covariate interaction) when scholarship receipt is not randomly assigned.</p>
-<p>The model with the interaction also allows us to back out the values of the CATEs. The ATE of the job training program among subjects who do not receive a scholarship is <span class="math inline">\(\beta\)</span>. The ATE of the job training program among subjects who receive a scholarship is <span class="math inline">\((\beta + \delta)\)</span>.</p>
+\end{aligned}\]</span>
+<p>The ATE of the job training program among individuals who do not receive a scholarship is <span class="math inline">\(\beta\)</span>. The ATE of the job training program among individuals who do receive a scholarship is <span class="math inline">\(\beta + \delta\)</span>.</p>
+<p>The coefficient <span class="math inline">\(\delta\)</span> is the interaction effect and is interpreted as the ATE of the job training program among individuals receiving a scholarship minus the ATE of the job training program among individuals not receiving a scholarship. This has a causal interpretation (i.e., <span class="math inline">\(\delta\)</span> is a treatment-by-treatment interaction) when scholarships are randomly assigned and a descriptive interpretation (i.e., <span class="math inline">\(\delta\)</span> is a treatment-by-covariate interaction) when scholarships are not randomly assigned.</p>
 </section>
-<section id="hypothesis-testing-for-interaction-effects" class="level1">
-<h1>6. Hypothesis Testing for Interaction Effects</h1>
-<p>To test whether the estimated interaction effect could have occurred by chance, one can use randomization inference: First generate a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then simulate random assignment a large number of times and calculate how often the simulated estimate of the interaction effect is at least as large (in absolute value) as the actual estimate.</p>
-<p>One can also conduct randomization inference in a regression framework. One method suitable for two-sided tests involves using the <span class="math inline">\(F\)</span>-statistic as the test statistic, where the null model is <span class="math display">\[
+<section id="hypothesis-testing-differences-in-cates" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Hypothesis testing: Differences in CATEs</h1>
+<p>We might want to test whether an estimated interaction effect is just the result of noise in the data rather than reflecting a true difference in CATEs. We can take one of two approaches. A common practice in the regression approach is to use the standard error for the interaction coefficient in the regression output. For more on how to read regression table output, see <a href="https://methods.egap.org/guides/interpretation/regression-table_en.html">10 Things You Need to Know About Reading a Regression Table</a>. Alternatively, one can take a randomization inference approach. This entails generating a full schedule of potential outcomes under the null hypothesis that the true treatment effect is constant and equal to the estimated ATE. Then we would simulate random assignment a large number of times, and calculate how often the simulation produces an estimate of the interaction effect is at least as large in absolute value as the actual estimate. For more on randomization inference, see <a href="https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html">10 Things You Need to Know About Randomization Inference</a>.</p>
+<p>One can also combine these two methods, conducting randomization inference in a regression framework. For two-sided tests, we can use the <span class="math inline">\(F\)</span>-statistic as the test statistic, where the null model is <span class="math display">\[
 \begin{aligned}
 Y_i &amp;= \alpha + \beta Z_i + \gamma X_i + \varepsilon_i
 \end{aligned}
@@ -336,104 +269,25 @@ Y_i &amp;= \alpha + \beta Z_i + \gamma X_i + \varepsilon_i
 Y_i &amp;= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i .
 \end{aligned}
 \]</span></p>
-<div class="cell" data-hash="heterogeneous-effects_en_cache/html/unnamed-chunk-2_f5736beb8027b9924a2fbf64d7e4186f">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample code for RI using F-stat as test statistic</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Code adapted from: http://isps.its.yale.edu/isps/public/Gerber_Green_FEDAI_2012/</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                    Chapter-9/GerberGreenBook_Chapter9_PlotandFtest_Figure_9_1.R</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="at">all =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234567</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Let:</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Y = observed outcome</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Z = treatment assignment (complete randomization)</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># X = covariate</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="at">each =</span> n<span class="sc">/</span><span class="dv">2</span>) )</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">sample</span>( <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="at">each =</span> n<span class="sc">/</span><span class="dv">2</span>) )</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>numiter <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># No. of RI iterations (use more for greater precision, fewer for greater speed)</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate ATE</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>estate <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y[Z<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y[Z<span class="sc">==</span><span class="dv">0</span>])</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># construct hypothetical schedule of potential outcomes</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># using constant effects assumption where tau_i == estate</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">&lt;-</span> Y <span class="sc">-</span> estate<span class="sc">*</span>Z</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">&lt;-</span> Y <span class="sc">+</span> estate<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Z)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate CATEs</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>estcate0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y[X<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> Z<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y[X<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> Z<span class="sc">==</span><span class="dv">0</span>])</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>estcate1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y[X<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> Z<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y[X<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> Z<span class="sc">==</span><span class="dv">0</span>])</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>lm1  <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>Z<span class="sc">*</span>X)  <span class="co"># alternative model</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>lm2  <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>Z<span class="sc">+</span>X)  <span class="co"># null model</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>Ftest <span class="ot">&lt;-</span> (<span class="fu">sum</span>(lm2<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">sum</span>(lm1<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">/</span> (<span class="fu">sum</span>(lm1<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">4</span>))</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># or alternatively</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># library(lmtest)</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Ftest &lt;- waldtest(lm1,lm2)$F[2]</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>Fdist <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,numiter)</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>numiter) {</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    Zri <span class="ot">&lt;-</span> <span class="fu">sample</span>(Z)</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    Yri <span class="ot">&lt;-</span> Y0<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Zri) <span class="sc">+</span> Y1<span class="sc">*</span>Zri</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    estcate0ri <span class="ot">&lt;-</span> <span class="fu">mean</span>(Yri[X<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> Zri<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Yri[X<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> Zri<span class="sc">==</span><span class="dv">0</span>]) </span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    estcate1ri <span class="ot">&lt;-</span> <span class="fu">mean</span>(Yri[X<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> Zri<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Yri[X<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> Zri<span class="sc">==</span><span class="dv">0</span>])</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    lm1ri  <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yri<span class="sc">~</span>Zri<span class="sc">*</span>X)</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    lm2ri  <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yri<span class="sc">~</span>Zri<span class="sc">+</span>X)</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    Fdist[i] <span class="ot">&lt;-</span> (<span class="fu">sum</span>(lm2ri<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">sum</span>(lm1ri<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">/</span> (<span class="fu">sum</span>(lm1ri<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (n <span class="sc">-</span> <span class="dv">4</span>))</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># or alternatively</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fdist[i] &lt;- waldtest(lm1ri, lm2ri)$F[2]   </span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co">#p-value</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Fdist <span class="sc">&gt;=</span> Ftest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.525</code></pre>
-</div>
-</div>
-<p>For one-sided tests, the coefficient on the interaction term may be used as the test statistic, given the appropriate model.</p>
+<p>The coefficient on the interaction term may be used as the test statistic for one-sided tests, given the appropriate model.</p>
+<p><em>An aside on interpretation</em>: It’s important to distinguish between difference in significance and difference in effects. If, for example, our evidence suggests that the ATE among female study participants is significantly different from zero, but that the ATE among male participants is not, this <em>doesn’t</em> necessarily mean that the two CATEs are different from each other. Instead, we should use a test of the difference between CATEs as described above.</p>
 </section>
-<section id="multiple-comparisons" class="level1">
-<h1>Multiple Comparisons</h1>
-<p>Researchers interested in heterogeneous treatment effects are likely to encounter the problem of multiple comparisons: for example, when numerous subgroup analyses are conducted, the probability that at least one result looks statistically significant at the 5 percent level may be considerably greater than 5 percent even when the treatment has no effect on anyone.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<p>One way to mitigate the multiple comparisons problem is to reduce the number of tests conducted (e.g., by analyzing a small number of pre-specified subgroups). Another approach is to adjust the <span class="math inline">\(p\)</span>-values to account for the fact that multiple hypotheses are being tested simultaneously.</p>
-<p><strong>7.1 Familywise error rate (FWER) control methods</strong></p>
-<p>Familywise error rate (FWER) control methods limit the probability of making at least one type I error given the number of tests conducted. Suppose one is testing <span class="math inline">\(K\)</span> hypotheses, <span class="math inline">\(H_1, H_2, \ldots, H_K\)</span>, and <span class="math inline">\(K_0\)</span> of the <span class="math inline">\(K\)</span> hypotheses are true, where <span class="math inline">\(K_0 \le K\)</span>. The familywise error rate is the probability that at least one of the <span class="math inline">\(K_0\)</span> true hypotheses is falsely rejected. The FWER increases in the number of hypotheses tested. FWER control methods adjust the <span class="math inline">\(p\)</span>-values so that, for example, if we reject a hypothesis only when the adjusted <span class="math inline">\(p\)</span>-value is less than 0.05, the FWER will not exceed 5 percent.</p>
-<p>The most conservative FWER control method is the <strong>Bonferroni correction</strong>, which multiplies the <span class="math inline">\(p\)</span>-values by the number of tests conducted. (If the result exceeds 1, the adjusted <span class="math inline">\(p\)</span>-value is set to 1.) For example, suppose we tested the significance of four interaction effects and found unadjusted <span class="math inline">\(p\)</span>-values of 0.02, 0.04, 0.2, and 0.3. The adjusted <span class="math inline">\(p\)</span>-values would then be 0.08, 0.16, 0.8, and 1. This approach has limitations because one quickly loses statistical power with just a few tests.</p>
-<p>The <strong>Westfall–Young step-down procedure</strong> is an alternative FWER control method that can be more powerful than the Bonferroni correction because it takes into account correlations between the tests.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> The procedure involves the following steps:<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
-<ol type="1">
-<li><p>Given a family of <span class="math inline">\(K\)</span> null hypotheses (where each hypothesis corresponds to a subgroup or interaction of interest), sort the hypotheses in order of decreasing statistical significance (increasing <span class="math inline">\(p\)</span>-value): <span class="math inline">\(p_1 \leq p_2 \leq \ldots \leq p_K\)</span>.</p></li>
-<li><p>Simulate the sharp null hypothesis of no treatment effect by performing a large number <span class="math inline">\(L\)</span> of replications of random assignment of treatment, leaving the outcome and covariate data unchanged.</p></li>
-<li><p>For each replication, compute a set of simulated <span class="math inline">\(p\)</span>-values, <span class="math inline">\(p_1^*, \ldots, p_K^*\)</span>. (Do not sort the simulated <span class="math inline">\(p\)</span>-values. Keep the ordering of hypotheses from step 1, so that, e.g., <span class="math inline">\(p_1^*\)</span> corresponds to the same hypothesis as <span class="math inline">\(p_1\)</span>.)</p></li>
-<li><p>Compute the adjusted <span class="math inline">\(p\)</span>-values as follows:</p></li>
-</ol>
-<p><span class="math display">\[ p_1^{adj} = \frac{\mbox{No. of replications where } \min (p_1^*, \ldots, p_K^*) \leq p_1}{L}\]</span></p>
-<p><span class="math display">\[ p_2^{adj} = \max \left(p_1^{adj}, \ \frac{\mbox{No. of replications where } \min (p_2^*, \ldots, p_K^*) \leq p_2}{L} \right)\]</span></p>
-<p><span class="math display">\[ p_3^{adj} = \max \left(p_2^{adj}, \ \frac{\mbox{No. of replications where } \min (p_3^*, \ldots, p_K^*) \leq p_3}{L} \right)\]</span></p>
-<p><span class="math display">\[ \ldots \]</span></p>
-<p><span class="math display">\[ p_K^{adj} = \max \left(p_{K-1}^{adj} \, , \ \frac{\mbox{No. of replications where } p_K^* \leq p_K}{L} \right)\]</span></p>
-<p>R functions to implement the Westfall–Young step-down procedure are available in <span class="citation" data-cites="porter_2016">Porter (<a href="#ref-porter_2016" role="doc-biblioref">2016</a>)</span> and the package <a href="http://www.bioconductor.org/packages/release/bioc/html/multtest.html">multtest</a>.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
-<p><strong>7.2 False discovery rate (FDR) control methods</strong></p>
-<p>False discovery rate (FDR) control methods control the expected proportion of rejected null hypotheses that are type I errors. Formally, <span class="math inline">\(FDR = E[V \, / \, R]\)</span> where <span class="math inline">\(V\)</span> is the number of rejected nulls that are actually true, <span class="math inline">\(R\)</span> is the total number of rejected nulls, and <span class="math inline">\(V \, / \, R\)</span> is defined as <span class="math inline">\(0\)</span> if <span class="math inline">\(R = 0\)</span>. An equivalent definition is <span class="math inline">\(FDR = Pr[R &gt; 0] \times E[V \, / \, R \mid R &gt; 0]\)</span>.</p>
-<p>The basic procedure developed by <span class="citation" data-cites="benjamini_hochberg_1995">Benjamini and Hochberg (<a href="#ref-benjamini_hochberg_1995" role="doc-biblioref">1995</a>)</span> involves the following steps to control the FDR. As in the setup to control the FWER, specify <span class="math inline">\(K\)</span> hypotheses <span class="math inline">\(H_1, \ldots, H_K\)</span> and index the hypotheses in order of decreasing statistical significance so that <span class="math inline">\(p_1 \leq p_2 \leq \ldots \leq p_K\)</span>. Let <span class="math inline">\(q \in (0,1)\)</span> be the desired upper limit on the FDR. Let <span class="math inline">\(c\)</span> be the largest index for which <span class="math inline">\(p_c \leq (cq \, / \, K)\)</span>. Reject <span class="math inline">\(H_1, \ldots, H_c\)</span> but do not reject any other hypotheses in the family. This procedure controls the FDR at level <span class="math inline">\(q\, (K_0 \, / \, K) \leq q\)</span> where <span class="math inline">\(K_0\)</span> is the number of true null hypotheses.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
-<p>FDR control tends to be less conservative than FWER control and is popular in fields such as genomics, where, as <span class="citation" data-cites="westfall_et_al_2011">Westfall, Tobias, and Wolfinger (<a href="#ref-westfall_et_al_2011" role="doc-biblioref">2011</a>)</span> write (p.&nbsp;14), “the number of hypotheses can easily be in the thousands or millions, [and] you usually do not expect that every significant result is real and replicable. Rather, you just want to ensure that a controlled high proportion (e.g., 0.95 or more) of the significant results is real and replicable.” FDR control methods have also been used in the social sciences—for example, <span class="citation" data-cites="anderson_2008">Anderson (<a href="#ref-anderson_2008" role="doc-biblioref">2008</a>)</span> uses FDR control for exploratory analyses and FWER control for confirmatory analyses. However, the concept of the FDR can be difficult to interpret, for several reasons:</p>
-<ul>
-<li><p>As noted above, the FDR is equivalent to <span class="math inline">\(Pr[R &gt; 0] \times E[V \, / \, R \mid R &gt; 0]\)</span>. Thus, <span class="citation" data-cites="westfall_et_al_2011">Westfall, Tobias, and Wolfinger (<a href="#ref-westfall_et_al_2011" role="doc-biblioref">2011</a>)</span> (p.&nbsp;496) note that interpreting the FDR as “the expected proportion of false rejections” is reasonable when thousands or millions of null hypotheses are tested and <span class="math inline">\(Pr[R &gt; 0]\)</span> (the probability that at least one null is rejected) is close to 1, but “in cases where <span class="math inline">\(R\)</span> can be <span class="math inline">\(0\)</span> with reasonably high probability, the interpretation of FDR is unclear” (because then <span class="math inline">\(E[V \, / \, R \mid R &gt; 0]\)</span> can be much higher than the FDR) and “it is better to use FWE-controlling methods in these cases” because they “have more straightforward interpretation.”</p></li>
-<li><p>The FDR is defined as an expectation: the average value of <span class="math inline">\(V \, / \, R\)</span> across an infinite number of hypothetical replications of the study. “Controlling the FDR” means keeping this expectation less than or equal to some threshold <span class="math inline">\(q\)</span>. But this says nothing about the <em>variability</em> of <span class="math inline">\(V \, / \, R\)</span> across replications and thus does not by itself control the <em>probability</em> that <span class="math inline">\(V \, / \, R\)</span> substantially exceeds <span class="math inline">\(q\)</span> (<span class="citation" data-cites="efron_2010">Efron (<a href="#ref-efron_2010" role="doc-biblioref">2010</a>)</span>, pp.&nbsp;51, 55–57).</p></li>
-<li><p>As <span class="citation" data-cites="gelman_et_al_2012">Gelman, Hill, and Yajima (<a href="#ref-gelman_et_al_2012" role="doc-biblioref">2012</a>)</span> write: “Methods that control for the FDR may make particular sense in fields like genetics where one would expect to see a number of real effects amidst a vast quantity of zero effects such as when examining the effect of a treatment on differential gene expression. … They may be less useful in social science applications when we are less likely to be testing thousands of hypotheses at a time and when there are less likely to be effects that are truly zero (or at least the distinction between zero and not-zero may be more blurry).”</p></li>
-</ul>
+<section id="multiple-comparisons" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Multiple comparisons</h1>
+<p>Researchers interested in heterogeneous treatment effects are likely to encounter the problem of multiple comparisons: for example, when numerous subgroup analyses are conducted, the probability that at least one result looks statistically significant may be considerably greater than the specified alpha level (typically 5 percent) even when the treatment has no effect on anyone.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>One way to mitigate the multiple comparisons problem is to reduce the number of tests conducted, for example, by analyzing a small number of pre-specified subgroups. Another approach is to adjust the <span class="math inline">\(p\)</span>-values to account for the fact that multiple hypotheses are being tested simultaneously. For more on how to implement various methods of adjustment for multiple comparisons, see <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">10 Things You Need to Know About Multiple Comparisons</a>.</p>
 </section>
-<section id="use-a-pre-analysis-plan-to-reduce-the-number-of-hypothesis-tests" class="level1">
-<h1>Use a Pre-Analysis Plan To Reduce the Number of Hypothesis Tests</h1>
-<p>You can also reduce the numbers of CATEs and interactions under consideration for hypothesis testing by pre-specifying the tests of primary interest in a registered pre-analysis plan (PAP). Additional subgroup analyses can be conceptualized and specified as exploratory or descriptive analyses in the PAP. Another bonus is that if you prefer a one-sided test, you can commit to that choice in the PAP before seeing the outcome data, so that you “cannot be justly accused of cherry-picking the test after the fact” <span class="citation" data-cites="olken_2015">(<a href="#ref-olken_2015" role="doc-biblioref">Olken 2015</a>)</span>. See our guide <a href="https://methods.egap.org/guides/planning/pap_en.html">10 Things to Know About Pre-Analysis Plans</a> for more on pre-registration.</p>
+<section id="pre-analysis-plans" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Pre-analysis plans</h1>
+<p>Pre-specifying the investigation of heterogeneous treatment effects has many benefits. First, we can reduce the numbers of CATEs and interactions under consideration for hypothesis testing by clearly indicating which tests are of primary interest in a registered pre-analysis plan (PAP). Additional subgroup analyses can be conceptualized and specified as exploratory or descriptive analyses in the PAP. Another bonus is that if we prefer a one-sided test, we can commit to that choice in the PAP before seeing the outcome data, so that we “cannot be justly accused of cherry-picking the test after the fact” <span class="citation" data-cites="olken_2015">(<a href="#ref-olken_2015" role="doc-biblioref">Olken 2015</a>)</span>. See our guide <a href="https://methods.egap.org/guides/planning/pap_en.html">10 Things to Know About Pre-Analysis Plans</a> for more on pre-registration. Further, if we want to demonstrate that heterogeneous effects do not exist (and are not, for example, what is driving a null result), pre-specifying theoretically derived expectations around lack of treatment effect heterogeneity can be useful.</p>
 </section>
-<section id="automate-the-search-for-interactions" class="level1">
-<h1>Automate the Search for Interactions</h1>
-<p>Machine learning methods are useful to automate the search for systematic variation in treatment effects. These automated approaches are attractive because they minimize researchers’ use of ad hoc discretion in selecting and testing interactions, and are useful for conducting exploratory analyses.</p>
-<p>Popular machine learning methods include support vector machines (R package <a href="http://cran.r-project.org/web/packages/FindIt/index.html">FindIt</a>),<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> Bayesian additive regression trees (R package <a href="http://cran.r-project.org/web/packages/BayesTree/index.html">BayesTree</a>),<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> classification and regression trees (R package <a href="https://github.com/susanathey/causalTree">causalTree</a>) <span class="citation" data-cites="athey_imbens_2016">(<a href="#ref-athey_imbens_2016" role="doc-biblioref">Athey and Imbens 2016</a>)</span> random forests <span class="citation" data-cites="wager_athey_2016">(<a href="#ref-wager_athey_2016" role="doc-biblioref">Wager and Athey 2016</a>)</span> and kernel regularized least squares (R package <a href="http://cran.r-project.org/web/packages/KRLS/index.html">KRLS</a>).<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
-<p>In addition to single machine learning methods, ensemble methods may be used. Ensemble methods estimate a weighted average of multiple machine learning estimates of heterogeneous effects where the weights are a function of out-of-sample prediction performance.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<section id="automate-exploratory-search-for-heterogeneous-effects" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Automate exploratory search for heterogeneous effects</h1>
+<p>Machine learning methods can be used to automate the search for systematic variation in treatment effects. These automated approaches are attractive because they minimize researchers’ discretion in selecting and testing interactions. They are also useful for conducting exploratory analyses, since these types of analyses are rarely pre-specified.</p>
+<p>Popular machine learning methods for heterogeneous treatment effects include support vector machines (R package <a href="http://cran.r-project.org/web/packages/FindIt/index.html">FindIt</a>),<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> Bayesian additive regression trees (R package <a href="http://cran.r-project.org/web/packages/BayesTree/index.html">BayesTree</a>),<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> classification and regression trees (R package <a href="https://github.com/susanathey/causalTree">causalTree</a>) <span class="citation" data-cites="athey_imbens_2016">(<a href="#ref-athey_imbens_2016" role="doc-biblioref">Athey and Imbens 2016</a>)</span> random forests or “causal forests” <span class="citation" data-cites="wager_athey_2016">(<a href="#ref-wager_athey_2016" role="doc-biblioref">Wager and Athey 2016</a>)</span>, and kernel regularized least squares (R package <a href="http://cran.r-project.org/web/packages/KRLS/index.html">KRLS</a>).<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<p>In addition to single machine learning methods, ensemble methods may be used. Ensemble methods estimate a weighted average of multiple machine learning estimates of heterogeneous effects where the weights are a function of out-of-sample prediction performance.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
 </section>
-<section id="a-note-on-interactions-between-treatment-and-post-treatment-covariates" class="level1">
-<h1>A Note on Interactions between Treatment and Post-Treatment Covariates</h1>
-<p>The discussion thus far has assumed that the treatment effect heterogeneity of interest involves pre-treatment covariates, to ensure unbiased estimation of CATEs and treatment-by-covariate interaction effects.</p>
-<p>Some researchers may be interested in post-treatment effect modification, or the interaction between a treatment and a post-treatment covariate. For example, how do the effects of a job search assistance program vary with participants’ levels of depression during the followup period? Conditioning on a post-treatment covariate may lead to bias, because biased estimation of both the main effect and the interaction effects is possible when a post-treatment covariate is included as a regressor. This is especially likely when the covariate is affected by the treatment.</p>
-<p>There is a burgeoning body of methodological research on the conditions under which CATEs involving post-treatment covariates are identified. These methods rely on model-based identification.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
-</section>
-<section id="references" class="level1">
+<section id="references" class="level1" data-number="11">
 
 
 
@@ -441,36 +295,27 @@ Y_i &amp;= \alpha + \beta Z_i + \gamma X_i + \delta Z_iX_i + \varepsilon_i .
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-anderson_2008" class="csl-entry" role="listitem">
 Anderson, Michael L. 2008. <span>“Multiple Inference and Gender Differences in the Effects of Early Intervention: A Reevaluation of the Abecedarian, Perry Preschool, and Early Training Projects.”</span> <em>Journal of the American Statistical Association</em> 103: 1481–95.
+</div>
+<div id="ref-angristpischke" class="csl-entry" role="listitem">
+Angrist, J., and J. Pischke. 2009. <em>Mostly Harmless Econometrics</em>. Princeton University Press.
 </div>
 <div id="ref-athey_imbens_2016" class="csl-entry" role="listitem">
 Athey, Susan, and Guido W. Imbens. 2016. <span>“Recursive Partitioning for Heterogeneous Causal Effects.”</span> <em>Proceedings of the National Academy of Sciences</em> 113: 7353–60.
 </div>
-<div id="ref-benjamini_2010" class="csl-entry" role="listitem">
-Benjamini, Yoav. 2010. <span>“Discovering the False Discovery Rate.”</span> <em>Journal of the Royal Statistical Society, Series B</em> 72: 405–16.
+<div id="ref-bansak2021" class="csl-entry" role="listitem">
+Bansak, K. 2021. <span>“Estimating Causal Moderation Effects with Randomized Treatments and Non-Randomized Moderators.”</span> <em>Journal of the Royal Statistical Society Series A: Statistics in Society</em> 184 (1): 65–86.
 </div>
-<div id="ref-benjamini_hochberg_1995" class="csl-entry" role="listitem">
-Benjamini, Yoav, and Yosef Hochberg. 1995. <span>“Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing.”</span> <em>Journal of the Royal Statistical Society, Series B</em> 57: 289–300.
-</div>
-<div id="ref-bretz_et_al_2011" class="csl-entry" role="listitem">
-Bretz, Frank, Torsten Hothorn, and Peter H. Westfall. 2011. <em>Multiple Comparisons Using r</em>.
+<div id="ref-blair2021" class="csl-entry" role="listitem">
+Blair, Weinstein, G. 2021. <span>“Community Policing Does Not Build Citizen Trust in Police or Reduce Crime in the Global South.”</span> <em>Science</em> 1098.
 </div>
 <div id="ref-chipman_et_al_2010" class="csl-entry" role="listitem">
 Chipman, H. A., E. I. George, and R. E. McCulloch. 2010. <span>“BART: Bayesian Additive Regression Trees.”</span> <em>Annals of Applied Statistics</em> 20 (1): 271–40.
 </div>
 <div id="ref-cook_farewell_1996" class="csl-entry" role="listitem">
 Cook, Richard J., and Vern T. Farewell. 1996. <span>“Multiplicity Considerations in the Design and Analysis of Clinical Trials.”</span> <em>Journal of the Royal Statistical Society, Series A</em> 159: 93–110.
-</div>
-<div id="ref-ding_et_al_2016" class="csl-entry" role="listitem">
-Ding, Peng, Avi Feller, and Luke Miratrix. 2016. <span>“Randomization Inference for Treatment Effect Variation.”</span> <em>Journal of the Royal Statistical Society, Series B</em> 78: 655–71.
-</div>
-<div id="ref-dudoit_van_der_laan_2008" class="csl-entry" role="listitem">
-Dudoit, Sandrine, and Mark J. van der Laan. 2008. <span>“Multiple Testing Procedures with Applications to Genomics.”</span>
-</div>
-<div id="ref-efron_2010" class="csl-entry" role="listitem">
-Efron, Bradley. 2010. <em>Large-Scale Inference: Empirical Bayes Methods for Estimation, Testing, and Prediction</em>. Cambridge University Press.
 </div>
 <div id="ref-gelman_et_al_2012" class="csl-entry" role="listitem">
 Gelman, Andrew, Jennifer Hill, and Masanao Yajima. 2012. <span>“Why We (Usually) Don’t Have to Worry about Multiple Comparisons.”</span> <em>Journal of Research on Educational Effectiveness</em> 5: 189–211.
@@ -484,9 +329,6 @@ Green, Donald P., and Holger L. Kern. 2012. <span>“Modeling Heterogeneous Trea
 <div id="ref-grimmer_et_al_2014" class="csl-entry" role="listitem">
 Grimmer, Justin, Solomon Messing, and Sean J. Westwood. 2014. <span>“Estimating Heterogeneous Treatment Effects and the Effects of Heterogeneous Treatments with Ensemble Methods.”</span>
 </div>
-<div id="ref-gubits_et_al_2014" class="csl-entry" role="listitem">
-Gubits, Daniel, Winston Lin, Stephen Bell, and David Judkins. 2014. <span>“BOND Implementation and Evaluation: First- and Second-Year Snapshot of Earnings and Benefit Impacts for Stage 2.”</span> Abt Associates.
-</div>
 <div id="ref-hainmueller_hazlett_2013" class="csl-entry" role="listitem">
 Hainmueller, Jens, and Chad Hazlett. 2013. <span>“Kernel Regularized Least Squares: Reducing Misspecification Bias with a Flexible and Interpretable Machine Learning Approach.”</span> <em>Political Analysis</em>.
 </div>
@@ -499,26 +341,8 @@ Imai, Kosuke, and Marc Ratkovic. 2013. <span>“Estimating Treatment Effect Hete
 <div id="ref-van_der_laan_et_al_2007" class="csl-entry" role="listitem">
 Laan, Mark J. van der, Eric Polley, and Alan Hubbard. 2007. <span>“Super Learner.”</span> <em>Statistical Applications in Genetics and Molecular Biology</em> 6 (1).
 </div>
-<div id="ref-list_et_al_2016" class="csl-entry" role="listitem">
-List, John A., Azeem M. Shaikh, and Yang Xu. 2016. <span>“Multiple Hypothesis Testing in Experimental Economics.”</span> <em>NBER Working Paper 21875.</em>
-</div>
 <div id="ref-olken_2015" class="csl-entry" role="listitem">
 Olken, Benjamin A. 2015. <span>“Promises and Perils of Pre-Analysis Plans.”</span> <em>Journal of Economic Perspectives</em> 29 (3): 61–80.
-</div>
-<div id="ref-pollard_et_al_2004" class="csl-entry" role="listitem">
-Pollard, Katherine S., Sandrine Dudoit, and Mark J. van der Laan. n.d. <span>“Multiple Testing Procedures: R Multtest Package and Applications to Genomics.”</span>
-</div>
-<div id="ref-porter_2016" class="csl-entry" role="listitem">
-Porter, Kirstin E. 2016. <span>“Statistical Power in Evaluations That Investigate Effects on Multiple Outcomes: A Guide for Researchers.”</span>
-</div>
-<div id="ref-romano_wolf_2005a" class="csl-entry" role="listitem">
-Romano, Joseph P., and Michael Wolf. 2005a. <span>“2005.”</span> <em>Exact and Approximate Stepdown Methods for Multiple Hypothesis Testing</em> 100: 94–108.
-</div>
-<div id="ref-romano_wolf_2005b" class="csl-entry" role="listitem">
-———. 2005b. <span>“Stepwise Multiple Testing as Formalized Data Snooping.”</span> <em>Econometrica</em> 73: 1237–82.
-</div>
-<div id="ref-romano_wolf_2016" class="csl-entry" role="listitem">
-———. 2016. <span>“Efficient Computation of Adjusted p-Values for Resampling-Based Stepdown Multiple Testing.”</span> <em>Statistics and Probability Letters</em> 113: 38–40.
 </div>
 <div id="ref-schulz_grimes_2005a" class="csl-entry" role="listitem">
 Schulz, Kenneth F., and David A. Grimes. 2005a. <span>“Multiplicity in Randomised Trials i: Endpoints and Treatments.”</span> <em>Lancet</em> 365: 1591–95.
@@ -547,19 +371,16 @@ Westfall, Peter H., Randall D. Tobias, and Russell D. Wolfinger. 2011. <em>Multi
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>This guide draws heavily from <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span> and from Don Green’s course notes for Experimental Methods at Columbia University.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>This guide draws heavily from <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span> and from <a href="http://www.donaldgreen.com/">Don Green</a>’s course notes on experimental methods at Columbia University and builds on an older version of this guide by <a href="https://albertfang.com/">Albert Fang</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>This is known as the Fundamental Problem of Causal Inference. For more background, see <a href="https://methods.egap.org/guides/causal-inference/causal-inference_en.html">10 Things You Need to Know About Causal Inference</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>For further reading, see <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span> and <span class="citation" data-cites="ding_et_al_2016">Ding, Feller, and Miratrix (<a href="#ref-ding_et_al_2016" role="doc-biblioref">2016</a>)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>For more background and a range of views on the multiple comparisons problem, see, e.g.: <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">10 Things You Need to Know About Multiple Comparisons</a>; <span class="citation" data-cites="cook_farewell_1996">Cook and Farewell (<a href="#ref-cook_farewell_1996" role="doc-biblioref">1996</a>)</span>; <span class="citation" data-cites="schulz_grimes_2005a">Schulz and Grimes (<a href="#ref-schulz_grimes_2005a" role="doc-biblioref">2005a</a>)</span>; <span class="citation" data-cites="schulz_grimes_2005b">Schulz and Grimes (<a href="#ref-schulz_grimes_2005b" role="doc-biblioref">2005b</a>)</span>; <span class="citation" data-cites="anderson_2008">Anderson (<a href="#ref-anderson_2008" role="doc-biblioref">2008</a>)</span>; <span class="citation" data-cites="westfall_et_al_2011">Westfall, Tobias, and Wolfinger (<a href="#ref-westfall_et_al_2011" role="doc-biblioref">2011</a>)</span>; <span class="citation" data-cites="gelman_et_al_2012">Gelman, Hill, and Yajima (<a href="#ref-gelman_et_al_2012" role="doc-biblioref">2012</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>The Westfall–Young method’s ability to control the FWER depends on a “subset pivotality” assumption that may be violated when outcomes are heteroskedastic or when there are multiple treatment arms. <span class="citation" data-cites="westfall_et_al_2011">Westfall, Tobias, and Wolfinger (<a href="#ref-westfall_et_al_2011" role="doc-biblioref">2011</a>)</span> (p.&nbsp;421) write: “However, this theoretical shortcoming is only rarely a practical one for continuously distributed data. Experience shows that this issue is most likely to arise in cases with extreme heteroscedasticity and unbalanced sample sizes. … These issues can become even more problematic when testing binary data.” See also <span class="citation" data-cites="bretz_et_al_2011">Bretz, Hothorn, and Westfall (<a href="#ref-bretz_et_al_2011" role="doc-biblioref">2011</a>)</span>, pp.&nbsp;133–137. Bootstrap methods that relax the subset pivotality assumption are discussed in: <span class="citation" data-cites="romano_wolf_2005a">Romano and Wolf (<a href="#ref-romano_wolf_2005a" role="doc-biblioref">2005a</a>)</span>; <span class="citation" data-cites="romano_wolf_2005b">Romano and Wolf (<a href="#ref-romano_wolf_2005b" role="doc-biblioref">2005b</a>)</span>; <span class="citation" data-cites="romano_wolf_2016">Romano and Wolf (<a href="#ref-romano_wolf_2016" role="doc-biblioref">2016</a>)</span>; <span class="citation" data-cites="list_et_al_2016">List, Shaikh, and Xu (<a href="#ref-list_et_al_2016" role="doc-biblioref">2016</a>)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>This description of the algorithm is adapted from <span class="citation" data-cites="anderson_2008">Anderson (<a href="#ref-anderson_2008" role="doc-biblioref">2008</a>)</span> and <span class="citation" data-cites="gubits_et_al_2014">Gubits et al. (<a href="#ref-gubits_et_al_2014" role="doc-biblioref">2014</a>)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>See <span class="citation" data-cites="pollard_et_al_2004">Pollard, Dudoit, and Laan (<a href="#ref-pollard_et_al_2004" role="doc-biblioref">n.d.</a>)</span>; <span class="citation" data-cites="dudoit_van_der_laan_2008">Dudoit and Laan (<a href="#ref-dudoit_van_der_laan_2008" role="doc-biblioref">2008</a>)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Strictly speaking, to guarantee that the Benjamini–Hochberg procedure controls the FDR, we need to assume either that the <span class="math inline">\(p\)</span>-values corresponding to the true null hypotheses are independent or that they obey a positive dependence condition. For a brief overview of work addressing dependence, see section 3.2 of <span class="citation" data-cites="benjamini_2010">Benjamini (<a href="#ref-benjamini_2010" role="doc-biblioref">2010</a>)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>See, for example, <span class="citation" data-cites="imai_ratkovic_2013">Imai and Ratkovic (<a href="#ref-imai_ratkovic_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>See <span class="citation" data-cites="chipman_et_al_2010">Chipman, George, and McCulloch (<a href="#ref-chipman_et_al_2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="hill_2011">Hill (<a href="#ref-hill_2011" role="doc-biblioref">2011</a>)</span>; <span class="citation" data-cites="green_kern_2012">Green and Kern (<a href="#ref-green_kern_2012" role="doc-biblioref">2012</a>)</span>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>See <span class="citation" data-cites="hainmueller_hazlett_2013">Hainmueller and Hazlett (<a href="#ref-hainmueller_hazlett_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn12"><p>See <span class="citation" data-cites="van_der_laan_et_al_2007">Laan, Polley, and Hubbard (<a href="#ref-van_der_laan_et_al_2007" role="doc-biblioref">2007</a>)</span>; <span class="citation" data-cites="grimmer_et_al_2014">Grimmer, Messing, and Westwood (<a href="#ref-grimmer_et_al_2014" role="doc-biblioref">2014</a>)</span>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn13"><p>For further reading (at an advanced technical level), see <span class="citation" data-cites="vansteelandt_goetghebeur_2003">Vansteelandt and Goetghebeur (<a href="#ref-vansteelandt_goetghebeur_2003" role="doc-biblioref">2003</a>)</span>; <span class="citation" data-cites="vansteelandt_goetghebeur_2004">Vansteelandt and Goetghebeur (<a href="#ref-vansteelandt_goetghebeur_2004" role="doc-biblioref">2004</a>)</span>; <span class="citation" data-cites="vansteelandt_2010">Vansteelandt (<a href="#ref-vansteelandt_2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="stephens_et_al_2016">Stephens, Keele, and Joffe (<a href="#ref-stephens_et_al_2016" role="doc-biblioref">2016</a>)</span>.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>We can also define ATEs for subgroups defined by the individuals’ treatment status (e.g., the ATE among those who were assigned to treatment, also called the ATT or average treatment effect on the treated) or individuals’ post-treatment outcomes. We do not focus on these types of CATEs because of estimation challenges described below.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For further reading (at an advanced technical level), see <span class="citation" data-cites="vansteelandt_goetghebeur_2003">Vansteelandt and Goetghebeur (<a href="#ref-vansteelandt_goetghebeur_2003" role="doc-biblioref">2003</a>)</span>; <span class="citation" data-cites="vansteelandt_goetghebeur_2004">Vansteelandt and Goetghebeur (<a href="#ref-vansteelandt_goetghebeur_2004" role="doc-biblioref">2004</a>)</span>; <span class="citation" data-cites="vansteelandt_2010">Vansteelandt (<a href="#ref-vansteelandt_2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="stephens_et_al_2016">Stephens, Keele, and Joffe (<a href="#ref-stephens_et_al_2016" role="doc-biblioref">2016</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>See <span class="citation" data-cites="bansak2021">Bansak (<a href="#ref-bansak2021" role="doc-biblioref">2021</a>)</span> for more on causal moderation.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>For more background and a range of views on the multiple comparisons problem, see, e.g.: <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">10 Things You Need to Know About Multiple Comparisons</a>; <span class="citation" data-cites="cook_farewell_1996">Cook and Farewell (<a href="#ref-cook_farewell_1996" role="doc-biblioref">1996</a>)</span>; <span class="citation" data-cites="schulz_grimes_2005a">Schulz and Grimes (<a href="#ref-schulz_grimes_2005a" role="doc-biblioref">2005a</a>)</span>; <span class="citation" data-cites="schulz_grimes_2005b">Schulz and Grimes (<a href="#ref-schulz_grimes_2005b" role="doc-biblioref">2005b</a>)</span>; <span class="citation" data-cites="anderson_2008">Anderson (<a href="#ref-anderson_2008" role="doc-biblioref">2008</a>)</span>; <span class="citation" data-cites="westfall_et_al_2011">Westfall, Tobias, and Wolfinger (<a href="#ref-westfall_et_al_2011" role="doc-biblioref">2011</a>)</span>; <span class="citation" data-cites="gelman_et_al_2012">Gelman, Hill, and Yajima (<a href="#ref-gelman_et_al_2012" role="doc-biblioref">2012</a>)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>See, for example, <span class="citation" data-cites="imai_ratkovic_2013">Imai and Ratkovic (<a href="#ref-imai_ratkovic_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>See <span class="citation" data-cites="chipman_et_al_2010">Chipman, George, and McCulloch (<a href="#ref-chipman_et_al_2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="hill_2011">Hill (<a href="#ref-hill_2011" role="doc-biblioref">2011</a>)</span>; <span class="citation" data-cites="green_kern_2012">Green and Kern (<a href="#ref-green_kern_2012" role="doc-biblioref">2012</a>)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>See <span class="citation" data-cites="hainmueller_hazlett_2013">Hainmueller and Hazlett (<a href="#ref-hainmueller_hazlett_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>See <span class="citation" data-cites="van_der_laan_et_al_2007">Laan, Polley, and Hubbard (<a href="#ref-van_der_laan_et_al_2007" role="doc-biblioref">2007</a>)</span>; <span class="citation" data-cites="grimmer_et_al_2014">Grimmer, Messing, and Westwood (<a href="#ref-grimmer_et_al_2014" role="doc-biblioref">2014</a>)</span>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -641,10 +462,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -654,8 +492,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -667,7 +514,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -711,6 +681,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -736,6 +707,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -796,6 +793,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

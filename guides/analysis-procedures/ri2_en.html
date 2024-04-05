@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -80,7 +80,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -89,24 +95,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
     </a>
@@ -121,49 +156,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html" rel="" target="">
- <span class="menu-text">Guides</span></a>
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html" rel="" target="">
- <span class="menu-text">Software</span></a>
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
- <span class="menu-text">Coursebook</span></a>
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 Randomization Inference Procedures with ri2</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#randomization-inference-for-the-average-treatment-effect" id="toc-randomization-inference-for-the-average-treatment-effect" class="nav-link active" data-scroll-target="#randomization-inference-for-the-average-treatment-effect">1. Randomization inference for the Average Treatment Effect</a></li>
-  <li><a href="#randomization-inference-for-alternative-designs" id="toc-randomization-inference-for-alternative-designs" class="nav-link" data-scroll-target="#randomization-inference-for-alternative-designs">2. Randomization inference for alternative designs</a></li>
-  <li><a href="#randomization-inference-with-covariate-adjustment" id="toc-randomization-inference-with-covariate-adjustment" class="nav-link" data-scroll-target="#randomization-inference-with-covariate-adjustment">3. Randomization inference with covariate adjustment</a></li>
-  <li><a href="#randomization-inference-for-a-balance-test" id="toc-randomization-inference-for-a-balance-test" class="nav-link" data-scroll-target="#randomization-inference-for-a-balance-test">4. Randomization inference for a balance test</a></li>
-  <li><a href="#randomization-inference-for-treatment-effect-heterogeneity-by-subgroups" id="toc-randomization-inference-for-treatment-effect-heterogeneity-by-subgroups" class="nav-link" data-scroll-target="#randomization-inference-for-treatment-effect-heterogeneity-by-subgroups">5. Randomization inference for treatment effect heterogeneity by subgroups</a></li>
-  <li><a href="#randomization-inference-for-unmodeled-treatment-effect-heterogeneity" id="toc-randomization-inference-for-unmodeled-treatment-effect-heterogeneity" class="nav-link" data-scroll-target="#randomization-inference-for-unmodeled-treatment-effect-heterogeneity">6. Randomization inference for unmodeled treatment effect heterogeneity</a></li>
-  <li><a href="#randomization-inference-for-multi-arm-trials" id="toc-randomization-inference-for-multi-arm-trials" class="nav-link" data-scroll-target="#randomization-inference-for-multi-arm-trials">7. Randomization inference for multi-arm trials</a></li>
-  <li><a href="#randomization-inference-for-joint-significance" id="toc-randomization-inference-for-joint-significance" class="nav-link" data-scroll-target="#randomization-inference-for-joint-significance">8. Randomization inference for joint significance</a></li>
-  <li><a href="#randomization-inference-under-noncompliance" id="toc-randomization-inference-under-noncompliance" class="nav-link" data-scroll-target="#randomization-inference-under-noncompliance">9. Randomization inference under noncompliance</a></li>
-  <li><a href="#randomization-inference-for-arbitrary-test-statistics" id="toc-randomization-inference-for-arbitrary-test-statistics" class="nav-link" data-scroll-target="#randomization-inference-for-arbitrary-test-statistics">10. Randomization inference for arbitrary test statistics</a></li>
-  </ul>
-</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -173,24 +205,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 class="title">10 Randomization Inference Procedures with ri2</h1>
 </div>
 
-
-
 <div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://egap.org/member/alexander-coppock/">Alexander Coppock</a> </p>
-          </div>
-  </div>
     
-  
     
-  </div>
+    
+    
+</div>
   
-
 </header>
 
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#randomization-inference-for-the-average-treatment-effect" id="toc-randomization-inference-for-the-average-treatment-effect"><span class="header-section-number">1</span> Randomization inference for the Average Treatment Effect</a></li>
+  <li><a href="#randomization-inference-for-alternative-designs" id="toc-randomization-inference-for-alternative-designs"><span class="header-section-number">2</span> Randomization inference for alternative designs</a></li>
+  <li><a href="#randomization-inference-with-covariate-adjustment" id="toc-randomization-inference-with-covariate-adjustment"><span class="header-section-number">3</span> Randomization inference with covariate adjustment</a></li>
+  <li><a href="#randomization-inference-for-a-balance-test" id="toc-randomization-inference-for-a-balance-test"><span class="header-section-number">4</span> Randomization inference for a balance test</a></li>
+  <li><a href="#randomization-inference-for-treatment-effect-heterogeneity-by-subgroups" id="toc-randomization-inference-for-treatment-effect-heterogeneity-by-subgroups"><span class="header-section-number">5</span> Randomization inference for treatment effect heterogeneity by subgroups</a></li>
+  <li><a href="#randomization-inference-for-unmodeled-treatment-effect-heterogeneity" id="toc-randomization-inference-for-unmodeled-treatment-effect-heterogeneity"><span class="header-section-number">6</span> Randomization inference for unmodeled treatment effect heterogeneity</a></li>
+  <li><a href="#randomization-inference-for-multi-arm-trials" id="toc-randomization-inference-for-multi-arm-trials"><span class="header-section-number">7</span> Randomization inference for multi-arm trials</a></li>
+  <li><a href="#randomization-inference-for-joint-significance" id="toc-randomization-inference-for-joint-significance"><span class="header-section-number">8</span> Randomization inference for joint significance</a></li>
+  <li><a href="#randomization-inference-under-noncompliance" id="toc-randomization-inference-under-noncompliance"><span class="header-section-number">9</span> Randomization inference under noncompliance</a></li>
+  <li><a href="#randomization-inference-for-arbitrary-test-statistics" id="toc-randomization-inference-for-arbitrary-test-statistics"><span class="header-section-number">10</span> Randomization inference for arbitrary test statistics</a></li>
+  </ul>
+</nav>
 <p>Randomization inference is a procedure for conducting hypothesis tests that takes explicit account of a study’s randomization procedure. See <a href="https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html">10 things about Randomization Inference</a> for more about the theory behind randomization inference. In this guide, we’ll see how to use the <a href="http://alexandercoppock.com/ri2/">ri2 package for r</a> to conduct 10 different analyses. This package was developed with funding from EGAP’s innaugural round of standards grants, which are aimed at projects designed to improve the quality of experimental research.</p>
 <p>To illustrate what you can do with <code>ri2</code>, we’ll use some data from a hypothetical experiment involving 200 students in 20 schools. We’ll consider how to do randomization inference using a variety of different designs, including complete random assignment, block random assignment, cluster random assignment, and a multi-arm trial. You can check the <a href="https://methods.egap.org/guides/data-strategies/randomization_en.html">kinds of random assignment</a> methods guide for more on the varieties of random assignment.</p>
 <p>Follow the links below to download the four datasets we’ll use in the examples:</p>
@@ -199,8 +238,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://raw.githubusercontent.com/egap/methods-guides/master/ri2/blocked_dat.csv">blocked randomization assignment dataset</a></li>
 <li><a href="https://raw.githubusercontent.com/egap/methods-guides/master/ri2/clustered_dat.csv">clustered randomization assignment dataset</a>- <a href="https://raw.githubusercontent.com/egap/methods-guides/master/ri2/three_arm_dat.csv">three-arm randomization assignment datase</a></li>
 </ul>
-<section id="randomization-inference-for-the-average-treatment-effect" class="level1">
-<h1>1. Randomization inference for the Average Treatment Effect</h1>
+<section id="randomization-inference-for-the-average-treatment-effect" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Randomization inference for the Average Treatment Effect</h1>
 <p>We’ll start with the most common randomization inference task: testing an observed average treatment effect estimate against the sharp null hypothesis of no effect for any unit.</p>
 <p>In <code>ri2</code>, you always “declare” the random assignment procedure so the computer knows how treatments were assigned. In the first design we’ll consider, exactly half of the 200 students were assigned to treatment using complete random assignment.</p>
 <div class="cell">
@@ -226,7 +265,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>You can obtain one-sided p-values with a call to <code>summary</code>:</p>
@@ -243,8 +286,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="randomization-inference-for-alternative-designs" class="level1">
-<h1>2. Randomization inference for alternative designs</h1>
+<section id="randomization-inference-for-alternative-designs" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Randomization inference for alternative designs</h1>
 <p>The answer that <code>ri2</code> produces depends deeply on the randomization procedure. The next example imagines that the treatment was blocked at the school level.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>blocked_dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ri2_blocked_dat.csv"</span>)</span>
@@ -263,7 +306,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>A very similar syntax accommodates a cluster randomized trial.</p>
@@ -284,12 +331,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="randomization-inference-with-covariate-adjustment" class="level1">
-<h1>3. Randomization inference with covariate adjustment</h1>
+<section id="randomization-inference-with-covariate-adjustment" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Randomization inference with covariate adjustment</h1>
 <p>Covariate adjustment can often produce large gains in precision. To analyze an experiment with covariate adjustment, simply include the covariates in the <code>formula</code> argument of <code>conduct_ri</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>complete_dec <span class="ot">&lt;-</span> <span class="fu">declare_ra</span>(<span class="at">N =</span> <span class="dv">200</span>)</span>
@@ -307,12 +358,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="randomization-inference-for-a-balance-test" class="level1">
-<h1>4. Randomization inference for a balance test</h1>
+<section id="randomization-inference-for-a-balance-test" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Randomization inference for a balance test</h1>
 <p>You can use randomization inference to conduct a balance test (or randomization check). In this case, we write a function of <code>data</code> that return some balance statistic (the F-statistic from a regression of the treatment assignment on two covariates).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>balance_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
@@ -336,12 +391,16 @@ names were found from a short variable and have been discarded</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="randomization-inference-for-treatment-effect-heterogeneity-by-subgroups" class="level1">
-<h1>5. Randomization inference for treatment effect heterogeneity by subgroups</h1>
+<section id="randomization-inference-for-treatment-effect-heterogeneity-by-subgroups" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Randomization inference for treatment effect heterogeneity by subgroups</h1>
 <p>You can assess whether the treatment engenders different treatment effects among distinct subgroups by comparing the model fit (using an F-statistic) of two nested models:</p>
 <ol type="1">
 <li>A regression of the outcome on the treatment assignment and the subgroup indicator</li>
@@ -366,12 +425,16 @@ names were found from a short variable and have been discarded</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="randomization-inference-for-unmodeled-treatment-effect-heterogeneity" class="level1">
-<h1>6. Randomization inference for unmodeled treatment effect heterogeneity</h1>
+<section id="randomization-inference-for-unmodeled-treatment-effect-heterogeneity" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Randomization inference for unmodeled treatment effect heterogeneity</h1>
 <p>Another way to investigate treatment effect heterogeneity is to consider whether the variance in the treatment and control groups are different. We can therefore test whether the difference-in-variances is larger in magnitude than what we would expect under the sharp null hypothesis of no effect for any unit.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>d_i_v <span class="ot">&lt;-</span> <span class="cf">function</span>(dat) {</span>
@@ -391,12 +454,16 @@ names were found from a short variable and have been discarded</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="randomization-inference-for-multi-arm-trials" class="level1">
-<h1>7. Randomization inference for multi-arm trials</h1>
+<section id="randomization-inference-for-multi-arm-trials" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Randomization inference for multi-arm trials</h1>
 <p>In a three-arm trial, the research might wish to compare each treatment to control separately. To do this, we must change the null hypothesis in a subtle way: we are going to assume the sharp null for each <em>pairwise</em> comparison. For example, when comparing treatment 1 to control, we exclude the subjects assigned to treatment 2 and pretend we simply have a two arm trial conducted among the subjects assigned to control and treatment 1.</p>
 <div class="cell" data-warn="false">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>three_arm_dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ri2_three_arm_dat.csv"</span>)</span>
@@ -418,8 +485,8 @@ names were found from a short variable and have been discarded</code></pre>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot(ri_out)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="randomization-inference-for-joint-significance" class="level1">
-<h1>8. Randomization inference for joint significance</h1>
+<section id="randomization-inference-for-joint-significance" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Randomization inference for joint significance</h1>
 <p>In that same three-arm trial that compares two treatments to a control, we might be interested in testing whether, jointly, the treatments appear to change outcomes relative to the control. This is analogous to a joint F-test, conducted via randomization inference. We assume the sharp null that a unit would express their observed outcome in <em>any</em> of the three conditions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>F_statistic <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
@@ -443,12 +510,16 @@ names were found from a short variable and have been discarded</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="randomization-inference-under-noncompliance" class="level1">
-<h1>9. Randomization inference under noncompliance</h1>
+<section id="randomization-inference-under-noncompliance" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Randomization inference under noncompliance</h1>
 <p>Some experiments encounter noncompliance, the slippage between treatment as assigned and treatment as delivered. The Complier Average Causal Effect (<span class="math inline">\(CACE\)</span>) can be shown (under standard assumptions plus monotonicity) to be the ratio of the effect of assignment on the outcome – the “Intention-to-Treat” (<span class="math inline">\(ITT_y\)</span>) and the effect of assignment on treatment receipt the (<span class="math inline">\(ITT_D\)</span>). (The <span class="math inline">\(CACE\)</span> is also called Local Average Treatment Effect. See our guide <a href="https://egap.org/resource/10-things-to-know-about-the-local-average-treatment-effect/">10 Things to Know About the Local Average Treatment Effect</a> for more details.) Because the <span class="math inline">\(CACE\)</span> is just a rescaled, <span class="math inline">\(ITT_y\)</span>, a hypothesis test with respect to the <span class="math inline">\(ITT_y\)</span> is a valid test for the <span class="math inline">\(CACE\)</span>. In practice, researchers can simply conduct a randomization inference test exactly as they would for the ATE, ignoring noncompliance altogether.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ITT_y <span class="ot">=</span> <span class="fu">with</span>(complete_dat, <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>])) </span>
@@ -469,12 +540,16 @@ names were found from a short variable and have been discarded</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="randomization-inference-for-arbitrary-test-statistics" class="level1">
-<h1>10. Randomization inference for arbitrary test statistics</h1>
+<section id="randomization-inference-for-arbitrary-test-statistics" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Randomization inference for arbitrary test statistics</h1>
 <p><code>ri2</code> can accommodate <em>any</em> scalar test statistic. A favorite among some analysts is the Wilcox rank-sum statistic, which can be extracted from the <code>wilcox.test()</code> function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>wilcox_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(data){</span>
@@ -499,14 +574,18 @@ names were found from a short variable and have been discarded</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="ri2_en_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="ri2_en_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 
 
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -586,10 +665,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -599,8 +695,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -612,7 +717,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -656,6 +884,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -681,6 +910,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -741,6 +996,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

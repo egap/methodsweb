@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Methods -</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/planning/pap.en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/planning/pap.es.html"><img src="https://flagcdn.com/w20/es.png" width="20px">&nbsp;&nbsp;Spanish</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/how-to-read.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to read this guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+ <span class="menu-text">Language</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/planning/pap.en.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/gb.png" width="20px">&nbsp;&nbsp;English</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/planning/pap.fr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/planning/pap.es.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/es.png" width="20px">&nbsp;&nbsp;Spanish</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#resumen" id="toc-resumen"><span class="header-section-number">1</span> Resumen</a></li>
+  <li><a href="#qué-es-un-plan-de-análisis-previo-pap" id="toc-qué-es-un-plan-de-análisis-previo-pap"><span class="header-section-number">2</span> ¿Qué es un Plan de Análisis Previo (PAP)?</a></li>
+  <li><a href="#qué-incluye-un-pap-resumen-del-diseño-de-investigación." id="toc-qué-incluye-un-pap-resumen-del-diseño-de-investigación."><span class="header-section-number">3</span> ¿Qué incluye un PAP? Resumen del diseño de investigación.</a></li>
+  <li><a href="#qué-incluye-un-pap-hipótesis." id="toc-qué-incluye-un-pap-hipótesis."><span class="header-section-number">4</span> ¿Qué incluye un PAP? Hipótesis.</a></li>
+  <li><a href="#qué-incluye-un-pap-construcción-de-índices-y-mediciones." id="toc-qué-incluye-un-pap-construcción-de-índices-y-mediciones."><span class="header-section-number">5</span> ¿Qué incluye un PAP? Construcción de índices y mediciones.</a></li>
+  <li><a href="#qué-incluye-un-pap-procedimiento-de-estimación." id="toc-qué-incluye-un-pap-procedimiento-de-estimación."><span class="header-section-number">6</span> ¿Qué incluye un PAP? Procedimiento de estimación.</a></li>
+  <li><a href="#infcrit" id="toc-infcrit"><span class="header-section-number">7</span> ¿Qué incluye un PAP? Criterios de Inferencia</a></li>
+  <li><a href="#qué-incluye-un-pap-procedimientos-para-problemas-de-datos" id="toc-qué-incluye-un-pap-procedimientos-para-problemas-de-datos"><span class="header-section-number">8</span> ¿Qué incluye un PAP? Procedimientos para Problemas de Datos</a></li>
+  <li><a href="#qué-incluye-un-pap-análisis-de-poder." id="toc-qué-incluye-un-pap-análisis-de-poder."><span class="header-section-number">9</span> ¿Qué incluye un PAP? Análisis de poder.</a></li>
+  <li><a href="#por-qué-hacer-un-pap" id="toc-por-qué-hacer-un-pap"><span class="header-section-number">10</span> ¿Por qué hacer un PAP?</a></li>
+  <li><a href="#cómo-y-dónde-se-registran-los-pap" id="toc-cómo-y-dónde-se-registran-los-pap"><span class="header-section-number">11</span> ¿Cómo y dónde se registran los PAP?</a></li>
+  <li><a href="#referencias" id="toc-referencias"><span class="header-section-number">12</span> Referencias</a></li>
+  </ul>
+</nav>
+<style>
+.comment{
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 25px;
+border-radius: 5px;
+color: black;
+}
+
+</style>
+<!-- title: "10 Things to Know About Pre-Analysis Plans" -->
+<!-- author: "Methods Guide Authors: Nuole (Lula) Chen and Christopher Grady" -->
+<section id="resumen" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Resumen</h1>
+<p>Esta guía explica qué es un Plan de Análisis Previo (PAP) y para qué se usa, presenta preguntas orientativas para facilitar la redacción de planes de preanálisis para sus estudios y ofrece un modelo de PAP. Al final de este documento se incluyen enlaces a registros de PAP aprobados que pueden servir como ejemplos prácticos.</p>
+</section>
+<section id="qué-es-un-plan-de-análisis-previo-pap" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> ¿Qué es un Plan de Análisis Previo (PAP)?</h1>
+<p>Un PAP es un documento que declara y formaliza el plan de diseño y análisis de un estudio. Se redacta antes de realizar el análisis y suele registrarse en un sitio web de terceros.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Los objetivos del PAP son: mejorar las opciones de diseño de la investigación, aumentar la transparencia en la investigación y permitir que otros académicos repliquen el análisis. Por ello, recomendamos enfocar el PAP en detalles que ayuden a analizar su estudio y permitan a otros investigadores replicar su análisis. Puede incluirse una breve sección sobre teoría que ayude a articular las hipótesis, pero no es necesario incluir una sección detallada de teoría y literatura. No es necesario que el PAP incluya tampoco la primera parte de un artículo académico, si esta no sirve para clarificar su análisis, o si no ayuda a que los lectores repliquen su análisis. En las siguientes seciones proporcionaremos información y ejemplos sobre los detalles que se deben incluir en los PAP. También recomendamos incluir la mayor cantidad posible de código y análisis de datos simulados. Si bien muchos PAPs no podrán incluir todo lo que aparece en nuestra lista, todo PAP debería incluir, como mínimo, la lista completa de hipótesis que se pretenden evaluar, la forma en que se medirán las variables relevantes para operacionalizar dichas hipótesis y un sello de tiempo verificable.</p>
+</section>
+<section id="qué-incluye-un-pap-resumen-del-diseño-de-investigación." class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> ¿Qué incluye un PAP? Resumen del diseño de investigación.</h1>
+<p>La primera sección de un PAP debe presentar un breve resumen del diseño de su investigación. Si el estudio es un experimento, describa el procedimiento de aleatorización y la intervención o procedimiento experimental. Si el estudio no es un experimento, describa los datos. Estas descripciones deben incluir: (1) unidad de análisis, población y criterios de inclusión/exclusión, (2) tipo de método (observacional, experimental, cuasi-experimental), (3) intervención experimental o variable explicativa y (4) variables de resultado de interés.</p>
+<p class="comment">
+<strong>Ejemplo:</strong> Utilicemos una versión simplificada de una intervención experimental en Malawi como ejemplo práctico. <br><br> Utilizamos un experimento de aleatorización en bloque para evaluar el efecto de la información y la prestación de servicios públicos (variable explicativa) sobre el cumplimiento fiscal (variable de resultado) en Malawi, donde la prestación de servicios públicos es baja y el incumplimiento en el pago de impuestos es alto. <br><br> Nuestra unidad de análisis es el hogar habitado por su propietario en una ciudad de Malawi. Excluimos a los inquilinos porque sólo los propietarios pagan los impuestos municipales pertinentes para nuestro estudio. Agrupamos los hogares en 80 vecindarios, compuestos de aproximadamente 20 hogares cada uno. Cada vecindario es un bloque por lo que 10 hogares de cada vecindario se asignan al tratamiento y 10 hogares al control.<br><br> Nuestra intervención consistió en el suministro de información y de servicios públicos. Proporcionamos gratuitamente dos rondas de recojo de basura por hogar. Estos fueron seguidos por la visita de un encuestador al hogar para explicar ¿al propietario? cómo el pago de impuestos financia los servicios de la ciudad, como por ejemplo el recojo de residuos, y distribuimos un folleto con más información sobre el pago de impuestos.<br><br> Antes y después de la intervención realizamos una encuesta y recogemos datos administrativos sobre el pago de impuestos. Nuestra principal variable de resultado es el cumplimiento fiscal (pagos de impuestos municipales).
+</p>
+</section>
+<section id="qué-incluye-un-pap-hipótesis." class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> ¿Qué incluye un PAP? Hipótesis.</h1>
+<p>El PAP debe especificar sus hipótesis; es decir, cuále(s) es(son) la(s) relación(es) que se espera observar entre variables. La formulación de una hipótesis debe dejar claro si se trabaja con pruebas de una o dos colas (por ejemplo, predecir un aumento, una disminución o un cambio en la variable de resultado). Hay dos tipos de hipótesis que debe considerar en su PAP: confirmatorias y exploratorias. Las hipótesis confirmatorias son el objetivo principal de la mayoría de los estudios; son las hipótesis que su estudio está diseñado para comprobar. Las pruebas de análisis sobre estas hipótesis tendrán un gran poder estadístico y, por lo general, tendrán una teoría sólida que conduce a estas hipótesis a priori.</p>
+<p><strong>Las hipótesis exploratorias</strong> son hipótesis que se desean probar, pero que no son el objetivo principal del estudio. Suelen ser hipótesis secundarias sobre mecanismos, subgrupos, efectos heterogéneos o variables de resultado descendentes. Puede que los análisis guiados por estas hipótesis no tengan un buen poder y que su teoría no se enfoque en estos efectos, pero el análisis de estas hipótesis puede llevar a descubrimientos sorprendentes.</p>
+<p>Algunas personas prefieren enumerar pocas hipótesis y otras prefieren enumerar muchas. Como norma, debe intentar incluir solo las hipótesis que se relacionan con su teoría o intervención. Puede tratarse de una sola variable de resultado, pero si su intervención experimental o teoría hace predicciones sobre 8 variables de resultado, debe enumerar las hipótesis para esas 8 variables de resultado. Si su intervención o teoría experimental presenta mecanismos específicos a través de los cuales la variable explicativa afecta a una o varias variables de resultado, esos mecanismos deben quedar claros también en la sección de hipótesis.</p>
+<p>Tenga en cuenta que al tener más de una hipótesis, tendrá que especificar un procedimiento para manejar múltiples hipótesis en la sección de criterios de inferencia de su PAP, ya sea corrigiendo pruebas múltiples o agregando todas las hipótesis en un índice o una prueba ómnibus.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Si utiliza una prueba ómnibus, podría enumerar todas las variables de resultado bajo una sola hipótesis. Consulte nuestra sección sobre <a href="#infcrit">criterios de inferencia</a> para obtener más información sobre la corrección de pruebas múltiples.</p>
+<ul class="comment">
+<strong>Ejemplo:</strong> Hipótesis<br><br> Especificamos nuestra hipótesis confirmatoria de la siguiente manera:
+<ul>
+<li>
+H: El tratamiento aumentará el cumplimiento fiscal entre los hogares de tratamiento vs.&nbsp;los hogares de control.
+</li>
+</ul>
+<br> A través de las siguientes hipótesis exploratorias, nos gustaría explorar qué asuntos pueden estar mostrando cambios de actitud:
+<ul>
+<li>
+H: El tratamiento aumentará la creencia de que la ciudad merece recaudar impuestos entre los hogares de tratamiento vs.&nbsp;los hogares de control.
+</li>
+<li>
+H: El tratamiento aumentará la creencia en la capacidad de servicio de la ciudad entre los hogares de tratamiento vs.&nbsp;los hogares de control.
+</li>
+<li>
+H: El tratamiento aumentará la creencia en la capacidad de hacer cumplir las leyes tributarias de la ciudad entre los hogares de tratamiento vs.&nbsp;los hogares de control.
+</li>
+<!--También podríamos enumerar las hipótesis exploratorias sobre el mecanismo a través del cual el tratamiento afecta al cumplimiento fiscal, como por ejemplo (1) aumento de la creencia en la capacidad de servicio de la ciudad, (2) aumento de la creencia en la capacidad de ejecución de la ciudad, (3) aumento de la creencia de que la ciudad merece recaudar impuestos, (4) aumento del conocimiento sobre la conexión entre impuestos y servicios, y (5) aumento de la satisfacción con el gobierno de la ciudad. Por ejemplo, "los hogares en los que el tratamiento aumenta su satisfacción con el gobierno de la ciudad, tienen más probabilidades de aumentar el cumplimiento fiscal". "Cuanto mayor sea el aumento de la satisfacción de los hogares con el gobierno de la ciudad, más probable será que el hogar aumente el cumplimiento fiscal.”-->
+</ul>
+</ul></section>
+<section id="qué-incluye-un-pap-construcción-de-índices-y-mediciones." class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> ¿Qué incluye un PAP? Construcción de índices y mediciones.</h1>
+<p>El PAP debe especificar la forma en que se mide u operacionalizan las variables de interés, incluidos las variables de resultados, las covariables y las variables explicativas. Estas operacionalizaciones pueden ser incluidas en una sección propia, o luego de la presentación de la hipótesis para la que cada variable es relevante.</p>
+<p>El PAP debe precisar también la forma en que se mide cada variable (como preguntas de encuestas o entrevistas, datos administrativos, mediciones de comportamiento/observación, etc.) y con qué hipótesis se relaciona. Los detalles de estas mediciones, como la redacción precisa de las preguntas de la encuesta, deben incluirse en esta sección o en un apéndice. Si se utilizan índices o factores, o si se combinan variables de resultado de otra forma, se debe especificar cómo se construirán estas variables de resultado combinadas. Si de alguna manera se manipulan o transforman las variables de resultado (como calculando el logaritmo de una variable), describa el proceso de manipulación o transformación. Recomendamos que se incluya en su PAP código, para demostrar cómo planea ejecutar la transformación de datos.</p>
+<p class="comment">
+<strong>Ejemplo:</strong> Construcción de índices y mediciones<br><br> Medimos nuestra variable de resultado principal, el <em>cumplimiento fiscal</em>, utilizando datos administrativos sobre el pago de impuestos de los ciudadanos. La medición de cumplimiento fiscal toma el valor de <span class="math inline">\(0\)</span> si el hogar no pagó impuestos y <span class="math inline">\(1\)</span> si el hogar pagó impuestos.<br><br> Nuestra variable explicativa es la asignación al tratamiento, en donde a los individuos asignados al tratamiento se les asigna <span class="math inline">\(1\)</span> y a los individuos asignados al control se les asigna <span class="math inline">\(0\)</span>.<br><br> También creamos un índice de “actitudes hacia el gobierno” utilizando ponderaciones de covarianza inversa (Inverse Covariance Weights, ICW) de 6 preguntas de la encuesta, en donde los valores más altos significan actitudes más positivas hacia el gobierno. El índice ICW pondera las preguntas de la línea de base por la covarianza de las respuestas en el grupo de control de base, y pondera las preguntas de la línea final por la covarianza de las respuestas en el grupo de control de la línea final. A continuación estandarizamos la escala de ICW por una desviación estándar, de modo que un 1 en la línea de base significa 1 desviación estándar (DE) por encima de la media de la línea de base, y un 1 en la línea final significa 1 DE por encima de la media de la línea final.
+</p>
+</section>
+<section id="qué-incluye-un-pap-procedimiento-de-estimación." class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> ¿Qué incluye un PAP? Procedimiento de estimación.</h1>
+<p>Una vez que ha especificado el diseño del estudio, las hipótesis y las variables, está listo para discutir los procedimientos de pruebas y estimaciones. Esta sección debe especificar de manera clara lo que se está estimando (es decir, el estimando) y cómo se pretende estimarlo (es decir, el estimador). Por ejemplo, muchos estudios estiman el efecto promedio del tratamiento de una intervención experimental utilizando la regresión lineal de mínimos cuadrados ordinarios como estimador.. En esta sección, establezca claramente la especificación de su modelo, incluyendo sus variables de resultado, las variables explicativas y las covariables, así como la prueba de significancia a aplicar. Recomendamos incluir código para el modelo estadístico o la forma funcional del modelo estadístico en el PAP.</p>
+<p class="comment">
+<strong>Ejemplo:</strong> Procedimiento de estimación<br><br> Procedimiento de estimación. Estimamos el efecto de la campaña de información y del servicio de recojo de basura sobre el pago de los impuestos municipales entre los residentes con un análisis de intención de tratar. Nuestro estimando es el efecto promedio del tratamiento.br&gt;<br> Si tenemos balance entre las variables de resultado de la línea inicial y final, podremos usar el siguiente estimador para estimar el efecto promedio de tratamiento: <br><br> <span class="math inline">\(Y_{i,j} = \beta_0 + \beta_1Z_{i,j} + X_{i,j}+ \epsilon_{i,j}\)</span><br><br> donde <span class="math inline">\(i\)</span> es el individuo en el vecindario <span class="math inline">\(j\)</span>, <span class="math inline">\(Z\)</span> es el indicador del tratamiento, y <span class="math inline">\(Y\)</span> la variable de resultado. <span class="math inline">\(X\)</span> es la variable de resultado de referencia inicial para el individuo <span class="math inline">\(i\)</span>. Utilizaremos pesos de regresión proporcionales al tamaño de los vecindarios <span class="math inline">\(j\)</span>. Si las variables de resultado de referencia inicial y final no están balanceadas, utilizaremos la puntuación de cambio, <span class="math inline">\(Y_i = Y_{i,endline} - Y_{i,baseline}\)</span> y no usaremos <span class="math inline">\(X\)</span>.
+</p>
+</section>
+<section id="infcrit" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> ¿Qué incluye un PAP? Criterios de Inferencia</h1>
+<p>Los criterios de inferencia son reglas de decisión que determinan la detectabilidad de los efectos (es decir, si una variable explicativa afecta realmente a una variable de resultado). Se requiere tomar varias decisiones para establecer criterios de inferencia, respecto a cuándo aceptar que el efecto estimado es “estadísticamente y significativamente diferente” con respecto a las hipótesis nulas. Se recomienda especificar y justificar de manera clara las respuestas a las siguientes preguntas:</p>
+<ol type="1">
+<li>¿Qué tipo de errores estándar va a utilizar? ¿Por qué utilizará este tipo de errores estándar? <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</li>
+<li>¿Se piensa hacer una prueba de una cola o de dos colas?<br>
+</li>
+<li>¿A qué nivel <span class="math inline">\(\alpha\)</span> se rechazará la hipótesis nula de un valor <span class="math inline">\(p\)</span>?<br>
+</li>
+<li>¿Se tienen varias hipótesis? Si es así, ¿qué procedimiento se utilizará para ajustar las <a href="https://egap.org/resource/10-things-to-know-about-multiple-comparisons">comparaciones múltiples</a>?</li>
+</ol>
+<p>Puede optar por utilizar varios procedimientos para los criterios de inferencia. Por ejemplo, puede utilizar tanto los ajustes FWER como FDR para las comparaciones múltiples, y comparar entre ambos. O podría querer utilizar los valores <span class="math inline">\(p\)</span> de la inferencia por aleatorización como una comprobación de los valores <span class="math inline">\(p\)</span> de una distribución nula que se supone como normal. Si decide utilizar varios procedimientos, debe especificar cómo interpretará estos resultados, si los distintos procedimientos llegan a conclusiones diferentes.</p>
+<p class="comment">
+<strong>Ejemplo:</strong><br><br> Utilizamos los errores estándar HC2 con nuestro experimento aleatorio en bloque, porque es equivalente al estimador de varianza de Neyman basado en la aleatorización <span class="citation" data-cites="samii2012">(<a href="#ref-samii2012" role="doc-biblioref">Samii and Aronow 2012</a>)</span>. Esperamos que el grupo de tratamiento pague más impuestos municipales que el grupo de control, por lo tanto utilizamos una prueba de una cola en la que <span class="math inline">\(H_1 &gt; H_0\)</span>. Establecemos <span class="math inline">\(\alpha = 0,05\)</span> y rechazamos la hipótesis nula cuando el valor <span class="math inline">\(p\)</span> es inferior a 0,05. Como sólo tenemos una hipótesis confirmatoria, no ajustamos para comparaciones múltiples. <br><br> Como comprobación de los errores estándar HC2, también calculamos los valores <span class="math inline">\(p\)</span> utilizando directamente la <a href="https://egap.org/resource/10-things-to-know-about-randomization-inference">inferencia por aleatorización</a>, con la diferencia de medias como prueba estadística.
+</p>
+</section>
+<section id="qué-incluye-un-pap-procedimientos-para-problemas-de-datos" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> ¿Qué incluye un PAP? Procedimientos para Problemas de Datos</h1>
+<p>A veces los experimentos y la recopilación de datos no resultan como uno espera. Los PAP le dan la oportunidad de reflexionar sobre cuáles pueden ser esos problemas, y especificar de qué manera piensa resolverlos.</p>
+<p>Dos problemas de datos comunes son (1) puntos de datos extremos y (2) datos faltantes. Los puntos extremos pueden representar un verdadero valor atípico (una unidad con variables de resultado mucho mayores o menores que los de otras unidades) o pueden deberse también a errores en el recojo de datos. Las tabletas de encuesta, los equipos de grabación, los raspadores web y otras herramientas de recopilación de datos pueden registrar puntos extremos debido a fallas técnicas. Puede ser difícil saber si los puntos extremos representan datos recogidos veraces, o si se deben a errores en la ingesta de datos, pero es importante especificar en el PAP cuándo se espera ver errores en la recopilación de datos y cuáles serán los procedimientos para trabajar con puntos extremos.</p>
+<p><strong>Los datos faltantes</strong> pueden presentarse de dos formas: covariables faltantes y variables de resultados faltantes. También es importante especificar en el PAP cuándo se espera ver variables de resultado o covariables faltantes y cuales serán los procedimientos para tratarlos. Los puntos extremos y los puntos faltantes que son aleatorios serán menos problemáticos que los puntos faltantes o extremos que parecen seguir un patrón.</p>
+<p>Los procedimientos más habituales para trabajar los datos faltantes o los puntos extremos son: 1) análisis de límites; 2) imputación; 3) eliminación de observaciones. Le recomendamos que tenga en cuenta las siguientes preguntas a la hora de determinar qué procedimiento desea utilizar:</p>
+<ul>
+<li>¿Qué dificultades pueden causar estos puntos de datos extremos/covariables ausentes/variables de resultado faltantes? ¿Cómo puede adelantarse para mitigar estos problemas de datos?
+<ul>
+<li>¿Cómo evaluaría si los datos extremos/faltantes son plausiblemente aleatorios (es decir, los puntos de datos extremos/faltantes se correlacionan con el tratamiento, covariables/subgrupos específicos o variables de resultados)?</li>
+<li>¿Qué procedimientos utilizaría para tratar los puntos extremos/falta de datos y cómo justificaría el uso de esos procedimientos?
+<ul>
+<li>Si los datos extremos o faltantes no son aleatorios, recomendamos incluir algún tipo de análisis de límites para determinar los límites de su estimación con puntos extremos o faltantes. Por ejemplo, los límites de valor extremo pueden ayudarle a determinar el rango de un efecto promedio del tratamiento, estableciendo todas las variables de resultado ausentes en el grupo de tratamiento con la mayor variable de resultado posible, y estableciendo todas las variables de resultado ausentes en el mismo grupo de control con el menor resultado posible <span class="citation" data-cites="gerber2012field">(<a href="#ref-gerber2012field" role="doc-biblioref">Gerber and Green 2012</a>)</span>.</li>
+<li>Si los datos extremos o faltantes son aleatorios, recomendamos imputar los puntos extremos o los datos faltantes. También se pueden descartar estos datos si los datos extremos o faltantes son aleatorios, y en este caso se debería especificar las condiciones bajo las cuales se decide descartar dichos datos. Por ejemplo, considere la posibilidad de establecer un umbral para una covariable faltante, de modo que si el porcentaje de datos faltantes de la covariable excede el umbral, se pueda eliminar dicha covariable.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Le recomendamos incluir código para mostrar sus procedimientos para solucionar problemas de datos.</p>
+<ol class="comment">
+<p><strong>Ejemplo:</strong> Resultados faltantes de las preguntas de encuesta<br><br> Algunos encuestados no responderán a una o más preguntas que miden una variable de resultado. Si durante la sesión piloto observamos que las tasas de no-respuesta a las preguntas parecen altas (<span class="math inline">\(\geq 10\%\)</span>), pediremos explicaciones tanto a los encuestados como a los entrevistadores para poder cambiar las preguntas.</p>
+Si al realizar nuestra encuesta los encuestados no responden a una o más preguntas que miden una variable de resultado, nuestro procedimiento será el siguiente:
+<ol>
+<li>
+Evaluaremos la relación entre las variables de resultado faltantes y la asignación del tratamiento mediante una prueba de hipótesis y reportaremos estos resultados.
+</li>
+<li>
+Si <span class="math inline">\(p &lt; ,05\)</span> para la evaluación de la relación entre el tratamiento y las variables de resultado faltantes, presentaremos un análisis de límites de valores extremos, en el que fijamos todas las variables de resultado faltantes para el tratamiento en el máximo del bloque, y todas las variables de resultado faltantes para el control en el mínimo del bloque.
+</li>
+<li>
+Si <span class="math inline">\(p \geq 0,5\)</span> para la evaluación de la relación entre el tratamiento y las variables de resultado faltantes, imputaremos las variables de resultado faltantes utilizando la media de la subcategoría de asignación por bloques.
+</li>
+</ol>
+Si aún tenemos preguntas sobre la variable de resultado, con tasas particularmente altas de no-respuesta (&gt;10 por ciento), entonces debemos:
+<ol>
+<li>
+Describir la relación entre la no-respuesta a esta pregunta y otros datos en las personas vía
+</li>
+<ul>
+<li>
+Exploraciones bivariadas de tablas y/o gráficas
+</li>
+<li>
+Selección de variables mediante modelos adaptativos elásticos de red con parámetros de ajuste elegidos por validación cruzada de 10 veces dentro del subgrupo de diseño.li&gt;
+</li></ul>
+<li>
+Considerar el descartar estas variables de resultado y justificar las razones de esta decisión.
+</li>
+</ol>
+</ol>
+</section>
+<section id="qué-incluye-un-pap-análisis-de-poder." class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> ¿Qué incluye un PAP? Análisis de poder.</h1>
+<p>En los PAP se suele incluir un <a href="https://egap.org/resource/10-cosas-que-debe-saber-sobre-el-poder-estadistico">análisis de poder</a>. El poder estadístico es la probabilidad de que su estudio pueda detectar un efecto, si es que hay un efecto que detectar.</p>
+<p>Existen <a href="https://egap.shinyapps.io/Power_Calculator/">herramientas</a> que ayudan a calcular el poder, aunque también puede elaborar su propio análisis de poder de manera computacional. Una de las ventajas del análisis de poder computacional, es que el análisis de poder se convierte también en el código de análisis final, o al menos en una plantilla del código de análisis final.</p>
+<p>En muchos sentidos, el análisis de poder computacional implementa en el código todas las especificaciones que se hicieron en el PAP previamente. De hecho, se puede combinar el código para un análisis de poder computacional con el código escrito para otras secciones del PAP, y así crear un PAP computacional. Esta herramienta, que puede implementarse con un software como <a href="https://declaredesign.org">DeclareDesign</a>, puede ayudar a diagnosticar problemas potenciales, enseñarle más sobre su diseño y reforzar su PAP.</p>
+</section>
+<section id="por-qué-hacer-un-pap" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> ¿Por qué hacer un PAP?</h1>
+<p>Es posible que haya escuchado argumentos a favor y en contra de los PAP. Este debate ofrece algunas reflexiones que abordan los beneficios y los costes de los PAP.</p>
+<p><em>1. Los PAP ayudan a contrarrestar la crisis de replicación</em>.</p>
+<p>La falta de transparencia en las investigaciones ha provocado varios problemas, entre ellos la crisis de replicación.</p>
+<p>La crisis de replicación consiste en que muchos estudios académicos son difíciles o imposibles de replicar. Los PAP reducen el número de estudios que no son replicables debido a malas prácticas de datos, como la extracción de datos en busca de relaciones espurias o el hackeo inadvertido de los valores <span class="math inline">\(p\)</span>. Los PAP también aumentan el número de estudios que elaboran los procedimientos necesarios para la replicación, permitiendo que se hagan intentos de replicar dichos estudios.</p>
+<!--La transparencia en la investigación también impide la extracción de datos. Incluso los investigadores bien intencionados pueden sentir la tentación de manipular los datos buscando aumentar los tamaños de los efectos y minimizar los valores $p$, por ejemplo, al incluir/excluir variables de control, construir un índice de una u otra forma, o al ejecutar un modelo en vez de otro. Se puede justificar fácilmente el uso de un método efectivo que produzca los resultados más positivos, si el método no está especificado de antemano.-->
+<!--Esto es especialmente útil para cualquier asociación en la que una de las partes tiene un incentivo para obtener resultados positivos, lo cual es común en las colaboraciones académico-políticas.-->
+<p><em>2. Los PAPS ayudan a contrarrestar el sesgo en las publicaciones.</em></p>
+<p>La falta de transparencia en la investigación también contribuye al sesgo en las publicaciones.</p>
+<p>El sesgo de publicación sucede cuando las revistas publican estudios en función de sus resultados, en lugar publicarlos por la calidad de su investigación. Este sesgo puede llevar a afirmaciones erróneas sobre una conexión entre las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>, porque las revistas sólo publican estudios que muestran que <span class="math inline">\(X\)</span> afecta a <span class="math inline">\(Y\)</span>, y no publican estudios en los que <span class="math inline">\(X\)</span> no afecta a <span class="math inline">\(Y\)</span>, aunque esos estudios sean más numerosos.</p>
+<p>Los registros de PAPs funcionan como depósitos de estudios que han sido intentados, tanto publicados como no publicados. Estos registros permiten identificar a académicos y profesionales si los efectos publicados sobre un tema representan con exactitud los efectos encontrados en estudios no publicados, o si los efectos publicados difieren de los estudios no publicados.</p>
+<p>El registro previo de los estudios como exploratorios o confirmatorios permite a los investigadores saber si futuras investigaciones deben basarse en el estudio, o si las investigaciones futuras deben corroborar el estudio. <em>No hay nada malo en la investigación exploratoria</em>. Muchas relaciones importantes pero desconocidas pueden descubrirse mediante análisis exploratorios. Es importante reconocer cuándo los hallazgos son exploratorios y necesitan ser confirmados en otros estudios. Los detalles en los registros de los PAPs permiten a los académicos hacer este reconocimiento.</p>
+<p><em>3. Los PAP fomentan la investigación de calidad</em>.</p>
+<p>La creación de un PAP obliga al investigador a elaborar y construir las numerosas decisiones de diseño que hay hacer al realizar un estudio. Cambiar estas decisiones de diseño en un momento posterior, no es un problema en el caso de los estudios observacionales. Pero en el caso de los estudios experimentales o de otros estudios que incluyen el recojo de datos originales, el investigador tiene una sola oportunidad para recoger los datos necesarios para su estudio. Los PAP ayudan a garantizar que el investigador recoja los datos correctos y piense a profundidad todas las decisiones en su estudio.</p>
+<p><em>4. Los PAP fomentan la investigación de impacto</em>.</p>
+<p>Los PAP aumentan la transparencia de las investigaciones, y una investigación transparente siempre será más confiable que una investigación no transparente, porque las decisiones del estudio y las razones de esas decisiones se toman antes de que se conozcan los resultados del estudio. La transparencia garantiza a las comunidades académicas, políticas y de otro tipo que los resultados de una investigación pueden utilizarse como base para más investigaciones, para programas políticos y para otras aplicaciones en el mundo real.</p>
+<p><em>5. Los PAP pueden disminuir el tiempo de proceso de publicación.</em></p>
+<p>Los PAP requieren una mayor inversión de tiempo previa al inicio de la investigación, pero disminuyen considerablemente el tiempo de análisis posterior a la investigación, porque el código y las decisiones analíticas se escriben por adelantado. Los PAP <em>deberían</em> también acortar el proceso de revisión que lleva a la publicación. Las revistas suelen exigir numerosas comprobaciones de solidez antes de aceptar los resultados de un estudio. Los revisores pueden solicitar menos análisis alternativos a partir de un trabajo preespecificado, ya que queda claro para los revisores que las decisiones de análisis preespecificadas no se vieron influidas por los resultados del estudio. Esto es particularmente útil cuando el investigador quiere utilizar una prueba estadística no convencional más poderosa, que puede parecer sospechosa sin la especificación previa, como lo pueden ser las pruebas unilaterales o las estadísticas de prueba distintas a las de diferencia de medias.</p>
+<p><strong>¿Por qué no hacer un PAP?</strong></p>
+<p><em>1. La investigación es impredecible y los PAP hacen que la investigación sea inflexible.</em></p>
+<p>Algunas personas afirman que un PAP puede confinar al estudio a un diseño particular, a una intervención y una estrategia de estimación determinado; aunque los detalles del diseño, la intervención y la estrategia de estimación puedan cambiar durante la realización del estudio. En los estudios experimentales, las dificultades imprevistas a menudo pueden cambiar aspectos de la aleatorización o la intervención, o una nueva medida de la variable de resultado puede no superar las pruebas de validez. Y en los estudios observacionales, la reflexión futura sobre cómo se aplica una teoría a sus datos puede revelar la necesidad de nuevas variables de control, mediadoras y/o moderadoras.</p>
+<p>¡Los investigadores deben recordar que <em>cualquier Plan de Análisis Previo puede ser revisado</em>! Su primer PAP no le obliga a adoptar un diseño de investigación, una variable de resultado o una especificación de modelo concretos. <em>El PAP hace que el proceso de investigación sea transparente, no inflexible</em>. Las revisiones pueden hacerse presentando un nuevo PAP, o a través de una enmienda que describa los cambios respecto al PAP anterior.<!--Describa los pros y los contras -->. <!--Por ejemplo, en el estudio de Malawi fue imposible demarcar barrios de exactamente 20 hogares, por lo que el PAP cambió para dar cabida a grupos de diferentes tamaños. Otros estudios pueden no entender la importancia de su variable independiente en una variable de resultado, acaso hasta después de realizar el estudio.--> ¡Los análisis exploratorios están bien! El objetivo de un PAP no es evitar estos análisis imprevistos, sino formalizar y explicar el proceso que condujo a dichos análisis.</p>
+<!--
+*2. Los PAP aumentan el tiempo de ejecución del estudio.*
+
+Al inicio del proceso, los PAP _son_ una inversión de tiempo considerable, pero los PAP también pueden reducir el tiempo de análisis y publicación. Tanto porque el código de análisis principal ya está escrito, como porque los revisores de las revistas pueden no solicitar tantas comprobaciones de robustez, ya que se ha especificado por adelantado el modelo estadístico.-->
+<p>En el capítulo 19 de <span class="citation" data-cites="rosenbaum2010">Rosenbaum (<a href="#ref-rosenbaum2010" role="doc-biblioref">2010</a>)</span> y en <span class="citation" data-cites="olken2015">Olken (<a href="#ref-olken2015" role="doc-biblioref">2015</a>)</span> se pueden encontrar más discusiones sobre los pros y los contras de los PAP.</p>
+</section>
+<section id="cómo-y-dónde-se-registran-los-pap" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> ¿Cómo y dónde se registran los PAP?</h1>
+<p>¡Su PAP ya está completo y listo para registrarse! En el caso de los estudios experimentales, la fecha límite para registrar el PAP es antes de que se recojan los datos finales. En el caso de los estudios observacionales, lo más tarde que debe registrar el PAP es antes de realizar cualquier análisis, incluyendo la revisión de las estadísticas descriptivas. En cualquier momento puede ajustar un PAP mediante una enmienda.</p>
+<p>Hay varios sitios de terceros en los que puede registrar su PAP. A continuación enumeramos los sitios más comunes para los PAP de ciencias sociales. Puede incluir su PAP en múltiples sitios; algunas revistas exigen que los artículos potenciales registren sus PAP en un sitio específico.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<ul>
+<li><a href="http://egap.org/content/registration">Registro EGAP</a></li>
+<li><a href="https://www.socialscienceregistry.org">Registro AEA</a> (para ensayos controlados y aleatorizados, RCTs)</li>
+<li><a href="http://help.osf.io/m/registrations">Registro OSF</a></li>
+</ul>
+<!--# Cosas para Chris yLula
+
+https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist
+
+-->
+<p>¡Feliz Planeación de Análisis Previo!</p>
+</section>
+<section id="referencias" class="level1" data-number="12">
+
+
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">12 Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-caughey2017npc" class="csl-entry" role="listitem">
+Caughey, Devin, Allan Dafoe, and Jason Seawright. 2017. <span>“Nonparametric Combination: A Framework for Testing Elaborate Theories.”</span> <em>The Journal of Politics</em> 79 (2): 688–701.
+</div>
+<div id="ref-gerber2012field" class="csl-entry" role="listitem">
+Gerber, Alan S, and Donald P Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. WW Norton.
+</div>
+<div id="ref-olken2015" class="csl-entry" role="listitem">
+Olken, Benjamin A. 2015. <span>“Promises and Perils of Pre Analysis Plans.”</span> <em>Journal of Economic Perspectives</em> 29 (3): 61–80.
+</div>
+<div id="ref-rosenbaum2010" class="csl-entry" role="listitem">
+Rosenbaum, Paul R. 2010. <em>Design of Observational Studies</em>. Springer Series in Statistics. Springer.
+</div>
+<div id="ref-samii2012" class="csl-entry" role="listitem">
+Samii, Cyrus, and Peter M Aronow. 2012. <span>“On Equivalencies Between Design Based and Regression Based Variance Estimators for Randomized Experiments.”</span> <em>Statistics and Probability Letters</em> 82 (2): 365–70.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Los PAP son promovidos como parte de las pautas para la promoción de la transparencia y apertura (TOP)(https://osf.io/4kdbm/?_ga=2.259736077.62256863.1547257566-317545181.1501862097) (Nosek et al.&nbsp;2015), publicadas en la revista Science. Al firmar dicho documento, las principales revistas de ciencias sociales se comprometen a aplicar las pautas TOP.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Para un ejemplo de una prueba ómnibus, véase <span class="citation" data-cites="caughey2017npc">Caughey, Dafoe, and Seawright (<a href="#ref-caughey2017npc" role="doc-biblioref">2017</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Por ejemplo, se podrían calcular los errores estándar y los valores <span class="math inline">\(p\)</span> utilizando métodos de permutación (“inferencia por aleatorización”) (https://egap.org/resource/10-things-to-know-about-randomization-inference). O se podrían aproximar los errores estándar y los valores <span class="math inline">\(p\)</span> utilizando métodos analíticos <span class="citation" data-cites="samii2012">(<a href="#ref-samii2012" role="doc-biblioref">Samii and Aronow 2012</a>)</span><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Tenga en cuenta que algunas organizaciones no utilizan sitios de terceros. Por ejemplo, el <a href="https://oes.gsa.gov/methods/">proceso de la Oficina de Ciencias de la Evaluación de la Administración de Servicios Generales de EE.UU.</a> utiliza Github, que tiene marcas de tiempo que verifican que el PAP fue creado antes de que se realizara el análisis<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

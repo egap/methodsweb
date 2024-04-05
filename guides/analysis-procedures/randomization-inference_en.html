@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -99,7 +100,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -108,8 +115,10 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -117,13 +126,13 @@ div.csl-indent {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
     </a>
@@ -138,84 +147,88 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html" rel="" target="">
- <span class="menu-text">Guides</span></a>
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html" rel="" target="">
- <span class="menu-text">Software</span></a>
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
- <span class="menu-text">Coursebook</span></a>
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 Things to Know About Randomization Inference<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#randomization-inference-is-a-method-for-calculating-p-values-for-hypothesis-tests-1-2" id="toc-randomization-inference-is-a-method-for-calculating-p-values-for-hypothesis-tests-1-2" class="nav-link active" data-scroll-target="#randomization-inference-is-a-method-for-calculating-p-values-for-hypothesis-tests-1-2">Randomization inference is a method for calculating p-values for hypothesis tests </a></li>
-  <li><a href="#randomization-inference-starts-with-a-null-hypothesis" id="toc-randomization-inference-starts-with-a-null-hypothesis" class="nav-link" data-scroll-target="#randomization-inference-starts-with-a-null-hypothesis">Randomization inference starts with a null hypothesis</a></li>
-  <li><a href="#randomization-inference-gives-exact-p-values-when-all-possible-random-assignments-can-be-simulated" id="toc-randomization-inference-gives-exact-p-values-when-all-possible-random-assignments-can-be-simulated" class="nav-link" data-scroll-target="#randomization-inference-gives-exact-p-values-when-all-possible-random-assignments-can-be-simulated">Randomization inference gives exact p-values when all possible random assignments can be simulated</a></li>
-  <li><a href="#randomization-inference-requires-the-analyst-to-specify-a-test-statistic-and-some-are-more-informative-than-others" id="toc-randomization-inference-requires-the-analyst-to-specify-a-test-statistic-and-some-are-more-informative-than-others" class="nav-link" data-scroll-target="#randomization-inference-requires-the-analyst-to-specify-a-test-statistic-and-some-are-more-informative-than-others">Randomization inference requires the analyst to specify a test statistic and some are more informative than others</a></li>
-  <li><a href="#randomization-inference-may-give-different-p-values-from-conventional-tests-when-the-number-of-observations-is-small-and-when-the-distribution-of-outcomes-is-non-normal" id="toc-randomization-inference-may-give-different-p-values-from-conventional-tests-when-the-number-of-observations-is-small-and-when-the-distribution-of-outcomes-is-non-normal" class="nav-link" data-scroll-target="#randomization-inference-may-give-different-p-values-from-conventional-tests-when-the-number-of-observations-is-small-and-when-the-distribution-of-outcomes-is-non-normal">Randomization inference may give different p-values from conventional tests when the number of observations is small and when the distribution of outcomes is non-normal</a></li>
-  <li><a href="#randomization-inference-is-useful-for-clustered-designs-clustering-fuzzy-clustering" id="toc-randomization-inference-is-useful-for-clustered-designs-clustering-fuzzy-clustering" class="nav-link" data-scroll-target="#randomization-inference-is-useful-for-clustered-designs-clustering-fuzzy-clustering">Randomization inference is useful for clustered designs: clustering, fuzzy clustering</a></li>
-  <li><a href="#randomization-inference-is-valuable-when-randomization-procedures-are-complicated" id="toc-randomization-inference-is-valuable-when-randomization-procedures-are-complicated" class="nav-link" data-scroll-target="#randomization-inference-is-valuable-when-randomization-procedures-are-complicated">Randomization inference is valuable when randomization procedures are complicated</a></li>
-  <li><a href="#randomization-inference-can-be-used-to-address-issues-of-multiple-comparisons6" id="toc-randomization-inference-can-be-used-to-address-issues-of-multiple-comparisons6" class="nav-link" data-scroll-target="#randomization-inference-can-be-used-to-address-issues-of-multiple-comparisons6">Randomization inference can be used to address issues of multiple comparisons</a></li>
-  <li><a href="#randomization-inference-cannot-be-applied-without-additional-assumptions-to-inferences-about-quantities-such-as-complier-average-causal-effects" id="toc-randomization-inference-cannot-be-applied-without-additional-assumptions-to-inferences-about-quantities-such-as-complier-average-causal-effects" class="nav-link" data-scroll-target="#randomization-inference-cannot-be-applied-without-additional-assumptions-to-inferences-about-quantities-such-as-complier-average-causal-effects">Randomization inference cannot be applied without additional assumptions to inferences about quantities such as complier average causal effects</a></li>
-  <li><a href="#in-some-applications-randomization-inference-may-not-be-worth-the-trouble" id="toc-in-some-applications-randomization-inference-may-not-be-worth-the-trouble" class="nav-link" data-scroll-target="#in-some-applications-randomization-inference-may-not-be-worth-the-trouble">In some applications, randomization inference may not be worth the trouble</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">10 Things to Know About Randomization Inference</h1>
+<h1 class="title">10 Things to Know About Randomization Inference<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></h1>
 </div>
 
-
-
 <div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://egap.org/member/donald-green/">Donald Green</a> </p>
-          </div>
-  </div>
     
-  
     
-  </div>
+    
+    
+</div>
   
-
 </header>
 
-<section id="randomization-inference-is-a-method-for-calculating-p-values-for-hypothesis-tests-1-2" class="level1">
-<h1>Randomization inference is a method for calculating p-values for hypothesis tests <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h1>
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#randomization-inference-is-a-method-for-calculating-p-values-for-hypothesis-tests" id="toc-randomization-inference-is-a-method-for-calculating-p-values-for-hypothesis-tests"><span class="header-section-number">1</span> Randomization inference is a method for calculating p-values for hypothesis tests</a></li>
+  <li><a href="#randomization-inference-starts-with-a-null-hypothesis" id="toc-randomization-inference-starts-with-a-null-hypothesis"><span class="header-section-number">2</span> Randomization inference starts with a null hypothesis</a></li>
+  <li><a href="#randomization-inference-gives-exact-p-values-when-all-possible-random-assignments-can-be-simulated" id="toc-randomization-inference-gives-exact-p-values-when-all-possible-random-assignments-can-be-simulated"><span class="header-section-number">3</span> Randomization inference gives exact p-values when all possible random assignments can be simulated</a></li>
+  <li><a href="#randomization-inference-requires-the-analyst-to-specify-a-test-statistic-and-some-are-more-informative-than-others" id="toc-randomization-inference-requires-the-analyst-to-specify-a-test-statistic-and-some-are-more-informative-than-others"><span class="header-section-number">4</span> Randomization inference requires the analyst to specify a test statistic and some are more informative than others</a></li>
+  <li><a href="#randomization-inference-may-give-different-p-values-from-conventional-tests-when-the-number-of-observations-is-small-and-when-the-distribution-of-outcomes-is-non-normal" id="toc-randomization-inference-may-give-different-p-values-from-conventional-tests-when-the-number-of-observations-is-small-and-when-the-distribution-of-outcomes-is-non-normal"><span class="header-section-number">5</span> Randomization inference may give different p-values from conventional tests when the number of observations is small and when the distribution of outcomes is non-normal</a></li>
+  <li><a href="#randomization-inference-is-useful-for-clustered-designs-clustering-fuzzy-clustering" id="toc-randomization-inference-is-useful-for-clustered-designs-clustering-fuzzy-clustering"><span class="header-section-number">6</span> Randomization inference is useful for clustered designs: clustering, fuzzy clustering</a></li>
+  <li><a href="#randomization-inference-is-valuable-when-randomization-procedures-are-complicated" id="toc-randomization-inference-is-valuable-when-randomization-procedures-are-complicated"><span class="header-section-number">7</span> Randomization inference is valuable when randomization procedures are complicated</a></li>
+  <li><a href="#randomization-inference-can-be-used-to-address-issues-of-multiple-comparisons6" id="toc-randomization-inference-can-be-used-to-address-issues-of-multiple-comparisons6"><span class="header-section-number">8</span> Randomization inference can be used to address issues of multiple comparisons</a></li>
+  <li><a href="#randomization-inference-cannot-be-applied-without-additional-assumptions-to-inferences-about-quantities-such-as-complier-average-causal-effects" id="toc-randomization-inference-cannot-be-applied-without-additional-assumptions-to-inferences-about-quantities-such-as-complier-average-causal-effects"><span class="header-section-number">9</span> Randomization inference cannot be applied without additional assumptions to inferences about quantities such as complier average causal effects</a></li>
+  <li><a href="#in-some-applications-randomization-inference-may-not-be-worth-the-trouble" id="toc-in-some-applications-randomization-inference-may-not-be-worth-the-trouble"><span class="header-section-number">10</span> In some applications, randomization inference may not be worth the trouble</a></li>
+  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  </ul>
+</nav>
+<section id="randomization-inference-is-a-method-for-calculating-p-values-for-hypothesis-tests" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Randomization inference is a method for calculating p-values for hypothesis tests</h1>
 <p>One of the advantages of conducting a randomized trial is that the researcher knows the precise procedure by which the units were allocated to treatment and control. Randomization inference considers what would have happened under all possible random assignments, not just the one that happened to be selected for the experiment at hand. Against the backdrop of all possible random assignments, is the actual experimental result unusual? How unusual is it?</p>
 </section>
-<section id="randomization-inference-starts-with-a-null-hypothesis" class="level1">
-<h1>Randomization inference starts with a null hypothesis</h1>
-<p>After we have conducted an experiment, we observe outcomes for the control group in their untreated state and outcomes for the treatment group in their treated state.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> In order to simulate all possible random assignments, we need to stipulate the counterfactual outcomes – what we would have observed among control units had they been treated or among treated units had they not been treated. The <em>sharp null hypothesis of no treatment effect</em> for any unit is a skeptical worldview that allows us to stipulate all of the counterfactual outcomes. If there were no treatment effect for any unit, then all the control units’ outcomes would have been unchanged had they been placed in treatment. Similarly, the treatment units’ outcomes would have been unchanged had they been placed in the control group. Under the sharp null hypothesis, we therefore have a complete mapping from our data to the outcomes of all possible experiments. All we need to do is construct all possible random assignments and, for each one, calculate the test statistic (e.g., the difference in means between the assigned treatment group and the assigned control group). The collection of these test statistics over all possible random assignments creates a <em>reference distribution under the null hypothesis</em>. If we want to know how unusual our actual experimental test statistic is, we compare it to the reference distribution. For example, our experiment might obtain an estimate of 6.5, but 24% of all random assignments produce an estimate of 6.5 or more even in the absence of any treatment effect. In that case, our one-tailed p-value would be 0.24.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<section id="randomization-inference-starts-with-a-null-hypothesis" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Randomization inference starts with a null hypothesis</h1>
+<p>After we have conducted an experiment, we observe outcomes for the control group in their untreated state and outcomes for the treatment group in their treated state.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> In order to simulate all possible random assignments, we need to stipulate the counterfactual outcomes – what we would have observed among control units had they been treated or among treated units had they not been treated. The <em>sharp null hypothesis of no treatment effect</em> for any unit is a skeptical worldview that allows us to stipulate all of the counterfactual outcomes. If there were no treatment effect for any unit, then all the control units’ outcomes would have been unchanged had they been placed in treatment. Similarly, the treatment units’ outcomes would have been unchanged had they been placed in the control group. Under the sharp null hypothesis, we therefore have a complete mapping from our data to the outcomes of all possible experiments. All we need to do is construct all possible random assignments and, for each one, calculate the test statistic (e.g., the difference in means between the assigned treatment group and the assigned control group). The collection of these test statistics over all possible random assignments creates a <em>reference distribution under the null hypothesis</em>. If we want to know how unusual our actual experimental test statistic is, we compare it to the reference distribution. For example, our experiment might obtain an estimate of 6.5, but 24% of all random assignments produce an estimate of 6.5 or more even in the absence of any treatment effect. In that case, our one-tailed p-value would be 0.24.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Worked example of randomization inference</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())       <span class="co"># clear objects in memory</span></span>
@@ -282,7 +295,11 @@ $Y1
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dispdist</span>(distout,ate)        <span class="co"># display p-values, 95% confidence interval, standard error under the null, and graph the sampling distribution under the null</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="randomization-inference_en_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="randomization-inference_en_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$two.tailed.p.value
@@ -342,43 +359,43 @@ mean in group 0 mean in group 1
 </div>
 </div>
 </section>
-<section id="randomization-inference-gives-exact-p-values-when-all-possible-random-assignments-can-be-simulated" class="level1">
-<h1>Randomization inference gives exact p-values when all possible random assignments can be simulated</h1>
+<section id="randomization-inference-gives-exact-p-values-when-all-possible-random-assignments-can-be-simulated" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Randomization inference gives exact p-values when all possible random assignments can be simulated</h1>
 <p>When the reference distribution is known based on a complete census of possible random assignments, p-value calculations are exact – there are no theoretical approximations based on assumptions about the shape of the sampling distribution. Sometimes the set of possible random assignments is so large that a full census is infeasible. In that case, the reference distribution can be approximated to an arbitrary level of precision by randomly sampling from the set of possible random assignments a large number of times. Thousands or tens of thousands of simulated random assignments are recommended.</p>
 </section>
-<section id="randomization-inference-requires-the-analyst-to-specify-a-test-statistic-and-some-are-more-informative-than-others" class="level1">
-<h1>Randomization inference requires the analyst to specify a test statistic and some are more informative than others</h1>
-<p>In principle, any test statistic can be used as input for randomization inference, which in turn outputs a p-value. Some test statistics provide more informative results than others, however. For example, although the simple difference-in-means often performs well, there are good arguments for other test statistics, such as the t-ratio using a robust standard error.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> In this case, the researcher would calculate the test statistic for the actual experiment and compare it to a reference distribution of robust t-statistics under the sharp null hypothesis of no effect.</p>
+<section id="randomization-inference-requires-the-analyst-to-specify-a-test-statistic-and-some-are-more-informative-than-others" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Randomization inference requires the analyst to specify a test statistic and some are more informative than others</h1>
+<p>In principle, any test statistic can be used as input for randomization inference, which in turn outputs a p-value. Some test statistics provide more informative results than others, however. For example, although the simple difference-in-means often performs well, there are good arguments for other test statistics, such as the t-ratio using a robust standard error.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> In this case, the researcher would calculate the test statistic for the actual experiment and compare it to a reference distribution of robust t-statistics under the sharp null hypothesis of no effect.</p>
 </section>
-<section id="randomization-inference-may-give-different-p-values-from-conventional-tests-when-the-number-of-observations-is-small-and-when-the-distribution-of-outcomes-is-non-normal" class="level1">
-<h1>Randomization inference may give different p-values from conventional tests when the number of observations is small and when the distribution of outcomes is non-normal</h1>
+<section id="randomization-inference-may-give-different-p-values-from-conventional-tests-when-the-number-of-observations-is-small-and-when-the-distribution-of-outcomes-is-non-normal" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Randomization inference may give different p-values from conventional tests when the number of observations is small and when the distribution of outcomes is non-normal</h1>
 <p>Conventional p-values typically rely on approximations that presuppose either that the outcomes are normally distributed or that the subject pool is large enough that the test statistics follow a posited sampling distribution. When outcomes are highly skewed, as in the case of donations (a few people donate large sums, but the overwhelming majority donate nothing), conventional methods may produce inaccurate p-values. <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span> (p.65) give the following example in which randomization inference and conventional test statistics produce different results:</p>
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/ri/fig1.png" class="img-fluid"></p>
 </section>
-<section id="randomization-inference-is-useful-for-clustered-designs-clustering-fuzzy-clustering" class="level1">
-<h1>Randomization inference is useful for clustered designs: clustering, fuzzy clustering</h1>
+<section id="randomization-inference-is-useful-for-clustered-designs-clustering-fuzzy-clustering" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Randomization inference is useful for clustered designs: clustering, fuzzy clustering</h1>
 <p>Cluster random assignment is notorious for throwing off inference, especially when the number of clusters is small. (See our guide <a href="https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html">10 Things to Know About Cluster Randomization</a> for more details.) Robust cluster standard errors tend to be downwardly biased when there are fewer than a dozen clusters, and bias is evident in simulations even when the number of clusters rises above thirty. Randomization inference sidesteps the problem of faulty t-ratios based on robust cluster standard errors. Instead, the reference distribution is calculated based on the set of possible clustered assignments, which takes account of the sampling variability associated with clustered assignment.</p>
 <p>Randomization inference is even more valuable when the clustered standard errors are difficult or impossible to compute. This situation arises in the context of “fuzzy clustering” – instances in which sets of observations have correlated assignments, but the correlation is less than perfect. Fuzzy clustering, for example, occurs in place-based random assignments in which treatment effects spill over to nearby units (e.g., anti-crime interventions that may displace crime to nearby areas). By simulating outcomes under alternative random assignments, randomization inference allows the researcher to readily gauge the p-values of test statistics under the null hypothesis of no treatment and no spillover effects (i.e., if the police intervention were ineffective and neither deterred crime nor pushed it around the corner).</p>
 </section>
-<section id="randomization-inference-is-valuable-when-randomization-procedures-are-complicated" class="level1">
-<h1>Randomization inference is valuable when randomization procedures are complicated</h1>
+<section id="randomization-inference-is-valuable-when-randomization-procedures-are-complicated" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Randomization inference is valuable when randomization procedures are complicated</h1>
 <p>Sometimes the implementation of random assignment hinges on contingencies that are difficult to model statistically. A common case occurs when researchers test for covariate balance after conducting a random assignment and then redo the randomization if a balance test reveals significant covariate imbalance. Characterizing the sampling distribution of this procedure is challenging, especially if the treatment and control groups contain different numbers of subjects. Fortunately, randomization inference easily generates a reference distribution by simulating admissible random assignments (i.e., those that would have passed the balance test). The same goes for complicated blocking or adaptive designs.</p>
 </section>
-<section id="randomization-inference-can-be-used-to-address-issues-of-multiple-comparisons6" class="level1">
-<h1>Randomization inference can be used to address issues of multiple comparisons<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></h1>
+<section id="randomization-inference-can-be-used-to-address-issues-of-multiple-comparisons6" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Randomization inference can be used to address issues of multiple comparisons<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></h1>
 <p>Randomized trials that involve multiple outcomes, multiple treatments, or multiple subgroup comparisons raise concerns that splashy results may pop up by chance even if there were no treatment effects. (See our guide <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">10 Things to Know About Multiple Comparisons</a> for more details on this problem.) Randomization inference helps facilitate the evaluation of hypotheses of the form: under the null hypothesis of no treatment effect, what is the probability that at least three outcomes show nominal p-values of less than 0.05? For each random assignment under the sharp null of no treatment effect, calculate the number of apparent p &lt; 0.05 coefficients in order to form the reference distribution. A similar approach may be applied to other targets of inference, such as the p-value of observing two significant treatment-by-covariate interactions or observing four significant treatment arms.</p>
 </section>
-<section id="randomization-inference-cannot-be-applied-without-additional-assumptions-to-inferences-about-quantities-such-as-complier-average-causal-effects" class="level1">
-<h1>Randomization inference cannot be applied without additional assumptions to inferences about quantities such as complier average causal effects</h1>
+<section id="randomization-inference-cannot-be-applied-without-additional-assumptions-to-inferences-about-quantities-such-as-complier-average-causal-effects" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Randomization inference cannot be applied without additional assumptions to inferences about quantities such as complier average causal effects</h1>
 <p>Randomization inference is a flexible method that can accommodate null hypotheses other than the sharp null of no effect for any unit. The methods described above could also be applied to the null hypothesis that all units have a treatment effect of seven.</p>
-<p>On the other hand, randomization inference cannot be applied with additional assumptions in cases where hypotheses focus on unobserved subgroups, such as compliers in cases of non-compliance with the treatment. We cannot simulate the sampling distribution of the estimated complier average causal effect when we lack knowledge of who the compliers are. (In the case of one-sided noncompliance, we know who the compliers are in the treatment group but not the control group.) In this case, the researcher may have to be content using randomization inference to assess the sharp null hypothesis that the intention-to-treat effect is zero.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<p>On the other hand, randomization inference cannot be applied with additional assumptions in cases where hypotheses focus on unobserved subgroups, such as compliers in cases of non-compliance with the treatment. We cannot simulate the sampling distribution of the estimated complier average causal effect when we lack knowledge of who the compliers are. (In the case of one-sided noncompliance, we know who the compliers are in the treatment group but not the control group.) In this case, the researcher may have to be content using randomization inference to assess the sharp null hypothesis that the intention-to-treat effect is zero.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
 </section>
-<section id="in-some-applications-randomization-inference-may-not-be-worth-the-trouble" class="level1">
-<h1>In some applications, randomization inference may not be worth the trouble</h1>
+<section id="in-some-applications-randomization-inference-may-not-be-worth-the-trouble" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> In some applications, randomization inference may not be worth the trouble</h1>
 <p>Old-fashioned approximate methods work well when the assumptions on which the approximations rest are sound. For example, when an experiment involves random assignment of individual subjects, outcomes are distributed more or less symmetrically around the mean, and the number of subjects is greater than 100, the difference between conventional p-values and RI p-values may be negligible. Randomization inference may still be useful as the final word, but it rarely changes inferences substantively under these circumstances. The method is valuable primarily for nonstandard applications in which outcomes are skewed, subject pools are small, or the method of assignment is complex.</p>
 <p>Note on available software for implementing randomization. For the latest R package for randomization inference, see <a href="http://alexandercoppock.com/ri2/articles/ri2_vignette.html">here</a>. For randomization inference code specifically tailored to the special features of binary outcomes, see <a href="https://cran.r-project.org/web/packages/RI2by2/index.html">here</a>. Stata users may find an all-purpose package <a href="https://github.com/simonheb/ritest">here</a>.</p>
 </section>
-<section id="references" class="level1">
+<section id="references" class="level1" data-number="11">
 
 
 
@@ -386,7 +403,7 @@ mean in group 0 mean in group 1
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-chung_romano_2013" class="csl-entry" role="listitem">
 Chung, EunYi, and Joseph P. Romano. 2013. <span>“Exact and Asymptotically Robust Permutation Tests.”</span> <em>The Annals of Statistics</em> 41 (2): 484–507.
 </div>
@@ -399,13 +416,15 @@ Small, Dylan S., Thomas R. Ten Have, and Paul R. Rosenbaum. 2008. <span>“Rando
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Acknowledgements: I am grateful to Winston Lin and Gareth Nellis, who commented on an earlier draft.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>We focus here on randomization inference as applied to hypothesis testing. Randomization inference may also be used for construction of confidence intervals, but this application requires stronger assumptions. See <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>, chapter 3.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>As explained in other guides, the fundamental problem of causal inference is that we cannot observe what would have happened to those in control group had they be treated, nor can we observe what would have happened to those in the treatment group had they not been treated.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>One-tailed tests consider the null hypothesis of no effect against an alternative hypothesis that the average treatment effect is positive (negative). Two-tailed tests evaluate a null hypothesis against the alternative that the ATE is nonzero, whether positive or negative. In that case, the p-value may be assessed by calculating the proportion of simulated random assignments that are at least as large as the observed test statistic in absolute value.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>See <span class="citation" data-cites="chung_romano_2013">Chung and Romano (<a href="#ref-chung_romano_2013" role="doc-biblioref">2013</a>)</span>. This “studentized” approach makes sense when there is reason to believe that the treatment changes the variance in outcomes in an experiment with different numbers of subjects in treatment and control.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>See <a href="https://methods.egap.org/guides/research-questions/heterogeneous-effects_en.html">10 Things to Know about Heterogeneous Treatment Effects</a>, especially section 7 on multiple comparisons.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>The alternative is to make stronger assumptions. See <span class="citation" data-cites="small_et_al_2008">Small, Ten Have, and Rosenbaum (<a href="#ref-small_et_al_2008" role="doc-biblioref">2008</a>)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>I am grateful to Winston Lin and Gareth Nellis, who commented on an earlier draft.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>I am grateful to Winston Lin and Gareth Nellis, who commented on an earlier draft.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>I am grateful to Winston Lin and Gareth Nellis, who commented on an earlier draft.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>We focus here on randomization inference as applied to hypothesis testing. Randomization inference may also be used for construction of confidence intervals, but this application requires stronger assumptions. See <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>, chapter 3.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>As explained in other guides, the fundamental problem of causal inference is that we cannot observe what would have happened to those in control group had they be treated, nor can we observe what would have happened to those in the treatment group had they not been treated.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>One-tailed tests consider the null hypothesis of no effect against an alternative hypothesis that the average treatment effect is positive (negative). Two-tailed tests evaluate a null hypothesis against the alternative that the ATE is nonzero, whether positive or negative. In that case, the p-value may be assessed by calculating the proportion of simulated random assignments that are at least as large as the observed test statistic in absolute value.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>See <span class="citation" data-cites="chung_romano_2013">Chung and Romano (<a href="#ref-chung_romano_2013" role="doc-biblioref">2013</a>)</span>. This “studentized” approach makes sense when there is reason to believe that the treatment changes the variance in outcomes in an experiment with different numbers of subjects in treatment and control.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>See <a href="https://methods.egap.org/guides/research-questions/heterogeneous-effects_en.html">10 Things to Know about Heterogeneous Treatment Effects</a>, especially section 7 on multiple comparisons.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>The alternative is to make stronger assumptions. See <span class="citation" data-cites="small_et_al_2008">Small, Ten Have, and Rosenbaum (<a href="#ref-small_et_al_2008" role="doc-biblioref">2008</a>)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -487,10 +506,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -500,8 +536,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -513,7 +558,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -557,6 +725,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -582,6 +751,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -642,6 +837,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

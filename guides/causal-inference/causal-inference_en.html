@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,6 +25,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -65,7 +66,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -74,24 +81,53 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
     </a>
@@ -106,50 +142,46 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html" rel="" target="">
- <span class="menu-text">Guides</span></a>
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html" rel="" target="">
- <span class="menu-text">Software</span></a>
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
- <span class="menu-text">Coursebook</span></a>
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 Things You Need to Know About Causal Inference</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#a-causal-claim-is-a-statement-about-what-didnt-happen." id="toc-a-causal-claim-is-a-statement-about-what-didnt-happen." class="nav-link active" data-scroll-target="#a-causal-claim-is-a-statement-about-what-didnt-happen.">A causal claim is a statement about what didn’t happen.</a></li>
-  <li><a href="#there-is-no-causation-without-manipulation." id="toc-there-is-no-causation-without-manipulation." class="nav-link" data-scroll-target="#there-is-no-causation-without-manipulation.">There is no causation without manipulation.</a></li>
-  <li><a href="#causes-are-non-rival." id="toc-causes-are-non-rival." class="nav-link" data-scroll-target="#causes-are-non-rival.">Causes are non-rival.</a></li>
-  <li><a href="#x-can-cause-y-even-if-x-is-not-a-necessary-condition-or-a-sufficient-condition-for-y." id="toc-x-can-cause-y-even-if-x-is-not-a-necessary-condition-or-a-sufficient-condition-for-y." class="nav-link" data-scroll-target="#x-can-cause-y-even-if-x-is-not-a-necessary-condition-or-a-sufficient-condition-for-y."><span class="math inline">\(X\)</span> can cause <span class="math inline">\(Y\)</span> even if <span class="math inline">\(X\)</span> is not a necessary condition or a sufficient condition for <span class="math inline">\(Y\)</span>.</a></li>
-  <li><a href="#there-is-a-fundamental-problem-of-causal-inference." id="toc-there-is-a-fundamental-problem-of-causal-inference." class="nav-link" data-scroll-target="#there-is-a-fundamental-problem-of-causal-inference.">There is a fundamental problem of causal inference.</a></li>
-  <li><a href="#you-can-estimate-average-causal-effects-even-though-you-cannot-observe-any-individual-causal-effects." id="toc-you-can-estimate-average-causal-effects-even-though-you-cannot-observe-any-individual-causal-effects." class="nav-link" data-scroll-target="#you-can-estimate-average-causal-effects-even-though-you-cannot-observe-any-individual-causal-effects.">You can estimate average causal effects even though you cannot observe any individual causal effects.</a></li>
-  <li><a href="#estimating-average-causal-effects-does-not-require-that-treatment-and-control-groups-are-identical." id="toc-estimating-average-causal-effects-does-not-require-that-treatment-and-control-groups-are-identical." class="nav-link" data-scroll-target="#estimating-average-causal-effects-does-not-require-that-treatment-and-control-groups-are-identical.">Estimating average causal effects does not require that treatment and control groups are identical.</a></li>
-  <li><a href="#correlation-is-not-causation." id="toc-correlation-is-not-causation." class="nav-link" data-scroll-target="#correlation-is-not-causation.">Correlation is not causation.</a></li>
-  <li><a href="#if-you-know-that-on-average-a-causes-b-and-b-causes-c-this-does-not-mean-that-on-average-a-causes-c." id="toc-if-you-know-that-on-average-a-causes-b-and-b-causes-c-this-does-not-mean-that-on-average-a-causes-c." class="nav-link" data-scroll-target="#if-you-know-that-on-average-a-causes-b-and-b-causes-c-this-does-not-mean-that-on-average-a-causes-c.">If you know that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(B\)</span> and <span class="math inline">\(B\)</span> causes <span class="math inline">\(C\)</span>, this does not mean that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(C\)</span>.</a></li>
-  <li><a href="#its-easier-to-learn-about-the-effects-of-causes-than-to-learn-about-the-causes-of-effects." id="toc-its-easier-to-learn-about-the-effects-of-causes-than-to-learn-about-the-causes-of-effects." class="nav-link" data-scroll-target="#its-easier-to-learn-about-the-effects-of-causes-than-to-learn-about-the-causes-of-effects.">It’s easier to learn about the “effects of causes” than to learn about the “causes of effects.”</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -159,32 +191,45 @@ div.csl-indent {
 <h1 class="title">10 Things You Need to Know About Causal Inference</h1>
 </div>
 
-
-
 <div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://egap.org/member/macartan-humphreys/">Macartan Humphreys</a> </p>
-          </div>
-  </div>
     
-  
     
-  </div>
+    
+    
+</div>
   
-
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>The philosopher David Lewis described causation as “something that makes a difference, and the difference it makes must be a difference from what would have happened without it.” This is the interpretation given to causality by most experimentalists. Even though the definition seems simple, it has many subtle implications. Here are ten ideas implied by this notion of causality that matter for research design.</p>
+  </div>
+</div>
 </header>
 
-<p>The philosopher David Lewis described causation as “something that makes a difference, and the difference it makes must be a difference from what would have happened without it.” This is the interpretation given to causality by most experimentalists. Even though the definition seems simple, it has many subtle implications. Here are ten ideas implied by this notion of causality that matter for research design.</p>
-<section id="a-causal-claim-is-a-statement-about-what-didnt-happen." class="level1">
-<h1>A causal claim is a statement about what didn’t happen.</h1>
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#a-causal-claim-is-a-statement-about-what-didnt-happen." id="toc-a-causal-claim-is-a-statement-about-what-didnt-happen."><span class="header-section-number">1</span> A causal claim is a statement about what didn’t happen.</a></li>
+  <li><a href="#there-is-no-causation-without-manipulation." id="toc-there-is-no-causation-without-manipulation."><span class="header-section-number">2</span> There is no causation without manipulation.</a></li>
+  <li><a href="#causes-are-non-rival." id="toc-causes-are-non-rival."><span class="header-section-number">3</span> Causes are non-rival.</a></li>
+  <li><a href="#x-can-cause-y-even-if-x-is-not-a-necessary-condition-or-a-sufficient-condition-for-y." id="toc-x-can-cause-y-even-if-x-is-not-a-necessary-condition-or-a-sufficient-condition-for-y."><span class="header-section-number">4</span> <span class="math inline">\(X\)</span> can cause <span class="math inline">\(Y\)</span> even if <span class="math inline">\(X\)</span> is not a necessary condition or a sufficient condition for <span class="math inline">\(Y\)</span>.</a></li>
+  <li><a href="#there-is-a-fundamental-problem-of-causal-inference." id="toc-there-is-a-fundamental-problem-of-causal-inference."><span class="header-section-number">5</span> There is a fundamental problem of causal inference.</a></li>
+  <li><a href="#you-can-estimate-average-causal-effects-even-though-you-cannot-observe-any-individual-causal-effects." id="toc-you-can-estimate-average-causal-effects-even-though-you-cannot-observe-any-individual-causal-effects."><span class="header-section-number">6</span> You can estimate average causal effects even though you cannot observe any individual causal effects.</a></li>
+  <li><a href="#estimating-average-causal-effects-does-not-require-that-treatment-and-control-groups-are-identical." id="toc-estimating-average-causal-effects-does-not-require-that-treatment-and-control-groups-are-identical."><span class="header-section-number">7</span> Estimating average causal effects does not require that treatment and control groups are identical.</a></li>
+  <li><a href="#correlation-is-not-causation." id="toc-correlation-is-not-causation."><span class="header-section-number">8</span> Correlation is not causation.</a></li>
+  <li><a href="#if-you-know-that-on-average-a-causes-b-and-b-causes-c-this-does-not-mean-that-on-average-a-causes-c." id="toc-if-you-know-that-on-average-a-causes-b-and-b-causes-c-this-does-not-mean-that-on-average-a-causes-c."><span class="header-section-number">9</span> If you know that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(B\)</span> and <span class="math inline">\(B\)</span> causes <span class="math inline">\(C\)</span>, this does not mean that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(C\)</span>.</a></li>
+  <li><a href="#its-easier-to-learn-about-the-effects-of-causes-than-to-learn-about-the-causes-of-effects." id="toc-its-easier-to-learn-about-the-effects-of-causes-than-to-learn-about-the-causes-of-effects."><span class="header-section-number">10</span> It’s easier to learn about the “effects of causes” than to learn about the “causes of effects.”</a></li>
+  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  </ul>
+</nav>
+<section id="a-causal-claim-is-a-statement-about-what-didnt-happen." class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> A causal claim is a statement about what didn’t happen.</h1>
 <p>For most experimentalists, the statement “<span class="math inline">\(X\)</span> caused <span class="math inline">\(Y\)</span>” means that <span class="math inline">\(Y\)</span> is present <em>and</em> <span class="math inline">\(Y\)</span> would not have been present if <span class="math inline">\(X\)</span> were not present. This definition requires a notion of what could have happened, but did not happen <span class="citation" data-cites="holland_1986">(<a href="#ref-holland_1986" role="doc-biblioref">Holland 1986</a>)</span>. Similarly, the “effect” of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is thought of as the difference between the value that <span class="math inline">\(Y\)</span> would have taken given one value of <span class="math inline">\(X\)</span> and the value that <span class="math inline">\(Y\)</span> would have taken given another value of <span class="math inline">\(X\)</span>. Because of the focus on differences in outcomes, this approach is sometimes called the “difference making” or “counterfactual” approach to causation.</p>
 <p><strong>Technical Note:</strong> Statisticians employ the “potential outcomes” framework to describe counterfactual relations. In this framework, we let <span class="math inline">\(Y_i(1)\)</span> denote the outcome for unit <span class="math inline">\(i\)</span> that would be observed under one condition (e.g., if unit <span class="math inline">\(i\)</span> received a treatment) and <span class="math inline">\(Y_i(0)\)</span> the outcome that would be observed in another condition (e.g., if unit <span class="math inline">\(i\)</span> did not receive the treatment). One causal effect of the treatment for unit <span class="math inline">\(i\)</span> might be a simple difference of the potential outcomes <span class="math inline">\(τ_i=Y_i(1)−Y_i(0)\)</span>. A treatment has a (positive or negative) causal effect on <span class="math inline">\(Y\)</span> for unit <span class="math inline">\(i\)</span> if <span class="math inline">\(Y_i(1)≠Y_i(0)\)</span>.</p>
 </section>
-<section id="there-is-no-causation-without-manipulation." class="level1">
-<h1>There is no causation without manipulation.</h1>
+<section id="there-is-no-causation-without-manipulation." class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> There is no causation without manipulation.</h1>
 <p>The “counterfactual” definition of causality requires one to be able to think through what outcomes may result in different conditions. How would things look if one party as opposed to another was elected? Everyday causal statements often fall short of this requirement in one of two ways.</p>
 <ul>
 <li>First, some statements do not specify clear counterfactual conditions. For example the claim that “the recession was caused by Wall Street” does not point to an obvious counterfactual— are we to consider whether there would have been a recession if Wall Street did not exist? Or is the statement really a statement about particular actions that Wall Street could have taken but did not. If so, which actions? The validity of such statements is hard to assess, and can depend on which counterfactual conditions are implied by a statement.</li>
@@ -192,41 +237,41 @@ div.csl-indent {
 </ul>
 <p>To avoid such problems, some statisticians urge a restriction of causal claims to treatments that can conceivably (not necessarily practically) be manipulated <span class="citation" data-cites="holland_1986">(<a href="#ref-holland_1986" role="doc-biblioref">Holland 1986</a>)</span>. For example, while we might have difficulties with the claim that Peter got the job because he was a man, we have no such difficulties with the claim that Peter got the job because the hiring agency thought he was a man.</p>
 </section>
-<section id="causes-are-non-rival." class="level1">
-<h1>Causes are non-rival.</h1>
+<section id="causes-are-non-rival." class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Causes are non-rival.</h1>
 <p>Even though we may focus on the effect of a single cause <span class="math inline">\(X\)</span> on an outcome <span class="math inline">\(Y\)</span>, we generally do not expect that there is ever only a single cause of <span class="math inline">\(Y\)</span>.[^In some accounts this has been called the “Problem of Profligate Causes”.] Moreover, if you add up the causal effects of different causes, there is no reason to expect them to add up to 100%. Hence, there is not much point trying to “apportion” outcomes to different causal factors. In other words, causes are not rival. The National Rifle Association argues, for example, that guns don’t kill people, people kill people. That statement does not make much sense in the counterfactual framework. Take away guns and you have no deaths from gunshot wounds. So guns are a cause. Take away people and you also have no deaths from gunshot wounds, so people are also a cause. Put differently, these two factors are simultaneously causes of the same outcomes.</p>
 </section>
-<section id="x-can-cause-y-even-if-x-is-not-a-necessary-condition-or-a-sufficient-condition-for-y." class="level1">
-<h1><span class="math inline">\(X\)</span> can cause <span class="math inline">\(Y\)</span> even if <span class="math inline">\(X\)</span> is not a necessary condition or a sufficient condition for <span class="math inline">\(Y\)</span>.</h1>
+<section id="x-can-cause-y-even-if-x-is-not-a-necessary-condition-or-a-sufficient-condition-for-y." class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> <span class="math inline">\(X\)</span> can cause <span class="math inline">\(Y\)</span> even if <span class="math inline">\(X\)</span> is not a necessary condition or a sufficient condition for <span class="math inline">\(Y\)</span>.</h1>
 <p>We often talk about causal relations in deterministic terms. Even the Lewis quote at the top of this page seems to suggest a deterministic relation between causes and effects. Sometimes causal relations are thought to entail necessary conditions (for <span class="math inline">\(Y\)</span> to occur, <span class="math inline">\(X\)</span> has to happen); sometimes such relations are thought to entail sufficient conditions (if <span class="math inline">\(X\)</span> occurs, then <span class="math inline">\(Y\)</span> occurs). But once we are talking about multiple units, there are at least two ways in which we can think of <span class="math inline">\(X\)</span> causing <span class="math inline">\(Y\)</span> even if <span class="math inline">\(X\)</span> is neither a necessary nor a sufficient condition for <span class="math inline">\(Y\)</span>. The first is to reinterpret everything in probabilistic terms: by <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span>, we simply mean that the probability of <span class="math inline">\(Y\)</span> is higher when <span class="math inline">\(X\)</span> is present. Another is to allow for contingencies — for example, <span class="math inline">\(X\)</span> may cause <span class="math inline">\(Y\)</span> if condition <span class="math inline">\(Z\)</span> is present, but not otherwise.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section>
-<section id="there-is-a-fundamental-problem-of-causal-inference." class="level1">
-<h1>There is a fundamental problem of causal inference.</h1>
+<section id="there-is-a-fundamental-problem-of-causal-inference." class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> There is a fundamental problem of causal inference.</h1>
 <p>If causal effects are statements about the difference between what happened and what could have happened, then causal effects cannot be measured. That’s bad news. Prospectively, you can arrange things so that you can observe either what happens if someone gets a treatment or what happens if they do not get the treatment. Yet, for the same person, you will never be able to observe both of these outcomes and hence also not the difference between them. This inability to observe unit-level causal effects is often called the “fundamental problem of causal inference.”</p>
 </section>
-<section id="you-can-estimate-average-causal-effects-even-though-you-cannot-observe-any-individual-causal-effects." class="level1">
-<h1>You can estimate average causal effects even though you cannot observe any individual causal effects.</h1>
+<section id="you-can-estimate-average-causal-effects-even-though-you-cannot-observe-any-individual-causal-effects." class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> You can estimate average causal effects even though you cannot observe any individual causal effects.</h1>
 <p>Even though you cannot observe whether <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span> for any given unit, it can still be possible to figure out whether <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span> on average. The key insight here is that the average causal effect equals the difference between the average outcome across all units if all units were in the control condition and the average outcome across all units if all units were in the treatment condition. Many strategies for causal identification (see <a href="https://methods.egap.org/guides/causal-inference/x-cause-y_en.html">10 Strategies for Figuring Out If X Caused Y</a>) focus on ways to learn about these average potential outcomes.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p><a href="https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html">10 Things to Know About Hypothesis Testing</a> describes how one can learn about individual causal effects rather than average causal effects given the fundamental problem of causal inference.</p>
 </section>
-<section id="estimating-average-causal-effects-does-not-require-that-treatment-and-control-groups-are-identical." class="level1">
-<h1>Estimating average causal effects does not require that treatment and control groups are identical.</h1>
+<section id="estimating-average-causal-effects-does-not-require-that-treatment-and-control-groups-are-identical." class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Estimating average causal effects does not require that treatment and control groups are identical.</h1>
 <p>One strategy that people use to learn about average causal effects is to create treatment and control groups through randomization (see <a href="https://methods.egap.org/guides/causal-inference/x-cause-y_en.html">10 Strategies for Figuring Out If X Caused Y</a>). When doing so, researchers sometimes worry if they find that the resulting treatment and control groups do not look the same along relevant dimensions.</p>
 <p>The good news is that the argument for why differences in average outcomes across randomly assigned treatment and control groups capture average treatment effects (in expectation across repeated randomizations within the same pool of units) does <em>not</em> rely on treatment and control groups being similar in their observed characteristics. It relies only on the idea that, on average, the outcomes in the treated and control groups will capture the average outcomes for all units in the experimental pool if they were, respectively, in treatment or in control. In practice actual treatment and control groups will not be identical.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 </section>
-<section id="correlation-is-not-causation." class="level1">
-<h1>Correlation is not causation.</h1>
+<section id="correlation-is-not-causation." class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Correlation is not causation.</h1>
 <p>A correlation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is a statement about relations between actual outcomes in the world, not about the relation between actual outcomes and counterfactual outcomes. So statements about causes and correlations don’t have much to do with each other. Positive correlations can be consistent with positive causal effects, no causal effects, or even negative causal effects. For example taking cough medication is positively correlated with coughing but hopefully has a negative causal effect on coughing.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 </section>
-<section id="if-you-know-that-on-average-a-causes-b-and-b-causes-c-this-does-not-mean-that-on-average-a-causes-c." class="level1">
-<h1>If you know that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(B\)</span> and <span class="math inline">\(B\)</span> causes <span class="math inline">\(C\)</span>, this does not mean that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(C\)</span>.</h1>
+<section id="if-you-know-that-on-average-a-causes-b-and-b-causes-c-this-does-not-mean-that-on-average-a-causes-c." class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> If you know that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(B\)</span> and <span class="math inline">\(B\)</span> causes <span class="math inline">\(C\)</span>, this does not mean that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(C\)</span>.</h1>
 <p>You might expect that if <span class="math inline">\(A\)</span> causes <span class="math inline">\(B\)</span> and <span class="math inline">\(B\)</span> causes <span class="math inline">\(C\)</span> that therefore <span class="math inline">\(A\)</span> causes <span class="math inline">\(C\)</span>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> But there is no reason to believe that average causal relations are transitive in this way. To see why, imagine <span class="math inline">\(A\)</span> caused <span class="math inline">\(B\)</span> for men but not women and <span class="math inline">\(B\)</span> caused <span class="math inline">\(C\)</span> for women but not men. Then on average <span class="math inline">\(A\)</span> causes <span class="math inline">\(B\)</span> and <span class="math inline">\(B\)</span> causes <span class="math inline">\(C\)</span> but there may still be no one for whom <span class="math inline">\(A\)</span> causes <span class="math inline">\(C\)</span> through <span class="math inline">\(B\)</span>.</p>
 </section>
-<section id="its-easier-to-learn-about-the-effects-of-causes-than-to-learn-about-the-causes-of-effects." class="level1">
-<h1>It’s easier to learn about the “effects of causes” than to learn about the “causes of effects.”</h1>
+<section id="its-easier-to-learn-about-the-effects-of-causes-than-to-learn-about-the-causes-of-effects." class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> It’s easier to learn about the “effects of causes” than to learn about the “causes of effects.”</h1>
 <p>Though it might sound like two ways of saying the same thing, there is a difference between understanding what the effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is (the “effects of a cause”) and whether an outcome <span class="math inline">\(Y\)</span> was <em>due</em> to cause <span class="math inline">\(X\)</span> (the “cause of an effect”).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Consider the following example. Suppose we run an experiment with a sample that contains an equal number of men and women. The experiment randomly assigns men and women to a binary treatment <span class="math inline">\(X\)</span> and measures a binary outcome <span class="math inline">\(Y\)</span>. Further, suppose that <span class="math inline">\(X\)</span> has a positive effect of 1 for all men, i.e.&nbsp;men’s control potential outcome is zero (<span class="math inline">\(Y_i(0) = 0\)</span>) and their treated potential outcome is one (<span class="math inline">\(Y_i(1) = 1\)</span>). For all women, <span class="math inline">\(X\)</span> has a negative effect of <span class="math inline">\(-1\)</span>, i.e., women’s control potential outcome is one (<span class="math inline">\(Y_i(0) = 1\)</span>) and their treated potential outcome is zero (<span class="math inline">\(Y_i(1) = 0\)</span>). In this example, the average effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is zero. But for all participants in the treatment group with <span class="math inline">\(Y=1\)</span>, it is the case that <span class="math inline">\(Y=1\)</span> <em>because</em> <span class="math inline">\(X=1\)</span>. Similarly, for all participants in the treatment group with <span class="math inline">\(Y=0\)</span>, it is the case that <span class="math inline">\(Y=0\)</span> <em>because</em> <span class="math inline">\(X=1\)</span>. Experimentation can get an exact answer to the question about the “effects of a cause”, but generally it is not possible to get an exact answer to the question about the “cause of an effect”.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
 </section>
-<section id="references" class="level1">
+<section id="references" class="level1" data-number="11">
 
 
 
@@ -234,7 +279,7 @@ div.csl-indent {
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-gelman_imbens_2013" class="csl-entry" role="listitem">
 Gelman, Andrew, and Guido Imbens. 2013. <span>“Why Ask Why? Forward Causal Inference and Reverse Causal Questions.”</span> <em>NBER Working Paper No. 19614</em>.
 </div>
@@ -338,10 +383,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -351,8 +413,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -364,7 +435,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -408,6 +602,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -433,6 +628,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -493,6 +714,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

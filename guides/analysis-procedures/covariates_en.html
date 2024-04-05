@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -99,7 +100,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -108,24 +115,53 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
     </a>
@@ -140,50 +176,46 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../guides.html" rel="" target="">
- <span class="menu-text">Guides</span></a>
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../software.html" rel="" target="">
- <span class="menu-text">Software</span></a>
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../coursebook/index.html" rel="" target="">
- <span class="menu-text">Coursebook</span></a>
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 Things to Know About Covariate Adjustment</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-is-covariate-adjustment" id="toc-what-is-covariate-adjustment" class="nav-link active" data-scroll-target="#what-is-covariate-adjustment">What is covariate adjustment?</a></li>
-  <li><a href="#controlling-for-covariates-at-the-design-stage-blocking" id="toc-controlling-for-covariates-at-the-design-stage-blocking" class="nav-link" data-scroll-target="#controlling-for-covariates-at-the-design-stage-blocking">Controlling for covariates at the design stage (blocking)</a></li>
-  <li><a href="#how-to-do-it-in-a-regression" id="toc-how-to-do-it-in-a-regression" class="nav-link" data-scroll-target="#how-to-do-it-in-a-regression">How to do it in a regression</a></li>
-  <li><a href="#why-to-do-it" id="toc-why-to-do-it" class="nav-link" data-scroll-target="#why-to-do-it">Why to do it</a></li>
-  <li><a href="#when-will-it-help" id="toc-when-will-it-help" class="nav-link" data-scroll-target="#when-will-it-help">When will it help?</a></li>
-  <li><a href="#control-for-prognostic-covariates-regardless-of-whether-they-show-imbalances" id="toc-control-for-prognostic-covariates-regardless-of-whether-they-show-imbalances" class="nav-link" data-scroll-target="#control-for-prognostic-covariates-regardless-of-whether-they-show-imbalances">Control for prognostic covariates regardless of whether they show imbalances</a></li>
-  <li><a href="#when-not-to-do-it" id="toc-when-not-to-do-it" class="nav-link" data-scroll-target="#when-not-to-do-it">When not to do it</a></li>
-  <li><a href="#concerns-about-small-sample-bias" id="toc-concerns-about-small-sample-bias" class="nav-link" data-scroll-target="#concerns-about-small-sample-bias">Concerns about small-sample bias</a></li>
-  <li><a href="#how-to-make-your-covariate-adjustment-decisions-transparent" id="toc-how-to-make-your-covariate-adjustment-decisions-transparent" class="nav-link" data-scroll-target="#how-to-make-your-covariate-adjustment-decisions-transparent">How to make your covariate adjustment decisions transparent</a></li>
-  <li><a href="#covariates-can-help-you-investigate-the-integrity-of-the-random-assignment" id="toc-covariates-can-help-you-investigate-the-integrity-of-the-random-assignment" class="nav-link" data-scroll-target="#covariates-can-help-you-investigate-the-integrity-of-the-random-assignment">Covariates can help you investigate the integrity of the random assignment</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -193,40 +225,53 @@ div.csl-indent {
 <h1 class="title">10 Things to Know About Covariate Adjustment</h1>
 </div>
 
-
-
 <div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://lindsayrdolan.com/">Lindsay Dolan</a> </p>
-          </div>
-  </div>
     
-  
     
-  </div>
+    
+    
+</div>
   
-
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>This guide will help you think through when it makes sense to try to “control for other things” when estimating treatment effects using experimental data. We focus on the big ideas and provide examples in R.</p>
+  </div>
+</div>
 </header>
 
-<p>This guide will help you think through when it makes sense to try to “control for other things” when estimating treatment effects using experimental data. We focus on the big ideas and provide examples in R.</p>
-<section id="what-is-covariate-adjustment" class="level1">
-<h1>What is covariate adjustment?</h1>
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#what-is-covariate-adjustment" id="toc-what-is-covariate-adjustment"><span class="header-section-number">1</span> What is covariate adjustment?</a></li>
+  <li><a href="#controlling-for-covariates-at-the-design-stage-blocking" id="toc-controlling-for-covariates-at-the-design-stage-blocking"><span class="header-section-number">2</span> Controlling for covariates at the design stage (blocking)</a></li>
+  <li><a href="#how-to-do-it-in-a-regression" id="toc-how-to-do-it-in-a-regression"><span class="header-section-number">3</span> How to do it in a regression</a></li>
+  <li><a href="#why-to-do-it" id="toc-why-to-do-it"><span class="header-section-number">4</span> Why to do it</a></li>
+  <li><a href="#when-will-it-help" id="toc-when-will-it-help"><span class="header-section-number">5</span> When will it help?</a></li>
+  <li><a href="#control-for-prognostic-covariates-regardless-of-whether-they-show-imbalances" id="toc-control-for-prognostic-covariates-regardless-of-whether-they-show-imbalances"><span class="header-section-number">6</span> Control for prognostic covariates regardless of whether they show imbalances</a></li>
+  <li><a href="#when-not-to-do-it" id="toc-when-not-to-do-it"><span class="header-section-number">7</span> When not to do it</a></li>
+  <li><a href="#concerns-about-small-sample-bias" id="toc-concerns-about-small-sample-bias"><span class="header-section-number">8</span> Concerns about small-sample bias</a></li>
+  <li><a href="#how-to-make-your-covariate-adjustment-decisions-transparent" id="toc-how-to-make-your-covariate-adjustment-decisions-transparent"><span class="header-section-number">9</span> How to make your covariate adjustment decisions transparent</a></li>
+  <li><a href="#covariates-can-help-you-investigate-the-integrity-of-the-random-assignment" id="toc-covariates-can-help-you-investigate-the-integrity-of-the-random-assignment"><span class="header-section-number">10</span> Covariates can help you investigate the integrity of the random assignment</a></li>
+  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  </ul>
+</nav>
+<section id="what-is-covariate-adjustment" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> What is covariate adjustment?</h1>
 <p>“Covariates” are baseline characteristics of your experimental subjects. When you run an experiment, you are primarily interested in collecting data on outcome variables that your intervention may affect, e.g.&nbsp;expenditure decisions, attitudes toward democracy, or contributions for a public good in a lab experiment. But it’s also a good idea to collect data on baseline characteristics of subjects before treatment assignment occurs, e.g.&nbsp;gender, level of education, or ethnic group. If you do this you can explore how treatment effects vary with these characteristics (see <a href="https://methods.egap.org/guides/research-questions/heterogeneous-effects_en.html">10 Things to Know About Heterogeneous Treatment Effects</a>). But doing this also lets you perform covariate adjustment.</p>
 <p>Covariate adjustment is another name for controlling for baseline variables when estimating treatment effects. Often this is done to improve precision. Subjects’ outcomes are likely to have some correlation with variables that can be measured before random assignment. Accounting for variables like gender will allow you to set aside the variation in outcomes that is predicted by these baseline variables, so that you can isolate the effect of treatment on outcomes with greater precision and power.</p>
 <p>Covariate adjustment can be a cheaper route to improved precision than increasing the number of subjects in the experiment. Partly for that reason, researchers often collect extensive data on covariates before random assignment. Pre-tests (measures that are analogous to the outcome variable but are restricted to time periods before random assignment) may be especially valuable for predicting outcomes, and baseline surveys can ask subjects about other background characteristics.</p>
 </section>
-<section id="controlling-for-covariates-at-the-design-stage-blocking" class="level1">
-<h1>Controlling for covariates at the design stage (blocking)</h1>
+<section id="controlling-for-covariates-at-the-design-stage-blocking" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Controlling for covariates at the design stage (blocking)</h1>
 <p>The best way to control for covariates is to use block randomization to do it at the design stage even before you start your experiment. Block randomization enables you to create treatment and control groups that are balanced on certain covariates. For example, you might expect that gender and income help predict the outcome variable. Block randomization can ensure that the treatment and control groups have equal proportions of female/high-income, female/low-income, male/high-income, and male/low-income populations. When the blocking variables help predict outcomes, blocking improves precision by preventing chance correlations between treatment assignment and baseline covariates.</p>
 <p>For more information on blocking and how to implement it in R, see <a href="https://methods.egap.org/guides/data-strategies/randomization_en.html">10 Things You Need to Know About Randomization</a>. The precision gains from blocking (relative to covariate adjustment without blocking) tend to be greatest when sample sizes are small <span class="citation" data-cites="miratrix_et_al_2013">(<a href="#ref-miratrix_et_al_2013" role="doc-biblioref">Miratrix, Sekhon, and Yu 2013</a>)</span>.</p>
 <p>When blocking is done to improve precision, estimated standard errors should take the blocking into account. (Otherwise, the SEs will tend to be conservative because they won’t give you credit for the precision improvement that blocking achieved.) One simple and commonly used method is to regress the outcome on the treatment assignment dummy variable as well as block dummies. When the probability of assignment to treatment is constant across blocks, including the block dummies in the regression doesn’t change the estimated treatment effect, but tends to give a more accurate estimate of the SE.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>If the probability of assignment to treatment varies by block, then you need to control for these unequal probabilities in order to get unbiased estimates of average treatment effects. <a href="https://methods.egap.org/guides/data-strategies/randomization_en.html">10 Things You Need to Know About Randomization</a> discusses ways to do this.</p>
 </section>
-<section id="how-to-do-it-in-a-regression" class="level1">
-<h1>How to do it in a regression</h1>
+<section id="how-to-do-it-in-a-regression" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> How to do it in a regression</h1>
 <p>Sometimes you do not have the opportunity to implement a blocked experimental design (for example, if you join a project after random assignment occurs) or you would prefer to simplify your randomization scheme to reduce opportunities for administrative error. You can still adjust for covariates on the back end by using multiple regression. Remember that in a bivariate regression—when you regress your outcome on just your treatment indicator—the coefficient on treatment is just a difference-in-means. This simple method gives an unbiased estimate of the average treatment effect (ATE). When we add baseline covariates that are correlated with outcomes to the model, the coefficient on treatment is an approximately unbiased estimate of the ATE that tends to be more precise than bivariate regression.</p>
 <p>To adjust for covariates through multiple regression, use the model:</p>
 <p><span class="math display">\[Y_i = \alpha + \beta Z_i + \gamma X_i + \epsilon_i\]</span></p>
@@ -236,8 +281,8 @@ div.csl-indent {
 <p>where <span class="math inline">\(W_i = X_i - \overline{X}\)</span> and <span class="math inline">\(\overline{X}\)</span> is the mean value of <span class="math inline">\(X_i\)</span> for the entire sample.</p>
 <p>If subjects receive different probabilities of assignment to treatment based on their covariates, then our estimation method needs to account for this (again, see <a href="https://methods.egap.org/guides/data-strategies/randomization_en.html">10 Things You Need to Know About Randomization</a> for details).</p>
 </section>
-<section id="why-to-do-it" class="level1">
-<h1>Why to do it</h1>
+<section id="why-to-do-it" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Why to do it</h1>
 <p>It isn’t absolutely necessary to control for covariates when estimating the average treatment effect in an RCT that assigns every subject the same probability of receiving the treatment. The unadjusted treatment–control difference in mean outcomes is an unbiased estimator of the ATE. However, covariate adjustment tends to improve precision if the covariates are good predictors of the outcome.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>In large samples, random assignment tends to produce treatment and control groups with similar baseline characteristics. Still, by the “luck of the draw,” one group may be slightly more educated, or one group may have slightly higher voting rates in previous elections, or one group may be slightly older on average. For this reason, the estimated ATE is subject to “sampling variability,” meaning you’ll get estimates of the ATE that were produced by an unbiased method but happened to miss the mark.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> A high sampling variability contributes to noise (imprecision), not bias.</p>
 <p>Controlling for these covariates tends to improve precision if the covariates are predictive of potential outcomes. Take a look at the following example, which is loosely based on <span class="citation" data-cites="gine_mansuri_2012">Giné and Mansuri (<a href="#ref-gine_mansuri_2012" role="doc-biblioref">2012</a>)</span>, an experiment on female voting behavior in Pakistan. In this experiment, the authors randomized an information campaign to women in Pakistan to study its effects on their turnout behavior, the independence of their candidate choice, and their political knowledge. They carried out a baseline survey which provided them with several covariates.</p>
@@ -291,8 +336,8 @@ div.csl-indent {
 <p>Both methods—with and without covariates—yield the true treatment effect of 1 on average. When we ran the regression without covariates, our estimated ATE averaged 1.0008 across the 10,000 replications, and with covariates, it averaged 1.0003. Notice that the regression-adjusted estimate is essentially unbiased even though our regression model is misspecified—we control for age linearly when the true data generating process involves the log of age.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p>The real gains come in the precision of our estimates. The standard error (the standard deviation of the sampling distribution) of our estimated ATE when we ignore covariates is 0.121. When we include covariates in the model, our estimate becomes a bit tighter: the standard error is 0.093. Because our covariates were prognostic of our outcome, including them in the regression explained some noise in our data so that we could tighten our estimate of ATE.</p>
 </section>
-<section id="when-will-it-help" class="level1">
-<h1>When will it help?</h1>
+<section id="when-will-it-help" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> When will it help?</h1>
 <p>When is adjusting for covariates most likely to improve precision?</p>
 <p>Covariate adjustment will be most helpful when your covariates are strongly predictive (or “prognostic”) of your outcomes. Covariate adjustment essentially enables you to make use of information about relationships between baseline characteristics and your outcome so that you can better identify the relationship between treatment and the outcome. But if the baseline characteristics are only weakly correlated with the outcome, covariate adjustment won’t do you much good. The covariates you will want to adjust for are the ones that are strongly correlated with outcomes.</p>
 <p>The following graph demonstrates the relationship between how prognostic your covariate is and the gains you get from adjusting for it. On the x-axis is the sample size, and on the y-axis is the <a href="https://en.wikipedia.org/wiki/Root-mean-square_deviation">root mean squared error</a> (RMSE), the square root of the average squared difference between the estimator and the true ATE. We want our RMSE to be small, and covariate adjustment should help us reduce it.</p>
@@ -343,8 +388,8 @@ div.csl-indent {
 <p>The black line shows the RMSE when we don’t adjust for a covariate. The red line shows the RMSE when we adjust for a highly prognostic covariate (the correlation between the covariate and the outcome is 0.9). You can see that the red line is always below the black line, which is to say that the RMSE is lower when you adjust for a prognostic covariate. The orange line represents the RMSE when we adjust for a moderately prognostic covariate (the correlation between the covariate and the outcome is 0.5). We still are getting gains in precision relative to the black line, but not nearly as much as we did with the red line. Finally, the yellow line shows what happens if you control for a covariate that is not at all predictive of the outcome. The yellow line is almost identical to the black line. You received no improvement in precision by controlling for a non-prognostic covariate; in fact, you paid a slight penalty because you wasted a degree of freedom, which is especially costly when the sample size is small. This exercise demonstrates that you’ll get the most gains in precision by controlling for covariates that strongly predict outcomes.</p>
 <p>How can you know which covariates are likely to be prognostic before launching your experiment? Prior experiments or even observational studies can offer guidance about which baseline characteristics best predict outcomes.</p>
 </section>
-<section id="control-for-prognostic-covariates-regardless-of-whether-they-show-imbalances" class="level1">
-<h1>Control for prognostic covariates regardless of whether they show imbalances</h1>
+<section id="control-for-prognostic-covariates-regardless-of-whether-they-show-imbalances" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Control for prognostic covariates regardless of whether they show imbalances</h1>
 <p>Covariates should generally be chosen on the basis of their expected ability to help predict outcomes, regardless of whether they show “imbalances” (i.e., regardless of whether there are any noteworthy differences between the treatment group and control group in average values or other aspects of covariate distributions). There are two reasons for this recommendation:</p>
 <ol type="1">
 <li><p>Frequentist statistical inference (standard errors, confidence intervals, p-values, etc.) assumes that the analysis follows a pre-specified strategy. Choosing covariates on the basis of observed imbalances makes it more difficult to obtain inferences that reflect your actual strategy. For example, suppose you choose not to control for gender because the treatment and control groups have similar gender composition, but you <em>would have</em> controlled for gender if there’d been a noticeable imbalance. Typical methods for estimating standard errors will incorrectly assume that you’d never control for gender no matter how much imbalance you saw.</p></li>
@@ -360,8 +405,8 @@ div.csl-indent {
 <li><p><span class="citation" data-cites="lin_et_al_2016">Lin, Green, and Coppock (<a href="#ref-lin_et_al_2016" role="doc-biblioref">2016</a>)</span> write: “Covariates should generally be chosen on the basis of their expected ability to help predict outcomes, regardless of whether they appear well-balanced or imbalanced across treatment arms. But there may be occasions when the covariate list specified in the PAP [pre-analysis plan] omitted a potentially important covariate (due to either an oversight or the need to keep the list short when N is small) with a nontrivial imbalance. Protection against ex post bias (conditional on the observed imbalance) is then a legitimate concern.” However, they recommend that if observed imbalances are allowed to influence the choice of covariates, “the balance checks and decisions about adjustment should be finalized before we see unblinded outcome data,” “the <em>direction</em> of the observed imbalance (e.g., whether the treatment group or the control group appears more advantaged at baseline) should not be allowed to influence decisions about adjustment,” and the originally pre-specified estimator should “always be reported and labeled as such, even if alternative estimates are also reported.”<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p></li>
 </ul>
 </section>
-<section id="when-not-to-do-it" class="level1">
-<h1>When not to do it</h1>
+<section id="when-not-to-do-it" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> When not to do it</h1>
 <p>It is a bad idea to adjust for covariates when you think those covariates could have been influenced by your treatment. This is one of the reasons that many covariates are collected from baseline surveys; sometimes covariates that are collected from surveys after intervention could reflect the effects of the treatment rather than underlying characteristics of the subject. Adjusting for covariates that are affected by the treatment—“post-treatment” covariates—can cause bias.</p>
 <p>Suppose, for example, that Giné and Mansuri had collected data on how many political rallies a woman attended after receiving the treatment. In estimating the treatment effect on independence of political choice, you may be tempted to include this variable as a covariate in your regression. But including this variable, even if it strongly predicts the outcome, may distort the estimated effect of the treatment.</p>
 <p>Let’s create this fake variable, which is correlated (like the outcome measure) with baseline covariates and also with treatment. Here, by construction, the treatment effect on number of political rallies attended is 2. When we included the rallies variable as a covariate, the estimated average treatment effect on independence of candidate choice averaged 0.54 across the 10,000 replications. Recall that the true treatment effect on this outcome is 1. This is severe bias, all because we controlled for a post-treatment covariate!<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> This bias results from the fact that the covariate is correlated with treatment.</p>
@@ -386,22 +431,22 @@ div.csl-indent {
 </div>
 <p>Just because you should not adjust for post-treatment covariates does not mean you cannot collect covariate data post-treatment, but you must exercise caution. Some measures could be collected post-treatment but are unlikely to be affected by treatment (e.g., age and gender). Be careful about measures that may be subject to evaluation-driven effects, though: for example, treated women may be more acutely aware of the expectation of political participation and may retrospectively report that they were more politically active than they actually were several years prior.</p>
 </section>
-<section id="concerns-about-small-sample-bias" class="level1">
-<h1>Concerns about small-sample bias</h1>
+<section id="concerns-about-small-sample-bias" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Concerns about small-sample bias</h1>
 <p>In small samples, regression adjustment may produce a biased estimate of the average treatment effect.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> Some simulations have suggested that this bias tends to be negligible when the number of randomly assigned units is greater than twenty <span class="citation" data-cites="green_aronow_2011">(<a href="#ref-green_aronow_2011" role="doc-biblioref">Green and Aronow 2011</a>)</span>. If you’re working with a small sample, you may want to use an unbiased covariate adjustment method such as post-stratification (splitting the sample into subgroups based on the values of one or more baseline covariates, computing the treatment–control difference in mean outcomes for each subgroup, and taking a weighted average of these subgroup-specific treatment effect estimates, with weights proportional to sample size) <span class="citation" data-cites="miratrix_et_al_2013">(<a href="#ref-miratrix_et_al_2013" role="doc-biblioref">Miratrix, Sekhon, and Yu 2013</a>)</span>.</p>
 </section>
-<section id="how-to-make-your-covariate-adjustment-decisions-transparent" class="level1">
-<h1>How to make your covariate adjustment decisions transparent</h1>
+<section id="how-to-make-your-covariate-adjustment-decisions-transparent" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> How to make your covariate adjustment decisions transparent</h1>
 <p>In the interests of transparency, if you adjust for covariates, pre-specify your models and report both unadjusted and covariate-adjusted estimates.</p>
 <p>The simulations above have demonstrated that results may change slightly or not-so-slightly depending on which covariates you choose to include in your model. We’ve highlighted some rules of thumb here: include only pre-treatment covariates that are predictive of outcomes. Deciding which covariates to include, though, is often a subjective rather than an objective enterprise, so another rule of thumb is to be totally transparent about your covariate decisions. Always include the simplest model—the simple regression of outcome on treatment without controlling for covariates—in your paper or appendix to supplement the findings of your model including covariates.</p>
 <p>Another way to minimize your readers’ concern that you went fishing for the particular combination of covariates that gave results favorable to your hypotheses is to pre-specify your models in a pre-analysis plan.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> This gives you the opportunity to explain before you see the findings which pre-treatment covariates you expect to be predictive of the outcome. You can even write these regressions out in R using fake data, as done here, so that when your results from the field arrive, all you need to do is run your code on the real data. These efforts are a useful way of binding your own hands as a researcher and improving your credibility.</p>
 </section>
-<section id="covariates-can-help-you-investigate-the-integrity-of-the-random-assignment" class="level1">
-<h1>Covariates can help you investigate the integrity of the random assignment</h1>
+<section id="covariates-can-help-you-investigate-the-integrity-of-the-random-assignment" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Covariates can help you investigate the integrity of the random assignment</h1>
 <p>Sometimes it is unclear whether random assignment actually occurred (or whether it occurred using the procedure that the researcher envisions). For example, when scholars analyze naturally occurring random assignments (e.g., those conducted by a government agency), it is useful to assess statistically whether the degree of imbalance between the treatment and control groups is within the expected margin of error. One statistical test is to regress treatment assignment on all of the covariates and calculate the F-statistic. The significance of this statistic can be assessed by simulating a large number of random assignments and for each one calculating the F-statistic; the resulting distribution can be used to calculate the p-value of the observed F-statistic. For example, if 10,000 simulations are conducted, and just 30 simulations generate an F-statistic larger than what one actually obtained from the data, the p-value is 0.003, which suggests that the observed level of imbalance is highly unusual. In such cases, one may wish to investigate the randomization procedure more closely.</p>
 <p>For further reading, see <span class="citation" data-cites="athey_imbens_2017">Athey and Imbens (<a href="#ref-athey_imbens_2017" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012, chap. 4</a>)</span>, <span class="citation" data-cites="hennessy_et_al_2016">Hennessy et al. (<a href="#ref-hennessy_et_al_2016" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="judkins_porter_2016">Judkins and Porter (<a href="#ref-judkins_porter_2016" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="raudenbush_1997">Raudenbush (<a href="#ref-raudenbush_1997" role="doc-biblioref">1997</a>)</span>, and <span class="citation" data-cites="wager_et_al_2016">Wager et al. (<a href="#ref-wager_et_al_2016" role="doc-biblioref">2016</a>)</span>.</p>
 </section>
-<section id="references" class="level1">
+<section id="references" class="level1" data-number="11">
 
 
 
@@ -409,7 +454,7 @@ div.csl-indent {
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-altman_2005" class="csl-entry" role="listitem">
 Altman, Douglas G. 2005. <span>“Covariate Imbalance, Adjustment For.”</span> In <em>Encyclopedia of Biostatistics</em>.
 </div>
@@ -569,10 +614,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -582,8 +644,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -595,7 +666,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -639,6 +833,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -664,6 +859,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -724,6 +945,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Alexander Coppock">
+
+<title>Methods - 10 choses à savoir sur la puissance statistique</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/assessing-designs/power.en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/assessing-designs/power.fr.html"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/how-to-read.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to read this guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+ <span class="menu-text">Language</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/assessing-designs/power.en.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/gb.png" width="20px">&nbsp;&nbsp;English</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/assessing-designs/power.fr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/assessing-designs/power.es.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/es.png" width="20px">&nbsp;&nbsp;Spanish</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/assessing-designs/power.en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/assessing-designs/power.fr.html"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">10 choses à savoir sur la puissance statistique</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>Ce guide[^1] vous aidera à évaluer et à améliorer la puissance statistique de vos expériences. Nous nous concentrons sur les grandes idées et fournissons des exemples et des outils que vous pouvez utiliser dans R et Google Spreadsheets.</p>
+  </div>
+</div>
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#quest-ce-quest-la-puissance-statistique" id="toc-quest-ce-quest-la-puissance-statistique"><span class="header-section-number">1</span> Qu’est-ce qu’est la puissance statistique?</a></li>
+  <li><a href="#pourquoi-vous-en-avez-besoin" id="toc-pourquoi-vous-en-avez-besoin"><span class="header-section-number">2</span> Pourquoi vous en avez besoin ?</a></li>
+  <li><a href="#les-trois-ingrédients-de-la-puissance-statistique" id="toc-les-trois-ingrédients-de-la-puissance-statistique"><span class="header-section-number">3</span> Les trois ingrédients de la puissance statistique</a></li>
+  <li><a href="#formules-clés-pour-calculer-la-puissance-statistique" id="toc-formules-clés-pour-calculer-la-puissance-statistique"><span class="header-section-number">4</span> Formules clés pour calculer la puissance statistique</a></li>
+  <li><a href="#quand-croire-votre-analyse-de-puissance" id="toc-quand-croire-votre-analyse-de-puissance"><span class="header-section-number">5</span> Quand croire votre analyse de puissance ?</a></li>
+  <li><a href="#comment-utiliser-la-simulation-pour-estimer-la-puissance" id="toc-comment-utiliser-la-simulation-pour-estimer-la-puissance"><span class="header-section-number">6</span> Comment utiliser la simulation pour estimer la puissance ?</a></li>
+  <li><a href="#comment-changer-votre-conception-pour-améliorer-votre-puissance" id="toc-comment-changer-votre-conception-pour-améliorer-votre-puissance"><span class="header-section-number">7</span> Comment changer votre conception pour améliorer votre puissance ?</a></li>
+  <li><a href="#analyse-de-puissance-pour-plusieurs-traitements" id="toc-analyse-de-puissance-pour-plusieurs-traitements"><span class="header-section-number">8</span> Analyse de puissance pour plusieurs traitements</a></li>
+  <li><a href="#comment-penser-la-puissance-pour-les-conceptions-par-grappe-cluster" id="toc-comment-penser-la-puissance-pour-les-conceptions-par-grappe-cluster"><span class="header-section-number">9</span> Comment penser la puissance pour les conceptions par grappe (cluster) ?</a></li>
+  <li><a href="#une-bonne-analyse-de-puissance-facilite-le-pré-enregistrement" id="toc-une-bonne-analyse-de-puissance-facilite-le-pré-enregistrement"><span class="header-section-number">10</span> Une bonne analyse de puissance facilite le pré-enregistrement</a></li>
+  </ul>
+</nav>
+<!-- title: "10 choses à savoir sur la puissance statistique" -->
+<!-- author: 'Auteur du guide des méthodes: Alexander Coppock' -->
+<section id="quest-ce-quest-la-puissance-statistique" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Qu’est-ce qu’est la puissance statistique?</h1>
+<p>La puissance est la capacité de distinguer le signal du bruit.</p>
+<p>Le signal qui nous intéresse est l’impact d’un traitement sur certains résultats. L’éducation augmente-t-elle les revenus ? Les campagnes de santé publique diminuent-elles l’incidence des maladies ? Les observateurs internationaux peuvent-ils réduire la corruption gouvernementale ?</p>
+<p>Le bruit qui nous préoccupe provient de la complexité du monde. Les résultats varient selon les personnes et les lieux pour une myriade de raisons. En termes statistiques, vous pouvez considérer cette variation comme l’écart type de la variable de résultat. Par exemple, supposons qu’une expérience utilise les taux d’une maladie rare comme résultat. Le nombre total de personnes touchées ne fluctue probablement pas énormément d’un jour à l’autre, ce qui signifie que le bruit de fond dans cet environnement sera faible. Lorsque le bruit est faible, les expériences peuvent détecter même de petits changements dans les résultats moyens. Un traitement qui réduirait l’incidence de la maladie de 1% serait facilement détecté, car les taux de base sont constants.</p>
+<p>Supposons maintenant qu’une expérience utilise plutôt le revenu des sujets comme variable de résultat. Les revenus peuvent varier assez considérablement - dans certains endroits, il n’est pas rare que les gens aient des voisins qui gagnent deux, dix ou cent fois leur salaire quotidien. Lorsque le bruit est élevé, les expériences sont plus difficiles. Un traitement qui augmenterait les revenus des travailleurs de 1% serait difficile à détecter, car les revenus diffèrent tellement en premier lieu.</p>
+<p>Une préoccupation majeure avant de se lancer dans une expérience est le danger d’un <strong>faux négatif</strong>. Supposons que le traitement ait réellement un impact causal sur les résultats. Il serait dommage de se donner autant de peine et de dépenser autant pour randomiser le traitement, collecter des données sur les groupes de traitement et de contrôle et analyser les résultats, pour que l’effet soit finalement noyé par le bruit de fond.</p>
+<p>Si nos expériences ont une grande puissance statistique, nous pouvons être sûrs de ceci : s’il y a vraiment un effet de traitement, nous pourrons le voir.</p>
+</section>
+<section id="pourquoi-vous-en-avez-besoin" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Pourquoi vous en avez besoin ?</h1>
+<p>Les expérimentateurs se prémunissent souvent contre les faux positifs avec des tests de signification statistique. Après une expérience, nous craignons de conclure à tort qu’il y a un effet alors qu’il n’y en a pas vraiment.</p>
+<p>L’analyse de puissance statistique pose la question inverse : en supposant qu’il y ait vraiment un effet de traitement et que vous deviez exécuter votre expérience un grand nombre de fois, à quelle fréquence obtiendrez-vous un résultat statistiquement significatif ?</p>
+<p>Répondre à cette question nécessite des conjectures éclairées. Vous devrez fournir des suppositions quant à l’ampleur raisonnable de l’effet de votre traitement, combien de sujets répondront à votre enquête, combien de sujets votre organisation peut raisonnablement se permettre de traiter.</p>
+<p>D’où viennent ces suppositions ? Avant qu’une expérience ne soit menée, il existe souvent une multitude de données de base disponibles. Les sujets seront-ils agés, riches, éduqués ? Quelle a été l’ampleur du plus grand effet de traitement jamais établi pour votre variable dépendante ? Avec l’analyse de puissance statistique, vous pouvez voir à quel point la probabilité d’obtenir des résultats significatifs est sensible aux changements de vos hypothèses.</p>
+<p>De nombreuses disciplines se sont fixées sur une valeur de puissance cible de 0,80. Les chercheurs modifieront leurs conceptions et leurs hypothèses jusqu’à ce qu’ils puissent être sûrs que leurs expériences donneront des résultats statistiquement significatifs 80 % du temps. Bien que cette convention soit une référence utile, assurez-vous que vous êtes à l’aise avec les risques associés à un taux de réussite attendu de 80 %.</p>
+<p>Attention : la puissance statistique compte beaucoup. Les résultats nuls d’études de faible puissance peuvent être difficiles à interpréter : n’y a-t-il vraiment aucun effet ? Ou l’étude n’est-elle tout simplement pas en mesure de le mesurer? Les résultats positifs d’une étude de faible puissance peuvent également être trompeurs : à condition d’être statistiquement significative, une estimation d’une étude de faible puissance surestime probablement l’effet du traitement. Les études de faible puissance sont parfois basées sur des hypothèses trop optimistes ; une analyse de puissance convaincante rend ces hypothèses explicites et devrait vous protéger de la mise en œuvre de conceptions qui n’ont de manière réaliste aucune chance de répondre aux questions auxquelles vous souhaitez répondre.</p>
+</section>
+<section id="les-trois-ingrédients-de-la-puissance-statistique" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Les trois ingrédients de la puissance statistique</h1>
+<p>Il existe trois grandes catégories de facteurs qui déterminent la puissance de votre expérience. Les deux premiers (l’efficacité du traitement et le bruit de fond) sont des choses que vous ne pouvez pas vraiment contrôler – ce sont les réalités de votre environnement expérimental. Le dernier facteur, la conception expérimentale, est la seule chose que vous pouvez contrôler – utilisez-le !</p>
+<ul>
+<li><p>Efficacité du traitement. Au fur et à mesure que l’efficacité de votre traitement augmente, la puissance statistique de votre expérience augmente. Cela a du sens : si votre traitement donnait à chaque sujet 1 000 000 $, il ne fait aucun doute que nous pourrions discerner des différences de comportement entre les groupes de traitement et de contrôle. Souvent, cependant, nous ne contrôlons pas l’efficacité de nos traitements. Par exemple, les chercheurs impliqués dans l’évaluation du programme ne décident pas du traitement, ils sont censés évaluer le programme tel qu’il est.</p></li>
+<li><p>Bruit de fond. À mesure que le bruit de fond de vos variables de résultat augmente, la puissance de votre expérience diminue. Dans la mesure du possible, essayez de sélectionner des variables de résultat qui ont une faible variabilité. En termes pratiques, cela signifie comparer l’écart type de la variable de résultat à la taille de l’effet de traitement attendu - il n’y a pas de rapport magique à viser, mais plus les deux sont proches, mieux sera votre expérience. Dans l’ensemble, les chercheurs ne contrôlent pas le bruit de fond, et choisir des variables de résultat à bruit faible est plus facile à dire qu’à faire. De plus, de nombreux résultats que nous aimerions étudier sont intrinsèquement assez variables. De ce point de vue, le bruit est simplement à gérer du mieux que vous pouvez.</p></li>
+<li><p>Conception expérimentale. L’analyse de puissance statistique traditionnelle se concentre sur un élément (bien que très important) de la conception expérimentale : le nombre de sujets dans chaque groupe expérimental. En termes simples, un plus grand nombre de sujets augmente la puissance. Cependant, il existe d’autres éléments de la conception expérimentale qui peuvent augmenter la puissance : comment la randomisation est-elle menée ? Est-ce que d’autres facteurs seront contrôlés statistiquement? Combien de groupes de traitement y aura-t-il et peuvent-ils être combinés pour certaines analyses ?</p></li>
+</ul>
+</section>
+<section id="formules-clés-pour-calculer-la-puissance-statistique" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Formules clés pour calculer la puissance statistique</h1>
+<p>Les statisticiens ont dérivé des formules pour calculer la puissance de nombreux modèles expérimentaux. Elles peuvent être utiles pour calculer approximativement la taille de l’échantillon dont vous aurez besoin. Soyez prudent, cependant, car les hypothèses qui sous-tendent les formules peuvent parfois être obscures, ou pire encore, elles peuvent être fausses.</p>
+<p>Voici une formule courante utilisée pour calculer la puissance<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><span class="math display">\[\beta = \Phi \left(\frac{|\mu_t-\mu_c|\sqrt{N}}{2\sigma}-\Phi^{-1} \left(1-\frac{\alpha}{2}\right) \right)\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\beta\)</span> est notre mesure de puissance statistique. Parce que c’est la probabilité d’obtenir un résultat statistiquement significatif, β sera un nombre compris entre 0 et 1.</p></li>
+<li><p><span class="math inline">\(\Phi\)</span> est la fonction de répartition de la distribution normale, et <span class="math inline">\(\Phi^{-1}\)</span> est son inverse.</p></li>
+<li><p><span class="math inline">\(\mu_t\)</span> est le résultat moyen dans le groupe de traitement. Supposons qu’il soit de 65.</p></li>
+<li><p><span class="math inline">\(\mu_c\)</span> est le résultat moyen dans le groupe de contrôle. Supposons qu’il soit de 60.</p></li>
+<li><p>Ensemble, les hypothèses sur <span class="math inline">\(\mu_t\)</span> et <span class="math inline">\(\mu_c\)</span> définissent notre hypothèse sur la taille de l’effet du traitement : 65-60= 5.</p></li>
+<li><p><span class="math inline">\(\sigma\)</span> est l’écart type des résultats. C’est ainsi que nous émettons des hypothèses sur le niveau de bruit de notre expérience - l’une des hypothèses que nous émettons est que <span class="math inline">\(\sigma\)</span> est le même pour les groupes de traitement et de contrôle. Supposons <span class="math inline">\(\sigma=20\)</span></p></li>
+<li><p><span class="math inline">\(\alpha\)</span> est notre niveau de signification – la convention dans de nombreuses disciplines est que <span class="math inline">\(\alpha\)</span> doit être égal à 0,05. <span class="math inline">\(N\)</span> est le nombre total de sujets. C’est la seule variable qui est sous le contrôle direct du chercheur. Cette formule suppose que chaque sujet ait 50 % de chances d’être dans le groupe de contrôle. Supposons que <span class="math inline">\(N=500\)</span>.</p></li>
+</ul>
+<p>En utilisant la formule, nous trouvons que sous cet ensemble d’hypothèses, <span class="math inline">\(\beta = 0,80\)</span>, ce qui signifie que nous avons 80 % de chances d’avoir un résultat statistiquement significatif avec cette conception. Cliquez <a href="https://docs.google.com/spreadsheets/d/117R4cqKkhX1MFqPIh7Yg2YzjHykxD7WsSLXqhEbD33I/edit#gid=0" target="_blank">ici pour une Google spreadsheet</a> qui inclut cette formule. Vous pouvez copier ces formules directement dans Excel. Si vous êtes à l’aise avec R, voici le code pour le même calcul.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>power_calculator <span class="ot">&lt;-</span> <span class="cf">function</span>(mu_t, mu_c, sigma, <span class="at">alpha=</span><span class="fl">0.05</span>, N){ </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  lowertail <span class="ot">&lt;-</span> (<span class="fu">abs</span>(mu_t <span class="sc">-</span> mu_c)<span class="sc">*</span><span class="fu">sqrt</span>(N))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>sigma) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  uppertail <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>lowertail </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(lowertail<span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">lower.tail=</span><span class="cn">TRUE</span>) <span class="sc">+</span> <span class="dv">1</span><span class="sc">-</span> <span class="fu">pnorm</span>(uppertail<span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">lower.tail=</span><span class="cn">FALSE</span>) </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(beta) </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="quand-croire-votre-analyse-de-puissance" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Quand croire votre analyse de puissance ?</h1>
+<p>D’un certain point de vue, l’idée d’analyser la puissance statistique n’a aucun sens. Vous voulez déterminer l’ampleur d’un effet de traitement, mais vous devez d’abord effectuer une analyse de puissance qui nécessite que vous connaissiez déjà l’effet de votre traitement et bien plus encore.</p>
+<p>Ainsi, dans la plupart des analyses de puissance, vous voyez en fait ce qui se passe avec des nombres qui sont dans une certaine mesure inventés. La bonne nouvelle, c’est qu’il est facile de découvrir à quel point vos conclusions dépendent de vos hypothèses : faites simplement varier vos hypothèses et voyez comment les conclusions sur la puissance statistique varient.</p>
+<p>Cela se voit plus facilement en pensant à la façon dont la puissance varie avec le nombre de sujets. Une analyse de puissance qui examine la puissance pour différentes tailles d’étude inclue simplement une plage de valeurs pour N et voit comment <span class="math inline">\(\beta\)</span> change.</p>
+<p>En utilisant la formule de la section 4, vous pouvez voir à quel point la puissance est sensible à toutes les hypothèses : la puissance sera plus élevée si vous supposez que l’effet du traitement est plus important, ou si vous êtes prêt à accepter un niveau <span class="math inline">\(\alpha\)</span> plus élevé, ou si vous avez plus ou moins confiance dans le bruit de vos mesures.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<iframe height="500" src="https://egap.shinyapps.io/Power_Calculator/" width="850">
+</iframe>
+</section>
+<section id="comment-utiliser-la-simulation-pour-estimer-la-puissance" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Comment utiliser la simulation pour estimer la puissance ?</h1>
+<p>La puissance est une mesure de la fréquence pour laquelle, compte tenu des hypothèses, nous obtiendrions des résultats statistiquement significatifs si nous devions mener notre expérience des milliers de fois. La formule de calcul de puissance se base sur des hypothèses et renvoie une solution analytique. Cependant, en raison des progrès de l’informatique moderne, nous n’avons pas à nous fier à des solutions analytiques pour l’analyse de puissance. Nous pouvons dire à nos ordinateurs d’exécuter littéralement l’expérience des milliers de fois et simplement compter la fréquence à laquelle notre expérience est significative.</p>
+<p>Le code ci-dessous montre comment effectuer cette simulation dans R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>possible.ns <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">100</span>, <span class="at">to=</span><span class="dv">2000</span>, <span class="at">by=</span><span class="dv">40</span>) <span class="co"># Les tailles d'échantillon que nous considérerons</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>( (possible.ns <span class="sc">%%</span> <span class="dv">2</span>)<span class="sc">==</span><span class="dv">0</span> )) <span class="do">## On nécessite un nombre pair d'échantillons expérimentaux</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>powers <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(possible.ns)) <span class="co"># objet vide pour collecter les estimations de simulation</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># Niveau de signification standard</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="dv">500</span> <span class="co"># Nombre de simulations à réaliser pour chaque N</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">#### Boucle externe pour varier le nombre de sujets ####</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(possible.ns)){ N <span class="ot">&lt;-</span> possible.ns[j] <span class="co"># Choisit la jième valeur pour N</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  Y0 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span>N, <span class="at">mean=</span><span class="dv">60</span>, <span class="at">sd=</span><span class="dv">20</span>) <span class="co"># résultat potentiel pour le contrôle</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  tau <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># hypothèse de l'effet du traitement</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  Y1 <span class="ot">&lt;-</span> Y0 <span class="sc">+</span> tau <span class="co"># résultat potentiel pour le traitement</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  significant.experiments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, sims) <span class="co"># objet vide pour compter les expériences significatives</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="do">#### Boucle interne pour mener des expériences "sims" fois pour chaque N ####</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        Y0 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span>N, <span class="at">mean=</span><span class="dv">60</span>, <span class="at">sd=</span><span class="dv">20</span>) <span class="co"># résultat potentiel pour le contrôle</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        tau <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># Hypothèse de l'effet du traitement</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        Y1 <span class="ot">&lt;-</span> Y0 <span class="sc">+</span> tau <span class="co"># résultat potentiel pour le traitement</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>sims){</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="do">## Z.sim &lt;- rbinom(n=N, size=1, prob=.5) # Faire une assignation aléatoire par tirage au sort</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        Z.sim <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),N<span class="sc">/</span><span class="dv">2</span>)) <span class="co"># Faire une assignation aléatoire par tirage au sort en s'assurant de groupes de taille égale</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        Y.sim <span class="ot">&lt;-</span> Y1<span class="sc">*</span>Z.sim <span class="sc">+</span> Y0<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>Z.sim) <span class="co"># Révéler les résultats selon l'assignation</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        fit.sim <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y.sim <span class="sc">~</span> Z.sim) <span class="co"># Faire l'analyse (une simple régression)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        p.value <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit.sim)<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">4</span>] <span class="co"># Extraire les p-valeurs</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        significant.experiments[i] <span class="ot">&lt;-</span> (p.value <span class="sc">&lt;=</span> alpha) <span class="co"># Determiner la signification en accord avec p &lt;= 0.05</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  powers[j] <span class="ot">&lt;-</span> <span class="fu">mean</span>(significant.experiments) <span class="co"># stocker le taux de réussite moyen (puissance) pour chaque N</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>powers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.274 0.250 0.394 0.498 0.476 0.620 0.608 0.622 0.740 0.750 0.780 0.822
+[13] 0.826 0.910 0.916 0.892 0.930 0.938 0.936 0.940 0.956 0.970 0.964 0.982
+[25] 0.986 0.990 0.996 0.988 0.996 0.996 1.000 0.992 0.998 0.994 1.000 0.998
+[37] 0.994 1.000 0.996 1.000 1.000 1.000 1.000 0.998 1.000 1.000 1.000 1.000</code></pre>
+</div>
+</div>
+<p>Le code de cette simulation est disponible <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/" target="_blank">ici</a>. La simulation est un moyen beaucoup plus flexible et beaucoup plus intuitif de penser à l’analyse de puissance. Même les plus petits ajustements d’une conception expérimentale sont difficiles à capturer dans une formule (ajout d’un deuxième groupe de traitement, par exemple), mais sont relativement simples à inclure dans une simulation.</p>
+<p>En plus de compter la fréquence à laquelle vos expériences sont statistiquement significatives, vous pouvez observer directement la distribution des p-valeurs que vous êtes susceptible d’obtenir. Le graphique ci-dessous montre que sous ces hypothèses, vous pouvez vous attendre à obtenir quelques p-valeurs dans la plage de 0.01, mais que 80% seront inférieures à 0.05.</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/power/simulatedpvals.png" class="img-fluid"></p>
+</section>
+<section id="comment-changer-votre-conception-pour-améliorer-votre-puissance" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Comment changer votre conception pour améliorer votre puissance ?</h1>
+<p>En ce qui concerne la puissance statistique, la seule chose que vous contrôlez est la conception de l’expérience. Comme nous l’avons vu ci-dessus, un choix de conception évident est le nombre de sujets à inclure dans l’expérience. Plus il y a de sujets, plus la puissance est élevée.</p>
+<p>Cependant, le nombre de sujets n’est pas le seul choix de conception qui a des conséquences sur la puissance. Il existe deux grandes catégories de choix de conception qui sont particulièrement importantes à cet égard.</p>
+<ul>
+<li><p>Choix de l’estimateur. Utilisez-vous la différence des moyennes ? Allez-vous effectuer une transformation, comme un logit ou un probit ? Contrôlerez-vous les covariables ? Utiliserez-vous un estimateur robuste pour l’erreur type ? Tous ces choix feront une différence pour la signification statistique de vos résultats, et donc pour la puissance de votre expérience. Une façon simple d’y penser est d’imaginer quelle commande vous exécuterez dans R ou Stata après l’expérience ; c’est votre estimateur !</p></li>
+<li><p>Protocole de randomisation. Quel type de randomisation utiliserez-vous ? La randomisation simple donne à tous les sujets une probabilité égale d’être dans le groupe de traitement, puis effectue un tirage au sort (éventuellement pondéré) pour chacun. La randomisation complète est similaire, mais elle garantit qu’un nombre exact d’unités seront assignées au traitement. La randomisation par bloc est encore plus puissante : elle garantit qu’un certain nombre d’unités au sein d’un sous-groupe seront assignés au traitement. Une assignation aléatoire restreinte rejette certaines assignations aléatoires sur la base d’un certain ensemble de critères — un manque d’équilibre par exemple. Ces différents types d’assignation aléatoire peuvent augmenter considérablement la puissance d’une expérience sans frais supplémentaires. Renseignez-vous sur les protocoles de randomisation <a href="https://egap.org/resource/10-things-to-know-about-randomization/">ici</a>.</p></li>
+</ul>
+<p>Il y a trop de choix à couvrir dans ce court article, mais consultez le code de simulation pour l’analyse de puissance pour savoir comment commencer. Pour vous donner une idée de l’approche de simulation, réfléchissez à la manière dont vous effectueriez une analyse de puissance si vous vouliez inclure des covariables dans votre analyse.</p>
+<p>Si les covariables que vous incluez en tant que variables de contrôle sont fortement liées au résultat, alors vous avez considérablement augmenté la puissance de votre expérience. Malheureusement, la puissance supplémentaire qui accompagne l’inclusion des variables de contrôle est très difficile à capturer dans une formule compacte. Quasiment aucune des formules de puissance trouvées dans les manuels ou sur internet ne peut fournir des conseils sur ce que l’inclusion de covariables fera pour votre puissance.</p>
+<p>La réponse est la simulation.</p>
+<ul>
+<li>Supposons que nous étudions l’effet d’une intervention éducative sur le revenu</li>
+<li>Supposons que nous ayons de bonnes données sur la relation entre deux covariables et le revenu : l’âge et le sexe. Dans cette économie, les hommes gagnent plus que les femmes et les personnes âgées gagnent plus que les jeunes.</li>
+<li>Exécutez une régression du revenu sur l’âge et le sexe et enregistrez les coefficients, en utilisant des données d’enquête préexistantes (mieux encore : utilisez les données de référence des futurs participants à votre expérience !)</li>
+<li>Générez de fausses données de covariables - N sujets au total, mais ventilés par âge et par sexe d’une manière qui reflète votre groupe de sujets expérimentaux.</li>
+<li>Générez de fausses données de contrôle - où le résultat est fonction de l’âge et du sexe selon vos estimations de régression</li>
+<li>Faire l’hypothèse d’un effet de traitement pour générer de fausses données de traitement</li>
+<li>Exécutez l’expérience 10 000 fois et enregistrez la fréquence à laquelle, à l’aide d’une régression avec contrôles, votre expérience s’avère significative.</li>
+</ul>
+<p>Voici un graphique qui compare la puissance d’expériences avec et sans contrôle par les attributs de base. Le R² de la régression reliant le revenu à l’âge et au sexe est assez élevé - environ 0,66 - ce qui signifie que les covariables que nous avons rassemblées (générées) sont hautement prédictives. Pour une comparaison approximative, sigma, le niveau de bruit de fond auquel le modèle non ajusté est confronté, est d’environ 33. Ce graphique montre que pour n’importe quel N, le modèle ajusté par les covariables a plus de puissance, à tel point que le modèle non ajusté aurait besoin de 1500 sujets pour réaliser ce que le modèle ajusté peut faire avec 500 sujets.</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/power/powergraph21.png" class="img-fluid"></p>
+<p>Cette approche ne repose pas sur une formule pour trouver la probabilité d’obtenir un résultat statistiquement significatif : elle repose sur la force brute ! Et parce que la simulation vous permet de spécifier chaque étape de la conception expérimentale, vous effectuez une analyse de puissance beaucoup plus nuancée que la simple considération du nombre de sujets.</p>
+</section>
+<section id="analyse-de-puissance-pour-plusieurs-traitements" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Analyse de puissance pour plusieurs traitements</h1>
+<p>De nombreuses expériences emploient plusieurs traitements qui sont comparés à la fois les uns aux autres et à un groupe de contrôle. Cette complication supplémentaire change ce que nous entendons lorsque nous disons la “puissance” d’une expérience. Dans le cas d’un seul groupe de traitement, la puissance est simplement la probabilité d’obtenir un résultat statistiquement significatif. Dans le cas des traitements multiples, cela peut signifier plusieurs choses : A) la probabilité qu’au moins un des traitements soit significatif, B) la probabilité que tous les traitements soient significatifs (par rapport au contrôle) ou C) la probabilité que les traitements soient classés dans un certain ordre hypothétique et que ce classement soit statistiquement significatif.</p>
+<p>Cette question des bras de traitement multiples est liée au problème des comparaisons multiples. Les tests de signification standard sont basés sur l’hypothèse que vous effectuez un seul test de signification statistique, et les p-valeurs dérivées de ces tests reflètent la probabilité sous l’hypothèse nulle de voir un effet de traitement aussi important (ou plus important). Si, toutefois, vous effectuez plusieurs tests, cette probabilité n’est plus correcte. Dans une série de tests, la probabilité qu’au moins un des tests soit significatif même lorsque l’effet réel est nul est plus élevée, essentiellement parce que vous avez plus de tentatives. Une solution couramment citée (sinon couramment utilisée) consiste à utiliser la correction de Bonferroni : spécifiez le nombre de comparaisons que vous effectuerez à l’avance, puis divisez votre niveau de signification <span class="math inline">\(\alpha\)</span> par ce nombre.</p>
+<p>Si vous allez utiliser une correction de Bonferroni, les calculateurs de puissance standard seront plus compliqués à utiliser : vous devrez spécifier vos niveaux <span class="math inline">\(\alpha\)</span> corrigés de Bonferroni et calculer la puissance séparée de chaque comparaison. Pour calculer la probabilité que tous les tests soient significatifs, multipliez toutes les puissances séparées ensemble. Pour calculer la probabilité qu’au moins un des tests soit significatif, calculez la probabilité qu’aucun ne le soit, puis soustrayez de un.</p>
+<p>Ou vous pouvez utiliser la simulation. Un exemple de calcul de puissance fait dans R est disponible sur la page des simulations.</p>
+</section>
+<section id="comment-penser-la-puissance-pour-les-conceptions-par-grappe-cluster" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Comment penser la puissance pour les conceptions par grappe (cluster) ?</h1>
+<p>Lorsqu’une expérience doit assigner des groupes entiers de personnes à un traitement plutôt qu’individuellement, nous avons une expérience par grappe. Ceci est courant pour les expériences éducatives, où des classes entières d’enfants sont assignées au traitement ou au contrôle, ou dans l’économie du développement, où des villages entiers d’individus sont assignés au traitement ou au contrôle.</p>
+<p>En règle générale, le découpage par grappe diminue votre puissance. Si vous pouvez éviter de regrouper vos traitements en grappe, c’est préférable pour la puissance. À moins que vous ne soyez confronté à des problèmes liés aux effets de contamination, à la logistique ou à l’éthique, réduisez la variation au niveau le plus bas possible.</p>
+<p>Le meilleur scénario pour une conception par grappe est lorsque la grappe dans laquelle se trouve un sujet fournit très peu d’informations sur leurs résultats. Supposons que les sujets soient assignés de manière aléatoire à des grappes - le grappe n’aiderait pas du tout à prédire les résultats. Si la grappe n’est pas prédictive du résultat, alors nous n’avons pas perdu trop de puissance à cause du découpage par grappe.</p>
+<p>Là où le découpage par grappe cause vraiment des problèmes, c’est lorsqu’il existe une relation forte entre la grappe et le résultat. Pour prendre l’exemple des villages, supposons que certains villages soient, dans l’ensemble, beaucoup plus riches que d’autres. Les grappes pourraient alors être assez prédictives du niveau d’instruction. Le découpage par grappe peut réduire la taille effective de votre échantillon du nombre total d’individus au nombre total de grappes.</p>
+<p>Il existe des formules qui peuvent vous aider à comprendre les conséquences du découpage par grappe — voir Gelman/Hill page 447-449 pour une discussion approfondie. Bien que ces formules puissent être utiles, elles peuvent également être assez lourdes à utiliser. L’idée principale est cependant simple : vous obtenez généralement plus de puissance en augmentant le nombre de grappes qu’en augmentant le nombre de sujets au sein des grappes. Mieux vaut avoir 100 grappes de 10 sujets que 10 grappes avec 100 sujets.</p>
+<p>Encore une fois, une approche plus flexible de l’analyse de puissance lorsqu’il s’agit de grappes est la simulation. Voir la page de simulations <a href="https://TODO">ici</a>, ou lisez Gelman/Hill page 450-453 pour une autre approche de simulation.</p>
+</section>
+<section id="une-bonne-analyse-de-puissance-facilite-le-pré-enregistrement" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Une bonne analyse de puissance facilite le pré-enregistrement</h1>
+<p>Lorsque vous traitez de puissance statistique, vous vous concentrez sur ce que vous ne pouvez pas contrôler (le bruit) et ce que vous pouvez contrôler (la conception). Si vous utilisez l’approche de simulation pour l’analyse de puissance, vous serez obligé d’imaginer à quoi ressembleront vos données et comment vous allez les gérer. Vous aurez la possibilité de spécifier à l’avance toutes vos intuitions et vos meilleures suppositions, afin de pouvoir lancer vos expériences avec des attentes claires sur ce qu’elles peuvent et ne peuvent pas montrer. C’est du travail, mais la bonne nouvelle est que si vous le faites vraiment, vous êtes sur la bonne voie pour mettre en place un plan de pré-analyse complet et enregistrable.</p>
+<pre><code>© 2022 GitHub, Inc.
+
+Terms
+Privacy</code></pre>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Formule reproduite de Gerber et Green 2012, page 93<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Pour un outil supplémentaire de visualisation de puissance en ligne, consultez le <a href="http://rpsychologist.com/d3/NHST/" target="_blank">blog R Psychologist</a> de Kristoffer Magnusson.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

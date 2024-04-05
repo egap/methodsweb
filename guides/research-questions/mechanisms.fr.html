@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lindsay Dolan">
+
+<title>Methods - 10 choses sur les mécanismes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/research-questions/mechanisms.en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/research-questions/mechanisms.fr.html"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/how-to-read.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to read this guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+ <span class="menu-text">Language</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/research-questions/mechanisms.en.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/gb.png" width="20px">&nbsp;&nbsp;English</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/research-questions/mechanisms.fr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/research-questions/mechanisms.es.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/es.png" width="20px">&nbsp;&nbsp;Spanish</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/research-questions/mechanisms.en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/research-questions/mechanisms.fr.html"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">10 choses sur les mécanismes</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>En tant que chercheurs en sciences sociales, nous sommes fascinés par les questions causales. Dès que nous apprenons que X cause Y, nous voulons mieux comprendre <em>pourquoi</em> X cause Y. Ce guide explore le rôle des ‘mécanismes’ dans l’analyse causale et vous aidera à comprendre les types de conclusions que vous pouvez en tirer.</p>
+  </div>
+</div>
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#les-mécanismes-sont-des-voies-par-lesquelles-x-cause-le-résultat-y." id="toc-les-mécanismes-sont-des-voies-par-lesquelles-x-cause-le-résultat-y."><span class="header-section-number">1</span> Les mécanismes sont des voies par lesquelles X cause le résultat Y.</a></li>
+  <li><a href="#bien-que-nous-nayons-pas-besoin-de-connaître-le-mécanisme-pour-conclure-que-x-cause-y-il-y-a-plusieurs-raisons-pour-lesquelles-nous-le-voudrions." id="toc-bien-que-nous-nayons-pas-besoin-de-connaître-le-mécanisme-pour-conclure-que-x-cause-y-il-y-a-plusieurs-raisons-pour-lesquelles-nous-le-voudrions."><span class="header-section-number">2</span> Bien que nous n’ayons pas <em>besoin</em> de connaître le mécanisme pour conclure que X cause Y, il y a plusieurs raisons pour lesquelles nous le <em>voudrions</em>.</a></li>
+  <li><a href="#mais-il-est-extrêmement-difficile-didentifier-les-mécanismes-causaux-car-les-mécanismes-eux-mêmes-ne-sont-pas-assignés-de-manière-aléatoire" id="toc-mais-il-est-extrêmement-difficile-didentifier-les-mécanismes-causaux-car-les-mécanismes-eux-mêmes-ne-sont-pas-assignés-de-manière-aléatoire"><span class="header-section-number">3</span> Mais il est extrêmement difficile d’identifier les mécanismes causaux car les mécanismes eux-mêmes ne sont pas assignés de manière aléatoire…</a></li>
+  <li><a href="#et-parce-que-leffet-du-traitement-est-rarement-homogène." id="toc-et-parce-que-leffet-du-traitement-est-rarement-homogène."><span class="header-section-number">4</span> …et parce que l’effet du traitement est rarement homogène.</a></li>
+  <li><a href="#de-nombreuses-études-tentent-de-décomposer-leffet-total-dun-traitement-entre-ses-effets-directs-et-indirects." id="toc-de-nombreuses-études-tentent-de-décomposer-leffet-total-dun-traitement-entre-ses-effets-directs-et-indirects."><span class="header-section-number">5</span> De nombreuses études tentent de décomposer l’effet total d’un traitement entre ses effets “directs” et “indirects”.</a></li>
+  <li><a href="#mais-soyez-prudent-lorsque-vous-utilisez-une-régression-pour-décomposer-les-effets." id="toc-mais-soyez-prudent-lorsque-vous-utilisez-une-régression-pour-décomposer-les-effets."><span class="header-section-number">6</span> Mais soyez prudent lorsque vous utilisez une régression pour décomposer les effets.</a></li>
+  <li><a href="#parfois-lanalyse-de-sous-groupes-peut-fournir-des-preuves-ou-suggestions-pour-ou-contre-un-mécanisme." id="toc-parfois-lanalyse-de-sous-groupes-peut-fournir-des-preuves-ou-suggestions-pour-ou-contre-un-mécanisme."><span class="header-section-number">7</span> Parfois, l’analyse de sous-groupes peut fournir des preuves ou suggestions pour ou contre un mécanisme.</a></li>
+  <li><a href="#nous-pouvons-également-rechercher-des-preuves-suggestives-en-examinant-leffet-de-notre-traitement-sur-divers-résultats." id="toc-nous-pouvons-également-rechercher-des-preuves-suggestives-en-examinant-leffet-de-notre-traitement-sur-divers-résultats."><span class="header-section-number">8</span> Nous pouvons également rechercher des preuves suggestives en examinant l’effet de notre traitement sur divers résultats.</a></li>
+  <li><a href="#lélaboration-de-traitements-complexes-peut-aider-à-comprendre-quelle-partie-du-traitement-produit-leffet." id="toc-lélaboration-de-traitements-complexes-peut-aider-à-comprendre-quelle-partie-du-traitement-produit-leffet."><span class="header-section-number">9</span> L’élaboration de traitements complexes peut aider à comprendre quelle partie du traitement “produit l’effet”.</a></li>
+  <li><a href="#malgré-les-difficultés-à-mesurer-empiriquement-les-mécanismes-il-convient-de-sy-attarder-sérieusement-mais-dêtre-prudent-dans-notre-langage." id="toc-malgré-les-difficultés-à-mesurer-empiriquement-les-mécanismes-il-convient-de-sy-attarder-sérieusement-mais-dêtre-prudent-dans-notre-langage."><span class="header-section-number">10</span> Malgré les difficultés à mesurer empiriquement les mécanismes, il convient de s’y attarder sérieusement mais d’être prudent dans notre langage.</a></li>
+  </ul>
+</nav>
+<!-- title: "10 choses sur les mécanismes" -->
+<!-- author: 'Auteur du guide des méthodes: Lindsay Dolan' -->
+<section id="les-mécanismes-sont-des-voies-par-lesquelles-x-cause-le-résultat-y." class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Les mécanismes sont des voies par lesquelles X cause le résultat Y.</h1>
+<p>Les mécanismes sont depuis longtemps au cœur de la médecine. Chaque fois qu’une médecin prescrit un traitement, elle le fait en sachant quels facteurs chimiques ou physiques provoquent une maladie, et elle prescrit un traitement efficace car il interrompt ces facteurs. Par exemple, de nombreux cliniciens psychologues recommandent l’exercice aux patients souffrant de dépression. L’exercice augmente les endorphines dans la chimie du corps, qui déclenchent des sentiments positifs et agissent également comme analgésiques, ce qui réduit la perception de la douleur. Les endorphines sont donc un mécanisme par lequel l’exercice aide à réduire la dépression. L’exercice peut avoir des effets positifs sur un certain nombre d’autres variables dépendantes (par exemple, les maladies cardiaques) par voie d’autres mécanismes (par exemple, l’élévation du rythme cardiaque), mais le mécanisme qui l’amène à affecter la dépression en particulier est l’endorphine. Nous pourrions également conclure qu’un autre traitement, tel qu’un médicament qui augmente les endorphines, peut avoir des effets similaires sur la dépression.</p>
+<p>Les mécanismes sont tout aussi importants pour les sciences sociales. Prenez, par exemple, des recherches récentes qui ont associé le changement climatique à une augmentation des conflits civils. Une étude<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> prétend identifier l’effet causal des chocs climatiques sur les conflits violents en étudiant le taux de conflits civils dans les pays touchés par El Niño pendant les années El Niño par rapport aux années sans El Niño. Supposons que cette étude soit correcte. Pourquoi subir un choc climatique causerait des niveaux de conflit élevés dans un pays ? Un mécanisme pourrait être la pauvreté : les chocs climatiques nuisent à l’économie, et avec des coûts d’opportunité inférieurs, les individus sont plus enclins à rejoindre des groupes armés. Un mécanisme alternatif est physiologique : les gens sont physiquement câblés pour être plus agressifs par temps chaud. Le mécanisme est peut-être la migration : les chocs climatiques déplacent les populations des régions côtières, ce qui produit des conflits sociaux entre migrants et autochtones. En réalité, plusieurs ou tous ces mécanismes (ainsi que d’autres non listés ici) pourraient fonctionner simultanément ! Dans bon nombre des questions les plus intéressantes en sciences sociales, il existe plusieurs canaux (ou mécanismes “M”) qui pourraient transmettre l’effet total de X sur Y.</p>
+</section>
+<section id="bien-que-nous-nayons-pas-besoin-de-connaître-le-mécanisme-pour-conclure-que-x-cause-y-il-y-a-plusieurs-raisons-pour-lesquelles-nous-le-voudrions." class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Bien que nous n’ayons pas <em>besoin</em> de connaître le mécanisme pour conclure que X cause Y, il y a plusieurs raisons pour lesquelles nous le <em>voudrions</em>.</h1>
+<p>Dans l’exemple climat/conflit ci-dessus, nous pouvons avoir une confiance totale dans la capacité des chercheurs à identifier que les chocs climatiques causent des conflits, et pourtant n’avons aucune preuve des mécanismes qui sont à l’œuvre. Mais les chercheurs en sciences sociales aiment en apprendre davantage sur les mécanismes parce qu’ils sont étroitement liés aux théories des sciences sociales. Par exemple, le mécanisme de “pauvreté” ci-dessus est étroitement lié à la théorie de Gurr<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> selon laquelle les individus se rebellent lorsque les coûts d’opportunité du conflit sont faibles, alors que le mécanisme de “migration” pourrait soutenir une théorie du conflit basée sur des griefs entre groupes sociaux. Il n’est pas étonnant qu’en apprenant que X cause Y, les chercheurs en sciences sociales se demandent immédiatement quel est le mécanisme - ils veulent relier cette découverte à la théorie !</p>
+<p>Comprendre les mécanismes a non seulement des avantages théoriques mais aussi pratiques. Premièrement, connaître M permet de deviner pour quelles populations X conduira à Y. Si le mécanisme du climat/conflit est une réponse physiologique à la chaleur, alors les chocs climatiques peuvent produire des conflits uniquement lorsque la température est assez élevée. Deuxièmement, connaître M nous aide à considérer d’autres résultats qui peuvent être affectés par X. Si le mécanisme du climat/conflit est la migration, alors nous pouvons également nous attendre à ce que les chocs climatiques entraînent une surutilisation des biens publics dans les zones urbaines. Troisièmement, connaître M nous aide à envisager d’autres moyens de provoquer ou d’éviter de provoquer des changements dans Y. Si le mécanisme du climat/conflit est la pauvreté, alors les programmes de développement pourraient diminuer les conflits en réduisant la sensibilité des revenus aux chocs climatiques, même s’ils ne peuvent pas changer les chocs climatiques.</p>
+</section>
+<section id="mais-il-est-extrêmement-difficile-didentifier-les-mécanismes-causaux-car-les-mécanismes-eux-mêmes-ne-sont-pas-assignés-de-manière-aléatoire" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Mais il est extrêmement difficile d’identifier les mécanismes causaux car les mécanismes eux-mêmes ne sont pas assignés de manière aléatoire…</h1>
+<p>Prenons un exemple expérimental. Chong et al.&nbsp;(2015)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> ont utilisé une expérience de terrain pour étudier l’effet des informations à propos de la corruption sur la participation électorale. Ils ont assigné de manière aléatoire certains bureaux de vote au Mexique pour recevoir des informations sur l’utilisation corrompue des fonds au sein de cette municipalité. Étonnamment, ils ont découvert que les circonscriptions traitées votaient à des taux inférieurs aux circonscriptions de contrôle. Ils suggèrent le mécanisme suivant à l’œuvre : les informations sur la corruption convainquent les électeurs que la municipalité est si gravement corrompue que l’élection d’un bon politicien ne la changera pas, de sorte que les individus trouvent que leur vote a moins de valeur.</p>
+<p>En bref, leur argument est :<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Réception d’informations sur la corruption (X) <span class="math inline">\(\xrightarrow{+}\)</span> Estime que la corruption est trop grave (M) <span class="math inline">\(\xrightarrow{+}\)</span> Reste à la maison (Y)</p>
+<p>Chong et al.&nbsp;font face à un obstacle commun dans l’interprétation de leurs résultats : le mécanisme qu’ils proposent n’a pas été assigné de manière aléatoire. Certaines personnes sont plus enclines à croire que “tous les politiciens sont des vauriens”, tandis que d’autres ont tendance à faire pression pour “un changement auquel nous pouvons croire”. Malheureusement, nous ne pouvons observer que le traitement aléatoire qu’un individu a reçu et sa croyance (non aléatoire) au sujet de la corruption ; nous ne pouvons pas dire quelle croyance au sujet de la corruption ils <em>auraient eu</em> s’ils avaient reçu l’autre condition de traitement. Il nous est donc impossible de déterminer, pour chaque individu, dans quelle mesure sa décision d’aller voter a été causée par le mécanisme proposé par rapport à d’autres mécanismes.</p>
+<p>Certains chercheurs tentent de contourner ce problème en estimant l’effet <em>moyen</em> du traitement sur le mécanisme, puis en estimant l’effet <em>moyen</em> du mécanisme sur le résultat. L’une des raisons pour lesquelles cela est problématique est que nous pouvons imaginer plusieurs facteurs autres que le traitement qui pourraient causer à la fois M et Y. Supposons que le niveau d’apathie - appelons-le Q - varie parmi les citoyens de notre étude, et Q a un effet très fort sur M et Y. Les personnes très apathiques pourraient être plus susceptibles de croire que les problèmes sont insolubles, et elles pourraient également être plus susceptibles de rester à la maison le jour du scrutin. Nous sommes donc susceptibles d’observer une forte corrélation entre M et Y qui est induite par le facteur de confusion Q, et non par notre traitement X. Mécaniquement, nos résultats seront biaisés en faveur de la recherche de preuves de l’effet de X sur Y via M simplement parce que Q a produit une relation entre M et Y.</p>
+</section>
+<section id="et-parce-que-leffet-du-traitement-est-rarement-homogène." class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> …et parce que l’effet du traitement est rarement homogène.</h1>
+<p>L’autre problème lorsque l’on essaie de décomposer l’effet moyen de X sur M puis de M sur Y est que cette approche suppose que chaque sujet réponde au traitement de manière identique. En revenant à notre exemple dans lequel X est le traitement de l’information, M est la conviction que la corruption est trop sévère, et Y le fait de rester à la maison, nous pouvons imaginer deux types de répondants. Le type A pensait que la corruption était trop grave pour être résolue jusqu’à ce qu’elle reçoive une lettre contenant des informations sur la corruption dans son district. Elle fut surprise de voir que le problème n’était pas aussi grave qu’elle l’avait pensé. Formellement, pour le type A, <span class="math inline">\(M(X=0)=1\)</span> et <span class="math inline">\(M(X=1)=0\)</span>, donc X a un effet <em>négatif</em> sur M. Le type B pensait que la corruption était un problème gérable jusqu’à ce qu’elle reçoive une lettre contenant des informations sur la corruption dans son district. Elle a été surprise par l’ampleur du problème et a abandonné tout espoir de résoudre le problème. Formellement, pour le type B, <span class="math inline">\(M(X=0)=0\)</span> et <span class="math inline">\(M(X=1)=1\)</span>, donc X a un effet <em>positif</em> sur M. Si nous devions faire la moyenne des effets pour ces deux types, nous ne verrions aucune relation entre X et M.</p>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>X (traitement de l’info)</th>
+<th>M conditionnel à X=0 (non observé)</th>
+<th>M conditionnel à X=1 (observé)</th>
+<th>Effet de X sur M</th>
+<th>Effet de M sur Y</th>
+<th>Y (Reste à la maison)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>négatif</td>
+<td>négatif</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>positif</td>
+<td>positif</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>L’estimation du rôle de M peut être encore plus compliquée lorsque la relation entre M et Y est également hétérogène. Imaginez que le type A ne vote que lorsqu’elle est en colère (en d’autres termes, M a un effet <em>négatif</em> sur Y). Le type A prévoyait de voter pour exprimer sa colère face à l’omniprésence de la corruption dans son district, même si elle savait que cela n’aurait rien changé, jusqu’à ce qu’elle apprenne que la corruption n’était pas aussi grave qu’elle l’avait imaginée. Sa colère disparue, elle choisit de rester à la maison le jour des élections. Cependant, le type B ne vote que lorsqu’elle pense que son vote peut faire la différence (en d’autres termes, M a un effet <em>positif</em> sur Y). Le type B allait voter pour les politiciens non corrompus de son district jusqu’à ce qu’elle apprenne qu’ils étaient tous corrompus. Sans aucun espoir de changer la situation, elle a également décidé de rester chez elle le jour du scrutin. Pour les types A et B, il existe un “effet indirect” de M (en d’autres termes, X affecte Y à travers M). Mais nous passerons à côté de cette relation dans l’ensemble car nous ne serons pas en mesure d’obtenir des estimations non biaisées de l’effet moyen de X sur M.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p>Nous pouvons imaginer beaucoup plus de “types” que A et B – le but ici est de démontrer intuitivement que parce que M n’est pas assigné de manière aléatoire, et parce qu’il est peu probable que les effets de X sur M <em>et</em> M sur Y soient identiques pour tout le monde, il sera très difficile de caractériser avec précision l’entremise de M pour notre effet.</p>
+</section>
+<section id="de-nombreuses-études-tentent-de-décomposer-leffet-total-dun-traitement-entre-ses-effets-directs-et-indirects." class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> De nombreuses études tentent de décomposer l’effet total d’un traitement entre ses effets “directs” et “indirects”.</h1>
+<p>Parce que l’apprentissage des mécanismes est riche en promesses théoriques, les chercheurs aimeraient quantifier dans quelle mesure un effet de X sur Y opère via M. Parfois, les chercheurs essaieront de le faire grâce à une technique appelée “décomposition des effets”.</p>
+<p>Une analyse de décomposition des effets tente de décomposer un effet <em>total</em> de X sur Y en l’effet que X a sur Y <em>directement</em> et l’effet de X sur Y qui se produit <em>indirectement</em> via M. “L’effet total” fait référence à l’effet moyen du traitement (average treatment effect, ATE), qui est simplement l’effet moyen de X sur Y. Toute expérience qui assigne de manière aléatoire un traitement afin d’observer ses effets sur certains résultats évalue l’ATE. Ensuite, le chercheur essaie de quantifier la taille de l’effet que X a sur Y à travers le mécanisme M. C’est ce qu’on appelle souvent “l’effet indirect” – parce que X affecte indirectement Y via M – ou l’effet moyen causal par médiation (average causally mediated effect, ACME). Enfin, le chercheur tentera d’estimer l’effet de X sur Y qui ne passe pas par M. C’est ce qu’on appelle “l’effet direct” de X sur Y ou l’effet moyen direct contrôlé (average controlled direct effect, ACDE), car c’est l’effet de X sur Y lorsque nous contrôlons le travail effectué par M.</p>
+</section>
+<section id="mais-soyez-prudent-lorsque-vous-utilisez-une-régression-pour-décomposer-les-effets." class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Mais soyez prudent lorsque vous utilisez une régression pour décomposer les effets.</h1>
+<p>Bien que couramment utilisée, l’analyse de régression par médiation présuppose des hypothèses fortes et souvent irréalistes. Nous utiliserons du code pour illustrer ce que cette méthode implique et démontrer les conditions dans lesquelles elle peut produire des estimations biaisées.</p>
+<p>L’idée de base est que si nous avons des données sur le traitement qu’un individu a reçu (X), s’il présente le mécanisme proposé (M) et quel est le résultat (Y), alors nous pouvons distinguer ces effets en utilisant les trois régressions suivantes.</p>
+<ol type="1">
+<li><span class="math display">\[ M_i = \alpha_1+aX_i+e_{1i} \]</span></li>
+<li><span class="math display">\[ Y_i = \alpha_2+cX_i+e_{2i} \]</span></li>
+<li><span class="math display">\[ Y_i = \alpha_3+dX_i+bM_i+e_{3i} \]</span></li>
+</ol>
+<p>Comment ferions-nous cela? En utilisant l’équation 1, nous faisons la régression de M sur X pour obtenir l’effet direct de X sur M, qui est le coefficient <span class="math inline">\(a\)</span>. Ensuite, nous passons à l’équation 3, dans laquelle nous faisons la régression de Y sur M et X. Dans cette régression, le coefficient <span class="math inline">\(b\)</span> représente l’effet direct de M sur Y lorsque nous contrôlons pour X. Une analyse de décomposition des effets multiplierait <span class="math inline">\(a*b\)</span> pour révéler l’effet indirect de X sur Y via M. Pour trouver l’effet direct de X sur Y, nous n’avons pas besoin de chercher plus loin que <span class="math inline">\(d\)</span>, qui est le coefficient de X dans l’équation 3 lorsque nous contrôlons pour M. En d’autres termes, <span class="math inline">\(d\)</span> est l’effet de X sur Y qui ne passe pas par M. Si l’on additionne l’effet indirect et l’effet direct, on obtient “l’effet total” de X sur Y, qui est égal à <span class="math inline">\(c\)</span>. Pour résumer, l’analyse de décomposition des effets désagrège ostensiblement l’effet total en effet qui est médié via M et l’effet qui n’est pas médié via M, permettant au chercheur de conclure à quel point M est important pour expliquer la relation entre X et Y.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>Le problème est que cette arithmétique ne fonctionne que sous certaines hypothèses très fortes. L’une de ces hypothèses est que les termes d’erreur dans les régressions 1 et 3 ne sont pas liés les uns aux autres - en d’autres termes, M ne peut pas être prédit par des facteurs non observables qui prédisent également Y. Nous avons décrit ce problème intuitivement au point 3 lorsque nous avons introduit Q, une variable de confusion qui contribue à la fois à M et à Y et engendre donc une relation très forte entre eux, même si l’effet de X sur Y ne s’exerce pas du tout à travers M. Décrivons maintenant ce problème à l’aide d’une simulation.</p>
+<p>Dans le code suivant, nous commençons par créer cette variable Q pour chaque individu et définir les “vrais” effets de X sur M, M sur Y et X sur Y. Ensuite, nous créons des résultats potentiels hypothétiques pour M, c’est-à-dire que pour chaque individu, nous définissons quelle valeur de M ils révéleraient s’ils étaient traités, et quelle valeur de M ils révéleraient s’ils n’étaient pas traités. Ces valeurs sont liées non seulement au “vrai” effet de X sur M, mais aussi à Q. Ensuite, nous pouvons également définir des résultats potentiels hypothétiques pour Y. Nous faisons cela pour quatre scénarios, qui supposent tous des effets constants, une hypothèse que nous relâcherons plus tard. Deux d’entre eux sont des résultats potentiels simples de Y : le Y présenté par l’individu qui n’est pas traité et révèle son résultat potentiel M non traité, et le Y présenté par l’individu qui est traité et révèle son résultat potentiel M traité. Cependant, nous définissons également deux résultats potentiels complexes de Y : le Y présenté par l’individu qui n’est pas traité mais qui révèle son résultat potentiel M traité, et le Y présenté par l’individu qui est traité mais qui révèle son résultat potentiel M non traité. Bien que ces résultats potentiels compliquent la compréhension, ils sont importants à définir afin que nous puissions calculer les effets directs et indirects “vrais” (mais intrinsèquement inobservables) auxquels comparer notre analyse de décomposition.</p>
+<p>Dans la seconde moitié du code, nous effectuons une assignation aléatoire du traitement et procédons à l’analyse de décomposition des effets décrite ci-dessus, en utilisant les données que nous “observons”. Sous les hypothèses (fortes) selon lesquelles les termes d’erreur ne sont pas corrélés et les effets sont constants entre les sujets, <span class="math inline">\(a*b\)</span> = ACME, <span class="math inline">\(d\)</span> = ACDE et <span class="math inline">\(c\)</span> = ATE. Cependant, la simulation révèle que <span class="math inline">\(a*b\)</span> &gt; ACME et <span class="math inline">\(d\)</span> &lt; ACDE ; c’est-à-dire que nous avons surestimé l’ACME et sous-estimé l’ACDE. Notre analyse de décomposition des effets était biaisée car la première hypothèse - termes d’erreur non corrélés - n’était pas vérifiée : la variable non observée Q prédisait à la fois M et Y, ce qui nous a conduit à surestimer le rôle du mécanisme M.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20160301</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000000</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># simuler des données, créer des résultats potentiels (RP), estimer les effets "réels"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># construire une caractéristique non observée idéosyncratique</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Q_i <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># créer le "vrai modèle" en définissant l'effet du traitement (tau)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tau_X_on_M <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># effet de X sur M</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>tau_M_on_Y <span class="ot">&lt;-</span> <span class="fl">0.1</span> <span class="co"># effet de M sur Y</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tau_X_on_Y <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="co"># effet total de X sur Y (ATE), à travers M et non M</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># construire les résultats potentiels pour le médiateur</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># individu révèle M_1 s'il est traité ; M_0 si non traité</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># M est fonction à la fois du traitement et de la caractéristique non observée</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>M_0 <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="sc">*</span> tau_X_on_M <span class="sc">+</span> Q_i</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>M_1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">*</span> tau_X_on_M <span class="sc">+</span> Q_i</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># nous pouvons estimer l'effet moyen du traitement (ATE) non biaisé de X sur M</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ATE_M <span class="ot">&lt;-</span> <span class="fu">mean</span>(M_1 <span class="sc">-</span> M_0)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ATE_M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construire les résultats potentiels (RP) pour le résultat</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Y_M0_X0 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_0) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">0</span> <span class="sc">+</span> Q_i</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Y_M1_X1 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_1) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> Q_i</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Y_M0_X1 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_0) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> Q_i <span class="co"># Ceci est un RP "complexe"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Y_M1_X0 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_1) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">0</span> <span class="sc">+</span> Q_i <span class="co"># Ceci est un RP "complexe"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># certains de ces RP sont "complexes" car nous imaginons ce que nous</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># observerions si nous avions assigné au traitement mais observé le RP de M non traité ou</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># si nous avions assigné au contrôle mais observé le RP de M traité</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># la construction de ces RP complexes est nécessaire pour estimer les "vrais" effets directs et indirects</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># nous pouvons estimer l'ACME</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># nous estimons les effets de M en maintenant X constant</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ce sont les mêmes</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># c'est "l'effet indirect"</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ACME_X0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_M1_X0 <span class="sc">-</span> Y_M0_X0)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ACME_X1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_M1_X1 <span class="sc">-</span> Y_M0_X1)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ACME <span class="ot">&lt;-</span> <span class="fu">mean</span>(((Y_M1_X1 <span class="sc">-</span> Y_M0_X1) <span class="sc">+</span> (Y_M1_X0 <span class="sc">-</span> Y_M0_X0)) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># nous pouvons estimer l'ACDE</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># nous estimons les effets de X en maintenant M constant</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ce sont les mêmes</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># c'est "l'effet direct"</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ACDE_M0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_M0_X1 <span class="sc">-</span> Y_M0_X0)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ACDE_M1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_M1_X1 <span class="sc">-</span> Y_M1_X0)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ACDE <span class="ot">&lt;-</span> <span class="fu">mean</span>(((Y_M0_X1 <span class="sc">-</span> Y_M0_X0) <span class="sc">+</span> (Y_M1_X1 <span class="sc">-</span> Y_M1_X0)) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># maintenant, nous construisons les RP simples pour Y</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>Y_1 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_1) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> Q_i</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>Y_0 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_0) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">0</span> <span class="sc">+</span> Q_i</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># on estime le vrai ATE de X sur Y</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># c'est l'effet "total"</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>ATE <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_1 <span class="sc">-</span> Y_0)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>ATE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.52</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ACDE <span class="sc">+</span> ACME <span class="co"># noter que les effets directs et indirects s'additionnent au total</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.52</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ACDE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ACME</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ATE_M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assignation aléatoire, révélation des RPs, tentative de décomposition des effets</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nous assignons la moitié de notre échantillon au traitement et l'autre moitié au contrôle</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, (N <span class="sc">/</span> <span class="dv">2</span>)), <span class="fu">rep</span>(<span class="dv">0</span>, (N <span class="sc">/</span> <span class="dv">2</span>))))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># nous révélons les RPs pour M et Y en fonction de l'assignation de traitement</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> X <span class="sc">*</span> M_1 <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> X) <span class="sc">*</span> M_0</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> X <span class="sc">*</span> Y_1 <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> X) <span class="sc">*</span> Y_0</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">coef</span>(model1)[<span class="dv">2</span>] <span class="co"># extrait le coefficient pour obtenir l'effet de X sur M</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        X 
+0.2001291 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">coef</span>(model2)[<span class="dv">2</span>] <span class="co"># extrait le coefficient pour obtenir l'effet total de X sur Y</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       X 
+0.520142 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X <span class="sc">+</span> M)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">coef</span>(model3)[<span class="dv">2</span>] <span class="co"># extrait le coefficient pour obtenir l'effet de X sur Y en contrôlant pour M</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(model3)[<span class="dv">3</span>] <span class="co"># extrait le coefficient pour obtenir l'effet de M sur Y en contrôlant pour X</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># on pourrait multiplier maintenant l'effet moyen de X sur M et l'effet moyen de M sur Y</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># pour obtenir l'ACME de X sur Y via M</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>a <span class="sc">*</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       X 
+0.220142 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mais quand on compare cela au vrai ACME, on voit que c'est biaisé</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ACME</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># on pourrait également interpréter l'effet moyen de X sur Y en contrôlant M comme l'ACDE</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  X 
+0.3 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mais quand on compare cela au vrai ACDE, on voit que c'est biaisé</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ACDE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># notez que nous avons SUR-estimé l'effet indirect moyen et SOUS-estimé l'effet direct moyen</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># les estimations qui ne sont pas biaisées sont les effets moyens de X sur Y et de X sur M</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># car X est assigné de manière aléatoire</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        X 
+0.2001291 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ATE_M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       X 
+0.520142 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ATE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.52</code></pre>
+</div>
+</div>
+<p>Relions cet exercice à la question soulevée au point 3. Cette simulation a illustré que la quantification de l’effet de médiation s’avère difficile lorsque les variables prédictives de base confondent la relation entre M et Y. Étant donné que M n’est pas assigné de manière aléatoire, il est important pour nous de réfléchir à la probabilité que notre M et notre Y soient tous deux affectés par des variables non observées. En principe, s’il n’y a pas de variables de confusion dans cette relation, alors une analyse de décomposition des effets peut être non biaisée, mais cette hypothèse est forte et généralement difficile à prouver.</p>
+<p>Même si nous ne l’avons pas démontré dans cette simulation, il est également possible de montrer que la décomposition des effets est également inappropriée lorsque l’effet du traitement est hétérogène (nous avons introduit cette intuition au point 4). La raison technique de ceci vient de notre loi de l’espérance, qui est : <span class="math inline">\(E[a*b]\)</span> = <span class="math inline">\(E[a]E[b]+cov(a,b)\)</span>. Si nous avons un effet de traitement constant, alors <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> ne covarient pas, le terme de covariance disparaît et nous pouvons simplement multiplier <span class="math inline">\(a*b\)</span> pour obtenir l’ACME. Cependant, si le terme de covariance est non nul, alors nous ne sommes pas en mesure d’estimer cet effet indirect à partir de ces deux coefficients obtenus à partir de régressions distinctes. Nous avons construit un effet de traitement constant afin de pouvoir démontrer le processus d’effets de décomposition, mais si nous devions refaire la simulation avec un effet de traitement hétérogène qui varie, nous ne serions même pas en mesure de calculer l’ACME ou l’ACDE en utilisant l’approche des résultats potentiels au début du code.</p>
+<p><strong>Ce que vous pouvez faire…</strong> Avant de vous lancer dans une analyse de décomposition des effets, demandez-vous :</p>
+<ul>
+<li>Puis-je imaginer des variables non observées qui prédisent à la fois M et Y ?</li>
+<li>Est-il possible que mes sujets réagissent à l’effet du traitement de différentes manières ?</li>
+</ul>
+<p>Si la réponse à l’une de ces questions est oui, nous vous recommandons fortement de procéder avec prudence. En particulier, réfléchissez bien à la manière dont les variables non observées et l’effet du traitement hétérogène affecteraient votre stratégie d’estimation.</p>
+</section>
+<section id="parfois-lanalyse-de-sous-groupes-peut-fournir-des-preuves-ou-suggestions-pour-ou-contre-un-mécanisme." class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Parfois, l’analyse de sous-groupes peut fournir des preuves ou suggestions pour ou contre un mécanisme.</h1>
+<p>Aux points 3-6, nous avons mis en garde les chercheurs contre toute tentative de quantifier avec confiance la proportion d’un effet médié par un mécanisme particulier, mais il peut exister d’autres moyens d’en savoir plus sur les mécanismes à l’œuvre dans une étude particulière. Au point 1, nous avons souligné la relation étroite entre les mécanismes et la théorie. Ce n’est pas parce qu’il est difficile de quantifier directement les preuves d’un mécanisme que nous ne pouvons pas explorer les prédictions testables de la théorie dans laquelle notre mécanisme est présenté !</p>
+<p>Une stratégie consiste à utiliser l’analyse de sous-groupe, ou des interactions de traitement par covariable, pour voir si différentes populations répondent au traitement différemment conformément à nos théories. Par exemple, supposons que nous voulions en savoir plus sur le rôle du revenu dans la médiation de la relation climat/conflit. L’une des implications vérifiables d’une théorie dans laquelle le revenu joue un rôle médiateur est que nous nous attendrions à ce que les chocs climatiques soient associés à des conflits dans les zones où le revenu est sensible aux chocs climatiques mais pas là où le revenu est indépendant des chocs climatiques. Sarsons (2015)<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> fait exactement cela. Exploitant le fait que les districts en aval des barrages d’irrigation ne dépendent pas des précipitations pour leur revenu contrairement aux districts en amont, elle explore le mécanisme de revenu en testant si les chocs pluviométriques prédisent l’incidence des émeutes dans les districts en aval mais pas dans les districts en amont. Formellement, elle teste ces hypothèses :</p>
+<ul>
+<li>X<span class="math inline">\(\rightarrow\)</span>Y dans les endroits où X est connu pour affecter M [Les chocs pluviométriques augmenteront les émeutes dans les zones où les chocs pluviométriques affecteront négativement les revenus (en amont du barrage).]</li>
+<li>X n’a pas d’effet sur Y dans les endroits où X n’a pas d’effet sur M [Les chocs pluviométriques n’auront aucun effet sur les émeutes dans les zones où le revenu n’est pas sensible aux précipitations (en aval du barrage).]</li>
+</ul>
+<p>Cependant, elle a constaté que la relation entre les chocs pluviométriques et l’incidence des émeutes était tout aussi étroite dans les districts en aval où le revenu n’était pas sensible aux précipitations. Elle interprète ce résultat comme une preuve “suggestive” <em>contre</em> le mécanisme de revenu. Pour être clair, Sarsons n’a mené aucune analyse de médiation : elle n’a pas mesuré le revenu de chaque village et quantifié l’effet direct des chocs pluviométriques sur les émeutes et l’effet indirect des chocs pluviométriques sur les émeutes par le biais des revenus. Au lieu de cela, elle a recherché un effet du traitement hétérogène que la théorie aurait impliqué et, n’en trouvant aucune preuve, a conclu que le mécanisme de revenu peut être moins important qu’on ne le pensait auparavant.</p>
+<p><strong>Ce que vous pouvez faire…</strong> Dans les projets futurs, demandez-vous : si le mécanisme est M, pour quels groupes ou unités s’attendre à un effet de traitement, et pour quels groupes ou unités ne pas s’attendre à une réponse au traitement ? Ensuite, testez si ces prédictions sont étayées par vos données et interprétez cela comme une preuve suggestive pour ou contre le mécanisme proposé M. Gardez à l’esprit que de telles preuves ne sont pas décisives car les groupes pourraient différer d’autres manières qui pourraient affecter leur réaction au traitement.</p>
+</section>
+<section id="nous-pouvons-également-rechercher-des-preuves-suggestives-en-examinant-leffet-de-notre-traitement-sur-divers-résultats." class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Nous pouvons également rechercher des preuves suggestives en examinant l’effet de notre traitement sur divers résultats.</h1>
+<p>Encore une fois, bien qu’il soit difficile de quantifier les preuves d’un mécanisme à l’œuvre, nous pouvons toujours explorer les implications vérifiables de la théorie dans laquelle notre mécanisme apparaît. Au point 7, nous l’avons fait en se demandant si le traitement a affecté des sous-groupes particuliers pour lesquels un effet de traitement est induit par notre théorie. Une autre approche consiste à explorer si le traitement affecte uniquement les résultats induits par notre théorie.</p>
+<p>Par exemple, de nombreux chercheurs en sciences sociales s’intéressent à la manière dont l’éducation de masse influence la démocratie. Plusieurs théories de la démocratisation s’attendent à ce que différents mécanismes relient l’éducation et la démocratie. Premièrement, selon la théorie de la modernisation, l’éducation pourrait faciliter le bon fonctionnement de la démocratie en sapant les attachements au groupe (comme l’appartenance ethnique ou la religion) au profit du mérite.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> Deuxièmement, selon les théoriciens sociaux de l’oppression, l’éducation pourrait saper la démocratie en renforçant l’obéissance à l’autorité, qui est inhérente à une structure de classe.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> Troisièmement, selon de nombreux politologues et psychologues, l’éducation peut encourager la participation démocratique en donnant aux individus la capacité d’acquérir et d’agir sur la connaissance.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> Friedman et al.&nbsp;(2011)<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> décident de séparer ces mécanismes en enquêtant sur les résultats d’une expérience de terrain dans laquelle des filles kenyanes ont été assignées de manière aléatoire pour recevoir une subvention à l’éducation. Ils ont effectué un suivi auprès des élèves cinq ans après le programme et leur ont posé plusieurs questions visant à tester lequel de ces trois mécanismes était à l’œuvre : les filles ont-elles accepté le droit d’un mari de battre sa femme ? Un parent a-t-il participé au choix de son mari? Dans quelle mesure la fille s’est-elle identifiée à son groupe religieux ou ethnique ? La fille lisait-elle régulièrement les actualités ?</p>
+<p>Le tableau suivant décrit la direction des effets que chaque théorie suggérerait. Notez que les divers mécanismes testés ici résultent de théories avec des prédictions divergentes sur certains de ces résultats. Les prédictions de chacun des trois mécanismes sont décrites sur les lignes, suivies des résultats réels. Nous pouvons voir que deux des résultats recueillis appuient la théorie de la modernisation. Cependant, la théorie de la modernisation aurait prédit une diminution de l’appartenance aux groupes religieux ou ethniques (en réalité, il n’y avait aucun effet) et n’aurait eu aucune prédiction pour la lecture des actualités (en réalité, la lecture des actualités a augmenté). Aucune des prédictions du mécanisme d’obéissance à l’autorité n’était étayée par les données. Cependant, les données corroboraient les quatre prédictions de la théorie de l’autonomisation individuelle. Les auteurs concluent qu’il est plus probable que <span class="math inline">\(X→M3→Y\)</span> que <span class="math inline">\(X→M1,M2→Y\)</span>.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mécanisme</th>
+<th>Acceptation du droit du mari de battre sa femme (Y1)</th>
+<th>Parent impliqué dans la sélection du mari (Y2)</th>
+<th>Association avec la religion, l’identité ethnique (Y3)</th>
+<th>Lit les actualités (Y4)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(M1) Modernisation</td>
+<td><span class="math inline">\(\downarrow\)</span></td>
+<td><span class="math inline">\(\downarrow\)</span></td>
+<td><span class="math inline">\(\downarrow\)</span></td>
+<td>Pas d’effet</td>
+</tr>
+<tr class="even">
+<td>(M2) Obéissance à l’autorité</td>
+<td><span class="math inline">\(\uparrow\)</span></td>
+<td><span class="math inline">\(\uparrow\)</span></td>
+<td><span class="math inline">\(\uparrow\)</span></td>
+<td>Pas d’effet</td>
+</tr>
+<tr class="odd">
+<td>(M3) Autonomisation individuelle</td>
+<td><span class="math inline">\(\downarrow\)</span></td>
+<td><span class="math inline">\(\downarrow\)</span></td>
+<td>Pas d’effet</td>
+<td><span class="math inline">\(\uparrow\)</span></td>
+</tr>
+<tr class="even">
+<td>Effet réel</td>
+<td><span class="math inline">\(\downarrow\)</span></td>
+<td><span class="math inline">\(\downarrow\)</span></td>
+<td>Pas d’effet</td>
+<td><span class="math inline">\(\uparrow\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Cette étude, comme l’étude de Sarsons, n’essaie pas de quantifier dans quelle mesure l’effet de X sur Y est transmis via M. Cependant, grâce à une enquête approfondie sur divers résultats, les auteurs sont en mesure de fournir des preuves suggestives des mécanismes qui semblent les plus plausibles.</p>
+<p><strong>Ce que vous pouvez faire…</strong> Dans de futurs projets, posez-vous la question : si le mécanisme est M, devrais-je m’attendre à ce le traitement affecte certains résultats ? Devrais-je m’attendre à ce le traitement n’affecte pas certains résultats ? Ensuite, testez si ces prédictions sont étayées par vos données et interprétez cela comme une preuve suggestive pour ou contre le mécanisme proposé M.</p>
+</section>
+<section id="lélaboration-de-traitements-complexes-peut-aider-à-comprendre-quelle-partie-du-traitement-produit-leffet." class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> L’élaboration de traitements complexes peut aider à comprendre quelle partie du traitement “produit l’effet”.</h1>
+<p>Parfois, les chercheurs expérimentaux essaieront de mieux comprendre les mécanismes en ajoutant ou en soustrayant des éléments du traitement qui sont censés déclencher différents mécanismes. Cette approche est parfois appelée “analyse de médiation implicite” car différents composants de X sont censés manipuler <em>implicitement</em> certains mécanismes. Ceci, bien sûr, est une hypothèse : parce que nous ne mesurons pas M directement, nous nous appuyons sur une affirmation théorique selon laquelle le composant A déclenchera M, alors que le composant B ne le fera pas.</p>
+<p>Par exemple, de nombreux gouvernements, dont le Mexique, le Brésil, la Tanzanie ou l’Ouganda, ont créé des programmes de transferts monétaires conditionnels pour lutter contre la pauvreté. Ces programmes fournissent de l’argent aux personnes pauvres, mais ils sont souvent assortis de conditions telles que la fréquentation d’une école ou un programme de formation professionnelle. Jusqu’à récemment, nous savions seulement que ces programmes (X) réussissaient à réduire la pauvreté (Y) et que X provoquait Y soit via le cash reçu, soit via l’assiduité requise à l’école ou aux programmes d’emploi. Pour distinguer ces mécanismes, Baird et al.&nbsp;(2011)<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> ont mené une expérience au Malawi, où ils ont assigné un groupe de familles pour recevoir un transfert en cash <em>conditionnel</em> à la fréquentation scolaire régulière de leurs filles, un autre groupe de familles pour recevoir l’argent <em>sans condition</em>, et un groupe de contrôle pour ne recevoir aucun transfert. Cette conception manipulait “implicitement” M : alors que les filles du groupe de transfert inconditionnel pouvaient également poursuivre une éducation, la fréquentation scolaire (la condition étudiée) serait probablement plus élevée dans le groupe qui devait la poursuivre. Sans surprise, la fréquentation scolaire et les résultats aux tests étaient meilleurs pour le groupe recevant des transferts monétaires conditionnels. Cependant, leurs mesures de Y - le taux auquel les filles sont tombées enceintes ou se sont mariées - étaient en fait meilleures (inférieures) dans le groupe recevant les transferts monétaires inconditionnels. Les auteurs ont conclu que les exigences de fréquentation associées aux transferts monétaires conditionnels n’étaient probablement pas le mécanisme responsable du succès de ces programmes dans la réduction des symptômes de la pauvreté.</p>
+<p>Des études comme celles-ci aident non seulement les chercheurs en sciences sociales à en savoir plus sur les canaux par lesquels X provoque Y, mais aussi les décideurs politiques à explorer et découvrir de nouveaux traitements. Après plusieurs autres études ont confirmé Baird et al.&nbsp;en démontrant les effets remarquables des transferts monétaires inconditionnels, de nombreux gouvernements et organisations ont commencé à mettre en œuvre des programmes de transferts monétaires inconditionnels.</p>
+<p><strong>Ce que vous pouvez faire…</strong> Dans les projets futurs, posez-vous la question : mon traitement peut-il être “décomposé” en plusieurs bras de traitement, certains qui manipulent implicitement M, et d’autres non ? Envisagez d’utiliser une conception factorielle pour identifier les effets des différents bras de traitement. Si vous disposez de suffisamment de puissance statistique, la comparaison des différents bras de traitement vous fournira des preuves suggestives pour ou contre M.</p>
+</section>
+<section id="malgré-les-difficultés-à-mesurer-empiriquement-les-mécanismes-il-convient-de-sy-attarder-sérieusement-mais-dêtre-prudent-dans-notre-langage." class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Malgré les difficultés à mesurer empiriquement les mécanismes, il convient de s’y attarder sérieusement mais d’être prudent dans notre langage.</h1>
+<p>Tenter d’identifier les mécanismes causaux est une entreprise noble. Articuler les mécanismes causaux est ce qui nous permet de mieux comprendre le traitement en “boîte noire” et de comprendre pourquoi et comment certains traitements fonctionnent. Même si les affirmations causales peuvent être (et sont souvent) faites sans preuves d’un mécanisme causal, l’exploration des mécanismes causaux est ce qui nous permet d’étendre la frontière de la recherche et de réévaluer la façon dont nos preuves correspondent à nos théories. Pour ces raisons, le public (qu’il s’agisse du grand public ou des relecteurs universitaires) est souvent naturellement impatient que vous exposiez les mécanismes causaux après avoir démontré des preuves d’une assertion causale provocatrice. En prévision de cela, il convient de se demander s’il est possible de concevoir un moyen de tester les mécanismes causaux avant de mener une expérience. Si ce n’est pas le cas, demandez-vous si certaines mesures de résultats ou un traitement par interaction de covariables apporteraient du crédit à un mécanisme causal particulier, et soyez explicite sur les limites de ce type d’analyse dans votre article. Les mécanismes sont un domaine d’investigation passionnant et doivent être pris en compte à la fois dans la conception et l’analyse d’une expérience, mais nous devons nous assurer de discuter des mécanismes avec une prudence adaptée à notre capacité à identifier un mécanisme particulier et à éviter de le surestimer.</p>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Solomon M. Hsiang, Kyle C. Meng et Mark A. Cane, “Civil Conflicts Are Associated with the Global Climate,” Nature 476.7361 (2011): 438-441.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Ted Gurr, Why Men Rebel, Princeton University Press, 1970.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Alberto Chong, Ana L. de la O, Dean Karlan et Leonard Wantchekon, “Does Corruption Information Inspire the Fight or Quash the Hope? A Field Experiment in Mexico on Voter Turnout, Choice, and Party Identification,” The Journal of Politics 77.1 (2015): 55-71.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Notez que Chong et al.&nbsp;testent leur argument en utilisant des données au niveau de l’arrondissement, pas au niveau individuel, mais nous avons adapté leur argument au niveau individuel pour faciliter l’explication.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Pour une discussion plus rigoureuse de ces fausses conceptions, voir Adam N. Glynn, “The Product and Difference Fallacies for Indirect Effects,” American Journal of Political Science 56.1 (2012): 257-269.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Explication adaptée d’Alan Gerber et Donald Green, Field Experiments, W.W. Norton and Company, 2012, chapter 10.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Heather Sarsons, “Rainfall and Conflict: A Cautionary Tale.” Journal of Development Economics 115 (2015): 62-72.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Marion Joseph Levy, Modernization and the Structure of Societies, Princeton University Press, 1966.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Frantz Fanon, The Wretched of the Earth, Grove Press, 1964. John Lott, Jr., “Public Schooling, Indoctrination and Totalitarianism,” Journal of Political Economy 107(6), 1999.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Gabriel Almond et Sidney Verba, The Civic Culture: Political Attitudes and Democracy in Five Nations, Sage Publications, 1963. Robert Mattes et Michael Bratton, “Learning about Democracy in Africa: Awareness, Performance, and Experience,” American Journal of Political Science, 51(1), 2007.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Willa Friedman, Michael Kremer, Edward Miguel et Rebecca Thornton, “Education as Liberation?” NBER Working Paper 16939, 2011.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Dans l’étude proprement dite, les auteurs ont été surpris de découvrir des preuves que l’éducation augmentait également l’acceptation de la violence politique par les individus. S’ils soutiennent toujours que l’autonomisation individuelle est responsable de la relation entre l’éducation et la démocratie, ils avertissent que l’éducation ne conduit pas toujours à la démocratisation (c’est-à-dire M3→Y mais il est également possible que M3→NON Y). Néanmoins, leur approche est une démonstration utile de la façon dont de multiples résultats peuvent éclairer les mécanismes.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Sarah Baird, Craig McIntosh, Berk Ozler, “Cash or Condition? Evidence from a Cash Transfer Experiment,” Quarterly Journal of Economics 126, 2011.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
