@@ -1,8 +1,8 @@
 ---
 title: " 10 Things on Your Checklist for Analyzing an Experiment"
 author: 
-  - name: "name"
-    url: https://methods.egap.org/guides.html
+  - name: "Alyssa Heinze"
+    url: https://alyssaheinze.github.io
 image: covariates.png
 bibliography: how-to-analyze-experiments.bib
 ---
