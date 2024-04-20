@@ -13,7 +13,8 @@ listing:
     page-size: 3
 ---
 
-![](/img/egap-logo.svg){#fig-foo width="300px"}
+
+![](/img/egap-logo.svg){width="300px" fig-align="center"}
 
 Evidence in Governance and Politics (EGAP) is a global research, evaluation, and learning network that promotes rigorous knowledge accumulation, innovation, and evidence-based policy in various governance and accountability domains.
 
