@@ -1,5 +1,11 @@
 [
   {
+    "listing": "/index.html",
+    "items": [
+      "/guides/assessing-designs/external-validity.en.html"
+    ]
+  },
+  {
     "listing": "/guides.html",
     "items": [
       "/guides/analysis-procedures/ri2_en.html",
@@ -29,12 +35,6 @@
       "/guides/planning/survey-design_en.html",
       "/guides/research-questions/late_en.html",
       "/guides/research-questions/heterogeneous-effects_en.html"
-    ]
-  },
-  {
-    "listing": "/index.html",
-    "items": [
-      "/guides/assessing-designs/external-validity.en.html"
     ]
   }
 ]
