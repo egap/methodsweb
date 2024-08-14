@@ -22,11 +22,11 @@ Covariate adjustment can be a cheaper route to improved precision than increasin
 
 The best way to control for covariates is to use block randomization to do it at the design stage even before you start your experiment. Block randomization enables you to create treatment and control groups that are balanced on certain covariates. For example, you might expect that gender and income help predict the outcome variable. Block randomization can ensure that the treatment and control groups have equal proportions of female/high-income, female/low-income, male/high-income, and male/low-income populations. When the blocking variables help predict outcomes, blocking improves precision by preventing chance correlations between treatment assignment and baseline covariates.
 
-For more information on blocking and how to implement it in R, see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/data-strategies/randomization_en.html). The precision gains from blocking (relative to covariate adjustment without blocking) tend to be greatest when sample sizes are small [@miratrix_et_al_2013].
+For more information on blocking and how to implement it in R, see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/data-collection/randomization_en.html). The precision gains from blocking (relative to covariate adjustment without blocking) tend to be greatest when sample sizes are small [@miratrix_et_al_2013].
 
 When blocking is done to improve precision, estimated standard errors should take the blocking into account. (Otherwise, the SEs will tend to be conservative because they won't give you credit for the precision improvement that blocking achieved.) One simple and commonly used method is to regress the outcome on the treatment assignment dummy variable as well as block dummies. When the probability of assignment to treatment is constant across blocks, including the block dummies in the regression doesn't change the estimated treatment effect, but tends to give a more accurate estimate of the SE.^[See, e.g., pages 217--219 of @bruhn_mckenzie_2009.]
 
-If the probability of assignment to treatment varies by block, then you need to control for these unequal probabilities in order to get unbiased estimates of average treatment effects. [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/data-strategies/randomization_en.html) discusses ways to do this.
+If the probability of assignment to treatment varies by block, then you need to control for these unequal probabilities in order to get unbiased estimates of average treatment effects. [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/data-collection/randomization_en.html) discusses ways to do this.
 
 # How to do it in a regression 
 
@@ -44,7 +44,7 @@ $$Y_i = \alpha + \beta Z_i + \gamma W_i + \delta Z_i*W_i + \epsilon_i$$
 
 where $W_i = X_i - \overline{X}$ and $\overline{X}$ is the mean value of $X_i$ for the entire sample.
 
-If subjects receive different probabilities of assignment to treatment based on their covariates, then our estimation method needs to account for this (again, see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/data-strategies/randomization_en.html) for details).
+If subjects receive different probabilities of assignment to treatment based on their covariates, then our estimation method needs to account for this (again, see [10 Things You Need to Know About Randomization](https://methods.egap.org/guides/data-collection/randomization_en.html) for details).
 
 # Why to do it 
 

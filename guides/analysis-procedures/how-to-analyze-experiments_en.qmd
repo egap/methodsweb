@@ -31,7 +31,7 @@ In addition to verifying that the treatment was correctly assigned in the softwa
 If you are in a context where non-compliance with treatment is possible, you should also inspect the variable that indicates treatment receipt. In a field experiment, if a subject was assigned to a skills training (treatment assignment = 1), did they actually attend and receive the intended information on skills (treatment receipt = 1)? In a survey experiment, did a subject assigned to receive watch a video to provoke positive emotions (treatment assignment = 1) actually report watching the video and internalizing its content (treatment receipt = 1)? A variable that indicates whether a subject actually _received_ the treatment it was assigned to is key for thinking about things like complier average causal effects (see [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html)). Understanding what the treatment receipt variable means, and what each of its values corresponds to (does 1 correspond to treatment receipt, and 0 to lack of receipt?), is crucial.
 
 It's also useful to inspect the outcome and covariate variables that you plan on using in your analysis. This might include renaming them for easier coding and interpretation of your analysis code. If someone looks at your analysis code, it is generally easier for them to understand what a variable called "gender" means, rather than if it is called "question_26_c_1". In addition, making sure that missing data are consistently coded with "NA" rather than a numeric value is important to ensure the integrity of data analysis. Sometimes, survey software may code missing data with 0 or 888; if you do not change these values to "NAs", your data analysis will think that they correspond to numeric values of the variable of interest. If you have covariates that are missing, though this need not bias your estimation of the impact of the treatment, there are several ways you may go about addressing this missingness; for more on this, see [10 Things to Know About Missing Data
-](https://methods.egap.org/guides/data-strategies/missing-data_en.html).
+](https://methods.egap.org/guides/data-collection/missing-data_en.html).
 
 # Did treatment assignment go according to plan?
 ==
@@ -73,7 +73,7 @@ What to do if there's evidence of imbalance
 ==
 
 Were you unable to measure outcomes for all of your experimental subjects? Sometimes, subjects leave the study or "attrit", and we're unable to measure their outcome. In general, missingness of the outcome variable(s) can induce bias in our estimates of causal effects. Read more on attrition, what can lead to it, its consequences and how to address it in [10 Things to Know About Missing Data
-](https://methods.egap.org/guides/data-strategies/missing-data_en.html). We'd like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it's not, we might worry about bias. Further, the more missingness there is, the more the risk of bias. 
+](https://methods.egap.org/guides/data-collection/missing-data_en.html). We'd like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it's not, we might worry about bias. Further, the more missingness there is, the more the risk of bias. 
 
 There main way that researchers probe whether outcome data may be plausibly missing at random is to to examine whether there exists an observable relationship between treatment assignment and missingness of outcomes. The way to do this is to code up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examine whether treatment assignment impacts the propensity for outcome data to be missing. To complement this analysis, researchers generally assess covariate balance between treated and control units who are not missing, or by assess covariate balance between units with missing vs non-missing outcomes.
 
@@ -84,7 +84,7 @@ There main way that researchers probe whether outcome data may be plausibly miss
 Once you have already looked at your data, you may realize that you should complete some analyses differently than you had planned in your PAP. This happens regularly. 
 
 One example of this is that researchers sometimes decide to control for a covariate in a regression analysis if they see that it is imbalanced in standard balance tests. This is impossible to know ex-ante, because researchers don't know what sort of draw they'll get in their actualized randomization.^[However, protecting against 'bad draws' is possible through blocked designs: see [10 Things You Need to Know About Randomization
-](https://methods.egap.org/guides/data-strategies/randomization_en.html).] Alternatively, one might realize that
+](https://methods.egap.org/guides/data-collection/randomization_en.html).] Alternatively, one might realize that
 
 Control for variables upon which imbalance (unlucky draw)
 Some measurement gets messed up, so dont include it

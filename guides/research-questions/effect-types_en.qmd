@@ -163,7 +163,7 @@ If these assumptions are justified for our data, we can obtain consistent estima
 8. Average marginal component effect
 ==
 
-For a conjoint experiment (see [10 Things to Know About Survey Experiments](https://methods.egap.org/guides/data-strategies/survey-experiments_en.html)), one might be interested in the marginal effect of changing one attribute. The average marginal component effect (AMCE) gives  the average causal effect of changing an attribute from one value to another, while holding equal the joint distribution of the other attributes in the design, averaged over this distribution.
+For a conjoint experiment (see [10 Things to Know About Survey Experiments](https://methods.egap.org/guides/data-collection/survey-experiments_en.html)), one might be interested in the marginal effect of changing one attribute. The average marginal component effect (AMCE) gives  the average causal effect of changing an attribute from one value to another, while holding equal the joint distribution of the other attributes in the design, averaged over this distribution.
 
 The probabilities associated with each factor are also informed by the choice of estimand. For the uniform AMCE (uAMCE),  each factor is independently and uniformly marginalized. In contrast, the population AMCE (pAMCE) is marginalized over the target population distribution of profiles. The AMCE is always defined with respect to the distribution used for the random assignment; so if you change the randomization distribution, the interpretation changes.[^7]
 
