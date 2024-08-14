@@ -7,8 +7,8 @@ image: survey-design.png
 bibliography: survey-design.bib
 ---
 
-1. The design of baseline and endline surveys differ in key ways 
-==
+# The design of baseline and endline surveys differ in key ways  
+
 Surveys are the most frequently-used tool for collecting experimental data in social science research, and the design of these surveys can have a profound effect on the conclusions we draw about the treatments we study. Therefore, the stakes are high when designing surveys around your experimental projects. 
 
 At a minimum, all that is needed to estimate a treatment effect after an experiment has been conducted is a measure of the outcome, collected after the treatment has been delivered, with a sufficient number of observations across the treatment and control groups. If time and budget allow, baseline surveys, conducted before the implementation of an experiment, serve important functions as well and can improve analysis greatly. 
@@ -53,8 +53,8 @@ Will your data allow you to:        |Will your data allow you to:
 •	Design a blocked randomization procedure | •	Look for causal mechanisms (how are effects transmitted?)
 •	Describe balance across treatment and control conditions | 
 
-2. There are benefits and drawbacks of surveys as measurement tools
-==
+# There are benefits and drawbacks of surveys as measurement tools 
+
 Occasionally researchers face a choice between using administrative data or collecting original data in order to measure outcomes and estimate treatment effects. Governments or organizations implementing social programs typically collect their own data, and its possible that this data fits your needs, and will allow you to estimate treatment effects without implementing your own survey. 
 
 Existing data can be used in place of original data when:
@@ -69,8 +69,8 @@ Using administrative data saves money and time, to that end it is important to u
 
 Collecting original data usually means more options. As a researcher you are able to collect tailored measures, hone in on a population of interest, and you have more opportunity to explore mechanisms. 
 
-3. Develop your survey before or in tandem with your pre-analysis plan 
-==
+# Develop your survey before or in tandem with your pre-analysis plan  
+
 It is now standard practice in experimental social science research to register a [pre-analysis plan](https://methods.egap.org/guides/planning/pap_en.html) (PAP), which lays out in advance exactly what effects will be estimated and how. The key concern is that if you choose your tests *after* you see the data, you can get whatever results you like, or at least you can accentuate the tests that bolster a pet hypothesis.[^3] Pre-registering a design and analysis plan, therefore, is a solution that prevents "fishing": data mining and specification searching.
 
 [^3]: Link to fishing article: http://www.columbia.edu/~mh2245/papers1/PA_2012b.pdf. Link to Casey et al: http://qje.oxfordjournals.org/content/127/4/1755.full.pdf+html
@@ -85,12 +85,12 @@ The best PAPs include a mapping between survey measures (questions) and each equ
 
 A good PAP will also include how you plan to code open ended questions, how you plan to coarsen data, and how you will deal with missingness (including power calculations under different levels of missingness). 
 
-4. Use standard measures in order to make out-of-sample comparisons
-==
+# Use standard measures in order to make out-of-sample comparisons 
+
 Review instruments posted on the EGAP pre-registration archive and regional public opinion surveys ([Latinobarómetro](http://www.latinobarometro.org/lat.jsp), [Afrobarometer](http://afrobarometer.org/)); most likely someone has already measured what you want to measure. The critique of experiments often rests on the “portability” of results; we aren’t sure if results would replicate in other contexts. Using common measures is one step towards being able to compare effect sizes and underlying populations across contexts. 
 
-5. Behavioral measures are almost always better  
-==
+# Behavioral measures are almost always better   
+
 As social scientists, we ultimately care about attitudes and beliefs because we expect they drive behavior. The mapping of attitudes to behaviors, however, is often less coherent than we might expect. For example, a respondent might be willing to express dissatisfaction with an authoritarian regime in the context of a survey, but entirely unwilling to join a protest. Therefore, making claims about the link between attitudes and behaviors involves some assumption about the costs of behaviors, which are unknown to the researcher. Within the context of a survey, however, there are more opportunities than you might expect to inexpensively and directly measure respondent’s behaviors. 
 
 For example, Lauren Young used a clever behavioral measure when estimating the effect of fear on participation in dissent. The key outcome in her experiment is the willingness of participants to publicly signal support for the opposition in an authoritarian regime. We might believe that simply asking respondents if they support the regime would not yield truthful responses: it is relatively low cost to say “no,” or alternatively, the respondent might feel pressure from the researcher to say “yes.” In order to more accurately measure behavioral change, she gave subjects an opportunity to accept a pro-opposition wristband.[^5] This measure is more convincing because wearing the wristband is public and potentially costly. The behavioral measure is a more accurate indicator of political behavior in the world.
@@ -103,7 +103,7 @@ For example, Lauren Young used a clever behavioral measure when estimating the e
 2. Isolate the set of behaviors that are feasible to measure. This will most likely be the set of behaviors that can be immediately observed by the enumerator and involve minimal materials. What is the least expensive or costly action that would be associated with the behavioral change you want to detect?
 3. Ideally, pre-test the measures either with the rest of your survey, or in smaller focus groups. Learning why respondents did or did not behave a certain way will increase confidence in your results. 
 
-# 6. There are survey methods that measure sensitive behaviors and attitudes in risky environments while protecting respondents
+# There are survey methods that measure sensitive behaviors and attitudes in risky environments while protecting respondents
 
 The estimation of treatment effects depends on accurate measures of attitudes and beliefs, which in turn depend on honest responses to survey questions. Respondents, in some cases, will answer survey questions in the way they believe others in their community would like them to, or in the way the enumerator or researcher would like them to. People are more likely to do this when they could face punishment for their true beliefs—from social sanctioning to physical harm. In some instances, respondents may not feel comfortable giving a response at all. If this is the case, your measures will be biased in the direction respondents believe to be "socially desirable." 
 
@@ -114,8 +114,8 @@ In the case that you use one of these methods, you may also want to include dire
 [See here](http://imai.princeton.edu/projects/sensitive.html) for links to list experiment resources.
 
 
-7. If social desirability bias and/or risk to respondents are not concerns: then use attitudinal measures with these qualities
-==
+# If social desirability bias and/or risk to respondents are not concerns: then use attitudinal measures with these qualities 
+
 High-quality measures share two main characteristics; they are valid and reliable. A valid measure measures the underlying concept it is intended to capture. A reliable measure produces the same measurements when a given quantity is assessed repeatedly.
 
 Experiments should be “replicable” in the sense that other scientists could run the same experiment in the same context and get the same results. Having a survey with valid and reliable measures is essential to making this possible.
@@ -129,7 +129,7 @@ Experiments should be “replicable” in the sense that other scientists could 
 5. When constructing response categories, be as comprehensive as possible. Include all possible responses. You don’t want to record a lot of “don’t know” responses and miss important information. See below for a discussion of scales.
 6. Keep in mind the concerns with social desirability discussed above; the wording of the question shouldn’t lead the respondent towards a certain response.
 
-# 8. Question ordering & instrument length matter
+# Question ordering & instrument length matter
 
 Responding to a survey is costly for the respondent. They are volunteering their time and being asked to think in ways that may be new or unfamiliar to them, often for long periods of time. Keeping this in mind, keep your questionnaire as short and as engaging as possible. If you have a large enough sample, you can shorten a questionnaire by randomly assigning some of the respondents to different forms.
 
@@ -137,16 +137,16 @@ Split your instrument into sections by topic. Give your questionnaire a logical 
 
 Start your questionnaire with an introduction that makes the respondent feel informed and safe. Ask sensitive questions towards the end of the survey; respondents will (hopefully) feel more comfortable as the interview goes on, and if the respondent ends the interview you still have most of your data. Be aware that priming in earlier sections will affect the responses to later questions. 
 
-9. Make sure response rates do not differ as a function of treatment assignment
-==
+# Make sure response rates do not differ as a function of treatment assignment 
+
 If response rates are related to treatment status, your survey data can yield biased estimates. For example, let’s say you are conducting a study of an intervention that involves testing study participants for health problems and informing those in the treatment group of their diagnosis. This is a sensitive intervention and may cause people in the treatment group to become more apprehensive about answering a survey than those in the control group. Simply analyzing the data without accounting for differential response rates would yield data that was biased away from the true treatment effect—we lack data on those with the highest potential outcomes, those subjects who have been exposed to the strongest version of the treatment.
 
 One way to deal with this in the design of your survey (not the design of the treatment or in analysis alone [e.g., using bounded treatment effects[^6]]), is to track a subsample of individuals from the hard-to-reach group. Choose a subset of missing respondents and invest in tracking and reaching them. At the analysis stage you have the option of weighting the data from this subsample in order to account for attrition.
 
 [^6]: This approach involves estimating the upper and lower "bounds," which are the largest and smallest ATEs we would obtain if the missing information were filled in with the highest and lowest outcomes that appear in the data we have.
 
-10. Pilot!
-==
+# Pilot! 
+
 It is absolutely essential to pre-test your survey instrument after you have designed it. The purpose of a pre-test (or pilot) is to make sure your instrument works in the real world. This means that, by the time you implement your survey in the field, you are confident that:
 
 1. Respondents will understand the questions 

@@ -1,0 +1,37 @@
+Package: RItools
+Version: 0.2.0.9004
+Title: Randomization Inference Tools
+Authors@R: c(person("Jake", "Bowers", email="jwbowers@illinois.edu", role=c("aut", "cre")),
+	   person("Joshua", "Errickson", email="jerrick@umich.edu", role=c("ctb")),
+	   person("Mark", "Fredrickson", email="mark.m.fredrickson@gmail.com", role=c("aut")),
+	   person("Ben", "Hansen", email="ben.hansen@umich.edu", role=c("aut")) )
+Maintainer: Jake Bowers <jwbowers@illinois.edu>
+Description: Tools for randomization-based inference. Current focus is on the d^2 omnibus test of differences of means following Hansen and Bowers (2008) useful for assessing balance in matched observational studies or for analysis of outcomes in block-randomized experiments.
+License: MIT + file LICENSE
+LazyData: true
+Depends: R (>= 3.5.0), SparseM, dgof
+Imports: grDevices, abind, xtable, hexbin, svd, ddst, kSamples, mgcv,
+        lattice, stats, graphics, methods, survival
+Suggests: testthat, roxygen2, MASS, RSVGTipsDevice, parallel, knitr,
+        rmarkdown
+Enhances: optmatch
+URL: https://CRAN.R-project.org/package=RItools
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: RItools
+RemoteUsername: markmfredrickson
+RemoteRef: randomization-distribution
+RemoteSha: 1b7ef7c6d2b3d89721eb24a0abe7a6d4fd824cf1
+GithubRepo: RItools
+GithubUsername: markmfredrickson
+GithubRef: randomization-distribution
+GithubSHA1: 1b7ef7c6d2b3d89721eb24a0abe7a6d4fd824cf1
+NeedsCompilation: no
+Packaged: 2024-04-05 04:34:01 UTC; blair
+Author: Jake Bowers [aut, cre],
+  Joshua Errickson [ctb],
+  Mark Fredrickson [aut],
+  Ben Hansen [aut]
+Built: R 4.3.3; ; 2024-04-05 04:34:02 UTC; unix

@@ -30,13 +30,13 @@ jobs:
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
         shell: Rscript {0}
         
-      - name: Install system dependencies on Linux
-        if: runner.os == 'Linux'
-        run: |
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "18.04"))')
+      # - name: Install system dependencies on Linux
+      #   if: runner.os == 'Linux'
+      #   run: |
+      #     while read -r cmd
+      #     do
+      #       eval sudo $cmd
+      #     done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "18.04"))')
           
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2

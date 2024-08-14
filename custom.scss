@@ -1,17 +1,8 @@
-/*-- scss:rules --*/
-.sidebar nav[role="doc-toc"] ul {
+/*-- scss:rules --
+.sidebar nav[role="doc-toc"] ul > li > a {
     display: block;
-  }
+    
+  }*/
   
 /*-- scss:defaults --*/
-$h1-font-size:  50rem;
-
-/*-- scss:rules --*/
-h1 {
-  text-decoration: underline
-  font-size: 50rem;
-}
-
-h2, h3, h4, h5, h6 {
-  text-decoration: none
-}
+$h1-font-size:  5em;

@@ -1,11 +1,11 @@
 ---
-toc: false
+number-sections: false
 listing: 
   - id: guides
     contents: 
-      - causal-inference_en.qmd
-      - covariates_en.qmd
-      - external-validity_en.qmd
+      - causal-inference.en.qmd
+      - covariates.en.qmd
+      - external-validity.en.qmd
     type: grid
     sort-ui: false
     fields: [image, title, author]
@@ -13,13 +13,14 @@ listing:
     page-size: 3
 ---
 
-![](/img/egap-logo.svg){#fig-foo width="300px"}
+
+![](/img/egap-logo.svg){width="300px" fig-align="center"}
 
 Evidence in Governance and Politics (EGAP) is a global research, evaluation, and learning network that promotes rigorous knowledge accumulation, innovation, and evidence-based policy in various governance and accountability domains.
 
 **Our methods resources are aimed at learners and teachers of all levels. Guides are for self-learning, and our coursebook is for teachers of impact evaluation methods.**
 
-# Methods guides
+# Methods guides {.unlisted}
 
 Learn methods for impact evaluations just-in-time to use them with guides for impact evaluation methods -- for researchers, evidence users, and students
 
@@ -28,14 +29,16 @@ Learn methods for impact evaluations just-in-time to use them with guides for im
 
 [More...](/guides.html)
 
-# Software 
+# Software {.unlisted}
 
 Software tools in R and Stata can be useful for designing, implementing, analysis, and reporting on impact evaluations. We collected relevant software and provide a search interface for it.
 
 [More...](/software.html)
 
-# Teaching coursebook
+# Teaching materials {.unlisted}
 
 ![Learning days host cities (red) and participant home countries (blue).](/img/ldmap.svg)
 
-Over the past decade, Evidence in Governance and Politics (EGAP) has organized Learning Days workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) – both researchers and practitioners – in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members. **The teaching coursebook**, which grew out of a desire to share the materials we developed for the Learning Days, is a comprehensive overview of causal inference methods for researchers developing an experimental research design.  
+Over the past decade, Evidence in Governance and Politics (EGAP) has organized Learning Days workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) – both researchers and practitioners – in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members. **The Learning Days Book**, which grew out of a desire to share the materials we developed for the Learning Days, is a comprehensive overview of causal inference methods for researchers developing an experimental research design.  
+
+[More...](/teaching.html)
