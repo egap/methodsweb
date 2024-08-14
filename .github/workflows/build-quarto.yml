@@ -23,9 +23,9 @@ jobs:
         with:
           use-public-rspm: true
           
-      - name: Install libgit
+      - name: Install libgit and other linux packages
         run: | 
-          sudo apt-get install libgit2-dev
+          sudo apt-get install libgit2-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
       - name: Install renv from github
         uses: r-lib/actions/setup-renv@v2
