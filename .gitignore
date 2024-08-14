@@ -12,3 +12,5 @@
 site_libs/*
 *.rmarkdown
 *_files
+.DS_Store
+guides/.DS_Store
