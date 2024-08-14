@@ -16,8 +16,7 @@ on [10 Things to Know About Causal
 Inference](https://methods.egap.org/guides/causal-inference/causal-inference_en.html).
 
 
-1. Causal effects as comparisons between potential outcomes
-==
+# Causal effects as comparisons between potential outcomes
 
 If a person who took an aspirin would have had a worse headache if she had not
 taken the aspirin, then we say that the aspirin caused an improvement in her
@@ -36,8 +35,8 @@ multiple people), or perhaps some other quantity like a ratio. This guide
 describes a few common causal effects that focus on averages.
 
 
-2. Individual treatment effects
-==
+# Individual treatment effects
+
 
 A first quantity of interest is the individual treatment effect. For this
 estimand a researcher would be interested in the effect of a treatment on each
@@ -64,8 +63,7 @@ Testing](https://egap.org/resource/10-things-to-know-about-hypothesis-testing/)
 to learn about hypothesis testing for causal inference.]
 
 
-3. Average treatment effects
-==
+# Average treatment effects
 
 Some reseachers want to learn about the average treatment effect (ATE) across all observations in our experiment. Which we can define as the average of the individual level additive treatment effects across all units in the study.
 
@@ -76,8 +74,7 @@ See [10 Strategies for Figuring out if X Causes Y](https://methods.egap.org/guid
 
 [^1]: See also Chapter 2 of @gerber_green_2012 or Chapter 2 of @angrist_pischke_2008 for more information
 
-4. Population and sample average treatment effects
-==
+# Population and sample average treatment effects
 
 When defining the average treatment effect, it isn't immediately clear which
 units should be included in the *all* part of *all units*. Often we want to use
@@ -96,8 +93,7 @@ SATE and PATE are equal in expectation.[^3]
 
 [^3]: See @imbens_wooldridge_2007.
 
-5. Conditional average treatment effects
-==
+# Conditional average treatment effects
 
 Sometimes the theory or policy intervention motivating the study suggests that the treatment effect should differ for different sorts of people.
 
@@ -117,8 +113,7 @@ Informally, the ATT is the effect for those that we treated; ATC is what the eff
 
 Those interested in further reading on conditional average treatment effects should see chapter 9 of @gerber_green_2012.
 
-6. Intent-to-treat effects
-==
+# Intent-to-treat effects
 
 Outside of a controlled laboratory setting, the subjects we assign to treatment
 often are not the same as the subjects who actually receive the treatment. For
@@ -144,9 +139,7 @@ Which is the average effect conditional on the subject being a complier, a type 
 
 [^6]: Detailed discussion of both ITT and CACE can be found in chapters 5 and 6 of @gerber_green_2012.
 
-
-7. Quantile Average Treatment Effects
-==
+# Quantile Average Treatment Effects
 
 The ATE focuses on the effect for a typical person, but we often also care about the distributional consequences of our treatment. We want to know not just whether our treatment raised average income, but also whether it made the distribution of income in the study more or less equal.
 
@@ -160,8 +153,7 @@ If these assumptions are justified for our data, we can obtain consistent estima
 
 [^19]: See Koenker, Roger, and Kevin Hallock. 2001. “Quantile Regression: An Introduction.” Journal of Economic Perspectives 15 (4): 43–56. for a concise overview of quantile regression
 
-8. Average marginal component effect
-==
+# Average marginal component effect
 
 For a conjoint experiment (see [10 Things to Know About Survey Experiments](https://methods.egap.org/guides/data-collection/survey-experiments_en.html)), one might be interested in the marginal effect of changing one attribute. The average marginal component effect (AMCE) gives  the average causal effect of changing an attribute from one value to another, while holding equal the joint distribution of the other attributes in the design, averaged over this distribution.
 
@@ -169,9 +161,7 @@ The probabilities associated with each factor are also informed by the choice of
 
 [^7]: For more on the AMCe and conjoint experiments, see @bansak2022using and @liu2023multiple
 
-
-9. Direct and indirect effects and Eliminated Effects
-==
+# Direct and indirect effects and Eliminated Effects
 
 When discussing the effects of a treatment, one could be interested in the total effect of the treatment on the outcome, as assumed above, or components of the effect of the treatment. Specifically, one might be interested in the direct effect of the treatment or any number of indirect effects of a treatment. Largely, interest in direct and indirect effects comes from an interest in [mechanisms](https://methods.egap.org/guides/research-questions/mechanisms_en.html). It might be of interest to a researcher *how* the effect happens, rather than simply knowing whether all of the mechanisms together produce an effect.
 
@@ -211,13 +201,29 @@ This effect can be observed, as both the total effect and the controlled direct 
 
 [^8]: See @acharya2018analyzing.
 
-10. Treatment Effects for Binary Outcomes: Log-Odds Treatment Effects and Attributable Effects
-==
-Average treatment effects seem a bit hard to interpret when outcomes are not continuous. For example, a very common binary outcome in the study of elections is coded as 1 when subjects voted, and 0 when they did not. The average effect might be 0.2, but what does it really mean to say that a treatment increased voting by 0.2 for individual? Estimating causal effects for dichotomous outcomes requires some additional care, particularly when including covariates. A common quantity of causal interest for dichotomous outcomes is our treatment’s effect on the log-odds of success, defined for the experimental pool as:
+# Treatment Effects for Binary Outcomes: Log-Odds Treatment Effects and Attributable Effects
+
+Although a difference in proportion is an easy to interpret quantity (and it is
+the ATE when the outcomes are binary), there are at least two other effects
+that are in use when outcomes are binary.
+
+Average treatment effects seem a bit hard to interpret when outcomes are not
+continuous. For example, a very common binary outcome in the study of elections
+is coded as 1 when subjects voted, and 0 when they did not. The average effect
+might be 0.2, but what does it really mean to say that a treatment increased
+voting by 0.2 for individual?
+
+## Log-Odds Treatment Effects
+
+A common quantity of causal interest for dichotomous outcomes is our
+treatment’s effect on the log-odds of success, defined for the experimental
+pool as:
 
 $$\Delta = log\frac{E(Y_i(1))}{1-E(Y_i(1))} - log\frac{E(Y_i(0))}{1-E(Y_i(0))}$$
 
 @freemand_2008b shows that the coefficient from a logistic regression adjusting for covariates in a randomized experiments produces biased estimates of this causal effect. The basic intuition for Freedman’s argument comes from the fact that taking the log of averages is not the same as taking the average of logs and so the treatment coefficient estimated from a logistic regression conditioning on covariates will not provide a consistent estimator of log-odds of success. Instead, Freedman recommends taking the predicted probabilities varying subjects’ treatment status but maintaining their observed covariate profiles to produce a consistent estimator of the log-odds.
+
+## Attributable Effects
 
 An alternative approach with binary outcomes is to infer about the *sum* of successes rather than the difference in proportions. @rosenbaum_2002a introduces this quantity in the context of matched observational studies and @hansen_bowers_2009 use it in a randomized field experiment where voting or not voting is measured at the individual level.
 
