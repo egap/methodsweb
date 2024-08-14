@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Anna M. Wilke">
+
+<title>10 Things to Know About Sampling – Methods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 Things to Know About Sampling</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 Things to Know About Sampling</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#what-is-random-sampling" id="toc-what-is-random-sampling"><span class="header-section-number">1</span> What is random sampling</a></li>
+  <li><a href="#why-do-random-sampling" id="toc-why-do-random-sampling"><span class="header-section-number">2</span> Why do random sampling</a></li>
+  <li><a href="#different-ways-of-getting-a-random-sample" id="toc-different-ways-of-getting-a-random-sample"><span class="header-section-number">3</span> Different ways of getting a random sample</a></li>
+  <li><a href="#what-to-do-without-an-obvious-sampling-frame" id="toc-what-to-do-without-an-obvious-sampling-frame"><span class="header-section-number">4</span> What to do without an obvious sampling frame</a></li>
+  <li><a href="#sampling-difficult-to-reach-populations" id="toc-sampling-difficult-to-reach-populations"><span class="header-section-number">5</span> Sampling difficult-to-reach populations</a></li>
+  <li><a href="#keep-sampling-strategy-simple-and-appropriate-for-local-context" id="toc-keep-sampling-strategy-simple-and-appropriate-for-local-context"><span class="header-section-number">6</span> Keep sampling strategy simple and appropriate for local context</a></li>
+  <li><a href="#how-sampling-affects-analysis" id="toc-how-sampling-affects-analysis"><span class="header-section-number">7</span> How sampling affects analysis</a></li>
+  <li><a href="#how-sampling-helps-with-problems-of-non-response" id="toc-how-sampling-helps-with-problems-of-non-response"><span class="header-section-number">8</span> How sampling helps with problems of non-response</a></li>
+  <li><a href="#relationship-between-random-sampling-and-random-assignment" id="toc-relationship-between-random-sampling-and-random-assignment"><span class="header-section-number">9</span> Relationship between random sampling and random assignment</a></li>
+  <li><a href="#choosing-a-sampling-strategy-for-a-randomized-experiment" id="toc-choosing-a-sampling-strategy-for-a-randomized-experiment"><span class="header-section-number">10</span> Choosing a sampling strategy for a randomized experiment</a></li>
+  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  </ul>
+</nav>
+<p>Researchers are rarely able to collect measurements on all units that make up the target population of a study; instead, they select a subset of units — a process called sampling. This guide provides an overview of different ways to sample and how these affect what can be learned from a study.</p>
+<section id="what-is-random-sampling" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> What is random sampling</h1>
+<p>Random sampling, also referred to as probability sampling, is one way of selecting a subset of units from a target population. The key characteristic of random sampling is that each unit in the population has a <em>known</em> and <em>non-zero</em> probability of being included in the sample. This goal is achieved by using some randomization mechanism — be it a coin flip, a random number table, or a computer program — to decide which units are going to be part of the sample.</p>
+<p>To make matters concrete, suppose that our target population consists of six units: <span class="math display">\[U = \{A, B, C, D, E, F\}.\]</span> We would like to draw a random sample of four units from this population. There are 15 possible samples of this size that we may draw: <span class="math display">\[
+\begin{aligned}
+S_1 &amp; = \{A,B,C,D\} &amp; S_6 &amp; = \{A,B,E,F\} &amp; S_{11} &amp; = \{B,C,D,E\}\\
+S_2 &amp; = \{A,B,C,E\} &amp; S_7 &amp; = \{A,C,D,E\} &amp; S_{12} &amp; = \{B,C,D,F\}\\
+S_3 &amp; = \{A,B,C,F\} &amp; S_8 &amp; = \{A,C,D,F\} &amp; S_{13} &amp; = \{B,C,E,F\}\\
+S_4 &amp; = \{A,B,D,E\} &amp; S_9 &amp; = \{A,C,E,F\} &amp; S_{14} &amp; = \{B,D,E,F\}\\
+S_5 &amp; = \{A,B,D,F\} &amp; S_{10} &amp; = \{A,D,E,F\} &amp; S_{15} &amp;  = \{C,D,E,F\}\\
+\end{aligned}
+\]</span> One procedure that would satisfy the definition of random sampling is to use statistical software to generate a random integer between 1 and 15 and to select the corresponding sample. It is easy to check that each unit is included in 10 of the 15 samples. Based on this procedure, each unit thus has a probability of <span class="math inline">\(\frac{10}{15} = \frac{2}{3}\)</span> of being sampled. Suppose we instead ask a colleague to arbitrarily choose four letters between <span class="math inline">\(A\)</span> and <span class="math inline">\(F\)</span> and include the corresponding units in the sample. <em>This procedure would not satisfy the definition of random sampling</em>: we would not know how often our colleague would pick each unit if we asked her to repeat the process many times; nor could we be sure that each unit would be picked with positive probability. Note that the selection probabilities need not be the same for all units for a sampling procedure to qualify as random. For example, the first unit may be sampled with a greater probability than all others. What matters is that each unit’s probability of being sampled is <em>known</em> to the researcher.</p>
+</section>
+<section id="why-do-random-sampling" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Why do random sampling</h1>
+<p>The core benefit of random sampling is that it makes it possible to draw inferences about the population based on the characteristics of one realized sample. For example, suppose we are interested in estimating the average income of the population and the population distribution of incomes among our six units is as follows:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">A</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">B</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">C</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">D</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">E</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Income (in 1000 USD)</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">45</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>In this example, the average income in the population (in thousands of USD) is <span class="math display">\[\mu = \frac{25 + 18 + 33 + 22 + 50 + 45}{6} \approx 32.\]</span> Suppose that we draw a random sample of four units and use the average income in the sample as an estimate of the average income in the population. Since we are basing our estimation on the sample, a subset of the population, our estimate will not be identical to the average income in the population — it will differ. If we were to select the first of the 15 samples listed above, for example, our estimate would be <span class="math display">\[\hat{\mu} = \frac{25 + 18 + 33 + 22}{4} = 25.\]</span> The difference between the true parameter and our estimate <span class="math inline">\(\mu - \hat{\mu} = 32 - 25 = 7\)</span> is referred to as <em>sampling error</em> — an <em>error</em> not because we have made a mistake, but because the estimate is not the same as the estimand, and <em>sampling error</em> because the difference occurs due to the fact that we are not observing the whole population. Yet, even though estimates based on a single realized sample are subject to sampling error, the process of <em>random</em> or <em>probability</em> sampling (in combination with the chosen estimation procedure) can ensure that our estimates do not have systematic error — our estimates will be neither too high nor too low across all possible random samples.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-thebarplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thebarplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="sampling_en_files/figure-html/fig-thebarplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thebarplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Sample average incomes calculated for all 15 possible samples of 4 units from a population of 6 units. The blue dotted line shows the average of all estimates which corresponds to the true average income in the population.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure <a href="#fig-thebarplot" class="quarto-xref">Figure&nbsp;1</a> plots the distribution of income estimates that results from the 15 possible samples. This distribution is called the <em>sampling distribution</em>. As shown by the blue line, the average estimate across all possible sample estimates coincides with the true population parameter of approximately <span class="math inline">\(32\)</span>. In other words, if we were to repeat the sampling procedure many times and estimate the average income every time, we would be correct on average. Another way to say “correct on average” would be to say “not systematically wrong” — as can be see from the roughly symmetrical nature of the estimates in this figure. Of course, this fact alone tells us little about the extent to which we should trust an estimate that is based on only one realized sample. Fortunately, random sampling allows us (in most cases) to obtain estimates of the variability of the sampling distribution and thus of the precision of our estimates from a single sample.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Typically, these uncertainty estimates take the form of standard errors that can be used to construct confidence intervals.</p>
+<p>For example, we may calculate a 95% confidence interval for the average income. Even though we would not be certain that our particular sample confidence interval contains the true underlying population parameter, we would know that, were we to repeat the process of known random sampling and confidence interval creation many times, at least 95% of confidence intervals should contain the true population parameter.</p>
+<p>Another advantage of randomly sampling experimental units is that units who have not been sampled can serve as additional control units. To illustrate, consider again the population of six units from the stylized example above. Suppose we would like to conduct an experiment, but we only have research funds to measure outcomes for four units. Hence, we randomly sample, say, units A, B, C, and E, and then randomly assign units B and E to treatment. In principle, the control group of our experiment consists of units A and C. Units D and F, however, by virtue of not being sampled, have also been chosen to not receive the treatment through a random process. Hence, they can be used as additional control group units should more funds for outcome measurement become available at a later stage.</p>
+</section>
+<section id="different-ways-of-getting-a-random-sample" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Different ways of getting a random sample</h1>
+<p>Obtaining a random sample is rarely as straightforward as the above description makes it seem. In practice, the <em>survey population</em> — the set of units for which data can realistically be collected — is often more restrictive than the <em>target population</em>. For example, the target population may consist of all adult residents of a country, but it may be infeasible to sample certain groups like prisoners or residents of areas with a difficult security situation.</p>
+<p>The first step in random sampling is to acquire a <em>sampling frame</em>, a set of materials that are used to identify the units of the target population. In its simplest form, a sampling frame may be a list of units. Sampling frames are rarely perfect and tend to be one of the sources of differences between the target and survey population. Sampling frames may suffer from both undercoverage (units that are part of the target population are missing from the sampling frame) and overcoverage (the sampling frame includes units that are not part of the population). See <span class="citation" data-cites="kish1965survey">Kish (<a href="#ref-kish1965survey" role="doc-biblioref">1965, chap. 2</a>)</span> and <span class="citation" data-cites="groves2011survey">Groves et al. (<a href="#ref-groves2011survey" role="doc-biblioref">2009, chap. 3</a>)</span> for more on sampling frame issues and how to remedy them.</p>
+<p>Depending in part on the nature of the sampling frame, there are different ways to randomly sample units. Many of these have analogues among the ways in which units can be randomly assigned to experimental conditions (see <a href="https://methods.egap.org/guides/data-collection/randomization_en.html">“10 Things to Know About Randomization”</a>).</p>
+<section id="simple" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="simple"><span class="header-section-number">3.1</span> Simple</h2>
+<p>Simple random sampling is the most basic survey design. In this design, each sample of size <span class="math inline">\(n\)</span> and hence each unit has the same probability of being sampled. One way of drawing a simple random sample of size <span class="math inline">\(n\)</span> from a sampling frame with <span class="math inline">\(N\)</span> units is to enumerate all possible samples of size <span class="math inline">\(n\)</span> and randomly select one of those samples. This is the procedure described in the example above. However, this approach tends to be impractical in real world applications, since actual populations are typically much larger than <span class="math inline">\(N=6\)</span>, and the number of possible samples will thus be vast. An alternative procedure is to number all units from 1 to <span class="math inline">\(N\)</span>, to generate <span class="math inline">\(n\)</span> random numbers, ideally after setting a random seed (like <code>set.seed()</code> in R), and to select the corresponding units.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</section>
+<section id="stratified" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="stratified"><span class="header-section-number">3.2</span> Stratified</h2>
+<p>Suppose we know upfront that the characteristic in which we are interested varies across sub-populations. For example, if we aim to estimate average income, we may suspect that men earn more than women. If we draw a simple random sample, it is possible that we end up with a sample that contains more women than men. In this case, our average income estimate will be subject to a large sampling error. A way to guard against this possibility is to divide the population into subgroups, also called <em>strata</em>, and draw an independent random sample in each stratum. For example, we may draw an independent random sample of women and and one of men. This procedure fixes the proportion of women and men in the sample, thereby avoiding “bad” samples and improving the precision of our estimates. Being able to ensure that the sample contains enough units from a particular sub-population is also helpful if estimates among the sub-population are of independent interest. If we would like to estimate the gender pay gap, for example, we need a sample that contains enough men and women to obtain sufficiently precise estimates of each group’s average income. This latter use of stratification is especially important for learning about rare subgroups.</p>
+</section>
+<section id="clustering" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="clustering"><span class="header-section-number">3.3</span> Clustering</h2>
+<p>Suppose we would like to estimate the average income among residents of a city. Our sample frame may not identify individual residents but we may have access to a list of households. Instead of directly sampling residents, we can randomly select households and interview all members of the selected households. In this case, the <em>primary sampling units</em> — the units that can be selected — differ from the <em>observation units</em> on which measurements are taken. Households serve as primary sampling units or <em>clusters</em>, while household members serve as observation units. The core downside of cluster sampling is that it typically leads to a loss in precision. For an analogous problem with cluster random assignment and for more on clustering and information reduction see <a href="https://methods.egap.org/guides/data-collection/cluster-randomization_en.html">“10 Things to Know About Cluster Randomization”</a>. This loss in precision will be greater when units within the same cluster are more similar to each other (for example, members of the same household may have similar incomes or views). This problem of similarity or dependence within clusters can be severe in studies of politics where all members of a place have the same representative or share similar attitudes (see <span class="citation" data-cites="stoker2002designing">Stoker and Bowers (<a href="#ref-stoker2002designing" role="doc-biblioref">2002</a>)</span>). Nonetheless, cluster sampling may be necessary if sampling frames of individual observation units cannot be obtained. Cluster sampling may also save survey costs. For example, suppose we would like to estimate household-level income. Using households as the primary sampling unit may lead to a sample of households that is dispersed throughout the city, which increases transportation costs. Instead, we may select entire city blocks and interview all households within the selected blocks. Doing so may make it possible to interview more households with a smaller budget. Whether or not the gain in precision from a bigger sample size outweighs the loss in precision from clustering will depend on the degree to which households within the same city block have similar incomes.</p>
+<!-- Matt: in the above paragraph, not clear to me whether it's referring to city blocks, block randomization blocks, or both -->
+<!-- Matt: also, not sure if this is the best place for it, but should we link to the block randomization standards discussion somewhere in this guide? -->
+</section>
+<section id="multi-stage" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="multi-stage"><span class="header-section-number">3.4</span> Multi-stage</h2>
+<p>Instead of sampling all units in a cluster, one may draw a sub-sample of units. For example, instead of interviewing all members, one could sample two members in each sampled household. Additional stages can be added to this approach. For instance, we could first draw a sample of city blocks, then a sub-sample of households within each sampled city block and finally a sub-sample of household members within each sampled household. In this example, households would be referred to as <em>secondary sampling units</em> and household members as <em>tertiary sampling units</em>. One advantage of multi-stage sampling is that it allows researchers to navigate the trade-off between precision and cost-effectiveness. Increasing the number of clusters and sub-sampling fewer units per cluster can yield a more diverse sample and hence reduce sampling variability. Yet, doing so may also increase survey costs.</p>
+</section>
+</section>
+<section id="what-to-do-without-an-obvious-sampling-frame" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> What to do without an obvious sampling frame</h1>
+<p>In many cases, an obvious sampling frame in the form of a list of units or clusters of units does not exist. In such cases, researchers often rely on some variant of multi-stage <em>area sampling</em>. For example, they may first randomly sample districts, then randomly select villages within districts, then households within villages and finally individuals within households. Lists of administrative units often exist at higher levels of aggregation, but the problem of non-existent frames kicks in for more fine-grained stages of the process. The advantage of the multi-stage approach is that sampling materials have to only be created for units that have actually been sampled. Mapping all households in a country, for example, may be infeasible. Doing so in the subset of villages in the sample, however, may be realistic.</p>
+<p>Where the smallest administrative unit is still too large or otherwise inappropriate as a sampling unit, researchers have resorted to creating their own units. <span class="citation" data-cites="scacco2010riots">Scacco (<a href="#ref-scacco2010riots" role="doc-biblioref">2008</a>)</span>, for example, mapped 120 original sampling units in order to randomly sample residents of two Nigerian cities. Similarly, <span class="citation" data-cites="green2020countering">Green, Wilke, and Cooper (<a href="#ref-green2020countering" role="doc-biblioref">2020</a>)</span> used satellite images to create circular sampling units that map onto the catchment areas of video halls in rural Uganda.</p>
+<p>Irrespective of whether the next larger sampling unit was pre-existing or self-created, lists of households within those sampling units rarely exist. Two popular solutions to this problem are to use a <em>random walk procedure</em> or to conduct a <em>household listing</em>.</p>
+<section id="random-walk" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="random-walk"><span class="header-section-number">4.1</span> Random walk</h2>
+<p>Enumerators are given (possibly randomly selected) starting points and are instructed to follow a walk pattern, e.g., “walk to the right and conduct an interview in every fifth dwelling.” The advantage of this approach is its cost effectiveness. No listing of households beyond those that enter the sample is required. Yet, a random walk procedure may not yield a particularly good approximation to a random sample. First, even though it is often treated as a way to select a simple random sample, a random walk procedure in fact introduces geographic clustering. The walk pattern above, for example, implies that neighboring houses can never both be sampled and that, once a particular household is sampled, the one five houses down the road will be sampled as well. See <span class="citation" data-cites="lohr2009sampling">Lohr (<a href="#ref-lohr2009sampling" role="doc-biblioref">2009, chap. 5.5</a>)</span> for more on the consequences of this kind of clustering. Second, even if starting points are, say, randomly chosen geo-coordinates, the probability of being sampled may vary across households due to geographic particularities (e.g., street layout, density of dwellings). If selection probabilities are unknown to the researcher but correlated with the characteristic of interest, bias will result. Finally, a random walk procedure is difficult to implement in practice. That enumerators select households and conduct interviews in one step increases their incentives to informally replace households that are reluctant or unavailable — a practice that can only be detected through intensive monitoring.</p>
+</section>
+<section id="household-listing" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="household-listing"><span class="header-section-number">4.2</span> Household listing</h2>
+<p>The more principled option is to create a list of all households in the sampling unit. Households can then be randomly selected from this list prior to the start of the survey. A listing exercise can be expensive, but is also more likely to allow the researcher to approximate a random sample. Sampling from a full list of households avoids problems of geographic clustering and unknown sampling probabilities. Moreover, separating the listing from the enumeration step makes it easier to guard against unwarranted replacements. At the listing stage, enumerators have fewer incentives to skip houses, since it is not yet clear whether a household will cooperate at the survey stage. That a record of all households within and outside the sample exists prior to the start of survey activities can also make it easier to detect instances in which enumerators interviewed the incorrect household. Finally, it is sometimes possible to re-use household lists to draw additional random samples in the future, at least in places where mobility is low. This feature opens up the possibility of sharing the costs of a listing exercise across multiple studies.</p>
+</section>
+</section>
+<section id="sampling-difficult-to-reach-populations" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Sampling difficult-to-reach populations</h1>
+<p>Populations that are rare or stigmatized are difficult to study through random sampling. Classic examples include injecting drug users and sex workers. Sampling frames are not generally available for populations of this kind and a random sample of the general population is likely to contain only few of their members. Respondent-driven sampling (RDS) has emerged as one prominent solution to this problem.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>RDS makes use of social network ties that link members of the target population. The sampling process starts with an initial non-random sample. Initial respondents are given a fixed number of coupons which they can hand out to their contacts in the target population. In subsequent sampling waves, respondents are recruited through the coupons that are given to them by respondents in the previous wave. Typically, respondents are compensated for every additional respondent whom they recruit. The idea is that the influence of the initial non-random sample can be reduced by conducting many successive waves of sampling.</p>
+<p>RDS does not yield a true random sample, because sampling probabilities remain unknown. In practice, researchers use various models to approximate the sampling process when estimating the population parameters of interest. The simplest model conceives of the sampling process as a random walk where each respondent randomly chooses among her contacts in the target population when recruiting for the next wave (see <span class="citation" data-cites="gile20107">Gile and Handcock (<a href="#ref-gile20107" role="doc-biblioref">2010</a>)</span>). This model implies that respondents’ unconditional probabilities of being sampled are proportional to their number of network ties. This number can be elicited as part of the survey process and then used for weighting in the estimation process.</p>
+<p>This model, however, has multiple limitations. For example, it presumes sampling with replacement, i.e., the model does not take into account that a respondent who has been sampled in a previous wave cannot be sampled again. <span class="citation" data-cites="gile2018methods">Gile et al. (<a href="#ref-gile2018methods" role="doc-biblioref">2018</a>)</span> describe a range of subsequent approaches that seek to relax this and other assumptions.</p>
+</section>
+<section id="keep-sampling-strategy-simple-and-appropriate-for-local-context" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Keep sampling strategy simple and appropriate for local context</h1>
+<p>The practical implementation of any sampling strategy typically presents numerous obstacles. Many unforeseen problems can occur and these are often context-specific. Hence, pre-testing sampling strategies is important. Here are some examples of difficulties that one may be able to discover and address during a pre-test:</p>
+<ul>
+<li>The definition of a “dwelling” or “household” can vary across contexts. It is important to clarify the definition that should be used during the household listing stage. Say, for example, that parents and adult children live on the same property but in separate houses. Should enumerators list one or two households?</li>
+<li>Questions also tend to arise about the kinds of households that form part of the target (or survey) population. For instance, should rooms that are rented out to students who live there only during term time be included in the household listing?</li>
+<li>The ability to read maps among survey staff varies across contexts. Working with maps or satellite imagery may be impractical or require the identification of landmarks that survey staff can use to orient themselves.</li>
+<li>When sampling household members, these are often identified by gender and age (as invented by <span class="citation" data-cites="kish1965survey">Kish (<a href="#ref-kish1965survey" role="doc-biblioref">1965</a>)</span>). In some contexts, households members may know neither their age nor birthday, in which case some other marker should be used.</li>
+</ul>
+<p>In general, try to keep your sampling strategy simple. Sophisticated sampling strategies may offer gains in precision, but these gains will not be realized if a sampling strategy cannot be implemented as intended. Clear and simple instructions to survey staff are of crucial importance. It often helps to separate tasks and assign them to specialized teams. Sampling-related tasks such as listing households, drawing the sample of households, sampling household members, and making appointments can be complex. Having separate teams for sampling and interviewing avoids overburdening enumerators and may allow for more in-depth training. See <a href="https://methods.egap.org/guides/implementation/survey-implementation_en.html">“10 Things to Know About Survey Implementation”</a> for more on how to manage survey fieldwork.</p>
+</section>
+<section id="how-sampling-affects-analysis" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> How sampling affects analysis</h1>
+<p>Sampling strategies have implications for analytical strategies. Here are two common examples of how sampling and analytical strategies go hand in hand:</p>
+<p><strong>1. Weight by the inverse of a unit’s probability of being sampled if sampling probabilities vary across units.</strong> Let us denote the probability that unit <span class="math inline">\(i\)</span> is included in the sample by <span class="math inline">\(\pi_i\)</span>. If we draw a simple random sample of size <span class="math inline">\(n\)</span> from a population of size <span class="math inline">\(N\)</span>, every unit is included in the sample with the same probability of <span class="math inline">\(\pi_i = \frac{n}{N}\)</span>. Where sampling probabilities do not vary across units, the construction of unbiased estimators of population characteristics does not usually require the analyst to make use of sampling weights. In the stylized example of simple random sampling above, for instance, we used the unweighted sample average as an estimator for the average income in the population. Samples in which all units have the same probability of being sampled are thus also referred to as <em>self-weighting</em> (see <span class="citation" data-cites="lohr2009sampling">Lohr (<a href="#ref-lohr2009sampling" role="doc-biblioref">2009</a>)</span>, p.&nbsp;40).</p>
+<p>Things change if different units are sampled with different probabilities. For example, sampling probabilities may vary across strata. Say we stratify by gender and draw a sample of 100 men and 100 women, but there are 1000 men and 1500 women in the population. In this case, each woman has a probability of <span class="math inline">\(\pi_i = \frac{1}{15}\)</span> of being sampled, while the sampling probability among men is <span class="math inline">\(\pi_i = \frac{1}{10}\)</span>. If gender is correlated with the characteristic of interest (as is likely the case for income), the unweighted sample average income will not give an unbiased estimate of the the population average income. The solution is to weight every unit by the inverse of its sampling probability:</p>
+<p><span class="math display">\[\omega_i = \frac{1}{\pi_i}.\]</span></p>
+<p>Men would thus receive <em>sampling weights</em> of <span class="math inline">\(\omega_m = \frac{1}{\pi_i} = 10\)</span>, while women receive sampling weights of <span class="math inline">\(\omega_w = \frac{1}{\pi_i} = 15\)</span>. Sampling weights can also be interpreted as the number of population units represented by each unit in the sample. In this example, each man in the sample represents himself and 9 other non-sampled men, while each woman represents herself and 14 other non-sampled women.</p>
+<p>The same logic applies if the population parameter that one seeks to estimate is the average causal effect of a treatment. Experimentalists commonly use inverse-probability weights to obtain unbiased estimates of the SATE if the probability of being assigned to treatment varies across units (see <a href="https://methods.egap.org/guides/data-collection/randomization_en.html">“10 Things to Know About Randomization”</a>). If the experimental subject pool is a random sample from a larger population and the target of inference is the population average treatment effect (PATE), researchers may <em>also</em> want to weight by the inverse of a unit’s probability of being sampled. See <span class="citation" data-cites="miratrix2018worth">Miratrix et al. (<a href="#ref-miratrix2018worth" role="doc-biblioref">2018</a>)</span> for more on the usage of sampling weights in the estimation of PATEs.</p>
+<p>Note also that stratification is not the only possible source of variation in sampling probabilities across units. For example, such variation commonly results from multi-stage sampling, as in the case where one household member is sampled in every household but households are of varying size.</p>
+<p><strong>2. Adjust your estimates of sampling variability for clustered sampling.</strong> A common mistake is to analyze a clustered sample as if it was a simple random sample. Clustering increases sampling variability if units within clusters are similar in terms of the characteristic of interest. Researchers need to make sure that their uncertainty estimates reflect this additional variability. Suppose again that we seek to estimate average household income in a city. We randomly sample city blocks of 10 households each. If all city blocks have the same probability of being sampled, the unweighted average of household incomes in our sample will remain an unbiased estimator for the city-wide average household income. To estimate the variance of this estimator, however, we need to consider how incomes vary between city blocks rather than between households. See <span class="citation" data-cites="lohr2009sampling">Lohr (<a href="#ref-lohr2009sampling" role="doc-biblioref">2009, chap. 5</a>)</span> for details and for additional ways in which one may have to adjust one’s analysis strategy if clusters are of unequal size.</p>
+<p>Again, the logic extends to cases in which the target of inference is a PATE. In randomized experiments, researchers often need to adjust their uncertainty estimates to reflect the additional variability induced by cluster random assignment (see <a href="https://methods.egap.org/guides/data-collection/cluster-randomization_en.html">“10 Things to Know About Cluster Randomization”</a>). If the experimental subject pool is a random sample from a larger population, however, researchers may have to adjust for clustering at a level higher than that of treatment assignment if sampling was clustered at higher levels (see <span class="citation" data-cites="abadie2017should">Abadie et al. (<a href="#ref-abadie2017should" role="doc-biblioref">2017</a>)</span>).</p>
+</section>
+<section id="how-sampling-helps-with-problems-of-non-response" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> How sampling helps with problems of non-response</h1>
+<p>Non-response — the inability to obtain measurements for some units in the sample — is a common problem. Where non-response is not random, it has the potential to introduce bias, because it essentially undoes the random selection of units from the population. <span class="citation" data-cites="hansen1946problem">Hansen and Hurwitz (<a href="#ref-hansen1946problem" role="doc-biblioref">1946</a>)</span> were the first to propose <em>two-phase sampling</em>, also called <em>double sampling</em>, as a way to deal with non-response that requires minimal additional assumptions. The basic approach works as follows. First, draw a random sample of size <span class="math inline">\(n\)</span> from a population and conduct a relatively inexpensive first attempt to obtain measurements for all <span class="math inline">\(n\)</span> units in the sample. This first measurement phase may consist of, say, a phone survey. Let <span class="math inline">\(n_R\)</span> be the number of units for which measurements can be obtained during this first phase and <span class="math inline">\(n_M\)</span> the number of units for which measurements remain missing. Second, take a sub-sample of <span class="math inline">\(x\%\)</span> of the <span class="math inline">\(n_M\)</span> missing units and make intensive efforts to obtain measurements on all units of the sub-sample. For example, this second phase may consist of in-person interviews. If all responses in the sub-sample can be obtained, the following provides an unbiased estimator of the population average</p>
+<p><span class="math display">\[\hat{\mu} = \frac{n_R}{n} \hat{\mu}_R + \frac{n_M}{n}  \hat{\mu}_M,\]</span></p>
+<p>where <span class="math inline">\(\hat{\mu}_R\)</span> is the sample average among the original respondents and <span class="math inline">\(\hat{\mu}_M\)</span> the sample average among the sub-sample of non-respondents. See <span class="citation" data-cites="lohr2009sampling">Lohr (<a href="#ref-lohr2009sampling" role="doc-biblioref">2009, chap. 8.3</a>)</span> on how to estimate the variance of this estimator.</p>
+<p>The two-phase sampling approach is based on the core insight that concentrating efforts on a randomly selected sub-sample of non-respondents and obtaining responses from all of them is more helpful than attempting to obtain responses from all non-respondents which is bound to result in leftover missingness. <span class="citation" data-cites="hansen1946problem">Hansen and Hurwitz (<a href="#ref-hansen1946problem" role="doc-biblioref">1946</a>)</span> provide results on the optimal size of the original and follow-up sample given parameters such as the probability of non-response in the first phase and the cost of initial and follow-up data collection efforts. <span class="citation" data-cites="coppock2017combining">Coppock et al. (<a href="#ref-coppock2017combining" role="doc-biblioref">2017</a>)</span> show how two-phase sampling can be combined with worst case bounds to partially identify average treatment effects in randomized experiments. They generalize the approach by allowing for non-response not only in the initial but also in the follow-up sample.</p>
+</section>
+<section id="relationship-between-random-sampling-and-random-assignment" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Relationship between random sampling and random assignment</h1>
+<p>The core feature of both random sampling and random assignment is that units are selected from some larger pool with known probabilities between zero and one. Yet, there are several key differences. In random sampling, units are selected at random from a population in order to infer characteristics of the population from the sample. Random assignment, on the other hand, is used in experiments to allocate units from a pool of experimental subjects to experimental conditions — in the simplest case to a treatment group and a control group. The goal of random assignment is to draw inferences about causal effects, typically an estimate of an average causal effect of the treatment on some outcome (see <a href="https://methods.egap.org/guides/causal-inference/x-cause-y_en.html">“10 Strategies for Figuring out if X Caused Y”</a> or <a href="https://methods.egap.org/guides/analysis-procedures/hypothesis-testing_en.html">“10 Things to Know About Hypothesis Testing”</a> for details).<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>The subject pool of an experiment may or may not be a random sample from a larger population. In many cases, experiments rely on convenience samples. Combining random sampling and random assignment, however, has important benefits. Suppose we first draw a random sample of units from a population and then randomly assign some of these units to receive a treatment. That we used random assignment to allocate units to experimental conditions enables us to obtain an unbiased estimate of the average treatment effect among the units in our sample. That we randomly sampled our units from the population means that we can use our estimate of the average treatment effect in the sample to draw inferences about the average treatment effect in the population. In other words, experiments that are based on random samples offer straightforward ways to learn not only about sample average treatment effects (SATEs) but also about PATEs. For more information on these and other types of treatment effects, see <a href="https://methods.egap.org/guides/research-questions/effect-types_en.html">“10 Types of Treatment Effect You Should Know About”</a>.</p>
+</section>
+<section id="choosing-a-sampling-strategy-for-a-randomized-experiment" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Choosing a sampling strategy for a randomized experiment</h1>
+<p>In many cases, randomized experiments do not rely on random samples from a larger population. Yet, even if experimental subjects are sampled in non-random ways, there are important considerations to take into account when designing a sampling strategy.</p>
+<p><strong>Symmetry.</strong> First and foremost, the chosen sampling strategy should maintain symmetry across treatment and control groups. Suppose an experiment evaluates the effect of community meetings. Selecting respondents from a radius around the community hall where the meetings took place sounds like a natural approach. Yet, this sampling strategy requires that community halls in which meetings would have taken place if the village had been assigned to treatment can be identified in control villages. Otherwise, it is not possible to implement the same sampling strategy in treatment and control villages. Where the way in which units have been sampled differs across treatment and control groups, it remains unclear whether observed differences in outcomes across these groups can be attributed to effects of the treatment or to differences in how units were sampled. This problem is called an exclusion restriction violation (see <span class="citation" data-cites="gerber2012field">Gerber and Green (<a href="#ref-gerber2012field" role="doc-biblioref">2012</a>)</span> for more discussion and examples of this assumption and possible violations). One way to avoid exclusion restriction violations of this kind is to identify all units on which measurements will be taken prior to random assignment.</p>
+<p><strong>Spillovers.</strong> Researchers often worry that effects of a treatment may spill over to proximate units, especially if the units in an experiment are connected through network ties. Considering the presence of spillovers when selecting one’s experimental subject pool may make it possible to rule out or control spillovers by design. For example, when sampling villages or households, one may impose a minimum distance between units in the sample in order to limit interactions among residents from different experimental units.</p>
+<p><strong>Desired covariate profiles.</strong> There are many reasons to purposefully sample units with particular covariate profiles. Maybe the SATE among a specific subgroup is of particular theoretical interest. Sampling particular kinds of units may also help generalize experimental results beyond the setting in which they were obtained, even if units have not been randomly sampled from a population. <span class="citation" data-cites="pearl2014external">Pearl and Bareinboim (<a href="#ref-pearl2014external" role="doc-biblioref">2014</a>)</span> and <span class="citation" data-cites="tipton2013improving">Tipton (<a href="#ref-tipton2013improving" role="doc-biblioref">2013</a>)</span> show how treatment effect estimates may be “transported” to some other setting by calculating weighted averages of estimates within subgroups. This approach is based on theoretical assumptions about which and how differences between study and target settings relate to the treatment effect of interest. Crucial for the ability to use this strategy is that the subject pool in the study setting contains enough units in each relevant subgroup to estimate treatment effects within it.</p>
+<!-- # Analysis with both random sampling and random assignment
+
+
+If the units in an experiment are a random sample from a larger population, then our realized estimate of the effect of a randomized treatment on the population may deviate from the true PATE for two reasons:
+
+1. We have drawn one of many possible samples instead of performing our analysis on the entire population.
+2. We cannot observe all potential outcomes and have therefore chosen one of many possible ways to assign units to treatment and control conditions.
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+
+`````{=html}
+
+<table class="table caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Y0</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Y1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Y1 - Y0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">25.00</td>
+<td style="text-align: right;">27.00</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">18.00</td>
+<td style="text-align: right;">8.00</td>
+<td style="text-align: right;">-10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">33.00</td>
+<td style="text-align: right;">13.00</td>
+<td style="text-align: right;">-20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">22.00</td>
+<td style="text-align: right;">24.00</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E</td>
+<td style="text-align: right;">50.00</td>
+<td style="text-align: right;">53.00</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">45.00</td>
+<td style="text-align: right;">50.00</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Average</td>
+<td style="text-align: right;">32.17</td>
+<td style="text-align: right;">29.17</td>
+<td style="text-align: right;">-3</td>
+</tr>
+</tbody>
+</table>
+
+
+`````
+
+:::
+:::
+
+
+
+To illustrate, consider again our example population of six units. Suppose we would like to estimate the average effect of some treatment on income among people in this population. The table above displays two potential outcomes for each unit --- a unit's income level if that unit was assigned to control ($Y0$) and a unit's income level if the unit was was assigned to treatment ($Y1$). The last column displays the true treatment effect for each unit. The average effect of the treatment among the six units in the population is $-3$. Suppose that, in order to estimate this effect, we first randomly sample four of the six units, then randomly assign two of the four sampled units to treatment and finally compute the difference in mean outcomes across treatment and control.
+
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![Distributions of true effects and effect estimates that take into account variation from sampling, from random assignment or both in a hypothetical experiment that randomly samples 4 units from a population of 6 units. The blue dotted line shows the mean of the respective distribution.](sampling_en_files/figure-html/samplingdistributions-1.png){fig-align='center' width=576}
+:::
+:::
+
+
+
+The first panel in the figure above plots the distribution of the true average effect of our treatment across the 15 possible samples of four units that we may draw. In constructing this distribution, we presume that we can observe *both* potential outcomes among the four randomly sampled units. We thus suppress uncertainty that comes from the process of random assignment and focus on sampling uncertainty alone. Since we draw our samples randomly, the distribution of SATEs is centered on the true PATE of $-3$. Among any given sample, however, the average effect of the treatment may be larger or smaller than the PATE.
+
+The second panel of the figure considers one realized sample of four units. There are six possible ways of randomly assigning two out of four units to treatment. For the particular sample considered in panel 2, these six possible random assignments yield the shown distribution of possible treatment effect estimates. In constructing this distribution, we have ignored sampling uncertainty and focused solely on uncertainty that comes from randomization. Since we randomly assign units to treatment and control, the distribution is centered on the true average effect of the treatment *in this sample*. Yet, this SATE differs from the PATE.
+
+Since there are 15 possible samples and six ways of randomly assigning treatment within each sample, there are $15 \times 6 = 90$ possible estimates that may result in our hypothetical study. Panel 3 of the figure plots the distribution of all possible effect estimates, taking into account both uncertainty from sampling and from random assignment.
+
+If we would like to make inferences to population quantities, our uncertainty estimates should reflect both kinds of uncertainty. If we use permutation-based randomization inference to calculate $p$-values to test sharp null hypotheses, for example, we only consider variability that stems from the random assignment of units to treatment and not from the sampling of units itself. If we use a bootstrap-based random sampling inference, we will tend to ignore the uncertainty arising from random assignment. One could combine *both* bootstrap re-sampling and randomization-justified permutations to reflect the two sources of uncertainty, although this might be computationaly complex and time consuming. Alternatively, the standard Neyman estimator of the variance of the difference-in-means estimator produces standard errors that are conservative if we presume that all uncertainty comes from random assignment. These standard errors will provide unbiased variance estimates if we can conceive of the experimental subject pool as a random sample from a population that is infinite. This assumption seems plausible when the experimental subject pool is a random sample that is small relative to the population. Where the size of the experimental sample is large relative to the population, Neyman standard errors will be conservative as well. See @aronow2014sharp and @abadie2020sampling for more on how to obtain unbiased variance estimates when sampling from a finite population. -->
+<!-- Eddy: not very important to our understanding of sampling -->
+</section>
+<section id="references" class="level1" data-number="11">
+
+
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-abadie2017should" class="csl-entry" role="listitem">
+Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey Wooldridge. 2017. <span>“When Should You Adjust Standard Errors for Clustering?”</span> Working Paper 24003. Cambridge, MA: National Bureau of Economic Research.
+</div>
+<div id="ref-coppock2017combining" class="csl-entry" role="listitem">
+Coppock, Alexander, Alan S. Gerber, Donald P. Green, and Holger L. Kern. 2017. <span>“Combining Double Sampling and Bounds to Address Nonignorable Missing Outcomes in Randomized Experiments.”</span> <em>Political Analysis</em> 25 (2): 188–206.
+</div>
+<div id="ref-gerber2012field" class="csl-entry" role="listitem">
+Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. WW Norton.
+</div>
+<div id="ref-gile2018methods" class="csl-entry" role="listitem">
+Gile, Krista J., Isabelle S. Beaudry, Mark S. Handcock, and Miles Q. Ott. 2018. <span>“Methods for Inference from Respondent-Driven Sampling Data.”</span> <em>Annual Review of Statistics and Its Application</em> 5: 65–93.
+</div>
+<div id="ref-gile20107" class="csl-entry" role="listitem">
+Gile, Krista J., and Mark S. Handcock. 2010. <span>“Respondent-Driven Sampling: An Assessment of Current Methodology.”</span> <em>Sociological Methodology</em> 40 (1): 285–327.
+</div>
+<div id="ref-green2020countering" class="csl-entry" role="listitem">
+Green, Donald P., Anna M. Wilke, and Jasper Cooper. 2020. <span>“Countering Violence Against Women by Encouraging Disclosure: A Mass Media Experiment in Rural Uganda.”</span> <em>Comparative Political Studies</em> 53 (14): 2283–2320.
+</div>
+<div id="ref-groves2011survey" class="csl-entry" role="listitem">
+Groves, Robert M., Floyd J. Fowler Jr., Mick P. Couper, James M. Lepkowski, Eleanor Singer, and Roger Tourangeau. 2009. <em>Survey Methodology</em>. 2nd ed. Hoboken, NJ: John Wiley &amp; Sons.
+</div>
+<div id="ref-hansen1946problem" class="csl-entry" role="listitem">
+Hansen, Morris H., and William N. Hurwitz. 1946. <span>“The Problem of Non-Response in Sample Surveys.”</span> <em>Journal of the American Statistical Association</em> 41 (236): 517–29.
+</div>
+<div id="ref-kish1965survey" class="csl-entry" role="listitem">
+Kish, Leslie. 1965. <em>Survey Sampling</em>. New York: John Wiley &amp; Sons.
+</div>
+<div id="ref-lohr2009sampling" class="csl-entry" role="listitem">
+Lohr, Sharon L. 2009. <em>Sampling: Design and Analysis</em>. 2nd ed. Boston: Brooks/Cole Cengage Learning.
+</div>
+<div id="ref-miratrix2018worth" class="csl-entry" role="listitem">
+Miratrix, Luke W., Jasjeet S. Sekhon, Alexander G. Theodoridis, and Luis F. Campos. 2018. <span>“Worth Weighting? How to Think about and Use Weights in Survey Experiments.”</span> <em>Political Analysis</em> 26 (3): 275–91.
+</div>
+<div id="ref-splawa1990application" class="csl-entry" role="listitem">
+Neyman, Jerzy. 1990. <span>“On the Application of Probability Theory to Agricultural Experiments. Essay on Principles. Section 9.”</span> <em>Statistical Science</em> 5 (4): 465–72.
+</div>
+<div id="ref-pearl2014external" class="csl-entry" role="listitem">
+Pearl, Judea, and Elias Bareinboim. 2014. <span>“External Validity: From Do-Calculus to Transportability Across Populations.”</span> <em>Statistical Science</em> 29 (4): 579–95.
+</div>
+<div id="ref-scacco2010riots" class="csl-entry" role="listitem">
+Scacco, Alexandra. 2008. <em>Who Riots? Explaining Individual Participation in Ethnic Violence</em>. Unpublished Manuscript.
+</div>
+<div id="ref-stoker2002designing" class="csl-entry" role="listitem">
+Stoker, L., and J. Bowers. 2002. <span>“<span class="nocase">Designing multi-level studies: sampling voters and electoral contexts</span>.”</span> <em>Electoral Studies</em> 21 (2): 235–67.
+</div>
+<div id="ref-tipton2013improving" class="csl-entry" role="listitem">
+Tipton, Elizabeth. 2013. <span>“Improving Generalizations from Experiments Using Propensity Score Subclassification: Assumptions, Properties, and Contexts.”</span> <em>Journal of Educational and Behavioral Statistics</em> 38 (3): 239–66.
+</div>
+<div id="ref-tran2015sampling" class="csl-entry" role="listitem">
+Tran, Hoang Vu, Linh-Vi N. Le, Lisa Grazina Johnston, Patrick Nadol, Anh Van Do, Ha Thi Thanh Tran, and Tuan Anh Nguyen. 2015. <span>“Sampling Males Who Inject Drugs in Haiphong, Vietnam: Comparison of Time-Location and Respondent-Driven Sampling Methods.”</span> <em>Journal of Urban Health</em> 92 (4): 744–57.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>While only random sampling allows for the characterization of sampling uncertainty, random sampling does not guarantee the ability to obtain uncertainty estimates (see <span class="citation" data-cites="kish1965survey">Kish (<a href="#ref-kish1965survey" role="doc-biblioref">1965, 24</a>)</span> for a discussion). A design that samples only one cluster at random, for example, would not allow for the construction of standard errors and confidence intervals.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Note that when talking about random assignment, we refer to the analogous procedure that assigns a fixed number of units to treatment with a a given probability as <em>complete random assignment</em>. The term <em>simple random assignment</em> refers to a procedure where the researcher, say, flips a coin for every unit to decide whether it should be assigned to treatment or control. The number of units assigned to treatment under simple random assignment thus remains a random variable. <a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>See <span class="citation" data-cites="lohr2009sampling">Lohr (<a href="#ref-lohr2009sampling" role="doc-biblioref">2009, chap. 14</a>)</span> for an overview of other approaches and <span class="citation" data-cites="tran2015sampling">Tran et al. (<a href="#ref-tran2015sampling" role="doc-biblioref">2015</a>)</span> for a comparison of RDS to time-location sampling as a major alternative.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>On a deeper level, however, random assignment has much in common of with random sampling. The process of randomly assigning units to a treatment group can be thought of as a process of drawing a random sample of treated potential outcomes in order to estimate the average treated potential outcome in the entire experimental subject pool (see <span class="citation" data-cites="splawa1990application">Neyman (<a href="#ref-splawa1990application" role="doc-biblioref">1990</a>)</span>). <a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

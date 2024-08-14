@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lindsay Dolan">
+
+<title>10 choses à savoir sur la randomisation – Methods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 choses à savoir sur la randomisation</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 choses à savoir sur la randomisation</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>Ce guide vous aidera à concevoir et à mettre en œuvre différents types de randomisation dans vos expériences. Nous nous concentrons sur les grandes lignes et fournissons des exemples et des outils que vous pouvez utiliser dans R. Pour savoir pourquoi faire de la randomisation, voir <a href="http://egap.org/resource/10-strategies-for-figuring-out-if-x-caused-y">ce guide des méthodes</a>.</p>
+  </div>
+</div>
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#certaines-méthodes-sont-meilleures-que-dautres" id="toc-certaines-méthodes-sont-meilleures-que-dautres"><span class="header-section-number">1</span> Certaines méthodes sont meilleures que d’autres</a></li>
+  <li><a href="#randomisation-par-bloc-vous-pouvez-vous-assurer-que-les-groupes-de-traitement-et-de-contrôle-sont-équilibrés" id="toc-randomisation-par-bloc-vous-pouvez-vous-assurer-que-les-groupes-de-traitement-et-de-contrôle-sont-équilibrés"><span class="header-section-number">2</span> Randomisation par bloc : vous pouvez vous assurer que les groupes de traitement et de contrôle sont équilibrés</a></li>
+  <li><a href="#conceptions-factorielles-vous-pouvez-randomiser-plusieurs-traitements-en-même-temps-sans-perdre-de-puissance-statistique" id="toc-conceptions-factorielles-vous-pouvez-randomiser-plusieurs-traitements-en-même-temps-sans-perdre-de-puissance-statistique"><span class="header-section-number">3</span> Conceptions factorielles : vous pouvez randomiser plusieurs traitements en même temps sans perdre de puissance statistique</a></li>
+  <li><a href="#vous-pouvez-randomiser-des-grappes-entières-ensemble-mais-plus-vos-grappes-sont-grandes-plus-votre-puissance-statistique-est-faible" id="toc-vous-pouvez-randomiser-des-grappes-entières-ensemble-mais-plus-vos-grappes-sont-grandes-plus-votre-puissance-statistique-est-faible"><span class="header-section-number">4</span> Vous pouvez randomiser des grappes entières ensemble (mais plus vos grappes sont grandes, plus votre puissance statistique est faible !)</a></li>
+  <li><a href="#vous-pouvez-randomiser-dune-manière-qui-permet-de-voir-plus-facilement-sil-y-a-des-effets-de-contamination" id="toc-vous-pouvez-randomiser-dune-manière-qui-permet-de-voir-plus-facilement-sil-y-a-des-effets-de-contamination"><span class="header-section-number">5</span> Vous pouvez randomiser d’une manière qui permet de voir plus facilement s’il y a des effets de contamination</a></li>
+  <li><a href="#différentes-unités-peuvent-être-assignées-au-traitement-avec-différentes-probabilités" id="toc-différentes-unités-peuvent-être-assignées-au-traitement-avec-différentes-probabilités"><span class="header-section-number">6</span> Différentes unités peuvent être assignées au traitement avec différentes probabilités</a></li>
+  <li><a href="#randomisation-restreinte-si-vous-naimez-pas-ce-que-vous-obtenez-vous-pouvez-recommencer" id="toc-randomisation-restreinte-si-vous-naimez-pas-ce-que-vous-obtenez-vous-pouvez-recommencer"><span class="header-section-number">7</span> Randomisation restreinte : si vous n’aimez pas ce que vous obtenez, vous pouvez recommencer</a></li>
+  <li><a href="#écrivez-un-code-de-randomisation-qui-vous-permet-de-simuler-de-nombreuses-randomisations-possibles" id="toc-écrivez-un-code-de-randomisation-qui-vous-permet-de-simuler-de-nombreuses-randomisations-possibles"><span class="header-section-number">8</span> Écrivez un code de randomisation qui vous permet de simuler de nombreuses randomisations possibles</a></li>
+  <li><a href="#vous-pouvez-randomiser-au-fur-et-à-mesure" id="toc-vous-pouvez-randomiser-au-fur-et-à-mesure"><span class="header-section-number">9</span> Vous pouvez randomiser au fur et à mesure</a></li>
+  <li><a href="#la-randomisation-peut-parfois-être-une-manière-éthique-dassigner-un-traitement-mais-parfois-ce-nest-pas-le-cas." id="toc-la-randomisation-peut-parfois-être-une-manière-éthique-dassigner-un-traitement-mais-parfois-ce-nest-pas-le-cas."><span class="header-section-number">10</span> La randomisation peut parfois être une manière éthique d’assigner un traitement, mais parfois ce n’est pas le cas.</a></li>
+  </ul>
+</nav>
+<!-- title: "10 choses à savoir sur la randomisation" -->
+<!-- author: "Auteur du guide des méthodes: Lindsay Dolan" -->
+<section id="certaines-méthodes-sont-meilleures-que-dautres" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Certaines méthodes sont meilleures que d’autres</h1>
+<p>Il existe de nombreuses façons de randomiser. Le plus simple est de lancer une pièce à chaque fois que vous voulez déterminer si un sujet donné reçoit un traitement ou non. Cela garantit que chaque sujet a une probabilité de 0,5 de recevoir le traitement et une probabilité de 0,5 de ne pas le recevoir. De cette façon, le fait qu’un sujet reçoive le traitement n’affecte en rien le fait que le sujet suivant reçoive le traitement, chaque sujet a une chance égale de recevoir le traitement, et le traitement ne sera pas corrélé avec tous les facteurs de confusion - du moins en espérance.</p>
+<p>Ce n’est pas une mauvaise approche, mais elle présente des lacunes. Premièrement, en utilisant cette méthode, vous ne pouvez pas savoir à l’avance combien d’unités seront sous traitement et combien sous contrôle. Si vous voulez le savoir à l’avance, vous avez besoin d’un moyen de faire des sélections afin que les différents tirages ne soient pas statistiquement indépendants les uns des autres (comme tirer des noms d’un chapeau). Deuxièmement, vous voudrez peut-être avoir le contrôle sur la proportion exacte des unités assignées au traitement et au contrôle. C’est difficile à faire avec une pièce de monnaie. Troisièmement, vous voudrez peut-être pouvoir reproduire votre randomisation pour montrer qu’il n’y avait pas d’erreurs. C’est difficile à faire avec des pièces de monnaie ou des chapeaux. Enfin, comme nous le montrons ci-dessous, il existe toutes sortes de façons de faire de la randomisation pour améliorer la puissance statistique et assurer l’équilibre. C’est plus difficile en utilisant des pièces de monnaie ou des chapeaux.</p>
+<p>Heureusement cependant, une randomisation réplicable et flexible est possible avec des logiciels disponibles gratuitement. Le code suivant en R peut, par exemple, être utilisé pour générer une assignation aléatoire, spécifiant le nombre d’unités à traiter. Ici, N (100) est le nombre d’unités dont vous disposez et m (34) est le nombre que vous souhaitez traiter. La “graine” permet de reproduire le même tirage à chaque fois que vous exécutez le code (ou vous pouvez changer la graine pour un tirage différent).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># définir une "graine" aléatoire pour rendre cela reproductible</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">343</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">complete_ra</span>(<span class="dv">100</span>, <span class="dv">34</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="randomisation-par-bloc-vous-pouvez-vous-assurer-que-les-groupes-de-traitement-et-de-contrôle-sont-équilibrés" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Randomisation par bloc : vous pouvez vous assurer que les groupes de traitement et de contrôle sont équilibrés</h1>
+<p>Il est possible de spécifier pour des facteurs particuliers la proportion exacte d’unités assignées au traitement ou au contrôle. Par contre, il n’est pas possible de maintenir une assignation aléatoire en spécifiant les unités particulières sélectionnées pour l’un ou l’autre groupe.</p>
+<p>Cela signifie qu’il est possible de spécifier, par exemple, que vos groupes de traitement et de contrôle contiennent des proportions égales d’hommes et de femmes. En d’autres termes, cela évite toute randomisation qui pourrait produire un groupe de traitement distinctement masculin et un groupe de contrôle distinctement féminin, ou vice-versa.</p>
+<p>Pourquoi est-ce souhaitable ? Non pas parce que notre estimation de l’effet moyen du traitement serait autrement biaisée, mais parce qu’elle pourrait produire beaucoup de bruit. Supposons qu’une assignation aléatoire ait généré un groupe de traitement très masculin et un groupe de contrôle très féminin. Nous observerions une corrélation entre le genre et le statut de traitement. Si nous devions estimer un effet de traitement, cet effet de traitement serait toujours non biaisé car le genre n’a pas causé le statut de traitement. Cependant, il serait plus difficile de rejeter l’hypothèse nulle selon laquelle ce n’était pas notre traitement mais le genre qui produisait l’effet. Bref, le déséquilibre produit une estimation bruitée, ce qui rend plus difficile pour nous d’avoir confiance en nos estimations.</p>
+<p>La randomisation par bloc (parfois appelée stratifiée) aide à truquer notre expérience de manière à ce que nos groupes de traitement et de contrôle soient équilibrés selon des dimensions importantes, mais toujours assignés de manière aléatoire. Essentiellement, ce type de randomisation construit de multiples mini-expériences : par exemple, il pourrait prendre des femmes et assigner de manière aléatoire la moitié au traitement et l’autre moitié au contrôle, puis il assignerait la moitié des hommes au traitement et l’autre moitié au contrôle. Cela garantit un équilibre entre les genres lorsque les groupes de traitement et de contrôle sont mis en commun.</p>
+<p>Le <a href="https://cran.r-project.org/web/packages/blockTools/index.html">package blockTools</a> est utile pour effectuer la randomisation par bloc. Commençons par générer un faux ensemble de données pour 60 sujets, dont 36 hommes et 24 femmes.</p>
+<p>Supposons que nous voudrions découper par bloc selon le genre. Sur la base de nos données, blockTools générera les blocs les plus petits possibles, chaque bloc contenant deux unités du même genre, dont l’une sera assignée au traitement et l’autre au contrôle.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(blockTools)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">female =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">36</span>), <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">24</span>)),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">18</span><span class="sc">:</span><span class="dv">65</span>, <span class="at">size =</span> <span class="dv">60</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># un bloc de covariables</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  dat <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Z_block_1 =</span> <span class="fu">block_ra</span>(female))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(female, Z_block_1))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># groupes assortis de 4</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">block</span>(dat, <span class="at">n.tr =</span> <span class="dv">4</span>, <span class="at">id.vars =</span> <span class="st">"id"</span>, </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">block.vars =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"age"</span>))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  dat <span class="sc">%&gt;%</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">block_id =</span> <span class="fu">createBlockIDs</span>(out, dat, <span class="at">id.var =</span> <span class="st">"id"</span>),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_block_2 =</span> <span class="fu">block_ra</span>(block_id))</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_block_2, block_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vous pouvez vérifier la moyenne de la variable sur laquelle vous avez découpé en bloc pour voir que les groupes de traitement et de contrôle sont en fait parfaitement équilibrés selon le genre.</p>
+</section>
+<section id="conceptions-factorielles-vous-pouvez-randomiser-plusieurs-traitements-en-même-temps-sans-perdre-de-puissance-statistique" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Conceptions factorielles : vous pouvez randomiser plusieurs traitements en même temps sans perdre de puissance statistique</h1>
+<p>Supposons qu’il existe plusieurs composants d’un traitement que vous souhaitez tester. Par exemple, vous voudrez peut-être évaluer l’impact d’un programme de microfinance. Deux traitements spécifiques pourraient consister à prêter de l’argent aux femmes et à leur fournir une formation. Une conception factorielle examine toutes les combinaisons possibles de ces traitements : (1) Prêts, (2) Formation, (3) Prêts + Formation et (4) Contrôle. Les sujets sont ensuite assignés de manière aléatoire à l’une de ces quatre conditions.</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/randomization/factorial-table.png" class="img-fluid"></p>
+<p>Les conceptions factorielles sont particulièrement utiles lors de l’évaluation d’interventions qui incluent un ensemble de traitements. Comme dans l’exemple ci-dessus, de nombreuses interventions de développement comportent plusieurs bras de traitement, et il est parfois difficile de dire quels bras produisent l’effet observé. Une conception factorielle sépare ces différents traitements et permet également de voir l’interaction entre eux.</p>
+<p>Le code suivant vous montre comment randomiser pour une conception factorielle.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_loan =</span> <span class="fu">complete_ra</span>(<span class="dv">80</span>, <span class="dv">40</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_training =</span> <span class="fu">block_ra</span>(<span class="at">blocks =</span> Z_loan)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_loan, Z_training))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="vous-pouvez-randomiser-des-grappes-entières-ensemble-mais-plus-vos-grappes-sont-grandes-plus-votre-puissance-statistique-est-faible" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Vous pouvez randomiser des grappes entières ensemble (mais plus vos grappes sont grandes, plus votre puissance statistique est faible !)</h1>
+<p>Parfois, il est impossible de randomiser au niveau de l’individu. Par exemple, un appel à la radio pour amener des individus à un bureau de vote doit par nature être diffusé à l’ensemble d’un marché médiatique ; il est impossible de diffuser uniquement à certains individus mais pas à d’autres. Que ce soit par nécessité ou par choix, vous allez parfois randomiser des grappes (clusters) au lieu d’individus.</p>
+<p>L’inconvénient de la randomisation par grappe est qu’elle réduit votre puissance statistique, puisque le nombre d’unités assignées de manière aléatoire reflète désormais le nombre de grappes et non pas simplement votre nombre total de sujets. Si vous aviez deux grappes de 1 000 individus chacune assignées de manière aléatoire, le nombre fonctionnel d’unités pourrait être plus proche de 2, et non de 2 000. Pour cette raison, il est préférable de faire des grappes aussi petites que possible.</p>
+<p>De même, il est également souhaitable d’avoir une hétérogénéité au sein de vos grappes afin qu’elles soient aussi représentatives que possible de votre population plus large. Si les individus au sein d’une grappe donnée sont très similaires les uns aux autres, ils peuvent avoir des résultats potentiels similaires, et cette grappe avec des résultats potentiels similaires sera assignée au traitement ou au contrôle en tant que grappe. Dans l’ensemble, cela augmentera votre variance si cette grappe avait des résultats potentiels particulièrement élevés ou faibles, car cela augmente la corrélation globale entre les résultats potentiels et l’assignation au traitement. En bref, si vos grappes sont plus représentatives de la population plus large, vos estimations de l’effet moyen du traitement seront plus précises.</p>
+<p>Une question fréquemment posée est de savoir en quoi la randomisation par grappe (cluster) diffère de la randomisation par bloc. La randomisation par bloc est effectuée afin d’atteindre un équilibre basé sur les covariables de pré-traitement. Par exemple, dans le champ de l’éducation, une intervention peut randomiser par bloc selon les résultats des tests de l’année précédente afin de suivre les progrès des élèves les moins performants et les plus performants. La randomisation par grappe se produit lorsque plusieurs unités sont traitées comme un groupe : elles reçoivent ensemble le même statut de traitement ou de contrôle. Par exemple, la même intervention peut être randomisée au niveau de la classe, de sorte que les salles de classe constituent les grappes. Il est possible de randomiser par bloc et par grappe simultanément. Dans notre exemple, vous pouvez calculer la note moyenne au test pour chaque classe et effectuer une randomisation par bloc en fonction de la note moyenne de la classe.</p>
+<p>Le graphique suivant montre à quoi pourraient ressembler vos données dans les cas de randomisation par bloc, par grappe et par bloc + grappe, par rapport à un cas simple de randomisation sans bloc ni grappe. Dans les deux cas où le découpage par grappe se produit, vous voyez que l’assignation du traitement (représentée par la couleur) apparaît en petits groupes. Dans les deux cas où le découpage par bloc se produit, il y a une distribution uniforme des couleurs dans les quatre quadrants du tracé, les blocs de cette assignation aléatoire.</p>
+<img src="https://raw.githubusercontent.com/egap/methods-guides/master/randomization/randomizations1.png" class="img-fluid">
+<center>
+<em>Illustration des patterns pour les unités de traitement et de contrôle que vous pourriez voir sous différents types de conceptions par bloc et par grappe.</em>
+</center>
+</section>
+<section id="vous-pouvez-randomiser-dune-manière-qui-permet-de-voir-plus-facilement-sil-y-a-des-effets-de-contamination" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Vous pouvez randomiser d’une manière qui permet de voir plus facilement s’il y a des effets de contamination</h1>
+<p>Lors de la conception de votre expérience, demandez-vous de manière critique si les “effets de contamination” constituent une menace pour votre capacité à identifier l’effet causal de votre traitement. Des contaminations surviennent si le résultat d’une unité est affecté par le statut de traitement d’une autre unité. Cela peut être délicat si les unités ont la capacité d’interagir les unes avec les autres : un membre d’un village peut apprendre qu’un autre membre de son village a reçu une subvention en espèces et peut changer son comportement en conséquence.</p>
+<p>Une façon de rendre les effets de contamination plus évidents consiste à utiliser la double randomisation. Vous assignez d’abord de manière aléatoire certains groupes au traitement et d’autres au contrôle, et au sein des groupes, vous assignez certains individus au traitement et d’autres au contrôle. La comparaison des individus témoins de votre grappe de traitement avec les individus de votre grappe de contrôle vous permettra d’évaluer le rôle des effets de contamination dans votre expérience.</p>
+</section>
+<section id="différentes-unités-peuvent-être-assignées-au-traitement-avec-différentes-probabilités" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Différentes unités peuvent être assignées au traitement avec différentes probabilités</h1>
+<p>Parfois, les gens pensent que “aléatoire” signifie que deux événements sont également probables, mais en fait, l’assignation aléatoire est “aléatoire” tant que la probabilité d’assignation au traitement est strictement comprise entre 0 et 1. Si un sujet a 0 ou 100 % de chances d’être assigné au traitement, ce sujet doit être exclu de votre analyse expérimentale car il n’y a pas de randomisation. Cependant, tous les sujets ayant une probabilité d’assignation au traitement strictement comprise entre 0 et 1 peuvent être inclus, même si leurs probabilités diffèrent, pour autant que leurs probabilités soient connues.</p>
+<p>Pourquoi voudriez-vous attribuer différentes probabilités d’assignation au traitement ? Supposons que vous travailliez avec un partenaire pour randomiser l’assignation des observateurs électoraux afin de mesurer l’effet sur la fraude électorale. Votre partenaire pour la mise en œuvre ne peut se permettre financiérement d’envoyer beaucoup d’observateurs électoraux dans une partie rurale ou éloignée du pays. Vous pouvez résoudre cette contrainte en découpant par bloc géographique et en attribuant une probabilité plus élevée d’assignation au traitement à des villages plus proches vers lesquels il est moins coûteux de se déplacer. Tant que la probabilité d’assignation au traitement pour les villages les plus accessibles est inférieure à 1, la probabilité d’assignation au traitement pour les villages moins accessibles est supérieure à zéro, et que ces probabilités sont connues, il est possible d’estimer l’effet du traitement.</p>
+<p>Cependant, lorsque les sujets ont des probabilités différentes d’assignation au traitement, vous ne pouvez plus simplement fusionner tous les sujets dans l’analyse de vos données. Si vous le faites, l’assignation du traitement sera corrélée aux caractéristiques de base sur lesquelles vous avez découpé par bloc. Il y a deux façons de gérer cela.</p>
+<p>La première consiste à estimer l’effet moyen du traitement bloc par bloc, puis à faire la moyenne des effets de traitement, pondérée par la taille du bloc par rapport à l’ensemble de l’échantillon.</p>
+<p>La deuxième méthode est la pondération de probabilité inverse (inverse probability weighting, IPW). Pour l’IPW, les poids sont définis comme 1/p pour les unités traitées et 1/(1-p) pour les unités de contrôle, où p fait référence à la probabilité d’assignation de traitement. Cette méthode vous permet d’exécuter une régression pondérée de Y sur l’assignation de traitement.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Y0 =</span> <span class="dv">1</span><span class="sc">:</span>N,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">Y1 =</span> Y0 <span class="sc">+</span> <span class="dv">10000</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  dat <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> <span class="fu">seq</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>, <span class="at">length.out =</span> N),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z =</span> <span class="fu">simple_ra</span>(N, <span class="at">prob_unit =</span> p),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> Z <span class="sc">*</span> Y1 <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> Z) <span class="sc">*</span> Y0)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">naive_estimate =</span> <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>]),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">ipw_estimate =</span> <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>], <span class="dv">1</span> <span class="sc">/</span> p[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>], <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> p[Z <span class="sc">==</span> <span class="dv">0</span>]))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="randomisation-restreinte-si-vous-naimez-pas-ce-que-vous-obtenez-vous-pouvez-recommencer" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Randomisation restreinte : si vous n’aimez pas ce que vous obtenez, vous pouvez recommencer</h1>
+<p>Cela peut sembler incompatible avec l’idée même de la randomisation de ne pas choisir une assignation aléatoire parce que vous n’aimez pas ce qui est choisi. Mais parfois, cela a du sens. Parfois, vous voudrez peut-être vous assurer que la randomisation ne produit pas de schémas particuliers (par exemple, trop de personnes qui se connaissent sont traitées). Mais les schémas qui vous intéressent peuvent être trop difficiles à mettre en place en avance. Ce que vous pouvez ensuite faire, c’est faire un tirage au sort et voir ensuite si le tirage répond aux critères qui vous intéressent ou non, si ce n’est pas le cas, refaites le tirage. Soyez averti, cependant, que si vous faites cela, vous créez quelques complications : (1) chaque unité ne sera pas nécessairement assignée avec la même probabilité, (2) les unités peuvent ne pas être assignées indépendamment au traitement. Vous devez prendre en compte ces deux faits dans votre analyse, par exemple, en générant des poids de probabilité inverse comme nous l’avons fait au point 6, mais en utilisant le même code de randomisation restreinte pour déterminer la probabilité que chaque sujet soit assigné au traitement sous ces restrictions. Ensuite, vous utilisez la distribution des assignations de traitement possibles pour implémenter l’inférence de randomisation. Ces analyses étant complexes, procédez avec prudence.</p>
+</section>
+<section id="écrivez-un-code-de-randomisation-qui-vous-permet-de-simuler-de-nombreuses-randomisations-possibles" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Écrivez un code de randomisation qui vous permet de simuler de nombreuses randomisations possibles</h1>
+<p>Un avantage de R pour randomiser est que vous pouvez effectuer des milliers de randomisations possibles en quelques secondes. Pourquoi est-ce bénéfique ?</p>
+<ol type="1">
+<li><p>Cela peut être utile pour vérifier si votre code de randomisation a fonctionné. Par exemple, si un ou plusieurs sujets de votre expérience n’ont jamais reçu de traitement avec plus de 10000 assignations aléatoires possibles, vous suspecterez alors une faille dans votre code de randomisation.</p></li>
+<li><p>Vous pouvez utiliser la re-randomisation pour calculer la probabilité exacte d’assignation au traitement pour chaque individu de votre expérience. Ceci est particulièrement utile si votre code de randomisation est plus complexe. Peut-être que vous employez à la fois la randomisation par bloc et par grappe, ce qui entraîne des probabilités d’assignation au traitement très différentes pour les individus dans une grande expérience. Ces probabilités seraient difficiles à calculer à la main, mais une solution simple consiste à exécuter votre code de randomisation de multiples fois et à générer une variable représentant la proportion de fois où chaque individu a été assigné au traitement : cela représente sa probabilité individuelle d’assignation au traitement. Cette variable peut ensuite être utilisée dans une régression pondérée lors du calcul de l’effet moyen du traitement.</p></li>
+<li><p>La simulation des randomisations possibles est une approche pour calculer le niveau de signification statistique. Cette approche, appelée inférence de randomisation, génère une p-valeur exacte en calculant les effets moyens du traitement possibles qui seraient observés dans le cadre d’assignations aléatoires hypothétiques si le traitement n’avait aucun effet. La p-valeur est alors la proportion des effets estimés du traitement qui est au moins aussi importante que celle observée par votre expérience. Cette approche est préférable aux calculs standard de signification statistique lorsque la distribution de vos données n’est pas normale, car l’inférence de randomisation évite de faire des hypothèses de distribution et utilise à la place la distribution des données observées dans votre expérience. Pour plus d’informations sur l’inférence de randomisation, y compris des exemples de code, voir <a href="https://egap.org/resource/10-things-to-know-about-randomization-inference/">10 choses à savoir sur l’inférence de randomisation</a>.</p></li>
+</ol>
+</section>
+<section id="vous-pouvez-randomiser-au-fur-et-à-mesure" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Vous pouvez randomiser au fur et à mesure</h1>
+<p>Dans de nombreuses expériences, vous ne connaissez peut-être pas l’intégralité de votre échantillon au début de l’expérience ; certains sujets peuvent se joindre à l’expérience au fil du temps. Cela présente une complication lorsque nous voulons utiliser un algorithme par bloc simple car l’ajout de sujets à notre échantillon peut modifier la composition de nos blocs et donc leurs probabilités d’assignation de traitement.</p>
+<p>Pour maintenir les blocs et donc le contrôle sur l’équilibre entre les groupes de traitement et de contrôle, vous pouvez utiliser des covariables pour calculer la similarité d’un nouveau sujet avec d’autres sujets précédemment assignés et assigner le nouveau sujet à la condition de traitement avec le moins d’unités similaires.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+</section>
+<section id="la-randomisation-peut-parfois-être-une-manière-éthique-dassigner-un-traitement-mais-parfois-ce-nest-pas-le-cas." class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> La randomisation peut parfois être une manière éthique d’assigner un traitement, mais parfois ce n’est pas le cas.</h1>
+<p>La randomisation est l’ingrédient clé pour isoler l’effet causal d’un traitement du point de vue de la conception de recherche, mais il est également important de tenir compte des implications éthiques de la randomisation. Lorsque nous pensons aux effets à long terme d’une expérience, la randomisation nous permet de tester quels programmes sont les plus efficaces afin que les ressources puissent être dirigées vers les programmes qui font le plus de différences dans la vie future des populations. A court terme, la randomisation de l’accès à un programme (par opposition à une distribution basée sur des caractéristiques arbitraires) peut être une manière particulièrement éthique de distribuer des biens rares qui ne peuvent pas être étendus à tout le monde.</p>
+<p>Cependant, parfois, ce sont les populations les plus démunies qui ont besoin d’être servies par une intervention dans une expérience. Une conception aléatoire qui offre des prêts à un nombre égal de participants à faible revenu et à revenu élevé soustrait en partie ces ressources aux personnes dans le besoin. Si nous pensons que le prêt a des effets bénéfiques, cela soulève des inquiétudes quant à l’éthique de ce détournement d’allocation de ressources envers les plus nécessiteux.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Il faudrait déployer un argumentaire solide en faveur des avantages sociaux de la recherche et également tendre vers des conceptions qui offrent finalement aussi les avantages au groupe de contrôle.</p>
+<p>Une conception de randomisation avec liste d’attente est une façon de traiter tous les sujets tout en permettant au chercheur de tester expérimentalement l’efficacité du traitement. Dans cette conception, on peut déployer l’intervention par phases et assigner de manière aléatoire les unités à la phase dans laquelle elles seront traitées. Par exemple, pour un total de 90 villages, on pourrait traiter 30 villages chaque année et mesurer les résultats à la fin de chaque année. Si vous vouliez comparer les résultats dans les villages de traitement et de contrôle, vous compareriez les 30 villages traités aux 60 villages pas encore traités à la fin de la première année. A la fin de la deuxième année, vous pourriez comparer les 30 villages qui ont été traités l’année précédente aux 30 villages qui ne le sont pas encore. Essentiellement, cela crée deux expériences, identiques sauf pour l’année qui les sépare. Dans le tableau ci-dessous, vous pouvez voir qu’au cours de la première année, nous avons pu comparer le groupe de traitement bleu foncé aux deux groupes de contrôle bleu clair. Au cours de la deuxième année, nous pouvons comparer le groupe de traitement rouge foncé au groupe de contrôle rouge clair, mais nous voulons éviter de regrouper les deux groupes de traitement car l’un a été traité plus longtemps que l’autre. Vous pouvez voir qu’après la troisième année, plus aucune comparaison ne peut être faite car toutes les unités ont été traitées.</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/randomization/wait-list-table.png" class="img-fluid"></p>
+<p>La seule exigence est que l’assignation d’un sujet au traitement dans une phase particulière soit assignée de manière aléatoire et sans rapport avec ses résultats potentiels d’intérêt. Une conception dans laquel des participants plus enthousiastes recevraient un traitement plus tôt violerait cette hypothèse et ne donnerait pas une estimation non biaisée de l’effet du traitement, car des facteurs non observés qui les prédisposent à rechercher un traitement peuvent influencer leurs résultats potentiels. La conception avec liste d’attente est un exemple de conception de randomisation créatif qui pourrait répondre aux préoccupations éthiques concernant une distribution limitée d’un traitement précieux.</p>
+<p>L’éthique est souvent étroitement liée aux conceptions randomisées, en particulier dans les sciences sociales et la recherche médicale. En tant que chercheur, vous devez examiner attentivement les implications possibles de la randomisation d’un traitement donné. Vous devrez également solliciter l’approbation de votre conception de recherche auprès du comité d’éthique pour la recherche de votre établissement.</p>
+<pre><code>© 2022 GitHub, Inc.</code></pre>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Les générateurs de nombres aléatoires sont en fait pseudo-aléatoires car ils génèrent un vecteur de nombres aléatoires basé sur un petit ensemble de valeurs initiales, appelé état de départ. Les générateurs de nombres aléatoires fonctionnent de cette manière afin d’améliorer la vitesse de calcul. Cependant, la série de nombres aléatoires générés est aussi aléatoire que nécessaire pour une assignation aléatoire, car elle n’a aucun rapport avec les résultats potentiels de vos sujets.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Le code a été mis à jour par Alex Coppock le 25 novembre 2020.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Voir Moore, Ryan T. et Sally A. Moore. “Blocking for sequential political experiments.” Political Analysis 21.4 (2013): 507-523.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Pour une présentation plus détaillée des procédures de randomisation disponibles dans le package R randomizr, voir https://declaredesign.org/r/randomizr/articles/randomizr_vignette.html<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Mais si nous sommes certains des effets du prêt, alors pourquoi mener une expérience pour le tester ? Dans la recherche médicale, les essais contrôlés randomisés s’arrêtent souvent s’il devient clair dès le début qu’un médicament guérit sans aucun doute des maladies potentiellement mortelles, et donc le refuser aux sujets témoins est dangereux. (De même, un essai s’arrêterait également s’il était clair dès le début qu’un médicament provoque sans aucun doute des effets négatifs et nocifs.)<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

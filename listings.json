@@ -18,14 +18,14 @@
       "/guides/assessing-designs/power.en.html",
       "/guides/causal-inference/x-cause-y.en.html",
       "/guides/causal-inference/causal-inference_en.html",
-      "/guides/data-strategies/randomization_en.html",
-      "/guides/data-strategies/adaptive-design_en.html",
-      "/guides/data-strategies/measurement_en.html",
-      "/guides/data-strategies/missing-data_en.html",
-      "/guides/data-strategies/multisite-experiments_en.html",
-      "/guides/data-strategies/sampling_en.html",
-      "/guides/data-strategies/spillovers_en.html",
-      "/guides/data-strategies/survey-experiments_en.html",
+      "/guides/data-collection/randomization_en.html",
+      "/guides/data-collection/adaptive-design_en.html",
+      "/guides/data-collection/measurement_en.html",
+      "/guides/data-collection/missing-data_en.html",
+      "/guides/data-collection/multisite-experiments_en.html",
+      "/guides/data-collection/sampling_en.html",
+      "/guides/data-collection/spillovers_en.html",
+      "/guides/data-collection/survey-experiments_en.html",
       "/guides/implementation/evaluation-conversations_en.html",
       "/guides/implementation/workflow_en.html",
       "/guides/implementation/survey-implementation_en.html",
@@ -34,7 +34,8 @@
       "/guides/planning/pilots_en.html",
       "/guides/planning/survey-design_en.html",
       "/guides/research-questions/late_en.html",
-      "/guides/research-questions/heterogeneous-effects_en.html"
+      "/guides/research-questions/heterogeneous-effects_en.html",
+      "/guides/research-questions/effect-types_en.html"
     ]
   }
 ]

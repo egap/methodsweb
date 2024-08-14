@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Lindsay Dolan">
 
-<title>Methods - 10 Things to Know About Mechanisms</title>
+<title>10 Things to Know About Mechanisms – Methods</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -122,7 +122,7 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -170,7 +170,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -193,17 +193,17 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/research-questions/mechanisms.en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/research-questions/mechanisms.en.html"><img src="https://flagcdn.com/w20/gb.png" width="20px">&nbsp;&nbsp;English</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -222,9 +222,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
  <span class="menu-text">Language</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -254,7 +254,7 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -317,7 +317,7 @@ window.Quarto = {
 <section id="and-because-treatment-effects-are-rarely-homogeneous." class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> …and because treatment effects are rarely homogeneous.</h1>
 <p>The other problem with trying to decompose the average effects of X on M and then M on Y is that this approach assumes that every subject responds to the treatment identically. Recalling our example in which X is the information treatment, M is the belief that corruption is too severe, and Y is staying home, we can imagine two types of respondents. Type A thought that corruption was too severe to ever solve until she received a postcard containing information about corruption in her district. She was surprised to see that the problem was not as bad as she had expected. Formally, for Type A, <span class="math inline">\(M(X=0)=1\)</span> and <span class="math inline">\(M(X=1)=0\)</span>, so X has a <em>negative</em> effect on M. Type B thought corruption was a manageable problem until she received a postcard containing information about corruption in her district. She was surprised by how extensive the problem was and gave up hope of solving the problem. Formally, for Type B, <span class="math inline">\(M(X=0)=0\)</span> and <span class="math inline">\(M(X=1)=1\)</span>, so X has a <em>positive</em> effect on M. If we were to average the effects for these two types, we would see no relationship between X and M.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
 <col style="width: 14%">
@@ -381,7 +381,7 @@ window.Quarto = {
 <p>In the following code, we start by creating this Q variable for each individual and defining the “true” effects of X on M, M on Y, and X on Y. Next, we create hypothetical potential outcomes for M—that is, for each individual, we define what value of M they would reveal if they were treated, and what value of M they would reveal if they were untreated. These values are related not only to the “true” effect of X on M, but also to Q. Then we can also define hypothetical potential outcomes for Y. We do this for four scenarios, all of which assume constant effects, an assumption we will relax later. Two of these are simple potential outcomes of Y: the Y exhibited by the individual who is untreated and reveals her untreated M potential outcome, and the Y exhibited by the individual who is treated and reveals her treated M potential outcome. However, we also define two complex potential outcomes of Y: the Y exhibited by the individual who is untreated but reveals her treated M potential outcome, and the Y exhibited by the individual who is treated but reveals her untreated M potential outcome. While these potential outcomes bend the mind a bit, they are important to define in the hypothetical so that we can calculate the “true” (but inherently unobservable) direct and indirect effects to compare our decomposition analysis to.</p>
 <p>In the second half of the code, we conduct a random assignment of treatment and proceed with the decomposition of effects analysis described above, using the data we “observe.” Under the (strong) assumptions that the error terms are uncorrelated and effects are constant across subjects, <span class="math inline">\(a*b\)</span> = ACME, <span class="math inline">\(d\)</span> = ACDE, and <span class="math inline">\(c\)</span> = ATE. However, the simulation reveals that <span class="math inline">\(a*b\)</span> &gt; ACME and <span class="math inline">\(d\)</span> &lt; ACDE; that is, we overestimated the average indirect or mediated effect (ACME) and underestimated the average direct effect (ACDE). Our decomposition of effects analysis was biased because the first assumption – uncorrelated error terms – did not hold: unobserved variable Q predicted both M and Y, and this led us to overestimate the role of the mechanism M.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20160301</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000000</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate Data, Create Potential Outcomes, Estimate "True" Effects -----------------------</span></span>
@@ -394,8 +394,8 @@ window.Quarto = {
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># build the potential outcomes (POs) for the mediator</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># individual reveals M_1 if treated; M_0 if untreated</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># M is a function of both treatment and the unobserved characteristic</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>M_0 <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="sc">*</span> tau_X_on_M <span class="sc">+</span> Q_i</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>M_1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">*</span> tau_X_on_M <span class="sc">+</span> Q_i</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>M_0 <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">*</span>tau_X_on_M <span class="sc">+</span> Q_i</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>M_1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">*</span>tau_X_on_M <span class="sc">+</span> Q_i</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># we can estimate the unbiased Average Treatment Effect (ATE) of X on M</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ATE_M <span class="ot">&lt;-</span> <span class="fu">mean</span>(M_1 <span class="sc">-</span> M_0)</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ATE_M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -403,10 +403,10 @@ window.Quarto = {
 <pre><code>[1] 0.2</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># build POs for the outcome variable</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Y_M0_X0 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_0) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">0</span> <span class="sc">+</span> Q_i</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Y_M1_X1 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_1) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> Q_i</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Y_M0_X1 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_0) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> Q_i <span class="co"># this is a "complex" PO</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Y_M1_X0 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_1) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">0</span> <span class="sc">+</span> Q_i <span class="co"># this is a "complex" PO</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Y_M0_X0 <span class="ot">&lt;-</span> tau_M_on_Y<span class="sc">*</span>(M_0) <span class="sc">+</span> tau_X_on_Y<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> Q_i</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Y_M1_X1 <span class="ot">&lt;-</span> tau_M_on_Y<span class="sc">*</span>(M_1) <span class="sc">+</span> tau_X_on_Y<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> Q_i</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Y_M0_X1 <span class="ot">&lt;-</span> tau_M_on_Y<span class="sc">*</span>(M_0) <span class="sc">+</span> tau_X_on_Y<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> Q_i <span class="co"># this is a "complex" PO</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Y_M1_X0 <span class="ot">&lt;-</span> tau_M_on_Y<span class="sc">*</span>(M_1) <span class="sc">+</span> tau_X_on_Y<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> Q_i <span class="co"># this is a "complex" PO</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># some of these POs are "complex" because we are imagining what Y we would</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># observe if we assigned treatment but observed the untreated M PO or</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># if we assigned control but observed the treated M PO</span></span>
@@ -417,17 +417,17 @@ window.Quarto = {
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the "indirect effect"</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ACME_X0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_M1_X0 <span class="sc">-</span> Y_M0_X0)</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ACME_X1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_M1_X1 <span class="sc">-</span> Y_M0_X1)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ACME <span class="ot">&lt;-</span> <span class="fu">mean</span>(((Y_M1_X1 <span class="sc">-</span> Y_M0_X1) <span class="sc">+</span> (Y_M1_X0 <span class="sc">-</span> Y_M0_X0)) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ACME <span class="ot">&lt;-</span> <span class="fu">mean</span>(((Y_M1_X1 <span class="sc">-</span> Y_M0_X1) <span class="sc">+</span> (Y_M1_X0 <span class="sc">-</span> Y_M0_X0))<span class="sc">/</span><span class="dv">2</span>)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># we can estimate the unbiased Average Controlled Direct Effect (ACDE)</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># we estimate the effects of X holding M constant</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># they are the same</span></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the "direct effect"</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ACDE_M0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_M0_X1 <span class="sc">-</span> Y_M0_X0)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ACDE_M1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_M1_X1 <span class="sc">-</span> Y_M1_X0)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ACDE <span class="ot">&lt;-</span> <span class="fu">mean</span>(((Y_M0_X1 <span class="sc">-</span> Y_M0_X0) <span class="sc">+</span> (Y_M1_X1 <span class="sc">-</span> Y_M1_X0)) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ACDE <span class="ot">&lt;-</span> <span class="fu">mean</span>(((Y_M0_X1 <span class="sc">-</span> Y_M0_X0)<span class="sc">+</span>(Y_M1_X1 <span class="sc">-</span> Y_M1_X0))<span class="sc">/</span><span class="dv">2</span>)</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># now we build the simple POs for Y</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>Y_1 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_1) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> Q_i</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>Y_0 <span class="ot">&lt;-</span> tau_M_on_Y <span class="sc">*</span> (M_0) <span class="sc">+</span> tau_X_on_Y <span class="sc">*</span> <span class="dv">0</span> <span class="sc">+</span> Q_i</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>Y_1 <span class="ot">&lt;-</span> tau_M_on_Y<span class="sc">*</span>(M_1) <span class="sc">+</span> tau_X_on_Y<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> Q_i</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>Y_0 <span class="ot">&lt;-</span> tau_M_on_Y<span class="sc">*</span>(M_0) <span class="sc">+</span> tau_X_on_Y<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> Q_i</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># we estimate the true ATE of X on Y</span></span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the "total effect"</span></span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>ATE <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_1 <span class="sc">-</span> Y_0)</span>
@@ -453,10 +453,10 @@ window.Quarto = {
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Assignment, Revelation of POs, Attempt to Decompose Effects ---------------------------------</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we assign half of our sample to treatment and half to control</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, (N <span class="sc">/</span> <span class="dv">2</span>)), <span class="fu">rep</span>(<span class="dv">0</span>, (N <span class="sc">/</span> <span class="dv">2</span>))))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,(N<span class="sc">/</span><span class="dv">2</span>)),<span class="fu">rep</span>(<span class="dv">0</span>,(N<span class="sc">/</span><span class="dv">2</span>))))</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we reveal POs for M and Y based on treatment assignment</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> X <span class="sc">*</span> M_1 <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> X) <span class="sc">*</span> M_0</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> X <span class="sc">*</span> Y_1 <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> X) <span class="sc">*</span> Y_0</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> X<span class="sc">*</span>M_1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>X)<span class="sc">*</span>M_0</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> X<span class="sc">*</span>Y_1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>X)<span class="sc">*</span>Y_0</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X)</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">coef</span>(model1)[<span class="dv">2</span>] <span class="co"># extract the coefficient to get the effect of X on M</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -475,7 +475,7 @@ window.Quarto = {
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">coef</span>(model3)[<span class="dv">2</span>] <span class="co"># extract this coefficient to get the effect of X on Y controlling for M</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(model3)[<span class="dv">3</span>] <span class="co"># extract this coefficient to get the effect of M on Y controlling for X</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># some would now multiply the average effect of X on M and the average effect of M on Y to get the average indirect/mediated effect of X on Y via M (ACME)</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">*</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>a<span class="sc">*</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       X 
 0.220142 </code></pre>
@@ -542,7 +542,7 @@ window.Quarto = {
 <p>Again, while it’s difficult to quantify evidence of a mechanism at work, we can always explore the testable implications of the theory in which our mechanism features. In point 7, we did this by exploring whether the treatment affected the particular subgroups for which a treatment effect is implied by our theory. Another approach is to explore whether the treatment affects only the outcomes implied by our theory.</p>
 <p>For example, many social scientists are interested in how mass education influences democracy. Several theories of democratization expect different mechanisms would connect education and democracy. First, according to modernization theory, education could facilitate the smooth functioning of democracy by undermining group attachments (such as ethnicity or religion) in favor of merit.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Second, according to social theorists of oppression, education could undermine democracy by reinforcing obedience to authority, which is inherent in a classroom structure.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> Third, according to many political scientists and psychologists, education can encourage democratic participation by empowering individuals with the ability to acquire and act on knowledge.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> <span class="citation" data-cites="friedman_et_al_2011">Friedman et al. (<a href="#ref-friedman_et_al_2011" role="doc-biblioref">2011</a>)</span> decide to tease apart these mechanisms by investigating the results of a field experiment in which Kenyan girls were randomly assigned to receive an education subsidy. They followed up with the students five years after the program and asked them several questions designed to test which of these three mechanisms were at work: Did the girls accept a husband’s right to beat his wife? Was a parent involved in selecting their spouse? How strongly did the girl identify with her religious or ethnic group? Did the girl regularly read news?</p>
 <p>The following table outlines the direction of the effects that each theory would suggest. Note that the various mechanisms being tested here result from theories with diverging predictions on some of these outcomes. The predictions from each of the three mechanisms are outlined on the rows, followed by the actual results. We can see that two of the outcomes collected provided support for modernization theory. However, modernization theory would have predicted a decrease in religious or ethnic group association (in reality, there was no effect) and had no predictions for newspaper readership (in reality, readership increased). None of the predictions of the obedience to authority mechanism were supported by the data. However, the data supported all four of the predictions of individual empowerment theory. The authors conclude that it is more likely that <span class="math inline">\(X→M3→Y\)</span> than <span class="math inline">\(X→M1,M2→Y\)</span>.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -701,18 +701,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -744,7 +733,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
@@ -752,7 +763,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

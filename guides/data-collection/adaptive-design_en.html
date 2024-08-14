@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Donald Green">
+<meta name="author" content="Molly Offer-Westort">
+
+<title>10 Things to Know About Adaptive Experimental Design – Methods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 Things to Know About Adaptive Experimental Design</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 Things to Know About Adaptive Experimental Design</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#what-is-an-adaptive-design" id="toc-what-is-an-adaptive-design"><span class="header-section-number">1</span> What is an “adaptive” design?</a></li>
+  <li><a href="#what-are-the-potential-advantages-of-an-adaptive-design" id="toc-what-are-the-potential-advantages-of-an-adaptive-design"><span class="header-section-number">2</span> What are the potential advantages of an adaptive design?</a></li>
+  <li><a href="#what-are-the-potential-disadvantages-of-adaptive-designs" id="toc-what-are-the-potential-disadvantages-of-adaptive-designs"><span class="header-section-number">3</span> What are the potential disadvantages of adaptive designs?</a></li>
+  <li><a href="#what-kinds-of-experiments-lend-themselves-to-adaptive-design" id="toc-what-kinds-of-experiments-lend-themselves-to-adaptive-design"><span class="header-section-number">4</span> What kinds of experiments lend themselves to adaptive design?</a></li>
+  <li><a href="#what-is-the-connection-between-adaptive-designs-and-multi-arm-bandit-problems" id="toc-what-is-the-connection-between-adaptive-designs-and-multi-arm-bandit-problems"><span class="header-section-number">5</span> What is the connection between adaptive designs and “multi-arm bandit problems”?</a></li>
+  <li><a href="#what-are-some-widely-used-algorithms-for-automating-adaptation" id="toc-what-are-some-widely-used-algorithms-for-automating-adaptation"><span class="header-section-number">6</span> What are some widely used algorithms for automating “adaptation”?</a></li>
+  <li><a href="#what-are-the-symptoms-of-futile-search" id="toc-what-are-the-symptoms-of-futile-search"><span class="header-section-number">7</span> What are the symptoms of futile search?</a></li>
+  <li><a href="#what-implications-do-adaptive-designs-have-for-pre-analysis-plans" id="toc-what-implications-do-adaptive-designs-have-for-pre-analysis-plans"><span class="header-section-number">8</span> What implications do adaptive designs have for pre-analysis plans?</a></li>
+  <li><a href="#are-multi-arm-bandit-trials-frequently-used-in-social-science" id="toc-are-multi-arm-bandit-trials-frequently-used-in-social-science"><span class="header-section-number">9</span> Are multi-arm bandit trials frequently used in social science?</a></li>
+  <li><a href="#what-other-considerations-should-inform-the-decision-to-use-adaptive-design" id="toc-what-other-considerations-should-inform-the-decision-to-use-adaptive-design"><span class="header-section-number">10</span> What other considerations should inform the decision to use adaptive design?</a></li>
+  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  </ul>
+</nav>
+<section id="what-is-an-adaptive-design" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> What is an “adaptive” design?</h1>
+<p>A static design applies the same procedures for allocating treatments and measuring outcomes throughout the trial. In contrast, an adaptive design may, based on interim analysis of the trial’s result, change the allocation of subjects to treatment arms or may change the allocation of resources to different outcome measures.</p>
+<p>Ordinarily, mid-course changes in experimental design are viewed with skepticism since they open the door to researcher interference in ways that could favor certain results. In recent years, however, statisticians have developed methods to automate adaptation in ways that either lessen the risk of interference or facilitate bias correction at the analysis stage.</p>
+</section>
+<section id="what-are-the-potential-advantages-of-an-adaptive-design" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> What are the potential advantages of an adaptive design?</h1>
+<p>Adaptive designs have the potential to detect the best-performing experimental arm(s) more quickly than a static design (i.e., with fewer data-collection sessions and fewer subjects). When these efficiencies are realized, resources may be reallocated to achieve other research objectives.</p>
+<p>Adaptive designs also have the potential to lessen the ethical concerns that arise when subjects are allocated to inferior treatment arms. For therapeutic interventions, adaptive designs may reduce subjects’ exposure to inferior treatments; for interventions designed to further broad societal objectives, adaptive designs may hasten the discovery of superior interventions.</p>
+<p>To illustrate the potential advantages of adaptive design, we simulate an RCT involving a control group and eight treatment arms. We administer treatments and gather 100 outcomes during each “period.” The simulation assumes that each subject’s outcome is binary (e.g., good versus bad). The adaptive allocation of subjects is based on interim analyses conducted at the end of each period. We allocate next period’s subjects according to posterior probabilities that a given treatment arm is best (see below). The simulation assumes that the probability of success is 0.10 for all arms except one, which is 0.20. The stopping rule is that the RCT is halted when one arm is found to have a 95% posterior probability of being best.</p>
+<p>In the adaptive trial depicted below, the best arm (the red line) is correctly identified, and the trial is halted after 23 periods (total N=2300).</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/adaptive/fig1.png" class="img-fluid"></p>
+</section>
+<section id="what-are-the-potential-disadvantages-of-adaptive-designs" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> What are the potential disadvantages of adaptive designs?</h1>
+<p>There is no guarantee that adaptive design will be superior in terms of speed or accuracy. For example, adaptive designs may result in a lengthy trial in cases where all of the arms are approximately equally effective. Even when one arm is truly superior, adaptive searches have some probability of resulting in long, circuitous searches (and considerable expense) if by chance they get off to a bad start (i.e., one of the inferior arms appears to be better than the other based on an initial round of results).</p>
+<p>For instance, consider the following scenario in which all but one of the arms have a 0.10 probability of success, and the superior arm has a 0.12 probability of success (with the same trial design as in the previous example). The design eventually settles on the truly superior arm but only after more than 200 periods (N = 23,810). Even after 50 periods, the results provide no clear sense that any of the arms is superior.</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/adaptive/fig2.png" class="img-fluid"></p>
+<p>A further disadvantage of adaptive designs is they may produce biased estimates of the average treatment effect of the apparent best arm vis-à-vis the control group. Bias arises because the trial stops when the best arm crosses a threshold suggesting optimality; this stopping rule tends to favor lucky draws that suggest the efficacy of the winning arm. Conversely, when adaptive algorithms associate sampling probability with observed history, under-estimation for inferior arms, including the control group, may persist until stopping time <span class="citation" data-cites="nie_etal_2017">(<a href="#ref-nie_etal_2017" role="doc-biblioref">Nie et al. 2017</a>)</span>.</p>
+<p>For example, in the first scenario described above in which all arms have a 0.10 probability of success except for the best arm, which is 0.20, the average estimated success probability for the truly best arm is 0.202 across 1000 simulated experiments, while the control group average is found to 0.083. The average estimated difference in success probabilities (i.e., the average treatment effect) is 0.119, as compared to the true value of 0.10.</p>
+<p>In the second scenario, in which the best arm’s success probability is just 0.12, the average estimated success probability for the best arm is 0.121, and the average estimated ATE is 0.027, as compared to the true ATE of 0.02. Bias in this case is relatively small on a percentage point scale due to the very large size of the average experiment.</p>
+</section>
+<section id="what-kinds-of-experiments-lend-themselves-to-adaptive-design" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> What kinds of experiments lend themselves to adaptive design?</h1>
+<p>Adaptive designs require multiple periods of treatment and outcome assessment.<br>
+Adaptive designs are well suited to survey, on-line, and lab experiments, where participants are treated and outcomes measured in batches over time.</p>
+<p>Some field experiments are conducted in stages, although the logistics of changing treatment arms may be cumbersome, as discussed below. One possible opportunity for adaptive design in a field context occurs when a given experiment is to be deployed over time in a series of different regions. This allows for adaptation based on region-by-region interim analyses.</p>
+<p>Adaptive designs are ill-suited to one-shot interventions with outcomes measured at a single point in time. For example, experiments designed to increase voter turnout in a given election do not lend themselves to adaptive design because everyone’s outcome is measured at the same time, leaving no opportunity for adaptation.</p>
+</section>
+<section id="what-is-the-connection-between-adaptive-designs-and-multi-arm-bandit-problems" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> What is the connection between adaptive designs and “multi-arm bandit problems”?</h1>
+<p>The multi-arm bandit problem <span class="citation" data-cites="scott_2010">(<a href="#ref-scott_2010" role="doc-biblioref">Scott 2010</a>)</span> is a metaphor for the following optimization problem. Imagine that you could drop a coin in one of several slot machines that may pay off at different rates. (Slot machines are sometimes nicknamed “one-arm bandits,” hence the name.) You would like to make as much money as possible. The optimization problem may be characterized as a trade off between learning about the relative merits of the various slot machines – exploration – and reaping the benefits of employing the best arm – exploitation. A static design may be viewed as an extreme case of allocating subjects solely for exploration.</p>
+<p>As applied to RCTs, the aim is to explore the merits of the various treatment arms while at the same time reaping the benefits of the best arm or arms. Although the MAB problem is not specifically about estimating treatment effects, one could adjust the optimization objective so that the aim is to find the treatment arm with the greatest apparent superiority over the control group.</p>
+</section>
+<section id="what-are-some-widely-used-algorithms-for-automating-adaptation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> What are some widely used algorithms for automating “adaptation”?</h1>
+<p>The most commonly used methods employ some form of “Thompson sampling” <span class="citation" data-cites="thompson_1933">(<a href="#ref-thompson_1933" role="doc-biblioref">Thompson 1933</a>)</span>. Interim results are assessed periodically, and in the next period subjects are assigned to treatment arms in proportion to the posterior probability that a given arm is best. The more likely an arm is to be “best,” the more subjects it receives.</p>
+<p>Many variations on this basic assignment routine have been proposed, and some are designed to make it less prone to bias. If an adaptive trial is rolled out during a period in which success rates tend to be growing, increasing allocation of subjects to the best arm will tend to exaggerate that arm’s efficacy relative to the other arms, which receive fewer subjects during the high-yield period. In order to assess bias and correct for it, it may be useful to allocate some subjects in every period according to a static design. In this case, inverse probability weights for each period may be used to obtain unbiased estimates of the average treatment effect. (See Gerber and Green 2012 on the use of inverse probability weights for estimation of average treatment effects when the probability of assignment varies from block to block.)</p>
+</section>
+<section id="what-are-the-symptoms-of-futile-search" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> What are the symptoms of futile search?</h1>
+<p>Although it is impossible to know for sure whether a drawn out search reflects an unlucky start or an underlying reality in which no arm is superior, the longer an adaptive trial goes, the more cause for concern. The following graphs summarize the distribution of stopping times for three scenarios. Stopping was dictated by at 10% value remaining criterion. Specifically, the trial stopped when the top of the 95% confidence interval showed that no other arm was likely to offer at least a 10 percent (not percentage point) gain in success rate. The first two scenarios were described above; the third scenario considers a case in which there are two superior arms. The graph illustrates how adaptive trials tend to conclude faster when the superiority of the best arm(s) is more clear-cut.</p>
+<p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/adaptive/fig3.png" class="img-fluid"></p>
+</section>
+<section id="what-implications-do-adaptive-designs-have-for-pre-analysis-plans" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> What implications do adaptive designs have for pre-analysis plans?</h1>
+<p>The use of adaptive designs introduces additional decisions, which ideally should be addressed ex ante so as to limit researcher bias. For example, the researcher should specify which algorithms will be used for allocation. It is especially important to specify the stopping rule. Depending on the researcher’s objectives, this rule may focus on achieving a desired posterior probability, or it may use a “value remaining” criterion that considers whether one or more arms have shown themselves to be good enough vis-à-vis the alternative arms. Other hybrid stopping criteria may also be specified. The pre-analysis plan should also describe the analytic steps that will be taken to correct for bias.</p>
+</section>
+<section id="are-multi-arm-bandit-trials-frequently-used-in-social-science" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Are multi-arm bandit trials frequently used in social science?</h1>
+<p>Many of the applications to date have taken place in commercial settings, such as website design for high-volume e-commerce, or in settings such as on-line fundraising. Relatively few applications have been written up in detail for a scholarly audience. Surprisingly rare are applications in biomedical research. As <span class="citation" data-cites="villar_etal_2015">Villar, Bowden, and Wason (<a href="#ref-villar_etal_2015" role="doc-biblioref">2015</a>)</span> note, “Despite this apparent near-perfect fit between a real-world problem and a mathematical theory, the MABP has yet to be applied to an actual clinical trial.”</p>
+<p>Putting aside the use of multi-arm bandit approaches, the use of adaptive trials is gradually winning acceptance in biomedical research. For details, see <span class="citation" data-cites="chin_2016">Chin (<a href="#ref-chin_2016" role="doc-biblioref">2016</a>)</span>.</p>
+</section>
+<section id="what-other-considerations-should-inform-the-decision-to-use-adaptive-design" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> What other considerations should inform the decision to use adaptive design?</h1>
+<p>As noted above, adaptive designs add to the complexity of the research design and analysis. They also may increase the challenges of implementation, particularly in field settings where the logistical or training costs associated with different arms vary markedly. Even when one arm is clearly superior (inferior), the lead-time necessary to staff or outfit this arm may make it difficult to scale it up (down). Adaptive designs are only practical if adaptation is feasible.</p>
+<p>On the other hand, funders and implementation partners may welcome the idea of an experimental design that responds to on-the-ground conditions such that problematic arms are scaled back. A middle ground between static designs and designs that envision adaptation over many periods are adaptive designs involving only two or three interim analyses and adjustments. Such trials are winning increased acceptance in biomedical research <span class="citation" data-cites="chow_chang_2008">(<a href="#ref-chow_chang_2008" role="doc-biblioref">Chow and Chang 2008</a>)</span> and are likely to become more widely used in the social sciences too. The growing interest in replication and design-based extensions of existing experiments to aid generalization are likely to create opportunities for adaptive design.</p>
+</section>
+<section id="references" class="level1" data-number="11">
+
+
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-chin_2016" class="csl-entry" role="listitem">
+Chin, Richard. 2016. <em>Adaptive and Flexible Clinical Trials</em>. CRC Press.
+</div>
+<div id="ref-chow_chang_2008" class="csl-entry" role="listitem">
+Chow, Shein-Chung, and Mark Chang. 2008. <span>“Adaptive Design Methods in Clinical Trials – a Review.”</span> <em>Orphanet Journal of Rare Diseases</em> 3 (11).
+</div>
+<div id="ref-nie_etal_2017" class="csl-entry" role="listitem">
+Nie, Xinkun, Xiaoying Tian, Jonathan Taylor, and James Zou. 2017. <span>“Why Adaptively Collected Data Have Negative Bias and How to Correct for It.”</span>
+</div>
+<div id="ref-scott_2010" class="csl-entry" role="listitem">
+Scott, Steven L. 2010. <span>“A Modern Bayesian Look at the Multi-Armed Bandit.”</span> <em>Applied Stochastic Models in Business and Industry</em> 26: 639–58.
+</div>
+<div id="ref-thompson_1933" class="csl-entry" role="listitem">
+Thompson, William R. 1933. <span>“On the Likelihood That One Unknown Probability Exceeds Another in View of the Evidence of Two Samples.”</span> <em>Biometrika</em> 25: 285–94.
+</div>
+<div id="ref-villar_etal_2015" class="csl-entry" role="listitem">
+Villar, Sofı́a S., Jack Bowden, and James Wason. 2015. <span>“Multi-Armed Bandit Models for the Optimal Design of Clinical Trials: Benefits and Challenges.”</span> <em>Statistical Science: A Review Journal of the Institute of Mathematical Statistics</em> 30 (2): 199–215.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

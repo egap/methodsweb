@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tara Slough">
+
+<title>10 choses à savoir sur la mesure dans les expériences – Methods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 choses à savoir sur la mesure dans les expériences</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 choses à savoir sur la mesure dans les expériences</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#la-validité-des-inférences-que-nous-tirons-dune-expérience-dépend-de-la-validité-des-mesures-utilisées" id="toc-la-validité-des-inférences-que-nous-tirons-dune-expérience-dépend-de-la-validité-des-mesures-utilisées"><span class="header-section-number">1</span> La validité des inférences que nous tirons d’une expérience dépend de la validité des mesures utilisées</a></li>
+  <li><a href="#la-mesure-est-le-lien-entre-largument-substantif-etou-théorique-dun-chercheur-et-une-conception-de-recherche-expérimentale." id="toc-la-mesure-est-le-lien-entre-largument-substantif-etou-théorique-dun-chercheur-et-une-conception-de-recherche-expérimentale."><span class="header-section-number">2</span> La mesure est le lien entre l’argument substantif et/ou théorique d’un chercheur et une conception de recherche (expérimentale).</a></li>
+  <li><a href="#la-mesure-des-traitements-comprend-lopérationnalisation-du-traitement-ainsi-que-la-conformité-de-lassignation-au-traitement." id="toc-la-mesure-des-traitements-comprend-lopérationnalisation-du-traitement-ainsi-que-la-conformité-de-lassignation-au-traitement."><span class="header-section-number">3</span> La mesure des traitements comprend l’opérationnalisation du traitement ainsi que la conformité de l’assignation au traitement.</a></li>
+  <li><a href="#la-plupart-des-résultats-dintérêt-en-sciences-sociales-sont-latents." id="toc-la-plupart-des-résultats-dintérêt-en-sciences-sociales-sont-latents."><span class="header-section-number">4</span> La plupart des résultats d’intérêt en sciences sociales sont latents.</a></li>
+  <li><a href="#il-existe-deux-types-derreurs-de-mesure-que-nous-devrions-considérer." id="toc-il-existe-deux-types-derreurs-de-mesure-que-nous-devrions-considérer."><span class="header-section-number">5</span> Il existe deux types d’erreurs de mesure que nous devrions considérer.</a></li>
+  <li><a href="#lerreur-de-mesure-réduit-la-puissance-statistique-de-votre-expérience." id="toc-lerreur-de-mesure-réduit-la-puissance-statistique-de-votre-expérience."><span class="header-section-number">6</span> L’erreur de mesure réduit la puissance statistique de votre expérience.</a></li>
+  <li><a href="#lerreur-de-mesure-systématique-biaise-les-estimations-de-leffet-causal-dintérêt." id="toc-lerreur-de-mesure-systématique-biaise-les-estimations-de-leffet-causal-dintérêt."><span class="header-section-number">7</span> L’erreur de mesure systématique biaise les estimations de l’effet causal d’intérêt.</a></li>
+  <li><a href="#tirez-parti-de-plusieurs-indicateurs-pour-évaluer-la-validité-dune-mesure-mais-soyez-conscient-des-limites-de-ces-tests." id="toc-tirez-parti-de-plusieurs-indicateurs-pour-évaluer-la-validité-dune-mesure-mais-soyez-conscient-des-limites-de-ces-tests."><span class="header-section-number">8</span> Tirez parti de plusieurs indicateurs pour évaluer la validité d’une mesure, mais soyez conscient des limites de ces tests.</a></li>
+  <li><a href="#lutilisation-de-plusieurs-indicateurs-améliore-souvent-la-puissance-de-votre-expérience-mais-peut-introduire-un-compromis-biais-efficacité." id="toc-lutilisation-de-plusieurs-indicateurs-améliore-souvent-la-puissance-de-votre-expérience-mais-peut-introduire-un-compromis-biais-efficacité."><span class="header-section-number">9</span> L’utilisation de plusieurs indicateurs améliore souvent la puissance de votre expérience, mais peut introduire un compromis biais-efficacité.</a></li>
+  <li><a href="#alors-que-les-concepts-peuvent-être-globaux-de-nombreux-indicateurs-sont-spécifiques-au-contexte." id="toc-alors-que-les-concepts-peuvent-être-globaux-de-nombreux-indicateurs-sont-spécifiques-au-contexte."><span class="header-section-number">10</span> Alors que les concepts peuvent être globaux, de nombreux indicateurs sont spécifiques au contexte.</a></li>
+  <li><a href="#bibliographie" id="toc-bibliographie"><span class="header-section-number">11</span> Bibliographie</a></li>
+  </ul>
+</nav>
+<!-- title: "10 choses à savoir sur la mesure dans les expériences" -->
+<!-- author: 'Auteur du guide des méthodes: Tara Slough' -->
+<section id="la-validité-des-inférences-que-nous-tirons-dune-expérience-dépend-de-la-validité-des-mesures-utilisées" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> La validité des inférences que nous tirons d’une expérience dépend de la validité des mesures utilisées</h1>
+<p>Nous expérimentons généralement afin d’estimer l’effet causal d’un traitement <span class="math inline">\(Z\)</span> sur un résultat <span class="math inline">\(Y\)</span>. Pourtant, la raison pour laquelle nous nous soucions d’estimer cet effet causal est, en principe, de comprendre les caractéristiques de la relation entre deux concepts théoriques non observés mesurés par les variables observées <span class="math inline">\(Z\)</span> et <span class="math inline">\(Y\)</span>.</p>
+<p>À la suite d’Adcock et Collier (2001), considérons le processus de mesure représenté graphiquement dans la figure 1 en trois étapes. Premièrement, les chercheurs commencent par un concept systématisé, une construction théorique clairement définie. À partir de ce concept, le chercheur développe un indicateur matérialisant le concept sur une échelle ou un ensemble de catégories. Enfin, les unités ou les cas sont notés en fonction de l’indicateur, ce qui donne une mesure du traitement <span class="math inline">\(Z\)</span> et un résultat <span class="math inline">\(Y\)</span>. Une mesure est valide si la variation de l’indicateur se rapproche étroitement de la variation du concept d’intérêt sous-jacent.</p>
+<p>Une conception de recherche expérimentale devrait permettre à un chercheur d’estimer l’effet causal de <span class="math inline">\(Z\)</span> sur <span class="math inline">\(Y\)</span> sous des hypothèses standard. Mais si le but ultime est de faire une inférence sur l’effet causal du concept que <span class="math inline">\(Z\)</span> mesure sur le concept que <span class="math inline">\(Y\)</span> mesure, les inférences que nous pouvons espérer faire sur la base de nos preuves expérimentales sont valides si et seulement si les deux mesures sont valides.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="measurement.fr_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Le processus de mesure dans le contexte d’une conception de recherche expérimentale.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="la-mesure-est-le-lien-entre-largument-substantif-etou-théorique-dun-chercheur-et-une-conception-de-recherche-expérimentale." class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> La mesure est le lien entre l’argument substantif et/ou théorique d’un chercheur et une conception de recherche (expérimentale).</h1>
+<p>Lorsque nous considérons la conception d’une expérience, nous avons tendance à nous concentrer sur le processus par lequel le traitement <span class="math inline">\(Z\)</span> est assigné de manière aléatoire et sur la distribution conjointe de <span class="math inline">\(Z\)</span> et du résultat <span class="math inline">\(Y\)</span>. En d’autres termes, nous avons tendance à séparer les scores de <span class="math inline">\(Z\)</span> et <span class="math inline">\(Y\)</span> des concepts plus larges lorsque nous considérons les propriétés statistiques d’une conception de recherche. Dans ce cas, deux expériences complètement différentes avec la même distribution de <span class="math inline">\(Z\)</span> et <span class="math inline">\(Y\)</span> pourraient avoir des propriétés identiques.</p>
+<p>Par exemple, un essai clinique sur l’efficacité de l’aspirine sur les maux de tête et une expérience qui fournit des informations sur le niveau de corruption d’un politicien sortant pour demander ensuite à la personne interrogée si elle votera pour le candidat sortant <em>pourraient</em> avoir des échantillons de mêmes taille et distribution, des assignations, paramètres et réalisations des résultats (données) identiques. Pourtant, caractériser comme “équivalents” ces deux projets de recherche complètement distincts qui cherchent à faire des inférences complètement distinctes peut nous sembler assez étrange ou même troublant.</p>
+<p>Cependant, lorsque nous considérons la mesure comme une composante fondamentale de la conception de recherche, ces expériences sont clairement distinctes. Nous observons des mesures de différents concepts dans les données des deux expériences. En considérant les indicateurs et les concepts plus larges qui sous-tendent les traitements et les résultats, nous sommes obligés d’examiner les théories ou arguments respectifs des chercheurs. Ce faisant, nous pouvons soulever des questions sur la validité des mesures et la relation entre la validité des mesures et la validité des inférences finales et substantielles.</p>
+</section>
+<section id="la-mesure-des-traitements-comprend-lopérationnalisation-du-traitement-ainsi-que-la-conformité-de-lassignation-au-traitement." class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> La mesure des traitements comprend l’opérationnalisation du traitement ainsi que la conformité de l’assignation au traitement.</h1>
+<p>Dans une expérience, les traitements sont généralement conçus ou, au minimum, décrits par le chercheur. Les consommateurs de recherche expérimentale devraient s’intéresser aux caractéristiques du traitement et à la façon dont il manipule un concept d’intérêt. La plupart des traitements en sciences sociales sont composés ou comprennent un ensemble d’attributs. Nous pouvons être intéressés par l’effet de fournir aux électeurs des informations sur la performance de leurs élus. Pourtant, fournir des informations inclut également le mode de transmission et qui a fourni les informations. Pour comprendre dans quelle mesure le traitement manipule un concept, nous devons également comprendre ce que le traitement pourrait manipuler d’autre.</p>
+<p>Cependant, malgré tous les efforts pour opérationnaliser un traitement, dans la recherche expérimentale, le lien entre l’opérationnalisation et l’indicateur de traitement est fondamentalement distinct de la mesure des covariables ou des résultats pour deux raisons. Premièrement, en assignant un traitement, les expérimentalistes visent à contrôler les valeurs que prend une unité donnée. Deuxièmement, pour l’indicateur de traitement, le score provient de l’assignation de traitement, qui est un produit de la randomisation. Un sujet peut ou non avoir reçu le traitement, mais son score sur l’indicateur de traitement est simplement le traitement auquel il a été assigné, et non le traitement qu’il a reçu.</p>
+<p>Lorsque les sujets reçoivent des traitements autres que ceux auxquels ils sont assignés, nous cherchons généralement à mesurer la conformité — si les traitements ont été délivrés et dans quelle mesure. Pour ce faire, nous définissons ce qui constitue la conformité de l’assignation de traitement. Pour déterminer ce qui constitue la conformité, les chercheurs doivent tenir compte de l’aspect central de la façon dont le traitement manipule le concept d’intérêt. A quel moment de l’administration du traitement se produit cette manipulation ? Une fois la conformité opérationnalisée, nous cherchons à coder l’indicateur de conformité de manière fidèle à cette définition.</p>
+<p>Par exemple, considérons une campagne de démarchage en porte-à-porte qui diffuse des informations sur les performances d’un politicien sortant. Les ménages sont assignés à recevoir une visite d’un solliciteur qui partage l’information (traitement) ou non (contrôle). L’indicateur de traitement est simplement de savoir si un ménage a été assigné au traitement ou non. Cependant, si les résidents d’un ménage ne sont pas à la maison lors de la visite du solliciteur, ils ne reçoivent pas l’information. Notre définition de la conformité devrait déterminer ce qui constitue un “traité” sur notre mesure (endogène) : “le fait qu’un ménage ait reçu ou non le traitement”, ici l’information. Certaines définitions courantes de la conformité peuvent être (a) qu’un membre du ménage a ouvert la porte ; ou (b) qu’un membre du ménage a écouté le script d’information complet.</p>
+</section>
+<section id="la-plupart-des-résultats-dintérêt-en-sciences-sociales-sont-latents." class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> La plupart des résultats d’intérêt en sciences sociales sont latents.</h1>
+<p>Contrairement à la mesure des indicateurs de traitement et de conformité, la mesure des résultats dans la recherche expérimentale suit de beaucoup plus près le processus décrit dans la figure ci-dessus. Nous théorisons comment le traitement peut influencer un concept de résultat. Nous opérationnalisons ensuite le concept et enregistrons des scores ou des valeurs pour compléter notre mesure du résultat.</p>
+<p>Un défi particulier dans la mesure des résultats est que bon nombre des résultats d’intérêt les plus courants en sciences sociales sont latents. Cela signifie que nous ne pouvons pas observer directement la vraie valeur du concept de résultat. En fait, la nature de la vraie valeur peut elle-même être débattue (par exemple, le débat sur la mesure de la “démocratie” est un cas classique où la définition du concept lui-même est contestée). Les résultats, y compris les connaissances, les préférences ou les attitudes, sont latents. Nous enregistrons ou notons ainsi des indicateurs observables supposés être liés au résultat latent en vue de déduire les caractéristiques de la variable latente. Même les résultats comportementaux sont souvent utilisés comme des manifestations de concepts latents plus larges (i.e.&nbsp;le comportement électoral estimé est utilisé pour faire des déductions sur la “responsabilité électorale” à un endroit).</p>
+<p>Étant donné que ces variables sont latentes, il est difficile de concevoir des indicateurs appropriés. Une mauvaise opérationnalisation a des conséquences assez drastiques sur la validité de nos inférences sur le concept d’intérêt pour deux raisons. Comme dans la section 1 ci-dessus, si ces indicateurs ne mesurent pas conceptuellement le concept d’intérêt, alors les inférences que nous faisons sur la relation entre <span class="math inline">\(Z\)</span> et <span class="math inline">\(Y\)</span> (même avec une conception “parfaite” en termes de puissance statistique et de données manquantes, etc.) peuvent ne pas nous renseigner sur “l’inférence ultime” que nous cherchons. De plus, l’erreur de mesure peut miner notre capacité à estimer l’effet de <span class="math inline">\(Z\)</span> et <span class="math inline">\(Y\)</span> conduisant à des inférences incorrectes. Le reste de ce guide se concentre sur ce dernier problème.</p>
+</section>
+<section id="il-existe-deux-types-derreurs-de-mesure-que-nous-devrions-considérer." class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Il existe deux types d’erreurs de mesure que nous devrions considérer.</h1>
+<p>On peut formaliser assez simplement les enjeux de mesure. Supposons qu’un traitement <span class="math inline">\(Z_i\)</span> soit supposé changer les préférences pour les normes démocratiques <span class="math inline">\(\nu_i\)</span>. En principe, la quantité que nous aimerions estimer est <span class="math inline">\(E[\nu_i|Z_i = 1] - E[\nu_i|Z_i =0]\)</span>, l’ATE sur les préférences pour les normes démocratiques. Cependant, <span class="math inline">\(\nu_i\)</span> est une variable latente : on ne peut pas la mesurer directement. Au lieu de cela, nous demandons si les unités soutiennent divers comportements pensés correspondre à ces normes. Cet indicateur, <span class="math inline">\(Y_i\)</span>, peut être décomposé en la variable latente, <span class="math inline">\(\nu_i\)</span> et deux formes d’erreur de mesure :</p>
+<ul>
+<li><em>Erreur de mesure non systématique</em>, <span class="math inline">\(\delta_i\)</span> : cette erreur est indépendante de l’assignation au traitement, <span class="math inline">\(\delta_i \perp Z_i\)</span>.</li>
+<li><em>Erreur de mesure systématique</em>, <span class="math inline">\(\kappa_i\)</span> : cette erreur n’est pas indépendante de l’assignation au traitement, <span class="math inline">\(\kappa_i \not\perp Z_i\)</span>.</li>
+</ul>
+<p><span class="math display">\[Y_i = \underbrace{\nu_i}_{\text{Résultat latent}} + \underbrace{\delta_i}_{\substack{\text{Erreur de mesure} \\ \text{non-systématique}}} + \underbrace{\kappa_i}_{\substack{\text{Erreur de mesure} \\ \text{systématique}}}\]</span></p>
+</section>
+<section id="lerreur-de-mesure-réduit-la-puissance-statistique-de-votre-expérience." class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> L’erreur de mesure réduit la puissance statistique de votre expérience.</h1>
+<p>L’erreur de mesure non systématique, représentée par <span class="math inline">\(\delta_i\)</span> ci-dessus, fait référence au bruit avec lequel nous mesurons la variable latente. En l’absence d’erreur de mesure systématique, on mesure :</p>
+<p><span class="math display">\[Y_i = \underbrace{\nu_i}_{\text{Résultat latent}} + \underbrace{\delta_i}_{\substack{\text{Erreur de mesure} \\ \text{non-systématique}}}\]</span></p>
+<p>Maintenant, considérons la <a href="https://egap.org/resource/10-things-to-know-about-statistical-power">formule de puissance analytique</a> pour une expérience à deux bras. Nous pouvons exprimer <span class="math inline">\(\sigma\)</span>, ou l’écart type du résultat sous la forme <span class="math inline">\(\sqrt{Var(Y_i)}\)</span>. Notez que dans la formule ci-dessous, ce terme apparaît au dénominateur du premier terme. À mesure que <span class="math inline">\(\sqrt{Var(Y_i)}\)</span> augmente, la puissance statistique diminue.</p>
+<p><span class="math display">\[\beta = \Phi \left(\frac{|\mu_t− \mu_c| \sqrt{N}}{2 \color{red}{\sqrt{Var(Y_i)}}} − \Phi^{−1}\left(1 − \frac{\alpha}{2}\right)\right)\]</span></p>
+<p>En quoi l’erreur de mesure non systématique <span class="math inline">\(\delta_i\)</span> impacte-t-elle la puissance ? Nous pouvons décomposer <span class="math inline">\(\sqrt{Var(Y_i)}\)</span> comme suit :</p>
+<p><span class="math display">\[\sqrt{Var(Y_i)} = \sqrt{Var(\nu_i) + Var(\delta_i) + 2 Cov(\nu_i, \delta_i)}\]</span></p>
+<p>Tant que <span class="math inline">\(Cov(\nu_i, \delta_i)\geq 0\)</span> (nous supposons souvent que <span class="math inline">\(Cov(\nu_i, \delta_i)= 0\)</span>), <span class="math inline">\(Var(Y_i)\)</span> augmente quand l’erreur de mesure <span class="math inline">\(Var(\delta_i)\)</span> augmente. Cela implique que la puissance diminue à mesure que l’erreur de mesure non systématique augmente. En d’autres termes, plus nos mesures d’une variable latente sont bruyantes, plus notre capacité à détecter l’effet du traitement sur une variable latente est faible.</p>
+<p>Qu’en est-il du cas où <span class="math inline">\(Cov(\nu_i, \delta_i) &lt; 0\)</span> ? Bien que cela réduise <span class="math inline">\(Var(Y_i)\)</span> (en maintenant <span class="math inline">\(Var(\nu_i)\)</span> et <span class="math inline">\(Var(\delta_i)\)</span> constants), cela atténue également la variation que nous mesurons dans <span class="math inline">\(Y_i\)</span>. En principe, cela devrait atténuer le numérateur <span class="math inline">\(|\mu_t-\mu_c|\)</span>, qui réduira également la puissance, si cela suffit par rapport à la réduction de la variance.</p>
+</section>
+<section id="lerreur-de-mesure-systématique-biaise-les-estimations-de-leffet-causal-dintérêt." class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> L’erreur de mesure systématique biaise les estimations de l’effet causal d’intérêt.</h1>
+<p>Si nous estimons l’effet moyen de traitement (ATE) de notre traitement <span class="math inline">\(Z_i\)</span>, sur les préférences pour les normes démocratiques, <span class="math inline">\(\nu_i\)</span>, nous essayons de calculer <span class="math inline">\(E[\nu_i|Z_i = 1] - E[\nu_i|Z_i =0]\)</span>. Cependant, en présence d’une erreur de mesure <strong>systématique</strong>, où l’erreur de mesure est liée à l’assignation du traitement lui-même (disons, le résultat est mesuré différemment dans les groupes de traitement et de contrôle), un estimateur de la différence des moyennes sur le résultat observé, <span class="math inline">\(Y_i\)</span>, renvoie une estimation biaisée de l’ATE. L’effet du traitement comprend désormais la différence de mesure ainsi que la différence entre les groupes de traitement et de contrôle :</p>
+<p><span class="math display">\[E[Y_i|Z_i = 1]−E[Y_i|Z_i = 0] =  E[\nu_i + \delta_i + \kappa_i |Z_i = 1] − E[\nu_i + \delta_i + \kappa_i|Z_i =0]\]</span></p>
+<p>En raison de l’erreur de mesure non systématique, <span class="math inline">\(\delta_i\)</span> est indépendant de l’assignation du traitement, <span class="math inline">\(E[\delta_i|Z_i = 1] = E[\delta_i |Z_i = 0]\)</span>. En simplifiant et en réarrangeant, on peut écrire :</p>
+<p><span class="math display">\[E[Y_i|Z_i = 1]−E[Y_i|Z_i = 0] = \underbrace{E[\nu_i|Z_i = 1] − E[\nu_i|Z_i =0]}_{ATE} +
+\underbrace{E[\kappa_i|Z_i = 1] - E[\kappa_i|Z_i =0]}_{\text{Biais}}\]</span></p>
+<p>Il existe diverses sources d’erreur de mesure non systématique dans les expériences. <a href="https://en.wikipedia.org/wiki/Demand_characteristics">L’effet de demande</a> et <a href="https://fr.wikipedia.org/wiki/Effet_Hawthorne">l’effet Hawthorne</a> peuvent être sources d’erreur de mesure systématique. De plus, les conceptions qui mesurent les résultats de manière asymétrique dans les groupes de traitement et de contrôle peuvent être sujettes à une erreur de mesure systématique. Dans tous les cas, il existe une asymétrie entre les conditions de traitement dans (a) la manière dont les sujets réagissent à l’observation ; ou (b) la façon dont nous observons les résultats qui est distincte de tout effet du traitement sur la variable latente d’intérêt. L’estimation biaisée de l’ATE devient le net de tout effet sur les variables latentes (l’ATE) et l’erreur de mesure non systématique.</p>
+</section>
+<section id="tirez-parti-de-plusieurs-indicateurs-pour-évaluer-la-validité-dune-mesure-mais-soyez-conscient-des-limites-de-ces-tests." class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Tirez parti de plusieurs indicateurs pour évaluer la validité d’une mesure, mais soyez conscient des limites de ces tests.</h1>
+<p>Au-delà de la considération de la qualité de la correspondance entre un concept et une mesure, nous pouvons souvent évaluer la qualité de la mesure en la comparant à des mesures provenant d’opérationnalisations alternatives du même concept, de concepts étroitement liés ou de concepts distincts. Dans les <em>tests convergents</em> de la validité d’une mesure, nous évaluons la corrélation entre les mesures alternatives d’un concept. Si elles sont codées dans le même sens, nous nous attendons à ce que la corrélation soit positive et que la validité des deux mesures augmente à mesure que l’amplitude de la corrélation augmente. Une limitation des tests de validité convergents est que si deux mesures sont faiblement corrélées, en l’absence d’informations supplémentaires, nous ne savons pas si une mesure est valide (et laquelle) ou si les deux mesures sont invalides.</p>
+<p>La collecte de plusieurs indicateurs peut également permettre aux chercheurs d’évaluer la <em>validité prédictive</em> d’une mesure. Dans quelle mesure la mesure d’un concept latent prédit-elle un comportement que l’on pense être façonné par le concept ? Par exemple, l’idéologie politique (la variable latente) prédit-elle le choix de vote déclaré pour les partis de gauche ? Cela fournit un moyen supplémentaire de valider une mesure. Ici, plus la capacité d’un indicateur à prédire le comportement (ou d’autres résultats) est élevée, plus la validité prédictive de l’indicateur est forte. Pourtant, nous pensons que la plupart des comportements sont le résultat d’un ensemble complexe de causes. Déterminer si une mesure est un prédicteur “assez bon” est une détermination quelque peu arbitraire.</p>
+<p>Enfin, nous pouvons vouloir déterminer si nous mesurons le concept d’intérêt isolément plutôt qu’un ensemble de concepts. Les tests de <em>validité discriminante</em> examinent les indicateurs d’un concept et d’un concept lié mais distinct. En principe, nous recherchons des corrélations faibles (corrélations proches de 0) entre les deux indicateurs. Une limitation des tests de <em>validité discriminante</em> est que nous ne savons pas comment les concepts distincts sous-jacents varient ensemble. Il se peut que nous ayons des indicateurs valides des deux concepts, mais ils présentent une forte corrélation (positive ou négative) car les unités avec des niveaux élevés de <span class="math inline">\(A\)</span> ont tendance à avoir des niveaux plus élevés (resp. faibles) de <span class="math inline">\(B\)</span>.</p>
+<p>En somme, l’ajout de plus de mesures peut aider à valider un indicateur, mais ces tests de validation sont limités dans ce qu’ils nous disent lorsqu’ils échouent. Dans cette mesure, nous devons rester conscients des limites en plus de l’utilité de collecter des mesures supplémentaires pour simplement valider un indicateur.</p>
+</section>
+<section id="lutilisation-de-plusieurs-indicateurs-améliore-souvent-la-puissance-de-votre-expérience-mais-peut-introduire-un-compromis-biais-efficacité." class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> L’utilisation de plusieurs indicateurs améliore souvent la puissance de votre expérience, mais peut introduire un compromis biais-efficacité.</h1>
+<p>Regrouper plusieurs indicateurs d’un concept ou d’un résultat peut également améliorer la puissance de votre expérience. Si plusieurs indicateurs mesurent le même concept mais sont mesurés avec une erreur (non systématique), nous pouvons améliorer la précision avec laquelle nous mesurons la variable latente en tirant parti de plusieurs mesures.</p>
+<p>Il existe plusieurs façons d’agréger plusieurs résultats dans un indice. <a href="https://egap.org/resource/10-things-to-know-about-multiple-comparisons">“10 choses à savoir sur les comparaisons multiples”</a> décrit des indices construits à partir de la score-<span class="math inline">\(z\)</span> et d’une pondération inverse de covariance pour des résultats multiples. Il existe également de nombreux autres modèles structurels pour estimer les variables latentes à partir de plusieurs mesures.</p>
+<p>Ci-dessous, nous examinons un simple indice de score-<span class="math inline">\(z\)</span> pour deux mesures bruitées d’une variable latente. Nous supposons que les variables latentes et les deux indicateurs “Mesure 1” et “Mesure 2” sont tirés d’une distribution normale multivariée et sont positivement corrélés avec la variable latente et entre eux. Pour les besoins de la simulation, nous supposons que nous connaissons la variable latente, bien qu’en pratique cela ne soit pas possible. Premièrement, nous pouvons montrer qu’à travers de nombreuses simulations des données, la corrélation entre l’indice de score-<span class="math inline">\(z\)</span> des deux mesures et la variable latente est, en moyenne, plus élevée que la corrélation entre l’un ou l’autre des indicateurs et la variable latente. Lors de la représentation graphique de la corrélation entre mesures individuelles et variable latente (sur l’axe des <span class="math inline">\(x\)</span>) par rapport à la corrélation entre indice et variable latente (sur l’axe des <span class="math inline">\(y\)</span>), presque tous les points sont au-dessus de la ligne à 45 degrés. Cela montre que l’indice se rapproche de la variable latente avec une plus grande précision.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(estimatr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>make_Z_score <span class="ot">&lt;-</span> <span class="cf">function</span>(data, outcome){</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  ctrl <span class="ot">&lt;-</span> <span class="fu">filter</span>(data, Z <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">with</span>(data, (data[,outcome] <span class="sc">-</span> <span class="fu">mean</span>(ctrl[,outcome]))<span class="sc">/</span><span class="fu">sd</span>(ctrl[,outcome])))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>pull_estimates <span class="ot">&lt;-</span> <span class="cf">function</span>(model){</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  est <span class="ot">&lt;-</span> <span class="fu">unlist</span>(model)<span class="sc">$</span>coefficients.Z</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  se <span class="ot">&lt;-</span> <span class="fu">unlist</span>(model)<span class="sc">$</span>std.error.Z</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(est, se))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>do_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(N, rhos, taus, <span class="at">var =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)){</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>   measures <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="at">n =</span> N, </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sigma =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(var[<span class="dv">1</span>], rhos[<span class="dv">1</span>], rhos[<span class="dv">2</span>], </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                                        rhos[<span class="dv">1</span>], var[<span class="dv">2</span>], rhos[<span class="dv">3</span>], </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                                        rhos[<span class="dv">2</span>], rhos[<span class="dv">3</span>], var[<span class="dv">3</span>]), <span class="at">nrow =</span> <span class="dv">3</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>   df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Z =</span> <span class="fu">complete_ra</span>(<span class="at">N =</span> N),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                      <span class="at">latent =</span> measures[,<span class="dv">1</span>],</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Y0_1 =</span> measures[,<span class="dv">2</span>],</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Y0_2 =</span> measures[,<span class="dv">3</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">Yobs_1 =</span> Y0_1 <span class="sc">+</span> Z <span class="sc">*</span> taus[<span class="dv">1</span>],</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Yobs_2 =</span> Y0_2 <span class="sc">+</span> Z <span class="sc">*</span> taus[<span class="dv">2</span>])</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>   df<span class="sc">$</span>Ystd_1 <span class="ot">=</span> <span class="fu">make_Z_score</span>(<span class="at">data =</span> df, <span class="at">outcome =</span> <span class="st">"Yobs_1"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>   df<span class="sc">$</span>Ystd_2 <span class="ot">=</span> <span class="fu">make_Z_score</span>(<span class="at">data =</span> df, <span class="at">outcome =</span> <span class="st">"Yobs_2"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>   df<span class="sc">$</span>index <span class="ot">=</span> (df<span class="sc">$</span>Ystd_1 <span class="sc">+</span> df<span class="sc">$</span>Ystd_2)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>   cors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">cor</span>(df<span class="sc">$</span>index, df<span class="sc">$</span>latent), <span class="fu">cor</span>(df<span class="sc">$</span>Ystd_1, df<span class="sc">$</span>latent), <span class="fu">cor</span>(df<span class="sc">$</span>Ystd_2, df<span class="sc">$</span>latent))</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>   ests <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">pull_estimates</span>(<span class="fu">lm_robust</span>(Ystd_1 <span class="sc">~</span> Z, <span class="at">data =</span> df)),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>             <span class="fu">pull_estimates</span>(<span class="fu">lm_robust</span>(Ystd_2 <span class="sc">~</span> Z, <span class="at">data =</span> df)),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>             <span class="fu">pull_estimates</span>(<span class="fu">lm_robust</span>(index <span class="sc">~</span> Z, <span class="at">data =</span> df)))</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>   output <span class="ot">&lt;-</span> <span class="fu">c</span>(cors, ests)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>   <span class="fu">names</span>(output) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cor_index"</span>, <span class="st">"cor_Y1"</span>, <span class="st">"cor_Y2"</span>, <span class="st">"est_Y1"</span>, <span class="st">"se_Y1"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"est_Y2"</span>, <span class="st">"se_Y2"</span>, <span class="st">"est_index"</span>, <span class="st">"se_index"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>(output)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">expr =</span> <span class="fu">do_sim</span>(<span class="at">N =</span> <span class="dv">200</span>, </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">rhos =</span> <span class="fu">c</span>(.<span class="dv">6</span>, .<span class="dv">6</span>, .<span class="dv">6</span>), </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">taus =</span> <span class="fu">c</span>(.<span class="dv">4</span>, .<span class="dv">4</span>),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">var =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">measures =</span> <span class="fu">c</span>(sims[<span class="st">"cor_Y1"</span>,], sims[<span class="st">"cor_Y2"</span>,]),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>           <span class="at">index =</span> <span class="fu">rep</span>(sims[<span class="st">"cor_index"</span>,], <span class="dv">2</span>),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>           <span class="at">variable =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Mesure 1"</span>, <span class="st">"Mesure 2"</span>), <span class="at">each =</span> <span class="dv">500</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> measures, <span class="at">y =</span> index)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable) <span class="sc">+</span> </span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="fl">1.25</span>) <span class="sc">+</span> </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"Corrélation entre mesure et variable latente"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Corrélation entre indice et variable latente"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="measurement.fr_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Maintenant, considérons les implications pour la puissance statistique. Dans les simulations, nous estimons l’ATE d’un traitement sur la Mesure 1, la Mesure 2 et l’indice. Le graphique suivant visualise les estimations. Les lignes bleues montrent des intervalles de confiance à 95 %. Les intervalles de confiance plus petits autour l’indice visualisent les gains de précision résultant de l’utilisation des deux mesures. Nous voyons que cela se manifeste par une puissance statistique plus élevée pour l’expérience.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">est =</span> <span class="fu">c</span>(sims[<span class="st">"est_index"</span>,], sims[<span class="st">"est_Y1"</span>,], sims[<span class="st">"est_Y2"</span>,]),</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">se =</span> <span class="fu">c</span>(sims[<span class="st">"se_index"</span>,], sims[<span class="st">"se_Y1"</span>,], sims[<span class="st">"se_Y2"</span>,]),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">outcome =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Indice"</span>, <span class="st">"Mesure 1"</span>, <span class="st">"Mesure 2"</span>), <span class="at">each =</span> <span class="dv">500</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">T =</span> est<span class="sc">/</span>se, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">sig =</span> <span class="dv">1</span> <span class="sc">*</span> (<span class="fu">abs</span>(T) <span class="sc">&gt;</span> <span class="fl">1.96</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(outcome) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">power =</span> <span class="fu">sum</span>(sig)<span class="sc">/</span><span class="fu">n</span>(),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">lab =</span> <span class="fu">paste0</span>(<span class="st">"Puissance = "</span>, <span class="fu">round</span>(power, <span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(est) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">order =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span><span class="sc">/</span><span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> order, <span class="at">y =</span> est)) <span class="sc">+</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> est <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> se, <span class="at">ymax =</span> est <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> se), <span class="at">width =</span> <span class="dv">0</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">"light blue"</span>, <span class="at">alpha =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>outcome) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="sc">-</span>.<span class="dv">4</span>, <span class="fu">aes</span>(<span class="at">label =</span> lab), <span class="at">cex =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Percentile de l'estimation dans 500 simulations"</span>) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"ATE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="measurement.fr_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Nous avons examiné un indice composé de seulement deux indicateurs. En principe, il y a d’autres gains d’efficacité à faire en intégrant plus d’indicateurs dans votre indice. Pourtant, à mesure que nous augmentons le nombre d’indicateurs, nous devrions considérer dans quelle mesure la fusion des indicateurs adhère au concept original. En ajoutant des mesures pour tirer parti des gains d’efficacité, nous pouvons introduire un biais dans la mesure du concept latent. Les chercheurs doivent louvoyer avec ce compromis. Le pré-enregistrement des composants d’un indice fournit une manière raisonnée de naviguer pour un problème qui oblige un examen approfondi du concept en l’absence de données. Cela évite également les questions ex post sur le choix des indicateurs pour un indice.</p>
+</section>
+<section id="alors-que-les-concepts-peuvent-être-globaux-de-nombreux-indicateurs-sont-spécifiques-au-contexte." class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Alors que les concepts peuvent être globaux, de nombreux indicateurs sont spécifiques au contexte.</h1>
+<p>De nombreuses études en sciences sociales se concentrent sur des concepts qui sont généralement supposés être latents, notamment les préférences, les connaissances ou les attitudes. Dans la mesure où nous travaillons sur des concepts communs, il existe une tendance à s’inspirer des opérationnalisations existantes à partir d’études sur des concepts connexes dans des contextes différents. Dans des études menées dans de multiples contextes, comme dans <a href="https://egap.org/our-work-0/the-metaketa-initiative/">l’initiative Metaketa de EGAP</a>, les chercheurs visent à étudier la même relation causale dans plusieurs contextes nationaux. Mais le désir d’étudier des concepts communs n’implique pas nécessairement que les mêmes indicateurs doivent être utilisés dans tous les contextes.</p>
+<p>Par exemple, considérons un ensemble d’études qui cherchent à mesurer la variation du concept de connaissance ou de sophistication politique. Les connaissances politiques peuvent être évaluées par des questions qui demandent aux sujets de se rappeler d’un fait politique. Une question peut demander aux sujets de se rappeler le nom de l’exécutif actuel (président, premier ministre, etc.), en notant les réponses comme “correctes” ou “incorrectes”. Dans le pays <span class="math inline">\(A\)</span>, 50% des personnes interrogées répondent correctement à la question. Dans le pays <span class="math inline">\(B\)</span>, 100 % des personnes interrogées répondent correctement à la question. Dans le pays <span class="math inline">\(B\)</span>, nous ne pouvons identifier aucune variation dans l’indicateur car tout le monde pouvait répondre à la question. Cela ne signifie pas qu’il n’y a pas de variation dans les connaissances politiques dans le pays <span class="math inline">\(B\)</span>, juste que cet indicateur est une mauvaise mesure de la variation qui existe. Dans le pays <span class="math inline">\(A\)</span>, cependant, cette question peut être un indicateur tout à fait approprié pour la connaissance politique. Si la connaissance politique était le résultat d’une expérience, l’absence de variation dans le résultat dans le pays <span class="math inline">\(B\)</span> ne nous permet pas d’identifier une différence dans la connaissance politique entre les groupes de traitement et de contrôle.</p>
+<p>Pour cette raison, s’il peut être utile de développer des indicateurs basés sur des travaux existants ou des instruments provenant d’autres contextes, ce n’est pas nécessairement la meilleure façon de développer des mesures dans un nouveau contexte. Les pré-tests peuvent fournir des indications pour savoir si les indicateurs sont appropriés dans un contexte donné. En somme, la correspondance entre les concepts et les indicateurs est spécifique au site dans de nombreux cas. Les chercheurs devraient tenir compte de ces limites lorsqu’ils opérationnalisent des concepts communs dans des contextes distincts.</p>
+</section>
+<section id="bibliographie" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Bibliographie</h1>
+<p>Adcock, Robert et David Collier. “Measurement Validity: A Shared Standard for Qualitative and Quantitative Research.” <em>American Political Science Review.</em> 95 (3): 529-546.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
