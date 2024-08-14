@@ -103,7 +103,7 @@ set.seed(1234)
 N <- 500
 tau <- 0.2
 
-design <- # First, specify the model
+design <- # First, specify a model that generates baseline data for the units in the study
   declare_model(N = N,
                      X = rep(c(0,2), each = N/2),
                      U = rnorm(N),
