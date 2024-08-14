@@ -5,13 +5,12 @@ author:
     url: https://egap.org/member/alexander-coppock/
 image: power.png
 bibliography: power.bib
-sidebar: power
-abstract: | 
-  This guide will help you assess and improve the power of your experiments. We focus on the big ideas and provide examples and tools that you can use in R and Google Spreadsheets.
 ---
 
-# What Power Is 
+This guide will help you assess and improve the power of your experiments. We focus on the big ideas and provide examples and tools that you can use in R.
 
+1. What Power Is
+==
 Power is the ability to distinguish signal from noise.
 
 The signal that we are interested in is the impact of a treatment on some outcome. Does education increase incomes? Do public health campaigns decrease the incidence of disease? Can international monitoring decrease government corruption?
@@ -24,8 +23,8 @@ A major concern before embarking on an experiment is the danger of a __false neg
 
 If our experiments are highly-powered, we can be confident that if there truly is a treatment effect, we’ll be able to see it.
 
-# Why You Need It 
-
+2. Why You Need It
+==
 Experimenters often guard against false positives with statistical significance tests. After an experiment has been run, we are concerned about falsely concluding that there is an effect when there really isn’t.
 
 Power analysis asks the opposite question: supposing there truly is a treatment effect and you were to run your experiment a huge number of times, how often will you get a statistically significant result?
@@ -38,16 +37,16 @@ Many disciplines have settled on a target power value of 0.80. Researchers will 
 
 A note of caution: power matters a lot. Negative results from underpowered studies can be hard to interpret: Is there really no effect? Or is the study just not able to figure it out? Positive results from an underpowered study can also be misleading: conditional upon being statistically significant, an estimate from an underpowered study probably overestimates treatment effects. Under powered studies are sometimes based on overly optimistic assumptions; a convincing power analysis makes these assumptions explicit and should protect you from implementing designs that realistically have no chance of answering the questions you want to answer.
 
-# The Three Ingredients of Statistical Power 
-
+3. The Three Ingredients of Statistical Power
+==
 There are three big categories of things that determine how highly powered your experiment will be. The first two (the strength of the treatment and background noise) are things that you can’t really control – these are the realities of your experimental environment. The last, the experimental design, is the only thing that you have power over – use it!
 
 * Strength of the treatment. As the strength of your treatment increases, the power of your experiment increases. This makes sense: if your treatment were giving every subject $1,000,000, there is little doubt that we could discern differences in behavior between the treatment and control groups. Many times, however, we are not in control of the strength of our treatments. For example, researchers involved in program evaluation don’t get to decide what the treatment should be, they are supposed to evaluate the program as it is.
 * Background noise. As the background noise of your outcome variables increases, the power of your experiment decreases. To the extent that it is possible, try to select outcome variables that have low variability. In practical terms, this means comparing the standard deviation of the outcome variable to the expected treatment effect size — there is no magic ratio that you should be shooting for, but the closer the two are, the better off your experiment will be. By and large, researchers are not in control of background noise, and picking lower-noise outcome variables is easier said than done. Furthermore, many outcomes we would like to study are inherently quite variable. From this perspective, background noise is something you just have to deal with as best you can.
 * Experimental Design. Traditional power analysis focuses on one (albeit very important) element of experimental design: the number of subjects in each experimental group. Put simply, a larger number of subjects increases power. However, there are other elements of the experimental design that can increase power: how is the randomization conducted? Will other factors be statistically controlled for? How many treatment groups will there be, and can they be combined in some analyses?
 
-# Key Formulas for Calculating Power 
-
+4. Key Formulas for Calculating Power
+==
 Statisticians have derived formulas for calculating the power of many experimental designs. They can be useful as a back of the envelope calculation of how large a sample you’ll need. Be careful, though, because the assumptions behind the formulas can sometimes be obscure, and worse, they can be wrong.
 
 Here is a common formula used to calculate power:[^2]
@@ -77,8 +76,8 @@ power_calculator <- function(mu_t, mu_c, sigma, alpha=0.05, N){
 
 In addition, EGAP has created a power calculator Shiny app, which you can [access here](https://egap.shinyapps.io/Power_Calculator/).
 
-# When to Believe Your Power Analysis 
-
+5. When to Believe Your Power Analysis
+==
 From some perspectives the whole idea of power analysis makes no sense. You want to figure out the size of some treatment effect but first you need to do a power analysis which requires that you already know your treatment effect and a lot more besides.
 
 So in most power analyses you are in fact seeing what happens with numbers that are to some extent made up. The good news is that it is easy to find out how much your conclusions depend on your assumptions: simply vary your assumptions and see how the conclusions on power vary.
@@ -89,50 +88,70 @@ Using the formula in section 4, you can see how sensitive power is to all of the
 
 [^3]: For an additional online power visualization tool, see Kristoffer Magnusson's [R Psychologist blog](http://rpsychologist.com/d3/NHST/).
 
-# How to Use Simulation to Estimate Power 
-
+6. How to Use Simulation to Estimate Power
+==
 Power is a measure of how often, given assumptions, we would obtain statistically significant results, if we were to conduct our experiment thousands of times. The power calculation formula takes assumptions and return an analytic solution. However, due to advances in modern computing, we don’t have to rely on analytic solutions for power analysis. We can tell our computers to literally run the experiment thousands of times and simply count how frequently our experiment comes up significant.
 
-The code block below shows how to conduct this simulation in R.
+The code block below shows how to conduct this simulation in R using DeclareDesign.
 
 ```{r, message=FALSE, error=FALSE, warning=FALSE}
-possible.ns <- seq(from=100, to=2000, by=40) # The sample sizes we'll be considering
-stopifnot(all( (possible.ns %% 2)==0 )) ## require even number of experimental pool
-powers <- rep(NA, length(possible.ns)) # Empty object to collect simulation estimates 
-alpha <- 0.05 # Standard significance level 
-sims <- 500 # Number of simulations to conduct for each N 
-#### Outer loop to vary the number of subjects #### 
-for (j in 1:length(possible.ns)){ N <- possible.ns[j] # Pick the jth value for N 
-  Y0 <- rnorm(n=N, mean=60, sd=20) # control potential outcome 
-  tau <- 5 # Hypothesize treatment effect 
-  Y1 <- Y0 + tau # treatment potential outcome                                   
-  significant.experiments <- rep(NA, sims) # Empty object to count significant experiments 
+library(DeclareDesign)
+library(knitr)
+library(kableExtra)
+set.seed(1234)
+# Set up sample size and treatment effect
+N <- 500
+tau <- 0.2
                                   
-  #### Inner loop to conduct experiments "sims" times over for each N #### 
-        Y0 <- rnorm(n=N, mean=60, sd=20) # control potential outcome 
-        tau <- 5 # Hypothesize treatment effect 
-        Y1 <- Y0 + tau # treatment potential outcome 
-  for (i in 1:sims){ 
-        ## Z.sim <- rbinom(n=N, size=1, prob=.5) # Do a random assignment  by coin flip
-        Z.sim <- sample(rep(c(0,1),N/2)) ## Do a random assignment ensuring equal sized groups
-        Y.sim <- Y1*Z.sim + Y0*(1-Z.sim) # Reveal outcomes according to assignment 
-        fit.sim <- lm(Y.sim ~ Z.sim) # Do analysis (Simple regression) 
-        p.value <- summary(fit.sim)$coefficients[2,4] # Extract p-values 
-        significant.experiments[i] <- (p.value <= alpha) # Determine significance according to p <= 0.05
-        }
-  powers[j] <- mean(significant.experiments) # store average success rate (power) for each N 
-  } 
-powers 
+design <- # First, specify a model that generates baseline data for the units in the study
+  declare_model(N = N,
+                     X = rep(c(0,2), each = N/2),
+                     U = rnorm(N),
+                     potential_outcomes(Y~tau*Z + X + U)) +
+  # Second, specify the inquiry
+  declare_inquiry(ATE = mean(Y_Z_1 - Y_Z_0)) +
+  # Third, set the data strategy
+  declare_assignment(Z = complete_ra(N = N, m = N/2)) +
+  declare_measurement(Y = reveal_outcomes(Y ~ Z)) +
+  # Finally, set the estimators
+  declare_estimator(Y ~ Z, inquiry = "ATE", .method = lm_robust, label = "Simple") +
+  declare_estimator(Y ~ Z + X, inquiry = "ATE", .method = lm_robust, label = "Covariate Adjusted")
+# Specify an alpha level to test for the power of the design
+alpha <- 0.05
+study_diagnosands <- declare_diagnosands(
+  power = mean(p.value <= alpha)
+)
+#One diagnostic run
+diag <- diagnose_design(design, diagnosands = study_diagnosands, sims=500)
+#specify sample sizes of interest
+possible.ns <- seq(from=100, to=2000, by=40)
+#Redesign for different sample sizes between 100 and 2000 by 40
+designN <- redesign(design, N = seq(from=100, to=2000, by=40))
+#Run power analysis on each design
+diagnose <- diagnose_design(designN, diagnosands = study_diagnosands, sims = 500)
+#store dataset of power analysis
+plotdf <- diagnose$diagnosands_df
+#print power for the simple regression approach (first 5 rows)
+kable_styling(kable(head(plotdf[c(plotdf$estimator=="Simple"), c(2,7)]), row.names = F))
 ```
 
 The code for this simulation and others is available [here](https://egap.org/resource/script-power-analysis-simulations-in-r/). Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.
 
 In addition to counting up how often your experiments come up statistically significant, you can directly observe the distribution of p-values you’re likely to get. The graph below shows that under these assumptions, you can get expect to get quite a few p-values in the 0.01 range, but that 80% will be below 0.05.
 
-![](https://raw.githubusercontent.com/egap/methods-guides/master/power/simulatedpvals.png)
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+library(ggplot2)
+bardf <- diag$simulations_df
+ggplot(bardf, aes(x = p.value)) +
+  geom_histogram(fill = "white", color = "black", bins = 100) +
+  geom_vline(xintercept = 0.05, color = "red", linetype = "dotted", size  = 1) +
+  labs(x = "p-values", y = "Number of Experiments") +
+  theme_bw()
+```
 
-# How to Change your Design to Improve Your Power 
 
+7. How to Change your Design to Improve Your Power
+==
 When it comes to statistical power, the only thing that that’s under your control is the design of the experiment. As we’ve seen above, an obvious design choice is the number of subjects to include in the experiment. The more subjects, the higher the power.
 
 However, the number of subjects is not the only design choice that has consequences for power. There are two broad classes of design choices that are especially important in this regard.
@@ -155,12 +174,21 @@ The answer is simulation.
 
 Here’s a graph that compares the power of an experiment that does control for background attributes to one that does not. The R-square of the regression relating income to age and gender is pretty high — around .66 — meaning that the covariates that we have gathered (generated) are highly predictive. For a rough comparison, sigma, the level of background noise that the unadjusted model is dealing with, is around 33. This graph shows that at any N, the covariate-adjusted model has more power — so much so that the unadjusted model would need 1500 subjects to achieve what the covariate-adjusted model can do with 500.
 
-![](https://raw.githubusercontent.com/egap/methods-guides/master/power/powergraph21.png)
+```{r, message=FALSE, error=FALSE, warning=FALSE}
+ggplot(plotdf, aes(x = N, y = power, color = estimator)) +
+  geom_hline(aes(color = "Conventional Power Target", yintercept = 0.8 ), linetype = "dashed")+
+  geom_line(size = 0.75) +
+  labs(x = "Sample Size", y = "Power", color = "") +
+  scale_color_viridis_d()+
+  theme_bw()
+
+```
+
 
 This approach doesn’t rely on a formula to come up with the probability of getting a statistically significant result: it relies on brute force! And because simulation lets you specify every step of the experimental design, you do a far more nuanced power analysis than simply considering the number of subjects.
 
-# Power Analysis for Multiple Treatments 
-
+8. Power Analysis for Multiple Treatments
+==
 Many experiments employ multiple treatments which are compared both to each other and to a control group. This added complication changes what we mean when we say the “power” of an experiment. In the single treatment group case, power is just the probability of getting a statistically significant result. In the multiple treatment case, it can mean a variety of things: A) the probability of at least one of the treatments turning up significant, B) the probability of all the treatments turning up significant (versus control) or C) the probability that the treatments will be ranked in the hypothesized order, and that those ranks will be statistically significant.
 
 This question of multiple treatment arms is related to the problem of multiple comparisons. (See [our guide on this topic](https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html) for more details.) Standard significance testing is based on the premise that you’re conducting a single test for statistical significance, and the p-values derived from these tests reflect the probability under the null of seeing such a larger (or larger) treatment effect. If, however, you are conducting multiple tests, this probability is no longer correct. Within a suite of tests, the probability that at least one of the tests will turn up significant even when the true effect is zero is higher, essentially because you have more attempts. A commonly cited (if not commonly used) solution is to use the Bonferroni correction: specify the number of comparisons you will be making in advance, then divide your significance level (alpha) by that number.
@@ -169,8 +197,8 @@ If you are going to be using a Bonferroni correction, then standard power calcul
 
 Or you can use simulation. An example of a power calculation done in R is available on the simulations page.
 
-# How to Think About Power for Clustered Designs 
-
+9. How to Think About Power for Clustered Designs
+==
 When an experiment has to assign whole groups of people to treatment rather than individually, we say that the experiment is clustered. This is common in educational experiments, where whole classrooms of children are assigned to treatment or control, or in development economics, where whole villages of individuals are assigned to treatment or control. (See [our guide on cluster randomization](https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html) for more details.)
 
 As a general rule, clustering decreases your power. If you can avoid clustering your treatments, that is preferable for power. Unless you face concerns related to spillover, logistics, or ethics, take the variation down to the lowest level that you can.
@@ -186,8 +214,8 @@ See the [Declare Design library for block and cluster randomized experiments](ht
 The [DeclareDesign](https://declaredesign.org) software aims to make simulations for power analysis (among many other tasks) easier.
 See also @gelman_hill_2006, pages 450-453 for another simulation approach.
 
-# Good Power Analysis Makes Preregistration Easy 
-
+10. Good Power Analysis Makes Preregistration Easy
+==
 When you deal with power you focus on what you cannot control (noise) and what you can control (design). If you use the simulation approach to power analysis then you will be forced to imagine how your data will look and how you will handle it when it comes in. You will get a chance to specify all of your hunches and best guesses in advance, so that you can launch your experiments with clear expectations of what they can and cannot show. That’s some work but the good news is that if you really do it you are most of the way to putting together a comprehensive and registerable pre-analysis plan.
 
 # References
