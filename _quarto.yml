@@ -17,38 +17,38 @@ website:
         text: Software
       - file: teaching.qmd
         text: Teaching
-      
+
   sidebar:
 
     - title: ""
-      # contents: 
+      # contents:
       #   - text: "How to read this guide"
       #     href: /guides/how-to-read.html
-        
+
     - title: "Guides"
-    
+
     - title: ""
-      id: effect-types 
+      id: effect-types
       contents:
         - text: "How to read this guide"
           href: /guides/how-to-read.html
         # - text: "What is a simulation?"
         - text: "Language"
-          contents: 
+          contents:
             - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
               href: /guides/research-questions/effect-types.en.html
             - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
               href: /guides/research-questions/effect-types.fr.html
             - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
               href: /guides/research-questions/effect-types.es.html
-        
+
     - title: ""
       id: hypothesis-testing
       contents:
         - text: "How to read this guide"
           href: /guides/how-to-read.html
         - text: "Language"
-          contents: 
+          contents:
             - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
               href: /guides/analysis-procedures/hypothesis-testing.en.html
             # - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
@@ -62,7 +62,7 @@ website:
         - text: "How to read this guide"
           href: /guides/how-to-read.html
         - text: "Language"
-          contents: 
+          contents:
             - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
               href: /guides/assessing-designs/external-validity.en.html
             - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
@@ -76,7 +76,7 @@ website:
         - text: "How to read this guide"
           href: /guides/how-to-read.html
         - text: "Language"
-          contents: 
+          contents:
             - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
               href: /guides/assessing-designs/power.en.html
             - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
@@ -90,7 +90,7 @@ website:
         - text: "How to read this guide"
           href: /guides/how-to-read.html
         - text: "Language"
-          contents: 
+          contents:
             - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
               href: /guides/research-questions/mechanisms.en.html
             - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
@@ -104,7 +104,7 @@ website:
         - text: "How to read this guide"
           href: /guides/how-to-read.html
         - text: "Language"
-          contents: 
+          contents:
             - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
               href: /guides/planning/pap.en.html
             - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
@@ -118,7 +118,7 @@ website:
         - text: "How to read this guide"
           href: /guides/how-to-read.html
         - text: "Language"
-          contents: 
+          contents:
             - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
               href: /guides/causal-inference/x-cause-y.en.html
             - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
@@ -129,7 +129,7 @@ website:
 
 format:
   html:
-    theme: 
+    theme:
       - simplex
       - theme.scss
     css: styles.css
@@ -138,6 +138,7 @@ format:
     toc-location: body
     toc-depth: 1
     code-overflow: wrap
+    code-fold: true
     number-sections: true
     abstract-title: Summary
     template-partials:
