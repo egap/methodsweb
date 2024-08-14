@@ -4,7 +4,7 @@ author:
   - name: "Paul Testa"
     url: https://paultesta.org/
   - name: "Eric Dobbie"
-      url: mailto:eric.dobbie@emory.edu
+    url: mailto:eric.dobbie@emory.edu
 image: effect-types.png
 bibliography: effect-types.bib
 ---
@@ -119,16 +119,22 @@ Those interested in further reading on conditional average treatment effects sho
 
 6. Intent-to-treat effects
 ==
-Outside of a controlled laboratory setting, the subjects we assign to treatment often are not the same as the subjects who actually receive the treatment. For example, a public health agency could send postcards to people to  encourage people to take aspirins when they have a headache, but they cannot force people to swallow the pills. Some people will take a pill because they were encouraged to do so by the postcards, but other will not comply with the instructions. We call this issue noncompliance[^4]. The intent-to-treat effect (ITT) is the effect of giving someone the opportunity to receive treatment. In the absence of noncompliance, the ITT is the same as the ATE. We can define ITT as:
+
+Outside of a controlled laboratory setting, the subjects we assign to treatment
+often are not the same as the subjects who actually receive the treatment. For
+example, a public health agency could send postcards to people to  encourage
+people to take aspirins when they have a headache, but they cannot force people
+to swallow the pills. Some people will take a pill because they were encouraged
+to do so by the postcards, but other will not comply with the instructions. We
+call this issue noncompliance[^4]. The intent-to-treat effect (ITT) is the
+effect of giving someone the opportunity to receive treatment. In the absence
+of noncompliance, the ITT is the same as the ATE. We can define ITT as:
 
 $$ITT = E[Y_i(Z=1)] - E[Y_i(Z=0)]$$
 
 [^4]: See [10 Things You Need to Know About the Local Average Treatment Effect](https://methods.egap.org/guides/research-questions/late_en.html) for more on non-compliance.
 
 Where $Z$ is an indicator for whether a subject has been *assigned* to treatment rather than indicating whether they *received* treatment.
-
-7. Complier average causal effects
-==
 
 What if you are interested in figuring out the effects of a treatment on those people who actually took up the treatment and not just those people that were administered the treatment? In this case, you would be interested in the complier average causal effect (CACE) or local average treatment effect (LATE). If we write $D_i(Z_i=1)=1$ to mean that a person would take a "dose" of an assigned treatment and $D_i(Z_i=0)=0$ to mean that a person would not take a dose of a treatment if it was not assigned, we can write the CACE as:
 
@@ -137,6 +143,22 @@ $$CACE= E[Y_i(1)-Y_i(0)|D_i(1)-D_i(0) = 1]$$
 Which is the average effect conditional on the subject being a complier, a type that takes the treatment when assigned to treatment and does not take the treatment when assigned to control.[^6]
 
 [^6]: Detailed discussion of both ITT and CACE can be found in chapters 5 and 6 of @gerber_green_2012.
+
+
+7. Quantile Average Treatment Effects
+==
+
+The ATE focuses on the effect for a typical person, but we often also care about the distributional consequences of our treatment. We want to know not just whether our treatment raised average income, but also whether it made the distribution of income in the study more or less equal.
+
+Claims about distributions are difficult. Even though we can estimate the ATE from a difference of sample means, in general, we cannot make statements about the joint distribution of potential outcomes $(F(Y_i(1),Y_i(0)))$ without further assumptions. Typically, these assumptions either limit our analysis to a specific sub-population[^17] or require us to assume some form of rank invariance in the distribution of responses to treatment effects.[^18]
+
+[^17]: Abadie, Angrist, and Imbens (2002)
+
+[^18]:Chernozhukov and Hansen (2005). That is, treatment can have heterogeneous effects but the ordering of potential outcomes is preserved. See Angrist and Pischke  Angrist, Joshua, and Jörn-Steffen Pischke. 2008. Mostly Harmless Econometrics: An Empiricist’s Companion. Princeton university press.  See Frölich and Melly (2010) for fairly concise discussions of these issues and Abbring and Heckman (Abbring, Jaap H, and James J Heckman. 2007. “Econometric Evaluation of Social Programs, Part III: Distributional Treatment Effects, Dynamic Treatment Effects, Dynamic Discrete Choice, and General Equilibrium Policy Evaluation.” Handbook of Econometrics 6. Elsevier: 5145–5303.) (2007) for a thorough overview.
+
+If these assumptions are justified for our data, we can obtain consistent estimates of quantile treatment effects (QTE) using quantile regression.[^19] Just as linear regression estimates the ATE as a difference in means (or, when covariates are used in the model, from a conditional mean), quantile regression fits a linear model to a conditional quantile and this model can then be used to estimates the effects of treatment for that particular quantile of the outcome. The approach can be extended to include covariates and instruments for non-compliance. Note that the interpretation of the QTE is for a given quantile, not an individual at that quantile.
+
+[^19]: See Koenker, Roger, and Kevin Hallock. 2001. “Quantile Regression: An Introduction.” Journal of Economic Perspectives 15 (4): 43–56. for a concise overview of quantile regression
 
 8. Average marginal component effect
 ==
@@ -148,7 +170,7 @@ The probabilities associated with each factor are also informed by the choice of
 [^7]: For more on the AMCe and conjoint experiments, see @bansak2022using and @liu2023multiple
 
 
-9. Direct and indirect effects
+9. Direct and indirect effects and Eliminated Effects
 ==
 
 When discussing the effects of a treatment, one could be interested in the total effect of the treatment on the outcome, as assumed above, or components of the effect of the treatment. Specifically, one might be interested in the direct effect of the treatment or any number of indirect effects of a treatment. Largely, interest in direct and indirect effects comes from an interest in [mechanisms](https://methods.egap.org/guides/research-questions/mechanisms_en.html). It might be of interest to a researcher *how* the effect happens, rather than simply knowing whether all of the mechanisms together produce an effect.
@@ -166,9 +188,6 @@ Equivalently,
 \end{align}
 
 See @glynn2021advances for more about mediation analysis.
-
-10. Eliminated effect
-==
 
 When interested in indirect effects, one potential estiamnd is the eliminated effect. From section 9 it is clear to see that getting at the indirect effect is, at minimum, challenging. It is not immediately clear what it means to have the mediator respond to the treatment without the treatment being received as in $Y_i(0,M_i(1))$. These cross-world potential outcomes are not possible to observe.
 
@@ -191,5 +210,36 @@ Equivalently:
 This effect can be observed, as both the total effect and the controlled direct effect can be obtained so long as the mediator is able to be manipulated.[^8]
 
 [^8]: See @acharya2018analyzing.
+
+10. Treatment Effects for Binary Outcomes: Log-Odds Treatment Effects and Attributable Effects
+==
+Average treatment effects seem a bit hard to interpret when outcomes are not continuous. For example, a very common binary outcome in the study of elections is coded as 1 when subjects voted, and 0 when they did not. The average effect might be 0.2, but what does it really mean to say that a treatment increased voting by 0.2 for individual? Estimating causal effects for dichotomous outcomes requires some additional care, particularly when including covariates. A common quantity of causal interest for dichotomous outcomes is our treatment’s effect on the log-odds of success, defined for the experimental pool as:
+
+$$\Delta = log\frac{E(Y_i(1))}{1-E(Y_i(1))} - log\frac{E(Y_i(0))}{1-E(Y_i(0))}$$
+
+@freemand_2008b shows that the coefficient from a logistic regression adjusting for covariates in a randomized experiments produces biased estimates of this causal effect. The basic intuition for Freedman’s argument comes from the fact that taking the log of averages is not the same as taking the average of logs and so the treatment coefficient estimated from a logistic regression conditioning on covariates will not provide a consistent estimator of log-odds of success. Instead, Freedman recommends taking the predicted probabilities varying subjects’ treatment status but maintaining their observed covariate profiles to produce a consistent estimator of the log-odds.
+
+An alternative approach with binary outcomes is to infer about the *sum* of successes rather than the difference in proportions. @rosenbaum_2002a introduces this quantity in the context of matched observational studies and @hansen_bowers_2009 use it in a randomized field experiment where voting or not voting is measured at the individual level.
+
+Consider a simple case with a dichotomous outcome and treatment. Let $A$ be the number of outcomes attributable to treatment, that is, the number of cases in which $Y_i$ equaled 1 among treated subjects which would not have occurred had these units been assigned to control. For a range of $A$’s, we adjust the observed contingency table of outcomes among the treated, and compare this resulting distribution to a known null distribution (the distribution of outcomes we would have observed had treatment had no effect). The resulting range of $A$’s for which our test continues to reject the null hypothesis of no effect provides a range of effects that are attributable to our treatment.
+
+Table 1|$D=1$              |$D=0$
+-------|-------------------|--------------
+$Y=1$  |$\sum Y_iD_i-A$    |$(1-Y_i)(D_i)$
+$Y=0$  |$\sum Y_i(1-D_i)+A$|$\sum (1-Y_i)(1-D_i)$
+
+
+First, we define an attributable effect as $A=∑_iZ_iτ_i$, where $τ_i=Y_i(1)−Y_i(0)$ and $y∈0,1$. That is, the attributable effect is the number of “yes” or “success” or other “1” responses among those treated that we would not have seen if they had been assigned control.
+
+Second, notice that if we write the set $U$ as the experimental pool, and the set of control units is a subset of the whole pool, $C⊆U$, then we can write $∑_{i∈C}Y_i−Y_i(0)=0$. This means that we can represent $A$ using totals:
+
+$$A = ∑_{i=1}^NZ_iτ_i=∑_{i=1}^NZ_i(Y_i(1)−Y_i(0))=∑_{i∉C}Y_i(1)−∑_{i∉C}Y_i(0)$$
+$$  = ∑_{i∉C}Y_i−∑_{i∉C}Y_i(0)=∑_{i=1}^NY_i−∑_{i=1}^NY_i(0)=t_U−t_C$$
+<center>
+= observed total overall (fixed and observed) - total outcome under control (unobserved, to estimate)
+</center>
+
+Third, this representation allows us to produce a design-based confidence interval for $\hat{A}$ by drawing on the survey sampling literature about statistical inference for sample totals because the observed total number of successful outcomes (the total number of people voting in the example), $t_U$,  is fixed across randomizations.
+
 
 # References
