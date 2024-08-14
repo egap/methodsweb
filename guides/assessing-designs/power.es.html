@@ -319,12 +319,15 @@ window.Quarto = {
 </ul>
 <p>Si observamos la fórmula con detenimiento, encontramos que bajo estos supuestos <span class="math inline">\(\beta = 0.80\)</span>, lo que significa que tenemos una probabilidad del 80% de obtener un resultado estadísticamente significativo con este diseño. Haga clic en <a href="https://docs.google.com/spreadsheets/d/117R4cqKkhX1MFqPIh7Yg2YzjHykxD7WsSLXqhEbD33I/edit#gid=0">aquí para acceder a una hoja de cálculo de Google</a> {target = “_blank”} con esta fórmula. Puede copiar estas fórmulas directamente en Excel. Si se siente cómodo con R, aquí hay un código que le ayudará hacer el mismo cálculo.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>power_calculator <span class="ot">&lt;-</span> <span class="cf">function</span>(mu_t, mu_c, sigma, <span class="at">alpha=</span><span class="fl">0.05</span>, N){ </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  lowertail <span class="ot">&lt;-</span> (<span class="fu">abs</span>(mu_t <span class="sc">-</span> mu_c)<span class="sc">*</span><span class="fu">sqrt</span>(N))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>sigma) </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  uppertail <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>lowertail </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(lowertail<span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">lower.tail=</span><span class="cn">TRUE</span>) <span class="sc">+</span> <span class="dv">1</span><span class="sc">-</span> <span class="fu">pnorm</span>(uppertail<span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">lower.tail=</span><span class="cn">FALSE</span>) </span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(beta) </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="cuándo-confiar-en-el-análisis-de-poder" class="level1" data-number="5">
@@ -341,6 +344,8 @@ window.Quarto = {
 <p>El poder es una medida de la frecuencia con la que, dados nuestros supuestos, obtendríamos resultados estadísticamente significativos si lleváramos a cabo nuestro experimento miles de veces. Para la fórmula del cálculo del poder hacemos ciertos supuestos y obtenemos una solución analítica. Sin embargo, gracias a los avances informáticos, no tenemos que depender de soluciones analíticas para el análisis del poder. Podemos decirle a nuestras computadoras que realicen el experimento miles de veces y simplemente establecer la frecuencia con la que nuestro experimento resulta significativo.</p>
 <p>El código a continuación muestra cómo realizar esta simulación en R</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Los tamaños de muestra a considerar</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>possible.ns <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">100</span>, <span class="at">to=</span><span class="dv">2000</span>, <span class="at">by=</span><span class="dv">40</span>) </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="do">## requerimos que el tamaño de la muestra sea par</span></span>
@@ -378,11 +383,12 @@ window.Quarto = {
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  powers[j] <span class="ot">&lt;-</span> <span class="fu">mean</span>(significant.experiments) </span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  } </span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>powers </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.256 0.332 0.376 0.468 0.478 0.644 0.622 0.614 0.702 0.824 0.804 0.836
-[13] 0.874 0.870 0.884 0.914 0.938 0.954 0.952 0.958 0.970 0.964 0.966 0.982
-[25] 0.980 0.980 0.982 0.990 0.992 0.998 0.996 0.994 0.996 0.994 1.000 1.000
-[37] 1.000 1.000 0.996 0.998 0.998 1.000 0.998 1.000 1.000 1.000 1.000 1.000</code></pre>
+<pre><code> [1] 0.264 0.336 0.384 0.464 0.502 0.614 0.614 0.696 0.702 0.806 0.778 0.840
+[13] 0.858 0.856 0.916 0.918 0.924 0.916 0.952 0.934 0.970 0.970 0.986 0.970
+[25] 0.960 0.984 0.984 0.990 0.996 0.996 0.994 0.992 0.994 1.000 0.996 0.996
+[37] 1.000 1.000 0.998 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000</code></pre>
 </div>
 </div>
 <p>El código para esta simulación y otras está disponible <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/">aquí</a> {target = “_blank”}. La simulación es una forma mucho más flexible e intuitiva de pensar el análisis de poder. Incluso los ajustes más pequeños a un diseño experimental son difíciles de capturar en una fórmula (agregar un segundo grupo de tratamiento, por ejemplo), pero son relativamente sencillos de incluir en una simulación.</p>

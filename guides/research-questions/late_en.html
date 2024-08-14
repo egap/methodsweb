@@ -253,6 +253,8 @@ div.csl-indent {
 <h1 data-number="4"><span class="header-section-number">4</span> You can estimate the LATE using an instrumental variables approach</h1>
 <p>The LATE estimate is equivalent to an instrumental variables estimate. This is most easily illustrated following a set of regressions. Say that 50 individuals from a population of 100 are randomly assigned to treatment. Regressing treatment status (D) on the treatment assignment (Z) gives the estimated share of compliers: 80%. The ITT effect is estimated by regressing outcome Y on the assignment to treatment (Z). Again, LATE is estimated by dividing the ITT estimate by the estimated share of compliers. A researcher will get exactly the same results when running a two-stage least squares (2SLS) regression in which the outcome (Y) is regressed on the treatment (D), using the assignment to treatment as an instrumental variable (Z). This is shown in the code below.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,<span class="dv">50</span>) <span class="co"># Assign 50 to treatment group (Z = 1), 50 to control group (Z = 0)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> Z           <span class="co"># Compliers have D (treatment received) = Z (treatment assignment)</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>D[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]  <span class="ot">&lt;-</span> <span class="dv">0</span>    <span class="co"># 10 Never Takers</span></span>
@@ -267,12 +269,16 @@ div.csl-indent {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># LATE estimate</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>LATE <span class="ot">&lt;-</span> ITT <span class="sc">/</span> ITTD</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Y_1 =</span> <span class="fu">mean</span>(Y[Z<span class="sc">==</span><span class="dv">1</span>]), <span class="at">Y_0=</span><span class="fu">mean</span>(Y[Z<span class="sc">==</span><span class="dv">0</span>]), ITTD, ITT, LATE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Y_1 Y_0 ITTD ITT LATE
 Z  50  10  0.8  40   50</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(AER) </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">ivreg</span>(Y<span class="sc">~</span> D <span class="sc">|</span> Z)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:

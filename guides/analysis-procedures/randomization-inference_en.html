@@ -230,6 +230,8 @@ div.csl-indent {
 <h1 data-number="2"><span class="header-section-number">2</span> Randomization inference starts with a null hypothesis</h1>
 <p>After we have conducted an experiment, we observe outcomes for the control group in their untreated state and outcomes for the treatment group in their treated state.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> In order to simulate all possible random assignments, we need to stipulate the counterfactual outcomes – what we would have observed among control units had they been treated or among treated units had they not been treated. The <em>sharp null hypothesis of no treatment effect</em> for any unit is a skeptical worldview that allows us to stipulate all of the counterfactual outcomes. If there were no treatment effect for any unit, then all the control units’ outcomes would have been unchanged had they been placed in treatment. Similarly, the treatment units’ outcomes would have been unchanged had they been placed in the control group. Under the sharp null hypothesis, we therefore have a complete mapping from our data to the outcomes of all possible experiments. All we need to do is construct all possible random assignments and, for each one, calculate the test statistic (e.g., the difference in means between the assigned treatment group and the assigned control group). The collection of these test statistics over all possible random assignments creates a <em>reference distribution under the null hypothesis</em>. If we want to know how unusual our actual experimental test statistic is, we compare it to the reference distribution. For example, our experiment might obtain an estimate of 6.5, but 24% of all random assignments produce an estimate of 6.5 or more even in the absence of any treatment effect. In that case, our one-tailed p-value would be 0.24.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Worked example of randomization inference</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())       <span class="co"># clear objects in memory</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ri)         <span class="co"># load the RI package</span></span>
@@ -244,6 +246,7 @@ div.csl-indent {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>perms <span class="ot">&lt;-</span> <span class="fu">genperms</span>(Z,<span class="at">maxiter=</span><span class="dv">10000</span>,<span class="at">blockvar=</span><span class="cn">NULL</span>)   <span class="co"># set the number of simulated random assignments</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># show all 21 possible random assignments in which 2 units are treated</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>perms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13] [,14]
 1    1    1    1    1    1    1    0    0    0     0     0     0     0     0
@@ -262,12 +265,15 @@ div.csl-indent {
 6     0     0     1     0     1     0     1
 7     1     0     0     1     0     1     1</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------------------</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate sampling dist under the sharp null that tau=0 for all units</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------------------------------</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Ys <span class="ot">&lt;-</span> <span class="fu">genouts</span>(Y,Z,<span class="at">ate=</span><span class="dv">0</span>)    <span class="co"># create potential outcomes under the sharp null of no effect for any unit</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># show the apparent potential outcomes under the sharp null</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Ys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>$Y0
 [1] 15 15 20 20 10 15 30
@@ -275,25 +281,40 @@ div.csl-indent {
 $Y1
 [1] 15 15 20 20 10 15 30</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>distout <span class="ot">&lt;-</span> <span class="fu">gendist</span>(Ys,perms,<span class="at">prob=</span>probs)  <span class="co"># generate the sampling distribution  based on the implied schedule of potential outcomes implied by the null hypothesis</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ate                             <span class="co"># estimated ATE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.5</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(distout)                   <span class="co"># list the distribution of possible estimates under the sharp null of no effect</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] -7.5 -7.5 -7.5 -4.0 -4.0 -4.0 -4.0 -4.0 -0.5 -0.5 -0.5 -0.5 -0.5 -0.5  3.0
 [16]  3.0  6.5  6.5  6.5 10.0 10.0</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(    distout  <span class="sc">&gt;=</span>     ate )<span class="sc">/</span><span class="fu">nrow</span>(<span class="fu">as.matrix</span>(distout))   <span class="co"># one-tailed comparison used to calculate p-value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2380952</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">abs</span>(distout) <span class="sc">&gt;=</span> <span class="fu">abs</span>(ate))<span class="sc">/</span><span class="fu">nrow</span>(<span class="fu">as.matrix</span>(distout))   <span class="co"># two-tailed comparison used to calculate p-value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3809524</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dispdist</span>(distout,ate)        <span class="co"># display p-values, 95% confidence interval, standard error under the null, and graph the sampling distribution under the null</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -324,10 +345,13 @@ $sd
 $exp.val
 [1] 0</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare results to traditional t-test with unequal variance</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Y<span class="sc">~</span>Z,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"less"</span>,</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -341,9 +365,12 @@ sample estimates:
 mean in group 0 mean in group 1 
            16.0            22.5 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Y<span class="sc">~</span>Z,</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test

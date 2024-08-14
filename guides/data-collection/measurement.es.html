@@ -311,6 +311,8 @@ window.Quarto = {
 <p>Hay varias formas de agregar múltiples resultados en un índice. [“10 Cosas que saber sobre comparaciones múltiples”] (https://egap.org/resource/10-things-to-know-about-multiple-comparisons) describe índices construidos a partir de puntuación-<span class="math inline">\(z\)</span> y ponderación de covarianza inversa de múltiples variables de resultados. También hay muchos otros modelos estructurales para estimar variables latentes a partir de múltiples mediciones.</p>
 <p>A continuación observamos un índice simple de puntuación-<span class="math inline">\(z\)</span> de dos medidas ruidosas de una variable latente. Suponemos que las variables latentes y los indicadores “Medida 1” y “Medida 2” se extraen de una distribución normal multivariante y están correlacionados positivamente con la variable latente y entre sí. Para efectos de la simulación, asumimos que conocemos la variable latente, aunque en la práctica esto no es posible. Primero, podemos mostrar que en muchas simulaciones de los datos, la correlación entre el índice de puntuación-<span class="math inline">\(z\)</span> de las dos medidas y la variable latente es, en promedio, más alta que la correlación entre cualquiera de los indicadores y la variable latente. Al graficar la correlación de las medidas individuales y la variable latente contra (<span class="math inline">\(x\)</span> -ejes) la correlación del índice y la variable latente (<span class="math inline">\(y\)</span> -eje), casi todos los puntos están por encima de la línea de 45 grados. Esto muestra que el índice se aproxima a la variable latente con mayor precisión.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -366,6 +368,7 @@ window.Quarto = {
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"Correlación entre la medición y la variable latente"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Correlación entre el índice y la variable latente"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, .<span class="dv">6</span>)) <span class="sc">+</span> </span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -376,6 +379,8 @@ window.Quarto = {
 </div>
 <p>Ahora, considere las implicaciones para el poder. En las simulaciones estimamos el ATE de un tratamiento en la Medida 1, la Medida 2 y el índice. El siguiente gráfico visualiza los estimados. Las líneas azules muestran intervalos de confianza del 95 por ciento. Los intervalos de confianza más pequeños sobre el índice visualizan las ganancias de precisión al aprovechar ambas mediciones. Vemos que esto se manifiesta en un mayor poder estadístico para el experimento.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">est =</span> <span class="fu">c</span>(sims[<span class="st">"est_index"</span>,], sims[<span class="st">"est_Y1"</span>,], sims[<span class="st">"est_Y2"</span>,]),</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">se =</span> <span class="fu">c</span>(sims[<span class="st">"se_index"</span>,], sims[<span class="st">"se_Y1"</span>,], sims[<span class="st">"se_Y2"</span>,]),</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">outcome =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Index"</span>, <span class="st">"Medida 1"</span>, <span class="st">"Medida 2"</span>), <span class="at">each =</span> <span class="dv">500</span>)) <span class="sc">%&gt;%</span></span>
@@ -395,6 +400,7 @@ window.Quarto = {
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Percentil del Estimado en 500 simulaciones"</span>) <span class="sc">+</span> </span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"ATE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

@@ -215,10 +215,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ce n’est pas une mauvaise approche, mais elle présente des lacunes. Premièrement, en utilisant cette méthode, vous ne pouvez pas savoir à l’avance combien d’unités seront sous traitement et combien sous contrôle. Si vous voulez le savoir à l’avance, vous avez besoin d’un moyen de faire des sélections afin que les différents tirages ne soient pas statistiquement indépendants les uns des autres (comme tirer des noms d’un chapeau). Deuxièmement, vous voudrez peut-être avoir le contrôle sur la proportion exacte des unités assignées au traitement et au contrôle. C’est difficile à faire avec une pièce de monnaie. Troisièmement, vous voudrez peut-être pouvoir reproduire votre randomisation pour montrer qu’il n’y avait pas d’erreurs. C’est difficile à faire avec des pièces de monnaie ou des chapeaux. Enfin, comme nous le montrons ci-dessous, il existe toutes sortes de façons de faire de la randomisation pour améliorer la puissance statistique et assurer l’équilibre. C’est plus difficile en utilisant des pièces de monnaie ou des chapeaux.</p>
 <p>Heureusement cependant, une randomisation réplicable et flexible est possible avec des logiciels disponibles gratuitement. Le code suivant en R peut, par exemple, être utilisé pour générer une assignation aléatoire, spécifiant le nombre d’unités à traiter. Ici, N (100) est le nombre d’unités dont vous disposez et m (34) est le nombre que vous souhaitez traiter. La “graine” permet de reproduire le même tirage à chaque fois que vous exécutez le code (ou vous pouvez changer la graine pour un tirage différent).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># définir une "graine" aléatoire pour rendre cela reproductible</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">343</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">complete_ra</span>(<span class="dv">100</span>, <span class="dv">34</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="randomisation-par-bloc-vous-pouvez-vous-assurer-que-les-groupes-de-traitement-et-de-contrôle-sont-équilibrés" class="level1" data-number="2">
@@ -230,6 +233,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Le <a href="https://cran.r-project.org/web/packages/blockTools/index.html">package blockTools</a> est utile pour effectuer la randomisation par bloc. Commençons par générer un faux ensemble de données pour 60 sujets, dont 36 hommes et 24 femmes.</p>
 <p>Supposons que nous voudrions découper par bloc selon le genre. Sur la base de nos données, blockTools générera les blocs les plus petits possibles, chaque bloc contenant deux unités du même genre, dont l’une sera assignée au traitement et l’autre au contrôle.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(blockTools)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -254,6 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">block_id =</span> <span class="fu">createBlockIDs</span>(out, dat, <span class="at">id.var =</span> <span class="st">"id"</span>),</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_block_2 =</span> <span class="fu">block_ra</span>(block_id))</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_block_2, block_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Vous pouvez vérifier la moyenne de la variable sur laquelle vous avez découpé en bloc pour voir que les groupes de traitement et de contrôle sont en fait parfaitement équilibrés selon le genre.</p>
 </section>
@@ -264,12 +270,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Les conceptions factorielles sont particulièrement utiles lors de l’évaluation d’interventions qui incluent un ensemble de traitements. Comme dans l’exemple ci-dessus, de nombreuses interventions de développement comportent plusieurs bras de traitement, et il est parfois difficile de dire quels bras produisent l’effet observé. Une conception factorielle sépare ces différents traitements et permet également de voir l’interaction entre eux.</p>
 <p>Le code suivant vous montre comment randomiser pour une conception factorielle.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_loan =</span> <span class="fu">complete_ra</span>(<span class="dv">80</span>, <span class="dv">40</span>),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_training =</span> <span class="fu">block_ra</span>(<span class="at">blocks =</span> Z_loan)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_loan, Z_training))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="vous-pouvez-randomiser-des-grappes-entières-ensemble-mais-plus-vos-grappes-sont-grandes-plus-votre-puissance-statistique-est-faible" class="level1" data-number="4">
@@ -297,6 +306,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>La première consiste à estimer l’effet moyen du traitement bloc par bloc, puis à faire la moyenne des effets de traitement, pondérée par la taille du bloc par rapport à l’ensemble de l’échantillon.</p>
 <p>La deuxième méthode est la pondération de probabilité inverse (inverse probability weighting, IPW). Pour l’IPW, les poids sont définis comme 1/p pour les unités traitées et 1/(1-p) pour les unités de contrôle, où p fait référence à la probabilité d’assignation de traitement. Cette méthode vous permet d’exécuter une régression pondérée de Y sur l’assignation de traitement.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Y0 =</span> <span class="dv">1</span><span class="sc">:</span>N,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">Y1 =</span> Y0 <span class="sc">+</span> <span class="dv">10000</span>)</span>
@@ -313,6 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">ipw_estimate =</span> <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>], <span class="dv">1</span> <span class="sc">/</span> p[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>], <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> p[Z <span class="sc">==</span> <span class="dv">0</span>]))</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="randomisation-restreinte-si-vous-naimez-pas-ce-que-vous-obtenez-vous-pouvez-recommencer" class="level1" data-number="7">

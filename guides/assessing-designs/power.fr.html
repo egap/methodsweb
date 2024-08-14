@@ -320,12 +320,15 @@ window.Quarto = {
 </ul>
 <p>En utilisant la formule, nous trouvons que sous cet ensemble d’hypothèses, <span class="math inline">\(\beta = 0,80\)</span>, ce qui signifie que nous avons 80 % de chances d’avoir un résultat statistiquement significatif avec cette conception. Cliquez <a href="https://docs.google.com/spreadsheets/d/117R4cqKkhX1MFqPIh7Yg2YzjHykxD7WsSLXqhEbD33I/edit#gid=0" target="_blank">ici pour une Google spreadsheet</a> qui inclut cette formule. Vous pouvez copier ces formules directement dans Excel. Si vous êtes à l’aise avec R, voici le code pour le même calcul.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>power_calculator <span class="ot">&lt;-</span> <span class="cf">function</span>(mu_t, mu_c, sigma, <span class="at">alpha=</span><span class="fl">0.05</span>, N){ </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  lowertail <span class="ot">&lt;-</span> (<span class="fu">abs</span>(mu_t <span class="sc">-</span> mu_c)<span class="sc">*</span><span class="fu">sqrt</span>(N))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>sigma) </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  uppertail <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>lowertail </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(lowertail<span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">lower.tail=</span><span class="cn">TRUE</span>) <span class="sc">+</span> <span class="dv">1</span><span class="sc">-</span> <span class="fu">pnorm</span>(uppertail<span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">lower.tail=</span><span class="cn">FALSE</span>) </span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(beta) </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="quand-croire-votre-analyse-de-puissance" class="level1" data-number="5">
@@ -342,6 +345,8 @@ window.Quarto = {
 <p>La puissance est une mesure de la fréquence pour laquelle, compte tenu des hypothèses, nous obtiendrions des résultats statistiquement significatifs si nous devions mener notre expérience des milliers de fois. La formule de calcul de puissance se base sur des hypothèses et renvoie une solution analytique. Cependant, en raison des progrès de l’informatique moderne, nous n’avons pas à nous fier à des solutions analytiques pour l’analyse de puissance. Nous pouvons dire à nos ordinateurs d’exécuter littéralement l’expérience des milliers de fois et simplement compter la fréquence à laquelle notre expérience est significative.</p>
 <p>Le code ci-dessous montre comment effectuer cette simulation dans R.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>possible.ns <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">100</span>, <span class="at">to=</span><span class="dv">2000</span>, <span class="at">by=</span><span class="dv">40</span>) <span class="co"># Les tailles d'échantillon que nous considérerons</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>( (possible.ns <span class="sc">%%</span> <span class="dv">2</span>)<span class="sc">==</span><span class="dv">0</span> )) <span class="do">## On nécessite un nombre pair d'échantillons expérimentaux</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>powers <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(possible.ns)) <span class="co"># objet vide pour collecter les estimations de simulation</span></span>
@@ -368,11 +373,12 @@ window.Quarto = {
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  powers[j] <span class="ot">&lt;-</span> <span class="fu">mean</span>(significant.experiments) <span class="co"># stocker le taux de réussite moyen (puissance) pour chaque N</span></span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>powers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.188 0.308 0.332 0.444 0.522 0.528 0.668 0.698 0.694 0.772 0.826 0.786
-[13] 0.834 0.918 0.902 0.930 0.948 0.942 0.938 0.968 0.964 0.974 0.976 0.982
-[25] 0.972 0.986 0.982 0.992 0.990 0.984 0.998 0.992 0.988 0.994 1.000 0.998
-[37] 1.000 1.000 1.000 1.000 1.000 0.996 0.998 1.000 0.998 1.000 1.000 0.998</code></pre>
+<pre><code> [1] 0.256 0.338 0.442 0.454 0.478 0.616 0.620 0.696 0.740 0.796 0.722 0.846
+[13] 0.788 0.864 0.912 0.888 0.934 0.952 0.954 0.966 0.974 0.978 0.978 0.982
+[25] 0.982 0.984 0.976 0.996 0.992 0.994 0.994 0.988 0.992 0.998 0.998 1.000
+[37] 0.998 0.996 0.998 1.000 1.000 0.998 1.000 1.000 1.000 1.000 1.000 1.000</code></pre>
 </div>
 </div>
 <p>Le code de cette simulation est disponible <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/" target="_blank">ici</a>. La simulation est un moyen beaucoup plus flexible et beaucoup plus intuitif de penser à l’analyse de puissance. Même les plus petits ajustements d’une conception expérimentale sont difficiles à capturer dans une formule (ajout d’un deuxième groupe de traitement, par exemple), mais sont relativement simples à inclure dans une simulation.</p>

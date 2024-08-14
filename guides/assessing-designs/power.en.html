@@ -297,12 +297,15 @@ window.Quarto = {
 </ul>
 <p>Working through the formula, we find that under this set of assumptions, <span class="math inline">\(β = 0.80\)</span>, meaning that we have an 80% chance of recovering a statistically significant result with this design. Click <a href="https://docs.google.com/spreadsheets/d/117R4cqKkhX1MFqPIh7Yg2YzjHykxD7WsSLXqhEbD33I/edit#gid=0">here for a google spreadsheet</a> that includes this formula. You can copy these formulas directly into Excel. If you’re comfortable in R, here is code that will accomplish the same calculation.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>power_calculator <span class="ot">&lt;-</span> <span class="cf">function</span>(mu_t, mu_c, sigma, <span class="at">alpha=</span><span class="fl">0.05</span>, N){ </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  lowertail <span class="ot">&lt;-</span> (<span class="fu">abs</span>(mu_t <span class="sc">-</span> mu_c)<span class="sc">*</span><span class="fu">sqrt</span>(N))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>sigma) </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  uppertail <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>lowertail </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  beta <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(lowertail<span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">lower.tail=</span><span class="cn">TRUE</span>) <span class="sc">+</span> <span class="dv">1</span><span class="sc">-</span> <span class="fu">pnorm</span>(uppertail<span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">lower.tail=</span><span class="cn">FALSE</span>) </span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(beta) </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>In addition, EGAP has created a power calculator Shiny app, which you can <a href="https://egap.shinyapps.io/Power_Calculator/">access here</a>.</p>
 </section>
@@ -318,6 +321,8 @@ window.Quarto = {
 <p>Power is a measure of how often, given assumptions, we would obtain statistically significant results, if we were to conduct our experiment thousands of times. The power calculation formula takes assumptions and return an analytic solution. However, due to advances in modern computing, we don’t have to rely on analytic solutions for power analysis. We can tell our computers to literally run the experiment thousands of times and simply count how frequently our experiment comes up significant.</p>
 <p>The code block below shows how to conduct this simulation in R using DeclareDesign.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DeclareDesign)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
@@ -356,6 +361,7 @@ window.Quarto = {
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plotdf <span class="ot">&lt;-</span> diagnose<span class="sc">$</span>diagnosands_df</span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co">#print power for the simple regression approach (first 5 rows)</span></span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">kable_styling</span>(<span class="fu">kable</span>(<span class="fu">head</span>(plotdf[<span class="fu">c</span>(plotdf<span class="sc">$</span>estimator<span class="sc">==</span><span class="st">"Simple"</span>), <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">7</span>)]), <span class="at">row.names =</span> F))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -398,6 +404,8 @@ window.Quarto = {
 <p>The code for this simulation and others is available <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/">here</a>. Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.</p>
 <p>In addition to counting up how often your experiments come up statistically significant, you can directly observe the distribution of p-values you’re likely to get. The graph below shows that under these assumptions, you can get expect to get quite a few p-values in the 0.01 range, but that 80% will be below 0.05.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bardf <span class="ot">&lt;-</span> diag<span class="sc">$</span>simulations_df</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bardf, <span class="fu">aes</span>(<span class="at">x =</span> p.value)) <span class="sc">+</span></span>
@@ -405,6 +413,7 @@ window.Quarto = {
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.05</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>, <span class="at">size  =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"p-values"</span>, <span class="at">y =</span> <span class="st">"Number of Experiments"</span>) <span class="sc">+</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -435,12 +444,15 @@ window.Quarto = {
 </ul>
 <p>Here’s a graph that compares the power of an experiment that does control for background attributes to one that does not. The R-square of the regression relating income to age and gender is pretty high — around .66 — meaning that the covariates that we have gathered (generated) are highly predictive. For a rough comparison, sigma, the level of background noise that the unadjusted model is dealing with, is around 33. This graph shows that at any N, the covariate-adjusted model has more power — so much so that the unadjusted model would need 1500 subjects to achieve what the covariate-adjusted model can do with 500.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdf, <span class="fu">aes</span>(<span class="at">x =</span> N, <span class="at">y =</span> power, <span class="at">color =</span> estimator)) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Conventional Power Target"</span>, <span class="at">yintercept =</span> <span class="fl">0.8</span> ), <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sample Size"</span>, <span class="at">y =</span> <span class="st">"Power"</span>, <span class="at">color =</span> <span class="st">""</span>) <span class="sc">+</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>()<span class="sc">+</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

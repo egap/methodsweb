@@ -285,6 +285,8 @@ div.csl-indent {
 <h1 data-number="11"><span class="header-section-number">11</span> # Example code</h1>
 <p>In this example, we use data from <span class="citation" data-cites="gaikwad_nellis_2021">Gaikwad and Nellis (<a href="#ref-gaikwad_nellis_2021" role="doc-biblioref">2021</a>)</span>. They employ a door-to-door field experiment in two Indian cities to increase the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which whether an individual voted in India’s 2019 national election.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
@@ -308,8 +310,11 @@ div.csl-indent {
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">### step 2 </span><span class="al">###</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># outcome and covariate inspection</span></span>
@@ -370,8 +375,11 @@ div.csl-indent {
 <span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Original"</span>)) <span class="sc">+</span></span>
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
 <span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Income (000s INR)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### step 3 </span><span class="al">###</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dealing with outliers</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -411,8 +419,11 @@ div.csl-indent {
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Original"</span>, <span class="st">"Winsorized"</span>)) <span class="sc">+</span></span>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Income (000s INR)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">### step 4 </span><span class="al">###</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># checking for imbalance</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -531,8 +542,11 @@ div.csl-indent {
 <span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Rbeta.hat &lt;- coef(t1bal)[-1]</span></span>
 <span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="co"># RVR &lt;- vcovHC(t1bal, type &lt;- 'HC0')[-1,-1]</span></span>
 <span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="co"># W_obs &lt;- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">### step 4 </span><span class="al">###</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># checking for attrition</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -581,6 +595,7 @@ div.csl-indent {
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="do">## </span><span class="al">TODO</span><span class="do">: add in balance (missingness on treatment by covariate interaction, then F stat?)</span></span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># need to wait to hear back about this part</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="references" class="level1" data-number="12">

@@ -328,6 +328,8 @@ window.Quarto = {
 <p>There are multiple ways to aggregate multiple outcomes into an index. <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">10 Things to Know about Multiple Comparisons</a> describes indices built from <span class="math inline">\(z\)</span>-score and inverse covariance weighting of multiple outcomes. There are also many other structural models for estimating latent variables from multiple measures.</p>
 <p>Below, we look at simple <span class="math inline">\(z\)</span>-score index of two noisy measures of a latent variable. We assume that the latent variables and both indicators “Measure 1” and “Measure 2” are drawn from a multivariate normal distribution and are positively correlated with the latent variable and with each other. For the purposes of simulation, we assume that we know the latent variable, though in practice this is not possible. First, we can show that across many simulations of the data, the correlation between the <span class="math inline">\(z\)</span>-score index of the two measures and the latent variable is, on average, higher than the correlation between either of the indicators and the latent variable. When graphing the correlation of the individual measures and the latent variable against (<span class="math inline">\(x\)</span>-axes) the correlation of the index and the latent variable (<span class="math inline">\(y\)</span>-axis), almost all points are above the 45-degree line. This shows that the index approximates the latent variable with greater precision.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -377,6 +379,7 @@ window.Quarto = {
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"Correlation between measure and latent variable"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Correlation between index and latent variable"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, .<span class="dv">6</span>)) <span class="sc">+</span> </span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -387,6 +390,8 @@ window.Quarto = {
 </div>
 <p>Now, consider the implications for power. In the simulations, we estimate of the ATE of a treatment on Measure 1, Measure 2, and the index. The following graph visualizes the estimates. The blue lines show 95 percent confidence intervals. The smaller confidence intervals about the index visualize the precision gains from leveraging both measures. We see that this manifests in higher statistical power for the experiment.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">est =</span> <span class="fu">c</span>(sims[<span class="st">"est_index"</span>,], sims[<span class="st">"est_Y1"</span>,], sims[<span class="st">"est_Y2"</span>,]),</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">se =</span> <span class="fu">c</span>(sims[<span class="st">"se_index"</span>,], sims[<span class="st">"se_Y1"</span>,], sims[<span class="st">"se_Y2"</span>,]),</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">outcome =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Index"</span>, <span class="st">"Measure 1"</span>, <span class="st">"Measure 2"</span>), <span class="at">each =</span> <span class="dv">500</span>)) <span class="sc">%&gt;%</span></span>
@@ -406,6 +411,7 @@ window.Quarto = {
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Percentile of Estimate in 500 simulations"</span>) <span class="sc">+</span> </span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"ATE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

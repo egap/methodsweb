@@ -362,6 +362,8 @@ window.Quarto = {
 <p>En el siguiente código, comenzamos creando la variable Q para cada individuo, y definimos los efectos “verdaderos” de X sobre M, M sobre Y y X sobre Y. A continuación creamos variables de resultados potenciales e hipotéticas para M. Es decir, para cada individuo, definimos qué valor de M revelarían si fueran tratados, y qué valor de M revelarían si no fueran tratados. Estos valores están relacionados no sólo con el “verdadero” efecto de X sobre M, sino también con Q. Así mismo podemos definir variables de resultados potenciales e hipotéticas para Y. Hacemos esto para cuatro escenarios, todos los cuales suponen efectos constantes, una suposición que relajaremos más adelante. Dos de ellos son variables de resultado potenciales simples de Y: el Y del individuo cuando no es tratado y revela su variable de resultado potencial M sin tratar, y el Y del individuo cuando es tratado y revela su variable de resultado potencial M, que ha sido tratado. Sin embargo, también definimos dos variables de resultado potenciales complejas de Y: el Y del individuo cuando no es tratado pero revela su variable de resultado potencial M, que ha sido tratado, y el Y del individuo que es tratado pero revela sus potenciales variables de resultado M, que no han sido tratados. Aunque estas variables de resultado potenciales nos puedan confundir un poco, es importante definirlos en el sentido hipotético para poder calcular los efectos directos e indirectos “verdaderos” (pero intrínsecamente inobservables) con los que podamos comparar nuestro análisis de descomposición.</p>
 <p>En la segunda mitad del código, realizamos una asignación aleatoria del tratamiento y procedemos al análisis de descomposición de efectos descrito anteriormente, utilizando los datos que “observamos”. Bajo los (fuertes) supuestos de que los términos de error no están correlacionados y los efectos son constantes entre los sujetos; <span class="math inline">\(a*b\)</span> = ACME, <span class="math inline">\(d\)</span> = ACDE y <span class="math inline">\(c\)</span> = ATE. Sin embargo, la simulación revela que <span class="math inline">\(a*b\)</span> &gt; ACME y <span class="math inline">\(d\)</span> &lt; ACDE; es decir, sobrestimamos el efecto promedio indirecto o mediado (ACME) y subestimamos el efecto promedio medio directo (ACDE). Nuestro análisis de descomposición de efectos estaba sesgado porque el primer supuesto -términos de error no correlacionados- no se cumplía: la variable no observada Q predecía tanto M como Y, y esto nos llevó a sobreestimar el papel del mecanismo M.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20160301</span>)</span>
@@ -387,9 +389,12 @@ window.Quarto = {
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># podemos estimar el Efecto Promedio del Tratamiento sin sesgo (ATE) de X sobre M</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ATE_M <span class="ot">&lt;-</span> <span class="fu">mean</span>(M_1 <span class="sc">-</span> M_0)</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>ATE_M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construir POs para la variable de resultado</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Y_M0_X0 <span class="ot">&lt;-</span> tau_M_on_Y<span class="sc">*</span>(M_0) <span class="sc">+</span> tau_X_on_Y<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> Q_i</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Y_M1_X1 <span class="ot">&lt;-</span> tau_M_on_Y<span class="sc">*</span>(M_1) <span class="sc">+</span> tau_X_on_Y<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> Q_i</span>
@@ -427,25 +432,40 @@ window.Quarto = {
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>ATE <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_1 <span class="sc">-</span> Y_0)</span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>ATE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.52</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ACDE <span class="sc">+</span> ACME <span class="co"># notese que los efectos directos e indirectos suman el total</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.52</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ACDE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ACME</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ATE_M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignación Aleatoria, Revelación de POs, Intento de Descomponer Efectos ---------------------------------</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># asignamos mitad de nuestra muestra al tratamiento y la otra mitad a control</span></span>
@@ -457,61 +477,89 @@ window.Quarto = {
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(M <span class="sc">~</span> X)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">coef</span>(model1)[<span class="dv">2</span>] <span class="co"># extraer el coeficiente para encontrar el efecto de X sobre M</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        X 
 0.2001291 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">coef</span>(model2)[<span class="dv">2</span>] <span class="co"># extraer el coeficiente para encontrar el efecto total de X sobre Y</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       X 
 0.520142 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X <span class="sc">+</span> M)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">coef</span>(model3)[<span class="dv">2</span>] <span class="co"># extraer este coeficiente para encontrar el efecto de X sobre Y controlando M</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(model3)[<span class="dv">3</span>] <span class="co"># extraer este coeficiente para encontrar el efecto de M sobre Y controlando X</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># se multiplicaría el efecto promedio de X sobre M y el efecto promedio de M sobre Y para hallar el efecto promedio indirecto/mediado de X sobre Y a través de M (ACME)</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>a<span class="sc">*</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       X 
 0.220142 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pero cuando comparamos esto con el ACME verdadero, veremos que es sesgado</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ACME</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># algunos también interpretarían el efecto promedio de X sobre Y controlando para M, como el efecto directo promedio controlado (ACDE)</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  X 
 0.3 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pero cuando comparamos esto con el ACDE verdadero, veremos que es sesgado </span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ACDE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nótese que hemos SOBREestimado el efecto indirecto promedio y hemos SUBestimado el efecto directo promedio</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># los estimados que no son sesgados son los efectos promedio de X sobre Y y X sobre M porque X es asignado aleatoriamente</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        X 
 0.2001291 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ATE_M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       X 
 0.520142 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ATE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.52</code></pre>
 </div>

@@ -293,6 +293,8 @@ window.Quarto = {
 <p><span class="math display">\[Y_{i}=Y_{i}(0)∗(1−D_{i})+Y_{i}(1)∗D_{i}=β_{0}+β_{1}D_{i}+u\]</span></p>
 <p>puisque nous pouvons réarranger les termes de sorte que <span class="math inline">\(β_{0}\)</span> représente la moyenne parmi les observations de contrôle <span class="math inline">\((Y_{i}(0)∣D_{i}=0)\)</span> et <span class="math inline">\(β_{1}\)</span> représente la différence des moyennes <span class="math inline">\((Y_{i}(1)∣D_{i}=1)–(Y_{i}(1)∣D_{i}=0)\)</span>. Dans le code ci-dessous, nous créons un échantillon de 1 000 observations et assignons de manière aléatoire un traitement Di avec un effet unitaire constant à la moitié des unités. Nous estimons l’ATE en utilisant la méthode des moindres carrés ordinaires (MCO) pour calculer la différence des moyennes observée. Le calcul des moyennes dans chaque groupe et la prise de leur différence produiraient également une estimation non biaisée de l’ATE. Notez que l’ATE estimé à partir de MCO n’est pas biaisé, mais les erreurs dans ce modèle linéaire sont supposées être indépendantes et distribuées de manière identique. Lorsque notre traitement affecte à la fois la valeur moyenne du résultat et la distribution des réponses, cette hypothèse ne tient plus et nous devons ajuster l’erreur type de MCO à l’aide d’un estimateur sandwich Huber-White pour obtenir les estimations correctes (basées sur la variance de l’ATE) pour l’inférence statistique.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Enfin, nous démontrons également l’absence de biais de ces estimateurs par simulation.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># pour la reproductibilité</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># taille de la population</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(N) <span class="co"># Résultat potentiel sous la condition de contrôle</span></span>
@@ -307,10 +309,13 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich) </span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp) </span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(fit))[<span class="st">"D"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Estimate Std. Error 
 1.01820525 0.01841784 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ATE.se<span class="ot">&lt;-</span><span class="fu">coeftest</span>(fit,<span class="fu">vcovHC</span>(fit,<span class="at">type=</span><span class="st">"HC2"</span>))[<span class="st">"D"</span>,<span class="dv">2</span>] </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># idem avec (samp,sqrt(var(Y[D==1])/sum(D)+var(Y[D==0])/(n-sum(D)))</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Évaluer le biais et simuler l'erreur type</span></span>
@@ -322,10 +327,13 @@ window.Quarto = {
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>manyATEs<span class="ot">&lt;-</span><span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">getATE</span>()) </span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Évaluer le biais:</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">ATE=</span><span class="fu">mean</span>(Y1)<span class="sc">-</span><span class="fu">mean</span>(Y0), <span class="at">ExpEstATE=</span><span class="fu">mean</span>(manyATEs)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      ATE ExpEstATE 
 1.0000000 0.9999077 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Erreur type</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">### en utilisant la formule classique</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>V<span class="ot">&lt;-</span><span class="fu">var</span>(<span class="fu">cbind</span>(Y0,Y1)) </span>
@@ -337,6 +345,7 @@ window.Quarto = {
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>varestATE<span class="ot">&lt;-</span>((N<span class="sc">-</span>n)<span class="sc">/</span>(N<span class="dv">-1</span>))<span class="sc">*</span>(vart<span class="sc">/</span>n) <span class="sc">+</span> ((N<span class="sc">-</span>m)<span class="sc">/</span>(N<span class="dv">-1</span>))<span class="sc">*</span> (varc<span class="sc">/</span>m) <span class="sc">+</span> (<span class="dv">2</span><span class="sc">/</span>(N<span class="dv">-1</span>)) <span class="sc">*</span> covtc </span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">### Comparer les erreurs types</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">SimulatedSE=</span> <span class="fu">sd</span>(manyATEs), <span class="at">TrueSE=</span><span class="fu">sqrt</span>(varestATE), <span class="at">ConservativeSE=</span>ATE.se) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   SimulatedSE         TrueSE ConservativeSE 
     0.01835497     0.01842684     0.01841784 </code></pre>
@@ -355,6 +364,8 @@ window.Quarto = {
 <p>En cas de non-conformité, la réception du traitement n’est plus indépendante des résultats potentiels et des facteurs de confusion. Les personnes qui relèvent réellement leur courrier diffèrent probablement à plusieurs égards de celles qui jettent leur courrier (ou lisent le courrier de leurs voisins) et ces différences affectent probablement également leur probabilité de voter. La différence des moyennes entre les sujets assignés au traitement et au contrôle n’estime plus l’ATE, mais estime à la place ce qu’on appelle l’effet d’intention de traiter (ITT). Nous interprétons souvent l’ITT comme l’effet de donner à quelqu’un la possibilité de recevoir un traitement. L’ITT est donc particulièrement pertinent pour évaluer les programmes et les interventions à participation volontaire.</p>
 <p>Dans le code ci-dessous, nous créons des données simples avec une non-conformité unilatérale. Bien que le véritable effet du traitement pour les personnes qui ont effectivement reçu le traitement soit de 2, notre ITT estimé est plus petit (environ 1) car seules certaines des personnes assignées au traitement le reçoivent réellement.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># pour la reproductibilité</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># taille de la population</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(n) <span class="co"># Résultat potentiel sous la condition de contrôle</span></span>
@@ -365,6 +376,7 @@ window.Quarto = {
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> D<span class="sc">*</span>Y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>D)<span class="sc">*</span>Y0 <span class="co"># Résultat dans la population</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(Z,Y)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ITT<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>Z,<span class="at">data=</span>samp))[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="effet-causal-moyen-pour-ceux-qui-se-conforment-au-traitement-complier-average-causal-effect-cace" class="level1" data-number="4">
@@ -375,6 +387,8 @@ window.Quarto = {
 <p><span class="math display">\[CACE= \frac{Effet de Z sur Y}{Effet de Z sur D}=\frac{E(Y_i|Z_i=1)-E(Y_i|Z_i=0)}{E(D_i|Z_i=1)-E(D_i|Z_i=0)}\]</span></p>
 <p>L’estimateur ci-dessus met en évidence le fait que l’ITT et le CACE convergent à mesure que nous approchons d’une conformité totale. Calculer l’erreur type pour les ratios est quelque peu fastidieux et nous estimons donc généralement un CACE en utilisant une régression des moindres carrés en deux étapes avec assignation aléatoire, <span class="math inline">\(Z_i\)</span>, servant d’instrument pour la réception du traitement <span class="math inline">\(D_i\)</span> dans la première étape du modèle. Cette approche simplifie l’estimation de l’erreur type et permet l’inclusion de covariables en tant qu’instruments supplémentaires. Dans le code ci-dessous, nous présentons les deux stratégies pour les données présentant une non-conformité bilatérale. Notez, cependant, que lorsque les instruments ne sont pas puissants (par exemple, l’assignation aléatoire n’a eu qu’un faible effet sur la réception du traitement), les estimateurs des variables instrumentales et leurs erreurs types peuvent être biaisés et incohérents.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># pour la reproductibilité</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># taille de la population</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(n) <span class="co"># Résultat potentiel sous la condition de contrôle</span></span>
@@ -386,6 +400,7 @@ window.Quarto = {
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">=</span> <span class="fu">data.frame</span>(Z,D,Y) </span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># IV estimate library(AER) CACE = coef(ivreg(Y ~ D | Z, data = samp))[2] </span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Wald Estimator ITT&lt;-coef(lm(Y~Z,data=samp))[2] ITT.D&lt;-coef(lm(D~Z,data=samp))[2] CACE.wald&lt;-ITT/ITT.D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="effet-moyen-du-traitement-dune-population-ou-dun-échantillon" class="level1" data-number="5">
@@ -395,6 +410,8 @@ window.Quarto = {
 <p>Bien qu’il n’y ait pas de solutions simples aux problèmes créés par de telles erreurs, vous pouvez prendre des mesures à la fois dans la conception de votre étude et dans l’analyse de vos données pour relever ces défis liés à l’estimation du PATE ou du CACE/LATE. Par exemple, l’inclusion d’une intervention placebo fournit des informations supplémentaires sur la probabilité de recevoir un traitement, qui peuvent être utilisées pour repondérer l’effet de le recevoir réellement en présence de non-conformité (voir par exemple Nickerson (2008)). On pourrait également utiliser un modèle pour repondérer les observations afin d’ajuster le déséquilibre des covariables et la probabilité inégale de recevoir le traitement, à la fois au sein de l’échantillon et entre un échantillon et la population d’intérêt.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
 <p>Dans le code ci-dessous, nous présentons plusieurs approches pour estimer ces effets mis en œuvre dans le package CausalGAM de R.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> Plus précisément, le package produit des estimateurs de l’ATE par régression, par pondération inverse du score de propension (inverse-propensity weighting, IPW) et par pondération IPW augmentée (augmented IPW, AIPW). En combinant l’ajustement de régression avec l’IPW, l’AIPW a la particularité d’être “doublement robuste” : l’estimation est toujours cohérente même si nous avons incorrectement spécifié le modèle de régression ou le score de propension pour la pondération de probabilité.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemple adapté de ?estimate.ATE</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CausalGAM) </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># pour la reproductibilité</span></span>
@@ -420,6 +437,7 @@ window.Quarto = {
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">divby0.action=</span><span class="st">"t"</span>, </span>
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">divby0.tol=</span><span class="fl">0.001</span>, </span>
 <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">var.gam.plot=</span><span class="cn">FALSE</span>, <span class="at">nboot=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="effet-moyen-du-traitement-sur-les-traités-et-le-contrôle" class="level1" data-number="6">
@@ -430,6 +448,8 @@ window.Quarto = {
 <p>Lorsque le traitement est assigné de manière aléatoire et que la conformité est totale, <span class="math inline">\(ATE=ATT=ATC\)</span>, puisque <span class="math inline">\(E(Y_i(0)∣D_i=1)=E(Y_i(0)∣D_i=0)\)</span> et <span class="math inline">\(E( Y_i(1)∣D_i=0)=E(Y_i(1)∣D_i=1)\)</span>. Souvent, en raison de la nature de l’intervention ou de préoccupations ethniques ou spécifiques au coût, la conformité du traitement est incomplète et l’ATE ne sera pas en général égal à l’ATT ou l’ATC. Dans de tels cas, nous avons vu dans la section précédente que nous pouvions repondérer les observations par leur probabilité de recevoir le traitement pour récupérer les estimations de l’ATE. La même logique peut être étendue pour produire des estimations de l’ATT et de l’ATC dans notre échantillon et dans la population.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></p>
 <p>Ci-dessous, nous créons une étude de cas où la probabilité de recevoir un traitement varie mais peut être estimée à l’aide d’un modèle de score de propension.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> Les probabilités prédites à partir de ce modèle sont ensuite utilisées comme pondérations pour récupérer les estimations de l’ATE, de l’ATT et de l’ATC. Une pondération inverse du score de propension tente d’équilibrer la distribution des covariables entre les groupes de traitement et de contrôle lors de l’estimation de l’ATE. Pour l’ATT, cette approche de pondération traite les sujets du groupe traité comme un échantillon de la population cible (personnes ayant reçu le traitement) et pondère les sujets du groupe de contrôle en fonction de leur probabilité de recevoir le traitement. De la même manière, l’estimation de l’ATC pondère les observations pour les traités pour qu’elles ressemblent au contrôle. La qualité (l’absence de biais) de ces estimations est intrinsèquement liée à la qualité de nos modèles pour prédire la réception du traitement. La pondération inverse du score de propension et d’autres procédures produisent un équilibre entre les groupes de traitement et de contrôle sur les covariables observées. Mais à moins d’avoir le “vrai modèle” (et nous ne connaissons presque jamais le vrai modèle), le potentiel biais des covariables non observées demeure et devrait nous conduire à interpréter notre ATT ou ATC estimé à la lumière de la qualité du modèle qui l’a produit.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># pour la reproductibilité</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># taille de la population</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">=</span> <span class="fu">rnorm</span>(n) <span class="co"># covariables de pré-traitement</span></span>
@@ -451,6 +471,7 @@ window.Quarto = {
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>ATE.ipw<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp,<span class="at">weights=</span>W.ipw))[<span class="dv">2</span>]</span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>ATT.ipw<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp,<span class="at">weights=</span>W.att))[<span class="dv">2</span>] </span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>ATC.ipw<span class="ot">&lt;-</span><span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>D,<span class="at">data=</span>samp,<span class="at">weights=</span>W.atc))[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="effet-moyen-du-traitement-par-quantile" class="level1" data-number="7">
@@ -460,6 +481,8 @@ window.Quarto = {
 <p>Si ces hypothèses sont justifiées pour nos données, nous pouvons obtenir des estimations cohérentes de l’effet du traitement par quantile (quantile treatment effect, QTE) en utilisant la régression par quantile.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> Tout comme la régression linéaire estime l’ATE comme une différence des moyennes (ou, lorsque des covariables sont utilisées dans le modèle, à partir d’une moyenne conditionnelle), la régression par quantile ajuste un modèle linéaire à un quantile conditionnel et ce modèle peut ensuite être utilisé pour estimer l’effet du traitement pour ce quantile particulier du résultat. L’approche peut être étendue pour inclure des covariables et des instruments de non-conformité. Notez que l’interprétation du QTE est pour un quantile donné, non pas pour un individu de ce quantile.</p>
 <p>Ci-dessous, nous montrons un cas où l’ATE est de 0, mais l’effet du traitement est négatif pour les faibles quantiles du résultat et positif pour les quantiles élevés. L’estimation de l’effet du traitement par quantile fournit un autre outil pour détecter les effets hétérogènes et nous permet de décrire les conséquences distributionnelles de notre intervention. Ces informations supplémentaires nécessitent des hypothèses statistiques plus strictes pour nos données et des interprétations plus nuancées de nos résultats.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># pour la reproductibilité</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># taille de la population</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(n) <span class="co"># Résultat potentiel sous la condition de contrôle</span></span>
@@ -474,6 +497,7 @@ window.Quarto = {
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>QTE <span class="ot">=</span> <span class="fu">rq</span>(Y<span class="sc">~</span>D,<span class="at">tau =</span> </span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(.<span class="dv">05</span>,.<span class="dv">95</span>,<span class="at">length.out=</span><span class="dv">10</span>),<span class="at">data=</span>samp,<span class="at">method =</span> <span class="st">"fn"</span>) </span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(QTE),<span class="at">parm=</span><span class="dv">2</span>,<span class="at">main=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">"QTE"</span>,<span class="at">xlab=</span><span class="st">"Quantile"</span>,<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">4.1</span>, <span class="fl">2.1</span>, <span class="fl">2.1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -491,6 +515,8 @@ window.Quarto = {
 <p>Imai et ses collègues proposent une approche de l’analyse de médiation qui permet aux chercheurs de tester la sensibilité de leurs estimations aux violations de l’ignorabilité séquentielle.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> Dans le code, nous montrons certaines des caractéristiques de leur approche, implémentée dans le package “mediation” en R (Tingley et al.&nbsp;2014). Nous modélisons les relations avec MCO, mais le package est capable de gérer d’autres processus de résultats, tels que des modèles linéaires généralisés ou des modèles additifs généralisés, qui peuvent être plus appropriés pour vos données. Plus important encore, le package nous permet de produire les bornes qui reflètent la sensibilité de nos estimations ponctuelles à certaines violations de l’ignorabilité séquentielle. Dans nos données simulées, un peu plus de 20 % de l’effet total est médié par notre médiateur proposé, M et le biais d’un facteur de confusion pré-traitement non observé devrait être assez important (ρ = 0,7) avant que nous rejetions la conclusion d’un ACME positif. Ces limites ne sont toutefois valables que si nous pensons qu’il n’y a pas de facteurs de confusion post-traitement non observés (comme dans le panneau 4). L’analyse de sensibilité est toujours possible, mais plus compliquée dans de tels contextes (Imai et Yamamoto 2013).</p>
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/effect-types/effect-types_fig2.png" class="img-fluid"></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># pour la reproductibilité</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># taille de la population</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Y0 <span class="ot">=</span> <span class="fu">runif</span>(n) <span class="co"># Résultat potentiel sous la condition de contrôle</span></span>
@@ -510,6 +536,7 @@ window.Quarto = {
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Sensibilité de l'ACME à un facteur de confusion pré-traitement non observé</span></span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>s.out<span class="ot">&lt;-</span><span class="fu">medsens</span>(med.out) </span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(s.out) <span class="co"># Tracer les bornes de la sensibilité</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -519,6 +546,8 @@ window.Quarto = {
 </div>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Structural equations estimates of ACME ADE </span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># f1&lt;-formula(Y~D+X) </span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># f2&lt;-formula(M~D+X) </span></span>
@@ -527,6 +556,7 @@ window.Quarto = {
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># med.sys&lt;-systemfit(list(f1,f2,f3),data=samp) </span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ACME&lt;-coef(med.sys)["eq1_D"]-coef(med.sys)["eq3_D"] </span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ADE&lt;-coef(med.sys)["eq3_D"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="effet-du-traitement-log-odds" class="level1" data-number="9">
@@ -536,6 +566,8 @@ window.Quarto = {
 <p>Freedman (2008b) montre que l’ajustement de covariables dans une régression logistique dans les expériences randomisées produit des estimations biaisées de cet effet causal. L’intuition de base de l’argument de Freedman vient du fait que prendre le log des moyennes n’est pas la même chose que prendre la moyenne des logs et donc le coefficient de traitement estimé à partir d’une régression logistique conditionnée aux covariables ne fournira pas un estimateur cohérent des log-odds de succès. Au lieu de cela, Freedman recommande de prendre les probabilités prédites de variation du statut de traitement des sujets, mais de maintenir leurs profils de covariables observés pour produire un estimateur cohérent des log-odds.</p>
 <p>La procédure de base est décrite dans le code ci-dessous. Les coefficients de la régression logistique contrôlant la covariable X ont tendance à surestimer l’effet du traitement sur les log odds, tandis que les estimations ajustées à partir des probabilités prédites produisent des résultats cohérents.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># pour la reproductibilité</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># taille de la population</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>U <span class="ot">=</span> <span class="fu">runif</span>(n) </span>
@@ -561,6 +593,7 @@ window.Quarto = {
 <span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>aC.adj<span class="ot">&lt;-</span><span class="fu">predict</span>(fit,<span class="at">newdata=</span>D0,<span class="at">type=</span><span class="st">"response"</span>) </span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>log.odds.adj<span class="ot">&lt;-</span><span class="fu">log</span>(<span class="fu">mean</span>(aT.adj)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">mean</span>(aT.adj)))<span class="sc">-</span></span>
 <span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(<span class="fu">mean</span>(aC.adj)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">mean</span>(aC.adj)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="effet-attribuable" class="level1" data-number="10">
@@ -598,6 +631,8 @@ window.Quarto = {
 <p>Troisièmement, cette représentation nous permet de produire un intervalle de confiance basé sur une conception pour A^ en s’appuyant sur la littérature sur l’échantillonnage pour sondage basé sur l’inférence statistique pour les totaux des échantillons, car les résultats totaux observés, tU, sont fixés à travers une randomisation. Nous pouvons utiliser des covariables pour augmenter la précision ici car l’estimateur de régression pour l’enquête nous permet d’estimer le total que nous aurions vu dans le groupe de contrôle : <span class="math inline">\(\hat{t}_c=\sum_{i∈U}\hat{Y}_i+ \sum_{i∈U}(Y_i-\hat{Y}_i)\)</span> avec <span class="math inline">\(\hat{Y}_i=f(X_i,\beta)\)</span> (Lohr 1999). La littérature sur l’échantillonnage pour les sondages montre que, comme <span class="math inline">\(N→∞\)</span>, <span class="math inline">\(CI(\hat{t}_c) \approx \hat{t}_c \pm z_{a/2}SE(\hat{t}_c)\)</span>. Ainsi, on peut calculer <span class="math inline">\(\widehat{SE}(\hat{t}_c)\)</span> à partir de la théorie de l’échantillonnage standard puis <span class="math inline">\(CI(\hat{A}) \approx t_U-\widehat{CI}(\hat{t }_c)\)</span>.</p>
 <p>Dans le code ci-dessous, nous fournissons une illustration utilisant des données simulées pour une réponse binaire et un traitement. Pour 85 % du groupe de traitement, <span class="math inline">\(Y=1\)</span> comparativement à 52 % dans le groupe de contrôle. Une différence de cette taille est cohérente avec le fait que notre traitement a causé <span class="math inline">\(Y=1\)</span> pour 92 à 138 sujets, pour lesquels <span class="math inline">\(Y\)</span> aurait autrement été égal à 0 s’ils n’avaient pas reçu le traitement. L’estimateur de régression, qui tire parti de la précision obtenue en incluant des covariables, produit des intervalles de confiance plus serrés (de 98,8 à 135,1) pour les effets attribuables.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="co"># pour la reproductibilité</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># taille de la population</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>X1 <span class="ot">=</span> <span class="fu">rnorm</span>(n) <span class="co"># Covariables</span></span>
@@ -631,25 +666,34 @@ window.Quarto = {
 <span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (attr.ps[<span class="fu">get.bounds</span>(),])</span>
 <span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  } </span>
 <span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(samp,<span class="fu">table</span>(D,Y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Y
 D     0   1
   0 318 339
   1  51 292</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(samp,<span class="fu">apply</span>(<span class="fu">table</span>(D,Y),<span class="dv">1</span>,prop.table)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   D
 Y           0        1
   0 0.4840183 0.148688
   1 0.5159817 0.851312</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attribute</span>(<span class="at">treat =</span> D, <span class="at">out=</span> Y, <span class="at">A=</span><span class="dv">200</span>,<span class="at">data=</span>samp) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       A          p
 [1,]  92 0.04519869
 [2,] 138 0.04587804</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimateur de régression</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fit1<span class="ot">&lt;-</span><span class="fu">lm</span>(Y<span class="sc">~</span>X1<span class="sc">+</span>X2,<span class="at">data=</span>samp,<span class="at">subset=</span>D<span class="sc">==</span><span class="dv">0</span>) </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>hatYcU<span class="ot">&lt;-</span><span class="fu">predict</span>(fit1,<span class="at">newdata=</span>samp) </span>
@@ -665,6 +709,7 @@ Y           0        1
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>ciAE<span class="ot">&lt;-</span><span class="fu">sort</span>(<span class="fu">sum</span>(Y) <span class="sc">-</span> ciTotYc ) </span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ciAE)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"&lt; 95%"</span>,<span class="st">"&lt; 66%"</span>,<span class="st">"&gt; 66%"</span>,<span class="st">"&gt; 95%"</span>)</span>
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ciAE) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    &lt; 95%     &lt; 66%     &gt; 66%     &gt; 95% 
  98.78637 107.97975 125.90114 135.09451 </code></pre>

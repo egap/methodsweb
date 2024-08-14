@@ -319,6 +319,8 @@ window.Quarto = {
 <p>When we estimate causal effects, we have to take account of the probability with which units are assigned to a given treatment condition. Sometimes this is done through matching; sometimes it is done using inverse probability weighting (IPW).</p>
 <p>Sometimes, the only practical way to calculate assignment probabilities is through computer simulation (though analytic probabilities can be calculated for some designs). For example you could conduct 10,000 simulated random assignments and count up how often each unit is in each of the four conditions described in the previous section. In R:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define two helper functions</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>complete_ra <span class="ot">&lt;-</span> <span class="cf">function</span>(N,m){</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  assign <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="dv">1</span><span class="sc">:</span>N <span class="sc">%in%</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>N,m),<span class="dv">1</span>,<span class="dv">0</span>)</span>
@@ -353,11 +355,14 @@ window.Quarto = {
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>prob01 <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(cond_mat<span class="sc">==</span><span class="st">"01"</span>)</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>prob10 <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(cond_mat<span class="sc">==</span><span class="st">"10"</span>)</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>prob11 <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(cond_mat<span class="sc">==</span><span class="st">"11"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>We can display the resulting probabilities plotted below against the number of units within the 5km radius. The further from the center a unit is, the higher the probability of not being in the spillover condition.</p>
 <p><img src="https://raw.githubusercontent.com/egap/methods-guides/master/spillovers/spilloverprobabilities.jpg" class="img-fluid"></p>
 <p>We must account for these differential probabilities of assignment using IPW. Below is a block of R code that shows how to include IPWs in a regression context.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define helper functions</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>get_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(cond,prob00,prob01,prob10, prob11){</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  prob <span class="ot">&lt;-</span> prob00</span>
@@ -405,6 +410,7 @@ window.Quarto = {
 <span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co"># conduct estimation comparing the spillover condition to the pure control</span></span>
 <span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> cond<span class="sc">==</span><span class="st">"01"</span>, <span class="at">weights=</span>weights,</span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">subset</span>(df, prob00 <span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> prob00 <span class="sc">&lt;</span><span class="dv">1</span> <span class="sc">&amp;</span> prob01 <span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> prob01 <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> cond <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"00"</span>, <span class="st">"01"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>There are two very important things to remember when using IPW:</p>
 <ul>

@@ -230,6 +230,8 @@ div.csl-indent {
 <h1 data-number="2"><span class="header-section-number">2</span> Effective data analysis is aided by coding</h1>
 <p>The best way to leave an easy-to-retrace path (for your future self and others) in data analysis is to produce all outputs through code. Opening Excel to make one change to one table may seem the quickest way to complete the task, but when you are trying to remember what you did months later, you will be glad to have updated your R script or do file to make the desired edit. To maximize re-traceability, leave comments in your code file to explain the purpose of each line, as in the example below.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This file produces a plot relating the explanatory variable to the outcome.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Read the data</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>thedata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(“Data<span class="sc">/</span>thedata<span class="dv">-15-03</span><span class="fl">-2011.</span>csv”)</span>
@@ -244,6 +246,7 @@ div.csl-indent {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="do">## summary(abs(fitted(model1)-fitted(model2)))</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="do">## stop writing to the pdf file</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>please<span class="sc">-</span>close<span class="sc">-</span><span class="fu">pdf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Coding has other benefits. It saves time by systematically completing repetitive tasks that could be done manually but with greater time investment. It leads to smoother collaboration by communicating progress and next steps. Finally, it helps researchers avoid making mistakes by combining multiple steps into one file where the order of steps and the relationships among steps is clear.</p>
 </section>
@@ -291,6 +294,8 @@ div.csl-indent {
 <p>Testing ensures that errors from bugs and typos are caught before it is too late, and including that testing in your coding makes sure that it is done.</p>
 <p>Below is a simple example of this testing on a function designed to multiply a number by 2.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  The test function:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>test.times.<span class="fl">2.</span>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">##  This function tests times.2.fn</span></span>
@@ -305,11 +310,15 @@ div.csl-indent {
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="do">##  This function multiplies a scalar number by 2</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="do">##  thenumber is a scalar number</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    thenumber<span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>What happens when running the test function?</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test.times.2.fn</span>()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] “It does not work<span class="sc">!</span>”</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>This tells you to go back and review the function, where we see a + instead of a *. Testing can be even more effective if we code the script to stop when an error occurs instead of generating an error message. In R, the stopifnot function will do just that.</p>
 </section>

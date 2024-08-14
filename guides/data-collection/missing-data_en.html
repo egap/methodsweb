@@ -262,6 +262,8 @@ window.Quarto = {
 <p>Missing data can induce bias in our estimates of descriptive patterns and causal effects. Consider a researcher trying to describe the income distribution in a country with survey data. Some individuals’ incomes are missing but the researcher describes the non-missing data at hand. Suppose low-income individuals are less likely to report their income than high-income individuals, thus missingness concentrates in the lower portion of the distribution. Then, the researcher’s characterization of the income distribution is apt to be biased. For example, the researcher’s estimate of median income is bound to be higher than the true (unknown) median income because more data is missing from the lower portion of the distribution. Since missingness is correlated with the variable that we are trying to describe, our characterization of the median of the distribution is biased.</p>
 <p>We can illustrate two types of missingness by considering a variable <span class="math inline">\(x\)</span> – for example, income, as above. The left panel shows the full distribution of the variable <span class="math inline">\(x\)</span> without missing data. The middle panel depicts a scenario in which simulated missingness in <span class="math inline">\(x\)</span> is not independent of <span class="math inline">\(x\)</span> – low values of <span class="math inline">\(x\)</span> are much more likely to be missing. The right panel depicts a scenario in which simulated missingness in <span class="math inline">\(x\)</span> is independent of <span class="math inline">\(x\)</span> (often called “missing at random”). The red line represents the median of the distribution without missingness. The blue lines represent the median of the observed data in each simulation. Where missingness is not independent of <span class="math inline">\(x\)</span>, we observe that the median of the nonmissing data is, in this instance, higher than the true median. This illustrates that missing data can bias our descriptions of single variables.</p>
 <div class="cell" data-fig.caption="Two types of missingness and implications for estimation of the median. The red line ">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmutil)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -283,6 +285,7 @@ window.Quarto = {
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> med_obs), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">"x"</span>) <span class="sc">+</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -314,6 +317,8 @@ window.Quarto = {
 <p>We often do not think of missingness of the treatment indicator in experiments. Indeed, competent administration of an experiment generally ensures against missing treatment values. Nevertheless, it is important to note that missingness of the treatment indicator can also produce bias if missingness is not independent of potential outcomes.</p>
 <p>The following simulation shows the consequences of two types of missingness for estimation of the ATE. We set the true ATE to 0.5 (the red vertical lines) in all cases. We simulate missingness through two types of data generating processes. In both cases, all missingness occurs among subjects in treatment (<span class="math inline">\(Z = 1\)</span>). In the top panel, missingness is most likely among subjects in treatment with higher values of the outcome <span class="math inline">\(Y_i(1)\)</span>. In the bottom pannel, missingness is independent of the value of <span class="math inline">\(Y_i(1)\)</span>. If missingness is correlated with potential outcomes, the estimator of the ATE is biased (top row). This occurs whether we are missing values of the outcome (left column) or the treatment indicator (right column). In contrast, when missing data is independent of potential outcomes, the estimator is unbiased (bottom row).</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(estimatr)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -343,6 +348,7 @@ window.Quarto = {
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> .<span class="dv">5</span>, <span class="at">col =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"ATE Estimates"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -425,8 +431,6 @@ E[R_i(1)-R_i(0)] &amp;= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 &amp;=\pi_T - \pi_U
 \end{align}\]</span></p>
 <p>If we find no difference in reporting across treatment groups, this test provides no evidence that <span class="math inline">\(\pi_T \neq \pi_U\)</span>. However, to further justify that the complete observations in the data are those of “always reporters,” we further must know that <span class="math inline">\(\pi_T = \pi_U = 0\)</span>. We cannot test this by examining the relationship between reporting and treatment assignment. As such, we generally complement this test with a justification of why reporting should not be endogenous to treatment assignment: for example by assessing covariate balance between treated and control units who are not missing, or by assessing covariate balance between units with missing vs non-missing outcomes. If reporting is not endogenous, then in principle the assumption that <span class="math inline">\(\pi_T = \pi_U = 0\)</span> holds. As such, if we find no evidence of differential levels of reporting and see no way that reporting should be endogenous to treatment, we can justify that the <span class="math inline">\(E[Y_i(1)|R_i(1) = 1] - E[Y_i(0)|R_i(0) = 1]\)</span> estimates the LATE among always reporters.</p>
-<p>Practically, one can test for differential attrition using randomization inference. For this demonstration, we use data from <span class="citation" data-cites="eisenbarth2021can">Eisenbarth, Graham, and Rigterink (<a href="#ref-eisenbarth2021can" role="doc-biblioref">2021</a>)</span> (<a href="https://osf.io/td2p3/">replication data</a>). For the purposes of this exercise, we focus on the outcome of getting a penalty…</p>
-<p>TODO: Need to reshape household survey from long to wide, assess attrition on the gotpenalty variable. Check to see if there are new households in baseline in the papers. Next, write a model with some covariates (can find in the Do file). Interact covariates with the treatment, get f-stat. Run RI to find a p-value.</p>
 </section>
 <section id="what-is-imputation" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> 7. What is imputation?</h1>
@@ -619,11 +623,17 @@ E[R_i(1)-R_i(0)] &amp;= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 </div>
 <p>Consider how this imputation changes the specification of a regression model. Instead of estimating:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yobs <span class="sc">~</span> Z <span class="sc">+</span> Xobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>we estimate:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yobs <span class="sc">~</span> Z <span class="sc">+</span> Ximputed <span class="sc">+</span> Xmissing)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>The estimator <code>model2</code> does not drop observations on the basis of the missing pre-treatment variable <code>Xobs</code> like <code>model1</code> does.</p>
 <p>Alternatively, if pre-treatment missingness is minimal (less than 10% of observations), or when working with very small datasets with few observations relative to the number of covariates and missingness indicators, <span class="citation" data-cites="lin_et_al_2016">Lin, Green, and Coppock (<a href="#ref-lin_et_al_2016" role="doc-biblioref">2016</a>)</span> advocate imputing the (unconditional) mean of the observed pre-treatment covariate. Call this variable <code>Ximputed_mean</code>.</p>
@@ -717,7 +727,10 @@ E[R_i(1)-R_i(0)] &amp;= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 </div>
 <p>If we are simply imputing the pretreatment mean, then instead of estimating <code>model1</code> (as above) our regression model should be:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Yobs <span class="sc">~</span> Z <span class="sc">+</span> Ximputed_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Since we have imputed missing values in <code>Xobs</code> when constructing <code>Ximputed_mean</code>, we will not lose observations on the basis of the missing pretreatment covariate when estimating <code>model3</code>.</p>
 </section>
@@ -833,14 +846,20 @@ E[R_i(1)-R_i(0)] &amp;= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 </div>
 <p>Without covariate adjustment, we can obtain our interval estimate of the ATE by estimating:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_maxbound <span class="sc">~</span> Z)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y_minbound <span class="sc">~</span> Z)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(upper)[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Z 
 1.5 </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(lower)[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Z 
 0.5 </code></pre>
@@ -849,10 +868,13 @@ E[R_i(1)-R_i(0)] &amp;= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 <p>Our interval estimate of the ATE using Manski bounds is thus [0.5, 1.5].</p>
 <p>An alternative approach to getting Manski bounds is to use the attrition package:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(attrition)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="dv">1</span> <span class="sc">-</span> missing)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>boundData <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(Yobs, Z, R))</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">estimator_ev</span>(<span class="at">Y =</span> Yobs, <span class="at">Z =</span> Z, <span class="at">R =</span> R, <span class="at">minY =</span> <span class="fu">min</span>(Yobs, <span class="at">na.rm =</span> T), <span class="at">maxY =</span> <span class="fu">max</span>(Yobs, <span class="at">na.rm =</span> T), <span class="at">data =</span> boundData)[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>low_est upp_est 
     0.5     1.5 </code></pre>
@@ -860,7 +882,10 @@ E[R_i(1)-R_i(0)] &amp;= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 </div>
 <p>As Manski bounds provide a highly conservative estimate of the ATE, one might want to use trimming bounds (also known as Lee bounds), which give bounds on the ATE for always reporters. Trimming bounds add the assumption of monotonic attrition <span class="math inline">\((r_i(1) \geq r_i(0) \text{ or } r_i(1) \leq r_i(0))\)</span>, getting rid of if treated reporters or if untreated reporters. Using the attrition package, we can get Lee bounds using the estimator_trim function:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimator_trim</span>(<span class="at">Y =</span> Yobs, <span class="at">Z =</span> Z, <span class="at">R =</span> R, <span class="at">data =</span> boundData)[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>lower_bound upper_bound 
         1.0         1.2 </code></pre>
@@ -885,9 +910,6 @@ E[R_i(1)-R_i(0)] &amp;= \pi_A + \pi_T - (\pi_A + \pi_U)\\
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-eisenbarth2021can" class="csl-entry" role="listitem">
-Eisenbarth, Sabrina, Louis Graham, and Anouk S Rigterink. 2021. <span>“Can Community Monitoring Save the Commons? Evidence on Forest Use and Displacement.”</span> <em>Proceedings of the National Academy of Sciences</em> 118 (29): e2015172118.
-</div>
 <div id="ref-gerber_green_2012" class="csl-entry" role="listitem">
 Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. W.W. Norton.
 </div>

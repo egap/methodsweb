@@ -399,6 +399,8 @@ div.csl-indent {
 <p>Traditionally, a pilot study is used to obtain an estimate of the effect size, which becomes the presumed estimate for simulations used to determine power and sample size in one’s main study. However, the <a href="https://declaredesign.org/blog/2019-01-23-pilot-studies.html">DeclareDesign</a> cautions that effect size estimates are very noisy in small pilots, especially when true effect sizes are small (for example, under 0.2 sd). As an alternative, they recommend using pilot studies to estimate the standard deviation of the outcome variable. Using this estimate, one can easily obtain an unbiased estimate of a main study’s minimum detectable effect (MDE) for a given outcome and with 80% power as 2.8 times the estimated standard error of the associated outcome variable <span class="citation" data-cites="gelman_hill_2006">(<a href="#ref-gelman_hill_2006" role="doc-biblioref">Gelman and Hill 2006</a>)</span>. The goal is to ensure that the MDE is small enough that the study would capture any substantively meaningful effect.</p>
 <p>Using the recommendations from DeclareDesign, we provide sample code based on a hypothetical pilot study. In the code below, we assume we have already conducted a pilot study and have calculated the standard deviation of a key outcome measure for both the control and treatment groups. Next, we use these estimates to calculate MDEs for different possible sample sizes, in order to inform our target sample size for a future main study.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Standard deviations of outcome measure for treatment &amp; control groups calculated from pilot study results</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#The ones provided are for purposes of demonstration</span></span>
@@ -419,6 +421,7 @@ div.csl-indent {
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> .<span class="dv">2</span>, <span class="at">lty =</span> <span class="st">"dashed"</span>)</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>mde_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

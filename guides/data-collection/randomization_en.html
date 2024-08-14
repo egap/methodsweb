@@ -263,9 +263,12 @@ window.Quarto = {
 <p>This is not a bad approach but it has shortcomings. First, using this method, you cannot know in advance how many units will be in treatment and how many in control. If you want to know this, you need some way to do selections so that the different draws are not statistically independent from each other (like drawing names from a hat). Second, you may want to assert control over the exact share of units assigned to treatment and control. That’s hard to do with a coin. Third, you might want to be able to replicate your randomization to show that there was no funny business. That’s hard to do with coins and hats. Finally, as we show below, there are all sorts of ways to do randomization to improve power and ensure balance in various ways that are very hard to achieve using coins and hats.</p>
 <p>Fortunately though, flexible replicable randomization is very easy to do with freely available software. The following simple R code can, for example, be used to generate a random assignment, specifying the number of units to be treated. Here, N (100) is the number of units you have and m (34) is the number you want to treat. The “seed” makes it possible to replicate the same draw each time you run the code (or you can change the seed for a different draw).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">343</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">complete_ra</span>(<span class="dv">100</span>, <span class="dv">34</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="block-randomization-you-can-ensure-that-treatment-and-control-groups-are-balanced" class="level1" data-number="2">
@@ -278,6 +281,8 @@ window.Quarto = {
 <p>The <a href="https://cran.r-project.org/web/packages/blockTools/index.html">blockTools package</a> is a useful package for conducting block randomization. Let’s start by generating a fake data set for 60 subjects, 36 of whom are male and 24 of whom are female.</p>
 <p>Suppose we would like to block on gender. Based on our data, blockTools will generate the smallest possible blocks, each a grouping of two units with the same gender, one of which will be assigned to treatment, and one to control.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(blockTools)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -302,6 +307,7 @@ window.Quarto = {
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">block_id =</span> <span class="fu">createBlockIDs</span>(out, dat, <span class="at">id.var =</span> <span class="st">"id"</span>),</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_block_2 =</span> <span class="fu">block_ra</span>(block_id))</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_block_2, block_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>You can check the mean of the variable on which you blocked for treatment and control to see that treatment and control groups are in fact perfectly balanced on gender.</p>
 </section>
@@ -312,12 +318,15 @@ window.Quarto = {
 <p>Factorial designs are especially useful when evaluating interventions that include a package of treatments. As in the example above, many development interventions come with several arms, and it is sometimes difficult to tell which arms are producing the observed effect. A factorial design separates out these different treatments and also allows us to see the interaction between them.</p>
 <p>The following code shows you how to randomize for a factorial design.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_loan =</span> <span class="fu">complete_ra</span>(<span class="dv">80</span>, <span class="dv">40</span>),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_training =</span> <span class="fu">block_ra</span>(<span class="at">blocks =</span> Z_loan)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_loan, Z_training))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="you-can-randomize-whole-clusters-together-but-the-bigger-your-clusters-the-weaker-tends-to-be-your-power" class="level1" data-number="4">
@@ -351,6 +360,8 @@ window.Quarto = {
 <p>The first way is to estimate the average treatment effect block by block and then to average the treatment effects, each weighted by the size of the block relative to the entire sample.</p>
 <p>The second way is inverse probability weighting (IPW). In IPW, weights are defined as the 1/p for treated units and 1/(1-p) for control units, where p refers to the probability of assignment to treatment. This method allows you to run a weighted regression of your outcome on treatment assignment.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Y0 =</span> <span class="dv">1</span><span class="sc">:</span>N,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">Y1 =</span> Y0 <span class="sc">+</span> <span class="dv">10000</span>)</span>
@@ -367,6 +378,7 @@ window.Quarto = {
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">ipw_estimate =</span> <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>], <span class="dv">1</span> <span class="sc">/</span> p[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>], <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> p[Z <span class="sc">==</span> <span class="dv">0</span>]))</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="restricted-randomization-if-you-dont-like-what-you-get-you-can-start-over" class="level1" data-number="7">

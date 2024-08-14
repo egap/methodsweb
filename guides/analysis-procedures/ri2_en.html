@@ -243,12 +243,17 @@ window.Quarto = {
 <p>We’ll start with the most common randomization inference task: testing an observed average treatment effect estimate against the sharp null hypothesis of no effect for any unit.</p>
 <p>In <code>ri2</code>, you always “declare” the random assignment procedure so the computer knows how treatments were assigned. In the first design we’ll consider, exactly half of the 200 students were assigned to treatment using complete random assignment.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ri2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>complete_dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ri2_complete_dat.csv"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>complete_dec <span class="ot">&lt;-</span> <span class="fu">declare_ra</span>(<span class="at">N =</span> <span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Now all that remains is a call to <code>conduct_ri</code>. The <code>sharp_hypothesis</code> argument is set to <code>0</code> by default corresponding to the sharp null hypothesis of no effect for any unit. We can see the output using the <code>summary</code> and <code>plot</code> commands.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ri_out <span class="ot">&lt;-</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conduct_ri</span>(</span>
@@ -259,11 +264,15 @@ window.Quarto = {
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sims =</span> sims</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  term estimate two_tailed_p_value
 1    Z    41.98             0.1144</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -274,12 +283,18 @@ window.Quarto = {
 </div>
 <p>You can obtain one-sided p-values with a call to <code>summary</code>:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out, <span class="at">p =</span> <span class="st">"upper"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  term estimate upper_p_value
 1    Z    41.98        0.0564</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out, <span class="at">p =</span> <span class="st">"lower"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  term estimate lower_p_value
 1    Z    41.98        0.9436</code></pre>
@@ -290,6 +305,8 @@ window.Quarto = {
 <h1 data-number="2"><span class="header-section-number">2</span> Randomization inference for alternative designs</h1>
 <p>The answer that <code>ri2</code> produces depends deeply on the randomization procedure. The next example imagines that the treatment was blocked at the school level.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>blocked_dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ri2_blocked_dat.csv"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>blocked_dec <span class="ot">&lt;-</span> <span class="fu">declare_ra</span>(<span class="at">blocks =</span> blocked_dat<span class="sc">$</span>schools)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ri_out <span class="ot">&lt;-</span></span>
@@ -300,11 +317,15 @@ window.Quarto = {
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sims =</span> sims</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  term estimate two_tailed_p_value
 1    Z    91.98              2e-04</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -315,6 +336,8 @@ window.Quarto = {
 </div>
 <p>A very similar syntax accommodates a cluster randomized trial.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>clustered_dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ri2_clustered_dat.csv"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>clustered_dec <span class="ot">&lt;-</span> <span class="fu">declare_ra</span>(<span class="at">clusters =</span>  clustered_dat<span class="sc">$</span>schools)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>ri_out <span class="ot">&lt;-</span></span>
@@ -325,11 +348,15 @@ window.Quarto = {
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sims =</span> sims</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  term estimate two_tailed_p_value
 1    Z    79.32             0.0111</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -343,6 +370,8 @@ window.Quarto = {
 <h1 data-number="3"><span class="header-section-number">3</span> Randomization inference with covariate adjustment</h1>
 <p>Covariate adjustment can often produce large gains in precision. To analyze an experiment with covariate adjustment, simply include the covariates in the <code>formula</code> argument of <code>conduct_ri</code>:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>complete_dec <span class="ot">&lt;-</span> <span class="fu">declare_ra</span>(<span class="at">N =</span> <span class="dv">200</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ri_out <span class="ot">&lt;-</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conduct_ri</span>(</span>
@@ -352,11 +381,15 @@ window.Quarto = {
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sims =</span> sims</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  term estimate two_tailed_p_value
 1    Z 59.27132                  0</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -370,6 +403,8 @@ window.Quarto = {
 <h1 data-number="4"><span class="header-section-number">4</span> Randomization inference for a balance test</h1>
 <p>You can use randomization inference to conduct a balance test (or randomization check). In this case, we write a function of <code>data</code> that return some balance statistic (the F-statistic from a regression of the treatment assignment on two covariates).</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>balance_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(<span class="fu">lm</span>(Z <span class="sc">~</span> professionalism <span class="sc">+</span> PSAT, <span class="at">data =</span> data))<span class="sc">$</span>f[<span class="dv">1</span>]</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -380,16 +415,23 @@ window.Quarto = {
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> complete_dat,</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sims =</span> sims</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in data.frame(est_sim = test_stat_sim, est_obs = test_stat_obs, : row
 names were found from a short variable and have been discarded</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   term  estimate two_tailed_p_value
 1 Custom Test Statistic 0.2924994             0.7489</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -408,6 +450,8 @@ names were found from a short variable and have been discarded</code></pre>
 </ol>
 <p>The null hypothesis we’re testing against in this example is the sharp hypothesis that the true treatment effect for each unit is the observed <em>average</em> treatment effect, i.e., that effects are constant.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ate_obs <span class="ot">&lt;-</span> <span class="fu">with</span>(complete_dat, <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>]))</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ri_out <span class="ot">&lt;-</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">conduct_ri</span>(</span>
@@ -419,11 +463,15 @@ names were found from a short variable and have been discarded</code></pre>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">sims =</span> sims</span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>         term estimate two_tailed_p_value
 1 F-statistic 1.095294             0.7015</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -437,6 +485,8 @@ names were found from a short variable and have been discarded</code></pre>
 <h1 data-number="6"><span class="header-section-number">6</span> Randomization inference for unmodeled treatment effect heterogeneity</h1>
 <p>Another way to investigate treatment effect heterogeneity is to consider whether the variance in the treatment and control groups are different. We can therefore test whether the difference-in-variances is larger in magnitude than what we would expect under the sharp null hypothesis of no effect for any unit.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>d_i_v <span class="ot">&lt;-</span> <span class="cf">function</span>(dat) {</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">with</span>(dat, <span class="fu">var</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">var</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>]))</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  }</span>
@@ -448,11 +498,15 @@ names were found from a short variable and have been discarded</code></pre>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">sims =</span> sims</span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   term  estimate two_tailed_p_value
 1 Custom Test Statistic -8408.684             0.2824</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -466,6 +520,8 @@ names were found from a short variable and have been discarded</code></pre>
 <h1 data-number="7"><span class="header-section-number">7</span> Randomization inference for multi-arm trials</h1>
 <p>In a three-arm trial, the research might wish to compare each treatment to control separately. To do this, we must change the null hypothesis in a subtle way: we are going to assume the sharp null for each <em>pairwise</em> comparison. For example, when comparing treatment 1 to control, we exclude the subjects assigned to treatment 2 and pretend we simply have a two arm trial conducted among the subjects assigned to control and treatment 1.</p>
 <div class="cell" data-warn="false">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>three_arm_dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"ri2_three_arm_dat.csv"</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>three_arm_dec <span class="ot">&lt;-</span> <span class="fu">declare_ra</span>(<span class="at">N =</span> <span class="dv">200</span>, </span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">conditions =</span> <span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"Treatment 1"</span>, <span class="st">"Treatment 2"</span>))</span>
@@ -477,18 +533,24 @@ names were found from a short variable and have been discarded</code></pre>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">sims =</span> sims</span>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          term  estimate two_tailed_p_value
 1 ZTreatment 1  26.72546                 NA
 2 ZTreatment 2 -48.52827                 NA</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot(ri_out)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="randomization-inference-for-joint-significance" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Randomization inference for joint significance</h1>
 <p>In that same three-arm trial that compares two treatments to a control, we might be interested in testing whether, jointly, the treatments appear to change outcomes relative to the control. This is analogous to a joint F-test, conducted via randomization inference. We assume the sharp null that a unit would express their observed outcome in <em>any</em> of the three conditions.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>F_statistic <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> Z, <span class="at">data =</span> data))<span class="sc">$</span>f[<span class="dv">1</span>]</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -499,16 +561,23 @@ names were found from a short variable and have been discarded</code></pre>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> three_arm_dat,</span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">sims =</span> sims</span>
 <span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in data.frame(est_sim = test_stat_sim, est_obs = test_stat_obs, : row
 names were found from a short variable and have been discarded</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   term estimate two_tailed_p_value
 1 Custom Test Statistic 2.802927             0.0664</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -522,6 +591,8 @@ names were found from a short variable and have been discarded</code></pre>
 <h1 data-number="9"><span class="header-section-number">9</span> Randomization inference under noncompliance</h1>
 <p>Some experiments encounter noncompliance, the slippage between treatment as assigned and treatment as delivered. The Complier Average Causal Effect (<span class="math inline">\(CACE\)</span>) can be shown (under standard assumptions plus monotonicity) to be the ratio of the effect of assignment on the outcome – the “Intention-to-Treat” (<span class="math inline">\(ITT_y\)</span>) and the effect of assignment on treatment receipt the (<span class="math inline">\(ITT_D\)</span>). (The <span class="math inline">\(CACE\)</span> is also called Local Average Treatment Effect. See our guide <a href="https://egap.org/resource/10-things-to-know-about-the-local-average-treatment-effect/">10 Things to Know About the Local Average Treatment Effect</a> for more details.) Because the <span class="math inline">\(CACE\)</span> is just a rescaled, <span class="math inline">\(ITT_y\)</span>, a hypothesis test with respect to the <span class="math inline">\(ITT_y\)</span> is a valid test for the <span class="math inline">\(CACE\)</span>. In practice, researchers can simply conduct a randomization inference test exactly as they would for the ATE, ignoring noncompliance altogether.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ITT_y <span class="ot">=</span> <span class="fu">with</span>(complete_dat, <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>])) </span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ITT_d <span class="ot">=</span> <span class="fu">with</span>(complete_dat, <span class="fu">mean</span>(D[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(D[Z <span class="sc">==</span> <span class="dv">0</span>])) </span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>CACE <span class="ot">&lt;-</span> ITT_y <span class="sc">/</span> ITT_d</span>
@@ -534,11 +605,15 @@ names were found from a short variable and have been discarded</code></pre>
 <span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sims =</span> sims</span>
 <span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  term estimate two_tailed_p_value
 1    Z    41.98             0.1156</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -552,6 +627,8 @@ names were found from a short variable and have been discarded</code></pre>
 <h1 data-number="10"><span class="header-section-number">10</span> Randomization inference for arbitrary test statistics</h1>
 <p><code>ri2</code> can accommodate <em>any</em> scalar test statistic. A favorite among some analysts is the Wilcox rank-sum statistic, which can be extracted from the <code>wilcox.test()</code> function:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>wilcox_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(data){</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  wilcox_out <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">wilcox.test</span>(Y <span class="sc">~</span> Z))</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  wilcox_out<span class="sc">$</span>statistic</span>
@@ -563,16 +640,23 @@ names were found from a short variable and have been discarded</code></pre>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> complete_dat,</span>
 <span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">sims =</span> sims</span>
 <span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in data.frame(est_sim = test_stat_sim, est_obs = test_stat_obs, : row
 names were found from a short variable and have been discarded</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   term estimate two_tailed_p_value
 1 Custom Test Statistic     4320             0.9565</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

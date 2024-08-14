@@ -215,9 +215,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Este no es un procedimiento erróneo, pero tiene sus deficiencias. Primero, cuando usamos este método no podemos saber de antemano cuántas unidades estarán en tratamiento y cuántas en control. Si para usted es importante contar con esta información, deberá emplear alguna forma de muestreo en la que cada elemento selccionado no sea estadísticamente independientes de los otros (como sacar papeletas con nombres de un sombrero). En segundo lugar, puede que quiera controlar la proporción exacta de unidades asignadas al tratamiento y control, lo que es difícil de conseguir lanzando una moneda. En tercer lugar, es posible que quiera replicar su aleatorización para demostrar que no hubo nada raro con ella. Eso no se puede lograr tan fácil lanzando monedas o sacando papeletas de sombreros. Finalmente, como mostramos a continuación, hay todo tipo de formas de hacer la aleatorización para mejorar el poder estadístico y asegurar el balance de varias formas, que son muy difíciles de lograr usando monedas y sombreros.</p>
 <p>La aleatorización replicable y flexible es muy fácil de hacer con software disponible gratuitamente. El siguiente código de R se puede utilizar, por ejemplo, para generar una asignación aleatoria, especificando el número de unidades a tratar. Aquí, N = 100 es el número de unidades que tiene y m = 34 es el número que desea tratar. La “semilla” permite replicar la misma simulación cada vez que ejecuta el código (o puede cambiar la semilla por iteración diferente de la simulación). <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">343</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">complete_ra</span>(<span class="at">N =</span> <span class="dv">100</span>, <span class="at">m =</span> <span class="dv">34</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="aleatorización-en-bloques-puede-asegurarse-de-antemano-que-los-grupos-de-tratamiento-y-control-estén-balanceados" class="level1" data-number="2">
@@ -228,6 +231,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>El <a href="https://cran.r-project.org/web/packages/blockTools/index.html">paquete blockTools</a> es util para hacer aleatorización en bloques. Comencemos por generar datos artificiales para 60 sujetos, 36 de los cuales son hombres y 24 mujeres.</p>
 <p>Supongamos que queremos hacer asignación en bloques en función del género. A partir de nuestros datos, blockTools generará los bloques más pequeños posibles, cada uno con dos unidades del mismo género: una asignada al tratamiento y la otra al control.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(blockTools)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -252,6 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">block_id =</span> <span class="fu">createBlockIDs</span>(out, dat, <span class="at">id.var =</span> <span class="st">"id"</span>),</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_block_2 =</span> <span class="fu">block_ra</span>(block_id))</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_block_2, block_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Puede verificar la media de la variable que utilizo para crear los bloques en el tratamiento y el control para ver que los grupos estén, de hecho, perfectamente balanceados en función del género.</p>
 </section>
@@ -262,12 +268,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Los diseños factoriales son especialmente útiles para evaluar intervenciones que incluyen un paquete de tratamientos. Así como en el ejemplo anterior, muchas intervenciones de desarrollo vienen con varios componentes (brazos) y, a veces, es difícil saber qué componente está produciendo el efecto observado. Un diseño factorial separa estos diferentes tratamientos y también nos permite ver la interacción entre ellos.</p>
 <p>El siguiente código enseña cómo aleatorizar utilizando un diseño factorial.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_loan =</span> <span class="fu">complete_ra</span>(<span class="dv">80</span>, <span class="dv">40</span>),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Z_training =</span> <span class="fu">block_ra</span>(<span class="at">blocks =</span> Z_loan)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dat, <span class="fu">table</span>(Z_loan, Z_training))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="usted-puede-asignar-un-conglomerado-todo-junto-al-tratamiento-pero-cuanto-más-grandes-sean-sus-conglomerados-menos-poder-tendrá" class="level1" data-number="4">
@@ -294,6 +303,8 @@ El siguiente gráfico muestra cómo se verían los grupos de tratamiento y contr
 <p>La primera es estimar el efecto del tratamiento promedio bloque por bloque y luego promediar los efectos del tratamiento, cada uno ponderado por el tamaño del bloque en relación con la muestra completa.</p>
 <p>La segunda forma es la ponderación de probabilidad inversa (PPI; Inverse probability weight, IPW). Para calcular la PPI, los pesos se definen como 1/p para las unidades tratadas y 1/(1-p) para las unidades de control, donde p se refiere a la probabilidad de asignación al tratamiento. Este método le permite ejecutar una regresión ponderada de Y en la asignación de tratamiento.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Y0 =</span> <span class="dv">1</span><span class="sc">:</span>N,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">Y1 =</span> Y0 <span class="sc">+</span> <span class="dv">10000</span>)</span>
@@ -310,6 +321,7 @@ El siguiente gráfico muestra cómo se verían los grupos de tratamiento y contr
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">ipw_estimate =</span> <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">1</span>], <span class="dv">1</span> <span class="sc">/</span> p[Z <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">weighted.mean</span>(Y[Z <span class="sc">==</span> <span class="dv">0</span>], <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> p[Z <span class="sc">==</span> <span class="dv">0</span>]))</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="aleatorización-restringida-si-no-le-gusta-lo-que-obtiene-puede-empezar-de-nuevo" class="level1" data-number="7">
