@@ -81,7 +81,7 @@ are also multisite trials: the 5 to 7 countries that contain sites for each stud
 ## A multisite trial is not a cluster-randomized trial
 
 A different type of RCT is a [cluster-randomized
-design](https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html),
+design](https://methods.egap.org/guides/data-collection/cluster-randomization_en.html),
 in which entire schools are assigned to either the active treatment or control
 treatment.
 [This video explains the difference between cluster and
@@ -361,7 +361,7 @@ We term this a model-based standard error approach, as they rely on the assumed 
 Alternatively, heteroscedastically robust standard errors (Huber-White) or cluster robust standard errors relax this $iid$
 assumption (see @Weiss2019 and @Richburg-Hayes2008).
 Robust standard errors fall into a design-based approach instead of a model-based approach (see @lin2013agnostic, Chapter 3 of @gerber2012field).
-Huber-White standard errors correspond to the finite population framework, while the asymptotic theory justifying traditional cluster robust standard errors corresponds to the super population framework in regards the clusters. In a [cluster-randomized trial](https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html), treatment is assigned to clusters, so there is also a finite-population-of-clusters perspective on cluster robust standard errors that is approximated in what are commonly known as CR2 standard errors (see @Pustejovsky2018).
+Huber-White standard errors correspond to the finite population framework, while the asymptotic theory justifying traditional cluster robust standard errors corresponds to the super population framework in regards the clusters. In a [cluster-randomized trial](https://methods.egap.org/guides/data-collection/cluster-randomization_en.html), treatment is assigned to clusters, so there is also a finite-population-of-clusters perspective on cluster robust standard errors that is approximated in what are commonly known as CR2 standard errors (see @Pustejovsky2018).
 
 To briefly summarize the correspondence between standard error estimators and the assumed population, first consider the motivation behind robust standard error estimators.
 In the FE model, treatment effects are assumed to be constant across sites.

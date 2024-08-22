@@ -47,7 +47,7 @@ But unplanned variations in format can reflect a host of selection bias issues, 
 ## 5. Your intervention and outcome measure are mismatched to your randomization design. 
 You expected counseling to be more effective in schools with higher student-to-teacher ratios, but did not block randomize by class size (for more on block randomization, see our guide on [10 Things to Know About Randomization](https://egap.org/resource/10-things-to-know-about-randomization/)). then it may no longer have the potential to be more effective for students in high class size schools. 
 
-***How can you tell if***...you have a mismatch between your intervention and randomization design? Consider whether treatment effects could vary, or service delivery might occur in a [cluster](https://methods.egap.org/guides/data-strategies/cluster-randomization_en.html), or intervention concepts could [spill over](https://methods.egap.org/guides/data-strategies/spillovers_en.html), and to what extent your randomization design accounted for that. 
+***How can you tell if***...you have a mismatch between your intervention and randomization design? Consider whether treatment effects could vary, or service delivery might occur in a [cluster](https://methods.egap.org/guides/data-collection/cluster-randomization_en.html), or intervention concepts could [spill over](https://methods.egap.org/guides/data-collection/spillovers_en.html), and to what extent your randomization design accounted for that. 
 
 Study Design
 ==

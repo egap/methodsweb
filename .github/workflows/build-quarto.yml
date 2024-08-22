@@ -2,6 +2,9 @@ on:
   push:
     branches: main
 
+env:
+  RENV_PATHS_ROOT: ~/.cache/R/renv
+
 name: Build Site
 
 jobs:
@@ -20,15 +23,33 @@ jobs:
         with:
           use-public-rspm: true
           
-      - name: Install libgit
+      - name: Install libgit and other linux packages
         run: | 
-          sudo apt-get install libgit2-dev
-      
-      - name: Query dependencies
-        run: |
-          install.packages("remotes")
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
+          sudo apt-get install libgit2-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev
+
+      - name: Install renv from github
+        uses: r-lib/actions/setup-renv@v2
+
+
+      - name: Cache packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-renv-
+
+      - name: Restore packages
         shell: Rscript {0}
+        run: |
+          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+          renv::restore()
+      
+     # - name: Query dependencies
+     #   run: |
+     #     install.packages("remotes")
+     #     saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
+     #   shell: Rscript {0}
         
       # - name: Install system dependencies on Linux
       #   if: runner.os == 'Linux'
@@ -41,18 +62,18 @@ jobs:
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install dependencies
-        run: |
-          remotes::install_deps(dependencies = TRUE)
-        shell: Rscript {0}
+      #- name: Install dependencies
+      #  run: |
+      #    remotes::install_deps(dependencies = TRUE)
+      #  shell: Rscript {0}
         
-      - name: Cache R packages
-        if: runner.os != 'Windows'
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
-          restore-keys: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-
+      #- name: Cache R packages
+      #  if: runner.os != 'Windows'
+      #  uses: actions/cache@v3
+      #  with:
+      #    path: ${{ env.R_LIBS_USER }}
+      #    key: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
+      #    restore-keys: ${{ env.cache-version }}-${{ runner.os }}-r-${{ matrix.config.r }}-
         
       # - name: Build site
       #   run: quarto::quarto_render()

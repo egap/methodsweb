@@ -3,7 +3,8 @@
 .RData
 .Ruserdata
 **/.DS_Store
-
+guides/.DS_Store
+.DS_Store
 /.quarto/
 /_freeze/
 /_site/
@@ -12,5 +13,3 @@
 site_libs/*
 *.rmarkdown
 *_files
-.DS_Store
-guides/.DS_Store

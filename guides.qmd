@@ -18,8 +18,8 @@ listing:
     type: grid
     sort-ui: false
     fields: [image, title, author]
-  - id: data-strategies
-    contents: "guides/data-strategies/*en.qmd"
+  - id: data-collection
+    contents: "guides/data-collection/*en.qmd"
     type: grid
     sort-ui: false
     fields: [image, title, author]
@@ -57,9 +57,9 @@ EGAP seeks to improve methods for rigorous impact evaluation throughout the soci
 :::{#research-questions}
 :::
 
-## Data Strategies
+## Data collection
 
-:::{#data-strategies}
+:::{#data-collection}
 :::
 
 ## Analysis Procedures 
