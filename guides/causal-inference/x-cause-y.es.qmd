@@ -1,5 +1,5 @@
 ---
-title: "10 estrategias para descubrir si X causa Y"
+title: "10 estrategias para averiguar si X causa Y"
 author: 
   - name: "Macartan Humphreys"
     url: https://macartan.github.io
@@ -77,5 +77,7 @@ En gran parte del trabajo cualitativo, los investigadores tratan de establecer l
 # Estrategias de entrada (Front-door strategies) (Argumento de mecanismos)
 
 Un último método, conceptualmente cercano al rastreo de procesos, consiste en en la argumentación usando mecanismos. Digamos que sabemos que sólo $A$ puede causar $C$ sólo a través de $B$. Digamos, además, que sabemos que ninguna tercera cosa puede causar tanto $B$ como $C$ (salvo, quizás, a través de $A$) y que ninguna tercera cosa puede causar tanto $A$ como $B$. Entonces se puede utilizar la covariación entre $A$ y $B$ y entre $B$ y $C$ para evaluar el efecto de $A$ en $C$. La ventaja es que la causalidad puede establecerse incluso en presencia de factores de confusión, por ejemplo, incluso si variables no observadas causan tanto $A$ como $C$. La dificultad, sin embargo, es que la estrategia requiere mucha confianza en sus creencias sobre la estructura de las relaciones causales. Para más información, léase [Pearl (2000)](https://books.google.com/books?id=wnGU_TsW3BQC&hl=en).
+
+![](x-cause-y_dag.png)
 
 # References {.unnumbered .unlisted}

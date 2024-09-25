@@ -1,5 +1,5 @@
 ---
-title: "10 stratégies pour déterminer si X cause Y"
+title: "10 stratégies pour déterminer si X est la cause de Y"
 author: 
   - name: "Macartan Humphreys"
     url: https://macartan.github.io
@@ -138,5 +138,7 @@ Ensuite, la covariation entre $A$ et $B$ et entre $B$ et $C$ peut être utilisé
 L'avantage est que la causalité peut être établie même en présence de facteurs de confusion — par exemple si des variables non observées causent à la fois $A$ et $C$.
 La difficulté cependant est que la stratégie nécessite une confiance forte en vos croyances sur la structure des relations causales.
 Pour en savoir plus, voir [Pearl (2000)](https://books.google.com/books?id=wnGU_TsW3BQC&hl=en).
+
+![](x-cause-y_dag.png)
 
 # References {.unnumbered .unlisted}
