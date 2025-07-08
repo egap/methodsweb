@@ -1,11 +1,38 @@
 ---
 number-sections: false
-listing: 
+listing:
   - id: guides
-    contents: 
-      - causal-inference.en.qmd
-      - covariates.en.qmd
-      - external-validity.en.qmd
+    contents:
+      - causal-inference_en.qmd
+      - covariates_en.qmd
+      - external-validity_en.qmd
+      - randomization_en.qmd
+      - adaptive-design_en.qmd
+      - sampling_en.qmd
+      - multisite-experiments_en.qmd
+      - survey-experiments_en.qmd
+      - missing-data_en.qmd
+      - measurement_en.qmd
+      - spillovers_en.qmd
+      - null-results_en.qmd
+      - regression-table_en.qmd
+      - survey-design_en.qmd
+      - pap_en.qmd
+      - pilots_en.qmd
+      - power_en.qmd
+      - evaluation-conversations_en.qmd
+      - workflow_en.qmd
+      - survey-implementation_en.qmd
+      - heterogeneous-effects_en.qmd
+      - effect-types_en.qmd
+      - mechanisms_en.qmd
+      - late_en.qmd
+      - meta-analysis_en.qmd
+      - multiple-comparisons_en.qmd
+      - ri2_en.qmd
+      - how-to-analyze-experiments_en.qmd
+      - randomization-inference_en.qmd
+      - x-cause-y.en.qmd
     type: grid
     sort-ui: false
     fields: [image, title, author]
@@ -39,6 +66,6 @@ Software tools in R and Stata can be useful for designing, implementing, analysi
 
 ![Learning days host cities (red) and participant home countries (blue).](/img/ldmap.svg)
 
-Over the past decade, Evidence in Governance and Politics (EGAP) has organized Learning Days workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) – both researchers and practitioners – in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members. **The Learning Days Book**, which grew out of a desire to share the materials we developed for the Learning Days, is a comprehensive overview of causal inference methods for researchers developing an experimental research design.  
+Over the past decade, Evidence in Governance and Politics (EGAP) has organized Learning Days workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) – both researchers and practitioners – in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members. **The Learning Days Book**, which grew out of a desire to share the materials we developed for the Learning Days, is a comprehensive overview of causal inference methods for researchers developing an experimental research design.
 
 [More...](/teaching.html)
