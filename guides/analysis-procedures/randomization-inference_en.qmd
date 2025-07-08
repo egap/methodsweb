@@ -1,7 +1,7 @@
 ---
 title: "10 Things to Know About Randomization Inference^[We focus here on randomization inference as applied to hypothesis testing. Randomization inference may also be used for construction of confidence intervals, but this application requires stronger assumptions. See @gerber_green_2012, chapter 3.]"
 author:
-       - name: "Donald Green^[Originating author: Don Green. Thanks to Winston Lin and Gareth Nellis, who commented on an earlier draft. Revisions: Jake Bowers, 8 July 2025. The guide is a live document and subject to updating by EGAP members at any time.]"
+  - name: "Donald Green^[Originating author: Don Green. Thanks to Winston Lin and Gareth Nellis, who commented on an earlier draft. Revisions: Jake Bowers, 8 July 2025. The guide is a live document and subject to updating by EGAP members at any time.]"
     url: https://egap.org/member/donald-green/
 image: randomization-inference.png
 bibliography: randomization-inference.bib
