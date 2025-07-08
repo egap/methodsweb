@@ -1,7 +1,7 @@
 ---
 title: "10 Things to Know About Randomization Inference^[We focus here on randomization inference as applied to hypothesis testing. Randomization inference may also be used for construction of confidence intervals, but this application requires stronger assumptions. See @gerber_green_2012, chapter 3.]"
 author:
-  - name: "Donald Green^[I am grateful to Winston Lin and Gareth Nellis, who commented on an earlier draft.]"
+       - name: "Donald Green^[Originating author: Don Green. Thanks to Winston Lin and Gareth Nellis, who commented on an earlier draft. Revisions: Jake Bowers, 8 July 2025. The guide is a live document and subject to updating by EGAP members at any time.]"
     url: https://egap.org/member/donald-green/
 image: randomization-inference.png
 bibliography: randomization-inference.bib
@@ -20,36 +20,68 @@ After we have conducted an experiment, we observe outcomes for the control group
 
 ```{r, message = F, warning = F}
 # Worked example of randomization inference
-rm(list=ls())       # clear objects in memory
-library(ri)         # load the RI package
+library(ri2)        # load the RI2 package
+library(coin)       # load the coin package
+
 set.seed(1234567)   # random number seed, so that results are reproducible
 # Data are from Table 2-1, Gerber and Green (2012)
-Y0 <- c(10, 15, 20, 20, 10, 15, 15)
-Y1 <- c(15, 15, 30, 15, 20, 15, 30)
-Z <-  c(1,0,0,0,0,0,1)       # one possible treatment assignment
-Y <-  Y1*Z + Y0*(1-Z)  # observed outcomes given assignment
-probs <- genprobexact(Z,blockvar=NULL)   # no blocking is assumed when generating probability of treatment and probs are 2/7 for all units
-ate <- estate(Y,Z,prob=probs)      # estimate the ATE
-perms <- genperms(Z,maxiter=10000,blockvar=NULL)   # set the number of simulated random assignments
-# show all 21 possible random assignments in which 2 units are treated
-perms
-# --------------------------------------------------------------------
-# estimate sampling dist under the sharp null that tau=0 for all units
-# --------------------------------------------------------------------
-Ys <- genouts(Y,Z,ate=0)    # create potential outcomes under the sharp null of no effect for any unit
-# show the apparent potential outcomes under the sharp null
-Ys
-distout <- gendist(Ys,perms,prob=probs)  # generate the sampling distribution  based on the implied schedule of potential outcomes implied by the null hypothesis
-ate                             # estimated ATE
-sort(distout)                   # list the distribution of possible estimates under the sharp null of no effect
-sum(    distout  >=     ate )/nrow(as.matrix(distout))   # one-tailed comparison used to calculate p-value
-sum(abs(distout) >= abs(ate))/nrow(as.matrix(distout))   # two-tailed comparison used to calculate p-value
-dispdist(distout,ate)        # display p-values, 95% confidence interval, standard error under the null, and graph the sampling distribution under the null
+dat <- data.frame(
+Y0 = c(10, 15, 20, 20, 10, 15, 15),
+Y1 = c(15, 15, 30, 15, 20, 15, 30),
+Z =  c(1,0,0,0,0,0,1))       # one possible treatment assignment
+dat$Y <-  with(dat,Y1*Z + Y0*(1-Z)) # observed outcomes given assignment
+# Represent the design with 2 units assigned to treatment and 5 to control
+declaration <- declare_ra(N = 7, m = 2)
+print(declaration)
+
+# Notice that there are 21 ways to assign 2 treatments to 7 total units
+# the first way is to assign treatments to units 1 and 2, and the second to units 1 and 3, etc.
+combn(7,2)
+
+# Conduct Randomization Inference
+# using a difference in means test statistic by default
+ri2_out <- conduct_ri(
+  formula = Y ~ Z,
+  declaration = declaration,
+  sharp_hypothesis = 0,
+  data = dat
+)
+
+summary(ri2_out)
+
+# The ingredients:
+# An observed test statistic
+obs_mean_diff <- with(dat,mean(Y[Z==1])-mean(Y[Z==0]))
+
+# The distribution of the test statistic under the null:
+table(ri2_out$sims_df$est_sim)
+two_tailed_p <- mean(abs(ri2_out$sims_df$est_sim) >= obs_mean_diff)
+two_tailed_p
+
+# Another approach using permutations rather than an exact approach using the coin package
+# And using a standardized difference of means (like a t-test) rather than the raw
+# difference in means used above
+dat$ZF <- factor(1-dat$Z) # oneway_test wants treatment to be a factor
+t_test_exact <- oneway_test(Y~ZF,data=dat,distribution=exact())
+print(t_test_exact)
+pvalue(t_test_exact)
+## the standardized difference in means
+statistic(t_test_exact)
+
+# The equivalent of the table showing the distribution above
+# only here using standardized test statistics
+rbind(support(t_test_exact),
+       # The probabilities of each possible test statistic value under the null.
+       dperm(t_test_exact,x=support(t_test_exact))*21)
+
 # Compare results to traditional t-test with unequal variance
-t.test(Y~Z,
+
+# notice that the results are not the same because the t.test is assuming a
+# t-distribution for the null distribution of the test statistic.
+t.test(Y~Z,data=dat,
        alternative = "less",
        mu = 0, var.equal = FALSE)
-t.test(Y~Z,
+t.test(Y~Z, data=dat,
        alternative = "two.sided",
        mu = 0, var.equal = FALSE)
 ```
@@ -98,6 +130,6 @@ On the other hand, randomization inference cannot be applied with additional ass
 
 Old-fashioned approximate methods work well when the assumptions on which the approximations rest are sound. For example, when an experiment involves random assignment of individual subjects, outcomes are distributed more or less symmetrically around the mean, and the number of subjects is greater than 100, the difference between conventional p-values and RI p-values may be negligible. Randomization inference may still be useful as the final word, but it rarely changes inferences substantively under these circumstances. The method is valuable primarily for nonstandard applications in which outcomes are skewed, subject pools are small, or the method of assignment is complex.
 
-Note on available software for implementing randomization. For the latest R package for randomization inference, see [here](http://alexandercoppock.com/ri2/articles/ri2_vignette.html). For randomization inference code specifically tailored to the special features of binary outcomes, see [here](https://cran.r-project.org/web/packages/RI2by2/index.html). Stata users may find an all-purpose package [here](https://github.com/simonheb/ritest).
+Note on available software for implementing randomization inference. For the latest R package for randomization inference, see [here](http://alexandercoppock.com/ri2/articles/ri2_vignette.html). For randomization inference code specifically tailored to the special features of binary outcomes, see [here](https://cran.r-project.org/web/packages/RI2by2/index.html). Stata users may find an all-purpose package [here](https://github.com/simonheb/ritest).
 
 # References
