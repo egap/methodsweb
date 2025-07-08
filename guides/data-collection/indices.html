@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10 Things to Know About Indices – Methods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-595523a28cbbdc4574c10ec38e1051dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">10 Things to Know About Indices</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">10 Things to Know About Indices</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#what-are-indices" id="toc-what-are-indices"><span class="header-section-number">1</span> 1. What are indices?</a></li>
+  <li><a href="#why-are-indices-important" id="toc-why-are-indices-important"><span class="header-section-number">2</span> 2. Why are indices important?</a></li>
+  <li><a href="#when-do-we-want-to-use-indices-substantive-reasons" id="toc-when-do-we-want-to-use-indices-substantive-reasons"><span class="header-section-number">3</span> 3. When do we want to use indices?: Substantive reasons</a></li>
+  <li><a href="#when-do-we-want-to-use-indices-statistical-reasons" id="toc-when-do-we-want-to-use-indices-statistical-reasons"><span class="header-section-number">4</span> 4. When do we want to use indices?: Statistical reasons</a></li>
+  <li><a href="#how-to-pick-different-methods-to-construct-indices" id="toc-how-to-pick-different-methods-to-construct-indices"><span class="header-section-number">5</span> 5. How to pick different methods to construct indices</a></li>
+  <li><a href="#how-to-construct-indices" id="toc-how-to-construct-indices"><span class="header-section-number">6</span> 6. How to construct indices</a></li>
+  <li><a href="#how-to-use-an-index-as-a-dependent-variable-in-a-regression-variance" id="toc-how-to-use-an-index-as-a-dependent-variable-in-a-regression-variance"><span class="header-section-number">7</span> 7. How to use an index as a dependent variable in a regression: Variance</a></li>
+  <li><a href="#how-to-use-an-index-as-a-dependent-variable-in-a-regression-bias" id="toc-how-to-use-an-index-as-a-dependent-variable-in-a-regression-bias"><span class="header-section-number">8</span> 8. How to use an index as a dependent variable in a regression: Bias</a></li>
+  <li><a href="#pre-registration-design-stage" id="toc-pre-registration-design-stage"><span class="header-section-number">9</span> 9. Pre-registration: Design stage</a></li>
+  <li><a href="#pre-registration-analysis-stage" id="toc-pre-registration-analysis-stage"><span class="header-section-number">10</span> 10. Pre-registration: Analysis stage</a></li>
+  <li><a href="#example-r-code" id="toc-example-r-code"><span class="header-section-number">11</span> Example R code</a></li>
+  </ul>
+</nav>
+<p>Saki Kuzushima</p>
+<section id="what-are-indices" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 1. What are indices?</h1>
+<p>An index is a variable where multiple other variables are aggregated to measure one concept. Researchers often combine multiple observable indicators to measure concepts that are not directly observable, such as attitudes, perceptions, and beliefs. Rather than forcing one indicator to measure the concept, using multiple indicators can represent the concept more accurately and can reduce variation in the variable, thereby increasing its reliability as a measure.</p>
+<p>Examples of such measures include both established measures and researcher-defined measures. Established measures include personality traits, such as right-wing authoritarianism and narcissism, and they have established sets of questions <span class="citation" data-cites="altemeyer1988enemies raskin1988principal">[@altemeyer1988enemies; @raskin1988principal]</span>. Other concepts do not have an established set of indicators to measure them, and thus researchers need to choose which observable indicators to use and how to combine them. There are many aggregation methods, such as simple and weighted averages, principle component analysis (PCA), factor analysis, and item response theory (IRT) methods, and they have different advantages and disadvantages. Researchers need to choose which method to use depending on the context and the purpose of the study.</p>
+</section>
+<section id="why-are-indices-important" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> 2. Why are indices important?</h1>
+<p>Indices help researchers to measure concepts that are not directly observable by using multiple observable indicators of those concepts. When researchers conduct survey and field experiments, they are typically interested in how treatments affect outcomes. While treatments are often easily measured because researchers have complete control over them in most experimental setups, measuring outcomes can be challenging. Many outcomes of interest to political scientists and policymakers are are not directly observable.</p>
+<p>For example, <span class="citation" data-cites="margalit2021markets">[@margalit2021markets]</span> study the effect of investment experience on socioeconomic values, and they measure socioeconomic values by combining respondents’ agreement with statements such as “economic positions are legitimate reflections of people’s achievements” and “there are no inherent differences between rich and poor; it is purely a matter of the circumstances into which you are born.” The underlying concept, “socioeconomic values”, is not directly observable — individual people might not even know what a researcher means by “socioeconomic values”— but the study aims to learn about the effects of a treatment (investment experience) on the socioeconomic values of people. The two indicators listed above are <em>both</em> measures of the underlying concept and an index combining them both should represent how “socioeconomic values” change in response to the experimental treatment better than using each alone. Answers to the first question alone could be taken to reflect, say, libertarian ideology and not attitudes about fairness per se, and answers to the second question alone might reflect stereotypes about classes in society rather than values held by the person. Researchers often want to use indices in the hope that the index is a more <strong>valid</strong> measure of the concept than any single indicator used on its own.</p>
+</section>
+<section id="when-do-we-want-to-use-indices-substantive-reasons" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 3. When do we want to use indices?: Substantive reasons</h1>
+<p>When researchers design survey or field experiments, they face a choice how to measure the outcome variables. Consider an experiment where outcomes are survey responses to multiple questions. Researchers could combine the multiple questions into a single index, and use the index as a single outcome. Or researchers could use multiple observable indicators as multiple outcomes. Substantively, researchers should consider which can address their research question better. Statistically, using an index as an outcome can increase the power of the study, but combining multiple variables into an index comes at the cost of losing the information about the treatment effect on each observable indicator.</p>
+<p>For example, <span class="citation" data-cites="anjum2021united">[@anjum2021united]</span> conduct a survey experiment that examines whether an endorsement from the UN influences public support for policies to improve women’s rights in Pakistan. In their experiment, the outcome variables measure the support for different policies related to women’s rights, such as increasing legislative quotas and raising the minimum marriage age, and the treatment is information about the UN endorsement. Which outcomes are more appropriate? 1) A single composite index that combines the support for different policies or 2) the support for each policy separately?</p>
+<p>Substantively, research questions should guide whether the appropriate outcome is an index that combines the support for different policies or the support for each policy separately. If researchers are interested in the endorsement effect on any kind of women’s rights, researchers can choose to use the index as an outcome. Alternatively, if researchers are interested in the variation in the effect of the UN endorsement on different policies, researchers should use the support for each policy as an outcome.</p>
+<p>Practically, researchers may interested in both the effect on the concept measured by the composite index and the effect of treatment on each observable indicator. This is certainly a reasonable choice, but researchers should make sure to pre-register their hypotheses and analysis plan, including whether and how to combine outcome variables before conducting the experiment as well as any adjustments for testing the multiple hypotheses arising from an investigation of the effect of the treatment on each outcome separately.</p>
+</section>
+<section id="when-do-we-want-to-use-indices-statistical-reasons" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> 4. When do we want to use indices?: Statistical reasons</h1>
+<p>Statistically, using an index can reduce measurement error <span class="citation" data-cites="ansolabehere2008strength">[@ansolabehere2008strength]</span>. Let <span class="math inline">\(X\)</span> be a scalar value that represents true socioeconomic value but it is not directly observable. Instead, we observe responses to two survey questions, <span class="math inline">\(W_1\)</span> and <span class="math inline">\(W_2\)</span>, which are noisy measures of <span class="math inline">\(X\)</span>. In other words, these observable responses come with additive variation or noise <span class="math inline">\(\epsilon_1\)</span> and <span class="math inline">\(\epsilon_2\)</span> such that <span class="math inline">\(W_1 = X + \epsilon_1\)</span> and <span class="math inline">\(W_2 = X + \epsilon_2\)</span>. For the sake of this description, we further assume that the noise has mean zero and is not correlated with either the true value <span class="math inline">\(X\)</span> or each other, and that the noise has the same variance. In other words, we assume that <span class="math inline">\(E[\epsilon_1] = E[\epsilon_2] = 0\)</span>, <span class="math inline">\(E[\epsilon_1 X] = E[\epsilon_2 X] = 0\)</span>, <span class="math inline">\(E[\epsilon_1 \epsilon_2] = 0\)</span>, and <span class="math inline">\(Var[\epsilon_1] = Var[\epsilon_2] = \sigma^2\)</span>.</p>
+<p>We can compare the variance of two possible outcome variables: a single observable indicator <span class="math inline">\(W_1\)</span> and a composite index computed as the average of two indicators <span class="math inline">\(\bar{W} = \frac{1}{2}(W_1 + W_2)\)</span>. Under our assumption, we can show that <span class="math inline">\(Var[W_1] = Var[X] + \sigma^2\)</span> and <span class="math inline">\(Var[\bar{W}] = Var[X] + \frac{1}{2}\sigma^2\)</span>, and therefore <span class="math inline">\(Var[\bar{W}] &lt; Var[W_1]\)</span>.This implies that the variance in the outcome variable due to noise in any one variable can be reduced by using an index that combines multiple observable indicators.</p>
+<p>Due to the reduced variation in the outcome, a composite index as an outcome can increase the statistical power of the study to detect treatment effects compared to the power available to detect effects on the elements of the index. Because the indices can reduce the variation in the outcome, the variance in the estimated treatment effect is likely to be also reduced, which increases the power of the study. In addition, using indices can alleviate concerns about multiple testing that arise when multiple outcomes are used.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>By contrast, the major disadvantage of using an index as a single outcome is that we would lose the information about the treatment effect on each observable indicator, and thus we may not be able to learn about the variation in the treatment effect on different indicators. The variation across different indicators can be important because it can provide insights into research questions, such as which aspect of the underlying concept is affected by the treatment and which is not. Therefore, researchers should carefully consider whether they want to use an index as an outcome or multiple observable indicators as outcomes depending on the research questions and hypotheses to be tested.</p>
+</section>
+<section id="how-to-pick-different-methods-to-construct-indices" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 5. How to pick different methods to construct indices</h1>
+<p>Suppose researchers decided to combine multiple questions to construct an index to measure the concept of interest, and then they want to use it as an outcome of an experiment. This process typically involves several steps: 1) define the concept well, 2) choose what observable indicators to use, 3) decide how to combine them together.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> In this section, we focus on the last step: how to combine multiple observable indicators to measure the concept. A simple and commonly used way is to use a simple average of the observable indicators as an index. While this is the most straightforward and simple method, one of the disadvantage is that it assumes that all observable indicators are equally important, which may not be the case. Researchers may have a theory about which observable indicator should weigh more than others, or they may want to choose a method that maximizes the efficiency of the available data. Among many existing methods, researchers need to choose which method to use depending on the context and the purpose of the study. There are two approaches to guide this decision: theory-driven and data-driven approaches.</p>
+<p>Researchers may have a theory about how the observable indicators are linked to the concept of interest. In this case, researchers may want to use a theory-driven approach to construct the index. For example, Polity IV is a measure of democracy that combines multiple observable indicators, such as the competitiveness of political participation, the openness and competitiveness of executive recruitment, and the constraints on the chief executive. These observable indicators are combined as a weighted average with pre-determined weights <span class="citation" data-cites="polityiv">[@polityiv]</span>. While taking a weighted average with pre-determined weights is a simple and transparent method, it raises the concern about the influence of the weights on the analysis: the way each indicator is weighted could have a large impact on the index values, the weights need to be chosen with care and justified by theory.</p>
+<p>Researchers can also use statistical tools to combine the observable indicators to construct the index. For example, principle component analysis (PCA) and factor analysis are two common methods that can increase the efficiency of the data compared to the simple average. These methods allow researchers can exploit the correlation information among the observable indicators to construct the index. While the data-driven approach may seem more objective and transparent compared to the theory-driven approach, researchers should be aware that PCA and factor analysis also involve researchers’ decisions in practice: there are often technical decisions to be made such as how many underlying concepts ought to be measured by the set of observed indicators or whether to allow the number of concepts to arise from the data. Thus, it is recommended that researchers decide how exactly they apply these methods prior to conducting the experiment. Pre-registering analysis code that specifies the exact method and parameters used to compute the index can make these decisions more transparent and easier to communicate with readers of the research results.</p>
+</section>
+<section id="how-to-construct-indices" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 6. How to construct indices</h1>
+<p>We briefly review how to construct indices with a data-driven approach. In particular, we review the assumptions that each method makes and discuss the advantages and disadvantages of each method.</p>
+<p>The most straightforward way to construct an index is to take a simple average of the observable indicators. Suppose that <span class="math inline">\(X\)</span> is the true value of the concept, and <span class="math inline">\(W_1, W_2, \ldots, W_k\)</span> are the observable indicators. The simple average index is defined as <span class="math inline">\(\bar{W} = \frac{1}{k}\sum_{i=1}^k W_i\)</span>. This method is simple and transparent, and it is often used in practice. However, its downside is that it assumes that all observable indicators are equally important, which may not be the case.</p>
+<p>To relax the assumption of common weights, researchers may want to use a weighted average. The weighted average index is defined as <span class="math inline">\(\bar{W} = \sum_{i=1}^k v_i W_i\)</span>, where <span class="math inline">\(v_i\)</span> is the weight for the <span class="math inline">\(i\)</span>-th observable indicator. If <span class="math inline">\(v_i = 1/k\)</span> for all <span class="math inline">\(i\)</span>, the weighted average index is equivalent to the simple average index. There are several methods to estimate weights for different purposes. For example, PCA is a dimension reduction technique that finds the weights that maximize the variance of the estimated index. Specifically, it replaces the original <span class="math inline">\(W_1, W_2, \dots, W_k\)</span> with a smaller number of linear combinations of the original indicators, and the weights are chosen to find the linear combination that maximizes the variance of the data.</p>
+<p>One limitation of the weighted average approach is that the data is treated as numerical, but the survey response data is often categorical. For example, the survey response data is often categorical, such as “strongly agree,” “agree,” “neutral,” “disagree,” and “strongly disagree.” With these response categories, the distance between “strongly agree” and “agree” may not the same as the distance between “agree” and “neutral.” However, with PCA and factor analysis, these response categories are treated as numbers (i.e., 1, 2, 3, 4, 5), and thus the assumption of common distance between response categories is implicitly made. One method that can relax the assumption of common distance between response categories is item response theory (IRT) models and its variants. While IRT models are the most flexible and can account for the uncommon distance between response categories, the same disadvantage as PCA and factor analysis remains as it requires estimation of weights.</p>
+</section>
+<section id="how-to-use-an-index-as-a-dependent-variable-in-a-regression-variance" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> 7. How to use an index as a dependent variable in a regression: Variance</h1>
+<p>After the index is constructed, researchers may want to estimate the treatment effect on the index. A common approach is a two-step approach: First, construct the index using the method described in the previous section, and then estimate the treatment effect on the constructed index. For example, researchers could construct an index using factor analysis, and then estimate the treatment effect by taking a difference-in-means of the estimated index between the treatment and control groups.</p>
+<p>If we imagine that the values of the index could have been different each time, say, we asked the several survey questions meant to measure it, where the differences in responses arise just from the process of answering the questions, not necessarily because of a reaction to the treatment, then the above approach likely underestimates the variation in the treatment effect because the uncertainty of the measurement error in the index — the extent to the which the index might take on different values from moment of measurement to moment of measurement — is not taken into account when estimating the treatment effect. After we construct the index, researchers often use the estimated index as an outcome in a regression model, and then estimate the treatment effect on the index. When they use the estimated index as an outcome, they often consider the estimated index as a fixed value, and disregard the uncertainty of the measurement error in the index. Therefore, the variance in the estimated treatment effect is likely to be underestimated if we imagine that variation in the indicators of the outcome arises not only from their pre-experimental “natural variation”.</p>
+<p>One solution to this problem is to use the hierarchical model to estimate the treatment effect on the index. <span class="citation" data-cites="stoetzer2024causal">[@stoetzer2024causal]</span> introduce a method that can incorporate the uncertainty, by using a hierarchical item response theory (IRT) model which is like a factor analysis model but which allows more flexibility in how individual items combine into an index. In their method, the index is constructed using the IRT model, and then the treatment effect is estimated as a hierarchical structure. This method models the uncertainty of the measurement error in the index using a pre-specified probability model, and thus the variance in the estimated treatment effect is likely to be more accurately estimated if that model is a good representation of the process by which indicators can vary and thus the index could vary.</p>
+<p>If the study is designed such that responses to the outcome indicators would not vary: say, each time a person was asked the survey questions, they would always give the same answers. Then there is no excess variability to model and thus researchers would not need to incorporate a measurement model into their treatment effect models.</p>
+</section>
+<section id="how-to-use-an-index-as-a-dependent-variable-in-a-regression-bias" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> 8. How to use an index as a dependent variable in a regression: Bias</h1>
+<p>Even if the uncertainty is incorporated, the estimated treatment effect may be biased if measurement error is correlated with the treatment. One way to understand why the estimated treatment effect could be biased is to consider systematic measurement error in the index. Suppose that the true value of the concept is <span class="math inline">\(X_i\)</span>, and the observed value of the concept is <span class="math inline">\(W_i = X_i + \epsilon_i\)</span>, where <span class="math inline">\(\epsilon_i\)</span> is the measurement error. Suppose we want to estimate the average treatment effect (ATE) of the binary treatment, <span class="math inline">\(T_i\)</span>, on the concept, <span class="math inline">\(X_i\)</span>. The ATE is then defined as <span class="math inline">\(E[X_i | T_i = 1] - E[X_i | T_i = 0]\)</span>. However, the difference in means of the observed index, <span class="math inline">\(W_i\)</span>, between the treatment and control groups is given by the following.</p>
+<p><span class="math display">\[
+\begin{split}
+  &amp;E[W_i | T_i = 1] - E[W_i | T_i = 0] \\
+  &amp;=E[X_i + \epsilon_i | T_i = 1] - E[X_i + \epsilon_i | T_i = 0] \\
+  &amp;= \underbrace{E[X_i | T_i = 1] - E[X_i | T_i = 0]}_{ATE} + \underbrace{E[\epsilon_i | T_i = 1] - E[\epsilon_i | T_i = 0]}_{Bias}.
+\end{split}
+\]</span></p>
+<p>The last term, <span class="math inline">\(Bias\)</span>, is the bias in the estimated treatment effect, and it may be non-zero if the act of measuring the outcome under treatment is different from the act of measuring the outcome under control (or the way that the unobserved, latent, concept relates to the observed indicators differs systematically between the experimental arms).</p>
+<p>When does the bias occur? One example is social desirability bias induced by treatment assignment, where respondents tend to give answers that are more socially acceptable when treated. For example, <span class="citation" data-cites="clayton2019all">[@clayton2019all]</span> study the effect of gender-compositions of committees on the perceived legitimacy of the committee’s decision. While they found that having a gender-balanced committee increases the perceived legitimacy of the committee’s decision, it is possible that the results are driven by the social desirability bias. In other words, respondents might have answered that the gender-balanced committee’s decision is more legitimate simply because they think it is better to say so, rather than because they truly believe that the gender-balanced committee is more legitimate. In the case of a randomized experiment, this kind of bias from measurement differences challenges the <em>interpretation</em> of the estimated effect.</p>
+</section>
+<section id="pre-registration-design-stage" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> 9. Pre-registration: Design stage</h1>
+<p>Given that multiple methods are available to construct indices and estimate the treatment effect on them, researchers should carefully consider which method to use depending on the context and the purpose of the study. Researchers can pre-register their hypotheses and analysis plan before conducting the experiment to improve the ease with which readers can interpret their study: pre-registration communicates that researchers did not just many methods of index construction only to choose the method that produces the most favorable results after seeing the data. In addition, pre-registration can increase the transparency of the study because it allows others to understand how the index is constructed and the treatment effect is estimated.</p>
+<p>For example, <span class="citation" data-cites="kalla2020reducing">[@kalla2020reducing]</span> show how to pre-register the hypotheses and analysis plan with indices as an outcome.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> In their pre-registration, they not only specify the research questions and the hypotheses but also the analysis plan, including how to construct the index and estimate the treatment effect. In addition, they provide the analysis code that can be executed once the data is collected, which ensures that the analysis is reproducible and transparent.</p>
+</section>
+<section id="pre-registration-analysis-stage" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> 10. Pre-registration: Analysis stage</h1>
+<p>After the experiment is conducted and the data is collected, researchers should report the results of their pre-registered analysis plan. However, it is often the case that researchers have to deviate from the plan for some reasons. For example, researchers may have to change the method to construct the index given unexpected missing data or values or changes in data collection in the field, and so they should explain why the original method did not work and how the new method is chosen. For example, <span class="citation" data-cites="kalla2020reducing">[@kalla2020reducing]</span> pre-registered that they would use factor analysis to construct the index, but they found that the method did not work well with the data collected due to missingness. They updated their analysis plan and declared that they decided to use simple average method to construct the index.</p>
+<p>Although a pre-analysis plan can help researchers communicate about their findings, most data sets offer more to learn about the substantive questions motivating the study. Researchers should definitely explore their data, report new and interesting findings and discoveries. In order to avoid confusion, they should also explain the new findings are exploratory and not confirmatory.</p>
+</section>
+<section id="example-r-code" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Example R code</h1>
+<p>This section provides an example R code to construct indices using the simple average, PCA, and factor analysis methods. We use the replication data from <span class="citation" data-cites="margalit2021markets">[@margalit2021markets]</span> which studies the effect of investment experience on socioeconomic values.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> The observable indicators are the responses to the following questions. The response categories are “strongly agree,” “agree,” “neutral,” “disagree,” and “strongly disagree” for the first three questions, and 1-10 scale for the last question.</p>
+<ul>
+<li><p>“Most people who don’t get ahead in our society should not blame the system; they have only themselves to blame.”</p></li>
+<li><p>“Economic positions are legitimate reflections of people’s achievements.”</p></li>
+<li><p>“There are no inherent differences between rich and poor; it is purely a matter of the circumstances into which you are born.”</p></li>
+<li><p>Place the views on a 1–10 scale: (1) “We need larger income differences as incentives for individual effort.” (10) “Incomes in the UK should be made more equal”.</p></li>
+</ul>
+<p>While the original study uses PCA to construct the index, we also provide the code to construct the index using the simple average, factor analysis, the Bayesian IRT with two-step approach, and hierarchical Bayesian IRT methods<span class="citation" data-cites="zhou2020hirt">[@zhou2020hirt]</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hIRT)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"indices_markets_SEV_repdata.dta"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple average ################################</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> data[,<span class="fu">c</span>(<span class="st">"blame_system_w3"</span>, <span class="st">"bjw_w3"</span>, <span class="st">"r_luck_w3"</span>, <span class="st">"equality_1_w4"</span>)]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>items_std <span class="ot">&lt;-</span> <span class="fu">apply</span>(items, <span class="dv">2</span>, scale)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>score_ave <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(items_std, <span class="at">na.rm=</span>T)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># match the direction so that the higher score means right-wing</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>score_ave <span class="ot">&lt;-</span> <span class="sc">-</span>score_ave</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># average treatment effect</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>ate_ave <span class="ot">&lt;-</span> <span class="fu">lm</span>(score_ave <span class="sc">~</span> stockreal, <span class="at">data=</span>data)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA ################################################</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>out_pca <span class="ot">&lt;-</span> <span class="fu">princomp</span>(<span class="sc">~</span> blame_system_w3 <span class="sc">+</span> bjw_w3 <span class="sc">+</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                    r_luck_w3 <span class="sc">+</span> equality_1_w4,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>data,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                    <span class="at">cor=</span>T,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                    <span class="at">na.action=</span>na.exclude)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>score_pca <span class="ot">&lt;-</span> out_pca<span class="sc">$</span>scores[,<span class="dv">1</span>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>score_pca <span class="ot">&lt;-</span> <span class="sc">-</span>score_pca</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>ate_pca <span class="ot">&lt;-</span> <span class="fu">lm</span>(score_pca <span class="sc">~</span> stockreal, <span class="at">data=</span>data)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Factor analysis ##########################################</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>out_fa <span class="ot">&lt;-</span> <span class="fu">factanal</span>(<span class="sc">~</span> blame_system_w3 <span class="sc">+</span> bjw_w3 <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                    r_luck_w3 <span class="sc">+</span> equality_1_w4,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                    <span class="at">factors=</span><span class="dv">1</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>data,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                    <span class="at">scores=</span><span class="st">"regression"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                    <span class="at">na.action=</span>na.exclude)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>score_fa <span class="ot">&lt;-</span> out_fa<span class="sc">$</span>scores[,<span class="dv">1</span>]</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>score_fa <span class="ot">&lt;-</span> <span class="sc">-</span>score_fa</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>ate_fa <span class="ot">&lt;-</span> <span class="fu">lm</span>(score_fa <span class="sc">~</span> stockreal, <span class="at">data=</span>data)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># IRT (two step) ############################################</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>out_irt <span class="ot">&lt;-</span> <span class="fu">hgrm</span>(<span class="at">y=</span>items, <span class="at">x=</span><span class="cn">NULL</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>score_irt <span class="ot">&lt;-</span> <span class="sc">-</span>out_irt<span class="sc">$</span>scores<span class="sc">$</span>post_mean</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>ate_irt <span class="ot">&lt;-</span> <span class="fu">lm</span>(score_irt <span class="sc">~</span> stockreal, <span class="at">data=</span>data)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Hierarchical IRT ##########################################</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>out_hirt <span class="ot">&lt;-</span> <span class="fu">hgrm</span>(<span class="at">y=</span>items, <span class="at">x=</span><span class="fu">as.matrix</span>(data[,<span class="fu">c</span>(<span class="st">"stockreal"</span>)]))</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>ate_hirt <span class="ot">&lt;-</span> out_hirt<span class="sc">$</span>coefficients[<span class="st">"xstockreal"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="indices_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption><strong>Comparison of the Average Treatment Effect with Different Methods to Construct the Index</strong>: This figure compares the estimated average treatment effect (ATE) of investment experience on the outcome index constructed with different methods. X-axis represents the estimated ATE, and the horizontal line represents the 95% confidence interval. The outcome index is constructed with 5 different methods: simple average, PCA, factor analysis, Bayesian IRT, and hierarchical Bayesian IRT. For the simple average, PCA, factor analysis methods, and IRT, the index is constructed first, and a simple linear regression is used to estimate the treatment effect of investment experience on the index. For the hierarchical IRT method, both the index construction and the effect estimation are done by the hierarchical IRT model. Across all methods other than hierarchical IRT model, the estimated treatment effect is positive statistically significant at the 5% level, which is consistent with the original study.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Refer to the EGAP method guide on the multiple testing problem on how to conduct multiple testing corrections.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>2<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://osf.io/b4t3q" class="uri">https://osf.io/b4t3q</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Replication data and code are available at <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/UEARI0" class="uri">https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/UEARI0</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
