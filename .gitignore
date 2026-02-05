@@ -13,3 +13,5 @@ guides/.DS_Store
 site_libs/*
 *.rmarkdown
 *_files
+
+**/*.quarto_ipynb
