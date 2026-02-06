@@ -1,5 +1,12 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "guides/**/*.qmd"
+    - "!CLAUDE.md"
+    - "!HANDOFF.md"
+    - "!MIGRATION_PLAN.md"
+    - "!README.md"
 
 website:
   title: "Methods"
@@ -42,19 +49,19 @@ website:
             - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
               href: /guides/research-questions/effect-types_es.html
 
-    - title: ""
-      id: hypothesis-testing
-      contents:
-        - text: "How to read this guide"
-          href: /guides/how-to-read_en.html
-        - text: "Language"
-          contents:
-            - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
-              href: /guides/analysis-procedures/hypothesis-testing_en.html
-            # - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
-            #   href: /guides/analysis-procedures/hypothesis-testing_fr.html
-            - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
-              href: /guides/analysis-procedures/hypothesis-testing_es.html
+    # - title: ""
+    #   id: hypothesis-testing
+    #   contents:
+    #     - text: "How to read this guide"
+    #       href: /guides/how-to-read_en.html
+    #     - text: "Language"
+    #       contents:
+    #         - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
+    #           href: /guides/analysis-procedures/hypothesis-testing_en.html
+    #         - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
+    #           href: /guides/analysis-procedures/hypothesis-testing_fr.html
+    #         - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
+    #           href: /guides/analysis-procedures/hypothesis-testing_es.html
 
     - title: ""
       id: external-validity
@@ -126,12 +133,54 @@ website:
             - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
               href: /guides/causal-inference/x-cause-y_es.html
 
+    - title: ""
+      id: causal-inference
+      contents:
+        - text: "How to read this guide"
+          href: /guides/how-to-read_en.html
+        - text: "Language"
+          contents:
+            - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
+              href: /guides/causal-inference/causal-inference_en.html
+            - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
+              href: /guides/causal-inference/causal-inference_fr.html
+            - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
+              href: /guides/causal-inference/causal-inference_es.html
+
+    - title: ""
+      id: measurement
+      contents:
+        - text: "How to read this guide"
+          href: /guides/how-to-read_en.html
+        - text: "Language"
+          contents:
+            - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
+              href: /guides/data-collection/measurement_en.html
+            - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
+              href: /guides/data-collection/measurement_fr.html
+            - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
+              href: /guides/data-collection/measurement_es.html
+
+    - title: ""
+      id: randomization
+      contents:
+        - text: "How to read this guide"
+          href: /guides/how-to-read_en.html
+        - text: "Language"
+          contents:
+            - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
+              href: /guides/data-collection/randomization_en.html
+            - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
+              href: /guides/data-collection/randomization_fr.html
+            - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
+              href: /guides/data-collection/randomization_es.html
+
 
 format:
   html:
     theme:
       - simplex
-      - theme.scss
+      - custom.scss
     css: styles.css
     linkcolor: blue
     toc: true
