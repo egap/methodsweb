@@ -4,6 +4,7 @@ author:
   - name: "Lindsay Dolan"
     url: https://lindsayrdolan.com/
 image: randomization.png
+sidebar: randomization
 bibliography: randomization.bib
 abstract: | 
   Ce guide vous aidera à concevoir et à mettre en œuvre différents types de randomisation dans vos expériences.

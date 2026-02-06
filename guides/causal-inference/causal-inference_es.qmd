@@ -4,6 +4,7 @@ author:
   - name: "Macartan Humphreys"
     url: https://egap.org/member/macartan-humphreys/
 image: causal-inference.png
+sidebar: causal-inference
 abstract: | 
   El filósofo David Lewis describió la causalidad como "algo que marca la diferencia, y esa diferencia que hace, debe ser la diferencia entre lo que fue y lo que hubiera sido sin ese algo". Esta es la interpretación que dan a la causalidad la mayoría de los experimentalistas. Aunque la definición parece simple, tiene muchas implicaciones sutiles. Aquí les presentamos diez ideas implícitas en esta noción de causalidad que son importantes para el diseño de investigación.
 ---

@@ -5,6 +5,7 @@ author:
     url: http://taraslough.com
 bibliography: measurement.bib
 image: measurement.png
+sidebar: measurement
 ---
 
 # The validity of inferences we draw from an experiment depend on the validity of the measures used.

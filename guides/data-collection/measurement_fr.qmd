@@ -5,6 +5,7 @@ author:
     url: http://taraslough.com/
 bibliography: measurement.bib
 image: measurement.png
+sidebar: measurement
 ---
 
 <!-- title: "10 choses à savoir sur la mesure dans les expériences" -->
