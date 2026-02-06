@@ -62,7 +62,7 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-4a1c17abc3e32438f05512b979c87bf9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -307,7 +307,7 @@ window.Quarto = {
 <h2 data-number="10.1" class="anchored" data-anchor-id="log-odds-treatment-effects"><span class="header-section-number">10.1</span> Log-Odds Treatment Effects</h2>
 <p>A common quantity of causal interest for dichotomous outcomes is our treatment’s effect on the log-odds of success, defined for the experimental pool as:</p>
 <p><span class="math display">\[\Delta = log\frac{E(Y_i(1))}{1-E(Y_i(1))} - log\frac{E(Y_i(0))}{1-E(Y_i(0))}\]</span></p>
-<p><span class="citation" data-cites="freemand_2008b">(<a href="#ref-freemand_2008b" role="doc-biblioref"><strong>freemand_2008b?</strong></a>)</span> shows that the coefficient from a logistic regression adjusting for covariates in a randomized experiments produces biased estimates of this causal effect. The basic intuition for Freedman’s argument comes from the fact that taking the log of averages is not the same as taking the average of logs and so the treatment coefficient estimated from a logistic regression conditioning on covariates will not provide a consistent estimator of log-odds of success. Instead, Freedman recommends taking the predicted probabilities varying subjects’ treatment status but maintaining their observed covariate profiles to produce a consistent estimator of the log-odds.</p>
+<p><span class="citation" data-cites="freedman_2008b">Freedman (<a href="#ref-freedman_2008b" role="doc-biblioref">2008</a>)</span> shows that the coefficient from a logistic regression adjusting for covariates in a randomized experiments produces biased estimates of this causal effect. The basic intuition for Freedman’s argument comes from the fact that taking the log of averages is not the same as taking the average of logs and so the treatment coefficient estimated from a logistic regression conditioning on covariates will not provide a consistent estimator of log-odds of success. Instead, Freedman recommends taking the predicted probabilities varying subjects’ treatment status but maintaining their observed covariate profiles to produce a consistent estimator of the log-odds.</p>
 </section>
 <section id="attributable-effects" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="attributable-effects"><span class="header-section-number">10.2</span> Attributable Effects</h2>
@@ -363,6 +363,9 @@ Bansak, Kirk, Jens Hainmueller, Daniel J Hopkins, and Teppei Yamamoto. 2022. <sp
 </div>
 <div id="ref-coppock2019generalizing" class="csl-entry" role="listitem">
 Coppock, Alexander. 2019. <span>“Generalizing from Survey Experiments Conducted on Mechanical Turk: A Replication Approach.”</span> <em>Political Science Research and Methods</em> 7 (3): 613–28.
+</div>
+<div id="ref-freedman_2008b" class="csl-entry" role="listitem">
+Freedman, David A. 2008. <span>“Randomization Does Not Justify Logistic Regression.”</span> <em>Statistical Science</em> 23 (2): 237–49.
 </div>
 <div id="ref-gerber_green_2012" class="csl-entry" role="listitem">
 Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. WW Norton.
