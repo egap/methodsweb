@@ -32,7 +32,7 @@ listing:
       - ri2_en.qmd
       - how-to-analyze-experiments_en.qmd
       - randomization-inference_en.qmd
-      - x-cause-y.en.qmd
+      - x-cause-y_en.qmd
     type: grid
     sort-ui: false
     fields: [image, title, author]
