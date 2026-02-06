@@ -95,9 +95,9 @@ When does the bias occur? One example is social desirability bias induced by tre
 
 Given that multiple methods are available to construct indices and estimate the treatment effect on them, researchers should carefully consider which method to use depending on the context and the purpose of the study. Researchers can pre-register their hypotheses and analysis plan before conducting the experiment to improve the ease with which readers can interpret their study: pre-registration communicates that researchers did not just many methods of index construction only to choose the method that produces the most favorable results after seeing the data. In addition, pre-registration can increase the transparency of the study because it allows others to understand how the index is constructed and the treatment effect is estimated.
 
-For example, [@kalla2020reducing] show how to pre-register the hypotheses and analysis plan with indices as an outcome.[^3] In their pre-registration, they not only specify the research questions and the hypotheses but also the analysis plan, including how to construct the index and estimate the treatment effect. In addition, they provide the analysis code that can be executed once the data is collected, which ensures that the analysis is reproducible and transparent.
+For example, [@kalla2020reducing] show how to pre-register the hypotheses and analysis plan with indices as an outcome.[^osf] In their pre-registration, they not only specify the research questions and the hypotheses but also the analysis plan, including how to construct the index and estimate the treatment effect. In addition, they provide the analysis code that can be executed once the data is collected, which ensures that the analysis is reproducible and transparent.
 
-[^3]: <https://osf.io/b4t3q>
+[^osf]: <https://osf.io/b4t3q>
 
 # 10. Pre-registration: Analysis stage
 
