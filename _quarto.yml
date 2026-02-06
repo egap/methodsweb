@@ -49,19 +49,19 @@ website:
             - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
               href: /guides/research-questions/effect-types_es.html
 
-    # - title: ""
-    #   id: hypothesis-testing
-    #   contents:
-    #     - text: "How to read this guide"
-    #       href: /guides/how-to-read_en.html
-    #     - text: "Language"
-    #       contents:
-    #         - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
-    #           href: /guides/analysis-procedures/hypothesis-testing_en.html
-    #         - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
-    #           href: /guides/analysis-procedures/hypothesis-testing_fr.html
-    #         - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
-    #           href: /guides/analysis-procedures/hypothesis-testing_es.html
+    - title: ""
+      id: hypothesis-testing
+      contents:
+        - text: "How to read this guide"
+          href: /guides/how-to-read_en.html
+        - text: "Language"
+          contents:
+            - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
+              href: /guides/analysis-procedures/hypothesis-testing_en.html
+            - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
+              href: /guides/analysis-procedures/hypothesis-testing_fr.html
+            - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
+              href: /guides/analysis-procedures/hypothesis-testing_es.html
 
     - title: ""
       id: external-validity
@@ -174,6 +174,20 @@ website:
               href: /guides/data-collection/randomization_fr.html
             - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
               href: /guides/data-collection/randomization_es.html
+
+    - title: ""
+      id: cluster-randomization
+      contents:
+        - text: "How to read this guide"
+          href: /guides/how-to-read_en.html
+        - text: "Language"
+          contents:
+            - text: "<img src='https://flagcdn.com/w20/gb.png' width=20px>&nbsp;&nbsp;English"
+              href: /guides/data-collection/cluster-randomization_en.html
+            - text: "<img src='https://flagcdn.com/w20/fr.png' width=20px>&nbsp;&nbsp;French"
+              href: /guides/data-collection/cluster-randomization_fr.html
+            - text: "<img src='https://flagcdn.com/w20/es.png' width=20px>&nbsp;&nbsp;Spanish"
+              href: /guides/data-collection/cluster-randomization_es.html
 
 
 format:

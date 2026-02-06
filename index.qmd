@@ -33,6 +33,8 @@ listing:
       - how-to-analyze-experiments_en.qmd
       - randomization-inference_en.qmd
       - x-cause-y_en.qmd
+      - hypothesis-testing_en.qmd
+      - cluster-randomization_en.qmd
     type: grid
     sort-ui: false
     fields: [image, title, author]
