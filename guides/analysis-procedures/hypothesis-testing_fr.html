@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jake Bowers">
+
+<title>10 choses à savoir sur les tests d’hypothèses – Methods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../../img/egap-logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Methods</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../guides.html"> 
+<span class="menu-text">Methods guides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../software.html"> 
+<span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/analysis-procedures/hypothesis-testing_en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/analysis-procedures/hypothesis-testing_fr.html"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/how-to-read_en.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to read this guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Language</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/analysis-procedures/hypothesis-testing_en.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/gb.png" width="20px">&nbsp;&nbsp;English</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/analysis-procedures/hypothesis-testing_fr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../guides/analysis-procedures/hypothesis-testing_es.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><img src="https://flagcdn.com/w20/es.png" width="20px">&nbsp;&nbsp;Spanish</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../guides/analysis-procedures/hypothesis-testing_en.html">Language</a></li><li class="breadcrumb-item"><a href="../../guides/analysis-procedures/hypothesis-testing_fr.html"><img src="https://flagcdn.com/w20/fr.png" width="20px">&nbsp;&nbsp;French</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">10 choses à savoir sur les tests d’hypothèses</h1>
+</div>
+
+<div class="quarto-title-meta">
+    
+    
+    
+    
+</div>
+  
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>Lorsque les chercheurs rapportent que “L’effet moyen estimé du traitement est de 5 (p=0,02)”, ils utilisent un raccourci pour dire que les résultats expérimentaux ne sont pas compatibles avec l’idée que le traitement n’a eu aucun effet. Ce guide explique les éléments d’un test d’hypothèse : hypothèses nulles, statistiques de test, distributions de référence, valeurs p et les erreurs qui surviennent lors de l’utilisation des valeurs p pour prendre des décisions.</p>
+  </div>
+</div>
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#les-tests-dhypothèse-présentent-de-manière-compacte-les-informations-contenues-dans-une-conception-de-recherche-et-proposent-une-solution-pour-évaluer-les-effets-dun-traitement" id="toc-les-tests-dhypothèse-présentent-de-manière-compacte-les-informations-contenues-dans-une-conception-de-recherche-et-proposent-une-solution-pour-évaluer-les-effets-dun-traitement"><span class="header-section-number">1</span> Les tests d’hypothèse présentent, de manière compacte, les informations contenues dans une conception de recherche et proposent une solution pour évaluer les effets d’un traitement</a></li>
+  <li><a href="#dans-une-expérience-une-hypothèse-est-un-postulat-sur-des-relations-causales-non-observées" id="toc-dans-une-expérience-une-hypothèse-est-un-postulat-sur-des-relations-causales-non-observées"><span class="header-section-number">2</span> Dans une expérience, une hypothèse est un postulat sur des relations causales non observées</a></li>
+  <li><a href="#lhypothese-nulle-stricte-est-un-postulat-dabsence-deffet-du-traitement-pour-chacune-des-unités-inclues-dans-une-experience" id="toc-lhypothese-nulle-stricte-est-un-postulat-dabsence-deffet-du-traitement-pour-chacune-des-unités-inclues-dans-une-experience"><span class="header-section-number">3</span> L’hypothese nulle stricte est un postulat d’absence d’effet du traitement pour chacune des unités inclues dans une experience</a></li>
+  <li><a href="#lhypothese-nulle-faible-est-un-postulat-dabsence-deffet-moyen-du-traitement-au-niveau-aggregé-entre-chacune-des-unités." id="toc-lhypothese-nulle-faible-est-un-postulat-dabsence-deffet-moyen-du-traitement-au-niveau-aggregé-entre-chacune-des-unités."><span class="header-section-number">4</span> L’hypothese nulle faible est un postulat d’absence d’effet moyen du traitement, au niveau aggregé (entre chacune des unités).</a></li>
+  <li><a href="#la-randomisation-nous-permet-dutiliser-ce-que-nous-observons-pour-tester-des-hypothèses-sur-ce-que-nous-nobservons-pas." id="toc-la-randomisation-nous-permet-dutiliser-ce-que-nous-observons-pour-tester-des-hypothèses-sur-ce-que-nous-nobservons-pas."><span class="header-section-number">5</span> La randomisation nous permet d’utiliser ce que nous observons pour tester des hypothèses sur ce que nous n’observons pas.</a></li>
+  <li><a href="#les-statistiques-de-test-résument-leffet-du-traitement-sur-les-résultats." id="toc-les-statistiques-de-test-résument-leffet-du-traitement-sur-les-résultats."><span class="header-section-number">6</span> Les statistiques de test résument l’effet du traitement sur les résultats.</a></li>
+  <li><a href="#la-p-valeur-indique-ce-que-la-statistique-de-test-a-à-nous-dire-au-sujet-de-lhypothèse." id="toc-la-p-valeur-indique-ce-que-la-statistique-de-test-a-à-nous-dire-au-sujet-de-lhypothèse."><span class="header-section-number">7</span> La <span class="math inline">\(p\)</span>-valeur indique ce que la statistique de test a à nous dire au sujet de l’hypothèse.</a></li>
+  <li><a href="#dans-les-tests-dhypothèse-simples-nous-nacceptons-pas-lhypothèse-nulle." id="toc-dans-les-tests-dhypothèse-simples-nous-nacceptons-pas-lhypothèse-nulle."><span class="header-section-number">8</span> Dans les tests d’hypothèse simples, nous n’acceptons pas l’hypothèse nulle.</a></li>
+  <li><a href="#une-fois-que-vous-utilisez-des-p-valeurs-pour-rejeter-une-hypothèse-vous-ferez-des-erreurs" id="toc-une-fois-que-vous-utilisez-des-p-valeurs-pour-rejeter-une-hypothèse-vous-ferez-des-erreurs"><span class="header-section-number">9</span> Une fois que vous utilisez des <span class="math inline">\(p\)</span>-valeurs pour rejeter une hypothèse, vous ferez des erreurs</a></li>
+  <li><a href="#que-savoir-dautre-sur-les-tests-dhypothèses" id="toc-que-savoir-dautre-sur-les-tests-dhypothèses"><span class="header-section-number">10</span> Que savoir d’autre sur les tests d’hypothèses ?</a></li>
+  <li><a href="#références" id="toc-références"><span class="header-section-number">11</span> Références</a></li>
+  </ul>
+</nav>
+<section id="les-tests-dhypothèse-présentent-de-manière-compacte-les-informations-contenues-dans-une-conception-de-recherche-et-proposent-une-solution-pour-évaluer-les-effets-dun-traitement" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Les tests d’hypothèse présentent, de manière compacte, les informations contenues dans une conception de recherche et proposent une solution pour évaluer les effets d’un traitement</h1>
+<p>Lorsque les chercheurs signalent que “l’effet moyen estimé du traitement est de 5 (<span class="math inline">\(p=0,02\)</span>)”, c’est un raccourci pour dire : “Cher lecteur, au cas où vous vous demanderiez si nous pourrions distinguer le signal du bruit dans cette expérience en utilisant des moyennes, et bien nous le pouvons. Les résultats expérimentaux ne sont <strong>pas cohérents</strong> avec l’idée que le traitement n’a eu aucun effet.” Les gens utilisent des tests d’hypothèses dans les études d’observation ainsi que dans les expériences randomisées. Ce guide se concentre sur leur utilisation dans les expériences randomisées ou les conceptions de recherche qui tentent d’organiser les données de sorte qu’elles paraissent “aléatoires” (comme les conceptions de régression par discontinuité ou d’autres conceptions naturelles ou quasi expérimentales).</p>
+<p>La <span class="math inline">\(p\)</span>-valeur résume la capacité d’un test donné à distinguer le signal du bruit. Comme nous l’avons vu dans <a href="https://methods.egap.org/guides/assessing-designs/power_fr.html">10 choses à savoir sur la puissance statistique</a>, le fait qu’une expérience puisse détecter un effet de traitement dépend non seulement de la taille de l’échantillon expérimental, mais aussi de la distribution du résultat <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, la distribution du traitement et la force substantielle de l’intervention elle-même. Lorsqu’une chercheuse calcule une <span class="math inline">\(p\)</span>-valeur à la suite d’un test d’hypothèse, elle résume tous ces aspects de la conception de recherche en fonction d’une affirmation particulière — généralement l’affirmation selon laquelle le traitement n’a eu aucun effet causal.</p>
+<p>Le reste de ce guide explique les étapes d’un test d’hypothèse : à partir de l’hypothèse nulle (l’affirmation selon laquelle le traitement n’a eu aucun effet causal), vers des statistiques de test résumant les données observées (comme une différence des moyennes), jusqu’à la création d’une distribution de probabilité qui permet le calcul d’une <span class="math inline">\(p\)</span>-valeur. Il aborde également l’idée de rejeter (mais ne pas accepter) une hypothèse et aborde la question de ce qui fait un bon test d’hypothèse (un test d’hypothèse idéal devrait rarement mettre en doute la vérité et distinguer même les signaux faibles du bruit). Voir également <a href="https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html">10 choses à savoir sur l’inférence de randomisation</a> pour plus de détails sur ces idées.</p>
+</section>
+<section id="dans-une-expérience-une-hypothèse-est-un-postulat-sur-des-relations-causales-non-observées" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Dans une expérience, une hypothèse est un postulat sur des relations causales non observées</h1>
+<p>Nous menons des expériences pour faire des comparaisons causales interprétables <span class="citation" data-cites="kinder1993behalf">(<a href="#ref-kinder1993behalf" role="doc-biblioref">Kinder and Palfrey 1993</a>)</span>, et nous estimons souvent les effets causaux moyens. Qu’est-ce que le test d’hypothèse a à voir avec l’inférence causale? Dans cette section, nous expliquons la distinction entre : évaluer des assertions sur les effets causaux et faire les meilleures suppositions sur les effets causaux.</p>
+<section id="un-aperçu-du-problème-fondamental-de-linférence-causale-et-une-introduction-à-quelques-notations" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="un-aperçu-du-problème-fondamental-de-linférence-causale-et-une-introduction-à-quelques-notations"><span class="header-section-number">2.1</span> Un aperçu du problème fondamental de l’inférence causale et une introduction à quelques notations</h2>
+<p>Dans <a href="https://methods.egap.org/guides/causal-inference/causal-inference_fr.html">10 choses à savoir sur l’inférence causale</a>, souvenez-vous que la conceptualisation contrefactuelle de la causalité utilise l’idée de résultats potentiels pour <strong>définir</strong> la cause et formaliser ce que nous <strong>entendons</strong> lorsque nous disons “X cause Y” ou “Fumer cause le cancer” ou “L’information augmente la conformité fiscale”. Bien qu’il existe d’autres façons de penser la causalité (<span class="citation" data-cites="brady2008causation">Brady (<a href="#ref-brady2008causation" role="doc-biblioref">2008</a>)</span>), l’approche contrefactuelle suggère que nous imaginons que chaque personne, <span class="math inline">\(i\)</span>, paierait ses impôts, <span class="math inline">\(y_{i}\)</span>, si on lui donne des informations sur l’usage de ces taxes. <span class="math inline">\(Z_i=1\)</span> signifie que l’information a été donnée à la personne et <span class="math inline">\(Z_i=0\)</span> signifie qu’aucune information n’a été donnée. Donc <span class="math inline">\(y_{i,Z_i=1}\)</span> désigne le montant des taxes payées par quelqu’un à qui on a donné des informations et <span class="math inline">\(y_{i,Z_i=0}\)</span> désigne le montant des impôts payés par quelqu’un à qui on n’a pas donné d’informations. Dans une expérience réelle, nous pourrions <a href="http://egap.org/metaketa/metaketa-ii-taxation">randomiser la fourniture d’informations aux citoyens</a>, afin que certaines personnes aient l’information et d’autres pas. On observe les impôts payés par les gens dans les deux conditions mais, pour une même personne, on ne peut observer que les impôts qu’elle paie dans l’une des deux conditions. Qu’est-ce que <strong>signifie</strong> “l’effet causal” ? Cela signifie souvent que le résultat dans une condition (<span class="math inline">\(y_{i,Z_i=1}\)</span> s’écrit un peu plus simplement <span class="math inline">\(y_{i,1}\)</span>) et le résultat dans l’autre condition (<span class="math inline">\(y_{i,Z_i=0 }\)</span> ou <span class="math inline">\(y_{i,0}\)</span>) <em>diffèrent</em> pour une personne donnée, de sorte que nous écririons <span class="math inline">\(y_{i,Z_i=1} \ne y_{i,Z_i=0}\)</span>.</p>
+<p>Nous ne pouvons pas observer <em>à la fois</em> <span class="math inline">\(y_{i,1}\)</span> et <span class="math inline">\(y_{i,0}\)</span> pour chaque personne — si nous avons donné des informations sur les impôts à une personne nous observons <span class="math inline">\(y_{i,1}\)</span> et donc nous ne pouvons pas observer comment elle aurait agi si elle n’avait pas reçu cette information (<span class="math inline">\(y_{i,0}\)</span>). Ainsi, nous ne pouvons pas utiliser l’observation directe pour en savoir plus sur cet effet causal contrefactuel et nous ne pouvons que <strong>faire des inférences</strong>. <span class="citation" data-cites="holland1986statistics">Holland (<a href="#ref-holland1986statistics" role="doc-biblioref">1986</a>)</span> appelle cette incapacité à utiliser l’observation directe pour en savoir plus sur la causalité contrefactuelle le “problème fondamental de l’inférence causale”.</p>
+</section>
+<section id="un-aperçu-des-approches-basées-sur-lestimation-de-linférence-causale-dans-les-expériences-randomisées." class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="un-aperçu-des-approches-basées-sur-lestimation-de-linférence-causale-dans-les-expériences-randomisées."><span class="header-section-number">2.2</span> Un aperçu des approches basées sur l’estimation de l’inférence causale dans les expériences randomisées.</h2>
+<p>Les sciences statistiques ont abordé ce problème de trois manières principales. C’est-à-dire, lorsque nous nous demandons : “Est-ce que l’information amène les gens à payer leurs impôts ?” nous avons tendance à dire : “Nous ne pouvons pas répondre directement à cette question. Cependant, nous pouvons répondre à une question connexe.” <a href="https://methods.egap.org/guides/research-questions/effect-types_fr.html">Dix types d’effet de traitement que vous devriez connaître</a> décrit une idée que nous créditons à Jerzy Neyman où un scientifique peut <strong>estimer les effets causaux moyens</strong> dans une expérience randomisée même si les effets causaux individuels ne sont pas observables. Le travail de Judea Pearl sur l’estimation de la probabilité conditionnelle d’un résultat basé sur un modèle causal de ce résultat est similaire à cette idée, où l’accent est mis sur les probabilités conditionnelles des <span class="math inline">\(y_{i}\)</span>. Ces deux approches répondent à la question causale fondamentale en dirigeant la question vers les moyennes ou les probabilités conditionnelles. Une approche connexe de Don Rubin commence par <strong>prédire</strong> les résultats potentiels au niveau individuel en utilisant des informations de base et un modèle de probabilité de <span class="math inline">\(Z_i\)</span> (tel que, disons, <span class="math inline">\(Z \sim \text{Bernoulli}(\pi)\)</span>) et un modèle de probabilité des deux résultats potentiels tels que, disons, <span class="math inline">\((y_{i,1},y_{i,0}) \sim \text{Normale multivariée}(\boldsymbol{\beta}\mathbf{X}, \boldsymbol{\Sigma})\)</span> avec un vecteur de coefficients <span class="math inline">\(\boldsymbol{\beta}\)</span>, une matrice <span class="math inline">\(n \times p\)</span> de variables <span class="math inline">\(\mathbf{X}\)</span> (contenant à la fois l’assignation du traitement et d’autres variables et une matrice <span class="math inline">\(p \times p\)</span> de variance-covariance <span class="math inline">\(\Sigma\)</span> décrivant comment toutes les colonnes de <span class="math inline">\(\mathbf{X}\)</span> sont liées).</p>
+<p>La deuxième approche générale commence avec les mêmes modèles de probabilité liant le traitement, d’autres variables et les résultats. Ensuite, à l’aide du théorème de Bayes, elle les combine pour produire des distributions postérieures pour des quantités telles que l’effet du traitement au niveau individuel ou l’effet moyen du traitement (voir <span class="citation" data-cites="imbens2007causal">(<a href="#ref-imbens2007causal" role="doc-biblioref">Imbens and Rubin 2007</a>)</span> pour plus de détails sur l’approche prédictive bayésienne de l’inférence causale). Ainsi, l’approche prédictive change la question fondamentale : on ne se focalise plus sur les moyennes, on se concentre sur les différences dans les résultats potentiels prévus pour chaque personne (bien que la plupart de ces différences prédites au niveau individuel soient résumées en utilisant les caractéristiques des distributions postérieures des modèles de probabilité et des données comme la moyenne des prédictions).</p>
+</section>
+<section id="le-test-dhypothèse-est-une-approche-statistique-du-problème-fondamental-de-linférence-causale-par-le-biais-de-postulats-sur-des-faits-non-observés" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="le-test-dhypothèse-est-une-approche-statistique-du-problème-fondamental-de-linférence-causale-par-le-biais-de-postulats-sur-des-faits-non-observés"><span class="header-section-number">2.3</span> Le test d’hypothèse est une approche statistique du problème fondamental de l’inférence causale, par le biais de postulats sur des faits non-observés</h2>
+<p>La troisième approche de ce problème amène une nouvelle question. <span class="citation" data-cites="fisher:1935">Fisher (<a href="#ref-fisher:1935" role="doc-biblioref">1935</a>, Chapitre 2)</span> nous a appris que nous pouvons poser la question fondamentale de savoir s’il existe un effet causal pour une seule personne, mais nous ne pouvons y répondre qu’en termes de quantité d’information fournie par la conception de recherche et les données. C’est-à-dire que l’on peut émettre l’hypothèse que, pour la personne <span class="math inline">\(i\)</span>, l’information n’a fait aucune différence pour ses résultats, de sorte que <span class="math inline">\(y_{i,1}=y_{i,0}\)</span> ou <span class="math inline">\(y_{i,1}=y_ {i,0}+\tau_i\)</span> où <span class="math inline">\(\tau_i=0\)</span> pour tout le monde. Cependant, la réponse à cette question se présenterait ainsi : “Cette conception de recherche et cet ensemble de données fournissent beaucoup d’informations sur ce modèle, cette idée ou cette hypothèse.” ou, comme ci-dessus, “Cette conception de recherche n’est pas cohérente avec cette affirmation.” (Voir <span class="citation" data-cites="rosenbaum2002">Rosenbaum (<a href="#ref-rosenbaum2002" role="doc-biblioref">2002</a>)</span>(Chapitre 2), <span class="citation" data-cites="rosenbaum2010">Rosenbaum (<a href="#ref-rosenbaum2010" role="doc-biblioref">2010b</a>)</span>(chapitre 2) et <span class="citation" data-cites="rosenbaum2017observation">Rosenbaum (<a href="#ref-rosenbaum2017observation" role="doc-biblioref">2017</a>)</span>, pour plus de détails sur cette approche.)</p>
+</section>
+</section>
+<section id="lhypothese-nulle-stricte-est-un-postulat-dabsence-deffet-du-traitement-pour-chacune-des-unités-inclues-dans-une-experience" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> L’hypothese nulle stricte est un postulat d’absence d’effet du traitement pour chacune des unités inclues dans une experience</h1>
+<p>Même si nous ne pouvons pas utiliser l’observation directe pour en savoir plus sur les effets causaux contrefactuels, nous pouvons toujours poser des questions à leur sujet ou créer des modèles théoriques qui lient ensemble une intervention (ou un traitement), des caractéristiques de base et des résultats potentiels. Le modèle le plus simple de ce type indique que le résultat serait le même que le résultat pour toutes les unités qu’elles soient dans le groupe de contrôle ou de traitement ; c’est-à-dire que, quelles que soient les caractéristiques de base ou les informations fournies dans les conditions de traitement, chaque personne paierait le même montant d’impôts : <span class="math inline">\(y_{i,1}=y_{i,0}\)</span> pour toutes les unités <span class="math inline">\(i\)</span>. Pour souligner la nature provisoire et théorique de ce modèle, les gens ont appelé cela une <strong>hypothèse</strong>, l’écrivent souvent comme “l’hypothèse nulle stricte” et utilisent la notation suivante : <span class="math inline">\(H_0 :
+y_{i,1}-y{i,0}=\tau_i\)</span> où <span class="math inline">\(\tau_i=0\)</span> pour toutes les unités <span class="math inline">\(i\)</span>.</p>
+<p><strong>Remarque :</strong> Réfléchir à l’hypothèse nulle stricte nous fait réaliser que nous pourrions créer <strong>d’autres modèles liant <span class="math inline">\(y_{i,1}\)</span> et <span class="math inline">\(y_{i,0}\)</span></strong> dans lesquels les résultats potentiels se rapportent de manière non additive ou linéaire, et où l’effet n’a pas besoin d’être nul ou identique pour toutes les unités : par exemple, nous pourrions émettre l’hypothèse que <span class="math inline">\(\tau_i=\{5,0,-2\}\)</span> 5 pour l’unité 1, 0 pour l’unité 2 et -2 pour l’unité 3 dans une expérience avec 3 unités. Notez également que cette manière d’écrire les résultats potentiels, avec le résultat potentiel pour l’unité <span class="math inline">\(i\)</span> <em>se référant uniquement à <span class="math inline">\(i\)</span></em> et non à d’autres unités (<span class="math inline">\(y_{i,Z_i}\)</span>), <em>fait partie du modèle</em>. C’est-à-dire que le modèle de <span class="math inline">\(H_0 : y_{i,1}=y_{i,0}\)</span> implique que le traitement n’a d’effet sur personne — et aucun effet signifie aussi aucun effet de contamination. Nous pourrions être un peu plus précis en écrivant les résultats potentiels comme suit : le résultat potentiel de l’unité <span class="math inline">\(i\)</span> lorsqu’elle est assignée au traitement et lorsque toutes les autres unités sont assignées à un autre ensemble de traitements <span class="math inline">\(\mathbf{Z}_{~i}=\{Z_j,Z_k,\ldots \}\)</span> peut s’écrire <span class="math inline">\(y_{i,Z_i=1,\mathbf{Z}_{~i}}\)</span>. Voir <span class="citation" data-cites="bowers2013reasoning">Bowers, Fredrickson, and Panagopoulos (<a href="#ref-bowers2013reasoning" role="doc-biblioref">2013</a>)</span> et <span class="citation" data-cites="bowers2018models">Bowers et al. (<a href="#ref-bowers2018models" role="doc-biblioref">2018</a>)</span> pour en savoir plus sur l’idée qu’une hypothèse est un modèle théorique qui peut être testé avec des données dans le contexte d’hypothèses sur la propagation des effets de traitement à travers un réseau.</p>
+</section>
+<section id="lhypothese-nulle-faible-est-un-postulat-dabsence-deffet-moyen-du-traitement-au-niveau-aggregé-entre-chacune-des-unités." class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> L’hypothese nulle faible est un postulat d’absence d’effet moyen du traitement, au niveau aggregé (entre chacune des unités).</h1>
+<p>Une expérience peut influencer certaines unités mais n’avoir, en moyenne, aucun effet. Pour codifier cette intuition, les chercheurs peuvent écrire une hypothèse nulle sur une <em>moyenne</em> de résultats potentiels, ou un autre agrégat de résultats potentiels, plutôt que sur l’ensemble des résultats potentiels.</p>
+<p>Parce que la plupart des discussions actuelles sur les effets causaux traitent de la <em>moyenne</em> des effets, les gens écrivent l’hypothèse nulle faible ainsi <span class="math inline">\(H_0 :
+\bar{\tau}=0\)</span> où <span class="math inline">\(\bar{\tau}=(1/N)\sum_{i=1}^N \tau_i\)</span>. Encore une fois, l’hypothèse est une déclaration ou un modèle d’une relation entre des résultats potentiels partiellement observés. Mais, ici, il s’agit de leur moyenne. On pourrait, en principe, articuler des hypothèses sur d’autres agrégats : médianes, centiles, ratios, moyennes tronquées, etc. Cependant, faire des hypothèses sur l’effet moyen nous simplifie la tâche : nous connaissons les propriétés d’une moyenne d’observations indépendantes à mesure que la taille de l’échantillon augmente, de sorte que nous pouvons faire appel au théorème central limite pour décrire la distribution de la moyenne pour de grands échantillons — et ceci, à son tour, rend le calcul des <span class="math inline">\(p\)</span>-valeurs rapide et facile pour de grands échantillons.</p>
+</section>
+<section id="la-randomisation-nous-permet-dutiliser-ce-que-nous-observons-pour-tester-des-hypothèses-sur-ce-que-nous-nobservons-pas." class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> La randomisation nous permet d’utiliser ce que nous observons pour tester des hypothèses sur ce que nous n’observons pas.</h1>
+<p>Que l’on émette des hypothèses sur les effets au niveau unitaire directement ou sur leurs moyennes, nous devons encore faire face au problème de la distinction entre le signal et le bruit. Une hypothèse se réfère uniquement aux résultats potentiels. Ci-dessus, en supposant aucune interaction entre les unités, nous avons imaginé deux résultats potentiels par personne, mais nous n’en observons qu’un par personne. <strong>Comment pouvons-nous utiliser ce que nous observons pour en savoir plus sur les modèles théoriques de quantités partiellement observées ?</strong> Dans cette expérience simple, nous savons que nous observons l’un des deux résultats potentiels par personne, selon le traitement qui lui a été assigné. Ainsi, nous pouvons lier les résultats contrefactuels non observés à un résultat observé (<span class="math inline">\(Y_i\)</span>) en utilisant l’assignation de traitement (<span class="math inline">\(Z_i\)</span>) comme suit :</p>
+<p><span id="eq-identity"><span class="math display">\[ Y_i = Z_i y_{i,1} + (1 - Z_i) y_{i,0}  \tag{1}\]</span></span></p>
+<p><a href="#eq-identity" class="quarto-xref">Equation&nbsp;1</a> signifie que notre résultat observé, <span class="math inline">\(Y_i\)</span> (ici, le montant des impôts payés par la personne <span class="math inline">\(i\)</span>), est <span class="math inline">\(y_{i,1}\)</span> lorsque la personne est assignée au groupe de traitement (<span class="math inline">\(Z_i=1\)</span>), et <span class="math inline">\(y_{i,0}\)</span> lorsque la personne est assignée au groupe de contrôle.</p>
+<p><strong>Combien d’informations notre conception de recherche et nos données contiennent-ils sur l’hypothèse ?</strong> Imaginez, pour l’instant, l’hypothèse selon laquelle le traitement ajoute 5 au paiement des impôts de chaque personne de telle sorte que <span class="math inline">\(H_0 : y_{i,1} = y_ {i,0} + \tau_i\)</span> où <span class="math inline">\(\tau_i=5\)</span> pour tout <span class="math inline">\(i\)</span>.</p>
+<p>Continuons pour les besoins de l’argumentation. Qu’impliquerait cette hypothèse pour ce que nous observons ? Nous avons l’équation liant l’observé à l’inobservé dans <a href="#eq-identity" class="quarto-xref">Equation&nbsp;1</a> donc, ce modèle ou cette hypothèse impliquerait que :</p>
+<p><span class="math display">\[ \begin{aligned}  Y_i &amp; = Z_i ( y_{i,0} + \tau_i ) + ( 1 - Z_i) y_{i,0} \\
+&amp; = Z_i  y_{i,0} + Z_i \tau_i + y_{i,0} - Z_i y_{i,0} \\
+&amp; = Z_i \tau_i  + y_{i,0}
+\end{aligned}
+\]</span></p>
+<p>Ce que nous observons, <span class="math inline">\(Y_i\)</span>, serait soit <span class="math inline">\(y_{i,0}\)</span> dans la condition de contrôle, <span class="math inline">\(Z_i=0\)</span> ou <span class="math inline">\(\tau_i + y_{i,0}\)</span> (ce qui serait <span class="math inline">\(5 + y_{i ,0}\)</span> dans la condition de traitement).</p>
+<p>Cette hypothèse implique en outre que <span class="math inline">\(y_{i,0} = Y_i - Z_i \tau_i\)</span> ou <span class="math inline">\(y_{i,0} = Y_i - Z_i 5\)</span>. Si nous soustrayons 5 de chaque réponse observée dans la condition de traitement, alors notre hypothèse implique que nous observerions <span class="math inline">\(y_{i,0}\)</span> pour tout le monde. Autrement dit, en soustrayant 5, nous rendrions le groupe de contrôle et le groupe de traitement équivalents en termes de résultats observés. <strong>Cette logique nous donne une implication observable de l’hypothèse.</strong></p>
+<p><strong>L’hypothèse nulle stricte d’absence d’effets</strong> spécifie que <span class="math inline">\(\tau_i=0\)</span> pour tous les <span class="math inline">\(i\)</span>. Et cela implique à son tour que <span class="math inline">\(y_{i,0} = Y_i - Z_i \tau_i = Y_i\)</span>. C’est-à-dire que ce que nous observons, <span class="math inline">\(Y_i\)</span>, est ce que nous observerions si chaque unité était assignée à la condition de contrôle. Alors l’implication est que nous ne devrions voir aucune différence entre les groupes de traitement et de contrôle dans leurs résultats observables.</p>
+<p><strong>L’hypothèse nulle faible de l’absence d’effet</strong> spécifie que <span class="math inline">\(\bar{\tau}=\bar{y}_{1} - \bar{y}_0 = 0\)</span>, et nous pouvons écrire une égalité similaire liant la moyenne des résultats potentiels non observés à la moyennes de résultats observés dans différentes conditions de traitement.</p>
+</section>
+<section id="les-statistiques-de-test-résument-leffet-du-traitement-sur-les-résultats." class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Les statistiques de test résument l’effet du traitement sur les résultats.</h1>
+<p>Étant donné une hypothèse et un mapping des résultats non observés aux résultats observés, il faut aussi une statistique de test pour un test d’hypothèse. Une statistique de test résume la relation entre le traitement et les résultats observés à l’aide d’un seul nombre. En général, nous aimerions que nos statistiques de test prennent des valeurs plus importantes plus l’effet du traitement est important. Le code ci-dessous, par exemple, montre deux statistiques de test pour une expérience avec 10 unités randomisée en deux groupes (vous pouvez appuyer sur le bouton “Code” pour voir le code R).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Tout d'abord, créez des données,</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## y0 est le résultat potentiel à contrôler</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">400</span>,<span class="dv">500</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Différents effets de traitement au niveau individuel</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">##tau &lt;- c(1,3,2,10,1,2,3,5,1,1)*sd(y0)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(N,<span class="at">mean=</span><span class="fu">sd</span>(y0),<span class="at">sd=</span><span class="dv">2</span><span class="sc">*</span>(<span class="fu">sd</span>(y0)))) <span class="do">##c(10,30,200,90,10,20,30,40,90,20)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> tau<span class="sc">*</span>(tau<span class="sc">&gt;</span><span class="dv">0</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="do">## y1 est le résultat potentiel du traitement</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> y0 <span class="sc">+</span> tau</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#sd(y0)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#mean(y1)-mean(y0)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># mean(tau)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Z est l'assignation du traitement</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">complete_ra</span>(N)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Y est les résultats observés</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> Z<span class="sc">*</span>y1 <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>Z)<span class="sc">*</span>y0</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Les données</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Y=</span>Y,<span class="at">Z=</span>Z,<span class="at">y0=</span>y0,<span class="at">tau=</span>tau,<span class="at">y1=</span>y1)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#(mean(y1) - mean(y0))/sd(y0)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#dat</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#pvalue(oneway_test(Y~factor(Z),data=dat,distribution=exact(),alternative="less"))</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#pvalue(wilcox_test(Y~factor(Z),data=dat,distribution=exact(),alternative="less"))</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#pvalue(oneway_test(Y~factor(Z),data=dat,distribution=exact(),alternative="greater"))</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#pvalue(wilcox_test(Y~factor(Z),data=dat,distribution=exact(),alternative="greater"))</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="do">## La statistique de test des différences moyennes</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>meanTZ <span class="ot">&lt;-</span> <span class="cf">function</span>(ys,z){</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(ys[z<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(ys[z<span class="sc">==</span><span class="dv">0</span>])</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="do">## La statistique de test des différence des moyennes selon le rang</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>meanrankTZ <span class="ot">&lt;-</span> <span class="cf">function</span>(ys,z){</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    ranky <span class="ot">&lt;-</span> <span class="fu">rank</span>(ys)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(ranky[z<span class="sc">==</span><span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(ranky[z<span class="sc">==</span><span class="dv">0</span>])</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>observedMeanTZ <span class="ot">&lt;-</span> <span class="fu">meanTZ</span>(<span class="at">ys=</span>Y,<span class="at">z=</span>Z)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>observedMeanRankTZ <span class="ot">&lt;-</span> <span class="fu">meanrankTZ</span>(<span class="at">ys=</span>Y,<span class="at">z=</span>Z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>La première statistique de test est la différence des moyennes (<code>meanTZ</code>) et renvoie une valeur observée de 102. La seconde statistique de test est la différence des moyennes selon le rang (<code>meanrankTZ</code>), qui renvoie une valeur de 2.2. On pourrait également utiliser des versions de ces statistiques de test standardisées par leur erreur type estimée (voir <span class="citation" data-cites="chung2013exact">Chung, Romano, et al. (<a href="#ref-chung2013exact" role="doc-biblioref">2013</a>)</span> pour un argument en faveur de cette statistique de test). Pour tester l’hypothèse nulle stricte d’absence d’effet, on peut choisir presque n’importe quelle statistique de test de telle sorte que les valeurs de cette fonction augmentent à mesure que la différence entre les résultats traités et les résultats de contrôle augmente (voir <span class="citation" data-cites="rosenbaum2002">Rosenbaum (<a href="#ref-rosenbaum2002" role="doc-biblioref">2002</a>)</span>, chapitre 2, pour une discussion sur statistiques de test à “effet croissant”).</p>
+<p>Le test de l’hypothèse nulle faible d’absence d’effet utilise la différence des moyennes (peut-être standardisée ou de Student) comme statistique de test.</p>
+</section>
+<section id="la-p-valeur-indique-ce-que-la-statistique-de-test-a-à-nous-dire-au-sujet-de-lhypothèse." class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> La <span class="math inline">\(p\)</span>-valeur indique ce que la statistique de test a à nous dire au sujet de l’hypothèse.</h1>
+<p>Les tests d’hypothèse nécessitent des distributions de la statistique de test sous l’hypothèse.</p>
+<p>Étant donné une affirmation sur les résultats possibles de l’expérience (i.e.&nbsp;une hypothèse) et un moyen de résumer les données observées en fonction de l’hypothèse (i.e.&nbsp;une statistique de test qui augmente à mesure que les résultats divergent de l’hypothèse comme expliqué ci-dessus), nous voulons maintenant aller au-delà de la description des données observées pour savoir quelle variabilité naturelle attendre de la statistique de test étant donné la design de recherche et notre hypothèse (pour nous ramener à la question du signal et du bruit).</p>
+<p>La qunatité des preuves dont nous disposons sur une hypothèse dépend de la conception de l’étude. Une grande expérience, par exemple, devrait avoir plus d’informations sur une hypothèse qu’une petite expérience. Alors, qu’entendons-nous par preuve contre l’hypothèse? Comment formaliser ou résumer ces preuves de sorte que les expériences plus grandes tendent à révéler plus et que les petites expériences tendent à révéler moins d’informations ?</p>
+<p>Une réponse à cette question est de se référer à l’expérience de pensée consistant à répéter l’étude. Imaginez, pour les besoins de l’argumentation, que l’hypothèse était correcte. Si nous répétions l’étude et calculions la statistique de test, nous trouverions un nombre — ce nombre refléterait le résultat de l’expérience <em>sous l’hypothèse</em>. Maintenant, imaginez répéter l’expérience hypothétique plusieurs fois, en recalculant la statistique de test à chaque fois. La distribution des statistiques de test nous indiquerait alors toutes les statistiques de test qui auraient pu se produire si l’hypothèse nulle était vraie. Si la statistique de test est une somme ou une moyenne, alors dans une grande expérience, nous savons que la distribution de ces nombres sera plus étroitement centrée autour de la valeur hypothétique focale (disons, <span class="math inline">\(t(Z,y_0)\)</span>) que dans une petite expérience.</p>
+<p>Lorsque nous comparons ce que nous observons réellement, <span class="math inline">\(t(z,Y)\)</span>, à la distribution de ce que nous aurions pu observer sous l’hypothèse nulle, nous apprenons que notre étude donnée est caractéristique ou non de l’hypothèse nulle. Et nous traduisons ce degré de caractéristique avec une <span class="math inline">\(p\)</span>-valeur.</p>
+<p>Notez que la <span class="math inline">\(p\)</span>-valeur ne nous renseigne pas sur la probabilité associée aux données observées. Les données observées sont observées. La probabilité découle de la répétition hypothétique, mais possible, de l’expérience elle-même, de la statistique de test et de l’hypothèse. La <span class="math inline">\(p\)</span>-valeur unilatérale est la probabilité de voir une valeur de notre statistique de test aussi grande ou plus grande que ce que nous avons réellement observé en considérant une hypothèse donnée.</p>
+<section id="un-exemple-tester-lhypothèse-nulle-stricte-dabsence-deffets" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="un-exemple-tester-lhypothèse-nulle-stricte-dabsence-deffets"><span class="header-section-number">7.1</span> Un exemple : tester l’hypothèse nulle stricte d’absence d’effets</h2>
+<p>Testons l’hypothèse nulle stricte d’absence d’effets. Dans le cas de cette expérience, le traitement a été assigné à exactement 5 observations sur 10 de manière totalement aléatoire. Pour répéter cette opération, il suffit de permuter le vecteur <span class="math inline">\(Z\)</span> donné (vous pouvez voir le code en cliquant sur le bouton “Code”).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>repeatExperiment <span class="ot">&lt;-</span> <span class="cf">function</span>(Z){</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(Z)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Nous savons déjà que <span class="math inline">\(H_0 : y_{i,1} = y_{i,0}\)</span> implique que <span class="math inline">\(Y_i=y_{i,0}\)</span>. Ainsi, nous pouvons décrire toutes les itérations possibles de l’expérience sous cette hypothèse nulle en répétant simplement l’expérience (c’est-à-dire en réassignant le traitement) et en recalculant la statistique de test à chaque fois. Le code suivant réassigne à plusieurs reprises le traitement suivant la conception et calcule la statistique de test à chaque fois.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123457</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>possibleMeanDiffsH0 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">meanTZ</span>(<span class="at">ys=</span>Y,<span class="at">z=</span><span class="fu">repeatExperiment</span>(<span class="at">Z=</span>Z)))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123457</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>possibleMeanRankDiffsH0 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">meanrankTZ</span>(<span class="at">ys=</span>Y,<span class="at">z=</span><span class="fu">repeatExperiment</span>(<span class="at">Z=</span>Z)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Ces graphiques montrent les distributions des deux statistiques de test différentes sous l’hypothèse nulle (courbes et graduations au bas des graphiques). Les graphiques montrent également les valeurs observées pour les statistiques de test que nous pouvons utiliser pour comparer les observations (longues lignes verticales) à l’hypothèse (les distributions).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pMeanTZ <span class="ot">&lt;-</span> <span class="fu">min</span>( <span class="fu">mean</span>( possibleMeanDiffsH0 <span class="sc">&gt;=</span> observedMeanTZ ),</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">mean</span>( possibleMeanDiffsH0 <span class="sc">&gt;=</span> observedMeanTZ ))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>pMeanRankTZ <span class="ot">&lt;-</span> <span class="fu">min</span>( <span class="fu">mean</span>( possibleMeanRankDiffsH0 <span class="sc">&gt;=</span> observedMeanRankTZ ),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mean</span>( possibleMeanRankDiffsH0 <span class="sc">&lt;=</span> observedMeanRankTZ ))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>pMeanTZ</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>pMeanRankTZ</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">1.5</span>,.<span class="dv">5</span>,<span class="dv">0</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">oma=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">0</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(possibleMeanDiffsH0),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">04</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">range</span>(possibleMeanDiffsH0),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">""</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Différences des moyennes sous H0"</span>,<span class="at">cex.lab=</span><span class="fl">0.75</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rug</span>(possibleMeanDiffsH0)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rug</span>(observedMeanTZ,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">ticksize =</span> .<span class="dv">51</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(observedMeanTZ<span class="sc">+</span><span class="dv">8</span>,.<span class="dv">022</span>,<span class="st">"Statistique de test observée"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(possibleMeanRankDiffsH0),<span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">45</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">""</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Différences des moyennes selon le rang sous H0"</span>,<span class="at">cex.lab=</span><span class="fl">0.75</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rug</span>(possibleMeanRankDiffsH0)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rug</span>(observedMeanRankTZ,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">ticksize =</span> .<span class="dv">9</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(observedMeanRankTZ,.<span class="dv">45</span>,<span class="st">"Statistique de test observée"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="at">side=</span><span class="dv">3</span>,<span class="at">outer=</span><span class="cn">TRUE</span>,<span class="at">text=</span><span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">"Distributions des statistiques de test cohérentes avec la conception et "</span>, H0<span class="sc">:</span> y[i1]<span class="sc">==</span>y[i0])))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="hypothesis-testing_fr_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Tester une hypothèse en utilisant une conception d’expérience.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Pour formaliser la comparaison entre l’observation et l’hypothèse, nous pouvons calculer la proportion des expériences hypothétiques qui donnent des statistiques de test supérieures à celle de l’expérience observée. Dans le panneau de gauche de la figure, nous voyons qu’un large éventail des différences de moyennes entre les groupes de traitement et de contrôle est compatible avec un traitement sans effet (avec la plage totale entre -425.6 et 425.6). Le panneau de droite montre que remanier les résultats selon le rang avant de prendre la différence des moyennes réduit la plage des statistiques de test — les rangs eux-mêmes passent de 1 à 10 plutôt que de 1 à 280.</p>
+<section id="p-valeurs-unilatérales" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="p-valeurs-unilatérales"><span class="header-section-number">7.1.1</span> <span class="math inline">\(p\)</span>-valeurs unilatérales</h3>
+<p>Les <span class="math inline">\(p\)</span>-valeurs unilatérales sont 0.2034 pour la différence des moyennes simple et 0.15 pour la différence des moyennes selon le rang. Chaque statistique de test jette un degré de doute différent, ou quantifie un degré de surprise différent, pour la même hypothèse nulle d’absence d’effets. Le résultat lui-même contient tant de bruit que la différence des moyennes selon le rang permet de mieux capter le signal que la différence des moyennes simple. Ces données ont été générées avec des effets de traitement intégrés, donc l’hypothèse nulle d’absence d’effets est fausse, mais les informations sur les effets contiennent du bruit — la taille de l’échantillon est petite et la distribution des résultats comporte des points aberrants et les effets du traitement varient considérablement.</p>
+</section>
+<section id="p-valeurs-bilatérales" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="p-valeurs-bilatérales"><span class="header-section-number">7.1.2</span> <span class="math inline">\(p\)</span>-valeurs bilatérales</h3>
+<p>Disons que nous ne sachions pas à l’avance si notre expérience montrerait un effet négatif ou un effet positif. Dans ce cas, nous pourrions faire deux tests d’hypothèse — l’un calculant la <span class="math inline">\(p\)</span>-valeur supérieure unilatérale et l’autre calculant la <span class="math inline">\(p\)</span>-valeur inférieure unilatérale. Si nous faisions cela, nous calculerions deux <span class="math inline">\(p\)</span>-valeurs et, si nous le faisions de manière standard, nous prendrions le risque de nous tromper. Après tout, rappelons-nous des <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">10 choses sur les comparaisons multiples</a> : même s’il n’y a vraiment pas d’effet, 100 tests indépendants qui fonctionnent bien pour l’hypothèse nulle d’absence d’effets ne donneront pas plus de 5 <span class="math inline">\(p\)</span>-valeurs inférieures à 0,05. Une solution facile pour résumer la singularité d’une expérience dans l’une ou l’autre direction est de calculer une <span class="math inline">\(p\)</span>-valeur bilatérale. Ceci, soit dit en passant, est la <span class="math inline">\(p\)</span>-valeur standard produite par la plupart des logiciels prédéfinis tels que <code>lm()</code> et <code>t.test()</code> et <code>wilcox.test()</code> dans R. L’idée de base est de calculer les deux <span class="math inline">\(p\)</span>-valeurs, puis de multiplier la plus petite <span class="math inline">\(p\)</span>-valeur par 2. (L’idée ici est que vous vous pénalisez pour avoir effectué deux tests - voir <span class="citation" data-cites="rosenbaum2010design">Rosenbaum (<a href="#ref-rosenbaum2010design" role="doc-biblioref">2010a</a>)</span>, Chapitre 2 et <span class="citation" data-cites="cox1977role">Cox et al. (<a href="#ref-cox1977role" role="doc-biblioref">1977</a>)</span> pour en savoir plus sur l’idée de multiplier la plus petite p-valeur par deux.)</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Ici, j'utilise &lt;= et &gt;= plutôt que &lt; et &gt; en raison du caractère discret</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## de la distribution de randomisation avec seulement 10 observations.</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Voir les discussions sur la "p-valeur moyenne"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>p2SidedMeanTZ <span class="ot">&lt;-</span>     <span class="dv">2</span><span class="sc">*</span><span class="fu">min</span>( <span class="fu">mean</span>( possibleMeanDiffsH0 <span class="sc">&gt;=</span> observedMeanTZ ),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>               <span class="fu">mean</span>( possibleMeanDiffsH0 <span class="sc">&lt;=</span> observedMeanTZ ))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>p2SidedMeanRankTZ <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">min</span>( <span class="fu">mean</span>( possibleMeanRankDiffsH0 <span class="sc">&gt;=</span> observedMeanRankTZ ),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>( possibleMeanRankDiffsH0 <span class="sc">&lt;=</span> observedMeanRankTZ ))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Dans ce cas, les <span class="math inline">\(p\)</span>-valeurs bilatérales sont 0.4068 et 0.296 pour, respectivement, la différences des moyennes simple et selon le rang. Nous les interprétons en termes de “singularité” — nous verrions seulement une différence des moyennes observée aussi loin de zéro que celle calculée à partir de nos résultats environ 18% du temps, par exemple.</p>
+<p><strong>Remarque :</strong> le test de l’hypothèse nulle stricte montré ici peut être fait sans écrire le code vous-même. Le code que vous verrez ici (en cliquant sur le bouton “code”) montre comment utiliser différents packages R pour tester des hypothèses à l’aide d’une inférence de randomisation.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## en utilisant le package coin</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(coin)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pMean2 <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(<span class="fu">oneway_test</span>(Y<span class="sc">~</span><span class="fu">factor</span>(Z),<span class="at">data=</span>dat,<span class="at">distribution=</span><span class="fu">approximate</span>(<span class="at">nresample=</span><span class="dv">1000</span>)))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>rankY <span class="ot">&lt;-</span> <span class="fu">rank</span>(dat<span class="sc">$</span>Y)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>pMeanRank2 <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(<span class="fu">oneway_test</span>(rankY<span class="sc">~</span><span class="fu">factor</span>(Z),<span class="at">data=</span>dat,<span class="at">distribution=</span><span class="fu">approximate</span>(<span class="at">nresample=</span><span class="dv">1000</span>)))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>pMean2</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>pMeanRank2</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">## en utilisant la version de développement du package RItools</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># dir.create("R-dev")</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># dev_mode(on = TRUE, path = "R-dev")</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># renv::install("dgof")</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># renv::install("hexbin")</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># renv::install("kSamples")</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># renv::install("ddst")</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># install_github("markmfredrickson/RItools@randomization-distribution")</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RItools)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>thedesignA <span class="ot">&lt;-</span> <span class="fu">simpleRandomSampler</span>(<span class="at">total=</span>N,<span class="at">z=</span>dat<span class="sc">$</span>Z,<span class="at">b=</span><span class="fu">rep</span>(<span class="dv">1</span>,N))</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>pMean4 <span class="ot">&lt;-</span> <span class="fu">RItest</span>(<span class="at">y=</span>dat<span class="sc">$</span>Y,<span class="at">z=</span>dat<span class="sc">$</span>Z,<span class="at">samples=</span><span class="dv">1000</span>, <span class="at">test.stat=</span> meanTZ ,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">sampler =</span> thedesignA)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>pMeanRank4 <span class="ot">&lt;-</span> <span class="fu">RItest</span>(<span class="at">y=</span>dat<span class="sc">$</span>Y,<span class="at">z=</span>dat<span class="sc">$</span>Z,<span class="at">samples=</span><span class="dv">1000</span>, <span class="at">test.stat=</span> meanrankTZ ,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">sampler =</span> thedesignA)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>pMean4</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>pMeanRank4</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># dev_mode(on=FALSE, path = "R-dev")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="en-utilisant-le-package-ri2" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="en-utilisant-le-package-ri2"><span class="header-section-number">7.2</span> en utilisant le package ri2</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ri2)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>thedesign <span class="ot">&lt;-</span> <span class="fu">declare_ra</span>(<span class="at">N=</span>N)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pMean4 <span class="ot">&lt;-</span> <span class="fu">conduct_ri</span>( Y <span class="sc">~</span> Z, <span class="at">declaration =</span> thedesign,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">sharp_hypothesis =</span> <span class="dv">0</span>, <span class="at">data =</span> dat, <span class="at">sims =</span> <span class="dv">1000</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pMean4)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>pMeanRank4 <span class="ot">&lt;-</span> <span class="fu">conduct_ri</span>( rankY <span class="sc">~</span> Z, <span class="at">declaration =</span> thedesign,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">sharp_hypothesis =</span> <span class="dv">0</span>, <span class="at">data =</span> dat, <span class="at">sims =</span> <span class="dv">1000</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pMeanRank4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="un-exemple-tester-lhypothèse-nulle-faible-dabsence-deffets" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="un-exemple-tester-lhypothèse-nulle-faible-dabsence-deffets"><span class="header-section-number">7.3</span> Un exemple: tester l’hypothèse nulle faible d’absence d’effets</h2>
+<p>L’hypothèse nulle faible est une affirmation sur les agrégats et est presque toujours exprimée en termes de moyennes : <span class="math inline">\(H_0: \bar{y}_{1} = \bar{y}_{0}\)</span>. La statistique de test pour cette hypothèse est presque toujours la différence des moyennes (i.e.&nbsp;<code>meanTZ()</code> ci-dessus). Le code ci-dessous montre l’utilisation de la méthode des moindres carrés (MC, <code>lm()</code> dans R) pour calculer la différence des moyennes en tant que statistique de test pour les hypothèses sur l’effet moyen. Notez que les <span class="math inline">\(p\)</span>-valeurs basées sur MC diffèrent de celles calculées par <code>t.test()</code> et <code>difference_of_means()</code>. Rappelons que l’inférence statistique MC est justifiée par l’hypothèse d’observations indépendantes et distribuées de manière identique, mais, dans la plupart des expériences, le traitement lui-même modifie la variation dans le groupe de traitement (violant ainsi l’hypothèse de distribution identique/homoscédasticité de MC). C’est l’une des raisons pour lesquelles on préconise, pour tester l’hypothèse nulle faible de l’absence d’effet moyen de traitement, l’utilisation d’outils autres que ceux fournis par de simples méthodes des moindres carrés.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>Z,<span class="at">data=</span>dat)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lm1P <span class="ot">&lt;-</span> <span class="fu">summary</span>(lm1)<span class="sc">$</span>coef[<span class="st">"Z"</span>,<span class="st">"Pr(&gt;|t|)"</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ttestP1 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(Y<span class="sc">~</span>Z,<span class="at">data=</span>dat)<span class="sc">$</span>p.value</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(estimatr)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>ttestP2 <span class="ot">&lt;-</span> <span class="fu">difference_in_means</span>(Y<span class="sc">~</span>Z,<span class="at">data=</span>dat)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">lmPvalue=</span>lm1P,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">ttestPvalue=</span>ttestP1,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">diffOfMeansPvalue=</span>ttestP2<span class="sc">$</span>p.value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           lmPvalue         ttestPvalue diffOfMeansPvalue.Z 
+          0.5106994           0.5110166           0.5110166 </code></pre>
+</div>
+</div>
+<p>Ce code produit les mêmes résultats sans utiliser les moindres carrés — après tout, nous calculons simplement les différences de moyennes et les variances de ces moyennes car elles peuvent varier au cours d’expériences répétées dans le même échantillon d’unités expérimentales.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>varEstATE <span class="ot">&lt;-</span> <span class="cf">function</span>(Y,Z){</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">var</span>(Y[Z<span class="sc">==</span><span class="dv">1</span>])<span class="sc">/</span><span class="fu">sum</span>(Z) <span class="sc">+</span> <span class="fu">var</span>(Y[Z<span class="sc">==</span><span class="dv">0</span>])<span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">-</span>Z)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>seEstATE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">varEstATE</span>(dat<span class="sc">$</span>Y,dat<span class="sc">$</span>Z))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>obsTStat <span class="ot">&lt;-</span> observedMeanTZ<span class="sc">/</span>seEstATE</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">observedTestStat=</span>observedMeanTZ,<span class="at">stderror=</span>seEstATE,<span class="at">tstat=</span>obsTStat,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pval=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">min</span>(<span class="fu">pt</span>(obsTStat,<span class="at">df=</span><span class="dv">8</span>,<span class="at">lower.tail =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>         <span class="fu">pt</span>(obsTStat,<span class="at">df=</span><span class="dv">8</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>observedTestStat         stderror            tstat             pval 
+     102.0000000      148.1816453        0.6883444        0.5106994 </code></pre>
+</div>
+</div>
+<p>Notez que ces tests supposent tous que la distribution de la statistique de test à travers des expériences répétées soit bien caractérisée par une distribution <span class="math inline">\(t\)</span>. La partie gauche de la figure ci-dessus montre la distribution réalisée d’une manière à ce que l’hypothèse nulle faible soit vraie (i.e.&nbsp;dans ce cas l’hypothèse nulle stricte est vraie aussi) : il y a plusieurs façons pour que l’hypothèse nulle faible soit vraie — certaines sont compatibles avec des effets positifs importants sur certaines unités et des effets négatifs importants sur d’autres unités, d’autres sont compatibles avec d’autres modèles d’effets au niveau individuel. Pour notre petit ensemble de données, conçu pour avoir une distribution de résultats très asymétrique, aucun de ces modèles ne produira une distribution de référence qui ressemble à une loi normale ou une courbe-<span class="math inline">\(t\)</span> si la différence des moyennes est utilisée comme statistique de test. Nous reviendrons sur ce point plus tard lorsque nous discuterons des caractéristiques d’un bon test — dont l’un est un taux de faux positifs contrôlé.</p>
+</section>
+</section>
+<section id="dans-les-tests-dhypothèse-simples-nous-nacceptons-pas-lhypothèse-nulle." class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Dans les tests d’hypothèse simples, nous n’acceptons pas l’hypothèse nulle.</h1>
+<p>Parfois, les gens veulent prendre une décision en utilisant la <span class="math inline">\(p\)</span>-valeur. N’oubliez pas qu’une <span class="math inline">\(p\)</span>-valeur utilise une statistique de test et l’idée de répétition de l’expérience pour quantifier les informations de la conception de recherche pour une hypothèse. C’est la conception, la fonction de la statistique de test et l’hypothèse qui génèrent une distribution de probabilité. Et ce sont les données réelles, la conception et la fonction de la statistique de test qui créent une valeur observée unique.</p>
+<p>La <span class="math inline">\(p\)</span>-valeur nous indique simplement le degré de singularité du résultat observé du point de vue de l’hypothèse. Ou, nous pouvons penser à la <span class="math inline">\(p\)</span>-valeur comme une mesure de l’incohérence entre nos données observées et l’hypothèse. Et si on voulait prendre une décision ? Il s’avère que <strong>nous pouvons prendre des décisions en utilisant une <span class="math inline">\(p\)</span>-valeur si nous sommes prêts à accepter un certain nombre d’erreurs.</strong> Disons, par exemple, que nous voyons une <span class="math inline">\(p\)</span>-valeur unilatérale de <span class="math inline">\(0,01\)</span> : ceci signifierait que dans seulement 1 expérience hypothétique sur 100 représentant l’hypothèse nulle, nous verrions un résultat aussi grand ou plus grand que notre résultat réel. Nous pourrions être tentés de dire que notre résultat observé est si étrange que nous voulons faire comme si l’hypothèse nulle était fausse. Ce serait bien — après tout, une <span class="math inline">\(p\)</span>-valeur à elle seule ne peut pas contrôler le comportement d’un humain adulte — mais l’humain doit savoir que dans 1% des cas où l’hypothèse nulle est vraie, nous verrions toujours ce résultat pour ce même échantillon de sujets avec cette même conception expérimentale. C’est-à-dire que si nous utilisions une petite <span class="math inline">\(p\)</span>-valeur pour rejeter l’hypothèse nulle, ou agissons comme si l’hypothèse nulle était fausse, nous pourrions toujours faire une erreur. Ces rejets incorrects sont appelés faux positifs car l’hypothèse nulle est souvent zéro et l’effet souhaité (par exemple, dans les essais médicaux) est souvent codé comme positif.</p>
+<p>Supposons que nous acceptons d’avoir un faux positif ou faux rejet toutes les 20 expériences. Dans ce cas, nous devrions également accepter de rejeter une hypothèse nulle si nous avons vu que <span class="math inline">\(p \le 1/20\)</span> ou <span class="math inline">\(p \le .05\)</span>. Et une <span class="math inline">\(p\)</span>-valeur inférieure à 0,05 signale l’incohérence avec l’hypothèse nulle et ne devrait donc nous conduire à nous tromper que dans 5% des expériences comme celle que nous analysons.</p>
+<section id="que-signifie-de-rejeter-une-hypothèse-nulle" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="que-signifie-de-rejeter-une-hypothèse-nulle"><span class="header-section-number">8.1</span> Que signifie de rejeter une hypothèse nulle ?</h2>
+<p>Notez que <span class="math inline">\(p=0,01\)</span> ne reflète que la singularité des données observées par rapport à l’hypothèse — cela signifie que la statistique de test observée semble extrême lorsqu’elle est considérée du point de vue de la distribution des statistiques de tests générée à partir de l’hypothèse nulle et de la conception de recherche. Ainsi, nous pensons que <span class="math inline">\(p=0,01\)</span> (comme d’autres petites <span class="math inline">\(p\)</span>-valeurs) met en doute le fait que l’hypothèse spécifique est un bon modèle des données observées. Souvent, le seul modèle de résultats potentiels qui est testé est le modèle sans effets, donc une petite <span class="math inline">\(p\)</span>-valeur devrait nous faire douter du modèle sans effets. Les fabricants de logiciels de régression prédéfinis ont tendance à fournir une <span class="math inline">\(p\)</span>-valeur qui se réfère automatiquement à cette hypothèse, de sorte qu’il est difficile de ne pas voir les résultats de ce test même si vous voulez simplement décrire les différences de moyennes dans les données mais utiliser la méthode des moindres carrés pour calculer la différence des moyennes.</p>
+</section>
+<section id="que-signifie-de-ne-pas-rejeter-une-hypothèse-nulle" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="que-signifie-de-ne-pas-rejeter-une-hypothèse-nulle"><span class="header-section-number">8.2</span> Que signifie de <strong>ne pas rejeter</strong> une hypothèse nulle ?</h2>
+<p>Notez que <span class="math inline">\(p=0,50\)</span> ne reflète que la singularité des données observées par rapport à l’hypothèse — mais les données observées, dans ce cas, ne semblent pas extrêmes mais normales du point de vue de l’hypothèse nulle. Ainsi, <span class="math inline">\(p=0,5\)</span> (comme d’autres <span class="math inline">\(p\)</span>-valeurs élevées) ne nous incitent pas à douter du modèle de l’hypothèse nulle. Cela ne nous encourage pas à accepter ce modèle — ce n’est qu’un modèle après tout. On ne sait pas à quel point le modèle était raisonnable a priori, par exemple. Ainsi, une seule grande <span class="math inline">\(p\)</span>-valeur est un argument en faveur de l’hypothèse nulle, mais pas un argument très marqué.</p>
+</section>
+</section>
+<section id="une-fois-que-vous-utilisez-des-p-valeurs-pour-rejeter-une-hypothèse-vous-ferez-des-erreurs" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Une fois que vous utilisez des <span class="math inline">\(p\)</span>-valeurs pour rejeter une hypothèse, vous ferez des erreurs</h1>
+<p>Un bon test rejette rarement les hypothèses vraies (i.e.&nbsp;il a un taux de faux positifs contrôlé) et il détecte facilement le signal du bruit (i.e.&nbsp;il a une bonne puissance statistique, il fait rarement l’erreur de rater le signal dans le bruit).</p>
+<section id="comment-percevoir-les-risques-dun-signal-noyé-dans-le-bruit" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="comment-percevoir-les-risques-dun-signal-noyé-dans-le-bruit"><span class="header-section-number">9.1</span> Comment percevoir les risques d’un signal noyé dans le bruit ?</h2>
+<p>Le guide <a href="https://methods.egap.org/guides/assessing-designs/power_fr.html">10 choses à savoir sur la puissance statistique</a> explique comment nous voulons que l’hypothèse nulle soit rejetée lorsqu’elle est fausse (i.e.&nbsp;détecter le signal du bruit). Lorsque nous pensons à la puissance d’une statistique de test, nous devons considérer l’<strong>hypothèse alternative</strong>. Cependant, comme nous l’avons montré ci-dessus, nous pouvons tester des <strong>hypothèses nulles</strong> sans avoir l’idée de les rejeter ou de les accepter, bien que la “puissance statistique” du test soit alors plus difficile à définir et à manipuler.</p>
+</section>
+<section id="comment-étudier-les-faux-positifs" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="comment-étudier-les-faux-positifs"><span class="header-section-number">9.2</span> Comment étudier les faux positifs ?</h2>
+<p>La simulation est le moyen le plus simple d’en savoir plus sur les faux positifs. Tout d’abord, nous créons la situation où l’hypothèse nulle est vraie et connue, puis nous testons cette hypothèse nulle pour les cas où elle est vraie. Par exemple, dans l’expérience utilisée ici, nous avons 5 unités assignées au traitement sur 10. Cela signifie qu’il existe <span class="math inline">\(\binom{10}{5}=252\)</span> différentes manières d’assigner le traitement — et 252 manières pour que l’expérience n’ait eu aucun effet sur les individus.</p>
+<p>Nous le démontrons ici en définissant l’hypothèse nulle stricte comme égale à zéro, mais on pourrait également évaluer le taux de faux positifs pour différentes hypothèses. Nous comparons le taux d’erreur pour quelques-unes des approches utilisées jusqu’à présent, y compris le test de l’hypothèse nulle faible d’absence d’effets. Le graphique suivant montre la proportion de <span class="math inline">\(p\)</span>-valeurs inférieures à un niveau de signification donné (c’est-à-dire le seuil de rejet) pour chacun des quatre tests. C’est-à-dire qu’il s’agit d’un graphique du taux de faux positifs pour un seuil de signification donné. Un test qui a un taux de faux positifs contrôlé ou connu aurait des symboles sur ou en dessous de la ligne sur tout l’axe des x ou la plage du tracé. Comme nous pouvons le voir ici, les deux tests utilisant des permutations de traitement pour évaluer l’hypothèse nulle stricte d’absence d’effets ont cette caractéristique. Les tests pour l’hypothèse nulle faible utilisant comme statistique de test la différence des moyennes et faisant appel à la théorie des grands échantillons pour justifier l’utilisation d’une distribution <span class="math inline">\(t\)</span> n’ont pas un taux de faux positifs contrôlé : la proportion de <span class="math inline">\(p\)</span>-valeurs inférieures à une valeur donnée du seuil de rejet peut être trop élevée ou trop basse.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>collectPValues <span class="ot">&lt;-</span> <span class="cf">function</span>(y,z){</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Faire en sorte que Y et Z n'aient aucune relation en re-randomisant Z</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    newz <span class="ot">&lt;-</span> <span class="fu">repeatExperiment</span>(z)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        thelm <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>newz,<span class="at">data=</span>dat)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    ttestP2 <span class="ot">&lt;-</span> <span class="fu">difference_in_means</span>(y<span class="sc">~</span>newz,<span class="at">data=</span>dat)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    owP <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(<span class="fu">oneway_test</span>(y<span class="sc">~</span><span class="fu">factor</span>(newz),<span class="at">distribution=</span><span class="fu">exact</span>()))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    ranky <span class="ot">&lt;-</span> <span class="fu">rank</span>(y)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    owRankP <span class="ot">&lt;-</span> <span class="fu">pvalue</span>(<span class="fu">oneway_test</span>(ranky<span class="sc">~</span><span class="fu">factor</span>(newz),<span class="at">distribution=</span><span class="fu">exact</span>()))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">c</span>(<span class="at">lmp=</span><span class="fu">summary</span>(thelm)<span class="sc">$</span>coef[<span class="st">"newz"</span>,<span class="st">"Pr(&gt;|t|)"</span>]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">neyp=</span>ttestP2<span class="sc">$</span>p.value[[<span class="dv">1</span>]],</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">rtp=</span>owP,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">rtpRank=</span>owRankP))</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pDist <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>,<span class="fu">collectPValues</span>(<span class="at">y=</span>dat<span class="sc">$</span>Y,<span class="at">z=</span>dat<span class="sc">$</span>Z))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">1.25</span>,.<span class="dv">5</span>,<span class="dv">0</span>),<span class="at">oma=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">type=</span><span class="st">"n"</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"p-valeur = p"</span>,<span class="at">ylab=</span><span class="st">"Proportion de p-valeurs &lt; p"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pDist)){</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">ecdf</span>(pDist[i,]),<span class="at">pch=</span>i,<span class="at">col=</span>i)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">col=</span><span class="st">"gray"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="at">legend=</span><span class="fu">c</span>(<span class="st">"Moindre carrés"</span>, <span class="st">"Neyman"</span>, <span class="st">"Diff des moyennes d'inférence de randomisation"</span>, <span class="st">"Diff des moyennes d'inférence de randomisation selon le rang"</span>),</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">pch=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="at">lty=</span><span class="dv">1</span>,<span class="at">bty=</span><span class="st">"n"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hypothesis-testing_fr_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Dans ce cas particulier, pour le seuil de <span class="math inline">\(\alpha=0,05\)</span>, tous les tests, à l’exception du test basé sur le rang, ont de moins de 5 % de faux positifs – c’est bien car cela devrait être inférieur à 5%. Cependant, cela ne garantit pas de bonnes performances pour des tests basés sur de grands échantillons dans d’autres petites expériences, ou des expériences avec des résultats très asymétriques, etc. En cas de doute, il est facile d’évaluer le taux de faux positifs d’un test en utilisant le code de ce guide pour faire votre propre simulation.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(pDist,<span class="dv">1</span>,<span class="cf">function</span>(x){ <span class="fu">mean</span>(x<span class="sc">&lt;</span>.<span class="dv">05</span>)})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    lmp    neyp     rtp rtpRank 
+ 0.0378  0.0378  0.0456  0.0450 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="que-savoir-dautre-sur-les-tests-dhypothèses" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Que savoir d’autre sur les tests d’hypothèses ?</h1>
+<p>Nous énumérons ici quelques autres sujets importants mais avancés liés aux tests d’hypothèses :</p>
+<ul>
+<li><p>Même si une procédure de test donnée contrôle le taux de faux positifs pour un seul test, elle peut ne pas contrôler le taux pour un groupe de tests multiples. Voir <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">10 choses à savoir sur les comparaisons multiples</a> pour un guide des approches pour contrôler ces taux de rejet pour plusieurs tests.</p></li>
+<li><p>Un intervalle de confiance de <span class="math inline">\(100 - \alpha\)</span> % peut être défini comme la plage d’hypothèses où toutes les <span class="math inline">\(p\)</span>-valeurs sont supérieures ou égales à <span class="math inline">\(\alpha\)</span>. C’est ce qu’on appelle l’inversion du test d’hypothèse. (<span class="citation" data-cites="rosenbaum2010design">Rosenbaum (<a href="#ref-rosenbaum2010design" role="doc-biblioref">2010a</a>)</span>). Autrement dit, un <strong>intervalle de confiance est un ensemble de tests d’hypothèse</strong>. Cela signifie qu’une critique de la <span class="math inline">\(p\)</span>-valeur est également une critique de l’intervalle de confiance.</p></li>
+<li><p>Une estimation de position basée sur un test d’hypothèse est appelée une estimation de position de Hodges-Lehmann. (<span class="citation" data-cites="rosenbaum1993hlp">Rosenbaum (<a href="#ref-rosenbaum1993hlp" role="doc-biblioref">1993</a>)</span>, <span class="citation" data-cites="hodges1963elb">Hodges and Lehmann (<a href="#ref-hodges1963elb" role="doc-biblioref">1963</a>)</span>)</p></li>
+<li><p>Un ensemble de tests d’hypothèse peut être combiné en un seul test d’hypothèse. Par exemple, vous pouvez tester l’hypothèse d’un effet de taille 1 sur le résultat 1, un effet de taille 0 sur le résultat 2 et un effet de -10 sur le résultat 3. (<span class="citation" data-cites="hansen:bowers:2008">Hansen and Bowers (<a href="#ref-hansen:bowers:2008" role="doc-biblioref">2008</a>)</span>,<span class="citation" data-cites="caughey2017nonparametric">Caughey, Dafoe, and Seawright (<a href="#ref-caughey2017nonparametric" role="doc-biblioref">2017</a>)</span>)</p></li>
+<li><p>Dans les tests d’équivalence, on peut émettre l’hypothèse que deux statistiques de test sont équivalentes (c’est-à-dire que le groupe de traitement est le même que le groupe de contrôle) plutôt qu’une seule (la différence entre les deux groupes est égale à zéro) {<span class="citation" data-cites="hartman2018equivalence">Hartman and Hidalgo (<a href="#ref-hartman2018equivalence" role="doc-biblioref">2018</a>)</span>}</p></li>
+<li><p>Étant donné qu’un test d’hypothèse est un modèle de résultats potentiels, on peut utiliser les tests d’hypothèses pour en savoir plus sur des modèles complexes, tels que des modèles de contamination et de propagation des effets de traitement à travers les réseaux (<span class="citation" data-cites="bowers2013reasoning">Bowers, Fredrickson, and Panagopoulos (<a href="#ref-bowers2013reasoning" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="bowers2016research">Bowers, Fredrickson, and Aronow (<a href="#ref-bowers2016research" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="bowers2018models">Bowers et al. (<a href="#ref-bowers2018models" role="doc-biblioref">2018</a>)</span>)</p></li>
+</ul>
+</section>
+<section id="références" class="level1" data-number="11">
+
+
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 Références</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bowers2018models" class="csl-entry" role="listitem">
+Bowers, Jake, Bruce A Desmarais, Mark Frederickson, Nahomi Ichino, Hsuan-Wei Lee, and Simi Wang. 2018. <span>“Models, Methods and Network Topology: Experimental Design for the Study of Interference.”</span> <em>Social Networks</em> 54: 196–208.
+</div>
+<div id="ref-bowers2013reasoning" class="csl-entry" role="listitem">
+Bowers, Jake, Mark M Fredrickson, and Costas Panagopoulos. 2013. <span>“<span class="nocase">Reasoning about Interference Between Units: A General Framework</span>.”</span> <em>Political Analysis</em> 21 (1): 97–124.
+</div>
+<div id="ref-bowers2016research" class="csl-entry" role="listitem">
+Bowers, Jake, Mark Fredrickson, and Peter M Aronow. 2016. <span>“Research Note: A More Powerful Test Statistic for Reasoning about Interference Between Units.”</span> <em>Political Analysis</em> 24 (3): 395–403.
+</div>
+<div id="ref-brady2008causation" class="csl-entry" role="listitem">
+Brady, Henry E. 2008. <span>“Causation and Explanation in Social Science.”</span> In <em>The Oxford Handbook of Political Methodology (Oxford Handbooks of Political Science)</em>.
+</div>
+<div id="ref-caughey2017nonparametric" class="csl-entry" role="listitem">
+Caughey, Devin, Allan Dafoe, and Jason Seawright. 2017. <span>“Nonparametric Combination (NPC): A Framework for Testing Elaborate Theories.”</span> <em>The Journal of Politics</em> 79 (2): 688–701.
+</div>
+<div id="ref-chung2013exact" class="csl-entry" role="listitem">
+Chung, EunYi, Joseph P Romano, et al. 2013. <span>“Exact and Asymptotically Robust Permutation Tests.”</span> <em>The Annals of Statistics</em> 41 (2): 484–507.
+</div>
+<div id="ref-cox1977role" class="csl-entry" role="listitem">
+Cox, DR, W. R. van Zwet, JF Bithell, O. Barndorff-Nielsen, and M. Keuls. 1977. <span>“<span class="nocase">The Role of Significance Tests [with Discussion and Reply]</span>.”</span> <em>Scandinavian Journal of Statistics</em> 4 (2): 49–70.
+</div>
+<div id="ref-fisher:1935" class="csl-entry" role="listitem">
+Fisher, R. A. 1935. <em><span class="nocase">The design of experiments. 1935</span></em>. <em>Oliver &amp; Boyd Edinburgh, Scotland</em>. Edinburgh: Oliver; Boyd.
+</div>
+<div id="ref-hansen:bowers:2008" class="csl-entry" role="listitem">
+Hansen, Ben B., and Jake Bowers. 2008. <span>“Covariate Balance in Simple, Stratified and Clustered Comparative Studies.”</span> <em>Statistical Science</em> 23 (2): 219–36.
+</div>
+<div id="ref-hartman2018equivalence" class="csl-entry" role="listitem">
+Hartman, Erin, and F Daniel Hidalgo. 2018. <span>“An Equivalence Approach to Balance and Placebo Tests.”</span> <em>American Journal of Political Science</em> 62 (4): 1000–1013.
+</div>
+<div id="ref-hodges1963elb" class="csl-entry" role="listitem">
+Hodges, J. L., and E. L. Lehmann. 1963. <span>“<span class="nocase">Estimates of location based on rank tests</span>.”</span> <em>Ann. Math. Statist</em> 34: 598–611.
+</div>
+<div id="ref-holland1986statistics" class="csl-entry" role="listitem">
+Holland, Paul W. 1986. <span>“<span class="nocase">Statistics and causal inference</span>.”</span> <em>Journal of the American Statistical Association</em> 81 (396): 945–60.
+</div>
+<div id="ref-imbens2007causal" class="csl-entry" role="listitem">
+Imbens, G., and D. Rubin. 2007. <span>“Causal Inference: Statistical Methods for Estimating Causal Effects in Biomedical, Social, and Behavioral Sciences.”</span> Cambridge University Press, forthcoming.
+</div>
+<div id="ref-kinder1993behalf" class="csl-entry" role="listitem">
+Kinder, D. R., and T. R. Palfrey. 1993. <span>“On Behalf of an Experimental Political Science.”</span> <em>Experimental Foundations of Political Science</em>, 1–39.
+</div>
+<div id="ref-rosenbaum1993hlp" class="csl-entry" role="listitem">
+Rosenbaum, Paul R. 1993. <span>“Hodges-Lehmann Point Estimates of Treatment Effect in Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 88 (424): 1250–53.
+</div>
+<div id="ref-rosenbaum2002" class="csl-entry" role="listitem">
+———. 2002. <span>“Attributing Effects to Treatment in Matched Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 97: 183–92.
+</div>
+<div id="ref-rosenbaum2010design" class="csl-entry" role="listitem">
+———. 2010a. <em>Design of Observational Studies</em>. <em>Springer Series in Statistics</em>. New York, NY: Springer.
+</div>
+<div id="ref-rosenbaum2010" class="csl-entry" role="listitem">
+———. 2010b. <span>“Design Sensitivity and Efficiency in Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 105: 692–702.
+</div>
+<div id="ref-rosenbaum2017observation" class="csl-entry" role="listitem">
+———. 2017. <em>Observation and Experiment: An Introduction to Causal Inference</em>. Harvard University Press.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Les résultats avec de grandes valeurs aberrantes ajoutent du bruit ; les résultats qui sont pour la plupart égaux à 0 ont peu de signal ; un découpage par bloc, une pré-stratification ou un ajustement de covariance peuvent réduire le bruit.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/methods\.egap\.org");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
