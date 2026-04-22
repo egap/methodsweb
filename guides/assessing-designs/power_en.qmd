@@ -99,41 +99,71 @@ library(DeclareDesign)
 library(knitr)
 library(kableExtra)
 set.seed(1234)
-# Set up sample size and treatment effect
-N <- 500
-tau <- 0.2
-                                  
-design <- # First, specify a model that generates baseline data for the units in the study
-  declare_model(N = N,
-                     X = rep(c(0,2), each = N/2),
-                     U = rnorm(N),
-                     potential_outcomes(Y~tau*Z + X + U)) +
-  # Second, specify the inquiry
+
+## Stylized income example, matching the age/gender story in Section 7:
+## Y is income (in thousands). Older subjects earn more; men earn more
+## than women; U is residual variation we do not observe.
+N   <- 500
+tau <- 2        # treatment effect: +$2k of income
+
+design <-
+  declare_model(
+    N      = N,
+    age    = sample(25:65, N, replace = TRUE),
+    gender = rbinom(N, 1, 0.5),
+    U      = rnorm(N, sd = 5),
+    potential_outcomes(Y ~ tau * Z + 0.5 * age + 10 * gender + U)) +
   declare_inquiry(ATE = mean(Y_Z_1 - Y_Z_0)) +
-  # Third, set the data strategy
   declare_assignment(Z = complete_ra(N = N, m = N/2)) +
   declare_measurement(Y = reveal_outcomes(Y ~ Z)) +
-  # Finally, set the estimators
-  declare_estimator(Y ~ Z, inquiry = "ATE", .method = lm_robust, label = "Simple") +
-  declare_estimator(Y ~ Z + X, inquiry = "ATE", .method = lm_robust, label = "Covariate Adjusted")
-# Specify an alpha level to test for the power of the design
+  declare_estimator(Y ~ Z,                inquiry = "ATE",
+                    .method = lm_robust,  label = "Simple") +
+  declare_estimator(Y ~ Z + age + gender, inquiry = "ATE",
+                    .method = lm_robust,  label = "Covariate Adjusted")
+
+## Diagnose power at this N
 alpha <- 0.05
-study_diagnosands <- declare_diagnosands(
-  power = mean(p.value <= alpha)
-)
-#One diagnostic run
-diag <- diagnose_design(design, diagnosands = study_diagnosands, sims=500)
-#specify sample sizes of interest
-possible.ns <- seq(from=100, to=2000, by=40)
-#Redesign for different sample sizes between 100 and 2000 by 40
-designN <- redesign(design, N = seq(from=100, to=2000, by=40))
-#Run power analysis on each design
+study_diagnosands <- declare_diagnosands(power = mean(p.value <= alpha))
+diag <- diagnose_design(design, diagnosands = study_diagnosands, sims = 500)
+
+## Sweep over sample sizes for the graph in Section 7
+designN  <- redesign(design, N = seq(from = 100, to = 2000, by = 40))
 diagnose <- diagnose_design(designN, diagnosands = study_diagnosands, sims = 500)
-#store dataset of power analysis
-plotdf <- diagnose$diagnosands_df
-#print power for the simple regression approach (first 5 rows)
-kable_styling(kable(head(plotdf[c(plotdf$estimator=="Simple"), c(2,7)]), row.names = F))
+plotdf   <- diagnose$diagnosands_df
+
+## Preview the first few rows of the Simple-estimator sweep
+kable_styling(kable(head(plotdf[plotdf$estimator == "Simple", c(2, 7)]),
+                    row.names = FALSE))
 ```
+
+The DeclareDesign code above is compact but abstract. Here is the same single-design power calculation written out explicitly --- draw baseline data, assign treatment, reveal outcomes, estimate, test, count --- so you can see what is happening under the hood:
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+## Hand-rolled version of the "Simple" power estimate from the
+## DeclareDesign run above. Fixed N; no covariate adjustment.
+set.seed(1234)
+sims     <- 500
+alpha    <- 0.05
+p_values <- numeric(sims)
+for (i in seq_len(sims)) {
+  ## Draw baseline data
+  age    <- sample(25:65, N, replace = TRUE)
+  gender <- rbinom(N, 1, 0.5)
+  U      <- rnorm(N, sd = 5)
+  ## Potential outcomes under control and treatment
+  Y0 <- 0.5 * age + 10 * gender + U
+  Y1 <- Y0 + tau
+  ## Random assignment (complete randomization, m = N/2)
+  Z <- sample(rep(c(0, 1), each = N / 2))
+  ## Reveal the outcome we actually observe
+  Y <- Y1 * Z + Y0 * (1 - Z)
+  ## Estimate and test via simple difference in means
+  p_values[i] <- summary(lm(Y ~ Z))$coefficients[2, 4]
+}
+mean(p_values <= alpha)
+```
+
+This number should match the "Simple" row of the DeclareDesign diagnosis above, within simulation error. The loop cleans up three small problems in older versions of this guide: it does not re-draw Y inside the inner loop, it uses complete random assignment (`sample(rep(c(0,1), each = N/2))`) rather than independent coin flips, and it reports the power estimate directly rather than printing a long vector.
 
 The code for this simulation and others is available [here](https://egap.org/resource/script-power-analysis-simulations-in-r/). Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.
 
@@ -141,11 +171,13 @@ In addition to counting up how often your experiments come up statistically sign
 
 ```{r, message=FALSE, error=FALSE, warning=FALSE}
 library(ggplot2)
-bardf <- diag$simulations_df
+## Show p-values from one estimator only; mixing "Simple" and
+## "Covariate Adjusted" rows makes the histogram hard to read.
+bardf <- diag$simulations_df[diag$simulations_df$estimator == "Simple", ]
 ggplot(bardf, aes(x = p.value)) +
   geom_histogram(fill = "white", color = "black", bins = 100) +
-  geom_vline(xintercept = 0.05, color = "red", linetype = "dotted", size  = 1) +
-  labs(x = "p-values", y = "Number of Experiments") +
+  geom_vline(xintercept = 0.05, color = "red", linetype = "dotted", linewidth = 1) +
+  labs(x = "p-value (Simple estimator)", y = "Number of Experiments") +
   theme_bw()
 ```
 
