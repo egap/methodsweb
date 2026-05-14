@@ -119,20 +119,20 @@ This section provides an example R code to construct indices using the simple av
 
 -   Place the views on a 1--10 scale: (1) "We need larger income differences as incentives for individual effort." (10) "Incomes in the UK should be made more equal".
 
-While the original study uses PCA to construct the index, we also provide the code to construct the index using the simple average, factor analysis, the Bayesian IRT with two-step approach, and hierarchical Bayesian IRT methods[@zhou2020hirt].
+While the original study uses PCA to construct the index, we also illustrate four other approaches: the simple average, factor analysis, a two-step graded-response IRT (item parameters are fit first, then the resulting respondent scores are regressed on the treatment), and a latent-regression IRT in which the treatment indicator enters the model directly as a predictor of the latent trait. We fit the IRT models with the `mirt` package [@chalmers2012mirt]; the latent-regression specification is closely related to the hierarchical IRT framework of [@zhou2020hirt].
 
 \centering
 
 
 ```{r, message=F, warning=F, output=F}
 library(haven)
-library(hIRT)
+library(mirt)
 data <- read_dta("indices_markets_SEV_repdata.dta")
 
 # Simple average ################################
 items <- data[,c("blame_system_w3", "bjw_w3", "r_luck_w3", "equality_1_w4")]
 items_std <- apply(items, 2, scale)
-score_ave <- rowMeans(items_std, na.rm=T)
+score_ave <- rowMeans(items_std, na.rm=TRUE)
 
 # match the direction so that the higher score means right-wing
 data$score_ave <- -score_ave
@@ -144,7 +144,7 @@ ate_ave <- lm(score_ave ~ stockreal, data=data)
 out_pca <- princomp(~ blame_system_w3 + bjw_w3 +
                     r_luck_w3 + equality_1_w4,
                     data=data,
-                    cor=T,
+                    cor=TRUE,
                     na.action=na.exclude)
 score_pca <- out_pca$scores[,1]
 
@@ -158,7 +158,6 @@ out_fa <- factanal(~ blame_system_w3 + bjw_w3 +
                     factors=1,
                     data=data,
                     scores="regression",
-
                     na.action=na.exclude)
 score_fa <- out_fa$scores[,1]
 
@@ -167,15 +166,31 @@ data$score_fa <- -score_fa
 ate_fa <- lm(score_fa ~ stockreal, data=data)
 
 # IRT (two step) ############################################
-out_irt <- hgrm(y=items, x=NULL)
-score_irt <- -out_irt$scores$post_mean
+# Fit a graded response model on the items, extract EAP scores,
+# then regress the scores on the treatment indicator.
+items_df <- as.data.frame(items)
+out_irt <- mirt(items_df, model=1, itemtype="graded", verbose=FALSE)
+score_irt <- fscores(out_irt, method="EAP")[,1]
+data$score_irt <- -score_irt
 ate_irt <- lm(score_irt ~ stockreal, data=data)
 
-# Hierarchical IRT ##########################################
-out_hirt <- hgrm(y=items, x=as.matrix(data[,c("stockreal")]))
-ate_hirt <- out_hirt$coefficients["xstockreal",]
+# Latent-regression IRT ####################################
+# Fit the GRM with the treatment indicator entering directly as a
+# predictor of the latent trait. Drop rows where all items are
+# missing so mirt's covdata alignment works.
+keep <- rowSums(!is.na(items)) > 0 & !is.na(data$stockreal)
+out_hirt <- mirt(as.data.frame(items[keep,]),
+                 model=1, itemtype="graded",
+                 covdata=data.frame(stockreal=data$stockreal[keep]),
+                 formula=~stockreal,
+                 verbose=FALSE, SE=TRUE)
+lr <- coef(out_hirt, printSE=TRUE)$lr.betas
+# Sign flip to match the higher-score-is-right-wing convention used
+# for the other four methods.
+ate_hirt_est <- -lr$betas["stockreal","F1"]
+ate_hirt_se  <-  lr$SE   ["stockreal","F1"]
 ```
-```{r, fig.cap="**Comparison of the Average Treatment Effect with Different Methods to Construct the Index**: This figure compares the estimated average treatment effect (ATE) of investment experience on the outcome index constructed with different methods. X-axis represents the estimated ATE, and the horizontal line represents the 95% confidence interval. The outcome index is constructed with 5 different methods: simple average, PCA, factor analysis, Bayesian IRT, and hierarchical Bayesian IRT. For the simple average, PCA, factor analysis methods, and IRT, the index is constructed first, and a simple linear regression is used to estimate the treatment effect of investment experience on the index. For the hierarchical IRT method, both the index construction and the effect estimation are done by the hierarchical IRT model. Across all methods other than hierarchical IRT model, the estimated treatment effect is positive statistically significant at the 5% level, which is consistent with the original study."}
+```{r, fig.cap="**Comparison of the Average Treatment Effect with Different Methods to Construct the Index**: This figure compares the estimated average treatment effect (ATE) of investment experience on the outcome index constructed five different ways. The point is the estimated ATE; the horizontal line is the 95% confidence interval. The first four estimators construct an index from the items and then regress that index on the treatment indicator; the fifth (latent-regression IRT) fits the IRT model and the treatment effect jointly, with the treatment predicting the latent trait directly. All five methods yield a positive, statistically significant effect, consistent with the original study. The latent-regression IRT produces the largest point estimate and the smallest standard error, as one would expect: the two-step estimators regress noisy estimated scores on the treatment, which attenuates the slope, while the latent-regression model accounts for measurement uncertainty in the latent trait."}
 #| echo: false
 # Results ###################################################
 par(mar=c(5, 8, 4, 2))
@@ -189,8 +204,8 @@ points(x=ate_fa$coefficients["stockreal"], y=3, pch=19)
 lines(x=c(confint(ate_fa)[2,1], confint(ate_fa)[2,2]), y=c(3, 3), lwd=2)
 points(x=ate_irt$coefficients["stockreal"], y=4, pch=19)
 lines(x=c(confint(ate_irt)[2,1], confint(ate_irt)[2,2]), y=c(4, 4), lwd=2)
-points(x=ate_hirt$Estimate, y=5, pch=19)
-lines(x=c(ate_hirt$Estimate - 1.96*ate_hirt$Std_Error, ate_hirt$Estimate + 1.96*ate_hirt$Std_Error), y=c(5, 5), lwd=2)
+points(x=ate_hirt_est, y=5, pch=19)
+lines(x=c(ate_hirt_est - 1.96*ate_hirt_se, ate_hirt_est + 1.96*ate_hirt_se), y=c(5, 5), lwd=2)
 abline(v=0, lty=2)
 axis(1, at=seq(-0.5, 0.5, by=0.1), labels=seq(-0.5, 0.5, by=0.1))
 axis(2, at=1:5, labels=c("Average", "PCA", "FA", "IRT", "HIRT"), las=1)
