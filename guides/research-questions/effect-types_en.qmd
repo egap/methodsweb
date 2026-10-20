@@ -4,7 +4,7 @@ author:
   - name: "Paul Testa"
     url: https://paultesta.org/
   - name: "Eric Dobbie"
-    url: mailto:eric.dobbie@emory.edu
+    url: https://www.linkedin.com/in/eric-dobbie-6a2995185
 image: effect-types.png
 bibliography: effect-types.bib
 ---

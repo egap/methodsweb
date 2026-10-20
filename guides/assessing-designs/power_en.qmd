@@ -9,7 +9,7 @@ originalauthor:
     date: "2013"
 majoredits:
   - name: "Eric Dobbie"
-    url: mailto:eric.dobbie@emory.edu
+    url: https://www.linkedin.com/in/eric-dobbie-6a2995185
     datetext: "2023"
 image: power.png
 bibliography: power.bib
