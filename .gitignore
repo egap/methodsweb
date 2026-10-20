@@ -15,3 +15,5 @@ site_libs/*
 *_files
 
 **/*.quarto_ipynb
+
+.guide-work/
