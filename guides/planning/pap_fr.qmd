@@ -357,6 +357,6 @@ Vous pouvez répertorier votre PAP sur plusieurs sites, et certaines revues exig
 
 - [Registre EGAP](http://egap.org/content/registration)
 - [Registre AEA](https://www.socialscienceregistry.org) (pour les essais randomisés contrôlés seulement)
-- [Registre OSF](http://help.osf.io/m/registrations)
+- [Registre OSF](https://osf.io/registries)
 
 # Références

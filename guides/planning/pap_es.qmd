@@ -258,7 +258,7 @@ Hay varios sitios de terceros en los que puede registrar su PAP. A continuación
 
 - [Registro EGAP](http://egap.org/content/registration)
 - [Registro AEA](https://www.socialscienceregistry.org) (para ensayos controlados y  aleatorizados, RCTs)
-- [Registro OSF](http://help.osf.io/m/registrations)
+- [Registro OSF](https://osf.io/registries)
 
 <!--# Cosas para Chris yLula
 
