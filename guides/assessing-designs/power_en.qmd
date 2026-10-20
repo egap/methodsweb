@@ -1,8 +1,16 @@
 ---
 title: "10 Things You Need to Know About Statistical Power"
-author: 
+author:
   - name: "Alexander Coppock"
     url: https://egap.org/member/alexander-coppock/
+originalauthor:
+  - name: "Alexander Coppock"
+    url: https://egap.org/member/alexander-coppock/
+    date: "2013"
+majoredits:
+  - name: "Eric Dobbie"
+    url: mailto:eric.dobbie@emory.edu
+    datetext: "2023"
 image: power.png
 bibliography: power.bib
 ---
