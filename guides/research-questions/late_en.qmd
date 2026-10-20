@@ -119,4 +119,4 @@ library(powerLATE)
 ```{r}
 powerLATE(pi = c(0.6, 0.7, 0.8), power = 0.8, sig.level = 0.05, kappa = 0.25)
 ```
-# References
+# References {.unnumbered}

@@ -359,4 +359,4 @@ Vous pouvez répertorier votre PAP sur plusieurs sites, et certaines revues exig
 - [Registre AEA](https://www.socialscienceregistry.org) (pour les essais randomisés contrôlés seulement)
 - [Registre OSF](https://osf.io/registries)
 
-# Références
+# Références {.unnumbered}

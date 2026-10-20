@@ -175,4 +175,4 @@ Administering a second pilot study is especially prudent when pilot results or p
 
 In short, pilots are neither pre-tests of hypotheses nor merely checks on basic study logistics that deplete one's research funds. Instead, pilots are living and breathing elements of the broader research process that provide value in their own right.
 
-# References
+# References {.unnumbered}

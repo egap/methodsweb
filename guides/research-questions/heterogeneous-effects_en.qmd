@@ -89,4 +89,4 @@ Popular machine learning methods for heterogeneous treatment effects include sup
 
 In addition to single machine learning methods, ensemble methods may be used. Ensemble methods estimate a weighted average of multiple machine learning estimates of heterogeneous effects where the weights are a function of out-of-sample prediction performance.^[See @van_der_laan_et_al_2007; @grimmer_et_al_2014.]
 
-# References
+# References {.unnumbered}

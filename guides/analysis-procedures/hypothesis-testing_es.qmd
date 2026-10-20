@@ -477,4 +477,4 @@ pruebas:
  - Dado que una prueba de hipótesis es un modelo de resultados potenciales, se puede usar la prueba de hipótesis para aprender sobre modelos complejos, como los modelos de derrame y propagación de los efectos del tratamiento a través de  redes (@bowers2013reasoning, @bowers2016research, @bowers2018models).
 
 
-# Referencias
+# Referencias {.unnumbered}

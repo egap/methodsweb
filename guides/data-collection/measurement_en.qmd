@@ -238,4 +238,4 @@ For example, consider a set of studies that seek to measure variation in the con
 
 For this reason, while it may be useful to develop indicators based on existing work or instruments from other contexts, this is not necessarily the best way to develop measures in a new context. Pre-testing can provide insights into whether indicators are appropriate in a given setting. In sum, the mapping between concepts and indicators is site-specific in many cases. Researchers should consider these limitations when operationalizing common concepts in distinct settings. 
 
-# References
+# References {.unnumbered}

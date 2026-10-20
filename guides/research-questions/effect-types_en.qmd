@@ -248,4 +248,4 @@ $$  = ∑_{i∉C}Y_i−∑_{i∉C}Y_i(0)=∑_{i=1}^NY_i−∑_{i=1}^NY_i(0)=t_U�
 Third, this representation allows us to produce a design-based confidence interval for $\hat{A}$ by drawing on the survey sampling literature about statistical inference for sample totals because the observed total number of successful outcomes (the total number of people voting in the example), $t_U$,  is fixed across randomizations.
 
 
-# References
+# References {.unnumbered}

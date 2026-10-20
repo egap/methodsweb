@@ -234,4 +234,4 @@ But we aren’t restricted to only obtaining p-values for the hypothesis that $\
 
 For further reading, see: @aronow_samii_2015, @athey_imbens_2017a, @athey_imbens_2017b, @bowers_et_al_2013, @gerber_green_2012, @glennerster_takavarasha_2013, @paluck_et_al_2016, and @sinclair_et_al_2012.
 
-# References
+# References {.unnumbered}

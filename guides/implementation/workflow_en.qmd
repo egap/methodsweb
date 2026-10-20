@@ -126,4 +126,4 @@ This tells you to go back and review the function, where we see a + instead of a
 
 Ultimately, the point of doing research is to move things from the realm of opinion into the realm of knowledge. Thus, effective research should have findings that are not a matter of opinion, and at which others can arrive. If, in the future, somebody disagrees with your analysis, you can hand them the raw data files and analysis scripts and watch them arrive at the same result.
 
-# References
+# References {.unnumbered}

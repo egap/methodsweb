@@ -96,4 +96,4 @@ For an example, see how @bhatti_et_al_2018--in their study of a Danish governmen
 
 If you are unable to find a publication willing to include a study with null results in their journal, you can still contribute to the evidence base on the policy area under examination by making your working paper, data, and/or analysis code publicly available. Many researchers choose to do so via their personal websites; in addition, there are repositories (such as the [Open Science Framework](https://osf.io/)) that provide a platform for researchers to share their in-progress and unpublished work.
 
-# References
+# References {.unnumbered}

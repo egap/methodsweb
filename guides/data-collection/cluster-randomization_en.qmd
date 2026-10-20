@@ -1381,4 +1381,4 @@ kable(round(balance_test$overall,2),align = "c")
 In this case, we cannot reject the omnibus hypotheses of balance even though, as we expected, we have a few covariates with falsely low $p$-values. One way to interpret this omnibus result is to say that such imbalances on a few covariates would not appreciably change any statistical inferences we make about treatment effects as long as these covariates did not strongly predict outcomes in the control group. Alternatively, we could say that any large experiment can tolerant chance imbalance on a few covariates (no more than roughly 5% if we are using $\alpha=.05$ as our threshold to reject hypotheses).
 
 
-# References
+# References {.unnumbered}

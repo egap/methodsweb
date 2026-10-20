@@ -266,4 +266,4 @@ The only requirement is that a subject’s assignment to treatment in a particul
 
 Ethics are often highly intertwined with randomized designs, especially in social science and medical research. As a researcher, you should carefully consider the possible implications of randomizing any given treatment. You will also need to solicit approval for your research design from your research institution’s Institutional Review Board (IRB).
 
-# References
+# References {.unnumbered}

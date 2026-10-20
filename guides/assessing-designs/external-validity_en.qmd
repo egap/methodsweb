@@ -64,4 +64,4 @@ Replication of studies is an important part of this: scholars should replicate s
 
 When thinking about causal relationships of interest, it is important also to consider time: do things we learn about the past extend to the future? How do an individual’s potential outcomes change over time? Immutable laws govern the physical and chemical worlds; hence what we learn about these laws today will always remain true. By contrast, we understand far less about the underlying drivers of social behavior and whether they hold constant in the same way. The answer may well be no. When making decisions about the policy relevance and generalizability of results, these considerations can help scholars determine a reasonable level of uncertainty and help policy makers adjust accordingly.
 
-# References
+# References {.unnumbered}

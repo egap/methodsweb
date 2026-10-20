@@ -272,7 +272,7 @@ Por ejemplo, considere un grupo de estudios que buscan medir la variación en el
 
 Por esta razón, si bien puede ser útil desarrollar indicadores basados ​​en trabajos existentes o instrumentos de otros contextos, esta no es necesariamente la mejor manera de desarrollar mediciones en un nuevo contexto. Las pruebas previas pueden proporcionar información adicional sobre si los indicadores son apropiados en un entorno determinado. En resumen, el mapeo entre conceptos e indicadores es, en muchos casos, específico del lugar. Los investigadores deben considerar estas limitaciones al operacionalizar conceptos comunes en distintos entornos.
 
-# Referencias
+# Referencias {.unnumbered}
 
 Adcock, Robert y David Collier. "Measurement Validity: A Shared Standard for Qualitative and Quantitative Research." *American Political Science Review.* 95 (3): 529-546.
 

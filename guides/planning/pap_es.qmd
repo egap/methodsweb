@@ -268,5 +268,5 @@ https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist
 
 ¡Feliz Planeación de Análisis Previo!
 
-# Referencias
+# Referencias {.unnumbered}
 

@@ -498,8 +498,8 @@ names(ciAE)<-c("limite bajo 95%","limite bajo
 print(ciAE) 
 ```
 
-Referencias
-==
+# Referencias {.unnumbered}
+
 Aronow, Peter M, y Joel A Middleton. 2013. “A Class of Unbiased Estimators of the Average Treatment Effect in Randomized Experiments.” Journal of Causal Inference 1 (1): 135–54.
 
 Aronow, Peter M, y Cyrus Samii. 2014. “Does Regression Produce Representative Estimates of Causal Effects?” In EPSA 2013 Annual General Conference Paper. Vol. 585.

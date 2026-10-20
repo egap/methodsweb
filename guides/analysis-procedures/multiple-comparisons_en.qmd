@@ -434,4 +434,4 @@ The replication, however, shows the same pattern of treatment effects: smaller e
 
 ![](https://raw.githubusercontent.com/egap/methods-guides/master/multiple-comparisons/multiple-comparisons_fig2.png)
 
-# References
+# References {.unnumbered}

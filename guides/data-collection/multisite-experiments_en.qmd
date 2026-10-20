@@ -500,4 +500,4 @@ However, it is possible that for some studies, there is evidence of a significan
 In these cases, only reporting one of the finite population or super population estimands does not portray the full nuance of the results.
 
 
-# References
+# References {.unnumbered}

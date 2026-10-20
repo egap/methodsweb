@@ -132,4 +132,4 @@ Old-fashioned approximate methods work well when the assumptions on which the ap
 
 Note on available software for implementing randomization inference. For the latest R package for randomization inference, see [here](http://alexandercoppock.com/ri2/articles/ri2_vignette.html). For randomization inference code specifically tailored to the special features of binary outcomes, see [here](https://cran.r-project.org/web/packages/RI2by2/index.html). Stata users may find an all-purpose package [here](https://github.com/simonheb/ritest).
 
-# References
+# References {.unnumbered}

@@ -149,4 +149,4 @@ So far, this guide has focused on ordinary least squares regression, one of the 
 
 For the simple linear case, the coefficient tells you the change in Y you get for each unit change in X, but for nonlinear regressions the interpretation can be much more difficult. For nonlinear models you should generally expect authors to provide substantive interpretations of the coefficients. The program [Clarify](http://gking.harvard.edu/clarify) by Gary King and colleagues helps with this for Stata users; the [Zelig package for R](http://zeligproject.org/) (also by King and coauthors) supports analysis and interpretation of these models in R.
 
-# References
+# References {.unnumbered}

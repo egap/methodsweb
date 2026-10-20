@@ -331,6 +331,6 @@ Les pré-tests peuvent fournir des indications pour savoir si les indicateurs so
 En somme, la correspondance entre les concepts et les indicateurs est spécifique au site dans de nombreux cas.
 Les chercheurs devraient tenir compte de ces limites lorsqu'ils opérationnalisent des concepts communs dans des contextes distincts.
 
-# Bibliographie
+# Bibliographie {.unnumbered}
 
 Adcock, Robert et David Collier. "Measurement Validity: A Shared Standard for Qualitative and Quantitative Research." *American Political Science Review.* 95 (3): 529-546.

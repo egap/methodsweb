@@ -239,4 +239,4 @@ Sometimes it is unclear whether random assignment actually occurred (or whether 
 
 For further reading, see @athey_imbens_2017, @gerber_green_2012[chapter 4], @hennessy_et_al_2016, @judkins_porter_2016, @raudenbush_1997, and @wager_et_al_2016.
 
-# References
+# References {.unnumbered}

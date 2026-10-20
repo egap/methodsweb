@@ -543,4 +543,4 @@ Cela signifie qu'une critique de la $p$-valeur est également une critique de l'
 
   - Étant donné qu'un test d'hypothèse est un modèle de résultats potentiels, on peut utiliser les tests d'hypothèses pour en savoir plus sur des modèles complexes, tels que des modèles de contamination et de propagation des effets de traitement à travers les réseaux (@bowers2013reasoning, @bowers2016research, @bowers2018models)
 
-# Références
+# Références {.unnumbered}
