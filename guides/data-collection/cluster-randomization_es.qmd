@@ -18,7 +18,7 @@ library(knitr)
 library(lme4)
 ```
 
-1 Lo que crear conglomerados significa
+Lo que crear conglomerados significa
 ==
 En  los experimentos en que se aleatoriza por conglomerados (grupos) [^1] el tratamiento se asigna a grupos enteros, pero las variables de resultado  se miden a nivel de los individuos que componen los grupos. La divergencia entre el nivel en el que se asigna la intervención y el nivel en el que se miden los resultados lo que define un experimento con aleatorización por conglomerados.
 
@@ -31,7 +31,7 @@ Considere ahora un estudio en el que se seleccionan aldeas al azar, se asignan a
 
 Hay dos razones principales por las que la aleatorización por conglomerados es importante. Por un lado, los conglomerados reducen la cantidad de información en un experimento porque restringe el número de formas en las que los grupos de tratamiento y control se pueden componer con respecto a la aleatorización a nivel individual. Si no se tiene en cuenta este hecho, a menudo podemos subestimar la varianza de nuestro estimador, lo que lleva a un exceso de confianza en los resultados de nuestro estudio. Por otro lado, los conglomerados nos hacen preguntarnos cómo combinar información de diferentes partes del mismo experimento en una sola cantidad. Especialmente cuando tenemos conglomerados de distintos tamaños y los resultados potenciales de las unidades dentro de estos grupos son muy diferentes entre sí, los estimadores convencionales producen sistemáticamente respuestas incorrectas debido al sesgo. Sin embargo, diferentes enfoques en las fases de diseño y análisis pueden ayudar a enfrentar los desafíos planteados por los diseños de aleatorización por conglomerados.
 
-# 2  ¿Por qué la agrupación en conglomerados puede ser importante? La reducción de la información
+# ¿Por qué la agrupación en conglomerados puede ser importante? La reducción de la información
 
 Normalmente pensamos en la información contenida en los estudios en términos del tamaño de la muestra y las características de las unidades dentro del muestra. Sin embargo, dos estudios con exactamente el mismo tamaño de  muestra y los mismos participantes podrían, en teoría, contener cantidades muy diferentes de información, dependiendo de si las unidades están agrupadas en conglomerados.
 
@@ -126,7 +126,7 @@ Si 200 observaciones provenieran de 10 conglomerados con 20 individuos dentro de
 Como sugiere la discusión anterior, los conglomerados reducen más la información  cuando a) restringen en gran medida el número de formas en que se puede estimar un efecto, y b) producen unidades cuyas resultados a nivel individual están estrechamente relacionados con el grupo del que son miembros (es decir, cuando aumenta el CCI).
 
 
-# 3 Qué hacer con la reducción de información
+# Qué hacer con la reducción de información
 
 Para caracterizar nuestra incertidumbre sobre los efectos del tratamiento, calculamos el error estándar: una estimación de cuánto *habría* variado el efecto del tratamiento si pudiéramos repetir el experimento  muchas veces y observar las unidades alternar entre  tratados y no tratados.
 
@@ -358,7 +358,7 @@ knitr::kable(ses)
 Este enfoque a nivel de conglomerado tiene la ventaja de caracterizar correctamente la incertidumbre sobre los efectos cuando utilizamos aleatorización por conglomerados, sin tener que utilizar los errores estándar de EERC para las estimaciones a nivel de unidad, que son demasiado permisivas para N pequeños. De hecho, la tasa de falsos positivos de las pruebas basadas en errores estándar robustos para conglomerados  tienden a ser incorrectas cuando el número de grupos es pequeño, lo que genera un exceso de confianza. Sin embargo, como veremos a continuación, cuando el número de conglomerados es muy pequeño ($J = 4$), el enfoque a nivel de conglomerado es demasiado conservador, rechazando la hipótesis nula con una probabilidad de 1. Otro inconveniente del enfoque a nivel de conglomerado es que no permite la estimación de cantidades de interés a nivel de unidad, como los efectos de tratamiento heterogéneos.
 
 
-# 4  Razones por las que los conglomerados pueden ser importantes II: diferentes tamaños de conglomerados
+# Razones por las que los conglomerados pueden ser importantes II: diferentes tamaños de conglomerados
 
 Los conglomerados con diferentes tamaños pueden plantear un tipo específico de problemas relacionados con la estimación del efecto del tratamiento. Especialmente cuando el tamaño de un conglomerados está relacionado de alguna manera  con los resultados potenciales de las unidades dentro de ella, muchos estimadores convencionales del efecto promedio del tratamientro para la muestra (EPTM) pueden estar sesgado.
 
@@ -497,7 +497,7 @@ En segundo lugar, los tamaños del efecto ponderado de al menos un par de grupos
 
 
 
-# 5 Qué hacer cuando los conglomerados tienen diferentes tamaños
+# Qué hacer cuando los conglomerados tienen diferentes tamaños
 
 Como sugiere la expresión anterior, para reducir el sesgo causado por conglomerados con distintos tamaños a casi 0, es suficiente ubicar a los conglomerados en
 parejas del  mismo tamaño o con resultados potenciales casi idénticos.
@@ -592,7 +592,7 @@ recomiendan un modelo mixto de estimación por parejas creadas  posterior a la a
 
 
 
-# 6 Por qué la agrupación en conglomerados puede ser importante III: efectos de derrame dentro de los conglomerados
+# Por qué la agrupación en conglomerados puede ser importante III: efectos de derrame dentro de los conglomerados
 
 En la mayoría de los experimentos estamos interesados en estimar el efecto promedio causal del tratamiento en una población o muestra.
 Sea $Y_{z_i}$ la variable de resultado $Y$ de la unidad $i$ cuando se asigna al tratamiento  $z_i \in \{1,0\}$. Podemos definir
@@ -673,7 +673,7 @@ Como muestra el gráfico anterior, este es un estimador sesgado del verdadero
 efecto de tratamiento a nivel individual, $Y_{01} - Y_{00}$. En valor esperado, estimamos un efecto cercano a 0, obteniendo efectos muy negativos en casi la mitad de las simulaciones de este experimento. El punto clave aquí es que se cambia la estimación: en lugar del efecto promedio del tratamiento, obtenemos una combinación del  efecto del tratamiento real entre aquellos que coinciden en preferencias (no experimentan efectos de derrame) $E [Y_{110} -Y_{00x_k}]$ y el tratamiento combinado y el efecto de derrame para aquellos que no coinciden $E[Y_{111} -Y_ {00x_k}]$. Sin embargo, lo más importante es que no podemos identificar el impacto del derrame, $E[Y_{101} -Y_ {00x_k}]$, independientemente del efecto directo. Esto se debe a que la aleatorización es por conglomerados: no es posible observar $Y_ {101}$ en un esquema aleatorio por conglomerados, porque todas las unidades dentro de un conglomerado siempre se tratan. En términos generales, este es un problema para cualquier estudio aleatorizado por conglomerados: para afirmar que identificamos el efecto del tratamiento a nivel individual, debemos asumir que $Y_{11} = Y_{1}$ y $ Y_ {00} = Y_{0}$.
 
 
-# 7 Lo que no se debe hacer para efectos de derrame dentro del conglomerado
+# Lo que no se debe hacer para efectos de derrame dentro del conglomerado
 
 Si hay razones de peso para creer que puede haber efectos de derrame intra-grupo, los investigadores pueden adoptar diferentes enfoques dependiendo de la forma en la que los conglomerados estén formados. Para algunos estudios, los investigadores deben clasificar las unidades en grupos para el experimento: por ejemplo, en un estudio de un programa vocacional, el investigador puede decidir quién se recluta a cada clase. En tales casos, si el investigador puede hacer supuestos plausibles sobre los efectos de derrame, el efecto del tratamiento a nivel individual se puede estimar.
 
@@ -717,7 +717,7 @@ pueden investigar la heterogeneidad  en los efectos del tratamiento a nivel del 
 correctamente, los investigadores deben tener cuidado al definir su estimación para tener en cuenta la posibilidad de derrame intra-grupo.
 
 
-# 8 Rendimiento de análisis basados en diseños frente a modelos de estudios con coglomerados
+# Rendimiento de análisis basados en diseños frente a modelos de estudios con coglomerados
 
 En nuestra discusión sobre la pérdida de información, evaluamos
 enfoques que requieren (1) que el tratamiento se asigne al azar según lo planeado y
@@ -886,7 +886,7 @@ kable(error_comparison,align = "c")
 En nuestra configuración simple, los enfoques a nivel individual se comportan de la misma manera: ni el enfoque basado en diseños ni el basado en modelos producen inferencias estadísticas válidas cuando el número de conglomerados es menor que 30. Esto tiene sentido: ambos enfoques se basan en teoremas del límite central por lo que para que la ley de la normal pueda representar la distribución del estadístico de prueba bajo la hipótesis nula. El enfoque a nivel de conglomerados siempre es válido, pero a veces produce intervalos de confianza demasiado grandes (cuando el número de conglomerados es pequeño). Cuando el número de conglomerados es grande (digamos, 100), todos los enfoques son equivalentes en términos de sus tasas de error. Los diseños con pocos conglomerados deben considerar el enfoque a nivel de conglomerado utilizando la aproximación normal que se muestra aquí o incluso enfoques basados en permutación directa para hacer inferencia estadística.
 
 
-# 9 Análisis de poder para diseños con conglomerados
+# Análisis de poder para diseños con conglomerados
 
 Queremos diseños que hagan que sea probable rechazar hipótesis que no concuerden con los datos y  poco probable rechazar hipótesis que concuerden con los datos. Hemos visto que los supuestos requeridos para la validez de las pruebas comunes (típicamente, un gran número de observaciones o grandes cantidades de información en general) son desafios para diseños con conglomerados, y las pruebas que dan cuenta de los conglomerados pueden ser inválidas si el número de los conglomerados es pequeño (o la información es escasa a nivel de conglomerados en general). También hemos visto que podemos producir pruebas estadísticas válidas para hipótesis sobre el efecto promedio del tratamiento usando errores estándar  robustos para conglomerados (EERC), modelos multinivel o usando el enfoque a nivel de grupo descrito por Hansen y Bowers (2008), y que el emparejamiento puede minimizar drásticamente el sesgo en diseños con conglomerados de tamaños diferente.
 
@@ -1065,7 +1065,7 @@ poder estadístico del estudio, incluso con muchos conglomerados grandes.
 
 
 
-# 10 Cómo comprobar el balance del estudio en los diseños con conglomerados
+# Cómo comprobar el balance del estudio en los diseños con conglomerados
 
 Las revisiones de la aleatorización en diseños con conglomerados siguen el mismo formato  discutido previamente. Una prueba válida para el efecto de un tratamiento es una prueba válida para placebo o balance de covariables. La única diferencia con nuestra discusión anterior es que se usa una covariable de contexto o un resultado de línea de base, una variable que supuestamente no está influenciada por el tratamiento, en lugar de la variable de resultado en sí. Por lo tanto, las pruebas de aleatorización con un pequeño número de conglomerados  pueden indicar erróneamente que un experimento fue aleatorizado incorrectamente si el investigador no conoce los métodos de análisis de  tasa de error descritos anteriormente.
 

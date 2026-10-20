@@ -203,6 +203,9 @@ format:
     code-overflow: wrap
     code-fold: true
     number-sections: true
+    grid:
+      body-width: 900px
+      margin-width: 100px
     abstract-title: Summary
     template-partials:
       - partials/title-block.html

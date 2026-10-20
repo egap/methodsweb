@@ -11,19 +11,19 @@ format:
 
 Saki Kuzushima
 
-# 1. What are indices?
+# What are indices?
 
 An index is a variable where multiple other variables are aggregated to measure one concept. Researchers often combine multiple observable indicators to measure concepts that are not directly observable, such as attitudes, perceptions, and beliefs. Rather than forcing one indicator to measure the concept, using multiple indicators can represent the concept more accurately and can reduce variation in the variable, thereby increasing its reliability as a measure.
 
 Examples of such measures include both established measures and researcher-defined measures. Established measures include personality traits, such as right-wing authoritarianism and narcissism, and they have established sets of questions [@altemeyer1988enemies; @raskin1988principal]. Other concepts do not have an established set of indicators to measure them, and thus researchers need to choose which observable indicators to use and how to combine them. There are many aggregation methods, such as simple and weighted averages, principle component analysis (PCA), factor analysis, and item response theory (IRT) methods, and they have different advantages and disadvantages. Researchers need to choose which method to use depending on the context and the purpose of the study.
 
-# 2. Why are indices important?
+# Why are indices important?
 
 Indices help researchers to measure concepts that are not directly observable by using multiple observable indicators of those concepts. When researchers conduct survey and field experiments, they are typically interested in how treatments affect outcomes. While treatments are often easily measured because researchers have complete control over them in most experimental setups, measuring outcomes can be challenging. Many outcomes of interest to political scientists and policymakers are are not directly observable.
 
 For example, [@margalit2021markets] study the effect of investment experience on socioeconomic values, and they measure socioeconomic values by combining respondents' agreement with statements such as "economic positions are legitimate reflections of people's achievements" and "there are no inherent differences between rich and poor; it is purely a matter of the circumstances into which you are born." The underlying concept, "socioeconomic values", is not directly observable --- individual people might not even know what a researcher means by "socioeconomic values"--- but the study aims to learn about the effects of a treatment (investment experience) on the socioeconomic values of people. The two indicators listed above are *both* measures of the underlying concept and an index combining them both should represent how "socioeconomic values" change in response to the experimental treatment better than using each alone. Answers to the first question alone could be taken to reflect, say, libertarian ideology and not attitudes about fairness per se, and answers to the second question alone might reflect stereotypes about classes in society rather than values held by the person. Researchers often want to use indices in the hope that the index is a more **valid** measure of the concept than any single indicator used on its own.
 
-# 3. When do we want to use indices?: Substantive reasons
+# When do we want to use indices?: Substantive reasons
 
 When researchers design survey or field experiments, they face a choice how to measure the outcome variables. Consider an experiment where outcomes are survey responses to multiple questions. Researchers could combine the multiple questions into a single index, and use the index as a single outcome. Or researchers could use multiple observable indicators as multiple outcomes. Substantively, researchers should consider which can address their research question better. Statistically, using an index as an outcome can increase the power of the study, but combining multiple variables into an index comes at the cost of losing the information about the treatment effect on each observable indicator.
 
@@ -33,7 +33,7 @@ Substantively, research questions should guide whether the appropriate outcome i
 
 Practically, researchers may interested in both the effect on the concept measured by the composite index and the effect of treatment on each observable indicator. This is certainly a reasonable choice, but researchers should make sure to pre-register their hypotheses and analysis plan, including whether and how to combine outcome variables before conducting the experiment as well as any adjustments for testing the multiple hypotheses arising from an investigation of the effect of the treatment on each outcome separately.
 
-# 4. When do we want to use indices?: Statistical reasons
+# When do we want to use indices?: Statistical reasons
 
 Statistically, using an index can reduce measurement error [@ansolabehere2008strength]. Let $X$ be a scalar value that represents true socioeconomic value but it is not directly observable. Instead, we observe responses to two survey questions, $W_1$ and $W_2$, which are noisy measures of $X$. In other words, these observable responses come with additive variation or noise $\epsilon_1$ and $\epsilon_2$ such that $W_1 = X + \epsilon_1$ and $W_2 = X + \epsilon_2$. For the sake of this description, we further assume that the noise has mean zero and is not correlated with either the true value $X$ or each other, and that the noise has the same variance. In other words, we assume that $E[\epsilon_1] = E[\epsilon_2] = 0$, $E[\epsilon_1 X] = E[\epsilon_2 X] = 0$, $E[\epsilon_1 \epsilon_2] = 0$, and $Var[\epsilon_1] = Var[\epsilon_2] = \sigma^2$.
 
@@ -45,7 +45,7 @@ By contrast, the major disadvantage of using an index as a single outcome is tha
 
 [^1]: Refer to the EGAP method guide on the multiple testing problem on how to conduct multiple testing corrections.
 
-# 5. How to pick different methods to construct indices
+# How to pick different methods to construct indices
 
 Suppose researchers decided to combine multiple questions to construct an index to measure the concept of interest, and then they want to use it as an outcome of an experiment. This process typically involves several steps: 1) define the concept well, 2) choose what observable indicators to use, 3) decide how to combine them together.[^2] In this section, we focus on the last step: how to combine multiple observable indicators to measure the concept. A simple and commonly used way is to use a simple average of the observable indicators as an index. While this is the most straightforward and simple method, one of the disadvantage is that it assumes that all observable indicators are equally important, which may not be the case. Researchers may have a theory about which observable indicator should weigh more than others, or they may want to choose a method that maximizes the efficiency of the available data. Among many existing methods, researchers need to choose which method to use depending on the context and the purpose of the study. There are two approaches to guide this decision: theory-driven and data-driven approaches.
 
@@ -55,7 +55,7 @@ Researchers can also use statistical tools to combine the observable indicators 
 
 [^2]: See the EGAP guide on measurement for more on the relationship between concepts and indicators.
 
-# 6. How to construct indices
+# How to construct indices
 
 We briefly review how to construct indices with a data-driven approach. In particular, we review the assumptions that each method makes and discuss the advantages and disadvantages of each method.
 
@@ -65,7 +65,7 @@ To relax the assumption of common weights, researchers may want to use a weighte
 
 One limitation of the weighted average approach is that the data is treated as numerical, but the survey response data is often categorical. For example, the survey response data is often categorical, such as "strongly agree," "agree," "neutral," "disagree," and "strongly disagree." With these response categories, the distance between "strongly agree" and "agree" may not the same as the distance between "agree" and "neutral." However, with PCA and factor analysis, these response categories are treated as numbers (i.e., 1, 2, 3, 4, 5), and thus the assumption of common distance between response categories is implicitly made. One method that can relax the assumption of common distance between response categories is item response theory (IRT) models and its variants. While IRT models are the most flexible and can account for the uncommon distance between response categories, the same disadvantage as PCA and factor analysis remains as it requires estimation of weights.
 
-# 7. How to use an index as a dependent variable in a regression: Variance
+# How to use an index as a dependent variable in a regression: Variance
 
 After the index is constructed, researchers may want to estimate the treatment effect on the index. A common approach is a two-step approach: First, construct the index using the method described in the previous section, and then estimate the treatment effect on the constructed index. For example, researchers could construct an index using factor analysis, and then estimate the treatment effect by taking a difference-in-means of the estimated index between the treatment and control groups.
 
@@ -75,7 +75,7 @@ One solution to this problem is to use the hierarchical model to estimate the tr
 
 If the study is designed such that responses to the outcome indicators would not vary: say, each time a person was asked the survey questions, they would always give the same answers. Then there is no excess variability to model and thus researchers would not need to incorporate a measurement model into their treatment effect models.
 
-# 8. How to use an index as a dependent variable in a regression: Bias
+# How to use an index as a dependent variable in a regression: Bias
 
 Even if the uncertainty is incorporated, the estimated treatment effect may be biased if measurement error is correlated with the treatment. One way to understand why the estimated treatment effect could be biased is to consider systematic measurement error in the index. Suppose that the true value of the concept is $X_i$, and the observed value of the concept is $W_i = X_i + \epsilon_i$, where $\epsilon_i$ is the measurement error. Suppose we want to estimate the average treatment effect (ATE) of the binary treatment, $T_i$, on the concept, $X_i$. The ATE is then defined as $E[X_i | T_i = 1] - E[X_i | T_i = 0]$. However, the difference in means of the observed index, $W_i$, between the treatment and control groups is given by the following.
 
@@ -91,7 +91,7 @@ The last term, $Bias$, is the bias in the estimated treatment effect, and it may
 
 When does the bias occur? One example is social desirability bias induced by treatment assignment, where respondents tend to give answers that are more socially acceptable when treated. For example, [@clayton2019all] study the effect of gender-compositions of committees on the perceived legitimacy of the committee's decision. While they found that having a gender-balanced committee increases the perceived legitimacy of the committee's decision, it is possible that the results are driven by the social desirability bias. In other words, respondents might have answered that the gender-balanced committee's decision is more legitimate simply because they think it is better to say so, rather than because they truly believe that the gender-balanced committee is more legitimate. In the case of a randomized experiment, this kind of bias from measurement differences challenges the *interpretation* of the estimated effect.
 
-# 9. Pre-registration: Design stage
+# Pre-registration: Design stage
 
 Given that multiple methods are available to construct indices and estimate the treatment effect on them, researchers should carefully consider which method to use depending on the context and the purpose of the study. Researchers can pre-register their hypotheses and analysis plan before conducting the experiment to improve the ease with which readers can interpret their study: pre-registration communicates that researchers did not just many methods of index construction only to choose the method that produces the most favorable results after seeing the data. In addition, pre-registration can increase the transparency of the study because it allows others to understand how the index is constructed and the treatment effect is estimated.
 
@@ -99,7 +99,7 @@ For example, [@kalla2020reducing] show how to pre-register the hypotheses and an
 
 [^osf]: <https://osf.io/b4t3q>
 
-# 10. Pre-registration: Analysis stage
+# Pre-registration: Analysis stage
 
 After the experiment is conducted and the data is collected, researchers should report the results of their pre-registered analysis plan. However, it is often the case that researchers have to deviate from the plan for some reasons. For example, researchers may have to change the method to construct the index given unexpected missing data or values or changes in data collection in the field, and so they should explain why the original method did not work and how the new method is chosen. For example, [@kalla2020reducing] pre-registered that they would use factor analysis to construct the index, but they found that the method did not work well with the data collected due to missingness. They updated their analysis plan and declared that they decided to use simple average method to construct the index.
 
