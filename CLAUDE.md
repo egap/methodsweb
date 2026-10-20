@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+@POINT.md
+
 ## Project Overview
 
 This is the EGAP (Evidence in Governance and Politics) Methods website, a Quarto-based multilingual educational resource for impact evaluation methodology. The site provides methods guides, software tools catalog, and teaching materials for researchers and practitioners.
@@ -27,12 +29,12 @@ R -e "renv::restore()"
 
 ### Content Structure
 
-- **guides/** — Methods guides organized by topic subdirectories:
+- **guides/** --- Methods guides organized by topic subdirectories:
   - `analysis-procedures/`, `assessing-designs/`, `causal-inference/`, `data-collection/`, `implementation/`, `interpretation/`, `planning/`, `research-questions/`
-- **index.qmd** — Homepage with featured guides listing
-- **guides.qmd** — Main guides index using Quarto listings
-- **software.qmd** — Searchable R/Stata software catalog (uses DataTables)
-- **teaching.qmd** — Links to Learning Days coursebook
+- **index.qmd** --- Homepage with featured guides listing
+- **guides.qmd** --- Main guides index using Quarto listings
+- **software.qmd** --- Searchable R/Stata software catalog (uses DataTables)
+- **teaching.qmd** --- Links to Learning Days coursebook
 
 ### Multilingual File Naming Convention
 
@@ -46,25 +48,25 @@ Language switching uses sidebar configuration in `_quarto.yml` with flag icons l
 ### Guide YAML Frontmatter
 
 Each guide includes:
-- `title:` — Guide title
-- `author:` — List with name/url pairs
-- `image:` — Thumbnail image filename (stored alongside the .qmd)
-- `bibliography:` — BibTeX file for references
-- `sidebar:` — ID matching `_quarto.yml` sidebar for language switcher (translations only)
-- `abstract:` — Summary shown at top of guide
+- `title:` --- Guide title
+- `author:` --- List with name/url pairs
+- `image:` --- Thumbnail image filename (stored alongside the .qmd)
+- `bibliography:` --- BibTeX file for references
+- `sidebar:` --- ID matching `_quarto.yml` sidebar for language switcher (translations only)
+- `abstract:` --- Summary shown at top of guide
 
 ### Configuration Files
 
-- `_quarto.yml` — Site structure, navigation, sidebar definitions, HTML format options
-- `_language.yml` — Custom labels (author, date display)
-- `renv.lock` / `renv/` — R package versions for reproducibility
-- `DESCRIPTION` — R package dependencies list
+- `_quarto.yml` --- Site structure, navigation, sidebar definitions, HTML format options
+- `_language.yml` --- Custom labels (author, date display)
+- `renv.lock` / `renv/` --- R package versions for reproducibility
+- `DESCRIPTION` --- R package dependencies list
 
 ### Quarto Features in Use
 
-- `freeze: auto` — Caches code execution results in `_freeze/`
-- `cache: true` — R code chunk caching
-- `code-fold: true` — Collapsible code blocks
+- `freeze: auto` --- Caches code execution results in `_freeze/`
+- `cache: true` --- R code chunk caching
+- `code-fold: true` --- Collapsible code blocks
 - Listings for grid-based guide indexes
 - Custom partials in `partials/` for title blocks and TOC
 
