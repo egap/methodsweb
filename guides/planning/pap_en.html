@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>10 Things to Know About Pre-Analysis Plans – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,15 +57,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -90,7 +94,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -268,7 +272,7 @@ window.Quarto = {
   <li><a href="#what-is-in-a-pap-power-analysis" id="toc-what-is-in-a-pap-power-analysis"><span class="header-section-number">8</span> What is in a PAP? Power Analysis</a></li>
   <li><a href="#why-make-a-pap" id="toc-why-make-a-pap"><span class="header-section-number">9</span> Why make a PAP?</a></li>
   <li><a href="#when-and-where-do-you-register-a-pap" id="toc-when-and-where-do-you-register-a-pap"><span class="header-section-number">10</span> When and where do you register a PAP?</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <style>
@@ -284,8 +288,8 @@ color: black;
 </style>
 <section id="what-is-a-pre-analysis-plan-pap" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> What is a Pre-Analysis Plan (PAP)</h1>
-<p>A PAP is a document that formalizes and declares the design and analysis plan for your study. It is written before the analysis is conducted and is generally registered on a third-party website.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>The objectives of the PAP are to improve research design choices, increase research transparency, and allow other scholars to replicate your analysis. As a result, we recommend focusing the PAP on analytic details that will help you analyze your study and allow other researchers to replicate your analysis. A brief section on theory should be included insofar as it helps articulate hypotheses, but a detailed theory and literature review need not be included. The PAP does not need to include the front-end of an academic paper if these sections do not help you think about your analysis or help readers replicate your analysis.</p>
+<p>A PAP is a document that formalizes and declares the design and analysis plan for your study. It is written, ideally, before outcome data are collected, or at least before the analysis is conducted and is generally registered on a third-party website.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>The objectives of the PAP are to limit practices like data-mining or <span class="math inline">\(p\)</span>-hacking that researchers use to overstate the evidence in favor of their claims, as well as to improve research design choices, increase research transparency, and allow other scholars to replicate your analysis. As a result, we recommend focusing the PAP on analytic details that will help you analyze your study and allow other researchers to replicate your analysis. A brief section on theory should be included insofar as it helps articulate hypotheses, but a detailed theory and literature review need not be included. The PAP does not need to include the front-end of an academic paper if these sections do not help you think about your analysis or help readers replicate your analysis.</p>
 <p>In the following sections, we provide guidelines for the details you should include in PAPs, including example text. We also recommend that you include as much code and analysis of simulated data as possible.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Many PAPs will not be able to include everything on our list, but a PAP should, at a minimum, include the full list of hypotheses that you intend to test, how you will measure variables relevant to those hypotheses, and a verifiable time stamp.</p>
 </section>
 <section id="what-is-in-a-pap-study-design-overview" class="level1" data-number="2">
@@ -362,7 +366,7 @@ H: The treatment will increase beliefs in city enforcement capacity among treatm
 <p>Experiments and data collection often do not go the way that one expects or hopes. The PAP gives you an opportunity to think through what those issues might be, and specify how you plan to address them.</p>
 <p>Two common data issues are (1) extreme data points and (2) missing data. <strong>Extreme points</strong> may represent a true outlier – a unit with outcomes much larger or smaller than other units – or may occur because of data collection errors. Survey tablets, recording tools, web scrapers, and other data collection tools may record extreme points due to technical glitches. It can be difficult to know whether extreme points represent true data collected or if they are due to data entry errors, but it is important to specify in the PAP when you expect to see data collection errors and the procedures to deal with extreme points.</p>
 <p><strong>Missing data</strong> can come in two forms: missing covariates and missing outcomes. It is also important to specify when you expect to see missing outcomes or covariate and the procedures to deal with them in your PAP. Extreme points/missingness that are random will be less problematic than extreme points/missingess that seem to have a pattern.</p>
-<p>Common procedures to address missing data or extreme points are 1) bounds analysis; 2) imputation; 3) dropping observations. We recommend considering the following questions when determining which procedure you would like to use:</p>
+<p>Common procedures to address missing data or extreme points are 1) bounds analysis; 2) imputation; 3) dropping observations. See our guide <a href="https://methods.egap.org/guides/data-collection/missing-data_en.html">10 Things to Know About Missing Data</a> for details. We recommend considering the following questions when determining which procedure you would like to use:</p>
 <ul>
 <li>What issues may cause these extreme data points/missing covariates/missing outcomes? What can you do ahead of time to mitigate these data issues?</li>
 <li>How would you assess if the extreme/missing data are plausibly random (i.e.&nbsp;do the extreme data points/missingness correlate with treatment, specific covariates/subgroups, or outcomes)?</li>
@@ -448,14 +452,14 @@ A PAP _is_ a substantial time-investment upfront, but PAPs can reduce analysis a
 <ul>
 <li><a href="https://egap.org/registry/">EGAP Registry</a></li>
 <li><a href="https://www.socialscienceregistry.org">AEA Registry</a> (for RCTs only)</li>
-<li><a href="http://help.osf.io/m/registrations">OSF Registry</a></li>
+<li><a href="https://osf.io/registries">OSF Registry</a></li>
 </ul>
 <!--# Stuff for Chris and Lula
 https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist
 -->
 <p>Happy Pre-Analysis Planning!</p>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -463,7 +467,7 @@ https://blogs.worldbank.org/impactevaluations/a-pre-analysis-plan-checklist
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-caughey2017npc" class="csl-entry" role="listitem">
 Caughey, Devin, Allan Dafoe, and Jason Seawright. 2017. <span>“Nonparametric Combination: A Framework for Testing Elaborate Theories.”</span> <em>The Journal of Politics</em> 79 (2): 688–701.
 </div>
@@ -471,7 +475,7 @@ Caughey, Devin, Allan Dafoe, and Jason Seawright. 2017. <span>“Nonparametric C
 Gerber, Alan S, and Donald P Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. WW Norton.
 </div>
 <div id="ref-nosek2015" class="csl-entry" role="listitem">
-Nosek, B. A., G. Alter, G. C. Banks, D. Borsboom, S. D. Bowman, S. J. Breckler, S. Buck, et al. 2015. <span>“Promoting an Open Research Culture.”</span> <em>Science</em> 348 (6242): 1422–25.
+Nosek, B. A., G. Alter, G. C. Banks, et al. 2015. <span>“Promoting an Open Research Culture.”</span> <em>Science</em> 348 (6242): 1422–25.
 </div>
 <div id="ref-olken2015" class="csl-entry" role="listitem">
 Olken, Benjamin A. 2015. <span>“Promises and Perils of Pre Analysis Plans.”</span> <em>Journal of Economic Perspectives</em> 29 (3): 61–80.
@@ -488,7 +492,7 @@ Samii, Cyrus, and Peter M Aronow. 2012. <span>“On Equivalencies Between Design
 <li id="fn1"><p>PAPs are encouraged as part of the <a href="https://osf.io/4kdbm/?_ga=2.259736077.62256863.1547257566-317545181.1501862097">Transparency and Openness Promotion (TOP) Guidelines</a> <span class="citation" data-cites="nosek2015">(<a href="#ref-nosek2015" role="doc-biblioref">Nosek et al. 2015</a>)</span>, published in <a href="http://science.sciencemag.org/content/348/6242/1422.full">Science</a>, with leading social science journals committing to implementing TOP Guidelines.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Resources like the DeclareDesign project can assist you with simulating and analyzing fake data that mimics the real data your project will gather. <a href="https://methods.egap.org/guides/assessing-designs/power_en.html">Power analysis</a>, an important component of a PAP, requires simulated data.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>As R.A. Fisher said and has often been requoted, “Make your theories elaborate…when constructing a causal hypothesis one should envisage as many different consequences of the truth as possible,” (Cochran (1965); cited in <span class="citation" data-cites="rosenbaum2010">Rosenbaum (<a href="#ref-rosenbaum2010" role="doc-biblioref">2010</a>)</span>, pp.&nbsp;327). Though this was said about determining causation in observational studies, the logic also applies to experimental studies.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>For an example of an omnibus test, see <span class="citation" data-cites="caughey2017npc">Caughey, Dafoe, and Seawright (<a href="#ref-caughey2017npc" role="doc-biblioref">2017</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For an example of an omnibus test, see <span class="citation" data-cites="caughey2017npc">Caughey et al. (<a href="#ref-caughey2017npc" role="doc-biblioref">2017</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>You may also be interested in estimating other types of effects. See this <a href="https://methods.egap.org/guides/research-questions/effect-types_en.html">guide on types of treatment effects</a> for more information about effect types.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>For example, you could calculate standard errors and <span class="math inline">\(p\)</span>-values using permutation-based <a href="https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html">randomization inference</a>. Or you could closely approximate standard errors and <span class="math inline">\(p\)</span>-values using analytic methods as in <span class="citation" data-cites="samii2012">Samii and Aronow (<a href="#ref-samii2012" role="doc-biblioref">2012</a>)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>Note that some organizations do not use third party sites. For example, the <a href="https://oes.gsa.gov/methods/">U.S. General Services Administration Office of Evaluation Sciences process</a> uses Github, which has timestamps that verify the PAP was created before the analysis was conducted.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -895,6 +899,19 @@ Samii, Cyrus, and Peter M Aronow. 2012. <span>“On Equivalencies Between Design
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

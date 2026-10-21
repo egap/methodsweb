@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things You Need to Know About the Local Average Treatment Effect – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -60,7 +66,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -88,15 +93,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -229,7 +233,7 @@ div.csl-indent {
   <li><a href="#you-can-use-a-placebo-controlled-design-to-identify-the-late" id="toc-you-can-use-a-placebo-controlled-design-to-identify-the-late"><span class="header-section-number">8</span> You can use a placebo-controlled design to identify the LATE</a></li>
   <li><a href="#addressing-partial-compliance-can-be-complicated" id="toc-addressing-partial-compliance-can-be-complicated"><span class="header-section-number">9</span> Addressing partial compliance can be complicated</a></li>
   <li><a href="#statistical-power-analysis-for-the-late" id="toc-statistical-power-analysis-for-the-late"><span class="header-section-number">10</span> Statistical power analysis for the LATE</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <section id="what-the-late-is" class="level1" data-number="1">
@@ -363,7 +367,7 @@ The Ordered-Means assumption is not being employed. If the user would like to ma
 </div>
 </div>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -371,7 +375,7 @@ The Ordered-Means assumption is not being employed. If the user would like to ma
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-angrist_2006" class="csl-entry" role="listitem">
 Angrist, J. D. 2006. <span>“Instrumental Variables Methods in Experimental Criminological Research: What, Why and How.”</span> <em>Journal of Experimental Criminology</em> 2: 23–44.
 </div>
@@ -385,7 +389,7 @@ Angrist, J. D., G. W. Imbens, and D. B. Rubin. 1996. <span>“Identification of 
 Angrist, J. D., and J.-S. Pischke. 2009. <em>Mostly Harmless Econometrics</em>.
 </div>
 <div id="ref-baiocchi_et_al_2014" class="csl-entry" role="listitem">
-Baiocchi, M., J. Cheng, and D. S. Small. 2014. <span>“Instrumental Variable Methods for Causal Inference.”</span> <em>Statistics in Medicine</em> 33: 2297–2340.
+Baiocchi, M., J. Cheng, and D. S. Small. 2014. <span>“Instrumental Variable Methods for Causal Inference.”</span> <em>Statistics in Medicine</em> 33: 2297–340.
 </div>
 <div id="ref-dunning_2012" class="csl-entry" role="listitem">
 Dunning, T. 2012. <em>Natural Experiments in the Social Sciences</em>.
@@ -406,13 +410,13 @@ Imbens, G. W. 2010. <span>“Better LATE Than Nothing: Some Comments on Deaton (
 Imbens, G. W., and J. D. Angrist. 1994. <span>“Identification and Estimation of Local Average Treatment Effects.”</span> <em>Econometrica</em> 62 (2): 467–75.
 </div>
 <div id="ref-imbens_wooldridge_2007" class="csl-entry" role="listitem">
-Imbens, G. W., and J. J. Wooldridge. 2007. <span>“Lecture Notes and Slides.”</span>
+Imbens, G. W., and J. J. Wooldridge. 2007. <span>“Lecture Notes and Slides.”</span> Unpublished manuscript.
 </div>
 <div id="ref-jin_rubin_2008" class="csl-entry" role="listitem">
 Jin, H., and D. B. Rubin. 2008. <span>“Principal Stratification for Causal Inference with Extended Partial Compliance.”</span> <em>Journal of the American Statistical Association</em> 103: 101–11.
 </div>
 <div id="ref-jin_rubin_2009" class="csl-entry" role="listitem">
-———. 2009. <span>“Public Schools Versus Private Schools: Causal Inference with Partial Compliance.”</span> <em>Journal of Educational and Behavioral Statistics</em> 34: 24–45.
+Jin, H., and D. B. Rubin. 2009. <span>“Public Schools Versus Private Schools: Causal Inference with Partial Compliance.”</span> <em>Journal of Educational and Behavioral Statistics</em> 34: 24–45.
 </div>
 <div id="ref-qi_long_et_al_2010" class="csl-entry" role="listitem">
 Qi Long, Roderick, J. A. Little, and Xihong Lin. 2010. <span>“Estimating Causal Effects in Trials Involving Multi-Treatment Arms Subject to Non-Compliance: A Bayesian Framework.”</span> <em>Journal of the Royal Statistical Society: Series C (Applied Statistics)</em> 59 (3): 513–31.
@@ -421,13 +425,13 @@ Qi Long, Roderick, J. A. Little, and Xihong Lin. 2010. <span>“Estimating Causa
 
 <ol>
 <li id="fn1"><p>Originating author: Peter van der Windt, 20 October 2014. Revisions: Winston Lin, 22 August 2016. The guide is a live document and subject to updating by EGAP members at any time; contributors listed are not responsible for subsequent edits. Thanks to Albert Fang for point 9. Thanks to Kirk Bansak for point 10.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>For more extensive overviews, see: <span class="citation" data-cites="angrist_et_al_1996">Angrist, Imbens, and Rubin (<a href="#ref-angrist_et_al_1996" role="doc-biblioref">1996</a>)</span>; <span class="citation" data-cites="angrist_2006">Angrist (<a href="#ref-angrist_2006" role="doc-biblioref">2006</a>)</span>; <span class="citation" data-cites="angrist_pischke_2009">Angrist and Pischke (<a href="#ref-angrist_pischke_2009" role="doc-biblioref">2009</a>)</span>, sections 4.4-4.6 and 6.2; <span class="citation" data-cites="dunning_2012">Dunning (<a href="#ref-dunning_2012" role="doc-biblioref">2012</a>)</span>; <span class="citation" data-cites="baiocchi_et_al_2014">Baiocchi, Cheng, and Small (<a href="#ref-baiocchi_et_al_2014" role="doc-biblioref">2014</a>)</span> (with correction in Statistics in Medicine 33: 4859-4860).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>For more extensive overviews, see: <span class="citation" data-cites="angrist_et_al_1996">Angrist et al. (<a href="#ref-angrist_et_al_1996" role="doc-biblioref">1996</a>)</span>; <span class="citation" data-cites="angrist_2006">Angrist (<a href="#ref-angrist_2006" role="doc-biblioref">2006</a>)</span>; <span class="citation" data-cites="angrist_pischke_2009">Angrist and Pischke (<a href="#ref-angrist_pischke_2009" role="doc-biblioref">2009</a>)</span>, sections 4.4-4.6 and 6.2; <span class="citation" data-cites="dunning_2012">Dunning (<a href="#ref-dunning_2012" role="doc-biblioref">2012</a>)</span>; <span class="citation" data-cites="baiocchi_et_al_2014">Baiocchi et al. (<a href="#ref-baiocchi_et_al_2014" role="doc-biblioref">2014</a>)</span> (with correction in Statistics in Medicine 33: 4859-4860).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>See <span class="citation" data-cites="angrist_evans_1998">Angrist and Evans (<a href="#ref-angrist_evans_1998" role="doc-biblioref">1998</a>)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>See: <span class="citation" data-cites="imbens_2010">Imbens (<a href="#ref-imbens_2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="imbens_angrist_1994">Imbens and Angrist (<a href="#ref-imbens_angrist_1994" role="doc-biblioref">1994</a>)</span>; <span class="citation" data-cites="imbens_wooldridge_2007">Imbens and Wooldridge (<a href="#ref-imbens_wooldridge_2007" role="doc-biblioref">2007</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>See <span class="citation" data-cites="hirano_et_al_2000">Hirano et al. (<a href="#ref-hirano_et_al_2000" role="doc-biblioref">2000</a>)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>See <span class="citation" data-cites="green_gerber_2002">Green and Gerber (<a href="#ref-green_gerber_2002" role="doc-biblioref">2002</a>)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>See <span class="citation" data-cites="gerber_et_al_2010">Gerber et al. (<a href="#ref-gerber_et_al_2010" role="doc-biblioref">2010</a>)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>See <span class="citation" data-cites="qi_long_et_al_2010">Qi Long, Little, and Lin (<a href="#ref-qi_long_et_al_2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="jin_rubin_2009">Jin and Rubin (<a href="#ref-jin_rubin_2009" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="jin_rubin_2008">Jin and Rubin (<a href="#ref-jin_rubin_2008" role="doc-biblioref">2008</a>)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>See <span class="citation" data-cites="qi_long_et_al_2010">Qi Long et al. (<a href="#ref-qi_long_et_al_2010" role="doc-biblioref">2010</a>)</span>; <span class="citation" data-cites="jin_rubin_2009">Jin and Rubin (<a href="#ref-jin_rubin_2009" role="doc-biblioref">2009</a>)</span>; <span class="citation" data-cites="jin_rubin_2008">Jin and Rubin (<a href="#ref-jin_rubin_2008" role="doc-biblioref">2008</a>)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn9"><p>This has been shown by the following studies: Baiocchi, Michael, Jing Cheng, and Dylan S. Small. “Instrumental variable methods for causal inference.” <em>Statistics in Medicine</em> 33, no. 13 (2014): 2297-2340. Bansak, Kirk. “A generalized approach to power analysis for local average treatment effects.” <em>Statistical Science</em> 35, no. 2 (2020): 254-271. Jo, Booil. “Statistical power in randomized intervention studies with noncompliance.” <em>Psychological Methods</em> 7, no. 2 (2002): 178-193.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn10"><p>See Bansak, Kirk. “A generalized approach to power analysis for local average treatment effects.” <em>Statistical Science</em> 35, no. 2 (2020): 254-271.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
@@ -833,6 +837,19 @@ Qi Long, Roderick, J. A. Little, and Xihong Lin. 2010. <span>“Estimating Causa
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

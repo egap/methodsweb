@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things to Know About Randomization Inference – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -60,7 +66,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -88,15 +93,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -223,7 +227,7 @@ div.csl-indent {
   <li><a href="#randomization-inference-can-be-used-to-address-issues-of-multiple-comparisons6" id="toc-randomization-inference-can-be-used-to-address-issues-of-multiple-comparisons6"><span class="header-section-number">8</span> Randomization inference can be used to address issues of multiple comparisons</a></li>
   <li><a href="#randomization-inference-cannot-be-applied-without-additional-assumptions-to-inferences-about-quantities-such-as-complier-average-causal-effects" id="toc-randomization-inference-cannot-be-applied-without-additional-assumptions-to-inferences-about-quantities-such-as-complier-average-causal-effects"><span class="header-section-number">9</span> Randomization inference cannot be applied without additional assumptions to inferences about quantities such as complier average causal effects</a></li>
   <li><a href="#in-some-applications-randomization-inference-may-not-be-worth-the-trouble" id="toc-in-some-applications-randomization-inference-may-not-be-worth-the-trouble"><span class="header-section-number">10</span> In some applications, randomization inference may not be worth the trouble</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <section id="randomization-inference-is-a-method-for-calculating-p-values-for-hypothesis-tests" class="level1" data-number="1">
@@ -439,7 +443,7 @@ mean in group 0 mean in group 1
 <p>Old-fashioned approximate methods work well when the assumptions on which the approximations rest are sound. For example, when an experiment involves random assignment of individual subjects, outcomes are distributed more or less symmetrically around the mean, and the number of subjects is greater than 100, the difference between conventional p-values and RI p-values may be negligible. Randomization inference may still be useful as the final word, but it rarely changes inferences substantively under these circumstances. The method is valuable primarily for nonstandard applications in which outcomes are skewed, subject pools are small, or the method of assignment is complex.</p>
 <p>Note on available software for implementing randomization inference. For the latest R package for randomization inference, see <a href="http://alexandercoppock.com/ri2/articles/ri2_vignette.html">here</a>. For randomization inference code specifically tailored to the special features of binary outcomes, see <a href="https://cran.r-project.org/web/packages/RI2by2/index.html">here</a>. Stata users may find an all-purpose package <a href="https://github.com/simonheb/ritest">here</a>.</p>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -447,12 +451,12 @@ mean in group 0 mean in group 1
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-chung_romano_2013" class="csl-entry" role="listitem">
 Chung, EunYi, and Joseph P. Romano. 2013. <span>“Exact and Asymptotically Robust Permutation Tests.”</span> <em>The Annals of Statistics</em> 41 (2): 484–507.
 </div>
 <div id="ref-gerber_green_2012" class="csl-entry" role="listitem">
-Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. New York: W.W. Norton.
+Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. W.W. Norton.
 </div>
 <div id="ref-small_et_al_2008" class="csl-entry" role="listitem">
 Small, Dylan S., Thomas R. Ten Have, and Paul R. Rosenbaum. 2008. <span>“Randomization Inference in a Group–Randomized Trial of Treatments for Depression: Covariate Adjustment, Noncompliance, and Quantile Effects.”</span> <em>Journal of the American Statistical Association</em> 103 (481): 271–79.
@@ -468,7 +472,7 @@ Small, Dylan S., Thomas R. Ten Have, and Paul R. Rosenbaum. 2008. <span>“Rando
 <li id="fn6"><p>One-tailed tests consider the null hypothesis of no effect against an alternative hypothesis that the average treatment effect is positive (negative). Two-tailed tests evaluate a null hypothesis against the alternative that the ATE is nonzero, whether positive or negative. In that case, the p-value may be assessed by calculating the proportion of simulated random assignments that are at least as large as the observed test statistic in absolute value.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>See <span class="citation" data-cites="chung_romano_2013">Chung and Romano (<a href="#ref-chung_romano_2013" role="doc-biblioref">2013</a>)</span>. This “studentized” approach makes sense when there is reason to believe that the treatment changes the variance in outcomes in an experiment with different numbers of subjects in treatment and control.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p>See <a href="https://methods.egap.org/guides/research-questions/heterogeneous-effects_en.html">10 Things to Know about Heterogeneous Treatment Effects</a>, especially section 7 on multiple comparisons.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p>The alternative is to make stronger assumptions. See <span class="citation" data-cites="small_et_al_2008">Small, Ten Have, and Rosenbaum (<a href="#ref-small_et_al_2008" role="doc-biblioref">2008</a>)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>The alternative is to make stronger assumptions. See <span class="citation" data-cites="small_et_al_2008">Small et al. (<a href="#ref-small_et_al_2008" role="doc-biblioref">2008</a>)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -872,6 +876,19 @@ Small, Dylan S., Thomas R. Ten Have, and Paul R. Rosenbaum. 2008. <span>“Rando
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

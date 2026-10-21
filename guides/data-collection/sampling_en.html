@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things to Know About Sampling – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -25,7 +31,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -53,15 +58,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,7 +97,7 @@ div.csl-indent {
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -219,7 +223,7 @@ window.Quarto = {
   <li><a href="#how-sampling-helps-with-problems-of-non-response" id="toc-how-sampling-helps-with-problems-of-non-response"><span class="header-section-number">8</span> How sampling helps with problems of non-response</a></li>
   <li><a href="#relationship-between-random-sampling-and-random-assignment" id="toc-relationship-between-random-sampling-and-random-assignment"><span class="header-section-number">9</span> Relationship between random sampling and random assignment</a></li>
   <li><a href="#choosing-a-sampling-strategy-for-a-randomized-experiment" id="toc-choosing-a-sampling-strategy-for-a-randomized-experiment"><span class="header-section-number">10</span> Choosing a sampling strategy for a randomized experiment</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <p>Researchers are rarely able to collect measurements on all units that make up the target population of a study; instead, they select a subset of units — a process called sampling. This guide provides an overview of different ways to sample and how these affect what can be learned from a study.</p>
@@ -313,11 +317,11 @@ Figure&nbsp;1: Sample average incomes calculated for all 15 possible samples of 
 <section id="what-to-do-without-an-obvious-sampling-frame" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> What to do without an obvious sampling frame</h1>
 <p>In many cases, an obvious sampling frame in the form of a list of units or clusters of units does not exist. In such cases, researchers often rely on some variant of multi-stage <em>area sampling</em>. For example, they may first randomly sample districts, then randomly select villages within districts, then households within villages and finally individuals within households. Lists of administrative units often exist at higher levels of aggregation, but the problem of non-existent frames kicks in for more fine-grained stages of the process. The advantage of the multi-stage approach is that sampling materials have to only be created for units that have actually been sampled. Mapping all households in a country, for example, may be infeasible. Doing so in the subset of villages in the sample, however, may be realistic.</p>
-<p>Where the smallest administrative unit is still too large or otherwise inappropriate as a sampling unit, researchers have resorted to creating their own units. <span class="citation" data-cites="scacco2010riots">Scacco (<a href="#ref-scacco2010riots" role="doc-biblioref">2008</a>)</span>, for example, mapped 120 original sampling units in order to randomly sample residents of two Nigerian cities. Similarly, <span class="citation" data-cites="green2020countering">Green, Wilke, and Cooper (<a href="#ref-green2020countering" role="doc-biblioref">2020</a>)</span> used satellite images to create circular sampling units that map onto the catchment areas of video halls in rural Uganda.</p>
+<p>Where the smallest administrative unit is still too large or otherwise inappropriate as a sampling unit, researchers have resorted to creating their own units. <span class="citation" data-cites="scacco2010riots">Scacco (<a href="#ref-scacco2010riots" role="doc-biblioref">2008</a>)</span>, for example, mapped 120 original sampling units in order to randomly sample residents of two Nigerian cities. Similarly, <span class="citation" data-cites="green2020countering">Green et al. (<a href="#ref-green2020countering" role="doc-biblioref">2020</a>)</span> used satellite images to create circular sampling units that map onto the catchment areas of video halls in rural Uganda.</p>
 <p>Irrespective of whether the next larger sampling unit was pre-existing or self-created, lists of households within those sampling units rarely exist. Two popular solutions to this problem are to use a <em>random walk procedure</em> or to conduct a <em>household listing</em>.</p>
 <section id="random-walk" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="random-walk"><span class="header-section-number">4.1</span> Random walk</h2>
-<p>Enumerators are given (possibly randomly selected) starting points and are instructed to follow a walk pattern, e.g., “walk to the right and conduct an interview in every fifth dwelling.” The advantage of this approach is its cost effectiveness. No listing of households beyond those that enter the sample is required. Yet, a random walk procedure may not yield a particularly good approximation to a random sample. First, even though it is often treated as a way to select a simple random sample, a random walk procedure in fact introduces geographic clustering. The walk pattern above, for example, implies that neighboring houses can never both be sampled and that, once a particular household is sampled, the one five houses down the road will be sampled as well. See <span class="citation" data-cites="lohr2009sampling">Lohr (<a href="#ref-lohr2009sampling" role="doc-biblioref">2009, chap. 5.5</a>)</span> for more on the consequences of this kind of clustering. Second, even if starting points are, say, randomly chosen geo-coordinates, the probability of being sampled may vary across households due to geographic particularities (e.g., street layout, density of dwellings). If selection probabilities are unknown to the researcher but correlated with the characteristic of interest, bias will result. Finally, a random walk procedure is difficult to implement in practice. That enumerators select households and conduct interviews in one step increases their incentives to informally replace households that are reluctant or unavailable — a practice that can only be detected through intensive monitoring.</p>
+<p>Enumerators are given (possibly randomly selected) starting points and are instructed to follow a walk pattern, e.g., “walk to the right and conduct an interview in every fifth dwelling.” The advantage of this approach is its cost effectiveness. No listing of households beyond those that enter the sample is required. Yet, a random walk procedure may not yield a particularly good approximation to a random sample. First, even though it is often treated as a way to select a simple random sample, a random walk procedure in fact introduces geographic clustering. The walk pattern above, for example, implies that neighboring houses can never both be sampled and that, once a particular household is sampled, the one five houses down the road will be sampled as well. See <span class="citation" data-cites="lohr2009sampling">Lohr (<a href="#ref-lohr2009sampling" role="doc-biblioref">2009, 5.5</a>)</span> for more on the consequences of this kind of clustering. Second, even if starting points are, say, randomly chosen geo-coordinates, the probability of being sampled may vary across households due to geographic particularities (e.g., street layout, density of dwellings). If selection probabilities are unknown to the researcher but correlated with the characteristic of interest, bias will result. Finally, a random walk procedure is difficult to implement in practice. That enumerators select households and conduct interviews in one step increases their incentives to informally replace households that are reluctant or unavailable — a practice that can only be detected through intensive monitoring.</p>
 </section>
 <section id="household-listing" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="household-listing"><span class="header-section-number">4.2</span> Household listing</h2>
@@ -358,7 +362,7 @@ Figure&nbsp;1: Sample average incomes calculated for all 15 possible samples of 
 <h1 data-number="8"><span class="header-section-number">8</span> How sampling helps with problems of non-response</h1>
 <p>Non-response — the inability to obtain measurements for some units in the sample — is a common problem. Where non-response is not random, it has the potential to introduce bias, because it essentially undoes the random selection of units from the population. <span class="citation" data-cites="hansen1946problem">Hansen and Hurwitz (<a href="#ref-hansen1946problem" role="doc-biblioref">1946</a>)</span> were the first to propose <em>two-phase sampling</em>, also called <em>double sampling</em>, as a way to deal with non-response that requires minimal additional assumptions. The basic approach works as follows. First, draw a random sample of size <span class="math inline">\(n\)</span> from a population and conduct a relatively inexpensive first attempt to obtain measurements for all <span class="math inline">\(n\)</span> units in the sample. This first measurement phase may consist of, say, a phone survey. Let <span class="math inline">\(n_R\)</span> be the number of units for which measurements can be obtained during this first phase and <span class="math inline">\(n_M\)</span> the number of units for which measurements remain missing. Second, take a sub-sample of <span class="math inline">\(x\%\)</span> of the <span class="math inline">\(n_M\)</span> missing units and make intensive efforts to obtain measurements on all units of the sub-sample. For example, this second phase may consist of in-person interviews. If all responses in the sub-sample can be obtained, the following provides an unbiased estimator of the population average</p>
 <p><span class="math display">\[\hat{\mu} = \frac{n_R}{n} \hat{\mu}_R + \frac{n_M}{n}  \hat{\mu}_M,\]</span></p>
-<p>where <span class="math inline">\(\hat{\mu}_R\)</span> is the sample average among the original respondents and <span class="math inline">\(\hat{\mu}_M\)</span> the sample average among the sub-sample of non-respondents. See <span class="citation" data-cites="lohr2009sampling">Lohr (<a href="#ref-lohr2009sampling" role="doc-biblioref">2009, chap. 8.3</a>)</span> on how to estimate the variance of this estimator.</p>
+<p>where <span class="math inline">\(\hat{\mu}_R\)</span> is the sample average among the original respondents and <span class="math inline">\(\hat{\mu}_M\)</span> the sample average among the sub-sample of non-respondents. See <span class="citation" data-cites="lohr2009sampling">Lohr (<a href="#ref-lohr2009sampling" role="doc-biblioref">2009, 8.3</a>)</span> on how to estimate the variance of this estimator.</p>
 <p>The two-phase sampling approach is based on the core insight that concentrating efforts on a randomly selected sub-sample of non-respondents and obtaining responses from all of them is more helpful than attempting to obtain responses from all non-respondents which is bound to result in leftover missingness. <span class="citation" data-cites="hansen1946problem">Hansen and Hurwitz (<a href="#ref-hansen1946problem" role="doc-biblioref">1946</a>)</span> provide results on the optimal size of the original and follow-up sample given parameters such as the probability of non-response in the first phase and the cost of initial and follow-up data collection efforts. <span class="citation" data-cites="coppock2017combining">Coppock et al. (<a href="#ref-coppock2017combining" role="doc-biblioref">2017</a>)</span> show how two-phase sampling can be combined with worst case bounds to partially identify average treatment effects in randomized experiments. They generalize the approach by allowing for non-response not only in the initial but also in the follow-up sample.</p>
 </section>
 <section id="relationship-between-random-sampling-and-random-assignment" class="level1" data-number="9">
@@ -465,7 +469,7 @@ Since there are 15 possible samples and six ways of randomly assigning treatment
 If we would like to make inferences to population quantities, our uncertainty estimates should reflect both kinds of uncertainty. If we use permutation-based randomization inference to calculate $p$-values to test sharp null hypotheses, for example, we only consider variability that stems from the random assignment of units to treatment and not from the sampling of units itself. If we use a bootstrap-based random sampling inference, we will tend to ignore the uncertainty arising from random assignment. One could combine *both* bootstrap re-sampling and randomization-justified permutations to reflect the two sources of uncertainty, although this might be computationaly complex and time consuming. Alternatively, the standard Neyman estimator of the variance of the difference-in-means estimator produces standard errors that are conservative if we presume that all uncertainty comes from random assignment. These standard errors will provide unbiased variance estimates if we can conceive of the experimental subject pool as a random sample from a population that is infinite. This assumption seems plausible when the experimental subject pool is a random sample that is small relative to the population. Where the size of the experimental sample is large relative to the population, Neyman standard errors will be conservative as well. See @aronow2014sharp and @abadie2020sampling for more on how to obtain unbiased variance estimates when sampling from a finite population. -->
 <!-- Eddy: not very important to our understanding of sampling -->
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -473,9 +477,9 @@ If we would like to make inferences to population quantities, our uncertainty es
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-abadie2017should" class="csl-entry" role="listitem">
-Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey Wooldridge. 2017. <span>“When Should You Adjust Standard Errors for Clustering?”</span> Working Paper 24003. Cambridge, MA: National Bureau of Economic Research.
+Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey Wooldridge. 2017. <em>When Should You Adjust Standard Errors for Clustering?</em> Working Paper No. 24003. National Bureau of Economic Research.
 </div>
 <div id="ref-coppock2017combining" class="csl-entry" role="listitem">
 Coppock, Alexander, Alan S. Gerber, Donald P. Green, and Holger L. Kern. 2017. <span>“Combining Double Sampling and Bounds to Address Nonignorable Missing Outcomes in Randomized Experiments.”</span> <em>Political Analysis</em> 25 (2): 188–206.
@@ -490,7 +494,7 @@ Gile, Krista J., Isabelle S. Beaudry, Mark S. Handcock, and Miles Q. Ott. 2018. 
 Gile, Krista J., and Mark S. Handcock. 2010. <span>“Respondent-Driven Sampling: An Assessment of Current Methodology.”</span> <em>Sociological Methodology</em> 40 (1): 285–327.
 </div>
 <div id="ref-green2020countering" class="csl-entry" role="listitem">
-Green, Donald P., Anna M. Wilke, and Jasper Cooper. 2020. <span>“Countering Violence Against Women by Encouraging Disclosure: A Mass Media Experiment in Rural Uganda.”</span> <em>Comparative Political Studies</em> 53 (14): 2283–2320.
+Green, Donald P., Anna M. Wilke, and Jasper Cooper. 2020. <span>“Countering Violence Against Women by Encouraging Disclosure: A Mass Media Experiment in Rural Uganda.”</span> <em>Comparative Political Studies</em> 53 (14): 2283–320.
 </div>
 <div id="ref-groves2011survey" class="csl-entry" role="listitem">
 Groves, Robert M., Floyd J. Fowler Jr., Mick P. Couper, James M. Lepkowski, Eleanor Singer, and Roger Tourangeau. 2009. <em>Survey Methodology</em>. 2nd ed. Hoboken, NJ: John Wiley &amp; Sons.
@@ -523,7 +527,7 @@ Stoker, L., and J. Bowers. 2002. <span>“<span class="nocase">Designing multi-l
 Tipton, Elizabeth. 2013. <span>“Improving Generalizations from Experiments Using Propensity Score Subclassification: Assumptions, Properties, and Contexts.”</span> <em>Journal of Educational and Behavioral Statistics</em> 38 (3): 239–66.
 </div>
 <div id="ref-tran2015sampling" class="csl-entry" role="listitem">
-Tran, Hoang Vu, Linh-Vi N. Le, Lisa Grazina Johnston, Patrick Nadol, Anh Van Do, Ha Thi Thanh Tran, and Tuan Anh Nguyen. 2015. <span>“Sampling Males Who Inject Drugs in Haiphong, Vietnam: Comparison of Time-Location and Respondent-Driven Sampling Methods.”</span> <em>Journal of Urban Health</em> 92 (4): 744–57.
+Tran, Hoang Vu, Linh-Vi N. Le, Lisa Grazina Johnston, et al. 2015. <span>“Sampling Males Who Inject Drugs in Haiphong, Vietnam: Comparison of Time-Location and Respondent-Driven Sampling Methods.”</span> <em>Journal of Urban Health</em> 92 (4): 744–57.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
@@ -935,6 +939,19 @@ Tran, Hoang Vu, Linh-Vi N. Le, Lisa Grazina Johnston, Patrick Nadol, Anh Van Do,
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

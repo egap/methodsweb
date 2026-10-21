@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,16 @@
 
 <title>10 Things to Know About Adaptive Experimental Design – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -26,7 +32,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -54,15 +59,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -189,7 +193,7 @@ div.csl-indent {
   <li><a href="#what-implications-do-adaptive-designs-have-for-pre-analysis-plans" id="toc-what-implications-do-adaptive-designs-have-for-pre-analysis-plans"><span class="header-section-number">8</span> What implications do adaptive designs have for pre-analysis plans?</a></li>
   <li><a href="#are-multi-arm-bandit-trials-frequently-used-in-social-science" id="toc-are-multi-arm-bandit-trials-frequently-used-in-social-science"><span class="header-section-number">9</span> Are multi-arm bandit trials frequently used in social science?</a></li>
   <li><a href="#what-other-considerations-should-inform-the-decision-to-use-adaptive-design" id="toc-what-other-considerations-should-inform-the-decision-to-use-adaptive-design"><span class="header-section-number">10</span> What other considerations should inform the decision to use adaptive design?</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <section id="what-is-an-adaptive-design" class="level1" data-number="1">
@@ -242,22 +246,22 @@ Adaptive designs are well suited to survey, on-line, and lab experiments, where 
 </section>
 <section id="are-multi-arm-bandit-trials-frequently-used-in-social-science" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Are multi-arm bandit trials frequently used in social science?</h1>
-<p>Many of the applications to date have taken place in commercial settings, such as website design for high-volume e-commerce, or in settings such as on-line fundraising. Relatively few applications have been written up in detail for a scholarly audience. Surprisingly rare are applications in biomedical research. As <span class="citation" data-cites="villar_etal_2015">Villar, Bowden, and Wason (<a href="#ref-villar_etal_2015" role="doc-biblioref">2015</a>)</span> note, “Despite this apparent near-perfect fit between a real-world problem and a mathematical theory, the MABP has yet to be applied to an actual clinical trial.”</p>
-<p>Putting aside the use of multi-arm bandit approaches, the use of adaptive trials is gradually winning acceptance in biomedical research. For details, see <span class="citation" data-cites="chin_2016">Chin (<a href="#ref-chin_2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>Many of the applications to date have taken place in commercial settings, such as website design for high-volume e-commerce, or in settings such as on-line fundraising. Relatively few applications have been written up in detail for a scholarly audience. Surprisingly rare are applications in biomedical research. As <span class="citation" data-cites="villar_etal_2015">Villar et al. (<a href="#ref-villar_etal_2015" role="doc-biblioref">2015</a>)</span> note, “Despite this apparent near-perfect fit between a real-world problem and a mathematical theory, the MABP has yet to be applied to an actual clinical trial.”</p>
+<p>Putting aside the use of multi-arm bandit approaches, the use of adaptive trials is gradually winning acceptance in biomedical research. See <span class="citation" data-cites="chin_2016">Chin (<a href="#ref-chin_2016" role="doc-biblioref">2016</a>)</span> for details and <a href="https://www.remapcap.org/">https://www.remapcap.org/</a> for a prominent example.</p>
 </section>
 <section id="what-other-considerations-should-inform-the-decision-to-use-adaptive-design" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> What other considerations should inform the decision to use adaptive design?</h1>
 <p>As noted above, adaptive designs add to the complexity of the research design and analysis. They also may increase the challenges of implementation, particularly in field settings where the logistical or training costs associated with different arms vary markedly. Even when one arm is clearly superior (inferior), the lead-time necessary to staff or outfit this arm may make it difficult to scale it up (down). Adaptive designs are only practical if adaptation is feasible.</p>
 <p>On the other hand, funders and implementation partners may welcome the idea of an experimental design that responds to on-the-ground conditions such that problematic arms are scaled back. A middle ground between static designs and designs that envision adaptation over many periods are adaptive designs involving only two or three interim analyses and adjustments. Such trials are winning increased acceptance in biomedical research <span class="citation" data-cites="chow_chang_2008">(<a href="#ref-chow_chang_2008" role="doc-biblioref">Chow and Chang 2008</a>)</span> and are likely to become more widely used in the social sciences too. The growing interest in replication and design-based extensions of existing experiments to aid generalization are likely to create opportunities for adaptive design.</p>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-chin_2016" class="csl-entry" role="listitem">
 Chin, Richard. 2016. <em>Adaptive and Flexible Clinical Trials</em>. CRC Press.
 </div>
@@ -265,7 +269,7 @@ Chin, Richard. 2016. <em>Adaptive and Flexible Clinical Trials</em>. CRC Press.
 Chow, Shein-Chung, and Mark Chang. 2008. <span>“Adaptive Design Methods in Clinical Trials – a Review.”</span> <em>Orphanet Journal of Rare Diseases</em> 3 (11).
 </div>
 <div id="ref-nie_etal_2017" class="csl-entry" role="listitem">
-Nie, Xinkun, Xiaoying Tian, Jonathan Taylor, and James Zou. 2017. <span>“Why Adaptively Collected Data Have Negative Bias and How to Correct for It.”</span>
+Nie, Xinkun, Xiaoying Tian, Jonathan Taylor, and James Zou. 2017. <em>Why Adaptively Collected Data Have Negative Bias and How to Correct for It</em>.
 </div>
 <div id="ref-scott_2010" class="csl-entry" role="listitem">
 Scott, Steven L. 2010. <span>“A Modern Bayesian Look at the Multi-Armed Bandit.”</span> <em>Applied Stochastic Models in Business and Industry</em> 26: 639–58.
@@ -678,6 +682,19 @@ Villar, Sofı́a S., Jack Bowden, and James Wason. 2015. <span>“Multi-Armed Ba
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

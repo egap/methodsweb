@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things You Need to Know About External Validity – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -25,7 +31,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -53,15 +58,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -214,7 +218,7 @@ div.csl-indent {
 <div>
   <div class="abstract">
     <div class="abstract-title">Summary</div>
-    <p>After months or years under development and implementation, navigating the practical, theoretical and inferential pitfalls of experimental social science research, your experiment has finally been completed. Comparing the treatment and control groups, you find a substantively and statistically significant result on an outcome of theoretical interest. Before you can pop the champagne in celebration of an intervention well evaluated, a friendly colleague asks: “But what does this tell us about the world?”</p>
+    <p>After months or years under development and implementation, navigating the practical, theoretical and inferential pitfalls of experimental social science research, your experiment has finally been completed. Comparing the treatment and control groups, you find a substantively and statistically significant effect on an outcome of theoretical interest. Before you can pop the champagne in celebration of an intervention well evaluated, a friendly colleague asks: “But what does this tell us about the world?”</p>
   </div>
 </div>
 </header>
@@ -233,28 +237,28 @@ div.csl-indent {
   <li><a href="#extrapolation-across-treatments-and-outcomes" id="toc-extrapolation-across-treatments-and-outcomes"><span class="header-section-number">8</span> Extrapolation across treatments and outcomes</a></li>
   <li><a href="#replication-is-important" id="toc-replication-is-important"><span class="header-section-number">9</span> Replication is important</a></li>
   <li><a href="#dont-forget-time" id="toc-dont-forget-time"><span class="header-section-number">10</span> Don’t forget time</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <section id="what-is-external-validity" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> What is external validity?</h1>
-<p>External validity is another name for the generalizability of results, asking “whether a causal relationship holds over variation in persons, settings, treatments and outcomes.” <span class="citation" data-cites="shadish_et_al_2002">(<a href="#ref-shadish_et_al_2002" role="doc-biblioref">Shadish, Cook, and Campbell 2002</a>)</span>. A classic example of an external validity concern is whether traditional economics or psychology lab experiments carried out on college students produce results that are generalizable to the broader public. In the political economy of development, we might consider how a community-driven development program in India might apply (or not) in West Africa, or Central America.</p>
-<p>External validity becomes particularly important when making policy recommendations that come from research. Extrapolating causal effects from one or more studies to a given policy context requires careful consideration of both theory and empirical evidence. This methods guide discusses some key concepts, pitfalls to avoid, and useful references to consider when going from a Local Average Treatment Effect to the larger world.</p>
+<p>External validity is another name for the generalizability of results, asking “whether a causal relationship holds over variation in persons, settings, treatments and outcomes.” <span class="citation" data-cites="shadish_et_al_2002">(<a href="#ref-shadish_et_al_2002" role="doc-biblioref">Shadish et al. 2002</a>)</span>. A classic example of an external validity concern is whether traditional economics or psychology lab experiments carried out on college students produce results that are generalizable to the broader public. In the political economy of development, we might consider how a community-driven development program in India might apply (or not) in West Africa, or Central America.</p>
+<p>External validity becomes particularly important when making policy recommendations that come from research. Extrapolating causal effects from one or more studies to a given policy context requires careful consideration of both theory and empirical evidence. This methods guide discusses some key concepts, pitfalls to avoid, and useful references to consider when going from a Sample Average Treatment Effect to the larger world.</p>
 </section>
 <section id="how-is-this-different-than-internal-validity" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> How is this different than internal validity?</h1>
 <p>Internal validity refers to the quality of causal inferences being made for a given subject pool. As originally posited by Campbell <span class="citation" data-cites="campbell_1957">(<a href="#ref-campbell_1957" role="doc-biblioref">Campbell 1957</a>)</span>, internal validity asks, “did in fact the experimental stimulus make some significant difference in this specific instance.” This concept dovetails with the counterfactual approach to causality that experimentalists typically use, which asks whether outcomes change depending on the presence or absence of a treatment.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>Before you can extrapolate a causal effect to a distinct population, it is vital that the original Average Treatment Effect be based on a well-identified result. For most experimentalists, random assignment provides the requisite identifying variation, provided no attrition, interference, spillovers, or other threats to inference. For observational studies, additional identifying assumptions are needed, such as conditional independence of the treatment from potential outcomes.</p>
+<p>Before you can extrapolate a causal effect to a distinct population, it is vital that the original Average Treatment Effect be well-identified. Observational studies often require identifying assumptions such as conditional independence of the treatment from potential outcomes. In an experiment, random assignment ensures that most of these assumptions are guaranteed to hold, at least absent attrition, interference, spillovers, or other threats to inference.</p>
 </section>
 <section id="navigating-the-trade-offs-between-internal-and-external-validity" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Navigating the trade-offs between internal and external validity</h1>
 <p>There has been an ongoing debate within the social sciences regarding the relative importance of identifying internally valid results, which by definition apply to a local sample, and generating results that can be extrapolated to broader populations of interest. It is helpful to be familiar with this discussion when considering design trade-offs that inevitably crop up in resource-limited interventions. That both sides of the argument include luminaries of econometrics attests to the importance of the topic.</p>
 <p>On one side of the argument fall advocates of “identification first,” who argue that without internally valid results, a study simply does not contribute useful information, regardless of whether it is a local or general population or context. As put by <span class="citation" data-cites="imbens_2013">Imbens (<a href="#ref-imbens_2013" role="doc-biblioref">2013</a>)</span> “without strong internal validity studies have little to contribute to policy debates, whereas [internally valid] studies with very limited external validity often are, and in my view should be, taken seriously in such discussions.”</p>
-<p>Others argue that even without full identification of an internally valid result, useful information can be salvaged, especially if it is relevant for important questions that affect a broad context. <span class="citation" data-cites="manski_2013">Manski (<a href="#ref-manski_2013" role="doc-biblioref">2013</a>)</span> writes that “what matters is the informativeness of a study for policy making, which depends jointly on internal and external validity.” With data from a broad but a poorly identified study, Manski argues, bounds on the estimand of interest can be generated that, while not as useful as a precise point estimate, still moves science forward.</p>
+<p>Others argue that even without full identification of an internally valid result, useful information can be salvaged, especially if it is relevant for important questions that affect a broad context. <span class="citation" data-cites="manski_2013">Manski (<a href="#ref-manski_2013" role="doc-biblioref">2013</a>)</span> writes that “what matters is the informativeness of a study for policy making, which depends jointly on internal and external validity.” With data from a broad but a poorly identified study, Manski argues, bounds on the estimand of interest can be generated that, while not as useful as a precise point estimate, still move science forward.</p>
 </section>
 <section id="theory-and-generalization" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Theory and generalization</h1>
-<p>Extrapolating a result to a distinct context, outcome, population or treatment is not a mechanical process. As discussed by <span class="citation" data-cites="samii_2016">Samii (<a href="#ref-samii_2016" role="doc-biblioref">2016</a>)</span> and <span class="citation" data-cites="rosenbaum_1999">Rosenbaum (<a href="#ref-rosenbaum_1999" role="doc-biblioref">1999</a>)</span> relevant theory should be used to guide generalization, taking the relevant existing evidence and making predictions for other contexts in a principled fashion. Theories boil down complex problems into more parsimonious representations, and help to elucidate what factors matter. Just as theory guides the content of interventions and research designs, theoretical propositions can tell you which scope conditions are relevant for extrapolating a result. What covariates matter? What contextual information matters?</p>
+<p>Extrapolating a result to a distinct context, outcome, population or treatment is not a mechanical process. As discussed by <span class="citation" data-cites="samii_2016">Samii (<a href="#ref-samii_2016" role="doc-biblioref">2016</a>)</span> and <span class="citation" data-cites="rosenbaum_1999">Rosenbaum (<a href="#ref-rosenbaum_1999" role="doc-biblioref">1999</a>)</span> relevant theory should be used to guide generalization, taking the relevant existing evidence and making predictions for other contexts in a principled fashion. Theories boil down complex problems into more parsimonious representations, and help to elucidate what factors matter. Just as theory guides the content of interventions and research designs, theoretical propositions can shed light on the scope conditions that are relevant for extrapolating a result given the theory’s assumptions. See <span class="citation" data-cites="pearl_bareinboim_2014">Pearl and Bareinboim (<a href="#ref-pearl_bareinboim_2014" role="doc-biblioref">2014</a>)</span> for details on how theoretical models can be used in this way. What covariates matter? What contextual information matters?</p>
 </section>
 <section id="how-can-i-determine-where-my-results-apply" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> How can I determine where my results apply?</h1>
@@ -263,12 +267,12 @@ div.csl-indent {
 </section>
 <section id="strategic-behavior-can-scuttle-your-extrapolations" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Strategic behavior can scuttle your extrapolations</h1>
-<p>Extrapolating a local result to a different context can prove challenging even with a compelling covariate profile to which you want to generalize effects. A randomized experimental manipulation in a local area generates a “partial equilibrium effect.” Strategic dynamics, including compensatory behavior or backlashes, outside the local context of an experimental intervention can complicate efforts to generalize a result. Suppose, for example, that an unconditional cash transfer intervention is shown to increase welfare, entrepreneurship, and employment in a sample of 200 villages. What would happen if the intervention were extended to encompass 1000 villages? At this point, one could imagine that regions excluded from the program are more likely to learn about it. Untreated units may start to demand other types of transfers from the government, giving rise to effects similar to those produced by the direct cash transfer. In a similar vein, sometimes causal relationships only work when they are applied to some people. For example, imagine a job skills program that functions very well (as compared to those who did not receive it), what would happen if it were extended to all workers? Even if there are positive effects across all participants, there could be reduced or no average effects as higher skilled jobs are already filled by the first batch and the second batch is forced to remain in their previous jobs, now overqualified. In short, under general equilibrium conditions we might expect different results even where the covariate profile matches.</p>
+<p>Extrapolating a local result to a different context can prove challenging even with a compelling covariate profile to which you want to generalize effects. A randomized experimental manipulation in a local area generates a “partial equilibrium effect.” Strategic dynamics, including compensatory behavior or backlashes, outside the local context of an experimental intervention can complicate efforts to generalize a result — especially towards an intervention at much larger scale. Suppose, for example, that an unconditional cash transfer intervention is shown to increase welfare, entrepreneurship, and employment in a sample of 200 villages. What would happen if the intervention were extended to encompass 1000 villages? At this point, one could imagine that regions excluded from the program are more likely to learn about it. Untreated units may start to demand other types of transfers from the government, giving rise to effects similar to those produced by the direct cash transfer. In a similar vein, causal relationships sometimes operate for only a certain number of people. For example, imagine a job skills program that is tested with a small group of workers and is shown to increase the likelihood that workers enter higher skilled jobs. What would happen if the program were extended to all workers? Even if there are positive effects on skills across all participants, there could be reduced or no average effects on job placement. If there is a limited supply of high skilled jobs, high-skilled workers may be forced to remain in their previous jobs, now overqualified. In short, under general equilibrium conditions we might expect different results even where covariate profiles match.</p>
 </section>
 <section id="dont-confuse-external-validity-with-construct-validity-or-ecological-validity" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Don’t confuse external validity with construct validity or ecological validity</h1>
-<p>Internal and external validity are not the only ‘validity’ concerns that can be leveled at experimental work, and though relevant, they are also distinct. Ecological validity, as defined by <span class="citation" data-cites="shadish_et_al_2002">Shadish, Cook, and Campbell (<a href="#ref-shadish_et_al_2002" role="doc-biblioref">2002</a>)</span> concerns whether an intervention appears artificial or out of place when deployed in a new context. For example, does an information workshop in a rural town carried out by experimenters resemble the kinds of information sharing that the population may experience in regular life? Similarly, if the same workshop were held in a large city, would it appear out of place?</p>
-<p>Construct validity considers whether a theoretical concept being tested in a study is appropriately operationalized by the treatment(s). If your experiment is testing the effect of anger on political reciprocity and you are in fact manipulating fear or trust in your treatment, construct validity may be violated. Both construct and ecological validity are relevant for generalizations, and thus useful for making claims about external validity.</p>
+<p>Internal and external validity are not the only ‘validity’ concerns that can be leveled at experimental work, and though relevant, they are also distinct. Ecological validity, as defined by <span class="citation" data-cites="shadish_et_al_2002">Shadish et al. (<a href="#ref-shadish_et_al_2002" role="doc-biblioref">2002</a>)</span> concerns whether an intervention appears artificial or out of place when deployed in a new context. For example, does an information workshop in a rural town carried out by experimenters resemble the kinds of information sharing that the population may experience in regular life? Similarly, if the same workshop were held in a large city, would it appear out of place?</p>
+<p>Construct validity considers whether a theoretical concept is appropriately operationalized by the treatment(s). (See our guide <a href="https://methods.egap.org/guides/data-collection/measurement_en.html">10 Things to Know About Measurement in Experiments</a> for more on constructs and measurement.) If your experiment is testing the effect of anger on political reciprocity and you are in fact manipulating fear or trust in your treatment, construct validity may be violated. Both construct and ecological validity are relevant for generalizations, and thus useful for making claims about external validity.</p>
 </section>
 <section id="extrapolation-across-treatments-and-outcomes" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Extrapolation across treatments and outcomes</h1>
@@ -283,7 +287,7 @@ div.csl-indent {
 <h1 data-number="10"><span class="header-section-number">10</span> Don’t forget time</h1>
 <p>When thinking about causal relationships of interest, it is important also to consider time: do things we learn about the past extend to the future? How do an individual’s potential outcomes change over time? Immutable laws govern the physical and chemical worlds; hence what we learn about these laws today will always remain true. By contrast, we understand far less about the underlying drivers of social behavior and whether they hold constant in the same way. The answer may well be no. When making decisions about the policy relevance and generalizability of results, these considerations can help scholars determine a reasonable level of uncertainty and help policy makers adjust accordingly.</p>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -291,7 +295,7 @@ div.csl-indent {
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-bisbee_et_al_2016" class="csl-entry" role="listitem">
 Bisbee, J., R. Dehejia, C. Pop-Eleches, and C. Samii. 2016. <span>“Local Instruments, Global Extrapolation: External Validity of the Labor Supply-Fertility Local Average Treatment Effect.”</span> <em>Journal of Labor Economics</em>.
 </div>
@@ -312,6 +316,9 @@ Kern, H. L., E. A. Stuart, J. Hill, and D. P. Green. 2016. <span>“Assessing Me
 </div>
 <div id="ref-manski_2013" class="csl-entry" role="listitem">
 Manski, C. F. 2013. <span>“Response to the Review of <span>‘Public Policy in an Uncertain World’</span>.”</span> <em>The Economic Journal</em> 123: F412–15.
+</div>
+<div id="ref-pearl_bareinboim_2014" class="csl-entry" role="listitem">
+Pearl, Judea, and Elias Bareinboim. 2014. <span>“External Validity: From Do-Calculus to Transportability Across Populations.”</span> <em>Statistical Science</em> 29 (4): 579–95. <a href="https://doi.org/10.1214/14-STS486">https://doi.org/10.1214/14-STS486</a>.
 </div>
 <div id="ref-rosenbaum_1999" class="csl-entry" role="listitem">
 Rosenbaum, P. R. 1999. <span>“Choice as an Alternative to Control in Observational Studies” (with Discussion).”</span> <em>Statistical Science</em> 14 (3): 259–304.
@@ -729,6 +736,19 @@ Shadish, W. R., T. D. Cook, and D. T. Campbell. 2002. <em>Experimental and Quasi
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

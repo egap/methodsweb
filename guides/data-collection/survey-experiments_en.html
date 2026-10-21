@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things to Know About Survey Experiments – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -25,7 +31,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -53,15 +58,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -188,7 +192,7 @@ div.csl-indent {
   <li><a href="#implementation" id="toc-implementation"><span class="header-section-number">8</span> Implementation</a></li>
   <li><a href="#considerations" id="toc-considerations"><span class="header-section-number">9</span> Considerations</a></li>
   <li><a href="#limitations" id="toc-limitations"><span class="header-section-number">10</span> Limitations</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <style>
@@ -245,7 +249,7 @@ _Conjoint experiments_ maintain many benefits of factorial experiments, but incr
 <section id="conjoint-experiments" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Conjoint experiments</h1>
 <p>Conjoint experiments are useful when researchers aim to measure multidimensional preferences (i.e., preferences that are characterized by more than one attribute). In a typical conjoint experiment, researchers repeatedly ask respondents to choose between two distinct options and randomly vary the characteristics of these two options.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Researchers may also ask respondents to rate each option on a scale. In both cases, respondents express their preferences toward a large number of pairings with randomized attributes.</p>
-<p><span class="citation" data-cites="hainmueller2014causal">Hainmueller, Hopkins, and Yamamoto (<a href="#ref-hainmueller2014causal" role="doc-biblioref">2014</a>)</span> demonstrate the use of conjoint experiments in a study about support for immigration. The authors showed respondents two immigrant profiles and asked (a) which immigrant the respondent would prefer be admitted to the Unites States and (b) how the respondent rated each immigrant on a scale from 1-7. The authors randomly varied nine attributes of the immigrants (gender, education, employment plans, job experience, profession, language skills, country of origin, reasons for applying, and prior trips to the United States), yielding thousands of unique immigrant profiles. This process was repeated five times so that each respondents saw and rated five pairs of immigrants. Through this procedure, the authors assessed how these randomly varied components influence support for the immigrant.</p>
+<p><span class="citation" data-cites="hainmueller2014causal">Hainmueller et al. (<a href="#ref-hainmueller2014causal" role="doc-biblioref">2014</a>)</span> demonstrate the use of conjoint experiments in a study about support for immigration. The authors showed respondents two immigrant profiles and asked (a) which immigrant the respondent would prefer be admitted to the Unites States and (b) how the respondent rated each immigrant on a scale from 1-7. The authors randomly varied nine attributes of the immigrants (gender, education, employment plans, job experience, profession, language skills, country of origin, reasons for applying, and prior trips to the United States), yielding thousands of unique immigrant profiles. This process was repeated five times so that each respondents saw and rated five pairs of immigrants. Through this procedure, the authors assessed how these randomly varied components influence support for the immigrant.</p>
 <p>Respondents saw:</p>
 <p><img src="survey-experiments_conjoint_image2.png" class="img-fluid"></p>
 <p>The conjoint experiment thus allows us to measure how <em>multiple</em> immigrant characteristics, such as their gender or country of origin, shape respondents’ attitudes toward the immigrants. Another advantage of this survey experiment, compared to a non-experimental survey, is that it preempts the need for respondents to directly express sensitive preferences; instead, they indirectly reveal their preferences. For example, while respondents who hold sexist attitudes may be less willing to openly express preferences for male immigrants due to social desirability bias, they may find it more comfortable to choose — and therefore reveal their preferences for — male immigrant profiles in this less direct setting.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Given these advantages, the use of conjoint experiments is not confined to the measurement of immigrant preferences; researchers have also applied conjoint experiments to study other multidimensional preferences, such as candidate choice and policy packages.</p>
@@ -265,7 +269,7 @@ Other potential pitfalls can occur if the researcher varies too many characteris
 <section id="priming-experiments" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Priming experiments</h1>
 <p>In a priming experiment, researchers expose respondents in the treatment group to a stimulus representing topic <em>X</em> in order to influence their considerations at the top of their head when responding to a survey question about topic <em>Y</em>. The control group, however, is not exposed to the stimulus. Therefore, the difference in expressed preferences regarding <em>Y</em> between the treatment and control groups is due to exposure to the treatment stimulus.</p>
-<p>Priming experiments are a broad class and include any experiment that makes a specific topic salient in the mind of the respondent. One common method of priming is the use of images. For example, <span class="citation" data-cites="brader2008triggers">Brader, Valentino, and Suhay (<a href="#ref-brader2008triggers" role="doc-biblioref">2008</a>)</span> used images as a priming instrument to estimate the role of race in shaping immigration preferences. The researchers showed subjects a positive or negative news article about immigration paired with a picture of a European immigrant or an Hispanic immigrant. Subjects expressed negative attitudes about immigration when the negative news article was paired with the Hispanic immigrant picture but not in other conditions. The picture primed people to think about Hispanic immigrants, and thinking about Hispanic immigrants reduced support for immigration compared to thinking about European immigrants.</p>
+<p>Priming experiments are a broad class and include any experiment that makes a specific topic salient in the mind of the respondent. One common method of priming is the use of images. For example, <span class="citation" data-cites="brader2008triggers">Brader et al. (<a href="#ref-brader2008triggers" role="doc-biblioref">2008</a>)</span> used images as a priming instrument to estimate the role of race in shaping immigration preferences. The researchers showed subjects a positive or negative news article about immigration paired with a picture of a European immigrant or an Hispanic immigrant. Subjects expressed negative attitudes about immigration when the negative news article was paired with the Hispanic immigrant picture but not in other conditions. The picture primed people to think about Hispanic immigrants, and thinking about Hispanic immigrants reduced support for immigration compared to thinking about European immigrants.</p>
 <p>More broadly, priming experiments can be useful when researchers are interested in learning about the influence of context. By making a specific context of interest salient to a randomized subset of respondents, researchers can gauge the impact of this primed context on the measured outcome of interest.</p>
 <!-- Survey experiments for measurement and for causal identification overlap in priming experiments.  Researchers can use them to measure implicit attitudes or to assess how the activation of implicit attitudes affects another outcome, like attitudes towards immigration.
 
@@ -293,7 +297,7 @@ To ensure information equivalence and to reduce confounding the prime with an as
 <blockquote class="blockquote">
 <p>As you know, there has been a lot of talk about immigration reform policy in the news. One proposal [<strong>backed by Barack Obama</strong>/<strong>backed by John McCain</strong>] provided legal status and a path to legal citizenship for the approximately 12 million illegal immigrants currently residing in the United States. What is your view of this immigration reform policy?</p>
 </blockquote>
-<p>On one hand, the difference between the control condition and the Obama (McCain) condition for Democrats (Republicans) indicates in-party bias. On the other, the difference between the control condition and the Obama (McCain) condition for Republicans (Democrats) indicates out-party bias. This experiment helps researchers gauge the favorability toward the potentially sensitive item (i.e., the political actor), as other well-designed endorsement experiments also do. Because endorsement experiments preempt the need for respondents to self-report their support for a controversial object, they are especially useful in politically sensitive contexts. For example, they have been used to measure public support for militant groups (e.g., <span class="citation" data-cites="bullock2011statistical">Bullock, Imai, and Shapiro (<a href="#ref-bullock2011statistical" role="doc-biblioref">2011</a>)</span>; <span class="citation" data-cites="lyall2013explaining">Lyall, Blair, and Imai (<a href="#ref-lyall2013explaining" role="doc-biblioref">2013</a>)</span>).</p>
+<p>On one hand, the difference between the control condition and the Obama (McCain) condition for Democrats (Republicans) indicates in-party bias. On the other, the difference between the control condition and the Obama (McCain) condition for Republicans (Democrats) indicates out-party bias. This experiment helps researchers gauge the favorability toward the potentially sensitive item (i.e., the political actor), as other well-designed endorsement experiments also do. Because endorsement experiments preempt the need for respondents to self-report their support for a controversial object, they are especially useful in politically sensitive contexts. For example, they have been used to measure public support for militant groups (e.g., <span class="citation" data-cites="bullock2011statistical">Bullock et al. (<a href="#ref-bullock2011statistical" role="doc-biblioref">2011</a>)</span>; <span class="citation" data-cites="lyall2013explaining">Lyall et al. (<a href="#ref-lyall2013explaining" role="doc-biblioref">2013</a>)</span>).</p>
 <!-- ### Pitfalls of endorsement experiments
 
 As with priming experiments, endorsement experiments suffer from _confounding and a lack of information equivalence_.  Researchers cannot be certain if differential support for the policy is due to the endorsement or due to different substantive assumptions about the policy that respondents make as a result of the endorsement.
@@ -341,12 +345,12 @@ _Visual aids_ also help reduce satisficing and ensure that respondents follow th
 <section id="randomized-response" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Randomized Response</h1>
 <p>The randomized response technique is also used to measure a sensitive attitude or behavior when the researcher expects respondents to lie about it if asked a direct question.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> In the most common version of the randomized response technique, respondents are directly asked a yes or no question about a sensitive topic. The respondent is also given some randomization device, such as a coin or die. The respondent is told to answer the question when the randomization device takes on a certain value (e.g., tails) or to simply say “yes” when the randomization device takes a different value (e.g., heads). Researchers assume that respondents will believe their anonymity is protected because the researcher cannot know whether a “yes” resulted from agreement with the sensitive item or the randomization device.</p>
-<p>For example, <span class="citation" data-cites="blair2015design">Blair, Imai, and Zhou (<a href="#ref-blair2015design" role="doc-biblioref">2015</a>)</span> studied support for militants in Nigeria with the randomized response technique. They gave respondents a die and had the respondent practice throwing it. They then told respondents:</p>
+<p>For example, <span class="citation" data-cites="blair2015design">Blair et al. (<a href="#ref-blair2015design" role="doc-biblioref">2015</a>)</span> studied support for militants in Nigeria with the randomized response technique. They gave respondents a die and had the respondent practice throwing it. They then told respondents:</p>
 <!--<p class="comment">-->
 <blockquote class="blockquote">
 <p>For this question, I want you to answer yes or no. But I want you to consider the number of your dice throw. If 1 shows on the dice, tell me no. If 6 shows, tell me yes. But if another number, like 2 or 3 or 4 or 5 shows, tell me your opinion about the question that I will ask you after you throw the dice. <br><br> [ENUMERATOR TURN AWAY FROM THE RESPONDENT]<br><br> Now throw the dice so that I cannot see what comes out. Please do not forget the number that comes out.<br><br> [ENUMERATOR WAIT TO TURN AROUND UNTIL RESPONDENT SAYS YES TO]: Have you thrown the dice? Have you picked it up?<br><br> Now, during the height of the conflict in 2007 and 2008, did you know any militants, like a family member, a friend, or someone you talked to on a regular basis? Please, before you answer, take note of the number you rolled on the dice.</p>
 </blockquote>
-<p>In expectation, one-sixth of respondents answer “yes” due to the die throw. The researcher can thus determine what percentage of respondents engaged in the sensitive behavior. <!--by subtracting 1/6 from the survey mean of the randomized response question and multiplying by 1/6.--> Here, however, respondents might not feel that their answers to randomized response questions were truly anonymous. This is because if a respondent answered yes, the answer could have been dictated by the randomization device, but it could also signal agreement with the sensitive item.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Indeed, there are other types of randomized response techniques that address this limitation, including the <em>repeated randomized response technique</em> and the <em>crosswise model</em>. We refer interested readers to <span class="citation" data-cites="azfar2009identifying">Azfar and Murrell (<a href="#ref-azfar2009identifying" role="doc-biblioref">2009</a>)</span> and <span class="citation" data-cites="jann2011asking">Jann, Jerke, and Krumpal (<a href="#ref-jann2011asking" role="doc-biblioref">2011</a>)</span> for the logic and implementation of these techniques.</p>
+<p>In expectation, one-sixth of respondents answer “yes” due to the die throw. The researcher can thus determine what percentage of respondents engaged in the sensitive behavior. <!--by subtracting 1/6 from the survey mean of the randomized response question and multiplying by 1/6.--> Here, however, respondents might not feel that their answers to randomized response questions were truly anonymous. This is because if a respondent answered yes, the answer could have been dictated by the randomization device, but it could also signal agreement with the sensitive item.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Indeed, there are other types of randomized response techniques that address this limitation, including the <em>repeated randomized response technique</em> and the <em>crosswise model</em>. We refer interested readers to <span class="citation" data-cites="azfar2009identifying">Azfar and Murrell (<a href="#ref-azfar2009identifying" role="doc-biblioref">2009</a>)</span> and <span class="citation" data-cites="jann2011asking">Jann et al. (<a href="#ref-jann2011asking" role="doc-biblioref">2011</a>)</span> for the logic and implementation of these techniques.</p>
 <!-- ### Pitfalls of the randomized response technique
 
 _Some versions are complicated_.  Even the common version described above, valued in part for its simplicity, requires respondents to use some randomization device and remember the outcome of the randomization device.  Other versions use more complicated techniques to ensure anonymity; these versions may be difficult both for the respondent and the enumerator.^[See @blair2015design and @gingerich2010understanding.]  It is possible that some respondents do not understand the instructions and some enumerators do not implement the randomized response technique properly.
@@ -363,14 +367,14 @@ The _Crosswise model_ modifies the randomized response technique so that respond
 <section id="implementation" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Implementation</h1>
 <p>To implement survey experiments, researchers need to write up multiple versions of a survey: at least one for the control condition(s) and at least one for the treatment condition(s). Then, researchers need a randomization device that allows them to randomize the survey version shown to the respondents. There are many platforms that facilitate the implementation of survey experiments, with Qualtrics being one of the most popular tools among survey researchers.</p>
-<p>While the treatment is typically imposed through text, the treatment stimulus can also be of other forms, including images and videos. The key is to map the treatment directly onto the theoretical variable of interest. That is, if the researcher is interested in studying the effect of <em>X</em> on <em>Y</em>, the text, image, or video (or any of their combination) should induce a change in <em>X</em> and not in other confounding variables.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Visual aids, if carefully provided, can be helpful in different settings. For example, researchers have used photos as experimental stimuli to investigate the impact of candidate appearance on vote choice <span class="citation" data-cites="ahler2017appearance">(<a href="#ref-ahler2017appearance" role="doc-biblioref">Douglas et al. 2017</a>)</span> and the effects of gender and racial diversity in shaping the legitimacy of international organizations <span class="citation" data-cites="chow2023diversity">(<a href="#ref-chow2023diversity" role="doc-biblioref">Chow and Han 2023</a>)</span>.</p>
+<p>While the treatment is typically imposed through text, the treatment stimulus can also be of other forms, including images and videos. The key is to map the treatment directly onto the theoretical variable of interest. That is, if the researcher is interested in studying the effect of <em>X</em> on <em>Y</em>, the text, image, or video (or any of their combination) should induce a change in <em>X</em> and not in other confounding variables.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Visual aids, if carefully provided, can be helpful in different settings. For example, researchers have used photos as experimental stimuli to investigate the impact of candidate appearance on vote choice <span class="citation" data-cites="ahler2017appearance">(<a href="#ref-ahler2017appearance" role="doc-biblioref">Ahler et al. 2017</a>)</span> and the effects of gender and racial diversity in shaping the legitimacy of international organizations <span class="citation" data-cites="chow2023diversity">(<a href="#ref-chow2023diversity" role="doc-biblioref">Chow and Han 2023</a>)</span>.</p>
 </section>
 <section id="considerations" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Considerations</h1>
 <p>Survey experiments can be an effective tool for researchers to measure sensitive attitudes and learn about causal relationships. Not only can they be done quickly and iteratively, but they may also be included on mass online surveys because they do not require in-person contact to implement. This means that a researcher can plan a sequence of online survey experiments, changing the intervention and measured outcomes from one experiment to the next to learn about the mechanisms behind the treatment effect very quickly <span class="citation" data-cites="sniderman2018some">(<a href="#ref-sniderman2018some" role="doc-biblioref">Sniderman 2018</a>)</span>.</p>
 <p>But researchers need to be careful about <em>survey satisficing</em>, which occurs when respondents put in minimal effort to understand and answer a survey question.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> In the presence of satisficing behavior, the treatment embedded in the survey experiments may not be received by respondents as intended. As such, the measured preferences will be unreliable. Given this concern, researchers should always design survey experiments that are easy to understand. The length and complexity of the survey and experimental stimuli should also be kept at a minimum level, whenever possible. A related consideration is <em>respondent attentiveness</em>, an issue that is extensively discussed by <span class="citation" data-cites="alvarez2019attention">Alvarez et al. (<a href="#ref-alvarez2019attention" role="doc-biblioref">2019</a>)</span>.</p>
 <p>Researchers also need to consider the <em>strength</em> of their treatment. Sometimes the experimental stimulus is unable to generate a meaningful change in the subsequently measured attitude or behavior not because the treatment is unrelated to the outcome variable of interest, but because the treatment itself is too weak. For example, for an information provision experiment where the experimental stimulus is some factual information related to topic <em>Y</em>, the treatment may fail to change views on <em>Y</em> not because the information plays no role in shaping individual attitudes toward <em>Y</em>, but because respondents have already been exposed to this information in the real world.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> More generally, researchers need to watch out for <em>preatreatment effects</em> <span class="citation" data-cites="druckman2012learning">(<a href="#ref-druckman2012learning" role="doc-biblioref">Druckman and Leeper 2012</a>)</span>. If respondents, before participating in the survey experiment, have already encountered the experimental stimulus, there may be no measured difference between treatment and control groups because all respondents were “pretreated” with the stimulus, including those in the control group.</p>
-<p>When designing survey experiments, researchers should pay attention to the question <em>wording</em> and <em>ordering</em>. Some terms, for example, may be unfamiliar to certain respondents or interpreted by different respondents in different ways. As such, measurement invariance may set in, such that the same construct is measured differently for different groups of individuals. In other cases, the question ordering itself may bias how individuals provide their responses <span class="citation" data-cites="gaines2007logic">(<a href="#ref-gaines2007logic" role="doc-biblioref">Gaines, Kuklinski, and Quirk 2007</a>)</span>. These considerations are all important to bear in mind when researchers design their survey experiments, since they fundamentally shape the inferences one can draw from the data.</p>
+<p>When designing survey experiments, researchers should pay attention to the question <em>wording</em> and <em>ordering</em>. Some terms, for example, may be unfamiliar to certain respondents or interpreted by different respondents in different ways. As such, measurement invariance may set in, such that the same construct is measured differently for different groups of individuals. In other cases, the question ordering itself may bias how individuals provide their responses <span class="citation" data-cites="gaines2007logic">(<a href="#ref-gaines2007logic" role="doc-biblioref">Gaines et al. 2007</a>)</span>. These considerations are all important to bear in mind when researchers design their survey experiments, since they fundamentally shape the inferences one can draw from the data.</p>
 <!-- For survey experiments as a measurement technique, the researcher first has to assess if the attitude of interest is explicit (consciously known to the respondent) or implicit (not consciously known to the respondent).  If the researcher believes the respondent knows her own attitude but does not want to be identified with it, the researcher should make it possible for the respondent to express that attitude without the researcher knowing that attitude.  List experiments, randomized response techniques, and endorsement experiments can help accomplish this task.  If the researcher believes the respondent does not know her own attitude, the researcher should make that attitude salient through priming and then ask a question that should be implicitly affected by the prime.
 
 There may be cases where survey experiments are not the best tool for measuring sensitive attitudes.  As an alternative to survey experiments to measure explicit attitudes, researchers can use techniques like the Bogus Pipeline [@jones1971bogus] or phrase questions about a sensitive topic so that they are not considered socially undesirable [@kinder1981symbolicRacism].  As an alternative to survey experiments to measure implicit attitudes, researchers can use measures like the Implicit Association Test (IAT) [@greenwald1998IAT] and physiological measures like skin conductance.^[See @rankin1955galvanic and @figner2011using.] These measures are beyond conscious control of the respondent.  Many of these alternative measures are not currently flexible enough to be included on a mass survey, but technology, like heart-rate monitoring watches and other phone sensors, may soon make biometric outcomes measurable in mass surveys.
@@ -386,7 +390,7 @@ Survey experiments for measurement and survey experiments for estimating causal 
 <li><span class="citation" data-cites="mutz2011population">Mutz (<a href="#ref-mutz2011population" role="doc-biblioref">2011</a>)</span> “Population-Based Survey Experiments.”</li>
 <li><span class="citation" data-cites="sniderman2018some">Sniderman (<a href="#ref-sniderman2018some" role="doc-biblioref">2018</a>)</span> “Some Advances in the Design of Survey Experiments” in the <em>Annual Review of Political Science</em>.</li>
 <li><span class="citation" data-cites="lavrakas2019experimental">Lavrakas et al. (<a href="#ref-lavrakas2019experimental" role="doc-biblioref">2019</a>)</span> “Experimental Methods in Survey Research: Techniques that Combine Random Sampling with Random Assignment.”</li>
-<li><span class="citation" data-cites="diaz2020survey">Diaz, Grady, and Kuklinski (<a href="#ref-diaz2020survey" role="doc-biblioref">2020</a>)</span> “Survey Experiments and the Quest for Valid Interpretation” in the <em>Sage Handbook of Research Methods in Political Science and International Relations</em>.</li>
+<li><span class="citation" data-cites="diaz2020survey">Diaz et al. (<a href="#ref-diaz2020survey" role="doc-biblioref">2020</a>)</span> “Survey Experiments and the Quest for Valid Interpretation” in the <em>Sage Handbook of Research Methods in Political Science and International Relations</em>.</li>
 </ul>
 <!-- Survey experiments induce less bias than direct questions when measuring sensitive attitudes.^[See @blair2015design, @rosenfeld2016empirical, and @lensvelt2005meta.]  They are not a panacea, however, and researchers must still ask themselves several questions when using survey experiments to measure sensitive outcomes.
 
@@ -410,7 +414,7 @@ Survey experiments to determine causal relationships have the same benefits and 
 
 *Pre-treatment contamination*: Respondents may encounter the treatment outside of the experiment, causing similar outcomes in the control group and treatment group even if the treatment affects outcomes [@gaines2007logic]. -->
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -418,7 +422,10 @@ Survey experiments to determine causal relationships have the same benefits and 
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-ahler2017appearance" class="csl-entry" role="listitem">
+Ahler, Douglas J., Jack Citrin, Michael C. Dougal, and Gabriel S. Lenz. 2017. <span>“Face Value? Experimental Evidence That Candidate Appearance Influences Electoral Choice.”</span> <em>Political Behavior</em> 39 (1): 77–102. <a href="https://doi.org/10.1007/s11109-016-9348-6">https://doi.org/10.1007/s11109-016-9348-6</a>.
+</div>
 <div id="ref-alvarez2019attention" class="csl-entry" role="listitem">
 Alvarez, R. Michael, Lonna Rae Atkeson, Ines Levin, and Yimeng Li. 2019. <span>“Paying Attention to Inattentive Survey Respondents.”</span> <em>Political Analysis</em> 27 (2): 145–62.
 </div>
@@ -441,16 +448,13 @@ Brader, Ted, Nicholas A Valentino, and Elizabeth Suhay. 2008. <span>“What Trig
 Bullock, Will, Kosuke Imai, and Jacob N Shapiro. 2011. <span>“Statistical Analysis of Endorsement Experiments: Measuring Support for Militant Groups in Pakistan.”</span> <em>Political Analysis</em> 19 (4): 363–84.
 </div>
 <div id="ref-chow2023diversity" class="csl-entry" role="listitem">
-Chow, Wilfred M., and Enze Han. 2023. <span>“Descriptive Legitimacy and International Organizations: Evidence from United Nations High Commissioner for Refugees.”</span> <em>Journal of Politics</em> 85 (2): 357–71.
+Chow, Wilfred M., and Enze Han. 2023. <span>“Descriptive Legitimacy and International Organizations: Evidence from United Nations High Commissioner for Refugees.”</span> <em>Journal of Politics</em> 85 (2): 357–71. <a href="https://doi.org/10.1086/723017">https://doi.org/10.1086/723017</a>.
 </div>
 <div id="ref-dafoe2018information" class="csl-entry" role="listitem">
 Dafoe, Allan, Baobao Zhang, and Devin Caughey. 2018. <span>“Information Equivalence in Survey Experiments.”</span> <em>Political Analysis</em> 26 (4): 399–416.
 </div>
 <div id="ref-diaz2020survey" class="csl-entry" role="listitem">
 Diaz, Gustavo, Christopher Grady, and James H Kuklinski. 2020. <span>“Survey Experiments and the Quest for Valid Interpretation.”</span> In <em>SAGE Handbook of Research Methods in Political Science and International Relations</em>. SAGE Publishing.
-</div>
-<div id="ref-ahler2017appearance" class="csl-entry" role="listitem">
-Douglas, Ahler J., Jack Citrin, Michael C. Dougal, and Gabriel S. Lenz. 2017. <span>“Face Value? Experimental Evidence That Candidate Appearance Influences Electoral Choice.”</span> <em>Political Behavior</em> 39: 77–102.
 </div>
 <div id="ref-druckman2012learning" class="csl-entry" role="listitem">
 Druckman, James N, and Thomas J Leeper. 2012. <span>“Learning More from Political Communication Experiments: Pretreatment and Its Effects.”</span> <em>American Journal of Political Science</em> 56 (4): 875–96.
@@ -462,10 +466,10 @@ Edgell, Stephen E, Samuel Himmelfarb, and Karen L Duchan. 1982. <span>“Validit
 Gaines, Brian J, James H Kuklinski, and Paul J Quirk. 2007. <span>“The Logic of the Survey Experiment Reexamined.”</span> <em>Political Analysis</em> 15 (1): 1–20.
 </div>
 <div id="ref-garcia2021list" class="csl-entry" role="listitem">
-García-Sánchez, Miguel, and Rosario Queirolo. 2021. <span>“A Tale of Two Countries: The Effectiveness of List Experiments to Measure Drug Consumption in Opposite Contexts.”</span> <em>International Journal of Public Opinion Research</em> 33 (2): 255–72.
+García-Sánchez, Miguel, and Rosario Queirolo. 2021. <span>“A Tale of Two Countries: The Effectiveness of List Experiments to Measure Drug Consumption in Opposite Contexts.”</span> <em>International Journal of Public Opinion Research</em> 33 (2): 255–72. <a href="https://doi.org/10.1093/ijpor/edaa031">https://doi.org/10.1093/ijpor/edaa031</a>.
 </div>
 <div id="ref-cpo2015rr" class="csl-entry" role="listitem">
-Gingerich, Daniel. 2015. <span>“Randomized Response: Foundations and New Developments.”</span> In <em>Newsletter of the Comparative Politics Organized Section of the American Political Science Association</em>.
+Gingerich, Daniel. 2015. <span>“Randomized Response: Foundations and New Developments.”</span> <em>Newsletter of the Comparative Politics Organized Section of the American Political Science Association</em>.
 </div>
 <div id="ref-gingerich2010understanding" class="csl-entry" role="listitem">
 Gingerich, Daniel W. 2010. <span>“Understanding Off-the-Books Politics: Conducting Inference on the Determinants of Sensitive Behavior with Randomized Response Surveys.”</span> <em>Political Analysis</em> 18 (3): 349–80.
@@ -492,7 +496,7 @@ Jann, Ben, Julia Jerke, and Ivar Krumpal. 2011. <span>“Asking Sensitive Questi
 Krosnick, Jon A. 1991. <span>“Response Strategies for Coping with the Cognitive Demands of Attitude Measures in Surveys.”</span> <em>Applied Cognitive Psychology</em> 5 (3): 213–36.
 </div>
 <div id="ref-kuklinski1997list" class="csl-entry" role="listitem">
-Kuklinski, James H, Paul M Sniderman, Kathleen Knight, Thomas Piazza, Philip E Tetlock, Gordon R Lawrence, and Barbara Mellers. 1997. <span>“Racial Prejudice and Attitudes Toward Affirmative Action.”</span> <em>American Journal of Political Science</em>, 402–19.
+Kuklinski, James H, Paul M Sniderman, Kathleen Knight, et al. 1997. <span>“Racial Prejudice and Attitudes Toward Affirmative Action.”</span> <em>American Journal of Political Science</em>, 402–19.
 </div>
 <div id="ref-lavrakas2019experimental" class="csl-entry" role="listitem">
 Lavrakas, Paul J, Michael W Traugott, Courtney Kennedy, Allyson L Holbrook, Edith D de Leeuw, and Brady T West. 2019. <em>Experimental Methods in Survey Research: Techniques That Combine Random Sampling with Random Assignment</em>. John Wiley &amp; Sons.
@@ -527,13 +531,13 @@ Yu, Jun-Wu, Guo-Liang Tian, and Man-Lai Tang. 2008. <span>“Two New Models for 
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>See <span class="citation" data-cites="hainmueller2014causal">Hainmueller, Hopkins, and Yamamoto (<a href="#ref-hainmueller2014causal" role="doc-biblioref">2014</a>)</span> and <span class="citation" data-cites="green1971conjoint">Green and Rao (<a href="#ref-green1971conjoint" role="doc-biblioref">1971</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>See <span class="citation" data-cites="horiuchi2022conjoint">Horiuchi, Markovich, and Yamamoto (<a href="#ref-horiuchi2022conjoint" role="doc-biblioref">2022</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>See <span class="citation" data-cites="warner1965randomized">Warner (<a href="#ref-warner1965randomized" role="doc-biblioref">1965</a>)</span>, <span class="citation" data-cites="boruch1971assuring">Boruch (<a href="#ref-boruch1971assuring" role="doc-biblioref">1971</a>)</span>, <span class="citation" data-cites="cpo2015rr">D. Gingerich (<a href="#ref-cpo2015rr" role="doc-biblioref">2015</a>)</span>, and <span class="citation" data-cites="gingerich2010understanding">D. W. Gingerich (<a href="#ref-gingerich2010understanding" role="doc-biblioref">2010</a>)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>See <span class="citation" data-cites="edgell1982validity">Edgell, Himmelfarb, and Duchan (<a href="#ref-edgell1982validity" role="doc-biblioref">1982</a>)</span> and <span class="citation" data-cites="yu2008two">Yu, Tian, and Tang (<a href="#ref-yu2008two" role="doc-biblioref">2008</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>See <span class="citation" data-cites="dafoe2018information">Dafoe, Zhang, and Caughey (<a href="#ref-dafoe2018information" role="doc-biblioref">2018</a>)</span> on information equivalence.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>See <span class="citation" data-cites="hainmueller2014causal">Hainmueller et al. (<a href="#ref-hainmueller2014causal" role="doc-biblioref">2014</a>)</span> and <span class="citation" data-cites="green1971conjoint">Green and Rao (<a href="#ref-green1971conjoint" role="doc-biblioref">1971</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>See <span class="citation" data-cites="horiuchi2022conjoint">Horiuchi et al. (<a href="#ref-horiuchi2022conjoint" role="doc-biblioref">2022</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>See <span class="citation" data-cites="warner1965randomized">Warner (<a href="#ref-warner1965randomized" role="doc-biblioref">1965</a>)</span>, <span class="citation" data-cites="boruch1971assuring">Boruch (<a href="#ref-boruch1971assuring" role="doc-biblioref">1971</a>)</span>, <span class="citation" data-cites="cpo2015rr">Gingerich (<a href="#ref-cpo2015rr" role="doc-biblioref">2015</a>)</span>, and <span class="citation" data-cites="gingerich2010understanding">Gingerich (<a href="#ref-gingerich2010understanding" role="doc-biblioref">2010</a>)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>See <span class="citation" data-cites="edgell1982validity">Edgell et al. (<a href="#ref-edgell1982validity" role="doc-biblioref">1982</a>)</span> and <span class="citation" data-cites="yu2008two">Yu et al. (<a href="#ref-yu2008two" role="doc-biblioref">2008</a>)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>See <span class="citation" data-cites="dafoe2018information">Dafoe et al. (<a href="#ref-dafoe2018information" role="doc-biblioref">2018</a>)</span> on information equivalence.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>See <span class="citation" data-cites="krosnick1991response">Krosnick (<a href="#ref-krosnick1991response" role="doc-biblioref">1991</a>)</span> and <span class="citation" data-cites="simon2006administrative">Simon and March (<a href="#ref-simon2006administrative" role="doc-biblioref">2006</a>)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>See <span class="citation" data-cites="haaland2023infoexp">Haaland, Roth, and Johannes (<a href="#ref-haaland2023infoexp" role="doc-biblioref">2023</a>)</span> for a review of information provision experiments.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>See <span class="citation" data-cites="haaland2023infoexp">Haaland et al. (<a href="#ref-haaland2023infoexp" role="doc-biblioref">2023</a>)</span> for a review of information provision experiments.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -937,6 +941,19 @@ Yu, Jun-Wu, Guo-Liang Tian, and Man-Lai Tang. 2008. <span>“Two New Models for 
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

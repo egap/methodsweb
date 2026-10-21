@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things to Know About Reading a Regression Table – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -25,7 +31,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -53,15 +58,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -91,7 +95,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -223,7 +227,7 @@ window.Quarto = {
   <li><a href="#what-the-r²-means" id="toc-what-the-r²-means"><span class="header-section-number">8</span> What the R² means</a></li>
   <li><a href="#be-careful-when-comparing-coefficients" id="toc-be-careful-when-comparing-coefficients"><span class="header-section-number">9</span> Be careful when comparing coefficients</a></li>
   <li><a href="#meet-the-whole-family" id="toc-meet-the-whole-family"><span class="header-section-number">10</span> Meet the whole family</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <p>The table below that will be used throughout this methods guide is adapted from a study done by EGAP members Miriam Golden, Eric Kramon and their colleagues <span class="citation" data-cites="asunka_et_al_2013">(<a href="#ref-asunka_et_al_2013" role="doc-biblioref">Asunka et al. 2013</a>)</span>. The authors performed a field experiment in Ghana in 2012 to test the effectiveness of domestic election observers on combating two common electoral fraud problems: ballot stuffing and overvoting. Ballot stuffing occurs when more ballots are found in a ballot box than are known to have been distributed to voters. Overvoting occurs when more votes are cast at a polling station than the number of voters registered. This table reports a multiple regression (this is a concept that will be further explained below) from their experiment that explores the effects of domestic election observers on ballot stuffing. The sample consists of 2,004 polling stations.</p>
@@ -288,7 +292,7 @@ window.Quarto = {
 <section id="watch-out-for-researcher-degrees-of-freedom" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Watch out for “researcher degrees of freedom”</h1>
 <p>The SEs, p-values, significance tests, and CIs reported in regression tables typically assume that the researchers would have made all the same analytic decisions (which observations and variables to include in the regression, which hypothesis to test, etc.) if the outcome data had shown different patterns or if (in a randomized experiment) different units had been randomly assigned to treatment. This assumption is credible if all those decisions were <strong>pre-specified</strong> before the researchers saw any data on outcomes or treatment assignments. Otherwise, researchers may make decisions that consciously or unconsciously tilt a study toward a desired result. This problem is known as “fishing”<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>, “researcher degrees of freedom,”<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> or “the garden of forking paths.”<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
-<p>In an instructive and entertaining paper, <span class="citation" data-cites="simmons_et_al_2011">Simmons, Nelson, and Simonsohn (<a href="#ref-simmons_et_al_2011" role="doc-biblioref">2011</a>)</span> use simulations as well as actual experiments to show how easy it is for researcher degrees of freedom to invalidate significance tests. In simulations, they show that when researchers have unlimited discretion about which outcome to analyze, when to stop recruiting subjects, how to model the effect of a covariate, and which treatment conditions to include in the analysis, a significance test that claims to have a <a href="https://en.wikipedia.org/wiki/Type_I_and_type_II_errors#Type_I_error">Type I error</a> probability (false-positive rate) of 5% can easily be made to have an actual Type I error probability as high as 61%. In other words (and as said in the paper’s title), “Undisclosed flexibility in data collection and analysis allows presenting anything as significant.” Allowing themselves unlimited flexibility in the data collection and analysis for an actual experiment, <span class="citation" data-cites="simmons_et_al_2011">Simmons, Nelson, and Simonsohn (<a href="#ref-simmons_et_al_2011" role="doc-biblioref">2011</a>)</span> manage to reach the necessarily false conclusion that listening to the Beatles’ song “When I’m Sixty-Four” made the subjects “nearly a year-and-a-half younger,” with a p-value of .04.</p>
+<p>In an instructive and entertaining paper, <span class="citation" data-cites="simmons_et_al_2011">Simmons et al. (<a href="#ref-simmons_et_al_2011" role="doc-biblioref">2011</a>)</span> use simulations as well as actual experiments to show how easy it is for researcher degrees of freedom to invalidate significance tests. In simulations, they show that when researchers have unlimited discretion about which outcome to analyze, when to stop recruiting subjects, how to model the effect of a covariate, and which treatment conditions to include in the analysis, a significance test that claims to have a <a href="https://en.wikipedia.org/wiki/Type_I_and_type_II_errors#Type_I_error">Type I error</a> probability (false-positive rate) of 5% can easily be made to have an actual Type I error probability as high as 61%. In other words (and as said in the paper’s title), “Undisclosed flexibility in data collection and analysis allows presenting anything as significant.” Allowing themselves unlimited flexibility in the data collection and analysis for an actual experiment, <span class="citation" data-cites="simmons_et_al_2011">Simmons et al. (<a href="#ref-simmons_et_al_2011" role="doc-biblioref">2011</a>)</span> manage to reach the necessarily false conclusion that listening to the Beatles’ song “When I’m Sixty-Four” made the subjects “nearly a year-and-a-half younger,” with a p-value of .04.</p>
 <p>One remedy is for researchers to pre-specify and publicly archive their decisions about data collection and analysis (e.g., stopping rules, outcome measures, covariates, regression models, sample exclusions, and subgroup definitions) before they see the outcome data (and, ideally, before they assign treatments). Documents of these decisions are known as <strong>pre-analysis plans</strong> (PAPs). Critics of PAPs worry that they inhibit <a href="https://en.wikipedia.org/wiki/Exploratory_data_analysis">exploratory data analysis</a>. Proponents argue that deviations from the plans are not prohibited, but should be fully disclosed and highlighted, to help readers distinguish between <a href="http://www.jstor.org/stable/2682991">exploratory and confirmatory analyses</a>. For valuable discussions, see the symposia in <a href="https://www.jstor.org/stable/i23359619"><em>Political Analysis</em></a> (Winter 2013)<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> and <a href="https://www.aeaweb.org/issues/381"><em>Journal of Economic Perspectives</em></a> (Summer 2015)<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>. Also take a look at <a href="https://methods.egap.org/guides/planning/pap_en.html">our guide on pre-registration</a>.</p>
 </section>
 <section id="watch-out-for-other-possible-biases" class="level1" data-number="7">
@@ -333,7 +337,7 @@ window.Quarto = {
 </ul>
 <p>For the simple linear case, the coefficient tells you the change in Y you get for each unit change in X, but for nonlinear regressions the interpretation can be much more difficult. For nonlinear models you should generally expect authors to provide substantive interpretations of the coefficients. The program <a href="http://gking.harvard.edu/clarify">Clarify</a> by Gary King and colleagues helps with this for Stata users; the <a href="http://zeligproject.org/">Zelig package for R</a> (also by King and coauthors) supports analysis and interpretation of these models in R.</p>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -341,7 +345,7 @@ window.Quarto = {
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-abadie_et_al_2014" class="csl-entry" role="listitem">
 Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey M. Wooldridge. 2014. <span>“Finite Population Causal Standard Errors.”</span> <em>NBER Working Paper No. 20325</em>.
 </div>
@@ -355,25 +359,25 @@ Angrist, Joshua D. 2001. <span>“Estimation of Limited Dependent Variable Model
 Angrist, Joshua D., and Jörn-Steffen Pischke. 2009. <em>Mostly Harmless Econometrics</em>. Princeton University Press.
 </div>
 <div id="ref-angrist_pischke_2010" class="csl-entry" role="listitem">
-———. 2010. <span>“The Credibility Revolution in Empirical Economics.”</span> <em>Journal of Economic Perspectives</em> 24 (2): 3–30.
+Angrist, Joshua D., and Jörn-Steffen Pischke. 2010. <span>“The Credibility Revolution in Empirical Economics.”</span> <em>Journal of Economic Perspectives</em> 24 (2): 3–30.
 </div>
 <div id="ref-angrist_pischke_2015" class="csl-entry" role="listitem">
-———. 2015. <em>Mastering ’Metrics: The Path from Cause to Effect</em>. Princeton University Press.
+Angrist, Joshua D., and Jörn-Steffen Pischke. 2015. <em>Mastering ’Metrics: The Path from Cause to Effect</em>. Princeton University Press.
 </div>
 <div id="ref-asunka_et_al_2013" class="csl-entry" role="listitem">
-Asunka, Joseph, Sarah Brierley, Miriam Golden, Eric Kramon, and George Ofosu. 2013. <span>“Protecting the Polls: The Effect of Observers on Election Fraud.”</span>
+Asunka, Joseph, Sarah Brierley, Miriam Golden, Eric Kramon, and George Ofosu. 2013. <span>“Protecting the Polls: The Effect of Observers on Election Fraud.”</span> Unpublished manuscript.
 </div>
 <div id="ref-berk_et_al_2014" class="csl-entry" role="listitem">
-Berk, R. A., L. D. Brown, A. Buja, E. I. George, E. Pitkin, K. Zhang, and L. Zhao. 2014. <span>“Misspecified Mean Function Regression: Making Good Use of Regression Models That Are Wrong.”</span> <em>Sociological Methods Research</em> 43 (3): 422–51.
+Berk, R. A., L. D. Brown, A. Buja, et al. 2014. <span>“Misspecified Mean Function Regression: Making Good Use of Regression Models That Are Wrong.”</span> <em>Sociological Methods Research</em> 43 (3): 422–51.
 </div>
 <div id="ref-buja_et_al_2015" class="csl-entry" role="listitem">
-Buja, A., R. A. Berk, L. D. Brown, E. I. George, E. Pitkin, M. Traskin, L. Zhao, and K. Zhang. 2015. <span>“Models as Approximations - a Conspiracy of Random Regressors and Model Deviations Against Classical Inference in Regression.”</span> <em>Statistical Science</em>, 1–44.
+Buja, A., R. A. Berk, L. D. Brown, et al. 2015. <span>“Models as Approximations - a Conspiracy of Random Regressors and Model Deviations Against Classical Inference in Regression.”</span> <em>Statistical Science</em>, 1–44.
 </div>
 <div id="ref-coffman_2015" class="csl-entry" role="listitem">
 Coffman, Lucas C., and Muriel Niederle. 2015. <span>“Pre-Analysis Plans Have Limited Upside, Especially Where Replications Are Feasible.”</span> <em>Journal of Economic Perspectives</em> 29 (3): 81–98.
 </div>
 <div id="ref-findley_et_al_2016" class="csl-entry" role="listitem">
-Findley, Michael G., Nathan M. Jensen, Edmund J. Malesky, and Thomas B. Pepinsky. 2016. <span>“Can Results-Free Review Reduce Publication Bias? The Results and Implications of a Pilot Study.”</span> <em>Comparative Political Studies</em> 49 (13): 1667–1703. <a href="https://doi.org/10.1177/0010414016655539">https://doi.org/10.1177/0010414016655539</a>.
+Findley, Michael G., Nathan M. Jensen, Edmund J. Malesky, and Thomas B. Pepinsky. 2016. <span>“Can Results-Free Review Reduce Publication Bias? The Results and Implications of a Pilot Study.”</span> <em>Comparative Political Studies</em> 49 (13): 1667–703. <a href="https://doi.org/10.1177/0010414016655539">https://doi.org/10.1177/0010414016655539</a>.
 </div>
 <div id="ref-freedman_1991" class="csl-entry" role="listitem">
 Freedman, David A. 1991. <span>“Statistical Models and Shoe Leather.”</span> <em>Sociological Methodology</em> 21: 291–358.
@@ -382,7 +386,7 @@ Freedman, David A. 1991. <span>“Statistical Models and Shoe Leather.”</span>
 Gelman, Andrew. 2013. <span>“Preregistration of Studies and Mock Reports.”</span> <em>Political Analysis</em> 21 (1): 40–41. <a href="http://www.jstor.org/stable/23359690">http://www.jstor.org/stable/23359690</a>.
 </div>
 <div id="ref-gelman_loken_2013" class="csl-entry" role="listitem">
-Gelman, Andrew, and Eric Loken. 2013. <span>“The Garden of Forking Paths: Why Multiple Comparisons Can Be a Problem, Even When There Is No ’Fishing Expedition’ or ’p-Hacking’ and the Research Hypothesis Was Posited Ahead of Time.”</span>
+Gelman, Andrew, and Eric Loken. 2013. <span>“The Garden of Forking Paths: Why Multiple Comparisons Can Be a Problem, Even When There Is No ’Fishing Expedition’ or ’p-Hacking’ and the Research Hypothesis Was Posited Ahead of Time.”</span> Unpublished manuscript.
 </div>
 <div id="ref-gelman_pardoe_2007" class="csl-entry" role="listitem">
 Gelman, Andrew, and Iain Pardoe. 2007. <span>“Average Predictive Comparisons for Models with Nonlinearity, Interactions, and Variance Components.”</span> <em>Sociological Methodology</em> 37: 23–51.
@@ -391,7 +395,7 @@ Gelman, Andrew, and Iain Pardoe. 2007. <span>“Average Predictive Comparisons f
 Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. W.W. Norton.
 </div>
 <div id="ref-greenland_et_al_2016" class="csl-entry" role="listitem">
-Greenland, Sander, Stephen J. Senn, Kenneth J. Rothman, John B. Carlin, Charles Poole, Steven N. Goodman, and Douglas G. Altman. 2016. <span>“Statistical Tests, p Values, Confidence Intervals, and Power: A Guide to Misinterpretations.”</span> <em>European Journal of Epidemiology</em> 31 (4): 337–50. <a href="https://doi.org/10.1007/s10654-016-0149-3">https://doi.org/10.1007/s10654-016-0149-3</a>.
+Greenland, Sander, Stephen J. Senn, Kenneth J. Rothman, et al. 2016. <span>“Statistical Tests, p Values, Confidence Intervals, and Power: A Guide to Misinterpretations.”</span> <em>European Journal of Epidemiology</em> 31 (4): 337–50. <a href="https://doi.org/10.1007/s10654-016-0149-3">https://doi.org/10.1007/s10654-016-0149-3</a>.
 </div>
 <div id="ref-hansen_2022" class="csl-entry" role="listitem">
 Hansen, Bruce. 2022. <em>Econometrics</em>. Princeton University Press.
@@ -457,16 +461,16 @@ White, Halbert. 1980. <span>“A Heteroskedasticity- Consistent Covariance Matri
 <li id="fn5"><p>The use of asterisks to flag statistically significant results is common but not universal. Our intention here is merely to explain what the asterisks mean, not to recommend that they should or should not be used.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>Two-sided tests are the default in most software packages and in some research fields, so when tables do not explicitly note whether the p-values associated with regression coefficients are one- or two-sided, they are usually two-sided. <span class="citation" data-cites="olken_2015">Olken (<a href="#ref-olken_2015" role="doc-biblioref">2015</a>)</span> (pp.&nbsp;67, 70) notes that since “convention typically dictates two-sided hypothesis tests,” researchers who prefer one-sided tests should commit to that choice in a pre-analysis plan so “they cannot be justly accused of cherry-picking the test after the fact.” <span class="citation" data-cites="greenland_et_al_2016">Greenland et al. (<a href="#ref-greenland_et_al_2016" role="doc-biblioref">2016</a>)</span> (p.&nbsp;342) argue against the view that one should always use two-sided p-values, but write, “Nonetheless, because two-sided <em>P</em> values are the usual default, it will be important to note when and why a one-sided <em>P</em> value is being used instead.”<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>The framework where “the only thing that varies from one replication to another is which units are randomly assigned to treatment” is known as <strong>randomization-based inference</strong>. This isn’t the only framework for frequentist inference. In the classical regression framework, the only thing that varies is that on each replication, different values of ε are randomly drawn. And in the random sampling framework, on each replication a different random sample is drawn from the population. On randomization-based inference, see <span class="citation" data-cites="reichardt_gollob_1999">Reichardt and Gollog (<a href="#ref-reichardt_gollob_1999" role="doc-biblioref">1999</a>)</span>, <span class="citation" data-cites="samii_aronow_2012">Samii and Aronow (<a href="#ref-samii_aronow_2012" role="doc-biblioref">2012</a>)</span>, <span class="citation" data-cites="lin_2013">Lin (<a href="#ref-lin_2013" role="doc-biblioref">2013</a>)</span>, and <span class="citation" data-cites="abadie_et_al_2014">Abadie et al. (<a href="#ref-abadie_et_al_2014" role="doc-biblioref">2014</a>)</span>; on the random sampling framework, see the references in note 2.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>See, e.g., <span class="citation" data-cites="humphreys_et_al_2013">Humphreys, Sanchez de la Sierra, and Windt (<a href="#ref-humphreys_et_al_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn9"><p><span class="citation" data-cites="simmons_et_al_2011">Simmons, Nelson, and Simonsohn (<a href="#ref-simmons_et_al_2011" role="doc-biblioref">2011</a>)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>See, e.g., <span class="citation" data-cites="humphreys_et_al_2013">Humphreys et al. (<a href="#ref-humphreys_et_al_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><span class="citation" data-cites="simmons_et_al_2011">Simmons et al. (<a href="#ref-simmons_et_al_2011" role="doc-biblioref">2011</a>)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn10"><p><span class="citation" data-cites="gelman_loken_2013">Gelman and Loken (<a href="#ref-gelman_loken_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>See <span class="citation" data-cites="humphreys_et_al_2013">Humphreys, Sanchez de la Sierra, and Windt (<a href="#ref-humphreys_et_al_2013" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="monogan_2013">Monogan (<a href="#ref-monogan_2013" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="anderson_2013">Anderson (<a href="#ref-anderson_2013" role="doc-biblioref">2013</a>)</span>, and <span class="citation" data-cites="gelman_2013">Gelman (<a href="#ref-gelman_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>See <span class="citation" data-cites="humphreys_et_al_2013">Humphreys et al. (<a href="#ref-humphreys_et_al_2013" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="monogan_2013">Monogan (<a href="#ref-monogan_2013" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="anderson_2013">Anderson (<a href="#ref-anderson_2013" role="doc-biblioref">2013</a>)</span>, and <span class="citation" data-cites="gelman_2013">Gelman (<a href="#ref-gelman_2013" role="doc-biblioref">2013</a>)</span>.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn12"><p>See <span class="citation" data-cites="olken_2015">Olken (<a href="#ref-olken_2015" role="doc-biblioref">2015</a>)</span> and <span class="citation" data-cites="coffman_2015">Coffman and Niederle (<a href="#ref-coffman_2015" role="doc-biblioref">2015</a>)</span>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn13"><p>For more discussion of attrition bias in randomized experiments, see, e.g., chapter 7 of <span class="citation" data-cites="gerber_green_2012">Gerber and Green (<a href="#ref-gerber_green_2012" role="doc-biblioref">2012</a>)</span>.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn14"><p>See also: <span class="citation" data-cites="angrist_pischke_2009">Angrist and Pischke (<a href="#ref-angrist_pischke_2009" role="doc-biblioref">2009</a>)</span>, section 3.2.3; <span class="citation" data-cites="rosenbaum_1984">Rosenbaum (<a href="#ref-rosenbaum_1984" role="doc-biblioref">1984</a>)</span>.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn15"><p><span class="citation" data-cites="rosenthal_1979">Rosenthal (<a href="#ref-rosenthal_1979" role="doc-biblioref">1979</a>)</span>. On reforms to counter publication bias, see: <span class="citation" data-cites="nyhan_2015">Nyhan (<a href="#ref-nyhan_2015" role="doc-biblioref">2015</a>)</span>; <span class="citation" data-cites="findley_et_al_2016">Findley et al. (<a href="#ref-findley_et_al_2016" role="doc-biblioref">2016</a>)</span>.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn16"><p>Weighting by the inverse of the variance of ε is a form of <a href="https://en.wikipedia.org/wiki/Generalized_least_squares">generalized least squares</a> (GLS). The classical argument is that GLS is more <strong>efficient</strong> (i.e., has lower variance) than OLS under heteroskedasticity. However, when the goal is to estimate an average treatment effect, some researchers question the relevance of the classical theory, because if treatment effects are <strong>heterogeneous</strong>, GLS and OLS are not just more efficient and less efficient ways to estimate the same treatment effect. Instead, they estimate different weighted average treatment effects. In other words, they answer different questions, and choosing GLS for efficiency is arguably like <a href="https://en.wikipedia.org/wiki/Streetlight_effect">looking for your keys where the light’s better</a>. <span class="citation" data-cites="angrist_pischke_2010">Angrist and Pischke (<a href="#ref-angrist_pischke_2010" role="doc-biblioref">2010</a>)</span> write: “Today’s applied economists have the benefit of a less dogmatic understanding of regression analysis. Specifically, an emerging grasp of the sense in which regression and two-stage least squares produce average effects even when the underlying relationship is heterogeneous and/or nonlinear has made functional form concerns less central. The linear models that constitute the workhorse of contemporary empirical practice usually turn out to be remarkably robust, a feature many applied researchers have long sensed and that econometric theory now does a better job of explaining. <strong>Robust standard errors</strong>, automated clustering, and larger samples have also taken the steam out of issues like heteroskedasticity and serial correlation. A legacy of <span class="citation" data-cites="white_1980">White (<a href="#ref-white_1980" role="doc-biblioref">1980</a>)</span>’s paper on robust standard errors, one of the most highly cited from the period, is the <strong>near death of generalized least squares in cross-sectional applied work</strong>. In the interests of replicability, and to reduce the scope for errors, <strong>modern applied researchers often prefer simpler estimators</strong> though they might be giving up asymptotic efficiency.” Similarly, <span class="citation" data-cites="stock_2010">Stock (<a href="#ref-stock_2010" role="doc-biblioref">2010</a>)</span> comments: “The 1970s procedure for handling potential heteroskedasticity was either to ignore it or to test for it, to model the variance as a function of the regressors, and then to use weighted least squares. While in theory weighted least squares can yield more statistically efficient estimators, modeling heteroskedasticity in a multiple regression context is difficult, and statistical inference about the effect of interest becomes hostage to the required subsidiary modeling assumptions. <span class="citation" data-cites="white_1980">White (<a href="#ref-white_1980" role="doc-biblioref">1980</a>)</span>’s important paper showed how to get valid standard errors whether there is heteroskedasticity or not, without modeling the heteroskedasticity. This paper had a tremendous impact on econometric practice: <strong>today, the use of heteroskedasticity-robust standard errors is standard, and one rarely sees weighted least squares used to correct for heteroskedasticity.</strong>” (Emphasis added in both quotations.)<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn17"><p>Logit, probit, and other limited dependent variable (LDV) models do not immediately yield estimates of the average treatment effect (ATE). To estimate ATE, one needs to compute an <strong>average marginal effect</strong> (or <strong>average predictive comparison</strong>) after estimating the LDV model (see, e.g., <span class="citation" data-cites="gelman_pardoe_2007">Gelman and Pardoe (<a href="#ref-gelman_pardoe_2007" role="doc-biblioref">2007</a>)</span>). Some researchers argue that the complexity of marginal effect calculations for LDV models is unnecessary because OLS tends to yield similar ATE estimates (see <span class="citation" data-cites="angrist_pischke_2009">Angrist and Pischke (<a href="#ref-angrist_pischke_2009" role="doc-biblioref">2009</a>)</span>, section 3.4.2, and the debate between Angrist and his discussants in <span class="citation" data-cites="angrist_2001">Angrist (<a href="#ref-angrist_2001" role="doc-biblioref">2001</a>)</span>). In randomized experiments, the robustness of OLS is supported by both asymptotic theory and simulation evidence. For theory, see <span class="citation" data-cites="lin_2013">Lin (<a href="#ref-lin_2013" role="doc-biblioref">2013</a>)</span>. For simulations, see <span class="citation" data-cites="humphreys_et_al_2013">Humphreys, Sanchez de la Sierra, and Windt (<a href="#ref-humphreys_et_al_2013" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="judkins_porter_2016">Judkins and Porter (<a href="#ref-judkins_porter_2016" role="doc-biblioref">2016</a>)</span>. See also Lin’s comments on this <a href="http://www.mostlyharmlesseconometrics.com/2012/07/probit-better-than-lpm/"><em>MHE</em> blog post</a>.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Logit, probit, and other limited dependent variable (LDV) models do not immediately yield estimates of the average treatment effect (ATE). To estimate ATE, one needs to compute an <strong>average marginal effect</strong> (or <strong>average predictive comparison</strong>) after estimating the LDV model (see, e.g., <span class="citation" data-cites="gelman_pardoe_2007">Gelman and Pardoe (<a href="#ref-gelman_pardoe_2007" role="doc-biblioref">2007</a>)</span>). Some researchers argue that the complexity of marginal effect calculations for LDV models is unnecessary because OLS tends to yield similar ATE estimates (see <span class="citation" data-cites="angrist_pischke_2009">Angrist and Pischke (<a href="#ref-angrist_pischke_2009" role="doc-biblioref">2009</a>)</span>, section 3.4.2, and the debate between Angrist and his discussants in <span class="citation" data-cites="angrist_2001">Angrist (<a href="#ref-angrist_2001" role="doc-biblioref">2001</a>)</span>). In randomized experiments, the robustness of OLS is supported by both asymptotic theory and simulation evidence. For theory, see <span class="citation" data-cites="lin_2013">Lin (<a href="#ref-lin_2013" role="doc-biblioref">2013</a>)</span>. For simulations, see <span class="citation" data-cites="humphreys_et_al_2013">Humphreys et al. (<a href="#ref-humphreys_et_al_2013" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="judkins_porter_2016">Judkins and Porter (<a href="#ref-judkins_porter_2016" role="doc-biblioref">2016</a>)</span>. See also Lin’s comments on this <a href="http://www.mostlyharmlesseconometrics.com/2012/07/probit-better-than-lpm/"><em>MHE</em> blog post</a>.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -870,6 +874,19 @@ White, Halbert. 1980. <span>“A Heteroskedasticity- Consistent Covariance Matri
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

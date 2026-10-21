@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things to Know About Conducting a Meta-Analysis – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -25,7 +31,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -53,15 +58,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -91,7 +95,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -217,7 +221,7 @@ window.Quarto = {
   <li><a href="#publication-bias-as-a-threat-to-meta-analysis" id="toc-publication-bias-as-a-threat-to-meta-analysis"><span class="header-section-number">8</span> Publication bias as a threat to meta-analysis</a></li>
   <li><a href="#modeling-inter-study-heterogeneity-using-meta-regression" id="toc-modeling-inter-study-heterogeneity-using-meta-regression"><span class="header-section-number">9</span> Modeling inter-study heterogeneity using meta-regression</a></li>
   <li><a href="#methods-for-assessing-the-accuracy-of-meta-analytic-results" id="toc-methods-for-assessing-the-accuracy-of-meta-analytic-results"><span class="header-section-number">10</span> Methods for assessing the accuracy of meta-analytic results</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <section id="what-is-meta-analysis" class="level1" data-number="1">
@@ -241,18 +245,18 @@ window.Quarto = {
 <section id="meta-analysis-and-bayes-rule" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Meta-analysis and Bayes’ Rule</h1>
 <p>Consider the simple case in which two experiments are conducted using the same treatments and outcomes. Imagine that both studies draw their subject pool from the same population. In this case, if we had the individual data for the experiments, we could pool them together into a single dataset and analyze them as though they were part of the same block-randomized experiment. But suppose that we did not have the individual data; instead, we only have the estimated ATE and estimated standard error from each study. How might we combine the two studies to form our best guess of the average treatment effect in the population from which the subjects were drawn? With some simplifying assumptions, we could apply Bayes’ Rule. Let’s assume that the sampling distribution of each experimental estimate is normal. (This is a reasonable assumption under the Central Limit Theorem, since we are using an average to estimate the average treatment effect and we assume that each experiment has at least a few dozen subjects and that the outcome distribution is not too skewed.) Since these experiments are independent of one another, Bayes’ Rule takes a simple form: take a weighted average of the two estimates, where the weights are the inverse of each study’s squared standard error (<span class="math inline">\(\hat{\sigma}_j^2\)</span> is the squared estimated standard error for study <span class="math inline">\(j\)</span>).</p>
-<p><span class="math display">\[ \hat{ATE_{pooled}} = \frac{\frac{1}{\hat{\sigma}_1^2}}{\frac{1}{\hat{\sigma}_1^2} + \frac{1}{\hat{\sigma}_2^2}}\hat{ATE_1} + \frac{\frac{1}{\hat{\sigma}_1^2}}{\frac{1}{\hat{\sigma}_1^2} + \frac{1}{\hat{\sigma}_2^2}}\hat{ATE_2} \]</span></p>
+<p><span class="math display">\[ \hat{ATE_{pooled}} = \frac{\frac{1}{\hat{\sigma}_1^2}}{\frac{1}{\hat{\sigma}_1^2} + \frac{1}{\hat{\sigma}_2^2}}\hat{ATE_1} + \frac{\frac{1}{\hat{\sigma}_2^2}}{\frac{1}{\hat{\sigma}_1^2} + \frac{1}{\hat{\sigma}_2^2}}\hat{ATE_2} \]</span></p>
 <p>This formula turns out to be the same as a so-called “fixed effects” meta-analysis. This formula is sometimes called a “precision-weighted average,” where the term “precision” refers to the inverse of the squared standard error. In a simple two-arm, completely randomized study, the standard error of the simple estimator of the average treatment effect is a function of sample size and variation in the outcome, and ratio of treated to control units. So, notice that in this case the study with the smaller standard error (i.e.&nbsp;larger sample, less variable outcome, more equal ratio of treated to control units) received more weight in the pooled meta-analytic result.</p>
 </section>
 <section id="fixed-effects-versus-random-effects-estimation" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Fixed effects versus random effects estimation</h1>
 <p>Most meta-analysis software<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> presents users with a choice between fixed effects estimation and random effects estimation. Fixed effects estimation is simply a precision-weighted average.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> And random effects estimation is a special case of more general Bayesian meta-analysis. In either case, the studies with the smallest standard errors are accorded the most weight. Random effects estimation applies a different set of weights depending on the extent to which the estimates vary more than would be expected by chance under a fixed effects model. Therefore, the weights for the random effects estimation not only consider the variance within each study but also an estimate of the between-study variance (<span class="math inline">\(\tau^2\)</span>).</p>
-<p><span class="math display">\[ \hat{ATE_{pooled}^*} = \frac{\frac{1}{\hat{\sigma}_1^2+\tau^2}}{\frac{1}{\hat{\sigma}_1^2+\tau^2} + \frac{1}{\hat{\sigma}_2^2+\tau^2}}\hat{ATE_1} + \frac{\frac{1}{\hat{\sigma}_1^2+\tau^2}}{\frac{1}{\hat{\sigma}_1^2+\tau^2} + \frac{1}{\hat{\sigma}_2^2+\tau^2}}\hat{ATE_2} \]</span></p>
+<p><span class="math display">\[ \hat{ATE_{pooled}^*} = \frac{\frac{1}{\hat{\sigma}_1^2+\tau^2}}{\frac{1}{\hat{\sigma}_1^2+\tau^2} + \frac{1}{\hat{\sigma}_2^2+\tau^2}}\hat{ATE_1} + \frac{\frac{1}{\hat{\sigma}_2^2+\tau^2}}{\frac{1}{\hat{\sigma}_1^2+\tau^2} + \frac{1}{\hat{\sigma}_2^2+\tau^2}}\hat{ATE_2} \]</span></p>
 <p>The more heterogeneous the estimated effects–perhaps due to variations in experimental techniques, outcome measurement, or context–the more the resulting weighted average represents a simple average rather than a precision-weighted average. Typically, researchers start with a fixed effects meta-analysis, test whether the estimates are significantly overdispersed given the fixed effects model, and, if so, estimate and report a random effects meta-analysis.</p>
 </section>
 <section id="is-it-okay-to-summarize-both-experimental-and-observational-research-findings" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Is it okay to summarize both experimental and observational research findings?</h1>
-<p>Beware of meta-analyses that combine experimental and observational estimates. When properly executed, experiments provide unbiased estimates of the average treatment effect. An observational study, on the other hand, is prone to bias insofar as the treatments are not randomly assigned. The nominal standard errors associated with observational studies ignore the potential for bias; the standard errors are biased downward because they assume the best-case scenario, namely, that nature assigned treatments in a manner that was as good as random. <span class="citation" data-cites="gerber_green_kaplan_2004">Gerber, Green, and Kaplan (<a href="#ref-gerber_green_kaplan_2004" role="doc-biblioref">2004</a>)</span> show that merely being uncertain about the bias of an observational study is equivalent to according it a larger standard error. Although many prominent meta-analyses include both experiments and observational studies (e.g. <span class="citation" data-cites="lau_sigelman_2007">Lau, Sigelman, and Rovner (<a href="#ref-lau_sigelman_2007" role="doc-biblioref">2007</a>)</span>; <span class="citation" data-cites="pettigrew_tropp_2006">Pettigrew and Tropp (<a href="#ref-pettigrew_tropp_2006" role="doc-biblioref">2006</a>)</span>), this practice is frowned upon by leading scholars conducting biomedical meta-analyses.</p>
+<p>Beware of meta-analyses that combine experimental and observational estimates. When properly executed, experiments provide unbiased estimates of the average treatment effect. An observational study, on the other hand, is prone to bias insofar as the treatments are not randomly assigned. The nominal standard errors associated with observational studies ignore the potential for bias; the standard errors are biased downward because they assume the best-case scenario, namely, that nature assigned treatments in a manner that was as good as random. <span class="citation" data-cites="gerber_green_kaplan_2004">Gerber et al. (<a href="#ref-gerber_green_kaplan_2004" role="doc-biblioref">2004</a>)</span> show that merely being uncertain about the bias of an observational study is equivalent to according it a larger standard error. Although many prominent meta-analyses include both experiments and observational studies (e.g. <span class="citation" data-cites="lau_sigelman_2007">Lau et al. (<a href="#ref-lau_sigelman_2007" role="doc-biblioref">2007</a>)</span>; <span class="citation" data-cites="pettigrew_tropp_2006">Pettigrew and Tropp (<a href="#ref-pettigrew_tropp_2006" role="doc-biblioref">2006</a>)</span>), this practice is frowned upon by leading scholars conducting biomedical meta-analyses.</p>
 </section>
 <section id="publication-bias-as-a-threat-to-meta-analysis" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Publication bias as a threat to meta-analysis</h1>
@@ -270,7 +274,7 @@ window.Quarto = {
 <p>A skeptic might ask whether meta-analysis improves our understanding of cause-and-effect in any practical way. Do we learn anything from pooling existing studies via a weighted average versus presenting the studies one at a time and leaving the synthesis to the reader? To address this question EGAP conducted an experiment among the academics and policy experts attending a conference to reveal the results of the first round of EGAP’s Metaketa Initiative, which focused on conducting a coordinated meta-analysis on the impact of <a href="https://egap.org/our-work-0/the-metaketa-initiative/round1-information-accountability/">information and accountability programs on electoral outcomes</a>. The round consisted of six studies measuring the impact of the same causal mechanism.</p>
 <p>To test the idea that accumulated knowledge (in the form of meta-analysis) allows for better inferences about the effect of a given program, the Metaketa committee randomized the audience to hear a presentation of the meta-analysis, each component study, a placebo, and an external study of a similar intervention that was not part of the Metaketa round or the subsequent meta-analysis. Each group of participants was not exposed to one of the above group of studies. And the participants were asked to predict the results of the left out study. This allowed the committee to measure the effect of each study type on attendees’ predictive abilities. The event attendees were then asked to predict the findings of the one study they had not yet seen. The resulting analysis found that exposure to the meta-analysis led to greater accuracy in predicting the effect in the left-out study in comparison to the external study (which, as a reminder, was not part of the meta-analysis in any way). For more on this Metaketa round, along with a more substantial discussion of this “evidence summit” see the book Information, Accountability, and Cumulative Learning: Lessons from Metaketa I <span class="citation" data-cites="dunning_et_al_2019">(<a href="#ref-dunning_et_al_2019" role="doc-biblioref">Dunning et al. 2019</a>)</span>.</p>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -278,18 +282,18 @@ window.Quarto = {
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-burkner_doebler_2014" class="csl-entry" role="listitem">
 Bürkner, P. C., and P Doebler. 2014. <span>“Testing for Publication Bias in Diagnostic Meta‐analysis: A Simulation Study.”</span> <em>Statistics in Medicine</em> 33 (18): 3061–77.
 </div>
 <div id="ref-dunning_et_al_2019" class="csl-entry" role="listitem">
-Dunning, T., G. Grossman, M. Humphreys, S. D. Hyde, C. McIntosh, and G. Nellis. 2019. <em>Information, Accountability, and Cumulative Learning: Lessons from Metaketa i</em>. Cambridge, U.K.: Cambridge University Press.
+Dunning, T., G. Grossman, M. Humphreys, S. D. Hyde, C. McIntosh, and G. Nellis. 2019. <em>Information, Accountability, and Cumulative Learning: Lessons from Metaketa i</em>. Cambridge University Press.
 </div>
 <div id="ref-gerber_green_kaplan_2004" class="csl-entry" role="listitem">
-Gerber, A. S., D. P. Green, and E. H. Kaplan. 2004. <span>“Problems and Methods in the Study of Politics.”</span> In, edited by I. Shapiro, Smith R. M., and T. E. Masoud, 251st–273rd ed. Cambridge, U.K.: Cambridge University Press.
+Gerber, A. S., D. P. Green, and E. H. Kaplan. 2004. <em>Problems and Methods in the Study of Politics</em>. 251st–273rd eds. Edited by I. Shapiro, Smith R. M., and T. E. Masoud. Cambridge University Press.
 </div>
 <div id="ref-lau_sigelman_2007" class="csl-entry" role="listitem">
-Lau, R. R., L. Sigelman, and I. B. Rovner. 2007. <span>“The Effects of Negative Political Campaigns: A Meta‐analytic Reassessment.”</span> <em>The Journal of Politics</em> 69 (4): 1176–1209.
+Lau, R. R., L. Sigelman, and I. B. Rovner. 2007. <span>“The Effects of Negative Political Campaigns: A Meta‐analytic Reassessment.”</span> <em>The Journal of Politics</em> 69 (4): 1176–209.
 </div>
 <div id="ref-pettigrew_tropp_2006" class="csl-entry" role="listitem">
 Pettigrew, T. F., and L. R Tropp. 2006. <span>“A Meta-Analytic Test of Intergroup Contact Theory.”</span> <em>Journal of Personality and Social Psychology</em> 90 (5): 751–83.
@@ -703,6 +707,19 @@ Pettigrew, T. F., and L. R Tropp. 2006. <span>“A Meta-Analytic Test of Intergr
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

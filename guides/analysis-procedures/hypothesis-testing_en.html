@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things to Know About Hypothesis Testing – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -60,7 +66,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -88,15 +93,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -126,7 +130,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -258,7 +262,7 @@ window.Quarto = {
   <li><a href="#in-simple-hypothesis-tests-we-do-not-accept-null-hypotheses." id="toc-in-simple-hypothesis-tests-we-do-not-accept-null-hypotheses."><span class="header-section-number">8</span> In simple hypothesis tests, we do not accept null hypotheses.</a></li>
   <li><a href="#once-you-are-using-p-values-to-reject-a-hypothesis-you-will-make-errors" id="toc-once-you-are-using-p-values-to-reject-a-hypothesis-you-will-make-errors"><span class="header-section-number">9</span> Once you are using <span class="math inline">\(p\)</span>-values to reject a hypothesis, you will make errors</a></li>
   <li><a href="#what-else-to-know-about-hypothesis-tests." id="toc-what-else-to-know-about-hypothesis-tests."><span class="header-section-number">10</span> What else to know about hypothesis tests.</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <section id="hypothesis-tests-summarize-information-in-research-designs-to-help-people-reason-about-treatment-effects" class="level1" data-number="1">
@@ -291,7 +295,7 @@ window.Quarto = {
 <h1 data-number="3"><span class="header-section-number">3</span> The Null Hypothesis of No Effects is a precise statement about potential outcomes</h1>
 <p>Even if we cannot use direct observation to learn about counterfactual causal effects, we can still ask questions about them, or make theoretical models that relate some intervention or treatment, background characteristics, and potential outcomes. The simplest such model states that the outcome under treatment would be the same as the outcome under control for all units; that is, it would say that regardless of background characteristics, or information given in the experimental treatment condition, each person would pay the same amount in taxes: <span class="math inline">\(y_{i,1}=y_{i,0}\)</span> for all units <span class="math inline">\(i\)</span>. To emphasize the tentative and theoretical nature of this model, people have called this a <strong>hypothesis</strong>, often write it as “the sharp null hypothesis.” and use the following shorthand: <span class="math inline">\(H_0:
 y_{i,1}-y{i,0}=\tau_i\)</span> where <span class="math inline">\(\tau_i=0\)</span> for all units <span class="math inline">\(i\)</span>.</p>
-<p><strong>Side Note:</strong> Notice that thinking about sharp hypotheses makes us realize that we could make <strong>other models relating <span class="math inline">\(y_{i,1}\)</span> and <span class="math inline">\(y_{i,0}\)</span></strong> in which the potential outcomes relate in ways that are not additive or linear, and where the effect need not be zero or even the same for all units: for example, we could hypothesize that <span class="math inline">\(\tau_i=\{5,0,-2\}\)</span> 5 for unit 1, 0 for unit 2, and -2 for unit 3 in a 3 unit experiment. Notice also that writing potential outcomes this way, with the potential outcome for unit <span class="math inline">\(i\)</span> <em>only referring to <span class="math inline">\(i\)</span></em> and not some other units (<span class="math inline">\(y_{i,Z_i}\)</span>), <em>is part of the model</em>. That is, the particular model of <span class="math inline">\(H_0: y_{i,1}=y_{i,0}\)</span> implies that the treatment has no effect on anyone — and no effects includes no spillover effects. We could be a little more specific by writing the potential outcomes like so: The potential outcome of unit <span class="math inline">\(i\)</span> when it is assigned to treatment, and when all of the other units are assigned to any other set of treatments <span class="math inline">\(\mathbf{Z}_{~i}=\{Z_j,Z_k,\ldots \}\)</span> can be written <span class="math inline">\(y_{i,Z_i=1,\mathbf{Z}_{~i}}\)</span>. See <span class="citation" data-cites="bowers2013reasoning">Bowers, Fredrickson, and Panagopoulos (<a href="#ref-bowers2013reasoning" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="bowers2018models">Bowers et al. (<a href="#ref-bowers2018models" role="doc-biblioref">2018</a>)</span> for more on the idea that a hypothesis is a theoretical model that can be tested with data in the context of hypotheses about the propagation of treatment effects across a network.</p>
+<p><strong>Side Note:</strong> Notice that thinking about sharp hypotheses makes us realize that we could make <strong>other models relating <span class="math inline">\(y_{i,1}\)</span> and <span class="math inline">\(y_{i,0}\)</span></strong> in which the potential outcomes relate in ways that are not additive or linear, and where the effect need not be zero or even the same for all units: for example, we could hypothesize that <span class="math inline">\(\tau_i=\{5,0,-2\}\)</span> 5 for unit 1, 0 for unit 2, and -2 for unit 3 in a 3 unit experiment. Notice also that writing potential outcomes this way, with the potential outcome for unit <span class="math inline">\(i\)</span> <em>only referring to <span class="math inline">\(i\)</span></em> and not some other units (<span class="math inline">\(y_{i,Z_i}\)</span>), <em>is part of the model</em>. That is, the particular model of <span class="math inline">\(H_0: y_{i,1}=y_{i,0}\)</span> implies that the treatment has no effect on anyone — and no effects includes no spillover effects. We could be a little more specific by writing the potential outcomes like so: The potential outcome of unit <span class="math inline">\(i\)</span> when it is assigned to treatment, and when all of the other units are assigned to any other set of treatments <span class="math inline">\(\mathbf{Z}_{~i}=\{Z_j,Z_k,\ldots \}\)</span> can be written <span class="math inline">\(y_{i,Z_i=1,\mathbf{Z}_{~i}}\)</span>. See <span class="citation" data-cites="bowers2013reasoning">Bowers et al. (<a href="#ref-bowers2013reasoning" role="doc-biblioref">2013</a>)</span> and <span class="citation" data-cites="bowers2018models">Bowers et al. (<a href="#ref-bowers2018models" role="doc-biblioref">2018</a>)</span> for more on the idea that a hypothesis is a theoretical model that can be tested with data in the context of hypotheses about the propagation of treatment effects across a network.</p>
 </section>
 <section id="the-weak-null-hypothesis-of-no-effects-is-a-statement-about-aggregated-potential-outcomes" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> The weak null hypothesis of no effects is a statement about aggregated potential outcomes</h1>
@@ -367,7 +371,7 @@ Y_i = Z_i y_{i,1} + (1 - Z_i) y_{i,0}
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>observedMeanRankTZ <span class="ot">&lt;-</span> <span class="fu">meanrankTZ</span>(<span class="at">ys=</span>Y,<span class="at">z=</span>Z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>The first test statistic is the mean difference (<code>meanTZ</code>) and returns an observed value of 102 and the second is the mean difference of the rank-transformed outcomes (<code>meanrankTZ</code>), which returns a value of 2.2. One could also use versions of these test statistics standardized by their estimated standard error (see <span class="citation" data-cites="chung2013exact">Chung, Romano, et al. (<a href="#ref-chung2013exact" role="doc-biblioref">2013</a>)</span> for an argument in favor of this test statistic). To test the sharp null hypothesis of no effects, one may choose almost any test statistic such that the values of that function increase as the difference between treated and control outcomes increase (see <span class="citation" data-cites="rosenbaum2002">Rosenbaum (<a href="#ref-rosenbaum2002" role="doc-biblioref">2002</a>)</span>, Chapter 2, for a discussion of “effect increasing” test statistics).</p>
+<p>The first test statistic is the mean difference (<code>meanTZ</code>) and returns an observed value of 102 and the second is the mean difference of the rank-transformed outcomes (<code>meanrankTZ</code>), which returns a value of 2.2. One could also use versions of these test statistics standardized by their estimated standard error (see <span class="citation" data-cites="chung2013exact"><span class="nocase">Chung et al.</span> (<a href="#ref-chung2013exact" role="doc-biblioref">2013</a>)</span> for an argument in favor of this test statistic). To test the sharp null hypothesis of no effects, one may choose almost any test statistic such that the values of that function increase as the difference between treated and control outcomes increase (see <span class="citation" data-cites="rosenbaum2002">Rosenbaum (<a href="#ref-rosenbaum2002" role="doc-biblioref">2002</a>)</span>, Chapter 2, for a discussion of “effect increasing” test statistics).</p>
 <p>Test of the weak null of no effects use the differences of means (perhaps standardized or studentized) as the test statistic.</p>
 </section>
 <section id="p-values-encode-how-much-information-a-research-design-and-test-statistic-tell-us-about-the-hypothesis.-hypothesis-tests-require-distributions-of-the-test-statistic-under-the-hypothesis." class="level1" data-number="7">
@@ -687,12 +691,12 @@ Y_i = Z_i y_{i,1} + (1 - Z_i) y_{i,0}
 <li>Even if a given testing procedure controls the false positive rate for a single test, it may not control the rate for a group of multiple tests. See <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">10 Things you need to know about multiple comparisons</a> for a guide to the approaches to controlling such rejection-rates in multiple tests.</li>
 <li>A <span class="math inline">\(100\alpha\)</span>% confidence interval can be defined as the range of hypotheses where all of the <span class="math inline">\(p\)</span>-values are greater than or equal to <span class="math inline">\(\alpha\)</span>. This is called inverting the hypothesis test. (<span class="citation" data-cites="rosenbaum2010design">Rosenbaum (<a href="#ref-rosenbaum2010design" role="doc-biblioref">2010a</a>)</span>). That is, a <strong>confidence interval is a collection of hypothesis tests</strong>. This means that criticisms of <span class="math inline">\(p\)</span>-values are also criticisms of confidence intervals.</li>
 <li>A point estimate based on hypothesis testing is called a Hodges-Lehmann point estimate. (<span class="citation" data-cites="rosenbaum1993hlp">Rosenbaum (<a href="#ref-rosenbaum1993hlp" role="doc-biblioref">1993</a>)</span>,<span class="citation" data-cites="hodges1963elb">Hodges and Lehmann (<a href="#ref-hodges1963elb" role="doc-biblioref">1963</a>)</span>)</li>
-<li>A set of hypothesis tests can be combined into one single hypothesis test. For example, you can test the hypothesis of an effect of size 1 on outcome 1, an effect of size 0 on outcome 2 and an effect of -10 on outcome 3. (<span class="citation" data-cites="hansen:bowers:2008">Hansen and Bowers (<a href="#ref-hansen:bowers:2008" role="doc-biblioref">2008</a>)</span>,<span class="citation" data-cites="caughey2017nonparametric">Caughey, Dafoe, and Seawright (<a href="#ref-caughey2017nonparametric" role="doc-biblioref">2017</a>)</span>)</li>
+<li>A set of hypothesis tests can be combined into one single hypothesis test. For example, you can test the hypothesis of an effect of size 1 on outcome 1, an effect of size 0 on outcome 2 and an effect of -10 on outcome 3. (<span class="citation" data-cites="hansen:bowers:2008">Hansen and Bowers (<a href="#ref-hansen:bowers:2008" role="doc-biblioref">2008</a>)</span>,<span class="citation" data-cites="caughey2017nonparametric">Caughey et al. (<a href="#ref-caughey2017nonparametric" role="doc-biblioref">2017</a>)</span>)</li>
 <li>In equivalence testing, one can hypothesize that two test-statistics are equivalent (i.e.&nbsp;the treatment group is the same as the control group) rather than only about one test-statistic (the difference between the two groups is zero) {<span class="citation" data-cites="hartman2018equivalence">Hartman and Hidalgo (<a href="#ref-hartman2018equivalence" role="doc-biblioref">2018</a>)</span>}</li>
-<li>Since a hypothesis test is a model of potential outcomes, one can use hypothesis testing to learn about complex models, such as models of spillover and propagation of treatment effects across networks (<span class="citation" data-cites="bowers2013reasoning">Bowers, Fredrickson, and Panagopoulos (<a href="#ref-bowers2013reasoning" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="bowers2016research">Bowers, Fredrickson, and Aronow (<a href="#ref-bowers2016research" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="bowers2018models">Bowers et al. (<a href="#ref-bowers2018models" role="doc-biblioref">2018</a>)</span>)</li>
+<li>Since a hypothesis test is a model of potential outcomes, one can use hypothesis testing to learn about complex models, such as models of spillover and propagation of treatment effects across networks (<span class="citation" data-cites="bowers2013reasoning">Bowers et al. (<a href="#ref-bowers2013reasoning" role="doc-biblioref">2013</a>)</span>, <span class="citation" data-cites="bowers2016research">Bowers et al. (<a href="#ref-bowers2016research" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="bowers2018models">Bowers et al. (<a href="#ref-bowers2018models" role="doc-biblioref">2018</a>)</span>)</li>
 </ul>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -700,7 +704,7 @@ Y_i = Z_i y_{i,1} + (1 - Z_i) y_{i,0}
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-bowers2018models" class="csl-entry" role="listitem">
 Bowers, Jake, Bruce A Desmarais, Mark Frederickson, Nahomi Ichino, Hsuan-Wei Lee, and Simi Wang. 2018. <span>“Models, Methods and Network Topology: Experimental Design for the Study of Interference.”</span> <em>Social Networks</em> 54: 196–208.
 </div>
@@ -717,13 +721,13 @@ Brady, Henry E. 2008. <span>“Causation and Explanation in Social Science.”</
 Caughey, Devin, Allan Dafoe, and Jason Seawright. 2017. <span>“Nonparametric Combination (NPC): A Framework for Testing Elaborate Theories.”</span> <em>The Journal of Politics</em> 79 (2): 688–701.
 </div>
 <div id="ref-chung2013exact" class="csl-entry" role="listitem">
-Chung, EunYi, Joseph P Romano, et al. 2013. <span>“Exact and Asymptotically Robust Permutation Tests.”</span> <em>The Annals of Statistics</em> 41 (2): 484–507.
+<span class="nocase">Chung, EunYi, Joseph P Romano, et al.</span> 2013. <span>“Exact and Asymptotically Robust Permutation Tests.”</span> <em>The Annals of Statistics</em> 41 (2): 484–507.
 </div>
 <div id="ref-cox1977role" class="csl-entry" role="listitem">
 Cox, DR, W. R. van Zwet, JF Bithell, O. Barndorff-Nielsen, and M. Keuls. 1977. <span>“<span class="nocase">The Role of Significance Tests [with Discussion and Reply]</span>.”</span> <em>Scandinavian Journal of Statistics</em> 4 (2): 49–70.
 </div>
 <div id="ref-fisher:1935" class="csl-entry" role="listitem">
-Fisher, R. A. 1935. <em><span class="nocase">The design of experiments. 1935</span></em>. <em>Oliver &amp; Boyd Edinburgh, Scotland</em>. Edinburgh: Oliver; Boyd.
+Fisher, R. A. 1935. <em><span class="nocase">The design of experiments. 1935</span></em>. In <em>Oliver &amp; Boyd Edinburgh, Scotland</em>. Oliver; Boyd.
 </div>
 <div id="ref-hansen:bowers:2008" class="csl-entry" role="listitem">
 Hansen, Ben B., and Jake Bowers. 2008. <span>“Covariate Balance in Simple, Stratified and Clustered Comparative Studies.”</span> <em>Statistical Science</em> 23 (2): 219–36.
@@ -747,16 +751,16 @@ Kinder, D. R., and T. R. Palfrey. 1993. <span>“On Behalf of an Experimental Po
 Rosenbaum, Paul R. 1993. <span>“Hodges-Lehmann Point Estimates of Treatment Effect in Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 88 (424): 1250–53.
 </div>
 <div id="ref-rosenbaum2002" class="csl-entry" role="listitem">
-———. 2002. <span>“Attributing Effects to Treatment in Matched Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 97: 183–92.
+Rosenbaum, Paul R. 2002. <span>“Attributing Effects to Treatment in Matched Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 97: 183–92.
 </div>
 <div id="ref-rosenbaum2010design" class="csl-entry" role="listitem">
-———. 2010a. <em>Design of Observational Studies</em>. <em>Springer Series in Statistics</em>. New York, NY: Springer.
+Rosenbaum, Paul R. 2010a. <em>Design of Observational Studies</em>. In <em>Springer Series in Statistics</em>. Springer.
 </div>
 <div id="ref-rosenbaum2010" class="csl-entry" role="listitem">
-———. 2010b. <span>“Design Sensitivity and Efficiency in Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 105: 692–702.
+Rosenbaum, Paul R. 2010b. <span>“Design Sensitivity and Efficiency in Observational Studies.”</span> <em>Journal of the American Statistical Association</em> 105: 692–702.
 </div>
 <div id="ref-rosenbaum2017observation" class="csl-entry" role="listitem">
-———. 2017. <em>Observation and Experiment: An Introduction to Causal Inference</em>. Harvard University Press.
+Rosenbaum, Paul R. 2017. <em>Observation and Experiment: An Introduction to Causal Inference</em>. Harvard University Press.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
@@ -1165,6 +1169,19 @@ Rosenbaum, Paul R. 1993. <span>“Hodges-Lehmann Point Estimates of Treatment Ef
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

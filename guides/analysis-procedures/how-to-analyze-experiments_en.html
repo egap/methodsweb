@@ -2,18 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="name">
+<meta name="author" content="Alyssa R. Heinze">
 
 <title>10 Things on Your Checklist for Analyzing an Experiment – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -60,7 +66,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -88,15 +93,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -125,6 +129,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -207,402 +240,970 @@ div.csl-indent {
     
 </div>
   
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Summary</div>
+    <p>This guide provides practical tools on what to do with your data once you’ve run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers and project managers. If you’re not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are the one analyzing the data, this guide provides instructions and <code>R</code> code on how to do so.</p>
+  </div>
+</div>
 </header>
 
 <nav id="TOC" role="doc-toc">
     <h4 id="toc-title">Contents</h4>
    
   <ul>
-  <li><a href="#before-seeing-or-receiving-your-data-file-an-amendment-if-changes-to-the-design-or-planned-analysis-arise" id="toc-before-seeing-or-receiving-your-data-file-an-amendment-if-changes-to-the-design-or-planned-analysis-arise"><span class="header-section-number">1</span> BEFORE seeing (or receiving) your data, file an amendment if changes to the design or planned analysis arise</a></li>
-  <li><a href="#treatment-variable-confirm-its-randomization" id="toc-treatment-variable-confirm-its-randomization"><span class="header-section-number">2</span> # Treatment variable: Confirm its randomization</a></li>
-  <li><a href="#variable-inspection-locating-and-understanding-your-data-variables" id="toc-variable-inspection-locating-and-understanding-your-data-variables"><span class="header-section-number">3</span> # Variable inspection: Locating and understanding your data variables</a></li>
-  <li><a href="#did-treatment-assignment-go-according-to-plan" id="toc-did-treatment-assignment-go-according-to-plan"><span class="header-section-number">4</span> # Did treatment assignment go according to plan?</a></li>
-  <li><a href="#checking-outcome-and-covariate-variables-for-outliers" id="toc-checking-outcome-and-covariate-variables-for-outliers"><span class="header-section-number">5</span> # Checking outcome and covariate variables for outliers</a></li>
-  <li><a href="#checking-for-balance-on-pre-treatment-covariates" id="toc-checking-for-balance-on-pre-treatment-covariates"><span class="header-section-number">6</span> # Checking for balance on pre-treatment covariates</a></li>
-  <li><a href="#checking-for-differential-attrition" id="toc-checking-for-differential-attrition"><span class="header-section-number">7</span> # Checking for differential attrition</a></li>
-  <li><a href="#adjust-estimation-procedure-according-to-deviations-from-planned-analysis" id="toc-adjust-estimation-procedure-according-to-deviations-from-planned-analysis"><span class="header-section-number">8</span> # Adjust estimation procedure according to deviations from planned analysis</a></li>
-  <li><a href="#write-replicable-code-to-analyze-data" id="toc-write-replicable-code-to-analyze-data"><span class="header-section-number">9</span> # Write replicable code to analyze data</a></li>
-  <li><a href="#write-up-deviations-from-preanalysis-plan-and-justify" id="toc-write-up-deviations-from-preanalysis-plan-and-justify"><span class="header-section-number">10</span> # Write up deviations from preanalysis plan and justify</a></li>
-  <li><a href="#example-code" id="toc-example-code"><span class="header-section-number">11</span> # Example code</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">12</span> References</a></li>
+  <li><a href="#before-seeing-or-receiving-your-data-file-an-amendment-to-your-pre-analysis-plan-if-there-are-changes-to-the-design-or-planned-analysis" id="toc-before-seeing-or-receiving-your-data-file-an-amendment-to-your-pre-analysis-plan-if-there-are-changes-to-the-design-or-planned-analysis"><span class="header-section-number">1</span> BEFORE seeing (or receiving) your data, file an amendment to your pre-analysis plan if there are changes to the design or planned analysis</a></li>
+  <li><a href="#treatment-variable-confirm-its-randomization" id="toc-treatment-variable-confirm-its-randomization"><span class="header-section-number">2</span> Treatment variable: Confirm its randomization</a></li>
+  <li><a href="#variable-inspection-locating-and-understanding-your-data-variables" id="toc-variable-inspection-locating-and-understanding-your-data-variables"><span class="header-section-number">3</span> Variable inspection: Locating and understanding your data variables</a></li>
+  <li><a href="#did-treatment-assignment-go-according-to-plan" id="toc-did-treatment-assignment-go-according-to-plan"><span class="header-section-number">4</span> Did treatment assignment go according to plan?</a></li>
+  <li><a href="#checking-outcome-and-covariate-variables-for-outliers" id="toc-checking-outcome-and-covariate-variables-for-outliers"><span class="header-section-number">5</span> Checking outcome and covariate variables for outliers</a></li>
+  <li><a href="#checking-for-balance-on-pre-treatment-covariates" id="toc-checking-for-balance-on-pre-treatment-covariates"><span class="header-section-number">6</span> Checking for balance on pre-treatment covariates</a></li>
+  <li><a href="#checking-for-differential-attrition" id="toc-checking-for-differential-attrition"><span class="header-section-number">7</span> Checking for differential attrition</a></li>
+  <li><a href="#adjust-estimation-procedures-to-match-deviations-from-planned-analysis" id="toc-adjust-estimation-procedures-to-match-deviations-from-planned-analysis"><span class="header-section-number">8</span> Adjust estimation procedures to match deviations from planned analysis</a></li>
+  <li><a href="#write-replicable-code-to-analyze-data" id="toc-write-replicable-code-to-analyze-data"><span class="header-section-number">9</span> Write replicable code to analyze data</a></li>
+  <li><a href="#write-up-and-justify-deviations-from-preanalysis-plan" id="toc-write-up-and-justify-deviations-from-preanalysis-plan"><span class="header-section-number">10</span> Write up and justify deviations from preanalysis plan</a></li>
+  <li><a href="#example-code" id="toc-example-code"><span class="header-section-number">11</span> Example code</a></li>
+  <li><a href="#dealing-with-outliers" id="toc-dealing-with-outliers"><span class="header-section-number">12</span> Dealing with outliers</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
-<p>This guide will provide practical tools on what to do with your data once you’ve run an experiment. This guide is geared towards anyone involved in the life cycle of an experimental project: from analysts to implementers to project managers. If you’re not the one directly involved in analyzing the data, these are some key things to look for in reports of analysis of experimental data. If you are analyzing the data, this guide provides instructions and <code>R</code> code on how to do so.</p>
-<section id="before-seeing-or-receiving-your-data-file-an-amendment-if-changes-to-the-design-or-planned-analysis-arise" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> BEFORE seeing (or receiving) your data, file an amendment if changes to the design or planned analysis arise</h1>
-<p>Before you look at the data, back up and ask yourself: what changed from what I had planned and pre-registered - in terms of both design and analysis - and what are the consequences of those changes for the accuracy of my pre-analysis plan? If you think changes to the PAP are required, then you can file an amendment to the PAP at the registry where you initially pre-registered your experiment. It’s good to do this prior to even receiving the data, if possible. To read more on PAPs, see <a href="https://methods.egap.org/guides/planning/pap_en.html">10 Things to Know About Pre-Analysis Plans</a>.</p>
-<p>Things can change from conception to implementation. Perhaps you had planned to randomize at the individual-level, but instead you end up having to conduct a cluster randomization. Alternatively, did an event happen that cut your study short, reducing your sample size? Both of these design changes would have implications for how you should analyze the data. In the first instance, you should file an amendment reflecting the cluster-randomization and corresponding changes to your analyses. In the second instance, you may consider the implications for your reduced sample size for power, and whether or not you need to change your main specification (perhaps by adding covariates, or focusing on a main effect rather than an interaction effect) in order to be powered enough to detect effects should they exist.</p>
+<section id="before-seeing-or-receiving-your-data-file-an-amendment-to-your-pre-analysis-plan-if-there-are-changes-to-the-design-or-planned-analysis" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> BEFORE seeing (or receiving) your data, file an amendment to your pre-analysis plan if there are changes to the design or planned analysis</h1>
+<p>Before you look at the data (even better: before you receive it), pause and ask yourself: what has changed from what I had planned and pre-registered - in terms of both design and analysis - and what are the consequences of those changes for my pre-analysis plan (PAP)? If you think changes to the PAP are required, file an amendment to the PAP at the registry where you initially pre-registered your experiment. It’s good to do this <em>prior</em> to receiving the data, if possible. To read more on PAPs, see <a href="https://methods.egap.org/guides/planning/pap_en.html">10 Things to Know About Pre-Analysis Plans</a>.</p>
+<p>Things can change from conception to implementation. Perhaps you had planned to randomize at the individual-level, but instead you ended up having to conduct a cluster randomization. Alternatively, did an event happen that cut your study short, reducing your sample size? Both of these design changes would have implications for how you should analyze the data. In the first instance, we recommend filing an amendment reflecting the cluster-randomization and corresponding changes to your analyses. In the second instance, you may consider the implications for your reduced sample size for power, and whether or not you need to change your main specification (perhaps by adding covariates, or focusing on a main effect rather than an interaction effect) in order to be powered enough to detect effects if they exist.</p>
 </section>
 <section id="treatment-variable-confirm-its-randomization" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> # Treatment variable: Confirm its randomization</h1>
-<p>First things first, it is important to verify that your treatment was successfully randomized according to what you’d planned in your design. Randomization plays a key role in the fundamentals of experimental design and analysis, so it’s key that you (and others) can verify that your treatment was assigned randomly in the way that you planned. Without this, it’s hard for the research community and policymakers to have confidence in your inferences.</p>
-<p>First, you should trace back to the code or software that was responsible for generating the randomization. If this was done in Qualtrics or on SurveyCTO, this would involve going back to the original software and ensuring that the particular survey module was coded correctly. If you worked with a provider to code up your online survey, you could schedule a meeting with them to walk through verifying the coding of the randomization. If this was done in <code>R</code>, there should be at least 2 lines of code: one that set a seed so that the randomization would be reproducible, and another that actually randomizes the treatment assignment. Note that the second line of code depends on the type of randomization you’d conducted (see <a href="https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html">10 Things You Need to Know About Randomization</a>).</p>
+<h1 data-number="2"><span class="header-section-number">2</span> Treatment variable: Confirm its randomization</h1>
+<p>First things first, it is important to verify that your treatment was successfully randomized according to what you had planned in your design. Without successful randomization, it’s hard for the research community and policymakers to have confidence in your conclusions from the experiment, so it’s key that you (and others) can verify that your treatment was assigned randomly in the way that you planned.</p>
+<p>First, you can trace back to the code or software that was responsible for generating the randomization. If this was done in Qualtrics or on SurveyCTO, this would involve going back to the original software and ensuring that the particular survey module was coded correctly. If you worked with a provider to code up your online survey, you could schedule a meeting with them to walk through verifying the coding of the randomization. If this was done in <code>R</code>, there should be at least 2 lines of code: one that set a seed so that the randomization would be reproducible, and another that actually randomizes the treatment assignment. Note that the second line of code depends on the type of randomization you’d conducted (see <a href="https://methods.egap.org/guides/data-collection/randomization_en.html">10 Things You Need to Know About Randomization</a>).</p>
 </section>
 <section id="variable-inspection-locating-and-understanding-your-data-variables" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> # Variable inspection: Locating and understanding your data variables</h1>
-<p>In addition to verifying that the treatment was correctly assigned in the software that you used, it’s important to verify what the treatment variable in your data set - produced by the code or software - actually means. This means checking that values of the treatment assignment variable correspond to the values assigned in the randomization process in <code>R</code> or in the software used to assign treatment. Does a 1 produced by the software correspond to treatment, and 0 to control? For a three-arm experiment, softwares like SurveyCTO may produces values 1, 2, and 3 for the treatment assignment variable. It’s crucial that analysts verify that what they think they’re analyzing corresponds to the actual treatment assigned.</p>
-<p>If you are in a context where non-compliance with treatment is possible, you should also inspect the variable that indicates treatment receipt. In a field experiment, if a subject was assigned to a skills training (treatment assignment = 1), did they actually attend and receive the intended information on skills (treatment receipt = 1)? In a survey experiment, did a subject assigned to receive watch a video to provoke positive emotions (treatment assignment = 1) actually report watching the video and internalizing its content (treatment receipt = 1)? A variable that indicates whether a subject actually <em>received</em> the treatment it was assigned to is key for thinking about things like complier average causal effects (see <a href="https://methods.egap.org/guides/research-questions/late_en.html">10 Things You Need to Know About the Local Average Treatment Effect</a>). Understanding what the treatment receipt variable means, and what each of its values corresponds to (does 1 correspond to treatment receipt, and 0 to lack of receipt?), is crucial.</p>
-<p>It’s also useful to inspect the outcome and covariate variables that you plan on using in your analysis. This might include renaming them for easier coding and interpretation of your analysis code. If someone looks at your analysis code, it is generally easier for them to understand what a variable called “gender” means, rather than if it is called “question_26_c_1”. In addition, making sure that missing data are consistently coded with “NA” rather than a numeric value is important to ensure the integrity of data analysis. Sometimes, survey software may code missing data with 0 or 888; if you do not change these values to “NAs”, your data analysis will think that they correspond to numeric values of the variable of interest. If you have covariates that are missing, though this need not bias your estimation of the impact of the treatment, there are several ways you may go about addressing this missingness; for more on this, see <a href="https://methods.egap.org/guides/data-collection/missing-data_en.html">10 Things to Know About Missing Data</a>.</p>
+<h1 data-number="3"><span class="header-section-number">3</span> Variable inspection: Locating and understanding your data variables</h1>
+<section id="checking-the-values-of-your-variables" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="checking-the-values-of-your-variables"><span class="header-section-number">3.1</span> Checking the values of your variables</h2>
+<p>In addition to verifying that the treatment was correctly assigned in the software that you used, it’s important to verify what the treatment variable in your data set - produced by the code or software - actually means. This means checking that values of the treatment assignment variable correspond to the values assigned in the randomization process in <code>R</code> or in the software used to assign treatment. Does a 1 produced by the software correspond to treatment, and 0 to control? For a three-arm experiment, software like SurveyCTO may produces values 1, 2, and 3 for the treatment assignment variable. It’s advisable to verify that what they think they’re analyzing corresponds to the actual treatment assigned.</p>
+</section>
+<section id="dealing-with-non-compliance" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="dealing-with-non-compliance"><span class="header-section-number">3.2</span> Dealing with (non)-compliance</h2>
+<p>If non-compliance with treatment assignment is possible in your study, it’s advisable to also inspect the variable that indicates whether the treatment was received. In a field experiment, if a subject was assigned to a skills training (treatment assignment = 1), did they actually attend and receive the intended information on skills (treatment receipt = 1)? In a survey experiment, did a subject assigned to receive watch a video to provoke positive emotions (treatment assignment = 1) actually report watching the video and internalizing its content (treatment receipt = 1)? A variable that indicates whether a subject actually <em>received</em> the treatment it was assigned to is key for thinking about things like complier average causal effects (CACEs, see <a href="https://methods.egap.org/guides/research-questions/late_en.html">10 Things You Need to Know About the Local Average Treatment Effect</a>). Understanding what the treatment receipt variable means, and what each of its values corresponds to (does 1 correspond to treatment receipt, and 0 to lack of receipt?) is also important.</p>
+<p>It’s worth emphasizing that coming up with the definition of what it means to comply in a given experiment - and how to measure this compliance - is non-trivial. This is something you define <em>ex ante</em>, and it derives from your theory about what it is that actually constitutes your treatment. You may also have to construct your measure of compliance from your data. If your intervention is a series of financial literacy trainings, maybe someone counts as having complied if she has attended at least half of these trainings. This could be constructed from data on each subject’s attendance at each individual meeting. This choice should be justified by your theory of change and would ideally have been included in your pre-analysis plan. Having clear conceptualizations and valid measures of compliance in your experiment is not only helpful for estimating CACEs (as mentioned above), but also in helping you understand potential null results of your experiment. Perhaps your intervention didn’t have an impact because of a compliance issue – data on this may help you learn that the theory of change broke down at that first step.</p>
+</section>
+<section id="variable-naming-coding-and-missing-data" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="variable-naming-coding-and-missing-data"><span class="header-section-number">3.3</span> Variable naming, coding, and missing data</h2>
+<p>It’s also useful to inspect the outcome and covariate variables that you plan to use in your analysis. This might include renaming them for easier coding and interpretation of your analysis code. If someone looks at your analysis code, it is generally easier for them to understand what a variable called “female” means, rather than if it is called “question_26_c_1”. Moreover, double checking the coding of one’s variables is best practice at this stage. For example, if female is the variable, make sure that the coding of the variable corresponds to what you think it does: does 1 indicate female, and 0 male, or has it been coded the other way around? The same goes for all variables in your data set. In addition, making sure that missing data are consistently coded with “NA” rather than a numeric value is important to ensure the integrity of data analysis. Sometimes, survey software may code missing data with 0 or 888; if you do not change these values to “NA”s, your data analysis will think that they correspond to numeric values of the variable of interest. Though this need not bias your estimation of the impact of the treatment, there are several ways you may go about addressing missingness in your covariates; for more on this, see <a href="https://methods.egap.org/guides/data-collection/missing-data_en.html">10 Things to Know About Missing Data</a>.</p>
+</section>
 </section>
 <section id="did-treatment-assignment-go-according-to-plan" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> # Did treatment assignment go according to plan?</h1>
-<p>It’s generally good practice to inspect whether or not your treatment assignment did in fact work in accordance with your expectations, depending on the design. This is separate from verifying the code or software that produced the randomization, as in 1 above. Instead, you can check the distribution of the values of treatment assignment; you should see whether it corresponds to what you’d designed (see <a href="https://methods.egap.org/guides/analysis-procedures/randomization-inference_en.html">10 Things You Need to Know About Randomization</a>).</p>
-<p>For example, if you conducted a complete randomization where 25 experimental subjects were to be assigned to control, and 25 to treatment, did this play out in practice? You can run a simple cross-tabulation of the treatment assignment variable, and observe whether or not this is the case. Alternatively, if you conducted a block randomization by gender and wanted to assign half of women to treatment and the other half to control (and the same for men), you can look at the distribution of treatment assignment values by gender. Though uncommon in field experimental design where complete randomization prevails, some survey experimental software conducts simple randomization. In a survey experiment with two arms, the software will assign each respondent to treatment or control by flipping a Bernoulli coin that has a 50 percent chance of landing on heads (treatment), and a 50 percent chance of landing on tails (control).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In this case, it’s okay if exactly 50 percent of your respondents don’t end up in treatment - we’d expect some variability due to the nature of the randomization. However, the percentage of units treated shouldn’t be <em>too far</em> from 50 percent - this would induce doubt that the randomization actually worked.</p>
+<h1 data-number="4"><span class="header-section-number">4</span> Did treatment assignment go according to plan?</h1>
+<p>It’s generally good practice to inspect whether or not your treatment assignment did in fact work according to your expectations, depending on the design. This is separate from verifying the code or software that produced the randomization, as in 1 above. Instead, you can check the distribution of the values of treatment assignment, and see whether it corresponds to what you’d designed (see <a href="https://methods.egap.org/guides/data-collection/randomization_en.html">10 Things You Need to Know About Randomization</a>).</p>
+<p>For example, if you conducted a complete randomization where 25 experimental subjects were to be assigned to control and 25 to treatment, did this play out in practice? You can run a simple tabulation of the treatment assignment variable and check. Alternatively, if you conducted a block randomization by gender and wanted to assign half of women to treatment and the other half to control (and the same for men), you can look at the distribution of treatment assignment values by gender. Although complete randomization is more common in field experiments, some survey experimental software uses simple randomization. In a survey experiment with two arms, the software will assign each respondent to treatment or control by flipping a Bernoulli coin that has a 50 percent chance of landing on heads (treatment) and a 50 percent chance of landing on tails (control).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In this case, it’s okay if exactly 50 percent of your respondents don’t end up in treatment - we’d expect some variability due to the nature of the randomization. However, the percentage of units treated shouldn’t be <em>too far</em> from 50 percent. This would induce doubt that the randomization actually worked.</p>
 </section>
 <section id="checking-outcome-and-covariate-variables-for-outliers" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> # Checking outcome and covariate variables for outliers</h1>
-<p>Next, one should inspect the outcome and covariate variables for outlier values and decide what to do about these outliers. Plotting the distribution of the values of each variable (via a histogram or boxplot, for example), or asking your statistical software to produce a “summary” of the variable, are ways of going about this.</p>
-<p>To adjudicate about outliers requires substantive knowledge about what reasonable ranges are for the variables. For an age variable of a survey of only adults, for example, ranges from 18 to 85 might be reasonable. If a subject has a reported age of 2 or 1000, for example, this would raise concerns. Similarly, reported salary values outside of the range reasonable for the context that you work in might raise questions. As a note, it’s possible to program your survey software such that values entered must abide by certain rules (for example, percent of the time one spends doing household labor can only be between 0 and 100, inclusive). See guide on <a href="https://methods.egap.org/guides/planning/survey-design_en.html">10 Things to Know About Survey Design</a> for more on designing surveys smartly.</p>
-<p>If you think a value of a variable is incorrectly coded, you can try to figure out what the correct value was. First, it’s possible to do detective work to discover what the correct value was. Sometimes an enumerator may accidentally add an extra digit to an otherwise correct value, for example. One can follow-up with enumerators to clarify whether or not they made a mistake. Alternatively, one can go back to the source to verify the correct value of the variable for a certain observation. Imagine that an outcome variable is the result of an election, which was coded manually from archival resources or online images. In this case, it is relatively straightforward to return to the original newspaper source and/or image to verify the result of the election for the given observation.</p>
-<p>However, much of the time it’s not possible to retrospectively find the correct value of a variable for a given unit. Further, it may not always be clear that the value in question is in fact an incorrect - perhaps there really was a respondent who had an annual salary of 1 million dollars. Many times, best practice is to leave the value alone; editing the value would bias results. In the case that, thanks to contextual knowledge, you are certain that a value has been incorrectly coded and you are unable to locate the correct value, you may consider marking the value as missing. Other times, researchers use techniques like winsorizing a variable. This approach transforms data with the goal of limiting the impact of outliers. Concretely, winsorization changes extreme values to less extreme values. Another approach is to trim outlier values, which means to remove them entirely.</p>
-<p>If you choose to make edits to values in your data, you should make sure you’re doing 2 things. First, you should be blind to results and the treatment condition of the observation(s) when you edit or inspect data. See <a href="https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html#missing-covariate-values">Standard operating procedures for Don Green’s lab at Columbia</a> for more helpful insight on this. Second, you should never completely overwrite the raw data as you make edits. Instead, you should keep a code file that documents exactly the changes you make, and producing a cleaned data file (while retaining the raw data file). This is key to the transparency and reproducibility of your results. One way to organize the data and code for your experiment is to have a raw data file, then the code scripts that clean the data, and the intermediate/final (clean) data that you then run the analysis on. <em>Never overwrite the raw data</em>.</p>
-<p>It’s important to note that changing the values of outliers is strongly discouraged when it comes to the outcome variable! In the coding example, we do so with a covariate - income.</p>
+<h1 data-number="5"><span class="header-section-number">5</span> Checking outcome and covariate variables for outliers</h1>
+<p>Next, we recommend that you inspect the outcome and covariate variables for outlier values and decide what to do about these outliers. You can plot the distribution of the values of each variable (via a histogram or boxplot, for example), or ask your statistical software to produce a “summary” of the variable.</p>
+<p>Deciding what to do about outliers requires substantive knowledge about what reasonable ranges are for the variables. For an age variable of a survey of only adults, for example, ranges from 18 to 85 might be reasonable. If a subject has a reported age of 2 or 1000, for example, this would raise concerns. Similarly, reported salary values outside of the range reasonable for the context that you work in might raise questions. Note that it’s possible to program your survey software ahead of data collection to restrict allowable values (for example, percent of one’s time spent on household labor can only be between 0 and 100, inclusive). See guide on <a href="https://methods.egap.org/guides/planning/survey-design_en.html">10 Things to Know About Survey Design</a> for more on designing surveys smartly.</p>
+<p>If you think a value of a variable is incorrectly coded, you can try to figure out what the correct value was. First, it’s possible to do some detective work. An enumerator may have accidentally added an extra digit to an otherwise correct value, for example, and you can follow-up with enumerators to clarify whether or not they made a mistake. Alternatively, you can go back to the source to verify the correct value of the variable for a particular observation. Imagine that an outcome variable is the result of an election, which was coded manually from archival resources or online images. In this case, it is relatively straightforward to return to the original newspaper source and/or image to verify the result of that election.</p>
+<p>However, it’s often not possible to retrospectively find the correct value of a variable for a given unit. It may also not always be clear that the value in question is in fact incorrect. Perhaps there really was a respondent who had an annual salary of 1 million dollars. Many times, best practice is to leave the value alone; editing the value would bias results. In the case that, thanks to contextual knowledge, you are certain that a value has been incorrectly coded and you are unable to locate the correct value, you might consider marking the value as missing. Other times, researchers use techniques like winsorizing a variable, which replaces extreme values with less extreme values. This transforms data with the goal of limiting the impact of outliers. Another approach is to trim outlier values, which removes them entirely.</p>
+<p>If you choose to make edits to values in your data, keep in mind two points. First, you should be blind to results and the treatment condition of the observation(s) when you edit or inspect data. See <a href="https://alexandercoppock.com/Green-Lab-SOP/Green_Lab_SOP.html#missing-covariate-values">Standard operating procedures for Don Green’s lab at Columbia</a>. Second, <em>never overwrite the raw data</em>. Instead, you can keep a code file that documents exactly the changes you make and produce a cleaned data file (while retaining the raw data file). This is key to the transparency and reproducibility of your results. One way to organize the data and code for your experiment is to have a raw data file, then the code scripts that clean the data, and the intermediate/final (clean) data on which you then run the analysis.</p>
+<p>Changing the values of outliers is strongly discouraged when it comes to the outcome variable. That said, if you have reason to believe that an experimental subject has a particularly strange value on the outcome variable, or there was an error in its coding, then one might investigate this observation by speaking with enumerators and implementers or calling the original respondent to verify the value. If you don’t find evidence to suggest that a revision of the value is necessary, then leaving it and proceeding with your pre-registered analysis is the best way forward. If you do find evidence of an error, then best practice is to correct this error and report it in the main report of your experiment. Other options are to run the same analysis with and without the outlier(s), reporting these results in an appendix; one could also consider whether using test statistics that are less vulnerable to outliers make sense in supplementary hypothesis tests. Regardless of what additional analyses you do, it’s important to report the analysis that was initially planned in the PAP.</p>
 </section>
 <section id="checking-for-balance-on-pre-treatment-covariates" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> # Checking for balance on pre-treatment covariates</h1>
-<p>After inspecting and cleaning treatment assignment, treatment receipt, covariate, and outcome data, it’s crucial to check for balance on pre-treatment covariates between treatment arms. “Balance tests” are a way of providing evidence that your randomization worked as expected. They seek to probe an observable implication of random assignment of treatment: that treatment and control groups look the same, on average, in terms of pre-treatment characteristics.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Balance tests, which can be implemented in a number of different ways, ask whether imbalances in pre-treatment covariates across different experimental conditions are larger than what would be expected by chance.</p>
-<p>The balance test you run depends on your experimental design. In a set-up where you have a binary treatment and all units have the same probability of assignment to treatment, you can run a regression of the treatment assignment variable on your covariates, and run an F-test that tests the null hypothesis that all covariates are jointly 0. The p-value of the F-statistic can be found via randomization inference. If, for example, you conducted a block randomization with treatment probabilities that vary by block, you should adjust for this in the regression specification.</p>
-<p>We are interested in the F-test because we care about overall balance of covariates. However, you are likely to come across covariate-by-covariate analyses that conduct t-tests comparing means among control units and treated units. Though this is standard practice, it is undesirable for several reasons. First, it is not unlikely that a covariate will come up as significantly different among treated and control units: due to the often numerous number of tests conducted, statistical significance can arise by chance. Here, it is important to emphasize that if you detect imbalance on a covariate that is significantly different than what would arise by chance, it’s not always cause for panic. Second, this approach treats each covariate as equally important and informative about potential outcomes, rather than taking into account the prognosticness of the covariate. One may consider running equivalence tests instead of conventional balance tests.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<p>What you expect to see and what to do if it’s okay, good to go</p>
-<p>What to do if there’s evidence of imbalance</p>
+<h1 data-number="6"><span class="header-section-number">6</span> Checking for balance on pre-treatment covariates</h1>
+<p>After inspecting and cleaning treatment assignment, treatment receipt, covariate, and outcome data, we should next check for balance on pre-treatment covariates between treatment arms. Balance tests are a way of providing evidence that your randomization worked as expected. They probe an observable implication of random assignment of treatment: that treatment and control groups look the same, on average, in terms of pre-treatment characteristics. <!-- ^[See the methods guide on balance tests for more on this. Note, however, that the key assumption that we seek to test is whether or not treatment assignment is independent of potential outcomes.]  --></p>
+<p>Balance tests can be implemented in a number of different ways. In general, they ask whether imbalances in pre-treatment covariates across different experimental conditions are larger than what would be expected by chance. The balance test you run depends on your experimental design. Where you have a binary treatment and all units have the same probability of assignment to treatment, you can run a regression of the treatment assignment variable on your covariates and run an F-test for the null hypothesis that the coefficients on all covariates are jointly equal to zero. The <span class="math inline">\(p\)</span>-value can be computed with randomization inference using this F-statistic. This is the approach we document in the example code below. If, for example, you conducted a block randomization with treatment probabilities that vary by block, you should adjust for this in the regression specification. We are interested in the F-test because we care about overall balance of covariates. One may also consider running equivalence tests instead of conventional balance tests.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>We often see balance tests that use t-tests to compare means among control units and treated units for each covariate separately. Although this is standard practice, we recommend the omnibus approach described just above for two reasons. If you detect an imbalance on a covariate, this does not necessarily mean that your randomization didn’t work as planned; it is not always cause for concern. If there are many covariates, imbalance may be detected on some covariate(s) just by chance. Second, this approach treats all covariate as equally important and informative about potential outcomes.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>If imbalance isn’t detected, then we proceed to the next step in the analysis. If imbalance is detected, additional work may be required. The first step is to comprehensively investigate whether the random assignment procedure and data handling went according to plan, or whether there were errors. If this investigation reveals no mistakes, then proceeding with one’s pre-specified analysis is a sensible path forward, while reporting that, due to chance, the realization of treatment assignment led to imbalance on covariates. Researchers sometimes decide to control for a covariate in a regression analysis if they see that it is imbalanced in conventional balance tests, but there are no settled guidelines on this approach. These covariates cannot be specified <em>ex ante</em>, because researchers don’t know what sort of draw they’ll get in their actualized randomization.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<!-- One conventional approach is to adjust for imbalanced covariates in the regression estimating the ATE; this is often used when balance tests are conducted via covariate-by-covariate analyses. Some pre-specify such adjustments. However, there aren't settled guidelines on how to proceed if one detects imbalance (regardless of the method used to test for imbalance).  -->
 </section>
 <section id="checking-for-differential-attrition" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> # Checking for differential attrition</h1>
-<p>Were you unable to measure outcomes for all of your experimental subjects? Sometimes, subjects leave the study or “attrit”, and we’re unable to measure their outcome. In general, missingness of the outcome variable(s) can induce bias in our estimates of causal effects. Read more on attrition, what can lead to it, its consequences and how to address it in <a href="https://methods.egap.org/guides/data-collection/missing-data_en.html">10 Things to Know About Missing Data</a>. We’d like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it’s not, we might worry about bias. Further, the more missingness there is, the more the risk of bias.</p>
-<p>There main way that researchers probe whether outcome data may be plausibly missing at random is to to examine whether there exists an observable relationship between treatment assignment and missingness of outcomes. The way to do this is to code up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examine whether treatment assignment impacts the propensity for outcome data to be missing. To complement this analysis, researchers generally assess covariate balance between treated and control units who are not missing, or by assess covariate balance between units with missing vs non-missing outcomes.</p>
+<h1 data-number="7"><span class="header-section-number">7</span> Checking for differential attrition</h1>
+<p>Were you unable to measure outcomes for all of your experimental subjects? Sometimes, subjects leave the study or “attrit”, and we’re unable to measure their outcome. If whether the outcome is missing is independent of potential outcomes, then there is little harm. However, if attrition is related to potential outcomes, we need to worry about bias in our estimates of treatment effects.</p>
+<!-- In general, missingness in the outcome variable(s) can induce bias in our estimates of causal effects. We'd like to gain leverage on whether missing data on the outcome is independent of potential outcomes. If we think that it is, the estimator of the average treatment effect is unbiased. If it's not, we might worry about bias. Further, the more missingness that is associated with potential outcomes there is, the higher the risk of bias. With that said, a relatively small degree of differential attrition may lead to an arbitrary amount of bias. The main takeaway is that it's advisable for researchers to investigate and seek to understand the potential implications of any amount of differential attrition. -->
+<p>There are several diagnostics to probe whether the attrition may be problematic. One approach entails coding up a variable that designates whether the outcome variable is missing (1) or not missing (0), and examining whether treatment assignment is a predictor for this missingness indicator. Another approach is to include covariates and/or treatment-by-covariate interactions in these models. We conventionally include all covariates that were pre-specified to be used in the balance test. In these approaches, one can use the F-statistic from these models to calculate <span class="math inline">\(p\)</span>-values using randomization inference.</p>
+<p>Read more on attrition, what can lead to it, its consequences and how to address it in <a href="https://methods.egap.org/guides/data-collection/missing-data_en.html">10 Things to Know About Missing Data</a>.</p>
 </section>
-<section id="adjust-estimation-procedure-according-to-deviations-from-planned-analysis" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> # Adjust estimation procedure according to deviations from planned analysis</h1>
-<p>Once you have already looked at your data, you may realize that you should complete some analyses differently than you had planned in your PAP. This happens regularly.</p>
-<p>One example of this is that researchers sometimes decide to control for a covariate in a regression analysis if they see that it is imbalanced in standard balance tests. This is impossible to know ex-ante, because researchers don’t know what sort of draw they’ll get in their actualized randomization.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Alternatively, one might realize that</p>
-<p>Control for variables upon which imbalance (unlucky draw) Some measurement gets messed up, so dont include it Run an additional model that they hadn’t thought about before; error in judgment in the original PAP; learned more about the technique and this happens If it makes more sense to do this other way and had not thought about it Sometimes, deviations can be around things being underspecified; hadn’t given the details on what they’d do (the transformation not specified ex ante); or 5 category transformation and instead do 2 groups bc data looks lumped into 2 groups; underspecified or guessed wrong</p>
+<section id="adjust-estimation-procedures-to-match-deviations-from-planned-analysis" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Adjust estimation procedures to match deviations from planned analysis</h1>
+<p>After you look at your data, you may wish to analyze the data differently than you had planned in your PAP. This happens regularly.</p>
+<p>It’s common for much learning to occur between the moment a pre-analysis plan is filed, and the moment experimental data is ready to be analyzed. We learn more about a technique and how it should be implemented, a better way to specify our particular model, or another model that should be specified due to additional theoretical reflections. It also happens that we make mistakes or guess wrong about how things will play out in the data: maybe we’d planned to transform a variable into five categories, but the distribution of the variable is lumped into two groups, or the measurement did not go according to plan. These are all reasonable cases in which it would make sense to deviate from one’s pre-analysis plan.</p>
+<p>It is best practice to <em>indicate where you deviated from the PAP</em>. This will enhance the transparency and the reproducibility of your research. We touch more on this in a point below.</p>
 </section>
 <section id="write-replicable-code-to-analyze-data" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> # Write replicable code to analyze data</h1>
-<p>Hopefully this is done w/ PAP But otherwise do now (Don’t actually include code here) List best practice -&gt; point to the replication file of Gaikwad and Nellis (2021) annotations , versions of packages, where to find which tables and figures etc etc should all be noted raw data kept, cleaning file separate, etc</p>
+<h1 data-number="9"><span class="header-section-number">9</span> Write replicable code to analyze data</h1>
+<p>The next step is to write up the code to analyze your data, if you hadn’t already done so at the pre-analysis plan stage. Best practice is to write the code when filing the pre-analysis plan, so it is ready to go when the data comes in. But if this isn’t the case, it’s fine to write the code in its entirety now. For more on how to write replicable and transparent code, see <a href="https://methods.egap.org/guides/implementation/workflow_en.html">10 Things You Need to Know About Project Workflow</a>.</p>
+<p>What are some best practices in writing up one’s analysis code? In general, the clearer, simpler, and more documented the code, the better. An example of well-documented, simple and transparent experimental code can be found in the replication materials of <span class="citation" data-cites="gaikwad_nellis_2021">Gaikwad and Nellis (<a href="#ref-gaikwad_nellis_2021" role="doc-biblioref">2021</a>)</span>. First, one should never overwrite one’s raw experimental data. We’d recommend keeping the raw data in a separate folder within a replication file, writing and making publicly available the (separate) code that cleans the raw data, and then drawing on the cleaned data in the analysis code. Second, the code should be annotated. This includes both “macro” and “micro”-level comments. At a macro-level, it’s useful to signpost where we can find all analyses in the paper and appendices, by breaking up the code into sections that correspond to the sections in what you’ll write up. No guesswork should be needed to locate the code that produces your tables and figures. At a micro-level, writing in-line comments for specific lines of code also aids with transparency. We recommend writing in-line comments for key analyses as well as the reasoning underlying variable transformations. While there’s such a thing as having too much annotation, generally more is better and only increases the accessibility and legibility of your code. Finally, it is best practice to indicate what version of statistical packages were used in the analysis at the point that it was written. Packages may be modified in ways that “break” your code so that your analysis cannot be replicated.</p>
 </section>
-<section id="write-up-deviations-from-preanalysis-plan-and-justify" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> # Write up deviations from preanalysis plan and justify</h1>
-<p>Pre-registered report should exist (so analyze AS pre-registered, even if not good) Cite this in your manuscript As you do analysis, you’ll come up w things that you change Keep a list of what you change; all of these could be highlighted and justified</p>
+<section id="write-up-and-justify-deviations-from-preanalysis-plan" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Write up and justify deviations from preanalysis plan</h1>
+<p>As noted earlier, it’s very common to deviate from one’s pre-analysis plan. We recommend <em>documenting</em> and <em>reporting</em> all such deviations. As you’re conducting your analysis, keep track with a list of where you deviate from your PAP. Best practice is to highlight and justify each deviation.</p>
+<p>Moreover, we recommend writing a pre-registered report of your experiment, where you analyze the data exactly as you had pre-registered your analysis. Cite this report in your study manuscript so readers can access it. One can follow the guidance of <span class="citation" data-cites="banerjeeetal2020">Banerjee et al. (<a href="#ref-banerjeeetal2020" role="doc-biblioref">2020</a>)</span>, creating a short, publicly available report that they reference as a “populated PAP” that “populates the PAP to the extent possible and briefly discusses any barriers to doing so.”</p>
+<p>A great example of a study that documents deviations from the pre-analysis plan in a transparent way and shows the original analyses that were in the pre-analysis plan, is <span class="citation" data-cites="SCHIFF_SCHIFF_BUENO_2024">Schiff et al. (<a href="#ref-SCHIFF_SCHIFF_BUENO_2024" role="doc-biblioref">2024</a>)</span>‘s study on politicians’ use of fake news and accountability.</p>
 </section>
 <section id="example-code" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> # Example code</h1>
-<p>In this example, we use data from <span class="citation" data-cites="gaikwad_nellis_2021">Gaikwad and Nellis (<a href="#ref-gaikwad_nellis_2021" role="doc-biblioref">2021</a>)</span>. They employ a door-to-door field experiment in two Indian cities to increase the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which whether an individual voted in India’s 2019 national election.</p>
+<h1 data-number="11"><span class="header-section-number">11</span> Example code</h1>
+<p>In this example, we use data from <span class="citation" data-cites="gaikwad_nellis_2021">Gaikwad and Nellis (<a href="#ref-gaikwad_nellis_2021" role="doc-biblioref">2021</a>)</span>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> They employ a door-to-door field experiment in two Indian cities to improve the political inclusion of migrants. The treatment provided intensive assistance in applying for a voter identification card. They conduct a simple randomization where 2306 migrants were either assigned to treatment or control with a 50 percent probability. They look at the impact of the treatment on several outcomes, one of which is whether an individual voted in India’s 2019 national election.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load in the experimental data from Gaikwad and Nellis (2021)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># this code draws heavily on their reproduction code, found in their</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># supplementary materials here: </span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/G1JCKK</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"gaikwad-nellis-2021-data-t1-experiment-df.Rds"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="do">### step 1 </span><span class="al">###</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the treatment variable</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># values are 0 and 1</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># around 50 percent assigned to each condition, consistent with simple randomization</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># with p = 0.5 for all subjects</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">%&gt;%</span>                             </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(i_t1) <span class="sc">%&gt;%</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data analysis and graphing packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load in the experimental data from Gaikwad and Nellis (2021)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"gaikwad-nellis-2021-data-t1-experiment-df.Rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+<section id="inspect-the-treatment-variable" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="inspect-the-treatment-variable"><span class="header-section-number">11.1</span> Inspect the treatment variable</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">### step 2 </span><span class="al">###</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># outcome and covariate inspection</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: Gaikwad and Nellis (2021) look at the impact of the treatment on several outcomes,</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># one of which whether an individual voted in India's 2019 national election.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># We're choosing to use this one for exposition here.</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># outcome variable:</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># turnout in 2019 national election</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># values of 0 or 1, no strange values</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 186 NAs which we'll investigate more later</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># covariates: </span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># they use 10 of them in their main specification:</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) lagged outcome (voted previously), 2) whether female,</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) age, 4) whether muslim, 5) whether SC/ST, 6) whether has primary education,</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 7) income, 8) whether married, 9) length of residence, 10) whether owns a home</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># here, we investigate 3 of them: age, female, and income</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># transforming income, the authors are interested in 1000 of rupees</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">%&lt;&gt;%</span> <span class="fu">mutate</span>(</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">b_income_000 =</span> b_income<span class="sc">/</span><span class="dv">1000</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># age</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># range 18-88, no NAs</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># female</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co"># range 0-1, no NAs </span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># income</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># authors are interested in income as 000s of rupees, so we transform the variable</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># range 1-150, no NAs</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co"># there seems to be some extreme outliers</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># we can summarize the outcome variable, as well as covariates, using the</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># skim function in the skimr package</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">%&gt;%</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(e_voted_2019, b_age, b_female, b_income_000) <span class="sc">%&gt;%</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># let's further inspect the income variable to check out outliers</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  t1_experiment_df <span class="sc">%&gt;%</span> </span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(b_income_000) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"b_income_000"</span>),</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(name), <span class="at">y =</span> count, <span class="at">fill =</span> <span class="fu">factor</span>(name))) <span class="sc">+</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">xlab =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_grey</span>() <span class="sc">+</span> </span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_grey</span>() <span class="sc">+</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span>  </span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Original"</span>)) <span class="sc">+</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Income (000s INR)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### step 3 </span><span class="al">###</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dealing with outliers</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># It's important to note that changing the values of outliers is strongly</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># discouraged when it comes to the outcome variable! </span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># here, we're doing so with a covariate: income</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># income</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># as we mentioned before, and as Gaikwad and Nellis (2021) mention in their paper</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># there are some outliers in the income variable that we want to address</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># they choose to winsorize it</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># winsorize income variable</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># using the "squish" function via the "scales" package</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Gaikwad and Nellis winsorize by setting all values higher than the </span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 99th percentile at the 99th percentile</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  t1_experiment_df <span class="sc">%&lt;&gt;%</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">b_income_000_winsorized =</span> <span class="fu">squish</span>(b_income_000, </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">quantile</span>(b_income_000, </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                                                         <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">99</span>))))</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect comparison of distributions of original vs. winsorized variable</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  t1_experiment_df <span class="sc">%&gt;%</span> </span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(b_income_000, b_income_000_winsorized) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"b_income_000"</span>, <span class="st">"b_income_000_winsorized"</span>),</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(name), <span class="at">y =</span> count, <span class="at">fill =</span> <span class="fu">factor</span>(name)))<span class="sc">+</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">xlab =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_grey</span>() <span class="sc">+</span> </span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_grey</span>() <span class="sc">+</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span>  </span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Original"</span>, <span class="st">"Winsorized"</span>)) <span class="sc">+</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Income (000s INR)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">### step 4 </span><span class="al">###</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># checking for imbalance</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gaikwad and Nellis inspect balance on a number of additional variables,</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># which we include below</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># values are 0 and 1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># around 50 percent assigned to each condition, consistent with simple randomization</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># with p = 0.5 for all subjects</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector of variable names</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="co"># experimental covariates</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_female"</span> <span class="ot">=</span> <span class="st">"Female"</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_age"</span> <span class="ot">=</span> <span class="st">"Age"</span>,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_muslim"</span> <span class="ot">=</span> <span class="st">"Muslim"</span>,</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_sc_st"</span> <span class="ot">=</span> <span class="st">"SC/ST"</span>,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_primary_edu"</span> <span class="ot">=</span> <span class="st">"Primary education"</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_income_000_OUTLIER_FIXED"</span> <span class="ot">=</span> <span class="st">"Income (INR 000s)"</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_married"</span> <span class="ot">=</span> <span class="st">"Married"</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_length_residence"</span> <span class="ot">=</span> <span class="st">"Length of residence in city"</span>,</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_owns_home"</span> <span class="ot">=</span> <span class="st">"Owns home in city"</span>,</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># lagged DVs</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_not_voted_previously"</span> <span class="ot">=</span> <span class="st">"Hadn't voted previously"</span>,</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_vote_mc_elecs_how_likely"</span> <span class="ot">=</span> <span class="st">"How likely to vote in city if registered"</span>,</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_political_interest"</span> <span class="ot">=</span> <span class="st">"Political interest"</span>,</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_political_efficacy"</span> <span class="ot">=</span> <span class="st">"Sense of political efficacy"</span>,</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_political_trust"</span> <span class="ot">=</span> <span class="st">"Political trust index"</span>,</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_inter_ethnic_tolerance_meal"</span> <span class="ot">=</span> <span class="st">"Shared meal with non-coethnic"</span>,</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># summary variables</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_has_village_voter_id"</span> <span class="ot">=</span> <span class="st">"Has hometown voter ID"</span>,</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_pol_active_village"</span> <span class="ot">=</span> <span class="st">"Returned to vote in hometown"</span>,</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_more_at_home_village"</span> <span class="ot">=</span> <span class="st">"More at home in hometown"</span>,</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_kms_to_home"</span> <span class="ot">=</span> <span class="st">"Straight-line distance to home district"</span>,</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_still_gets_village_schemes"</span> <span class="ot">=</span> <span class="st">"Still receives hometown schemes"</span>,</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_owns_village_property"</span> <span class="ot">=</span> <span class="st">"Owns hometown property"</span>)</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co"># we regress the treatment indicator on the covariates above</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># using lm_robust we get robust standard errors </span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">, implement the balance test after hearing back from others</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co"># first, RI</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co"># declare randomization </span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ri2)</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="co"># rename Z as treatment variable</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">%&lt;&gt;%</span> <span class="fu">mutate</span>(</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">Z =</span> i_t1</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(t1_experiment_df)</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>simple_dec <span class="ot">&lt;-</span> <span class="fu">declare_ra</span>(<span class="at">N =</span> N, <span class="at">simple =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">343</span>)</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>balance_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(<span class="fu">lm_robust</span>(Z <span class="sc">~</span> b_owns_village_property <span class="sc">+</span> b_has_village_voter_id, <span class="at">data =</span> data))<span class="sc">$</span>fstatistic[<span class="dv">1</span>]</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>ri_out <span class="ot">&lt;-</span></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conduct_ri</span>(</span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">test_function =</span> balance_fun,</span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">declaration =</span> simple_dec,</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> t1_experiment_df,</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">sims =</span> sims</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out)</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out)</span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="do">##### all below needs to be revisited after various others responses' on the </span></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="co"># best test statistic</span></span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="do">## do we get the same thing - running the 3 different versions we've come across </span></span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="co"># first way</span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>fstat1_not_robust_SE <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(Z <span class="sc">~</span> b_owns_village_property <span class="sc">+</span> b_has_village_voter_id, <span class="at">data =</span> t1_experiment_df))<span class="sc">$</span>f[<span class="dv">1</span>]</span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="co"># second way</span></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Z <span class="sc">~</span> b_owns_village_property <span class="sc">+</span> b_has_village_voter_id, <span class="at">singular.ok =</span> <span class="cn">FALSE</span>, <span class="at">data =</span> t1_experiment_df)</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>Rbeta.hat <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit)[<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>RVR <span class="ot">&lt;-</span> <span class="fu">vcovHC</span>(fit, type <span class="ot">&lt;-</span> <span class="st">'HC0'</span>)[<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>W_obs_SOP_green <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(Rbeta.hat <span class="sc">%*%</span> <span class="fu">solve</span>(RVR, Rbeta.hat))</span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="co"># third way</span></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>fstat_robust_SE <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm_robust</span>(Z <span class="sc">~</span> b_owns_village_property <span class="sc">+</span> b_has_village_voter_id, <span class="at">data =</span> t1_experiment_df))<span class="sc">$</span>fstatistic[<span class="dv">1</span>]</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>fstat1_not_robust_SE</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>W_obs_SOP_green</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>fstat_robust_SE</span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="co"># to ask, whether or not to have robust lm in order to get the test stat</span></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="co"># look at donald green SOP</span></span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="co"># versus what is shown in the ri guide</span></span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="co"># need to wait to hear back about this part</span></span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="co"># t1bal &lt;- </span></span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="co">#     lm(as.formula(paste("i_t1 ~", paste(c(names(names)), collapse = "+"))),</span></span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="co">#        data = t1_experiment_df)</span></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Rbeta.hat &lt;- coef(t1bal)[-1]</span></span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="co"># RVR &lt;- vcovHC(t1bal, type &lt;- 'HC0')[-1,-1]</span></span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="co"># W_obs &lt;- as.numeric(Rbeta.hat %*% solve(RVR, Rbeta.hat))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">|&gt;</span>                             </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(i_t1) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">i_t1</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1168</td>
+<td style="text-align: right;">0.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1138</td>
+<td style="text-align: right;">0.49</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="outcome-and-covariate-inspection" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="outcome-and-covariate-inspection"><span class="header-section-number">11.2</span> Outcome and covariate inspection</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: Gaikwad and Nellis (2021) look at the impact of the treatment on several outcomes,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># one of which whether an individual voted in India's 2019 national election.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We're choosing to use just this one for exposition here.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># outcome variable:</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># turnout in 2019 national election</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># values of 0 or 1, no strange values</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 186 NAs which we'll investigate more later</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># covariates: </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># they use 10 covariates in their main specification:</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) lagged outcome (voted previously), 2) whether female,</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) age, 4) whether Muslim, 5) whether SC/ST, 6) whether has primary education,</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 7) income, 8) whether married, 9) length of residence, 10) whether owns a home</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># here, we investigate 3 of them: age, female, and income</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># age</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># range 18-88, no NAs</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># female</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># range 0-1, no NAs </span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># income</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># authors are interested in income as 000s of rupees, so we transform the variable</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># range 1-150, no NAs</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># there seems to be some extreme outliers</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="ot">&lt;-</span> </span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  t1_experiment_df <span class="sc">|&gt;</span> </span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">b_income_000 =</span> b_income <span class="sc">/</span> <span class="dv">1000</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co"># we can summarize the outcome variable, as well as covariates, using the</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># skim function in the skimr package</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>data_for_inpection <span class="ot">&lt;-</span> </span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  t1_experiment_df <span class="sc">|&gt;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(e_voted_2019, b_age, b_female, b_income_000)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(data_for_inpection)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">data_for_inpection</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">2306</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">e_voted_2019</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">▇▁▁▁▃</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b_age</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">28.80</td>
+<td style="text-align: right;">10.06</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">b_female</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">▇▁▁▁▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b_income_000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">10.44</td>
+<td style="text-align: right;">6.32</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let's further inspect the income variable to check out outliers</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(b_income_000) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"b_income_000"</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(name), <span class="at">y =</span> count, <span class="at">fill =</span> <span class="fu">factor</span>(name))) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">xlab =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_grey</span>() <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_grey</span>() <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Original"</span>)) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Income (000s INR)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ignoring unknown labels:
+• xlab : ""</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="how-to-analyze-experiments_en_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="dealing-with-outliers" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Dealing with outliers</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'scales'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    discard</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:readr':
+
+    col_factor</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># It's important to note that changing the values of outliers is strongly</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># discouraged when it comes to the outcome variable! </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># here, we're doing so with a covariate: income</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># income</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># as we mentioned before, and as Gaikwad and Nellis (2021) mention in their paper</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># there are some outliers in the income variable that we want to address</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># they choose to winsorize it</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># winsorize income variable</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># using the "squish" function via the "scales" package</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Gaikwad and Nellis winsorize by setting all values higher than the </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 99th percentile at the 99th percentile</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  t1_experiment_df <span class="ot">&lt;-</span> t1_experiment_df <span class="sc">|&gt;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">b_income_000_winsorized =</span> <span class="fu">squish</span>(b_income_000, </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">quantile</span>(b_income_000, </span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                                                         <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">99</span>))))</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect comparison of distributions of original vs. winsorized variable</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  t1_experiment_df <span class="sc">|&gt;</span> </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(b_income_000, b_income_000_winsorized) <span class="sc">|&gt;</span> </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"b_income_000"</span>, <span class="st">"b_income_000_winsorized"</span>),</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(name), <span class="at">y =</span> count, <span class="at">fill =</span> <span class="fu">factor</span>(name)))<span class="sc">+</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">xlab =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_grey</span>() <span class="sc">+</span> </span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_grey</span>() <span class="sc">+</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span>  </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Original"</span>, <span class="st">"Winsorized"</span>)) <span class="sc">+</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Income (000s INR)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ignoring unknown labels:
+• xlab : ""</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="how-to-analyze-experiments_en_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">### step 4 </span><span class="al">###</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># checking for attrition</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># as we showed above, the outcome variable (that we are working with in this example)</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># has some missing entries, as Gaikwad and Nellis (2021) point out and address in </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># their paper</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># the code below shows that there are 186 missing observations, reflecting a </span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># rate of completeness of around 92 % </span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">%&gt;%</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(e_voted_2019) <span class="sc">%&gt;%</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># is attrition different across treatment conditions?</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># we can inspect this descriptively, comparing a variable</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># for missingness across treatment conditions</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># at a quick glance, rates look similar across treatment and control</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">%&gt;%</span>                              </span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(i_t1, i_attrition) <span class="sc">%&gt;%</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># compare attrition across T1 treatment arms using OLS regression</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># it doesn't appear that there is a big threat attrition being related to treatment assignment</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>t1attr1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(i_attrition <span class="sc">~</span> i_t1, <span class="at">data =</span> t1_experiment_df)</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># print the table, code from reproduction materials of Gaikwad and Nellis (2021)</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stargazer</span>(t1attr1, </span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">se =</span> <span class="fu">starprep</span>(t1attr1), </span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>            <span class="at">type=</span><span class="st">'latex'</span>,</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Comparison of attrition rates across T1 treatment arms using OLS regression. The analysis includes all subjects randomized to T1 treatment or control. Robust standard errors in parentheses."</span>,</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>            <span class="at">dep.var.labels =</span> <span class="st">"Attrition Indicator"</span>,</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>            <span class="at">single.row =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">omit.stat =</span> <span class="fu">c</span>(<span class="st">"ser"</span>, <span class="st">"f"</span>, <span class="st">"rsq"</span>),</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>            <span class="at">omit =</span> <span class="fu">c</span>(<span class="st">"Constant"</span>),</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>            <span class="at">covariate.labels =</span> <span class="st">"Assigned to T1 treatment"</span>,</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>            <span class="at">font.size =</span> <span class="st">"small"</span>,</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>            <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>            <span class="at">float.env =</span> <span class="st">"table"</span>,</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>            <span class="at">notes.label =</span> <span class="st">""</span>)</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="do">## </span><span class="al">TODO</span><span class="do">: add in balance (missingness on treatment by covariate interaction, then F stat?)</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># need to wait to hear back about this part</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomizr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ri2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: estimatr</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">### step 4 </span><span class="al">###</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># checking for imbalance</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gaikwad and Nellis inspect balance on a number of additional variables,</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># which we include below</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector of variable names</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>      <span class="co"># experimental covariates</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_female"</span> <span class="ot">=</span> <span class="st">"Female"</span>,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_age"</span> <span class="ot">=</span> <span class="st">"Age"</span>,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_muslim"</span> <span class="ot">=</span> <span class="st">"Muslim"</span>,</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_sc_st"</span> <span class="ot">=</span> <span class="st">"SC/ST"</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_primary_edu"</span> <span class="ot">=</span> <span class="st">"Primary education"</span>,</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_income_000_winsorized"</span> <span class="ot">=</span> <span class="st">"Income (INR 000s)"</span>,</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_married"</span> <span class="ot">=</span> <span class="st">"Married"</span>,</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_length_residence"</span> <span class="ot">=</span> <span class="st">"Length of residence in city"</span>,</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_owns_home"</span> <span class="ot">=</span> <span class="st">"Owns home in city"</span>,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># lagged DVs</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_not_voted_previously"</span> <span class="ot">=</span> <span class="st">"Hadn't voted previously"</span>,</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_vote_mc_elecs_how_likely"</span> <span class="ot">=</span> <span class="st">"How likely to vote in city if registered"</span>,</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_political_interest"</span> <span class="ot">=</span> <span class="st">"Political interest"</span>,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_political_efficacy"</span> <span class="ot">=</span> <span class="st">"Sense of political efficacy"</span>,</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_political_trust"</span> <span class="ot">=</span> <span class="st">"Political trust index"</span>,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_inter_ethnic_tolerance_meal"</span> <span class="ot">=</span> <span class="st">"Shared meal with non-coethnic"</span>,</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># summary variables</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_has_village_voter_id"</span> <span class="ot">=</span> <span class="st">"Has hometown voter ID"</span>,</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_pol_active_village"</span> <span class="ot">=</span> <span class="st">"Returned to vote in hometown"</span>,</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_more_at_home_village"</span> <span class="ot">=</span> <span class="st">"More at home in hometown"</span>,</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_kms_to_home"</span> <span class="ot">=</span> <span class="st">"Straight-line distance to home district"</span>,</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_still_gets_village_schemes"</span> <span class="ot">=</span> <span class="st">"Still receives hometown schemes"</span>,</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_owns_village_property"</span> <span class="ot">=</span> <span class="st">"Owns hometown property"</span>)</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co"># For each simulation,</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co"># regress the treatment indicator on the covariates above</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co"># using lm_robust and extract F statistic</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="co"># declare randomization</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co"># define this function first, "balance_fun"</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>balance_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(<span class="fu">lm_robust</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"Z ~"</span>, <span class="fu">paste</span>(<span class="fu">c</span>(<span class="fu">names</span>(names)), <span class="at">collapse =</span> <span class="st">"+"</span>))),</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> data))<span class="sc">$</span>fstatistic[<span class="dv">1</span>]</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="co"># next, declare the type of randomization</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a><span class="co"># using declare design</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="co"># required for this: rename Z as treatment variable</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="ot">&lt;-</span> t1_experiment_df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">Z =</span> i_t1</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="co"># required for this: get the number of subjects</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(t1_experiment_df)</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a><span class="co"># declare simple randomization</span></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>simple_dec <span class="ot">&lt;-</span> <span class="fu">declare_ra</span>(<span class="at">N =</span> N, <span class="at">simple =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="co"># then use ri2 package to conduct randomization inference</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a><span class="co"># set the number of simulations</span></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a><span class="co"># here, 10,000 is best practice, see randomization inference </span></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a><span class="co"># methods guide by Alexander Coppock for more:</span></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="co"># https://methods.egap.org/guides/analysis-procedures/ri2_en.html</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>) <span class="co"># set seed for replicability</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>ri_out <span class="ot">&lt;-</span></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">conduct_ri</span>(</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">test_function =</span> balance_fun, <span class="co"># use the function we wrote above</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">declaration =</span> simple_dec, <span class="co"># use the randomization we declared</span></span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> t1_experiment_df, <span class="co"># our dataset</span></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">sims =</span> sims <span class="co"># the number of times to run the model and extract F stat</span></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in data.frame(est_sim = test_stat_sim, est_obs = test_stat_obs, : row
+names were found from a short variable and have been discarded</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># final step: observe results of randomization inference</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and interpret</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ri_out) <span class="co"># what proportion of simulations produce an F-stat as extreme</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   term estimate two_tailed_p_value
+1 Custom Test Statistic 1.317974             0.1716</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as the one we actually observed? 0.17</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ri_out) <span class="co"># we can also visualize this</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="how-to-analyze-experiments_en_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># checking for attrition</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># as we showed above, the outcome variable (that we are working with in this example)</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># has some missing entries, as Gaikwad and Nellis (2021) point out and address in </span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># their paper</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># the code below shows that there are 186 missing observations, reflecting a </span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># rate of completeness of around 92 % </span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">|&gt;</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(e_voted_2019) <span class="sc">|&gt;</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">dplyr::select(t1_experime…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">2306</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">e_voted_2019</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">▇▁▁▁▃</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># is attrition different across treatment conditions?</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we can inspect this descriptively, comparing a variable</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for missingness across treatment conditions</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># at a quick glance, rates look similar across treatment and control</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>t1_experiment_df <span class="sc">|&gt;</span>                              </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(i_t1, i_attrition) <span class="sc">|&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by i_t1 and i_attrition.
+ℹ Output is grouped by i_t1.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(i_t1, i_attrition))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+# Groups:   i_t1 [2]
+   i_t1 i_attrition     n   freq
+  &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;
+1     0           0  1070 0.916 
+2     0           1    98 0.0839
+3     1           0  1050 0.923 
+4     1           1    88 0.0773</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run regressions to understand what if anything predicts missingness</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># simplest version: regress missingness on treatment status</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>t1attr1 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(i_attrition <span class="sc">~</span> i_t1, <span class="at">data =</span> t1_experiment_df)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># more complex version: regress missingness on treatment status and covariates</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># for exposition, here we've selected some (not exhaustive of all covariates used in</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Gaikwad and Nellis's paper)</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>t1attr2 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(i_attrition <span class="sc">~</span> i_t1 <span class="sc">+</span> b_female <span class="sc">+</span> b_age <span class="sc">+</span> b_muslim <span class="sc">+</span> b_sc_st <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      b_primary_edu <span class="sc">+</span> b_income_000_winsorized <span class="sc">+</span> b_married <span class="sc">+</span> b_length_residence <span class="sc">+</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>      b_owns_home, <span class="at">data =</span> t1_experiment_df)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># more complex version: run with treatment by covariate interactions</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>t1attr3 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(i_attrition <span class="sc">~</span> i_t1<span class="sc">*</span>(b_female <span class="sc">+</span> b_age <span class="sc">+</span> b_muslim <span class="sc">+</span> b_sc_st <span class="sc">+</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>      b_primary_edu <span class="sc">+</span> b_income_000_winsorized <span class="sc">+</span> b_married <span class="sc">+</span> b_length_residence <span class="sc">+</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>      b_owns_home), <span class="at">data =</span> t1_experiment_df)</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co"># TO </span><span class="al">NOTE</span><span class="co">: The way you investigate attrition can depend on your design</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co"># for example, if you have a blocked design, you'd want to look at </span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co"># attrition by block; note here that it's possible that an entire block</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co"># could go missing</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"(1)"</span> <span class="ot">=</span> t1attr1, </span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"(2)"</span> <span class="ot">=</span> t1attr2, </span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"(3)"</span> <span class="ot">=</span> t1attr3)</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>cm <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"i_t1"</span> <span class="ot">=</span> <span class="st">"Treatment"</span>,</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_female"</span> <span class="ot">=</span> <span class="st">"Female"</span>,</span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_age"</span> <span class="ot">=</span> <span class="st">"Age"</span>,</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_muslim"</span> <span class="ot">=</span> <span class="st">"Muslim"</span>,</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_sc_st"</span> <span class="ot">=</span> <span class="st">"SC/ST"</span>,</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_primary_edu"</span> <span class="ot">=</span> <span class="st">"Primary education"</span>,</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_income_000_winsorized"</span> <span class="ot">=</span> <span class="st">"Income (INR 000s)"</span>,</span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_married"</span> <span class="ot">=</span> <span class="st">"Married"</span>,</span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_length_residence"</span> <span class="ot">=</span> <span class="st">"Length of residence in city"</span>,</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_owns_home"</span> <span class="ot">=</span> <span class="st">"Owns home in city"</span>)</span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="fu">msummary</span>(models, <span class="at">coef_map =</span> cm, <span class="at">stars=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
+    <script>
+      // Create table-specific functions using external factory
+      const tableFns_0y8zb0h92jh02czr238f = TinyTable.createTableFunctions("tinytable_0y8zb0h92jh02czr238f");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '26', j: 2 }, { i: '26', j: 3 }, { i: '26', j: 4 } ], css_id: 'tinytable_css_uow3p8na2u9zthoo9qqs',}, 
+          { positions: [ { i: '20', j: 2 }, { i: '20', j: 3 }, { i: '20', j: 4 } ], css_id: 'tinytable_css_mhmgzpb7tfkgnp3riet9',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '5', j: 2 }, { i: '6', j: 2 }, { i: '7', j: 2 }, { i: '8', j: 2 }, { i: '9', j: 2 }, { i: '10', j: 2 }, { i: '11', j: 2 }, { i: '12', j: 2 }, { i: '13', j: 2 }, { i: '14', j: 2 }, { i: '15', j: 2 }, { i: '16', j: 2 }, { i: '17', j: 2 }, { i: '18', j: 2 }, { i: '19', j: 2 }, { i: '21', j: 2 }, { i: '22', j: 2 }, { i: '23', j: 2 }, { i: '24', j: 2 }, { i: '25', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '5', j: 3 }, { i: '6', j: 3 }, { i: '7', j: 3 }, { i: '8', j: 3 }, { i: '9', j: 3 }, { i: '10', j: 3 }, { i: '11', j: 3 }, { i: '12', j: 3 }, { i: '13', j: 3 }, { i: '14', j: 3 }, { i: '15', j: 3 }, { i: '16', j: 3 }, { i: '17', j: 3 }, { i: '18', j: 3 }, { i: '19', j: 3 }, { i: '21', j: 3 }, { i: '22', j: 3 }, { i: '23', j: 3 }, { i: '24', j: 3 }, { i: '25', j: 3 }, { i: '1', j: 4 }, { i: '2', j: 4 }, { i: '3', j: 4 }, { i: '4', j: 4 }, { i: '5', j: 4 }, { i: '6', j: 4 }, { i: '7', j: 4 }, { i: '8', j: 4 }, { i: '9', j: 4 }, { i: '10', j: 4 }, { i: '11', j: 4 }, { i: '12', j: 4 }, { i: '13', j: 4 }, { i: '14', j: 4 }, { i: '15', j: 4 }, { i: '16', j: 4 }, { i: '17', j: 4 }, { i: '18', j: 4 }, { i: '19', j: 4 }, { i: '21', j: 4 }, { i: '22', j: 4 }, { i: '23', j: 4 }, { i: '24', j: 4 }, { i: '25', j: 4 } ], css_id: 'tinytable_css_j2ytzfimwkstmtw5ub3k',}, 
+          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 } ], css_id: 'tinytable_css_9zg1pzebpbp5ct7z4108',}, 
+          { positions: [ { i: '26', j: 1 } ], css_id: 'tinytable_css_pf6aljj332q8usp0rxt8',}, 
+          { positions: [ { i: '20', j: 1 } ], css_id: 'tinytable_css_fsta4ghg021kgclx7lqq',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 }, { i: '6', j: 1 }, { i: '7', j: 1 }, { i: '8', j: 1 }, { i: '9', j: 1 }, { i: '10', j: 1 }, { i: '11', j: 1 }, { i: '12', j: 1 }, { i: '13', j: 1 }, { i: '14', j: 1 }, { i: '15', j: 1 }, { i: '16', j: 1 }, { i: '17', j: 1 }, { i: '18', j: 1 }, { i: '19', j: 1 }, { i: '21', j: 1 }, { i: '22', j: 1 }, { i: '23', j: 1 }, { i: '24', j: 1 }, { i: '25', j: 1 } ], css_id: 'tinytable_css_dgoww37aurj7ztevr8v8',}, 
+          { positions: [ { i: '0', j: 1 } ], css_id: 'tinytable_css_mc6x6xat6uk82evbqzn6',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_0y8zb0h92jh02czr238f.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
+    <style>
+    /* tinytable css entries after */
+    #tinytable_0y8zb0h92jh02czr238f td.tinytable_css_uow3p8na2u9zthoo9qqs, #tinytable_0y8zb0h92jh02czr238f th.tinytable_css_uow3p8na2u9zthoo9qqs {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_0y8zb0h92jh02czr238f td.tinytable_css_mhmgzpb7tfkgnp3riet9, #tinytable_0y8zb0h92jh02czr238f th.tinytable_css_mhmgzpb7tfkgnp3riet9 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_0y8zb0h92jh02czr238f td.tinytable_css_j2ytzfimwkstmtw5ub3k, #tinytable_0y8zb0h92jh02czr238f th.tinytable_css_j2ytzfimwkstmtw5ub3k { text-align: center }
+    #tinytable_0y8zb0h92jh02czr238f td.tinytable_css_9zg1pzebpbp5ct7z4108, #tinytable_0y8zb0h92jh02czr238f th.tinytable_css_9zg1pzebpbp5ct7z4108 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_0y8zb0h92jh02czr238f td.tinytable_css_pf6aljj332q8usp0rxt8, #tinytable_0y8zb0h92jh02czr238f th.tinytable_css_pf6aljj332q8usp0rxt8 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_0y8zb0h92jh02czr238f td.tinytable_css_fsta4ghg021kgclx7lqq, #tinytable_0y8zb0h92jh02czr238f th.tinytable_css_fsta4ghg021kgclx7lqq {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_0y8zb0h92jh02czr238f td.tinytable_css_dgoww37aurj7ztevr8v8, #tinytable_0y8zb0h92jh02czr238f th.tinytable_css_dgoww37aurj7ztevr8v8 { text-align: left }
+    #tinytable_0y8zb0h92jh02czr238f td.tinytable_css_mc6x6xat6uk82evbqzn6, #tinytable_0y8zb0h92jh02czr238f th.tinytable_css_mc6x6xat6uk82evbqzn6 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    </style>
+    <div class="container">
+      <table class="tinytable" id="tinytable_0y8zb0h92jh02czr238f" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        
+        <thead>
+              <tr>
+                <th scope="col" data-row="0" data-col="1"> </th>
+                <th scope="col" data-row="0" data-col="2">(1)</th>
+                <th scope="col" data-row="0" data-col="3">(2)</th>
+                <th scope="col" data-row="0" data-col="4">(3)</th>
+              </tr>
+        </thead>
+        <tfoot><tr><td colspan="4">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
+        <tbody>
+                <tr>
+                  <td data-row="1" data-col="1">Treatment</td>
+                  <td data-row="1" data-col="2">-0.007</td>
+                  <td data-row="1" data-col="3">-0.003</td>
+                  <td data-row="1" data-col="4">-0.001</td>
+                </tr>
+                <tr>
+                  <td data-row="2" data-col="1"></td>
+                  <td data-row="2" data-col="2">(0.011)</td>
+                  <td data-row="2" data-col="3">(0.011)</td>
+                  <td data-row="2" data-col="4">(0.063)</td>
+                </tr>
+                <tr>
+                  <td data-row="3" data-col="1">Female</td>
+                  <td data-row="3" data-col="2"></td>
+                  <td data-row="3" data-col="3">-0.010</td>
+                  <td data-row="3" data-col="4">-0.008</td>
+                </tr>
+                <tr>
+                  <td data-row="4" data-col="1"></td>
+                  <td data-row="4" data-col="2"></td>
+                  <td data-row="4" data-col="3">(0.012)</td>
+                  <td data-row="4" data-col="4">(0.017)</td>
+                </tr>
+                <tr>
+                  <td data-row="5" data-col="1">Age</td>
+                  <td data-row="5" data-col="2"></td>
+                  <td data-row="5" data-col="3">0.001</td>
+                  <td data-row="5" data-col="4">0.001</td>
+                </tr>
+                <tr>
+                  <td data-row="6" data-col="1"></td>
+                  <td data-row="6" data-col="2"></td>
+                  <td data-row="6" data-col="3">(0.001)</td>
+                  <td data-row="6" data-col="4">(0.001)</td>
+                </tr>
+                <tr>
+                  <td data-row="7" data-col="1">Muslim</td>
+                  <td data-row="7" data-col="2"></td>
+                  <td data-row="7" data-col="3">-0.050***</td>
+                  <td data-row="7" data-col="4">-0.060***</td>
+                </tr>
+                <tr>
+                  <td data-row="8" data-col="1"></td>
+                  <td data-row="8" data-col="2"></td>
+                  <td data-row="8" data-col="3">(0.012)</td>
+                  <td data-row="8" data-col="4">(0.017)</td>
+                </tr>
+                <tr>
+                  <td data-row="9" data-col="1">SC/ST</td>
+                  <td data-row="9" data-col="2"></td>
+                  <td data-row="9" data-col="3">0.020</td>
+                  <td data-row="9" data-col="4">0.022</td>
+                </tr>
+                <tr>
+                  <td data-row="10" data-col="1"></td>
+                  <td data-row="10" data-col="2"></td>
+                  <td data-row="10" data-col="3">(0.013)</td>
+                  <td data-row="10" data-col="4">(0.019)</td>
+                </tr>
+                <tr>
+                  <td data-row="11" data-col="1">Primary education</td>
+                  <td data-row="11" data-col="2"></td>
+                  <td data-row="11" data-col="3">-0.036*</td>
+                  <td data-row="11" data-col="4">-0.033+</td>
+                </tr>
+                <tr>
+                  <td data-row="12" data-col="1"></td>
+                  <td data-row="12" data-col="2"></td>
+                  <td data-row="12" data-col="3">(0.014)</td>
+                  <td data-row="12" data-col="4">(0.019)</td>
+                </tr>
+                <tr>
+                  <td data-row="13" data-col="1">Income (INR 000s)</td>
+                  <td data-row="13" data-col="2"></td>
+                  <td data-row="13" data-col="3">0.000</td>
+                  <td data-row="13" data-col="4">0.003</td>
+                </tr>
+                <tr>
+                  <td data-row="14" data-col="1"></td>
+                  <td data-row="14" data-col="2"></td>
+                  <td data-row="14" data-col="3">(0.001)</td>
+                  <td data-row="14" data-col="4">(0.002)</td>
+                </tr>
+                <tr>
+                  <td data-row="15" data-col="1">Married</td>
+                  <td data-row="15" data-col="2"></td>
+                  <td data-row="15" data-col="3">-0.011</td>
+                  <td data-row="15" data-col="4">-0.029</td>
+                </tr>
+                <tr>
+                  <td data-row="16" data-col="1"></td>
+                  <td data-row="16" data-col="2"></td>
+                  <td data-row="16" data-col="3">(0.015)</td>
+                  <td data-row="16" data-col="4">(0.021)</td>
+                </tr>
+                <tr>
+                  <td data-row="17" data-col="1">Length of residence in city</td>
+                  <td data-row="17" data-col="2"></td>
+                  <td data-row="17" data-col="3">-0.003***</td>
+                  <td data-row="17" data-col="4">-0.003***</td>
+                </tr>
+                <tr>
+                  <td data-row="18" data-col="1"></td>
+                  <td data-row="18" data-col="2"></td>
+                  <td data-row="18" data-col="3">(0.001)</td>
+                  <td data-row="18" data-col="4">(0.001)</td>
+                </tr>
+                <tr>
+                  <td data-row="19" data-col="1">Owns home in city</td>
+                  <td data-row="19" data-col="2"></td>
+                  <td data-row="19" data-col="3">-0.006</td>
+                  <td data-row="19" data-col="4">-0.014</td>
+                </tr>
+                <tr>
+                  <td data-row="20" data-col="1"></td>
+                  <td data-row="20" data-col="2"></td>
+                  <td data-row="20" data-col="3">(0.013)</td>
+                  <td data-row="20" data-col="4">(0.018)</td>
+                </tr>
+                <tr>
+                  <td data-row="21" data-col="1">Num.Obs.</td>
+                  <td data-row="21" data-col="2">2306</td>
+                  <td data-row="21" data-col="3">2306</td>
+                  <td data-row="21" data-col="4">2306</td>
+                </tr>
+                <tr>
+                  <td data-row="22" data-col="1">R2</td>
+                  <td data-row="22" data-col="2">0.000</td>
+                  <td data-row="22" data-col="3">0.021</td>
+                  <td data-row="22" data-col="4">0.024</td>
+                </tr>
+                <tr>
+                  <td data-row="23" data-col="1">R2 Adj.</td>
+                  <td data-row="23" data-col="2">-0.000</td>
+                  <td data-row="23" data-col="3">0.016</td>
+                  <td data-row="23" data-col="4">0.016</td>
+                </tr>
+                <tr>
+                  <td data-row="24" data-col="1">AIC</td>
+                  <td data-row="24" data-col="2">550.5</td>
+                  <td data-row="24" data-col="3">520.9</td>
+                  <td data-row="24" data-col="4">530.1</td>
+                </tr>
+                <tr>
+                  <td data-row="25" data-col="1">BIC</td>
+                  <td data-row="25" data-col="2">567.7</td>
+                  <td data-row="25" data-col="3">589.8</td>
+                  <td data-row="25" data-col="4">650.7</td>
+                </tr>
+                <tr>
+                  <td data-row="26" data-col="1">RMSE</td>
+                  <td data-row="26" data-col="2">0.27</td>
+                  <td data-row="26" data-col="3">0.27</td>
+                  <td data-row="26" data-col="4">0.27</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
 </div>
 </section>
-<section id="references" class="level1" data-number="12">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -610,20 +1211,30 @@ div.csl-indent {
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">12 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-banerjeeetal2020" class="csl-entry" role="listitem">
+Banerjee, Abhijit, Esther Duflo, Amy Finkelstein, Lawrence F. Katz, Benjamin A. Olken, and Anja Sautmann. 2020. <em>In Praise of Moderation: Suggestions for the Scope and Use of Pre-Analysis Plans for RCTs in Economics</em>. NBER Working Paper No. 26993. National Bureau of Economic Research. <a href="https://doi.org/10.3386/w26993">https://doi.org/10.3386/w26993</a>.
+</div>
+<div id="ref-bicalhobouyamourndunning2022" class="csl-entry" role="listitem">
+Bicalho, Clara, Adam Bouyamourn, and Thad Dunning. 2026. <span>“The Power of Prognosis: Improving Covariate Balance Tests with Outcome Information.”</span> <em>Political Analysis</em>, 1–26. <a href="https://doi.org/10.1017/pan.2026.10050">https://doi.org/10.1017/pan.2026.10050</a>.
+</div>
 <div id="ref-gaikwad_nellis_2021" class="csl-entry" role="listitem">
-Gaikwad, Nikhar, and Gareth Nellis. 2021. <span>“Overcoming the Political Exclusion of Migrants: Theory and Experimental Evidence from India.”</span> <em>American Political Science Review</em> 115 (4): 1129–46.
+Gaikwad, Nikhar, and Gareth Nellis. 2021. <span>“Overcoming the Political Exclusion of Migrants: Theory and Experimental Evidence from India.”</span> <em>American Political Science Review</em> 115 (4): 1129–46. <a href="https://doi.org/10.1017/S0003055421000435">https://doi.org/10.1017/S0003055421000435</a>.
 </div>
 <div id="ref-hartman_hidalgo_2018" class="csl-entry" role="listitem">
-Hartman, Erin, and F. Daniel Hidalgo. 2018. <span>“An Equivalence Approach to Balance and Placebo Tests.”</span> <em>American Journal of Political Science</em> 62 (4): 1129–46.
+Hartman, Erin, and F. Daniel Hidalgo. 2018. <span>“An Equivalence Approach to Balance and Placebo Tests.”</span> <em>American Journal of Political Science</em> 62 (4): 1000–1013. <a href="https://doi.org/10.1111/ajps.12387">https://doi.org/10.1111/ajps.12387</a>.
+</div>
+<div id="ref-SCHIFF_SCHIFF_BUENO_2024" class="csl-entry" role="listitem">
+Schiff, Kaylyn Jackson, Daniel S. Schiff, and Natália S. Bueno. 2024. <span>“The Liar’s Dividend: Can Politicians Claim Misinformation to Evade Accountability?”</span> <em>American Political Science Review</em>, ahead of print. <a href="https://doi.org/10.1017/S0003055423001454">https://doi.org/10.1017/S0003055423001454</a>.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Note: the Bernoulli coin need not be defined by 50-50 chances; the researcher defines ex-ante the probability of receiving treatment versus control, which could be 70-30 instead.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>See the methods guide on balance tests for more on this. However, the key (unobservable) assumption that we seek to test is whether or not treatment assignment is independent of potential outcomes.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><span class="citation" data-cites="hartman_hidalgo_2018">Hartman and Hidalgo (<a href="#ref-hartman_hidalgo_2018" role="doc-biblioref">2018</a>)</span> write on the meaning and implications of equivalence tests, vis-a-vis conventional balance tests.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Note: the Bernoulli coin need not be defined by 50-50 chances; the researcher defines <em>ex ante</em> the probability of receiving treatment versus control, which could be 70-30 instead.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><span class="citation" data-cites="hartman_hidalgo_2018">Hartman and Hidalgo (<a href="#ref-hartman_hidalgo_2018" role="doc-biblioref">2018</a>)</span> write on the meaning and implications of equivalence tests vis-a-vis conventional balance tests.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><span class="citation" data-cites="bicalhobouyamourndunning2022">Bicalho et al. (<a href="#ref-bicalhobouyamourndunning2022" role="doc-biblioref">2026</a>)</span> write on the importance of integrating covariate prognosticness into tests of balance and put forth a method for doing so.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>However, protecting against ‘bad draws’ is possible through blocked designs: see <a href="https://methods.egap.org/guides/data-collection/randomization_en.html">10 Things You Need to Know About Randomization</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>The example draws heavily on their reproduction code at https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/G1JCKK<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1027,6 +1638,19 @@ Hartman, Erin, and F. Daniel Hidalgo. 2018. <span>“An Equivalence Approach to 
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

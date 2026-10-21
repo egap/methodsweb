@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things Your Null Result Might Mean – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -25,7 +31,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -53,15 +58,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -188,7 +192,7 @@ div.csl-indent {
   <li><a href="#intervention-implementation" id="toc-intervention-implementation"><span class="header-section-number">2</span> Intervention Implementation</a></li>
   <li><a href="#study-design" id="toc-study-design"><span class="header-section-number">3</span> Study Design</a></li>
   <li><a href="#not-all-nulls-are-the-result-of-a-flaw-in-design-or-implementation" id="toc-not-all-nulls-are-the-result-of-a-flaw-in-design-or-implementation"><span class="header-section-number">4</span> Not all nulls are the result of a flaw in design or implementation!</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">5</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <p>Imagine you lead the department of education for a government and are wondering about how to boost student attendance. You decide to consider a text message intervention that offers individual students counseling. Counselors at each school can help students address challenges specifically related to school attendance. Your team runs a randomized trial of the intervention, and tells you there is a null result.</p>
@@ -267,14 +271,14 @@ div.csl-indent {
 <p>If you are unable to find a publication willing to include a study with null results in their journal, you can still contribute to the evidence base on the policy area under examination by making your working paper, data, and/or analysis code publicly available. Many researchers choose to do so via their personal websites; in addition, there are repositories (such as the <a href="https://osf.io/">Open Science Framework</a>) that provide a platform for researchers to share their in-progress and unpublished work.</p>
 </section>
 </section>
-<section id="references" class="level1" data-number="5">
+<section id="references" class="level1 unnumbered">
 
 
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">5 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-abadie_2020" class="csl-entry" role="listitem">
 Abadie, Alberto. 2020. <span>“Statistical Nonsignificance in Empirical Economics.”</span> <em>American Economic Review: Insights</em> 2 (2): 193–208.
 </div>
@@ -282,7 +286,7 @@ Abadie, Alberto. 2020. <span>“Statistical Nonsignificance in Empirical Economi
 Bhatti, Yosef, Jens Olav Dahlgaard, Jonas Hedegaard Hansen, and Kasper M. Hansen. 2016. <span>“Is Door-to-Door Canvassing Effective in Europe? Evidence from a Meta-Study Across Six European Countries.”</span> <em>British Journal of Political Science</em> 49 (1): 279–90.
 </div>
 <div id="ref-bhatti_et_al_2018" class="csl-entry" role="listitem">
-———. 2018. <span>“Can Governments Use Get Out the Vote Letters to Solve Europe’s Turnout Crisis? Evidence from a Field Experiment.”</span> <em>West European Politics</em> 41 (1): 240–60.
+Bhatti, Yosef, Jens Olav Dahlgaard, Jonas Hedegaard Hansen, and Kasper M. Hansen. 2018. <span>“Can Governments Use Get Out the Vote Letters to Solve Europe’s Turnout Crisis? Evidence from a Field Experiment.”</span> <em>West European Politics</em> 41 (1): 240–60.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -686,6 +690,19 @@ Bhatti, Yosef, Jens Olav Dahlgaard, Jonas Hedegaard Hansen, and Kasper M. Hansen
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

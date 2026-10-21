@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things You Need to Know About Statistical Power – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -60,7 +66,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -88,15 +93,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -128,7 +132,7 @@ div.csl-indent {
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -232,7 +236,19 @@ window.Quarto = {
 </div>
 
 <div class="quarto-title-meta">
+    <div>
+    <div class="quarto-title-meta-heading">Original authors</div>
+    <div class="quarto-title-meta-contents">
+            <p class="author"><a href="https://egap.org/member/alexander-coppock/" target="_blank">Alexander Coppock</a>&nbsp;&nbsp;<span style="font-size: 75%; color: darkgray">2013</span></p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Major revisions by</div>
+    <div class="quarto-title-meta-contents">
+            <p class="author"><a href="https://www.linkedin.com/in/eric-dobbie-6a2995185" target="_blank">Eric Dobbie</a>&nbsp;&nbsp;<span style="font-size: 75%; color: darkgray">2023</span></p>
+          </div>
+  </div>
     
     
     
@@ -244,22 +260,22 @@ window.Quarto = {
     <h4 id="toc-title">Contents</h4>
    
   <ul>
-  <li><a href="#what-power-is" id="toc-what-power-is"><span class="header-section-number">1</span> 1. What Power Is</a></li>
-  <li><a href="#why-you-need-it" id="toc-why-you-need-it"><span class="header-section-number">2</span> 2. Why You Need It</a></li>
-  <li><a href="#the-three-ingredients-of-statistical-power" id="toc-the-three-ingredients-of-statistical-power"><span class="header-section-number">3</span> 3. The Three Ingredients of Statistical Power</a></li>
-  <li><a href="#key-formulas-for-calculating-power" id="toc-key-formulas-for-calculating-power"><span class="header-section-number">4</span> 4. Key Formulas for Calculating Power</a></li>
-  <li><a href="#when-to-believe-your-power-analysis" id="toc-when-to-believe-your-power-analysis"><span class="header-section-number">5</span> 5. When to Believe Your Power Analysis</a></li>
-  <li><a href="#how-to-use-simulation-to-estimate-power" id="toc-how-to-use-simulation-to-estimate-power"><span class="header-section-number">6</span> 6. How to Use Simulation to Estimate Power</a></li>
-  <li><a href="#how-to-change-your-design-to-improve-your-power" id="toc-how-to-change-your-design-to-improve-your-power"><span class="header-section-number">7</span> 7. How to Change your Design to Improve Your Power</a></li>
-  <li><a href="#power-analysis-for-multiple-treatments" id="toc-power-analysis-for-multiple-treatments"><span class="header-section-number">8</span> 8. Power Analysis for Multiple Treatments</a></li>
-  <li><a href="#how-to-think-about-power-for-clustered-designs" id="toc-how-to-think-about-power-for-clustered-designs"><span class="header-section-number">9</span> 9. How to Think About Power for Clustered Designs</a></li>
-  <li><a href="#good-power-analysis-makes-preregistration-easy" id="toc-good-power-analysis-makes-preregistration-easy"><span class="header-section-number">10</span> 10. Good Power Analysis Makes Preregistration Easy</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#what-power-is" id="toc-what-power-is"><span class="header-section-number">1</span> What Power Is</a></li>
+  <li><a href="#why-you-need-it" id="toc-why-you-need-it"><span class="header-section-number">2</span> Why You Need It</a></li>
+  <li><a href="#the-three-ingredients-of-statistical-power" id="toc-the-three-ingredients-of-statistical-power"><span class="header-section-number">3</span> The Three Ingredients of Statistical Power</a></li>
+  <li><a href="#key-formulas-for-calculating-power" id="toc-key-formulas-for-calculating-power"><span class="header-section-number">4</span> Key Formulas for Calculating Power</a></li>
+  <li><a href="#when-to-believe-your-power-analysis" id="toc-when-to-believe-your-power-analysis"><span class="header-section-number">5</span> When to Believe Your Power Analysis</a></li>
+  <li><a href="#how-to-use-simulation-to-estimate-power" id="toc-how-to-use-simulation-to-estimate-power"><span class="header-section-number">6</span> How to Use Simulation to Estimate Power</a></li>
+  <li><a href="#how-to-change-your-design-to-improve-your-power" id="toc-how-to-change-your-design-to-improve-your-power"><span class="header-section-number">7</span> How to Change your Design to Improve Your Power</a></li>
+  <li><a href="#power-analysis-for-multiple-treatments" id="toc-power-analysis-for-multiple-treatments"><span class="header-section-number">8</span> Power Analysis for Multiple Treatments</a></li>
+  <li><a href="#how-to-think-about-power-for-clustered-designs" id="toc-how-to-think-about-power-for-clustered-designs"><span class="header-section-number">9</span> How to Think About Power for Clustered Designs</a></li>
+  <li><a href="#good-power-analysis-makes-preregistration-easy" id="toc-good-power-analysis-makes-preregistration-easy"><span class="header-section-number">10</span> Good Power Analysis Makes Preregistration Easy</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <p>This guide will help you assess and improve the power of your experiments. We focus on the big ideas and provide examples and tools that you can use in R.</p>
 <section id="what-power-is" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 1. What Power Is</h1>
+<h1 data-number="1"><span class="header-section-number">1</span> What Power Is</h1>
 <p>Power is the ability to distinguish signal from noise.</p>
 <p>The signal that we are interested in is the impact of a treatment on some outcome. Does education increase incomes? Do public health campaigns decrease the incidence of disease? Can international monitoring decrease government corruption?</p>
 <p>The noise that we are concerned about comes from the complexity of the world. Outcomes vary across people and places for myriad reasons. In statistical terms, you can think of this variation as the standard deviation of the outcome variable. For example, suppose an experiment uses rates of a rare disease as an outcome. The total number of affected people isn’t likely to fluctuate wildly day to day, meaning that the background noise in this environment will be low. When noise is low, experiments can detect even small changes in average outcomes. A treatment that decreased the incidence of the disease by 1% percentage points would be easily detected, because the baseline rates are so constant.</p>
@@ -268,7 +284,7 @@ window.Quarto = {
 <p>If our experiments are highly-powered, we can be confident that if there truly is a treatment effect, we’ll be able to see it.</p>
 </section>
 <section id="why-you-need-it" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> 2. Why You Need It</h1>
+<h1 data-number="2"><span class="header-section-number">2</span> Why You Need It</h1>
 <p>Experimenters often guard against false positives with statistical significance tests. After an experiment has been run, we are concerned about falsely concluding that there is an effect when there really isn’t.</p>
 <p>Power analysis asks the opposite question: supposing there truly is a treatment effect and you were to run your experiment a huge number of times, how often will you get a statistically significant result?</p>
 <p>Answering this question requires informed guesswork. You’ll have to supply guesses as to how big your treatment effect can reasonably be, how many subjects will answer your survey, how many subjects your organization can realistically afford to treat.</p>
@@ -277,7 +293,7 @@ window.Quarto = {
 <p>A note of caution: power matters a lot. Negative results from underpowered studies can be hard to interpret: Is there really no effect? Or is the study just not able to figure it out? Positive results from an underpowered study can also be misleading: conditional upon being statistically significant, an estimate from an underpowered study probably overestimates treatment effects. Under powered studies are sometimes based on overly optimistic assumptions; a convincing power analysis makes these assumptions explicit and should protect you from implementing designs that realistically have no chance of answering the questions you want to answer.</p>
 </section>
 <section id="the-three-ingredients-of-statistical-power" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> 3. The Three Ingredients of Statistical Power</h1>
+<h1 data-number="3"><span class="header-section-number">3</span> The Three Ingredients of Statistical Power</h1>
 <p>There are three big categories of things that determine how highly powered your experiment will be. The first two (the strength of the treatment and background noise) are things that you can’t really control – these are the realities of your experimental environment. The last, the experimental design, is the only thing that you have power over – use it!</p>
 <ul>
 <li>Strength of the treatment. As the strength of your treatment increases, the power of your experiment increases. This makes sense: if your treatment were giving every subject $1,000,000, there is little doubt that we could discern differences in behavior between the treatment and control groups. Many times, however, we are not in control of the strength of our treatments. For example, researchers involved in program evaluation don’t get to decide what the treatment should be, they are supposed to evaluate the program as it is.</li>
@@ -286,7 +302,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="key-formulas-for-calculating-power" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> 4. Key Formulas for Calculating Power</h1>
+<h1 data-number="4"><span class="header-section-number">4</span> Key Formulas for Calculating Power</h1>
 <p>Statisticians have derived formulas for calculating the power of many experimental designs. They can be useful as a back of the envelope calculation of how large a sample you’ll need. Be careful, though, because the assumptions behind the formulas can sometimes be obscure, and worse, they can be wrong.</p>
 <p>Here is a common formula used to calculate power:<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p><span class="math display">\[\beta = \Phi \left(\frac{|\mu_t-\mu_c|\sqrt{N}}{2\sigma}-\Phi^{-1} \left(1-\frac{\alpha}{2}\right) \right)\]</span></p>
@@ -314,14 +330,14 @@ window.Quarto = {
 <p>In addition, EGAP has created a power calculator Shiny app, which you can <a href="https://egap.shinyapps.io/Power_Calculator/">access here</a>.</p>
 </section>
 <section id="when-to-believe-your-power-analysis" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> 5. When to Believe Your Power Analysis</h1>
+<h1 data-number="5"><span class="header-section-number">5</span> When to Believe Your Power Analysis</h1>
 <p>From some perspectives the whole idea of power analysis makes no sense. You want to figure out the size of some treatment effect but first you need to do a power analysis which requires that you already know your treatment effect and a lot more besides.</p>
 <p>So in most power analyses you are in fact seeing what happens with numbers that are to some extent made up. The good news is that it is easy to find out how much your conclusions depend on your assumptions: simply vary your assumptions and see how the conclusions on power vary.</p>
 <p>This is most easily seen by thinking about how power varies with the number of subjects. A power analysis that looks at power for different study sizes simply plugs in a range of values in for N and seeing how β changes.</p>
 <p>Using the formula in section 4, you can see how sensitive power is to all of the assumptions: Power will be higher if you assume the treatment effect will be larger, or if you’re willing to accept a higher alpha level, or if you have more or less confidence in the noisiness of your measures.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 </section>
 <section id="how-to-use-simulation-to-estimate-power" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> 6. How to Use Simulation to Estimate Power</h1>
+<h1 data-number="6"><span class="header-section-number">6</span> How to Use Simulation to Estimate Power</h1>
 <p>Power is a measure of how often, given assumptions, we would obtain statistically significant results, if we were to conduct our experiment thousands of times. The power calculation formula takes assumptions and return an analytic solution. However, due to advances in modern computing, we don’t have to rely on analytic solutions for power analysis. We can tell our computers to literally run the experiment thousands of times and simply count how frequently our experiment comes up significant.</p>
 <p>The code block below shows how to conduct this simulation in R using DeclareDesign.</p>
 <div class="cell">
@@ -331,40 +347,41 @@ window.Quarto = {
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up sample size and treatment effect</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">500</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="fl">0.2</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                                  </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="co"># First, specify a model that generates baseline data for the units in the study</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_model</span>(<span class="at">N =</span> N,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">X =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>), <span class="at">each =</span> N<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">U =</span> <span class="fu">rnorm</span>(N),</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">potential_outcomes</span>(Y<span class="sc">~</span>tau<span class="sc">*</span>Z <span class="sc">+</span> X <span class="sc">+</span> U)) <span class="sc">+</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Second, specify the inquiry</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_inquiry</span>(<span class="at">ATE =</span> <span class="fu">mean</span>(Y_Z_1 <span class="sc">-</span> Y_Z_0)) <span class="sc">+</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Third, set the data strategy</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_assignment</span>(<span class="at">Z =</span> <span class="fu">complete_ra</span>(<span class="at">N =</span> N, <span class="at">m =</span> N<span class="sc">/</span><span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_measurement</span>(<span class="at">Y =</span> <span class="fu">reveal_outcomes</span>(Y <span class="sc">~</span> Z)) <span class="sc">+</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Finally, set the estimators</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_estimator</span>(Y <span class="sc">~</span> Z, <span class="at">inquiry =</span> <span class="st">"ATE"</span>, <span class="at">.method =</span> lm_robust, <span class="at">label =</span> <span class="st">"Simple"</span>) <span class="sc">+</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_estimator</span>(Y <span class="sc">~</span> Z <span class="sc">+</span> X, <span class="at">inquiry =</span> <span class="st">"ATE"</span>, <span class="at">.method =</span> lm_robust, <span class="at">label =</span> <span class="st">"Covariate Adjusted"</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify an alpha level to test for the power of the design</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>study_diagnosands <span class="ot">&lt;-</span> <span class="fu">declare_diagnosands</span>(</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">power =</span> <span class="fu">mean</span>(p.value <span class="sc">&lt;=</span> alpha)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">#One diagnostic run</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>diag <span class="ot">&lt;-</span> <span class="fu">diagnose_design</span>(design, <span class="at">diagnosands =</span> study_diagnosands, <span class="at">sims=</span><span class="dv">500</span>)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">#specify sample sizes of interest</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>possible.ns <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">100</span>, <span class="at">to=</span><span class="dv">2000</span>, <span class="at">by=</span><span class="dv">40</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Redesign for different sample sizes between 100 and 2000 by 40</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>designN <span class="ot">&lt;-</span> <span class="fu">redesign</span>(design, <span class="at">N =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">100</span>, <span class="at">to=</span><span class="dv">2000</span>, <span class="at">by=</span><span class="dv">40</span>))</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">#Run power analysis on each design</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Stylized income example, matching the age/gender story in Section 7:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Y is income (in thousands). Older subjects earn more; men earn more</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="do">## than women; U is residual variation we do not observe.</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>N   <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="dv">2</span>        <span class="co"># treatment effect: +$2k of income</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_model</span>(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">N      =</span> N,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">age    =</span> <span class="fu">sample</span>(<span class="dv">25</span><span class="sc">:</span><span class="dv">65</span>, N, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">rbinom</span>(N, <span class="dv">1</span>, <span class="fl">0.5</span>),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">U      =</span> <span class="fu">rnorm</span>(N, <span class="at">sd =</span> <span class="dv">5</span>),</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">potential_outcomes</span>(Y <span class="sc">~</span> tau <span class="sc">*</span> Z <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> age <span class="sc">+</span> <span class="dv">10</span> <span class="sc">*</span> gender <span class="sc">+</span> U)) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_inquiry</span>(<span class="at">ATE =</span> <span class="fu">mean</span>(Y_Z_1 <span class="sc">-</span> Y_Z_0)) <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_assignment</span>(<span class="at">Z =</span> <span class="fu">complete_ra</span>(<span class="at">N =</span> N, <span class="at">m =</span> N<span class="sc">/</span><span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_measurement</span>(<span class="at">Y =</span> <span class="fu">reveal_outcomes</span>(Y <span class="sc">~</span> Z)) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_estimator</span>(Y <span class="sc">~</span> Z,                <span class="at">inquiry =</span> <span class="st">"ATE"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                    <span class="at">.method =</span> lm_robust,  <span class="at">label =</span> <span class="st">"Simple"</span>) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">declare_estimator</span>(Y <span class="sc">~</span> Z <span class="sc">+</span> age <span class="sc">+</span> gender, <span class="at">inquiry =</span> <span class="st">"ATE"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                    <span class="at">.method =</span> lm_robust,  <span class="at">label =</span> <span class="st">"Covariate Adjusted"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Diagnose power at this N</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>study_diagnosands <span class="ot">&lt;-</span> <span class="fu">declare_diagnosands</span>(<span class="at">power =</span> <span class="fu">mean</span>(p.value <span class="sc">&lt;=</span> alpha))</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>diag <span class="ot">&lt;-</span> <span class="fu">diagnose_design</span>(design, <span class="at">diagnosands =</span> study_diagnosands, <span class="at">sims =</span> <span class="dv">500</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Sweep over sample sizes for the graph in Section 7</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>designN  <span class="ot">&lt;-</span> <span class="fu">redesign</span>(design, <span class="at">N =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">100</span>, <span class="at">to =</span> <span class="dv">2000</span>, <span class="at">by =</span> <span class="dv">40</span>))</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>diagnose <span class="ot">&lt;-</span> <span class="fu">diagnose_design</span>(designN, <span class="at">diagnosands =</span> study_diagnosands, <span class="at">sims =</span> <span class="dv">500</span>)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co">#store dataset of power analysis</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plotdf <span class="ot">&lt;-</span> diagnose<span class="sc">$</span>diagnosands_df</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co">#print power for the simple regression approach (first 5 rows)</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">kable_styling</span>(<span class="fu">kable</span>(<span class="fu">head</span>(plotdf[<span class="fu">c</span>(plotdf<span class="sc">$</span>estimator<span class="sc">==</span><span class="st">"Simple"</span>), <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">7</span>)]), <span class="at">row.names =</span> F))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plotdf   <span class="ot">&lt;-</span> diagnose<span class="sc">$</span>diagnosands_df</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="do">## Preview the first few rows of the Simple-estimator sweep</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="fu">kable_styling</span>(<span class="fu">kable</span>(<span class="fu">head</span>(plotdf[plotdf<span class="sc">$</span>estimator <span class="sc">==</span> <span class="st">"Simple"</span>, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">7</span>)]),</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                    <span class="at">row.names =</span> <span class="cn">FALSE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small">
@@ -377,56 +394,90 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">100</td>
-<td style="text-align: right;">0.110</td>
+<td style="text-align: right;">0.194</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">140</td>
-<td style="text-align: right;">0.132</td>
+<td style="text-align: right;">0.242</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">180</td>
-<td style="text-align: right;">0.174</td>
+<td style="text-align: right;">0.290</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">220</td>
-<td style="text-align: right;">0.154</td>
+<td style="text-align: right;">0.336</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">260</td>
-<td style="text-align: right;">0.184</td>
+<td style="text-align: right;">0.446</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">300</td>
-<td style="text-align: right;">0.214</td>
+<td style="text-align: right;">0.462</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+<p>The DeclareDesign code above is compact but abstract. Here is the same single-design power calculation written out explicitly — draw baseline data, assign treatment, reveal outcomes, estimate, test, count — so you can see what is happening under the hood:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Hand-rolled version of the "Simple" power estimate from the</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## DeclareDesign run above. Fixed N; no covariate adjustment.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sims     <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>alpha    <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>p_values <span class="ot">&lt;-</span> <span class="fu">numeric</span>(sims)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(sims)) {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Draw baseline data</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  age    <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">25</span><span class="sc">:</span><span class="dv">65</span>, N, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  gender <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(N, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  U      <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(N, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Potential outcomes under control and treatment</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  Y0 <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">*</span> age <span class="sc">+</span> <span class="dv">10</span> <span class="sc">*</span> gender <span class="sc">+</span> U</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  Y1 <span class="ot">&lt;-</span> Y0 <span class="sc">+</span> tau</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Random assignment (complete randomization, m = N/2)</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  Z <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">each =</span> N <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Reveal the outcome we actually observe</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  Y <span class="ot">&lt;-</span> Y1 <span class="sc">*</span> Z <span class="sc">+</span> Y0 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> Z)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Estimate and test via simple difference in means</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  p_values[i] <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> Z))<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(p_values <span class="sc">&lt;=</span> alpha)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.694</code></pre>
+</div>
+</div>
+<p>This number should match the “Simple” row of the DeclareDesign diagnosis above, within simulation error. The loop cleans up three small problems in older versions of this guide: it does not re-draw Y inside the inner loop, it uses complete random assignment (<code>sample(rep(c(0,1), each = N/2))</code>) rather than independent coin flips, and it reports the power estimate directly rather than printing a long vector.</p>
 <p>The code for this simulation and others is available <a href="https://egap.org/resource/script-power-analysis-simulations-in-r/">here</a>. Simulation is a far more flexible, and far more intuitive way to think about power analysis. Even the smallest tweaks to an experimental design are difficult to capture in a formula (adding a second treatment group, for example), but are relatively straightforward to include in a simulation.</p>
 <p>In addition to counting up how often your experiments come up statistically significant, you can directly observe the distribution of p-values you’re likely to get. The graph below shows that under these assumptions, you can get expect to get quite a few p-values in the 0.01 range, but that 80% will be below 0.05.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bardf <span class="ot">&lt;-</span> diag<span class="sc">$</span>simulations_df</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bardf, <span class="fu">aes</span>(<span class="at">x =</span> p.value)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.05</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>, <span class="at">size  =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"p-values"</span>, <span class="at">y =</span> <span class="st">"Number of Experiments"</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Show p-values from one estimator only; mixing "Simple" and</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## "Covariate Adjusted" rows makes the histogram hard to read.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>bardf <span class="ot">&lt;-</span> diag<span class="sc">$</span>simulations_df[diag<span class="sc">$</span>simulations_df<span class="sc">$</span>estimator <span class="sc">==</span> <span class="st">"Simple"</span>, ]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bardf, <span class="fu">aes</span>(<span class="at">x =</span> p.value)) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.05</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"p-value (Simple estimator)"</span>, <span class="at">y =</span> <span class="st">"Number of Experiments"</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="power_en_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="power_en_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 <section id="how-to-change-your-design-to-improve-your-power" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> 7. How to Change your Design to Improve Your Power</h1>
+<h1 data-number="7"><span class="header-section-number">7</span> How to Change your Design to Improve Your Power</h1>
 <p>When it comes to statistical power, the only thing that that’s under your control is the design of the experiment. As we’ve seen above, an obvious design choice is the number of subjects to include in the experiment. The more subjects, the higher the power.</p>
 <p>However, the number of subjects is not the only design choice that has consequences for power. There are two broad classes of design choices that are especially important in this regard.</p>
 <ul>
@@ -448,17 +499,17 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdf, <span class="fu">aes</span>(<span class="at">x =</span> N, <span class="at">y =</span> power, <span class="at">color =</span> estimator)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Conventional Power Target"</span>, <span class="at">yintercept =</span> <span class="fl">0.8</span> ), <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sample Size"</span>, <span class="at">y =</span> <span class="st">"Power"</span>, <span class="at">color =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>()<span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdf, <span class="fu">aes</span>(<span class="at">x =</span> N, <span class="at">y =</span> power, <span class="at">color =</span> estimator)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Conventional Power Target"</span>, <span class="at">yintercept =</span> <span class="fl">0.8</span> ), <span class="at">linetype =</span> <span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sample Size"</span>, <span class="at">y =</span> <span class="st">"Power"</span>, <span class="at">color =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>()<span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="power_en_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="power_en_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -466,14 +517,14 @@ window.Quarto = {
 <p>This approach doesn’t rely on a formula to come up with the probability of getting a statistically significant result: it relies on brute force! And because simulation lets you specify every step of the experimental design, you do a far more nuanced power analysis than simply considering the number of subjects.</p>
 </section>
 <section id="power-analysis-for-multiple-treatments" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> 8. Power Analysis for Multiple Treatments</h1>
+<h1 data-number="8"><span class="header-section-number">8</span> Power Analysis for Multiple Treatments</h1>
 <p>Many experiments employ multiple treatments which are compared both to each other and to a control group. This added complication changes what we mean when we say the “power” of an experiment. In the single treatment group case, power is just the probability of getting a statistically significant result. In the multiple treatment case, it can mean a variety of things: A) the probability of at least one of the treatments turning up significant, B) the probability of all the treatments turning up significant (versus control) or C) the probability that the treatments will be ranked in the hypothesized order, and that those ranks will be statistically significant.</p>
 <p>This question of multiple treatment arms is related to the problem of multiple comparisons. (See <a href="https://methods.egap.org/guides/analysis-procedures/multiple-comparisons_en.html">our guide on this topic</a> for more details.) Standard significance testing is based on the premise that you’re conducting a single test for statistical significance, and the p-values derived from these tests reflect the probability under the null of seeing such a larger (or larger) treatment effect. If, however, you are conducting multiple tests, this probability is no longer correct. Within a suite of tests, the probability that at least one of the tests will turn up significant even when the true effect is zero is higher, essentially because you have more attempts. A commonly cited (if not commonly used) solution is to use the Bonferroni correction: specify the number of comparisons you will be making in advance, then divide your significance level (alpha) by that number.</p>
 <p>If you are going to be using a Bonferroni correction, then standard power calculators will be more complicated to use: you’ll have to specify your Bonferroni-corrected alpha levels and calculate the power of each separate comparison. To calculate the probability that all the tests are significant, multiply all the separate powers together. To calculate the probability that at least one of the tests is significant, calculate the probability that none are, then subtract from one.</p>
 <p>Or you can use simulation. An example of a power calculation done in R is available on the simulations page.</p>
 </section>
 <section id="how-to-think-about-power-for-clustered-designs" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> 9. How to Think About Power for Clustered Designs</h1>
+<h1 data-number="9"><span class="header-section-number">9</span> How to Think About Power for Clustered Designs</h1>
 <p>When an experiment has to assign whole groups of people to treatment rather than individually, we say that the experiment is clustered. This is common in educational experiments, where whole classrooms of children are assigned to treatment or control, or in development economics, where whole villages of individuals are assigned to treatment or control. (See <a href="https://methods.egap.org/guides/data-collection/cluster-randomization_en.html">our guide on cluster randomization</a> for more details.)</p>
 <p>As a general rule, clustering decreases your power. If you can avoid clustering your treatments, that is preferable for power. Unless you face concerns related to spillover, logistics, or ethics, take the variation down to the lowest level that you can.</p>
 <p>The best case scenario for a cluster-level design is when which cluster a subject is in provides very little information about their outcomes. Suppose subjects were randomly assigned to clusters — the cluster wouldn’t help to predict outcomes at all. If the cluster is not predictive of the outcome, then we haven’t lost too much power to clustering.</p>
@@ -482,10 +533,10 @@ window.Quarto = {
 <p>Again, a more flexible approach to power analysis when dealing with clusters is simulation. See the <a href="https://declaredesign.org/r/designlibrary/reference/block_cluster_two_arm_designer.html">Declare Design library for block and cluster randomized experiments</a> for some starter code. The <a href="https://declaredesign.org">DeclareDesign</a> software aims to make simulations for power analysis (among many other tasks) easier. See also <span class="citation" data-cites="gelman_hill_2006">Gelman and Hill (<a href="#ref-gelman_hill_2006" role="doc-biblioref">2006</a>)</span>, pages 450-453 for another simulation approach.</p>
 </section>
 <section id="good-power-analysis-makes-preregistration-easy" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> 10. Good Power Analysis Makes Preregistration Easy</h1>
+<h1 data-number="10"><span class="header-section-number">10</span> Good Power Analysis Makes Preregistration Easy</h1>
 <p>When you deal with power you focus on what you cannot control (noise) and what you can control (design). If you use the simulation approach to power analysis then you will be forced to imagine how your data will look and how you will handle it when it comes in. You will get a chance to specify all of your hunches and best guesses in advance, so that you can launch your experiments with clear expectations of what they can and cannot show. That’s some work but the good news is that if you really do it you are most of the way to putting together a comprehensive and registerable pre-analysis plan.</p>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -493,7 +544,7 @@ window.Quarto = {
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-gelman_hill_2006" class="csl-entry" role="listitem">
 Gelman, A., and J. Hill. 2006. <em>Data Analysis Using Regression and Multilevel/Hierarchical Models</em>. Cambridge University Press.
 </div>
@@ -908,6 +959,19 @@ Gerber, A. S., and D. P. Green. 2012. <em>Field Experiments: Design, Analysis, a
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

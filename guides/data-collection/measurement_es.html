@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 cosas que debe saber sobre la medición en experimentos – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -68,15 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -271,7 +276,7 @@ window.Quarto = {
   <li><a href="#aproveche-múltiples-indicadores-para-evaluar-la-validez-de-una-medida-pero-tenga-en-cuenta-las-limitaciones-de-tales-pruebas." id="toc-aproveche-múltiples-indicadores-para-evaluar-la-validez-de-una-medida-pero-tenga-en-cuenta-las-limitaciones-de-tales-pruebas."><span class="header-section-number">8</span> Aproveche múltiples indicadores para evaluar la validez de una medida, pero tenga en cuenta las limitaciones de tales pruebas.</a></li>
   <li><a href="#el-uso-de-múltiples-indicadores-tiende-a-mejorar-el-poder-de-su-experimento-pero-puede-introducir-un-reemplazo-entre-el-sesgo-y-la-eficiencia." id="toc-el-uso-de-múltiples-indicadores-tiende-a-mejorar-el-poder-de-su-experimento-pero-puede-introducir-un-reemplazo-entre-el-sesgo-y-la-eficiencia."><span class="header-section-number">9</span> El uso de múltiples indicadores tiende a mejorar el poder de su experimento, pero puede introducir un reemplazo entre el sesgo y la eficiencia.</a></li>
   <li><a href="#mientras-los-conceptos-pueden-ser-globales-muchos-indicadores-son-específicos-a-los-contextos." id="toc-mientras-los-conceptos-pueden-ser-globales-muchos-indicadores-son-específicos-a-los-contextos."><span class="header-section-number">10</span> Mientras los conceptos pueden ser globales, muchos indicadores son específicos a los contextos.</a></li>
-  <li><a href="#referencias" id="toc-referencias"><span class="header-section-number">11</span> Referencias</a></li>
+  <li><a href="#referencias" id="toc-referencias">Referencias</a></li>
   </ul>
 </nav>
 <!-- title: "10 Things to Know About Measurement in Experiments" -->
@@ -460,8 +465,8 @@ window.Quarto = {
 <p>Por ejemplo, considere un grupo de estudios que buscan medir la variación en el concepto de conocimiento político o sofisticación. El conocimiento sobre política puede evaluarse mediante preguntas que piden a los sujetos que recuerden un hecho sobre política. Una pregunta puede pedir a los sujetos que recuerden el nombre del ejecutivo actual (presidente / primer ministro, etc.), calificando las respuestas como “correctas” o “incorrectas”. En el país <span class="math inline">\(A\)</span>, el 50% de los encuestados responde correctamente la pregunta. En el País B$, el 100% de los encuestados responde correctamente la pregunta. En el país <span class="math inline">\(B\)</span>, no podemos identificar ninguna variación en el indicador porque todos podrían responder la pregunta. Esto no implica que no haya variación en el conocimiento político en el país <span class="math inline">\(B\)</span>, solo que este indicador es una mala medición de la variación que existe. En el país <span class="math inline">\(A\)</span>, sin embargo, esta pregunta puede ser un indicador completamente apropiado de conocimiento político. Si el conocimiento político fue la variable de resultado de un experimento, la falta de variación en la variable de resultado en el país <span class="math inline">\(B\)</span> no nos permite identificar ninguna diferencia en el conocimiento político entre los grupos de tratamiento y de control.</p>
 <p>Por esta razón, si bien puede ser útil desarrollar indicadores basados ​​en trabajos existentes o instrumentos de otros contextos, esta no es necesariamente la mejor manera de desarrollar mediciones en un nuevo contexto. Las pruebas previas pueden proporcionar información adicional sobre si los indicadores son apropiados en un entorno determinado. En resumen, el mapeo entre conceptos e indicadores es, en muchos casos, específico del lugar. Los investigadores deben considerar estas limitaciones al operacionalizar conceptos comunes en distintos entornos.</p>
 </section>
-<section id="referencias" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Referencias</h1>
+<section id="referencias" class="level1 unnumbered">
+<h1 class="unnumbered">Referencias</h1>
 <p>Adcock, Robert y David Collier. “Measurement Validity: A Shared Standard for Qualitative and Quantitative Research.” <em>American Political Science Review.</em> 95 (3): 529-546.</p>
 
 
@@ -869,6 +874,19 @@ window.Quarto = {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

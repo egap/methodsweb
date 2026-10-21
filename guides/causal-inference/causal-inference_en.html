@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things You Need to Know About Causal Inference – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -25,7 +31,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -53,15 +58,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -91,7 +95,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -262,7 +266,7 @@ window.Quarto = {
   <li><a href="#correlation-is-not-causation." id="toc-correlation-is-not-causation."><span class="header-section-number">8</span> Correlation is not causation.</a></li>
   <li><a href="#if-you-know-that-on-average-a-causes-b-and-b-causes-c-this-does-not-mean-that-on-average-a-causes-c." id="toc-if-you-know-that-on-average-a-causes-b-and-b-causes-c-this-does-not-mean-that-on-average-a-causes-c."><span class="header-section-number">9</span> If you know that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(B\)</span> and <span class="math inline">\(B\)</span> causes <span class="math inline">\(C\)</span>, this does not mean that, on average, <span class="math inline">\(A\)</span> causes <span class="math inline">\(C\)</span>.</a></li>
   <li><a href="#its-easier-to-learn-about-the-effects-of-causes-than-to-learn-about-the-causes-of-effects." id="toc-its-easier-to-learn-about-the-effects-of-causes-than-to-learn-about-the-causes-of-effects."><span class="header-section-number">10</span> It’s easier to learn about the “effects of causes” than to learn about the “causes of effects.”</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <section id="a-causal-claim-is-a-statement-about-what-didnt-happen." class="level1" data-number="1">
@@ -313,7 +317,7 @@ window.Quarto = {
 <h1 data-number="10"><span class="header-section-number">10</span> It’s easier to learn about the “effects of causes” than to learn about the “causes of effects.”</h1>
 <p>Though it might sound like two ways of saying the same thing, there is a difference between understanding what the effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is (the “effects of a cause”) and whether an outcome <span class="math inline">\(Y\)</span> was <em>due</em> to cause <span class="math inline">\(X\)</span> (the “cause of an effect”).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Consider the following example. Suppose we run an experiment with a sample that contains an equal number of men and women. The experiment randomly assigns men and women to a binary treatment <span class="math inline">\(X\)</span> and measures a binary outcome <span class="math inline">\(Y\)</span>. Further, suppose that <span class="math inline">\(X\)</span> has a positive effect of 1 for all men, i.e.&nbsp;men’s control potential outcome is zero (<span class="math inline">\(Y_i(0) = 0\)</span>) and their treated potential outcome is one (<span class="math inline">\(Y_i(1) = 1\)</span>). For all women, <span class="math inline">\(X\)</span> has a negative effect of <span class="math inline">\(-1\)</span>, i.e., women’s control potential outcome is one (<span class="math inline">\(Y_i(0) = 1\)</span>) and their treated potential outcome is zero (<span class="math inline">\(Y_i(1) = 0\)</span>). In this example, the average effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is zero. But for all participants in the treatment group with <span class="math inline">\(Y=1\)</span>, it is the case that <span class="math inline">\(Y=1\)</span> <em>because</em> <span class="math inline">\(X=1\)</span>. Similarly, for all participants in the treatment group with <span class="math inline">\(Y=0\)</span>, it is the case that <span class="math inline">\(Y=0\)</span> <em>because</em> <span class="math inline">\(X=1\)</span>. Experimentation can get an exact answer to the question about the “effects of a cause”, but generally it is not possible to get an exact answer to the question about the “cause of an effect”.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -321,7 +325,7 @@ window.Quarto = {
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-gelman_imbens_2013" class="csl-entry" role="listitem">
 Gelman, Andrew, and Guido Imbens. 2013. <span>“Why Ask Why? Forward Causal Inference and Reverse Causal Questions.”</span> <em>NBER Working Paper No. 19614</em>.
 </div>
@@ -747,6 +751,19 @@ Tian, Jin, and Judea Pearl. 2000. <span>“Probabilities of Causation: Bounds an
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

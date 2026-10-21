@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>10 Things to Know About Survey Design – Methods</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -25,7 +31,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -53,15 +58,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3d0905a0cc7871eaf51d89db61196e95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c593d64d8d8b40ac68bf6f62b9fc237c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -188,7 +192,7 @@ div.csl-indent {
   <li><a href="#question-ordering-instrument-length-matter" id="toc-question-ordering-instrument-length-matter"><span class="header-section-number">8</span> Question ordering &amp; instrument length matter</a></li>
   <li><a href="#make-sure-response-rates-do-not-differ-as-a-function-of-treatment-assignment" id="toc-make-sure-response-rates-do-not-differ-as-a-function-of-treatment-assignment"><span class="header-section-number">9</span> Make sure response rates do not differ as a function of treatment assignment</a></li>
   <li><a href="#pilot" id="toc-pilot"><span class="header-section-number">10</span> Pilot!</a></li>
-  <li><a href="#references" id="toc-references"><span class="header-section-number">11</span> References</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul>
 </nav>
 <section id="the-design-of-baseline-and-endline-surveys-differ-in-key-ways" class="level1" data-number="1">
@@ -198,24 +202,19 @@ div.csl-indent {
 <section id="baseline-surveys" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="baseline-surveys"><span class="header-section-number">1.1</span> Baseline surveys</h2>
 <p>Baseline surveys should produce data that describe the experimental subject population as they were before the treatment is delivered. This is accomplished through the measurement of covariates, which are observed pre-treatment characteristics of experimental subjects. Using covariate data you can: 1) describe the subject population, 2) improve the precision with which you estimate treatment effects, 3) report balance, and 4) estimate heterogeneous treatment effects.</p>
-</section>
-<section id="covariates" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="covariates"><span class="header-section-number">1.2</span> Covariates</h2>
-<p>Covariates improve the precision with which you can estimate treatment effects by reducing variance in three ways; covariates can be used to rescale your dependent variable, as controls when using regression to estimate treatment effects, and to construct blocks in order to conduct blocked random assignment.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In order for covariate data to be used to reduce variance in our estimates of treatment effects, they need to be unaffected by treatment assignment, i.e.&nbsp;collected sometime before treatment is delivered. See the guide on <a href="https://methods.egap.org/guides/analysis-procedures/covariates_en.html">covariate adjustment</a> for more about how to use covariate data.</p>
-<p>The greater the predictive power of included covariates, the greater increase in the power of your design and the precision with which you can estimate effects. If you believe covariates will likely predict outcomes in your experiment, then that is grounds to include them in your survey. For example, if the intervention involves providing a service at a cost to treated users, income will likely explain some variation in outcomes and is therefore a useful covariate to measure at the baseline stage.</p>
+<p>Covariates improve the precision with which you can estimate treatment effects. You can use covariates in three ways: to rescale your dependent variable, as controls when using regression to estimate treatment effects, and to construct blocks in order to conduct blocked random assignment.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In order for covariate data to be used to reduce variance in our estimates of treatment effects, they need to be unaffected by treatment assignment, i.e.&nbsp;ideally collected some time before treatment is delivered. See the guide on <a href="https://methods.egap.org/guides/analysis-procedures/covariates_en.html">covariate adjustment</a> for more about how to use covariate data.</p>
+<p>The greater the predictive power of included covariates, the greater the increase in the power of your design and the precision with which you can estimate effects. If you believe covariates will likely predict outcomes in your experiment, then that is grounds to include them in your survey. For example, if the intervention involves providing a service at a cost to treated users, income will likely explain some variation in outcomes and is therefore a useful covariate to measure at the baseline stage.</p>
+<p>Often, baseline measures of your outcome can be very predictive. The procedure that uses pre-measures to re-scale the outcomes is referred to as the difference-in-differences estimator. As with other covariates, the difference-in-differences estimator will improve precision only when the pre-measure strongly predicts the outcome.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>Because pre-treatment covariates can improve precision, conducting a baseline becomes more important when the sample size is limited.</p>
 <p>Covariates also allow you to conduct sub-group analyses. Heterogeneous effects are not causal, and so interpretation is limited. Still, understanding how treatment effects vary by subejcts’ attributes can provide you with important clues about mechanisms. The implication for design is to include covariates for which you would like to report heterogeneous effects. Covariate data will also be used to show “balance”, or the extent to which the treatment and control populations resemble each other. Although random assignment alone ensures that outcomes across the treatment and control group are in expectation the same, it is standard practice to show that random assignment resulted in two groups that are “balanced” on covariates of interest. If, for example, the treatment group included 25% more men than the control group, we might worry that random assignment failed in some way. Collecting pre-treatment covariate data allows us to evaluate and report balance.</p>
+<p>One consideration that can speak against a baseline survey is the risk that the baseline survey may induce experimenter demand. If you think that being aware that they are part of an experiment or knowing about the goals of the project may alter respondents’ behavior in systematic ways, you may want to keep your experimental procedures as unobtrusive as possible. One way to do so is to dispense with a baseline survey altogether. Alternatively, you could implement a baseline survey to collect demographic information but limit the number of questions that concern the study topic and hence may allow respondents to guess the study purpose.</p>
 </section>
-<section id="pre-treatment-measurement-of-outcomes" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="pre-treatment-measurement-of-outcomes"><span class="header-section-number">1.3</span> Pre-treatment measurement of outcomes</h2>
-<p>The baseline provides an opportunity to measure the outcome before the experiment was conducted, later allowing you to use change scores as your outcome and the difference-in-differences estimator. The difference-in-differences estimator will improve precision only when a covariate strongly predicts outcomes.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-</section>
-<section id="endline-surveys" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="endline-surveys"><span class="header-section-number">1.4</span> Endline Surveys</h2>
-<p>Endline surveys, conducted after the treatment is delivered, are primarily used to measure outcomes. Including questions about implementation can improve analysis and interpretation greatly.</p>
+<section id="endline-surveys" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="endline-surveys"><span class="header-section-number">1.2</span> Endline Surveys</h2>
+<p>Endline surveys, conducted after the treatment is delivered, are primarily used to measure outcomes. Including questions about implementation can improve analysis and interpretation greatly — though you may want to avoid doing so or place these questions at the end of the questionnaire if you are worried about experimenter demand.</p>
 <p>Surveys conducted after treatments are delivered are one way to understand if there were compliance issues or other implementation issues that may have consequences for analysis. Survey data can help to determine the scope of non-compliance with the assigned treatment, and the underlying causes. This is an opportunity to ask subjects directly about reasons for noncompliance. Subjects may have understood the treatment differently than the researchers, and survey data can be used to both show this and speculate why this may have happened.</p>
 <p>In the endline, you can learn about spillover by asking subjects in the control condition about their knowledge and access to the treatment. Interviews with treated subjects are useful for understanding spillover as well, because survey data can be used to understand the networks through which the treatment could have “spilled-over” into the control group.</p>
-<p>Describing the population is important here as well, but covariate data collected after implementation are less useful for improving precision. Ordinarily, covariates collected after treatment assignment are considered suspect, as they could conceivably be affected by treatment.</p>
+<p>Describing the population is important here as well, but covariate data collected after implementation are less useful for improving precision. Ordinarily, covariates collected after treatment assignment are considered suspect, as they could conceivably be affected by treatment. With the exception of characteristics such as age or gender that are plausibly unaffected by many treatments, your analysis procedure should not condition on measures that have been collected post-treatment.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 56%">
@@ -303,6 +302,7 @@ div.csl-indent {
 <p>Social desirability bias or even worse, risk of harm, makes it difficult to elicit truthful responses in sensitive questions on a survey. A class of statistical methods for survey methodology address this problem. Each method– list experiments, endorsement experiments, and the randomized response technique—works by introducing random noise that conceals individual responses. This means that, on the subject side individual responses are hidden from the researcher, and on the researcher side you can only study the responses of groups (not individuals).</p>
 <p>In the case that you use one of these methods, you may also want to include direct survey measures of the same concept or directly measure for at least a sample of the subset to be able to capture the level of reporting bias across direct and list/endorsement/randomized response measures.</p>
 <p><a href="http://imai.princeton.edu/projects/sensitive.html">See here</a> for links to list experiment resources.</p>
+<p>Social-desirability bias in experiments is a particularly important concern if you suspect that such bias could be induced by your treatment. The awareness of being part of a study as well as respondents’ perception of what the goal of the study is may influence what respondents perceive as socially desirable and hence how they answer survey questions. For example, respondents may want to please the researchers and hence act in accordance with what they think the researchers’ hypothesis is. Such treatment-induced experimenter demand can bias treatment effect estimates. In addition to using the above techniques to address all kinds of social desirability bias, researchers can limit concerns about experimenter demand by designing their experiments in unobtrusive ways. For example, they may avoid a baseline survey or implement the endline survey in such a way that respondents are not immediately aware that the endline survey is linked to the treatment. See <span class="citation" data-cites="dequidt_2018"><span class="nocase">de Quidt et al.</span> (<a href="#ref-dequidt_2018" role="doc-biblioref">2018</a>)</span> for an approach to measuring experimenter demand.</p>
 </section>
 <section id="if-social-desirability-bias-andor-risk-to-respondents-are-not-concerns-then-use-attitudinal-measures-with-these-qualities" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> If social desirability bias and/or risk to respondents are not concerns: then use attitudinal measures with these qualities</h1>
@@ -329,7 +329,7 @@ div.csl-indent {
 <section id="make-sure-response-rates-do-not-differ-as-a-function-of-treatment-assignment" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Make sure response rates do not differ as a function of treatment assignment</h1>
 <p>If response rates are related to treatment status, your survey data can yield biased estimates. For example, let’s say you are conducting a study of an intervention that involves testing study participants for health problems and informing those in the treatment group of their diagnosis. This is a sensitive intervention and may cause people in the treatment group to become more apprehensive about answering a survey than those in the control group. Simply analyzing the data without accounting for differential response rates would yield data that was biased away from the true treatment effect—we lack data on those with the highest potential outcomes, those subjects who have been exposed to the strongest version of the treatment.</p>
-<p>One way to deal with this in the design of your survey (not the design of the treatment or in analysis alone [e.g., using bounded treatment effects<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>]), is to track a subsample of individuals from the hard-to-reach group. Choose a subset of missing respondents and invest in tracking and reaching them. At the analysis stage you have the option of weighting the data from this subsample in order to account for attrition.</p>
+<p>Our guide <a href="https://methods.egap.org/guides/data-collection/missing-data_en.html">10 Things to Know About Missing Data</a> provides details on how to deal with problems of attrition in your analysis, e.g., by placing bounds on treatment effects.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> You can also deal with attrition through the design of your survey, by tracking a random subsample of individuals from the hard-to-reach group. Choose a random subset of missing respondents and invest in tracking and reaching them. At the analysis stage you can combine data from this subsample with the data from your main sample through a weighted average in order to obtain an estimate of the average outcome in the sample as a whole. This approach is often referred to as “double sampling.” See <span class="citation" data-cites="lohr_2009">Lohr (<a href="#ref-lohr_2009" role="doc-biblioref">2009</a>)</span>, chap.&nbsp;8.3, and our guide <a href="https://methods.egap.org/guides/data-collection/sampling_en.html">10 Things to Know About Sampling</a> for details.</p>
 </section>
 <section id="pilot" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Pilot!</h1>
@@ -344,7 +344,7 @@ div.csl-indent {
 </ol>
 <p>The <a href="https://methods.egap.org/guides/implementation/survey-implementation_en.html">survey implementation</a> guide explains about how to set up and carry out a pre-test.</p>
 </section>
-<section id="references" class="level1" data-number="11">
+<section id="references" class="level1 unnumbered">
 
 
 
@@ -352,9 +352,15 @@ div.csl-indent {
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">11 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-dequidt_2018" class="csl-entry" role="listitem">
+<span class="nocase">de Quidt, Jonathan, Johannes Haushofer, and Christopher Roth</span>. 2018. <span>“Measuring and Bounding Experimenter Demand.”</span> <em>American Economic Review</em> 108 (11): 3266–302. <a href="https://doi.org/10.1257/aer.20171330">https://doi.org/10.1257/aer.20171330</a>.
+</div>
 <div id="ref-gerber_green_2012" class="csl-entry" role="listitem">
-Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. New York: W.W. Norton.
+Gerber, Alan S., and Donald P. Green. 2012. <em>Field Experiments: Design, Analysis, and Interpretation</em>. W.W. Norton.
+</div>
+<div id="ref-lohr_2009" class="csl-entry" role="listitem">
+Lohr, Sharon L. 2009. <em>Sampling: Design and Analysis</em>. 2nd ed. Brooks/Cole, Cengage Learning.
 </div>
 <div id="ref-young_2018" class="csl-entry" role="listitem">
 Young, Lauren. 2018. <span>“The Psychology of State Repression: Fear and Dissent Decisions in Zimbabwe.”</span> <em>American Political Science Review</em> 113 (1): 140–55.
@@ -367,7 +373,7 @@ Young, Lauren. 2018. <span>“The Psychology of State Repression: Fear and Disse
 <li id="fn3"><p>Link to fishing article: http://www.columbia.edu/~mh2245/papers1/PA_2012b.pdf. Link to Casey et al: http://qje.oxfordjournals.org/content/127/4/1755.full.pdf+html<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>If employing multiple survey measures for the same outcome; pre-commit to how you will analyze them e.g.&nbsp;in an index/with accounting for multiple comparisons etc. to avoid cherry-picking measures post-hoc.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>See <span class="citation" data-cites="young_2018">Young (<a href="#ref-young_2018" role="doc-biblioref">2018</a>)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>This approach involves estimating the upper and lower “bounds,” which are the largest and smallest ATEs we would obtain if the missing information were filled in with the highest and lowest outcomes that appear in the data we have.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>This approach involves estimating the upper and lower “bounds,” which are the largest and smallest treatment effect estimates that we would obtain if the missing information was equal to the highest and lowest possible values of our outcomes.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -771,6 +777,19 @@ Young, Lauren. 2018. <span>“The Psychology of State Repression: Fear and Disse
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
