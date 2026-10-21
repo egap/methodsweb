@@ -189,4 +189,4 @@ Commons Attribution-ShareAlike 4.0 International
 License](https://creativecommons.org/licenses/by-sa/4.0/), the same license
 as EGAP's book [*The Theory and Practice of Field
 Experiments*](https://github.com/egap/theory_and_practice_of_field_experiments).
-See [LICENSE.md](LICENSE.md) for the full terms.
+The R code in the guides is also offered under the [MIT License](https://opensource.org/license/mit), so a code chunk can be reused without the share-alike condition. See [LICENSE.md](LICENSE.md) for the full terms of both.

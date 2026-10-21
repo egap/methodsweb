@@ -14,7 +14,7 @@ website:
   title: "Methods"
   back-to-top-navigation: true
   page-footer:
-    center: 'Text, figures, and code of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.'
+    center: 'Text and figures of the guides are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, and the R code also under the <a href="https://github.com/egap/methodsweb/blob/main/LICENSE.md">MIT License</a>. Source on <a href="https://github.com/egap/methodsweb">GitHub</a>.'
   navbar:
     logo: img/egap-logo.svg
     logo-width: 500px
