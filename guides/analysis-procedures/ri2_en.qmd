@@ -179,15 +179,34 @@ In a three-arm trial, the research might wish to compare each treatment to contr
 three_arm_dat <- read.csv("ri2_three_arm_dat.csv")
 three_arm_dec <- declare_ra(N = 200, 
                             conditions = c("Control", "Treatment 1", "Treatment 2"))
-ri_out <-
-    conduct_ri(
-      formula = Y ~ Z,
-      declaration = three_arm_dec,
-      data = three_arm_dat,
-      sims = sims
-    )
-summary(ri_out)
-## plot(ri_out)
+
+# Each pairwise comparison is a two-arm trial among the subjects assigned
+# to control and to that treatment, so we build it as one: keep those
+# subjects, declare a two-arm design with the observed number treated,
+# and re-randomize only them. (Passing the three-arm data and declaration
+# straight to conduct_ri reuses the first comparison's permutations for
+# the second, which gives a wrong p-value for Treatment 2 in ri2 0.4.1.)
+compare_to_control <- function(arm) {
+  pair_dat <- subset(three_arm_dat, Z %in% c("Control", arm))
+  pair_dat$Z <- factor(pair_dat$Z, levels = c("Control", arm))
+  pair_dec <- declare_ra(N = nrow(pair_dat),
+                         m = sum(pair_dat$Z == arm),
+                         conditions = c("Control", arm))
+  conduct_ri(
+    formula = Y ~ Z,
+    declaration = pair_dec,
+    data = pair_dat,
+    sims = sims
+  )
+}
+
+ri_out_1 <- compare_to_control("Treatment 1")
+summary(ri_out_1)
+plot(ri_out_1)
+
+ri_out_2 <- compare_to_control("Treatment 2")
+summary(ri_out_2)
+plot(ri_out_2)
 ```
 
 # Randomization inference for joint significance
