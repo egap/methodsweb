@@ -169,11 +169,7 @@ g
 
 Of the 25 null hypotheses that would be rejected if no correction were made, the Bonferroni correction only rejects 8, the Holm procedure rejects 11, and the Benjamini–Hochberg procedure rejects 22 (or tags 22 hypotheses as promising for future exploration). Of these three corrections, Bonferroni is the most stringent while Benjamini–Hochberg is the most lenient.
 
-Instead of R, you can also use this calculator to adjust your p-values.
-
-This calculator works best in Firefox. To use full-screen, go [here](https://egap.shinyapps.io/multiple-comparisons-app/).
-
-<iframe height="500" src="https://egap.shinyapps.io/multiple-comparisons-app/" width="850"></iframe>
+Instead of R, you can also use [this calculator](https://egap.shinyapps.io/multiple-comparisons-app/) to adjust your p-values.
 
 
 # A better way to control the FWER is simulation 
@@ -409,7 +405,7 @@ knitr::kable(table, digits = 3)
 # Use Design Based approaches 
 
 
-There are also two design based approaches for thinking about this problem. One is to use pre-analysis plans to describe in advance which comparisons will be made; the number of tests implicated in a Bonferroni or Bonferroni-style correction is specified before any data analysis is conducted. A pre-analysis plan, among its many benefits, helps to clarify the multiple comparisons problem.
+There are also two design based approaches for thinking about this problem. One is to use pre-analysis plans to describe in advance which comparisons will be made; the number of tests implicated in a Bonferroni or Bonferroni-style correction is specified before any data analysis is conducted. A pre-analysis plan, among its many benefits, helps to clarify the multiple comparisons problem. (See our guide [10 Things to Know About Pre-Analysis Plans](https://methods.egap.org/guides/planning/pap_en.html) for general information on pre-analysis plans.)
 
 A good example is this pre-analysis plan by [Gwyneth McClendon and Rachel Beatty Riedl](https://egap.org/registration/651).  The authors specify 24 individual tests they plan to conduct and state ahead of time that they will employ both the Bonferroni and Benjamini-Hochberg corrections.  The authors do not state beforehand how they will handle a situation in which the corrections disagree; presumably it will be a matter of judgment for both the authors and the readers of their study.
 
