@@ -1055,37 +1055,41 @@
     },
     "attrition": {
       "Package": "attrition",
-      "Version": "0.1.0",
-      "Source": "GitHub",
+      "Version": "1.0.0",
+      "Source": "Repository",
       "Title": "Addressing Nonignorable Attrition with Double Sampling and Bounds",
       "Authors@R": "c( person(\"Alexander\", \"Coppock\", email = \"acoppock@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Alan S.\", \"Gerber\", role = \"aut\"), person(\"Donald P.\", \"Green\", role = \"aut\"), person(\"Holger L.\", \"Kern\", role = \"aut\"))",
-      "Description": "Implements the double-sampling bounds estimator of Coppock, Gerber, Green, and Kern (2017) <doi:10.1017/pan.2016.6> for randomized experiments with nonignorable missing outcomes. Provides worst-case (Manski) bounds, double-sampling bounds with analytic variance and Imbens-Manski confidence intervals, Lee (2009) trimming bounds, covariate adjustment via poststratification, and a sensitivity analysis for violations of the outcome stability assumption.",
+      "Description": "Implements the double-sampling bounds estimator of Coppock, Gerber, Green, and Kern (2017) <doi:10.1017/pan.2016.6> for randomized experiments with nonignorable missing outcomes. Provides worst-case (Manski) bounds, double-sampling bounds with analytic variance and Imbens-Manski confidence intervals, Lee (2009) <doi:10.1111/j.1467-937X.2009.00536.x> trimming bounds with analytic and bootstrap standard errors, covariate adjustment via poststratification, and a sensitivity analysis for violations of the outcome stability assumption.",
       "Depends": [
         "R (>= 4.1.0)"
       ],
       "Imports": [
-        "dplyr",
         "generics",
         "ggplot2",
-        "purrr",
         "tibble"
       ],
       "Encoding": "UTF-8",
       "License": "GPL-3",
-      "LazyData": "true",
-      "RoxygenNote": "7.3.3",
+      "URL": "https://alexandercoppock.com/attrition/, https://github.com/acoppock/attrition",
+      "BugReports": "https://github.com/acoppock/attrition/issues",
       "Suggests": [
-        "testthat (>= 3.0.0)"
+        "dplyr",
+        "estimatr",
+        "knitr",
+        "purrr",
+        "rmarkdown",
+        "testthat (>= 3.0.0)",
+        "vayr (>= 1.1.0)"
       ],
+      "VignetteBuilder": "knitr",
       "Config/testthat/edition": "3",
+      "Config/roxygen2/version": "8.0.0",
+      "LazyData": "true",
+      "Language": "en-US",
+      "NeedsCompilation": "no",
       "Author": "Alexander Coppock [aut, cre], Alan S. Gerber [aut], Donald P. Green [aut], Holger L. Kern [aut]",
       "Maintainer": "Alexander Coppock <acoppock@gmail.com>",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "acoppock",
-      "RemoteRepo": "attrition",
-      "RemoteRef": "master",
-      "RemoteSha": "d011c4fd11e04f69ab8f14a97033d68a4c93bbc3"
+      "Repository": "CRAN"
     },
     "audio": {
       "Package": "audio",
