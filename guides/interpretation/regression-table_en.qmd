@@ -1,8 +1,10 @@
 ---
 title: "10 Things to Know About Interpreting Experimental Results from a Regression Table"
 author: 
-  - name: "Eddy S. F. Yeung"
+  - name: "Eddy S. F. Yeung (2024 revision)"
     url: https://eddy-yeung.github.io/
+  - name: "Abby Long (original)"
+    url: https://www.linkedin.com/in/abby-long-834677a
 image: regression-table.png
 bibliography: regression-table.bib
 abstract: | 
