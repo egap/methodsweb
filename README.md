@@ -80,8 +80,8 @@ All guide files use underscore + language code before `.qmd`:
 - French: `guide-name_fr.qmd`
 
 Each guide also has associated files in the same directory:
-- `guide-name.bib` — BibTeX references
-- `guide-name.png` — Thumbnail image for listings
+- `guide-name.bib` --- BibTeX references
+- `guide-name.png` --- Thumbnail image for listings
 
 ## Writing Guides
 
@@ -183,4 +183,10 @@ The site is automatically built and deployed to GitHub Pages when changes are pu
 
 ## License
 
-<!-- TODO: Specify the license for this content -->
+We are happy for others to use this work as long as EGAP is attributed. The
+text, figures, and R code of the guides are licensed under the [Creative
+Commons Attribution-ShareAlike 4.0 International
+License](https://creativecommons.org/licenses/by-sa/4.0/), the same license
+as EGAP's book [*The Theory and Practice of Field
+Experiments*](https://github.com/egap/theory_and_practice_of_field_experiments).
+See [LICENSE.md](LICENSE.md) for the full terms.
