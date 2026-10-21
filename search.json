@@ -209,14 +209,14 @@
     "href": "guides/data-collection/survey-experiments_en.html",
     "title": "10 Things to Know About Survey Experiments",
     "section": "",
-    "text": "Survey experiments are widely used by social scientists to study individual preferences. This guide discusses the functions and considerations of survey experiments."
+    "text": "Survey experiments are experiments conducted within a survey. They are widely used to study the prevalence of sensitive attitudes and behaviors and of complex preferences. This guide describes several common types of survey experiments – conjoint experiments, priming experiments, endorsement experiments, list experiments (item count technique), and randomized response experiments – and some key considerations for their design and analysis."
   },
   {
     "objectID": "guides/data-collection/survey-experiments_en.html#footnotes",
     "href": "guides/data-collection/survey-experiments_en.html#footnotes",
     "title": "10 Things to Know About Survey Experiments",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nSee Hainmueller et al. (2014) and Green and Rao (1971).↩︎\nSee Horiuchi et al. (2022).↩︎\nSee Warner (1965), Boruch (1971), Gingerich (2015), and Gingerich (2010).↩︎\nSee Edgell et al. (1982) and Yu et al. (2008).↩︎\nSee Dafoe et al. (2018) on information equivalence.↩︎\nSee Krosnick (1991) and Simon and March (2006).↩︎\nSee Haaland et al. (2023) for a review of information provision experiments.↩︎"
+    "text": "Footnotes\n\n\nSee Hainmueller et al. (2014) and Green and Rao (1971).↩︎\nSee Horiuchi et al. (2022).↩︎\nSee Warner (1965), Boruch (1971), Gingerich (2015), and Gingerich (2010).↩︎\nSee Edgell et al. (1982) and Yu et al. (2008).↩︎\nSee Dafoe et al. (2018) on information equivalence.↩︎\nSee Haaland et al. (2023) for a review of information provision experiments.↩︎\nSee Krosnick (1991) and Simon and March (2006).↩︎"
   },
   {
     "objectID": "guides/data-collection/sampling_en.html",
@@ -850,7 +850,7 @@
     "href": "guides.html#data-collection",
     "title": "Methods guides",
     "section": "Data collection",
-    "text": "Data collection\n\n\n\n\n\n\n\n\n\n\n10 Things You Need to Know About Cluster Randomization\n\n\n\nJake Bowers, Ashlea Rundlett, Jasper Cooper, Anna Wilke\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things You Need to Know About Randomization\n\n\n\nLindsay Dolan\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Adaptive Experimental Design\n\n\n\nDonald Green, Molly Offer-Westort\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Indices\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Measurement in Experiments\n\n\n\nTara Slough\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Missing Data\n\n\n\nTara Slough\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Multisite or Block-Randomized Trials\n\n\n\nKristen Hunter\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Sampling\n\n\n\nAnna M. Wilke\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Spillovers\n\n\n\nAlexander Coppock\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Survey Experiments\n\n\n\nChristopher Grady\n\n\n\n\n\n\nNo matching items"
+    "text": "Data collection\n\n\n\n\n\n\n\n\n\n\n10 Things You Need to Know About Cluster Randomization\n\n\n\nJake Bowers, Ashlea Rundlett, Jasper Cooper, Anna Wilke\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things You Need to Know About Randomization\n\n\n\nLindsay Dolan\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Adaptive Experimental Design\n\n\n\nDonald Green, Molly Offer-Westort\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Indices\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Measurement in Experiments\n\n\n\nTara Slough\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Missing Data\n\n\n\nTara Slough\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Multisite or Block-Randomized Trials\n\n\n\nKristen Hunter\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Sampling\n\n\n\nAnna M. Wilke\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Spillovers\n\n\n\nAlexander Coppock\n\n\n\n\n\n\n\n\n\n\n\n\n\n10 Things to Know About Survey Experiments\n\n\n\nEddy S. F. Yeung (2024 revision), Christopher Grady (original)\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "guides.html#analysis-procedures",
