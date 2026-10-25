@@ -17,3 +17,4 @@ site_libs/*
 **/*.quarto_ipynb
 
 .guide-work/
+HANDOFF.md
