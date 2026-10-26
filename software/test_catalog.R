@@ -53,9 +53,9 @@ test_that("each row says where to install from and has what the page shows", {
   }
 })
 
-## The page lets a reader sort a table by release date, and its script sorts
-## the dates as text. Text order equals date order only when every date is
-## written YYYY-MM-DD, and refresh.R copies dates from three archives that
+## The page lets a reader sort a table by release date. Its script sorts the
+## dates as text, and text order equals date order only when every date is
+## written YYYY-MM-DD. refresh.R copies the dates from three archives, which
 ## write them three different ways.
 test_that("release dates are YYYY-MM-DD or blank, so sorting them as text sorts by date", {
   dated <- catalog$last_release[!is.na(catalog$last_release)]

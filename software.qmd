@@ -4,7 +4,7 @@ toc-depth: 3
 number-sections: false
 ---
 
-This page lists software packages in R, Stata, and Python for the tasks that the methods guides describe. The packages are arranged by topic. Choose a topic from the contents above to see its packages, each with one sentence on what the package does and the command that installs it. To sort a topic's table by name or by release date, click the heading Package or Latest release, and click it again to reverse the order.
+This page lists software packages in R, Stata, and Python for the tasks that the methods guides describe. The packages are arranged by topic. Choose a topic from the contents above to see its packages, each with one sentence on what the package does and the command that installs it. A reader who clicks the heading Package or Latest release sorts that topic's table by name or by release date. A second click reverses the order.
 
 EGAP has not tested every package listed here. EGAP assembled the list in October 2026 from three sources: the R packages that the guides use, an earlier EGAP list of software, and three CRAN Task Views, which are lists of R packages kept by volunteers. For each package, EGAP checked that the archive linked from its name still distributes it, and recorded the date of its latest release where the archive gives one. The one-sentence descriptions were drafted from each package's own title and description, and EGAP has not yet checked all of them.
 
@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         return;
       }
-      // A reader asking about release dates most likely wants the newest
-      // first; a reader asking about names wants A to Z.
+      // A reader sorting by release date most likely wants the newest
+      // first. A reader sorting by name wants A to Z.
       var firstOrder = label === "Latest release" ? "descending" : "ascending";
       var button = document.createElement("button");
       button.type = "button";
