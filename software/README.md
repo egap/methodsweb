@@ -38,7 +38,7 @@ A person writes these columns:
 
 ## How the first list was made
 
-The first 139 rows were assembled in October 2026. The candidates came from
+The first 147 rows were assembled in October 2026. The candidates came from
 the R packages the guides load, the Google Sheet behind the earlier Software
 page (`_map/software_packages.rds`), and three CRAN Task Views
 (ExperimentalDesign, CausalInference, ClinicalTrials), 774 packages in all.
@@ -46,8 +46,10 @@ Packages that the Task Views list only for other fields (plant breeding,
 industrial experiments, drug dose-finding, and similar) were removed, as were
 general tools such as ggplot2. Claude agents then assigned each remaining
 package a topic and marked it "include," "maybe," or "exclude" from its title
-and description. The 138 marked "include" became the first list, and Jake
-Bowers added riposte and CMRSS. The Stata row for cptest was merged with
+and description. The 138 marked "include" became the first list. Jake
+Bowers added riposte and CMRSS, and then eight packages that EGAP's Learning
+Days materials use: AER, CausalQueries, ICC, lme4, lmtest, multiwayvcov,
+propertee, and pwrss. The Stata row for cptest was merged with
 the row for cvcrand, the SSC package that contains it. The sentences began as the
 agents' reasons and have not all been checked.
 
