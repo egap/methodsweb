@@ -158,1002 +158,1598 @@ ul.task-list li input[type="checkbox"] {
   
 </header>
 
-
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+<nav id="TOC" role="doc-toc">
+    <h4 id="toc-title">Contents</h4>
+   
+  <ul>
+  <li><a href="#designing-a-study" id="toc-designing-a-study">Designing a study</a>
+  <ul>
+  <li><a href="#planning-a-study-and-computing-power" id="toc-planning-a-study-and-computing-power">Planning a study and computing power</a></li>
+  <li><a href="#random-assignment-including-blocked-cluster-and-adaptive-designs" id="toc-random-assignment-including-blocked-cluster-and-adaptive-designs">Random assignment, including blocked, cluster, and adaptive designs</a></li>
+  <li><a href="#sampling" id="toc-sampling">Sampling</a></li>
+  </ul></li>
+  <li><a href="#analyzing-an-experiment" id="toc-analyzing-an-experiment">Analyzing an experiment</a>
+  <ul>
+  <li><a href="#checking-balance" id="toc-checking-balance">Checking balance</a></li>
+  <li><a href="#estimating-average-effects-and-their-standard-errors" id="toc-estimating-average-effects-and-their-standard-errors">Estimating average effects and their standard errors</a></li>
+  <li><a href="#randomization-inference" id="toc-randomization-inference">Randomization inference</a></li>
+  <li><a href="#multiple-comparisons-and-indices" id="toc-multiple-comparisons-and-indices">Multiple comparisons and indices</a></li>
+  <li><a href="#heterogeneous-effects-and-generalizing-to-other-populations" id="toc-heterogeneous-effects-and-generalizing-to-other-populations">Heterogeneous effects and generalizing to other populations</a></li>
+  <li><a href="#noncompliance-and-the-local-average-treatment-effect" id="toc-noncompliance-and-the-local-average-treatment-effect">Noncompliance and the local average treatment effect</a></li>
+  <li><a href="#missing-data-and-attrition" id="toc-missing-data-and-attrition">Missing data and attrition</a></li>
+  <li><a href="#spillovers" id="toc-spillovers">Spillovers</a></li>
+  <li><a href="#mechanisms-and-mediation" id="toc-mechanisms-and-mediation">Mechanisms and mediation</a></li>
+  </ul></li>
+  <li><a href="#measurement-and-data-collection" id="toc-measurement-and-data-collection">Measurement and data collection</a>
+  <ul>
+  <li><a href="#special-survey-designs-list-experiments-randomized-response-conjoint-endorsement" id="toc-special-survey-designs-list-experiments-randomized-response-conjoint-endorsement">Special survey designs: list experiments, randomized response, conjoint, endorsement</a></li>
+  <li><a href="#measurement" id="toc-measurement">Measurement</a></li>
+  <li><a href="#field-work-and-data-management" id="toc-field-work-and-data-management">Field work and data management</a></li>
+  </ul></li>
+  <li><a href="#combining-studies" id="toc-combining-studies">Combining studies</a>
+  <ul>
+  <li><a href="#meta-analysis" id="toc-meta-analysis">Meta-analysis</a></li>
+  </ul></li>
+  <li><a href="#observational-designs" id="toc-observational-designs">Observational designs</a>
+  <ul>
+  <li><a href="#matching-and-weighting" id="toc-matching-and-weighting">Matching and weighting</a></li>
+  <li><a href="#beforeafter-comparisons-difference-in-differences-and-synthetic-control" id="toc-beforeafter-comparisons-difference-in-differences-and-synthetic-control">Before/after comparisons, difference-in-differences, and synthetic control</a></li>
+  <li><a href="#instrumental-variables" id="toc-instrumental-variables">Instrumental variables</a></li>
+  <li><a href="#regression-discontinuity" id="toc-regression-discontinuity">Regression discontinuity</a></li>
+  <li><a href="#sensitivity-to-unmeasured-confounding" id="toc-sensitivity-to-unmeasured-confounding">Sensitivity to unmeasured confounding</a></li>
+  </ul></li>
+  </ul>
+</nav>
+<p>This page lists software packages in R, Stata, and Python for the tasks that the methods guides describe. The packages are arranged by topic. Choose a topic from the contents above to see its packages, each with one sentence on what the package does and the command that installs it. A reader who clicks the heading Package or Latest release sorts that topic’s table by name or by release date. A second click reverses the order.</p>
+<p>EGAP has not tested every package listed here. EGAP assembled the list in October 2026 from three sources: the R packages that the guides use, an earlier EGAP list of software, and three CRAN Task Views, which are lists of R packages kept by volunteers. For each package, EGAP checked that the archive linked from its name still distributes it, and recorded the date of its latest release where the archive gives one. The one-sentence descriptions were drafted from each package’s own title and description, and EGAP has not yet checked all of them.</p>
+<p>Three notes appear beside some packages:</p>
+<ul>
+<li>Guide: the R code in that guide loads the package, so readers can see the package used in the guide’s examples.</li>
+<li>Learning Days: EGAP’s book <em>The Theory and Practice of Field Experiments</em> or its Learning Days workshop materials use the package.</li>
+<li>EGAP author: at least one author of the package is a member of EGAP.</li>
+</ul>
 <style>
-table.dataTable tbody td {
-  vertical-align: top;
-}
+/* Fixed column widths, so that long install commands wrap instead of
+   squeezing the descriptions into a narrow column. */
+.software-table table { table-layout: fixed; width: 100%; font-size: 0.9em; }
+.software-table th:nth-child(1) { width: 15%; }
+.software-table th:nth-child(2) { width: 12%; }
+.software-table th:nth-child(3) { width: 33%; }
+/* Keep a date on one line where the screen is wide enough for it. */
+@media (min-width: 768px) { .software-table td:nth-child(2) { white-space: nowrap; } }
+.software-table th:nth-child(4) { width: 22%; }
+.software-table th:nth-child(5) { width: 18%; }
+.software-table td code { white-space: normal; overflow-wrap: anywhere; }
+.software-table .lang { color: #555; font-size: 0.85em; }
+/* The sortable headings are buttons, so that a keyboard can reach them,
+   styled to look like the other headings. The arrow shows the order. */
+.software-table .sort-button { background: none; border: 0; padding: 0; font: inherit;
+  font-weight: bold; color: inherit; text-align: left; cursor: pointer; }
+.software-table .sort-button:hover { text-decoration: underline; }
+.software-table th[aria-sort="none"] .sort-button::after { content: " \2195"; color: #999; }
+.software-table th[aria-sort="ascending"] .sort-button::after { content: " \2191"; }
+.software-table th[aria-sort="descending"] .sort-button::after { content: " \2193"; }
 </style>
+
 <script>
-$(document).ready(function () {
-    var groupColumn = 0;
-    var table = $('#example').DataTable({
-        columnDefs: [{ visible: false, targets: groupColumn }],
-        order: [[groupColumn, 'asc']],
-        displayLength: 25,
-        drawCallback: function (settings) {
-            var api = this.api();
-            var rows = api.rows({ page: 'current' }).nodes();
-            var last = null;
- 
-            api
-                .column(groupColumn, { page: 'current' })
-                .data()
-                .each(function (group, i) {
-                    if (last !== group) {
-                        $(rows)
-                            .eq(i)
-                            .before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
- 
-                        last = group;
-                    }
-                });
-        },
+// Let a reader sort each table by package name or by latest release.
+// A click sorts that table alone, and a second click reverses the order.
+// Packages with no release date stay at the bottom in either order, so
+// that sorting newest first does not open the table with blank dates.
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".software-table table").forEach(function (table) {
+    var tbody = table.tBodies[0];
+    var sortable = [];
+    Array.prototype.forEach.call(table.tHead.rows[0].cells, function (th, col) {
+      var label = th.textContent.trim();
+      var key;
+      if (label === "Package") {
+        // The cell holds the name as a link with the language below it.
+        key = function (row) {
+          return row.cells[col].querySelector("a").textContent.toLowerCase();
+        };
+      } else if (label === "Latest release") {
+        // Dates are written YYYY-MM-DD, so text order is date order.
+        key = function (row) { return row.cells[col].textContent.trim(); };
+      } else {
+        return;
+      }
+      // A reader sorting by release date most likely wants the newest
+      // first. A reader sorting by name wants A to Z.
+      var firstOrder = label === "Latest release" ? "descending" : "ascending";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "sort-button";
+      button.textContent = label;
+      th.textContent = "";
+      th.appendChild(button);
+      th.setAttribute("aria-sort", "none");
+      sortable.push(th);
+
+      button.addEventListener("click", function () {
+        var now = th.getAttribute("aria-sort");
+        var order = now === "ascending" ? "descending" :
+                    now === "descending" ? "ascending" : firstOrder;
+        sortable.forEach(function (other) { other.setAttribute("aria-sort", "none"); });
+        th.setAttribute("aria-sort", order);
+        var rows = Array.prototype.slice.call(tbody.rows);
+        rows.sort(function (a, b) {
+          var ka = key(a), kb = key(b);
+          if (ka === kb) return 0;
+          if (ka === "") return 1;
+          if (kb === "") return -1;
+          var cmp = ka < kb ? -1 : 1;
+          return order === "descending" ? -cmp : cmp;
+        });
+        rows.forEach(function (row) { tbody.appendChild(row); });
+      });
     });
- 
-    // Order by the grouping
-    $('#example tbody').on('click', 'tr.group', function () {
-        var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
-        } else {
-            table.order([groupColumn, 'asc']).draw();
-        }
-    });
+  });
 });
 </script>
-<p>We collected statistical software tools useful for designing, implementing, and analyzing results from impact evaluations. You can search for functions and for software packages in R and Stata below.</p>
-<div class="cell">
-<div class="cell-output-display">
-<table id="example" class="display caption-top table table-sm table-striped small">
+<p>To suggest a package or correct an entry, open an issue or a pull request on <a href="https://github.com/egap/methodsweb">GitHub</a>. The list is the file <code>software/catalog.csv</code> in that repository.</p>
+<section id="designing-a-study" class="level2">
+<h2 class="anchored" data-anchor-id="designing-a-study">Designing a study</h2>
+<section id="planning-a-study-and-computing-power" class="level3">
+<h3 class="anchored" data-anchor-id="planning-a-study-and-computing-power">Planning a study and computing power</h3>
+<p>Related guides: <a href="./guides/assessing-designs/power_en.html">Statistical Power</a>, <a href="./guides/planning/pilots_en.html">Pilot Studies</a>, <a href="./guides/planning/pap_en.html">Pre-Analysis Plans</a></p>
+<div class="software-table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">package</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">fn</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Member(s)</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Functionality</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Platform</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">URL</th>
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ri2</td>
-<td style="text-align: left;">conduct_ri</td>
-<td style="text-align: left;">Alex Coppock</td>
-<td style="text-align: left;">Randomization Inference for Randomized Experiments</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/ri2/</td>
+<td style="text-align: left;"><a href="https://github.com/Kenkleinman/clusterPower">clusterPower</a><br><span class="lang">R</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Power for cluster-randomized and crossover trials by formula or simulation.</td>
+<td style="text-align: left;"><code>remotes::install_github("Kenkleinman/clusterPower")</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ri2</td>
-<td style="text-align: left;">tidy</td>
-<td style="text-align: left;">Alex Coppock</td>
-<td style="text-align: left;">Randomization Inference for Randomized Experiments</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/ri2/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=cosa">cosa</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2021-11-20</td>
+<td style="text-align: left;">Power and optimal allocation for multilevel randomized trials and discontinuity designs.</td>
+<td style="text-align: left;"><code>install.packages("cosa")</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">detect_idiosyncratic</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=CRTSize">CRTSize</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2023-02-22</td>
+<td style="text-align: left;">Sample size for cluster randomized trials, binary or continuous outcomes.</td>
+<td style="text-align: left;"><code>install.packages("CRTSize")</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">estimate_systematic</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=DeclareDesign">DeclareDesign</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-10-25</td>
+<td style="text-align: left;">Declares and diagnoses research designs by simulation, including power.</td>
+<td style="text-align: left;"><code>install.packages("DeclareDesign")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/assessing-designs/power_en.html">Statistical Power</a><br>Learning Days<br>EGAP author: Coppock, Blair, Cooper, Humphreys</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">get.p.value</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=DesignLibrary">DesignLibrary</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2021-10-18</td>
+<td style="text-align: left;">Ready-made DeclareDesign designs for one-line power and design diagnosis.</td>
+<td style="text-align: left;"><code>install.packages("DesignLibrary")</code></td>
+<td style="text-align: left;">Learning Days<br>EGAP author: Blair, Cooper, Coppock, Humphreys, Medina</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">KS.stat</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=fabricatr">fabricatr</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-10-21</td>
+<td style="text-align: left;">Simulates data, including potential outcomes, to diagnose a design before fielding.</td>
+<td style="text-align: left;"><code>install.packages("fabricatr")</code></td>
+<td style="text-align: left;">Learning Days<br>EGAP author: Coppock, Blair, Cooper, Humphreys</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">make.linear.data</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=ICC">ICC</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2022-05-20</td>
+<td style="text-align: left;">Estimates the intraclass correlation, which power calculations for cluster-randomized designs need.</td>
+<td style="text-align: left;"><code>install.packages("ICC")</code></td>
+<td style="text-align: left;">Learning Days</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">make.quadradic.data</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=odr">odr</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-02-11</td>
+<td style="text-align: left;">Power and optimal sample allocation for single and multilevel experiments.</td>
+<td style="text-align: left;"><code>install.packages("odr")</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">make.randomized.compliance.dat</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=powerLATE">powerLATE</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-05-29</td>
+<td style="text-align: left;">Power calculations when estimating the LATE under noncompliance.</td>
+<td style="text-align: left;"><code>install.packages("powerLATE")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/research-questions/late_en.html">Local Average Treatment Effect</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">make.randomized.dat</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://github.com/metinbulus/PowerUpR">PowerUpR</a><br><span class="lang">R</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Power and sample size for multilevel and cluster randomized experiments.</td>
+<td style="text-align: left;"><code>remotes::install_github("metinbulus/PowerUpR")</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">make.skew.data</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=presize">presize</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-03-11</td>
+<td style="text-align: left;">Sample size chosen by target confidence interval width, many estimands</td>
+<td style="text-align: left;"><code>install.packages("presize")</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">Penn46_ascii</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=pwr">pwr</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2020-03-17</td>
+<td style="text-align: left;">Basic power calculations for t-tests, proportions, correlations, and more.</td>
+<td style="text-align: left;"><code>install.packages("pwr")</code></td>
+<td style="text-align: left;">Learning Days</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">R2</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=pwrss">pwrss</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-10-14</td>
+<td style="text-align: left;">Power, sample size, and minimum detectable effect calculations for common tests.</td>
+<td style="text-align: left;"><code>install.packages("pwrss")</code></td>
+<td style="text-align: left;">Learning Days</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">rq.stat</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=simglm">simglm</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-09-01</td>
+<td style="text-align: left;">Simulation-based power for regression and multilevel designs, including missing data</td>
+<td style="text-align: left;"><code>install.packages("simglm")</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">rq.stat.cond.cov</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=WebPower">WebPower</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2023-10-13</td>
+<td style="text-align: left;">Basic and advanced power analysis for many designs and models.</td>
+<td style="text-align: left;"><code>install.packages("WebPower")</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">rq.stat.uncond.cov</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458755.html">cluster2</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2020-04-07</td>
+<td style="text-align: left;">Power analysis for two-level cluster randomized trials.</td>
+<td style="text-align: left;"><code>ssc install cluster2</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">SE</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458671.html">cluster3</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2020-04-07</td>
+<td style="text-align: left;">Power analysis for cluster randomized trials with up to three levels.</td>
+<td style="text-align: left;"><code>ssc install cluster3</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">SKS.pool.t</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458786.html">clustersampsim</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2020-05-16</td>
+<td style="text-align: left;">Simulates sample size requirements for cluster randomized trials.</td>
+<td style="text-align: left;"><code>ssc install clustersampsim</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">SKS.stat</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s457566.html">nonparmde</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2012-12-09</td>
+<td style="text-align: left;">Minimum detectable effect for randomized experiments.</td>
+<td style="text-align: left;"><code>ssc install nonparmde</code></td>
+<td style="text-align: left;">EGAP author: Middleton</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">SKS.stat.cov</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458286.html">pcpanel</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2021-11-14</td>
+<td style="text-align: left;">Power calculations for randomized experiments with panel data and serial correlation.</td>
+<td style="text-align: left;"><code>ssc install pcpanel</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">SKS.stat.cov.pool</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s422401.html">powercal</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2012-03-31</td>
+<td style="text-align: left;">General power and sample size calculations.</td>
+<td style="text-align: left;"><code>ssc install powercal</code></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">SKS.stat.cov.rq</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">SKS.stat.int.cov</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">SKS.stat.int.cov.pool</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">test.stat.info</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">ToyData</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">variance.ratio.test</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">hettx</td>
-<td style="text-align: left;">WSKS.t</td>
-<td style="text-align: left;">Avi Feller</td>
-<td style="text-align: left;">Fisherian and Neymanian Methods for Detecting and Measuring Treatment Effect Variation</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/hettx/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">add_bound_to_contour</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">adjusted_estimate</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">adjusted_partial_r2</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">adjusted_se</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">adjusted_t</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">bias</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">colombia</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">darfur</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">group_partial_r2</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">model_helper</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">ovb_bounds</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">ovb_contour_plot</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">ovb_extreme_plot</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">ovb_minimal_reporting</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">ovb_partial_r2_bound</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">partial_f</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">partial_f2</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">partial_r2</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">rel_bias</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">relative_bias</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">resid_maker</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">robustness_value</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sensemakr</td>
-<td style="text-align: left;">sensitivity_stats</td>
-<td style="text-align: left;">Chad Hazlett</td>
-<td style="text-align: left;">sensitivity analysis for linear regression</td>
-<td style="text-align: left;">R, Stata</td>
-<td style="text-align: left;">https://rdrr.io/cran/sensemakr/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">AsyVar</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">balance</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">Blackwell</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">CBIV</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">CBMSM</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">CBPS.fit</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">hdCBPS</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">LaLonde</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">npCBPS</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CBPS</td>
-<td style="text-align: left;">vcov_outcome</td>
-<td style="text-align: left;">Chad Hazlett, Kosuke Imai</td>
-<td style="text-align: left;">Covariate Balancing Propensity Score</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/CBPS/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">cite_design</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">compare_design_code</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">compare_design_data</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">compare_design_estimates</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">compare_design_inquiries</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">compare_design_summaries</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">compare_designs</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">compare_diagnoses</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_assignment</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_diagnosands</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_estimand</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_estimands</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_estimator</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_estimators</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_inquiries</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_inquiry</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_measurement</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_model</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_population</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_potential_outcomes</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_reveal</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_sampling</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_step</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">declare_test</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">delete_step</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">diagnose_design</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">diagnose_designs</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">draw_data</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">draw_estimand</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">draw_estimands</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">draw_estimates</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">expand_design</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">get_diagnosands</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">get_estimates</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">get_simulations</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">insert_step</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">label_estimator</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">label_test</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">model_handler</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">pop.var</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">print_code</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">redesign</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">replace_step</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">reshape_diagnosis</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">run_design</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">set_citation</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">set_diagnosands</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">simulate_design</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">simulate_designs</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">tidy</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">tidy_estimator</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">tidy_try</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">DeclareDesign</td>
-<td style="text-align: left;">vars</td>
-<td style="text-align: left;">Graeme Blair, Jasper Cooper, Alex Coppock, Macartan Humphreys</td>
-<td style="text-align: left;">diagnosing and improving research designs</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: left;">https://rdrr.io/cran/DeclareDesign/</td>
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458432.html">powerclus</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2017-11-17</td>
+<td style="text-align: left;">Sample size and cluster size for cluster randomized designs.</td>
+<td style="text-align: left;"><code>ssc install powerclus</code></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
 </div>
+</section>
+<section id="random-assignment-including-blocked-cluster-and-adaptive-designs" class="level3">
+<h3 class="anchored" data-anchor-id="random-assignment-including-blocked-cluster-and-adaptive-designs">Random assignment, including blocked, cluster, and adaptive designs</h3>
+<p>Related guides: <a href="./guides/data-collection/randomization_en.html">Randomization</a>, <a href="./guides/data-collection/cluster-randomization_en.html">Cluster Randomization</a>, <a href="./guides/data-collection/multisite-experiments_en.html">Multisite or Block-Randomized Trials</a>, <a href="./guides/data-collection/adaptive-design_en.html">Adaptive Experimental Design</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=blockTools">blockTools</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-01-22</td>
+<td style="text-align: left;">Blocks units on covariates and randomly assigns treatment within blocks.</td>
+<td style="text-align: left;"><code>install.packages("blockTools")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/data-collection/randomization_en.html">Randomization</a><br>Learning Days<br>EGAP author: Moore</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=cvcrand">cvcrand</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2023-09-17</td>
+<td style="text-align: left;">Constrained randomization and permutation tests for few-cluster trials.</td>
+<td style="text-align: left;"><code>install.packages("cvcrand")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=quickblock">quickblock</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-07-31</td>
+<td style="text-align: left;">Fast threshold blocking for assigning treatments in large experiments.</td>
+<td style="text-align: left;"><code>install.packages("quickblock")</code></td>
+<td style="text-align: left;">EGAP author: Sekhon</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=randomizr">randomizr</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-08-27</td>
+<td style="text-align: left;">Random assignment for common designs, including blocked and clustered.</td>
+<td style="text-align: left;"><code>install.packages("randomizr")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/analysis-procedures/how-to-analyze-experiments_en.html">10 Things on Your Checklist for Analyzing an Experiment</a>, <a href="./guides/analysis-procedures/hypothesis-testing_en.html">Hypothesis Testing</a>, <a href="./guides/data-collection/measurement_en.html">Measurement in Experiments</a>, <a href="./guides/data-collection/missing-data_en.html">Missing Data</a>, <a href="./guides/analysis-procedures/multiple-comparisons_en.html">Multiple Comparisons</a>, <a href="./guides/data-collection/randomization_en.html">Randomization</a><br>Learning Days<br>EGAP author: Coppock, Cooper, Blair, Humphreys</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=RCT">RCT</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-02-21</td>
+<td style="text-align: left;">Stratified assignment, power, balance tables, and impact regressions for RCTs.</td>
+<td style="text-align: left;"><code>install.packages("RCT")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458377.html">cvcrand</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2025-10-31</td>
+<td style="text-align: left;">Covariate-constrained randomization for cluster randomized trials, with a permutation test (cptest) for the analysis.</td>
+<td style="text-align: left;"><code>ssc install cvcrand</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="http://fmwww.bc.edu/repec/bocode/r/ralloc.pkg">ralloc</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2018-01-28</td>
+<td style="text-align: left;">Generates randomized allocation sequences, including blocked and stratified designs.</td>
+<td style="text-align: left;"><code>ssc install ralloc</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458028.html">randomize</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2017-06-01</td>
+<td style="text-align: left;">Random assignment with blocking, balance checks, and rerandomization.</td>
+<td style="text-align: left;"><code>ssc install randomize</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458403.html">randomizr</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2017-09-19</td>
+<td style="text-align: left;">Implements standard random assignment procedures, Stata port of randomizr.</td>
+<td style="text-align: left;"><code>ssc install randomizr</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458106.html">randtreat</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2017-04-13</td>
+<td style="text-align: left;">Random assignment with unequal treatment shares and handling of misfits.</td>
+<td style="text-align: left;"><code>ssc install randtreat</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s457970.html">stratarand</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2015-02-22</td>
+<td style="text-align: left;">Stratified random assignment.</td>
+<td style="text-align: left;"><code>ssc install stratarand</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sampling" class="level3">
+<h3 class="anchored" data-anchor-id="sampling">Sampling</h3>
+<p>Related guides: <a href="./guides/data-collection/sampling_en.html">Sampling</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458302.html">rsz</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2017-02-09</td>
+<td style="text-align: left;">Draws stratified, systematic, or PPS samples.</td>
+<td style="text-align: left;"><code>ssc install rsz</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="analyzing-an-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="analyzing-an-experiment">Analyzing an experiment</h2>
+<section id="checking-balance" class="level3">
+<h3 class="anchored" data-anchor-id="checking-balance">Checking balance</h3>
+<p>Related guides: <a href="./guides/data-collection/randomization_en.html">Randomization</a>, <a href="./guides/analysis-procedures/how-to-analyze-experiments_en.html">10 Things on Your Checklist for Analyzing an Experiment</a>, <a href="./guides/data-collection/cluster-randomization_en.html">Cluster Randomization</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=cobalt">cobalt</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-08-25</td>
+<td style="text-align: left;">Balance tables and plots for matched, weighted, or randomized groups.</td>
+<td style="text-align: left;"><code>install.packages("cobalt")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/ekhartman/equivtest">equivtest</a><br><span class="lang">R</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Equivalence tests for covariate balance and placebo checks.</td>
+<td style="text-align: left;"><code>remotes::install_github("ekhartman/equivtest")</code></td>
+<td style="text-align: left;">EGAP author: Hartman, Hidalgo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=RItools">RItools</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-05-17</td>
+<td style="text-align: left;">Omnibus randomization test of covariate balance across treatment groups.</td>
+<td style="text-align: left;"><code>install.packages("RItools")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/data-collection/cluster-randomization_en.html">Cluster Randomization</a><br>Learning Days<br>EGAP author: Bowers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=tableone">tableone</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2022-04-15</td>
+<td style="text-align: left;">Baseline covariate table with standardized mean differences by group</td>
+<td style="text-align: left;"><code>install.packages("tableone")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458424.html">balancetable</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2018-11-23</td>
+<td style="text-align: left;">Builds covariate balance tables exportable to LaTeX or Excel.</td>
+<td style="text-align: left;"><code>ssc install balancetable</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458275.html">stddiff</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2022-12-17</td>
+<td style="text-align: left;">Standardized differences to check covariate balance.</td>
+<td style="text-align: left;"><code>ssc install stddiff</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s456989.html">xbalance</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2009-01-23</td>
+<td style="text-align: left;">Standardized differences and omnibus balance test for stratified comparisons.</td>
+<td style="text-align: left;"><code>ssc install xbalance</code></td>
+<td style="text-align: left;">EGAP author: Bowers</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="estimating-average-effects-and-their-standard-errors" class="level3">
+<h3 class="anchored" data-anchor-id="estimating-average-effects-and-their-standard-errors">Estimating average effects and their standard errors</h3>
+<p>Related guides: <a href="./guides/analysis-procedures/how-to-analyze-experiments_en.html">10 Things on Your Checklist for Analyzing an Experiment</a>, <a href="./guides/analysis-procedures/covariates_en.html">Covariate Adjustment</a>, <a href="./guides/interpretation/regression-table_en.html">Reading a Regression Table</a>, <a href="./guides/research-questions/effect-types_en.html">10 Types of Treatment Effect You Should Know About</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=eefAnalytics">eefAnalytics</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-01-09</td>
+<td style="text-align: left;">Analyzes simple, cluster, and multisite randomized trials of education programs.</td>
+<td style="text-align: left;"><code>install.packages("eefAnalytics")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=estimatr">estimatr</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-10-10</td>
+<td style="text-align: left;">Difference in means, Lin regression, IV, with robust and clustered standard errors.</td>
+<td style="text-align: left;"><code>install.packages("estimatr")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/analysis-procedures/hypothesis-testing_en.html">Hypothesis Testing</a>, <a href="./guides/data-collection/measurement_en.html">Measurement in Experiments</a>, <a href="./guides/data-collection/missing-data_en.html">Missing Data</a><br>Learning Days<br>EGAP author: Coppock, Blair, Cooper, Humphreys, Medina</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=fixest">fixest</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-06-26</td>
+<td style="text-align: left;">Fast regressions with fixed effects and clustered standard errors.</td>
+<td style="text-align: left;"><code>install.packages("fixest")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=lme4">lme4</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-10-23</td>
+<td style="text-align: left;">Fits multilevel (mixed-effects) regression models, for example for outcomes in cluster-randomized trials.</td>
+<td style="text-align: left;"><code>install.packages("lme4")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/data-collection/cluster-randomization_en.html">Cluster Randomization</a><br>Learning Days</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=lmtest">lmtest</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2022-03-21</td>
+<td style="text-align: left;">Tests on regression coefficients, and with sandwich reports robust or clustered standard errors.</td>
+<td style="text-align: left;"><code>install.packages("lmtest")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/data-collection/cluster-randomization_en.html">Cluster Randomization</a><br>Learning Days</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=marginaleffects">marginaleffects</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-09-03</td>
+<td style="text-align: left;">Turns fitted models into treatment effect contrasts with standard errors.</td>
+<td style="text-align: left;"><code>install.packages("marginaleffects")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=modelsummary">modelsummary</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-02-13</td>
+<td style="text-align: left;">Side-by-side regression tables of estimates, plus balance tables.</td>
+<td style="text-align: left;"><code>install.packages("modelsummary")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/analysis-procedures/how-to-analyze-experiments_en.html">10 Things on Your Checklist for Analyzing an Experiment</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=multiwayvcov">multiwayvcov</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2016-05-05</td>
+<td style="text-align: left;">Standard errors clustered on more than one variable for regression estimates.</td>
+<td style="text-align: left;"><code>install.packages("multiwayvcov")</code></td>
+<td style="text-align: left;">Learning Days</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=propertee">propertee</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-07-20</td>
+<td style="text-align: left;">Estimates average treatment effects, with optional covariance adjustment from a model fit to other data, in blocked and cluster-randomized designs.</td>
+<td style="text-align: left;"><code>install.packages("propertee")</code></td>
+<td style="text-align: left;">Learning Days</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=sandwich">sandwich</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-08-03</td>
+<td style="text-align: left;">Robust and clustered standard errors for regression estimates.</td>
+<td style="text-align: left;"><code>install.packages("sandwich")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/data-collection/cluster-randomization_en.html">Cluster Randomization</a><br>Learning Days</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458459.html">pdslasso</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2024-08-06</td>
+<td style="text-align: left;">Lasso picks covariates for adjustment in OLS or IV effect estimates.</td>
+<td style="text-align: left;"><code>ssc install pdslasso</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s457799.html">rctable</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2026-09-26</td>
+<td style="text-align: left;">Builds treatment effect tables for randomized controlled trials.</td>
+<td style="text-align: left;"><code>ssc install rctable</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s457874.html">reghdfe</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2026-01-11</td>
+<td style="text-align: left;">Regression with many fixed effects and clustered standard errors.</td>
+<td style="text-align: left;"><code>ssc install reghdfe</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="randomization-inference" class="level3">
+<h3 class="anchored" data-anchor-id="randomization-inference">Randomization inference</h3>
+<p>Related guides: <a href="./guides/analysis-procedures/randomization-inference_en.html">Randomization Inference</a>, <a href="./guides/analysis-procedures/ri2_en.html">10 Randomization Inference Procedures with ri2</a>, <a href="./guides/analysis-procedures/hypothesis-testing_en.html">Hypothesis Testing</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/bowers-illinois-edu/CMRSS">CMRSS</a><br><span class="lang">R</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Randomization inference for quantiles of individual treatment effects in completely randomized and stratified experiments.</td>
+<td style="text-align: left;"><code>remotes::install_github("bowers-illinois-edu/CMRSS")</code></td>
+<td style="text-align: left;">EGAP author: Bowers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=coin">coin</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-09-30</td>
+<td style="text-align: left;">Permutation tests for two-sample, K-sample, and blocked designs.</td>
+<td style="text-align: left;"><code>install.packages("coin")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/analysis-procedures/hypothesis-testing_en.html">Hypothesis Testing</a>, <a href="./guides/analysis-procedures/randomization-inference_en.html">Randomization Inference</a><br>Learning Days</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=Counternull">Counternull</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-02-24</td>
+<td style="text-align: left;">Fisher exact p-values, Fisher intervals, and counternull sets for experiments.</td>
+<td style="text-align: left;"><code>install.packages("Counternull")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=ri2">ri2</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-07-29</td>
+<td style="text-align: left;">Randomization inference for simple and complex randomized designs.</td>
+<td style="text-align: left;"><code>install.packages("ri2")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/analysis-procedures/how-to-analyze-experiments_en.html">10 Things on Your Checklist for Analyzing an Experiment</a>, <a href="./guides/analysis-procedures/hypothesis-testing_en.html">Hypothesis Testing</a>, <a href="./guides/analysis-procedures/randomization-inference_en.html">Randomization Inference</a>, <a href="./guides/analysis-procedures/ri2_en.html">10 Randomization Inference Procedures with ri2</a><br>Learning Days<br>EGAP author: Coppock</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/bowers-illinois-edu/riposte">riposte</a><br><span class="lang">R</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Randomization tests that combine several versions of an outcome (raw values, ranks, distances) to find effects a difference of means misses.</td>
+<td style="text-align: left;"><code>remotes::install_github("bowers-illinois-edu/riposte")</code></td>
+<td style="text-align: left;">EGAP author: Bowers</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=RItools">RItools</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-05-17</td>
+<td style="text-align: left;">Omnibus randomization test of covariate balance across treatment groups.</td>
+<td style="text-align: left;"><code>install.packages("RItools")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/data-collection/cluster-randomization_en.html">Cluster Randomization</a><br>Learning Days<br>EGAP author: Bowers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458377.html">cvcrand</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2025-10-31</td>
+<td style="text-align: left;">Covariate-constrained randomization for cluster randomized trials, with a permutation test (cptest) for the analysis.</td>
+<td style="text-align: left;"><code>ssc install cvcrand</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458774.html">randcmd</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2020-05-02</td>
+<td style="text-align: left;">Randomization inference p-values for regression estimates in experiments.</td>
+<td style="text-align: left;"><code>ssc install randcmd</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458599.html">ritest</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2020-05-21</td>
+<td style="text-align: left;">General randomization inference and permutation tests for any estimator.</td>
+<td style="text-align: left;"><code>ssc install ritest</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="multiple-comparisons-and-indices" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-comparisons-and-indices">Multiple comparisons and indices</h3>
+<p>Related guides: <a href="./guides/analysis-procedures/multiple-comparisons_en.html">Multiple Comparisons</a>, <a href="./guides/data-collection/indices_en.html">Indices</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=multcomp">multcomp</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-08-21</td>
+<td style="text-align: left;">Simultaneous tests and intervals for many contrasts, e.g., multi-arm trials.</td>
+<td style="text-align: left;"><code>install.packages("multcomp")</code></td>
+<td style="text-align: left;">Learning Days</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="heterogeneous-effects-and-generalizing-to-other-populations" class="level3">
+<h3 class="anchored" data-anchor-id="heterogeneous-effects-and-generalizing-to-other-populations">Heterogeneous effects and generalizing to other populations</h3>
+<p>Related guides: <a href="./guides/research-questions/heterogeneous-effects_en.html">Heterogeneous Treatment Effects</a>, <a href="./guides/assessing-designs/external-validity_en.html">External Validity</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=bartCause">bartCause</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-12-11</td>
+<td style="text-align: left;">BART estimates of average and subgroup treatment effects.</td>
+<td style="text-align: left;"><code>install.packages("bartCause")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=grf">grf</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-03-04</td>
+<td style="text-align: left;">Causal forests estimate how treatment effects vary across units.</td>
+<td style="text-align: left;"><code>install.packages("grf")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=hettx">hettx</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-02-24</td>
+<td style="text-align: left;">Tests whether treatment effects vary and measures explained variation in experiments.</td>
+<td style="text-align: left;"><code>install.packages("hettx")</code></td>
+<td style="text-align: left;">EGAP author: Feller</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=interflex">interflex</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-09-21</td>
+<td style="text-align: left;">Diagnoses and estimates how treatment effects vary with a moderator.</td>
+<td style="text-align: left;"><code>install.packages("interflex")</code></td>
+<td style="text-align: left;">EGAP author: Hainmueller</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=tidyhte">tidyhte</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-07-29</td>
+<td style="text-align: left;">Machine-learning estimates of heterogeneous effects in experiments.</td>
+<td style="text-align: left;"><code>install.packages("tidyhte")</code></td>
+<td style="text-align: left;">EGAP author: Dimmery</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="noncompliance-and-the-local-average-treatment-effect" class="level3">
+<h3 class="anchored" data-anchor-id="noncompliance-and-the-local-average-treatment-effect">Noncompliance and the local average treatment effect</h3>
+<p>Related guides: <a href="./guides/research-questions/late_en.html">Local Average Treatment Effect</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=AER">AER</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-07-11</td>
+<td style="text-align: left;">Data and functions from Applied Econometrics with R, including ivreg() for two-stage least squares with random assignment as the instrument.</td>
+<td style="text-align: left;"><code>install.packages("AER")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/research-questions/late_en.html">Local Average Treatment Effect</a><br>Learning Days</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=bpbounds">bpbounds</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-07-13</td>
+<td style="text-align: left;">Nonparametric bounds on effects under imperfect compliance with randomized instrument.</td>
+<td style="text-align: left;"><code>install.packages("bpbounds")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=ivdesc">ivdesc</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-07-22</td>
+<td style="text-align: left;">Describes covariates of compliers, never-takers, and always-takers.</td>
+<td style="text-align: left;"><code>install.packages("ivdesc")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=ivreg">ivreg</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-07-10</td>
+<td style="text-align: left;">Two-stage least squares, e.g., complier effects using random assignment as instrument.</td>
+<td style="text-align: left;"><code>install.packages("ivreg")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=powerLATE">powerLATE</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-05-29</td>
+<td style="text-align: left;">Power calculations when estimating the LATE under noncompliance.</td>
+<td style="text-align: left;"><code>install.packages("powerLATE")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/research-questions/late_en.html">Local Average Treatment Effect</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=ThreeGroups">ThreeGroups</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2015-09-10</td>
+<td style="text-align: left;">Estimates effects in placebo-controlled experiments with noncompliance</td>
+<td style="text-align: left;"><code>install.packages("ThreeGroups")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458808.html">ivdesc</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2021-03-19</td>
+<td style="text-align: left;">Describes characteristics of compliers and noncompliers in IV analyses.</td>
+<td style="text-align: left;"><code>ssc install ivdesc</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="missing-data-and-attrition" class="level3">
+<h3 class="anchored" data-anchor-id="missing-data-and-attrition">Missing data and attrition</h3>
+<p>Related guides: <a href="./guides/data-collection/missing-data_en.html">Missing Data</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=attrition">attrition</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-09-18</td>
+<td style="text-align: left;">Bounds and double sampling for attrition in randomized experiments.</td>
+<td style="text-align: left;"><code>install.packages("attrition")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/data-collection/missing-data_en.html">Missing Data</a><br>EGAP author: Coppock, Gerber, Green</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=mice">mice</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-12-10</td>
+<td style="text-align: left;">Multiple imputation of missing covariates and outcomes by chained equations.</td>
+<td style="text-align: left;"><code>install.packages("mice")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s459125.html">attregtest</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2025-05-08</td>
+<td style="text-align: left;">Regression-based tests for differential attrition in experiments.</td>
+<td style="text-align: left;"><code>ssc install attregtest</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="spillovers" class="level3">
+<h3 class="anchored" data-anchor-id="spillovers">Spillovers</h3>
+<p>Related guides: <a href="./guides/data-collection/spillovers_en.html">Spillovers</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/szonszein/interference">interference</a><br><span class="lang">R</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Design-based estimation of spillover effects in experiments.</td>
+<td style="text-align: left;"><code>remotes::install_github("szonszein/interference")</code></td>
+<td style="text-align: left;">EGAP author: Samii, Aronow</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=RCT2">RCT2</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2022-10-18</td>
+<td style="text-align: left;">Design and analysis of two-stage experiments with spillover effects.</td>
+<td style="text-align: left;"><code>install.packages("RCT2")</code></td>
+<td style="text-align: left;">EGAP author: Imai</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/YeWang1576/SpatialEffectPackage">SpatialEffect</a><br><span class="lang">R</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Design-based inference for spatial spillover effects in experiments.</td>
+<td style="text-align: left;"><code>remotes::install_github("YeWang1576/SpatialEffectPackage/SpatialEffect")</code></td>
+<td style="text-align: left;">EGAP author: Samii</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mechanisms-and-mediation" class="level3">
+<h3 class="anchored" data-anchor-id="mechanisms-and-mediation">Mechanisms and mediation</h3>
+<p>Related guides: <a href="./guides/research-questions/mechanisms_en.html">Mechanisms</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=CausalQueries">CausalQueries</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-09-01</td>
+<td style="text-align: left;">Bayesian causal models for questions about effects and mechanisms, from experimental or observational data.</td>
+<td style="text-align: left;"><code>install.packages("CausalQueries")</code></td>
+<td style="text-align: left;">Learning Days<br>EGAP author: Cooper, Humphreys, Medina</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=DirectEffects">DirectEffects</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-10-04</td>
+<td style="text-align: left;">Controlled direct effects by sequential g-estimation for mechanisms.</td>
+<td style="text-align: left;"><code>install.packages("DirectEffects")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=mediation">mediation</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-06-07</td>
+<td style="text-align: left;">Causal mediation analysis with sensitivity analysis.</td>
+<td style="text-align: left;"><code>install.packages("mediation")</code></td>
+<td style="text-align: left;">EGAP author: Yamamoto, Imai</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s457581.html">paramed</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2013-04-26</td>
+<td style="text-align: left;">Causal mediation analysis with parametric regression models.</td>
+<td style="text-align: left;"><code>ssc install paramed</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="measurement-and-data-collection" class="level2">
+<h2 class="anchored" data-anchor-id="measurement-and-data-collection">Measurement and data collection</h2>
+<section id="special-survey-designs-list-experiments-randomized-response-conjoint-endorsement" class="level3">
+<h3 class="anchored" data-anchor-id="special-survey-designs-list-experiments-randomized-response-conjoint-endorsement">Special survey designs: list experiments, randomized response, conjoint, endorsement</h3>
+<p>Related guides: <a href="./guides/data-collection/survey-experiments_en.html">Survey Experiments</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=cjoint">cjoint</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-05-19</td>
+<td style="text-align: left;">Estimates average marginal component effects in conjoint experiments.</td>
+<td style="text-align: left;"><code>install.packages("cjoint")</code></td>
+<td style="text-align: left;">EGAP author: Hainmueller, Yamamoto</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=endorse">endorse</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2022-05-02</td>
+<td style="text-align: left;">Analyzes endorsement experiments measuring support for sensitive political actors.</td>
+<td style="text-align: left;"><code>install.packages("endorse")</code></td>
+<td style="text-align: left;">EGAP author: Imai</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=list">list</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-01-10</td>
+<td style="text-align: left;">Analyzes list experiments for sensitive questions.</td>
+<td style="text-align: left;"><code>install.packages("list")</code></td>
+<td style="text-align: left;">EGAP author: Blair, Imai, Coppock</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=rr">rr</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-01-16</td>
+<td style="text-align: left;">Analysis and power for randomized response survey items.</td>
+<td style="text-align: left;"><code>install.packages("rr")</code></td>
+<td style="text-align: left;">EGAP author: Blair, Zhou, Imai</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458950.html">conjoint</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2021-05-24</td>
+<td style="text-align: left;">Analyzes and plots results of conjoint survey experiments.</td>
+<td style="text-align: left;"><code>ssc install conjoint</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="measurement" class="level3">
+<h3 class="anchored" data-anchor-id="measurement">Measurement</h3>
+<p>Related guides: <a href="./guides/data-collection/measurement_en.html">Measurement in Experiments</a>, <a href="./guides/data-collection/indices_en.html">Indices</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=mirt">mirt</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-10-06</td>
+<td style="text-align: left;">Item response theory models for scales and latent traits.</td>
+<td style="text-align: left;"><code>install.packages("mirt")</code></td>
+<td style="text-align: left;">Guide: <a href="./guides/data-collection/indices_en.html">Indices</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="field-work-and-data-management" class="level3">
+<h3 class="anchored" data-anchor-id="field-work-and-data-management">Field work and data management</h3>
+<p>Related guides: <a href="./guides/implementation/survey-implementation_en.html">Survey Implementation</a>, <a href="./guides/implementation/workflow_en.html">Project Workflow</a>, <a href="./guides/planning/survey-design_en.html">Survey Design</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458600.html">iefieldkit</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2023-08-02</td>
+<td style="text-align: left;">World Bank DIME tools for survey data quality checks during fieldwork.</td>
+<td style="text-align: left;"><code>ssc install iefieldkit</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458137.html">ietoolkit</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2026-03-31</td>
+<td style="text-align: left;">World Bank DIME commands for evaluation workflow, including balance tables.</td>
+<td style="text-align: left;"><code>ssc install ietoolkit</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="combining-studies" class="level2">
+<h2 class="anchored" data-anchor-id="combining-studies">Combining studies</h2>
+<section id="meta-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="meta-analysis">Meta-analysis</h3>
+<p>Related guides: <a href="./guides/analysis-procedures/meta-analysis_en.html">Conducting a Meta-Analysis</a></p>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=meta">meta</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-05-25</td>
+<td style="text-align: left;">Standard fixed and random effects meta-analysis with forest plots.</td>
+<td style="text-align: left;"><code>install.packages("meta")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=metafor">metafor</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-09-15</td>
+<td style="text-align: left;">Comprehensive meta-analysis and meta-regression across studies or sites.</td>
+<td style="text-align: left;"><code>install.packages("metafor")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="observational-designs" class="level2">
+<h2 class="anchored" data-anchor-id="observational-designs">Observational designs</h2>
+<p>These packages implement the strategies for observational data that the guide <a href="./guides/causal-inference/x-cause-y_en.html">10 Strategies for Figuring out whether X Causes Y</a> describes.</p>
+<section id="matching-and-weighting" class="level3">
+<h3 class="anchored" data-anchor-id="matching-and-weighting">Matching and weighting</h3>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=AIPW">AIPW</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-04-12</td>
+<td style="text-align: left;">Doubly robust weighted estimates of average effects using machine learning.</td>
+<td style="text-align: left;"><code>install.packages("AIPW")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=CBPS">CBPS</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-12-01</td>
+<td style="text-align: left;">Propensity scores estimated to maximize covariate balance.</td>
+<td style="text-align: left;"><code>install.packages("CBPS")</code></td>
+<td style="text-align: left;">EGAP author: Imai, Hazlett</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=cem">cem</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2022-09-08</td>
+<td style="text-align: left;">Coarsened exact matching for observational data.</td>
+<td style="text-align: left;"><code>install.packages("cem")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=designmatch">designmatch</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-02-20</td>
+<td style="text-align: left;">Optimization matching for balanced samples, also pairing units before randomization.</td>
+<td style="text-align: left;"><code>install.packages("designmatch")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=ebal">ebal</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-04-29</td>
+<td style="text-align: left;">Entropy balancing weights make control group match treated covariate moments.</td>
+<td style="text-align: left;"><code>install.packages("ebal")</code></td>
+<td style="text-align: left;">EGAP author: Hainmueller</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=Matching">Matching</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-10-14</td>
+<td style="text-align: left;">Propensity score and genetic matching with balance diagnostics.</td>
+<td style="text-align: left;"><code>install.packages("Matching")</code></td>
+<td style="text-align: left;">EGAP author: Sekhon</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=MatchIt">MatchIt</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-09-26</td>
+<td style="text-align: left;">Matching on covariates or propensity scores to build comparable groups.</td>
+<td style="text-align: left;"><code>install.packages("MatchIt")</code></td>
+<td style="text-align: left;">EGAP author: Imai</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=optmatch">optmatch</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-09-19</td>
+<td style="text-align: left;">Optimal pair and full matching of treated and control units</td>
+<td style="text-align: left;"><code>install.packages("optmatch")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=PSweight">PSweight</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-07-22</td>
+<td style="text-align: left;">Propensity score weighting, including overlap weights, for causal effects.</td>
+<td style="text-align: left;"><code>install.packages("PSweight")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=twang">twang</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-12-23</td>
+<td style="text-align: left;">Propensity score and nonresponse weighting with boosting, plus balance diagnostics</td>
+<td style="text-align: left;"><code>install.packages("twang")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=WeightIt">WeightIt</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-09-30</td>
+<td style="text-align: left;">Balancing weights for observational studies with many methods and diagnostics</td>
+<td style="text-align: left;"><code>install.packages("WeightIt")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s457127.html">cem</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2020-02-15</td>
+<td style="text-align: left;">Coarsened exact matching for observational comparisons.</td>
+<td style="text-align: left;"><code>ssc install cem</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s457326.html">ebalance</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2026-05-03</td>
+<td style="text-align: left;">Entropy balancing weights to equate covariates across groups.</td>
+<td style="text-align: left;"><code>ssc install ebalance</code></td>
+<td style="text-align: left;">EGAP author: Hainmueller</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458346.html">kmatch</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2020-09-19</td>
+<td style="text-align: left;">Matching, entropy balancing, and weighting in one command.</td>
+<td style="text-align: left;"><code>ssc install kmatch</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s432001.html">psmatch2</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2018-02-01</td>
+<td style="text-align: left;">Propensity score and Mahalanobis matching with common support and balance checks.</td>
+<td style="text-align: left;"><code>ssc install psmatch2</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="beforeafter-comparisons-difference-in-differences-and-synthetic-control" class="level3">
+<h3 class="anchored" data-anchor-id="beforeafter-comparisons-difference-in-differences-and-synthetic-control">Before/after comparisons, difference-in-differences, and synthetic control</h3>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/ebenmichael/augsynth">augsynth</a><br><span class="lang">R</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Augmented synthetic control for policy evaluations with panel data.</td>
+<td style="text-align: left;"><code>remotes::install_github("ebenmichael/augsynth")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=bacondecomp">bacondecomp</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2020-01-24</td>
+<td style="text-align: left;">Decomposes two-way fixed effects difference-in-differences with staggered timing.</td>
+<td style="text-align: left;"><code>install.packages("bacondecomp")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=CausalImpact">CausalImpact</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-09-26</td>
+<td style="text-align: left;">Estimates an intervention’s effect on a time series against a modeled counterfactual.</td>
+<td style="text-align: left;"><code>install.packages("CausalImpact")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=did">did</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-07-08</td>
+<td style="text-align: left;">Difference-in-differences with multiple periods and staggered treatment timing.</td>
+<td style="text-align: left;"><code>install.packages("did")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=did2s">did2s</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-03-05</td>
+<td style="text-align: left;">Two-stage difference-in-differences and event studies with staggered timing.</td>
+<td style="text-align: left;"><code>install.packages("did2s")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=DIDmultiplegt">DIDmultiplegt</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-02-17</td>
+<td style="text-align: left;">Difference-in-differences with staggered treatment across groups and periods.</td>
+<td style="text-align: left;"><code>install.packages("DIDmultiplegt")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=etwfe">etwfe</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-03-23</td>
+<td style="text-align: left;">Extended two-way fixed effects for staggered difference-in-differences.</td>
+<td style="text-align: left;"><code>install.packages("etwfe")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=eventstudyr">eventstudyr</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-10-01</td>
+<td style="text-align: left;">Estimates and plots linear panel event studies with pre-trend tests.</td>
+<td style="text-align: left;"><code>install.packages("eventstudyr")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=gsynth">gsynth</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-03-27</td>
+<td style="text-align: left;">Generalized synthetic control for multiple treated units and staggered timing.</td>
+<td style="text-align: left;"><code>install.packages("gsynth")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=PanelMatch">PanelMatch</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-10-01</td>
+<td style="text-align: left;">Matching for panel data, generalizing difference-in-differences.</td>
+<td style="text-align: left;"><code>install.packages("PanelMatch")</code></td>
+<td style="text-align: left;">EGAP author: Imai</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=scpi">scpi</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-06-10</td>
+<td style="text-align: left;">Synthetic control estimation with prediction intervals.</td>
+<td style="text-align: left;"><code>install.packages("scpi")</code></td>
+<td style="text-align: left;">EGAP author: Titiunik</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=Synth">Synth</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-04-29</td>
+<td style="text-align: left;">Synthetic control method for comparative case studies.</td>
+<td style="text-align: left;"><code>install.packages("Synth")</code></td>
+<td style="text-align: left;">EGAP author: Hainmueller</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/synth-inference/synthdid">synthdid</a><br><span class="lang">R</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Synthetic difference-in-differences estimates of effects in panel data.</td>
+<td style="text-align: left;"><code>remotes::install_github("synth-inference/synthdid")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=tidysynth">tidysynth</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-03-24</td>
+<td style="text-align: left;">Synthetic control with tools to inspect and visualize the fit</td>
+<td style="text-align: left;"><code>install.packages("tidysynth")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458676.html">bacondecomp</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2022-09-21</td>
+<td style="text-align: left;">Decomposes two-way fixed effects difference-in-differences into its component comparisons.</td>
+<td style="text-align: left;"><code>ssc install bacondecomp</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458976.html">csdid</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2025-10-05</td>
+<td style="text-align: left;">Callaway-Sant’Anna difference-in-differences with multiple periods and staggered adoption.</td>
+<td style="text-align: left;"><code>ssc install csdid</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458957.html">did_imputation</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2023-11-22</td>
+<td style="text-align: left;">Imputation estimator and pre-trend tests for staggered event studies.</td>
+<td style="text-align: left;"><code>ssc install did_imputation</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458643.html">did_multiplegt</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2024-07-19</td>
+<td style="text-align: left;">Heterogeneity-robust difference-in-differences with multiple groups and periods.</td>
+<td style="text-align: left;"><code>ssc install did_multiplegt</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s459138.html">honestdid</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2024-03-22</td>
+<td style="text-align: left;">Sensitivity analysis for violations of parallel trends.</td>
+<td style="text-align: left;"><code>ssc install honestdid</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s459058.html">sdid</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2026-06-17</td>
+<td style="text-align: left;">Synthetic difference-in-differences estimation, inference, and plots.</td>
+<td style="text-align: left;"><code>ssc install sdid</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s457334.html">synth</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2026-04-30</td>
+<td style="text-align: left;">Standard synthetic control method for comparative case studies.</td>
+<td style="text-align: left;"><code>ssc install synth</code></td>
+<td style="text-align: left;">EGAP author: Hainmueller</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458611.html">twowayfeweights</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2024-06-13</td>
+<td style="text-align: left;">Diagnoses negative weights in two-way fixed effects difference-in-differences.</td>
+<td style="text-align: left;"><code>ssc install twowayfeweights</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458987.html">xtevent</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2024-07-12</td>
+<td style="text-align: left;">Estimates and plots panel event-study models.</td>
+<td style="text-align: left;"><code>ssc install xtevent</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://pypi.org/project/scpi_pkg/">scpi_pkg</a><br><span class="lang">Python</span></td>
+<td style="text-align: left;">2026-06-02</td>
+<td style="text-align: left;">Synthetic control estimates with prediction intervals for uncertainty.</td>
+<td style="text-align: left;"><code>pip install scpi_pkg</code></td>
+<td style="text-align: left;">EGAP author: Titiunik</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="instrumental-variables" class="level3">
+<h3 class="anchored" data-anchor-id="instrumental-variables">Instrumental variables</h3>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=ivDiag">ivDiag</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2023-09-17</td>
+<td style="text-align: left;">IV diagnostics: effective F, Anderson-Rubin test, bootstrapped intervals.</td>
+<td style="text-align: left;"><code>install.packages("ivDiag")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=ivmodel">ivmodel</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2023-04-09</td>
+<td style="text-align: left;">IV estimation with weak-instrument tests, sensitivity analysis, and power.</td>
+<td style="text-align: left;"><code>install.packages("ivmodel")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s425401.html">ivreg2</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2024-08-14</td>
+<td style="text-align: left;">Standard IV and 2SLS estimation with weak-instrument diagnostics and robust errors.</td>
+<td style="text-align: left;"><code>ssc install ivreg2</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s457684.html">weakiv</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2016-10-18</td>
+<td style="text-align: left;">Weak-instrument-robust tests and confidence intervals for IV models.</td>
+<td style="text-align: left;"><code>ssc install weakiv</code></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="regression-discontinuity" class="level3">
+<h3 class="anchored" data-anchor-id="regression-discontinuity">Regression discontinuity</h3>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=rdrobust">rdrobust</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2026-10-07</td>
+<td style="text-align: left;">Standard estimation and robust inference for regression discontinuity designs.</td>
+<td style="text-align: left;"><code>install.packages("rdrobust")</code></td>
+<td style="text-align: left;">EGAP author: Titiunik</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://rdpackages.github.io/rdlocrand/">rdlocrand</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Local randomization inference for regression discontinuity designs.</td>
+<td style="text-align: left;"><code>net install rdlocrand, from("https://raw.githubusercontent.com/rdpackages/rdlocrand/master/stata")</code></td>
+<td style="text-align: left;">EGAP author: Titiunik</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458483.html">rdrobust</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2026-08-02</td>
+<td style="text-align: left;">Standard local polynomial estimation and inference for regression discontinuity.</td>
+<td style="text-align: left;"><code>ssc install rdrobust</code></td>
+<td style="text-align: left;">EGAP author: Titiunik</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://pypi.org/project/rdrobust/">rdrobust</a><br><span class="lang">Python</span></td>
+<td style="text-align: left;">2026-10-07</td>
+<td style="text-align: left;">Standard local polynomial estimation and inference for regression discontinuity designs.</td>
+<td style="text-align: left;"><code>pip install rdrobust</code></td>
+<td style="text-align: left;">EGAP author: Titiunik</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sensitivity-to-unmeasured-confounding" class="level3">
+<h3 class="anchored" data-anchor-id="sensitivity-to-unmeasured-confounding">Sensitivity to unmeasured confounding</h3>
+<div class="software-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Latest release</th>
+<th style="text-align: left;">What it does</th>
+<th style="text-align: left;">Install</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=causalsens">causalsens</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-03-18</td>
+<td style="text-align: left;">Sensitivity analysis of estimates to unmeasured confounding.</td>
+<td style="text-align: left;"><code>install.packages("causalsens")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=EValue">EValue</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2025-08-28</td>
+<td style="text-align: left;">E-values: how strong unmeasured confounding must be to explain an estimate.</td>
+<td style="text-align: left;"><code>install.packages("EValue")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=rbounds">rbounds</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2022-04-29</td>
+<td style="text-align: left;">Rosenbaum bounds sensitivity analysis for unmeasured confounding.</td>
+<td style="text-align: left;"><code>install.packages("rbounds")</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://cran.r-project.org/package=sensemakr">sensemakr</a><br><span class="lang">R</span></td>
+<td style="text-align: left;">2024-07-22</td>
+<td style="text-align: left;">Sensitivity of regression estimates to omitted confounders.</td>
+<td style="text-align: left;"><code>install.packages("sensemakr")</code></td>
+<td style="text-align: left;">EGAP author: Hazlett</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458298.html">konfound</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2025-11-19</td>
+<td style="text-align: left;">Quantifies how much unmeasured confounding would overturn an inference.</td>
+<td style="text-align: left;"><code>ssc install konfound</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s438301.html">rbounds</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2004-03-25</td>
+<td style="text-align: left;">Rosenbaum sensitivity analysis for hidden bias after matching.</td>
+<td style="text-align: left;"><code>ssc install rbounds</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://ideas.repec.org/c/boc/bocode/s458773.html">sensemakr</a><br><span class="lang">Stata</span></td>
+<td style="text-align: left;">2020-04-28</td>
+<td style="text-align: left;">Sensitivity of regression estimates to unmeasured confounding.</td>
+<td style="text-align: left;"><code>ssc install sensemakr</code></td>
+<td style="text-align: left;">EGAP author: Hazlett</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
+</section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
