@@ -6,11 +6,11 @@ number-sections: false
 
 This page lists software packages in R, Stata, and Python for the tasks that the methods guides describe. The packages are arranged by topic. Choose a topic from the contents above to see its packages, each with one sentence on what the package does and the command that installs it.
 
-EGAP has not tested every package listed here. The list was assembled in October 2026 from three sources: the R packages that the guides use, an earlier EGAP list of software, and three CRAN Task Views, which are lists of R packages kept by volunteers. For each package, EGAP checked that the archive linked from its name still distributes it, and recorded the date of its latest release where the archive gives one. The one-sentence descriptions were drafted from each package's own documentation, and not all of them have been checked by a methodologist.
+EGAP has not tested every package listed here. EGAP assembled the list in October 2026 from three sources: the R packages that the guides use, an earlier EGAP list of software, and three CRAN Task Views, which are lists of R packages kept by volunteers. For each package, EGAP checked that the archive linked from its name still distributes it, and recorded the date of its latest release where the archive gives one. The one-sentence descriptions were drafted from each package's own title and description, and EGAP has not yet checked all of them.
 
 Three notes appear beside some packages:
 
-- Guide: the R code in that guide loads the package, so the guide shows it at work.
+- Guide: the R code in that guide loads the package, so readers can see the package used in the guide's examples.
 - Learning Days: EGAP's book *The Theory and Practice of Field Experiments* or its Learning Days workshop materials use the package.
 - EGAP author: at least one author of the package is a member of EGAP.
 
@@ -91,7 +91,7 @@ groups <- list(
 for (g in names(groups)) {
   cat("\n\n## ", g, "\n\n", sep = "")
   if (g == "Observational designs") {
-    cat("These packages serve the strategies for observational data that the guide ",
+    cat("These packages implement the strategies for observational data that the guide ",
         guide_links("x-cause-y"), " describes.\n\n", sep = "")
   }
   for (slug in groups[[g]]) {

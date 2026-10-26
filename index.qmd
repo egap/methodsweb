@@ -60,7 +60,7 @@ Learn methods for impact evaluations just-in-time to use them with guides for im
 
 # Software {.unlisted}
 
-Software packages in R, Stata, and Python for designing and analyzing impact evaluations, arranged by the topics the methods guides cover.
+The Software page lists packages in R, Stata, and Python for designing and analyzing impact evaluations, arranged by the topics the methods guides cover.
 
 [More...](/software.html)
 
