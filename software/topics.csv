@@ -1,0 +1,22 @@
+slug,name,guides
+planning-power,Planning a study and computing power,power; pilots; pap
+random-assignment,"Random assignment, including blocked, cluster, and adaptive designs",randomization; cluster-randomization; multisite-experiments; adaptive-design
+sampling,Sampling,sampling
+balance,Checking balance,randomization; how-to-analyze-experiments; cluster-randomization
+estimation,Estimating average effects and their standard errors,how-to-analyze-experiments; covariates; regression-table; effect-types
+randomization-inference,Randomization inference,randomization-inference; ri2; hypothesis-testing
+multiple-comparisons,Multiple comparisons and indices,multiple-comparisons; indices
+heterogeneous-effects,Heterogeneous effects and generalizing to other populations,heterogeneous-effects; external-validity
+noncompliance,Noncompliance and the local average treatment effect,late
+missing-data,Missing data and attrition,missing-data
+spillovers,Spillovers,spillovers
+survey-experiments,"Special survey designs: list experiments, randomized response, conjoint, endorsement",survey-experiments
+measurement,Measurement,measurement; indices
+meta-analysis,Meta-analysis,meta-analysis
+mechanisms,Mechanisms and mediation,mechanisms
+field-work,Field work and data management,survey-implementation; workflow; survey-design
+obs-matching,Matching and weighting (observational designs),x-cause-y
+obs-did,"Before/after comparisons, difference-in-differences, and synthetic control (observational designs)",x-cause-y
+obs-iv,Instrumental variables (observational designs),x-cause-y
+obs-rd,Regression discontinuity (observational designs),x-cause-y
+obs-sensitivity,Sensitivity to unmeasured confounding (observational designs),x-cause-y

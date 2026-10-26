@@ -1,66 +1,121 @@
 ---
 title: "Software"
+toc-depth: 3
+number-sections: false
 ---
 
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-  
-  
+This page lists software packages in R, Stata, and Python for the tasks that the methods guides describe. The packages are arranged by topic. Choose a topic from the contents above to see its packages, each with one sentence on what the package does and the command that installs it.
+
+EGAP has not tested every package listed here. The list was assembled in October 2026 from three sources: the R packages that the guides use, an earlier EGAP list of software, and three CRAN Task Views, which are lists of R packages kept by volunteers. For each package, EGAP checked that the archive linked from its name still distributes it, and recorded the date of its latest release where the archive gives one. The one-sentence descriptions were drafted from each package's own documentation, and not all of them have been checked by a methodologist.
+
+Three notes appear beside some packages:
+
+- Guide: the R code in that guide loads the package, so the guide shows it at work.
+- Learning Days: EGAP's book *The Theory and Practice of Field Experiments* or its Learning Days workshop materials use the package.
+- EGAP author: at least one author of the package is a member of EGAP.
+
+```{=html}
 <style>
-table.dataTable tbody td {
-  vertical-align: top;
-}
+/* Fixed column widths, so that long install commands wrap instead of
+   squeezing the descriptions into a narrow column. */
+.software-table table { table-layout: fixed; width: 100%; font-size: 0.9em; }
+.software-table th:nth-child(1) { width: 17%; }
+.software-table th:nth-child(2) { width: 38%; }
+.software-table th:nth-child(3) { width: 25%; }
+.software-table th:nth-child(4) { width: 20%; }
+.software-table td code { white-space: normal; overflow-wrap: anywhere; }
+.software-table .lang { color: #555; font-size: 0.85em; }
 </style>
+```
 
-<script>
-$(document).ready(function () {
-    var groupColumn = 0;
-    var table = $('#example').DataTable({
-        columnDefs: [{ visible: false, targets: groupColumn }],
-        order: [[groupColumn, 'asc']],
-        displayLength: 25,
-        drawCallback: function (settings) {
-            var api = this.api();
-            var rows = api.rows({ page: 'current' }).nodes();
-            var last = null;
- 
-            api
-                .column(groupColumn, { page: 'current' })
-                .data()
-                .each(function (group, i) {
-                    if (last !== group) {
-                        $(rows)
-                            .eq(i)
-                            .before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
- 
-                        last = group;
-                    }
-                });
-        },
-    });
- 
-    // Order by the grouping
-    $('#example tbody').on('click', 'tr.group', function () {
-        var currentOrder = table.order()[0];
-        if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
-            table.order([groupColumn, 'desc']).draw();
-        } else {
-            table.order([groupColumn, 'asc']).draw();
-        }
-    });
-});
-</script>
-
-We collected statistical software tools useful for designing, implementing, and analyzing results from impact evaluations. You can search for functions and for software packages in R and Stata below.
+To suggest a package or correct an entry, open an issue or a pull request on [GitHub](https://github.com/egap/methodsweb). The list is the file `software/catalog.csv` in that repository.
 
 ```{r}
 #| echo: false
-#| message: false
-library(knitr)
-library(tidyverse)
-software <- read_rds("software_functions.rds")
-kable(software |> select(-Experiments), format = "html", table.attr = "id=\"example\" class=\"display\" style=\"width:100%\"")
-```
+#| results: asis
+#| cache: false
+source("software/catalog_functions.R")
 
+catalog <- read_catalog()
+topics <- read_csv("software/topics.csv", show_col_types = FALSE)
+
+## Guide titles and addresses, for the links beside each topic and package.
+guide_files <- list.files("guides", pattern = "_en\\.qmd$", recursive = TRUE)
+guides <- tibble(
+  slug = str_remove(basename(guide_files), "_en\\.qmd$"),
+  href = paste0("/guides/", str_replace(guide_files, "\\.qmd$", ".html")),
+  title = map_chr(guide_files, function(f) {
+    t <- str_subset(read_lines(file.path("guides", f), n_max = 15), "^title:")[1]
+    t |> str_remove("^title:\\s*") |> str_remove_all('^"|"$') |>
+      str_remove("\\^\\[.*$") |> str_squish()
+  }),
+  ## "10 Things You Need to Know About Randomization" -> "Randomization"
+  short = title |>
+    str_remove("^10 Things (You Need )?to Know About (the )?") |>
+    (\(x) paste0(str_to_upper(str_sub(x, 1, 1)), str_sub(x, 2)))()
+)
+guide_links <- function(slugs) {
+  s <- str_split(slugs, ";\\s*")[[1]]
+  g <- guides[match(s, guides$slug), ]
+  g <- g[!is.na(g$slug), ]
+  paste0("[", g$short, "](", g$href, ")", collapse = ", ")
+}
+
+## A pipe character inside a cell would break the markdown table.
+clean <- function(x) str_replace_all(coalesce(x, ""), "\\|", "/")
+
+notes <- function(row) {
+  out <- character(0)
+  if (!is.na(row$guides)) out <- c(out, paste0("Guide: ", guide_links(row$guides)))
+  if (!is.na(row$learning_days)) out <- c(out, "Learning Days")
+  if (!is.na(row$egap_authors)) {
+    surnames <- word(str_split(row$egap_authors, ";\\s*")[[1]], -1)
+    out <- c(out, paste0("EGAP author: ", paste(surnames, collapse = ", ")))
+  }
+  if (!is.na(row$last_release)) out <- c(out, paste0("Latest release: ", row$last_release))
+  paste(out, collapse = "<br>")
+}
+
+groups <- list(
+  "Designing a study" = c("planning-power", "random-assignment", "sampling"),
+  "Analyzing an experiment" = c("balance", "estimation", "randomization-inference",
+                                "multiple-comparisons", "heterogeneous-effects",
+                                "noncompliance", "missing-data", "spillovers",
+                                "mechanisms"),
+  "Measurement and data collection" = c("survey-experiments", "measurement", "field-work"),
+  "Combining studies" = c("meta-analysis"),
+  "Observational designs" = c("obs-matching", "obs-did", "obs-iv", "obs-rd",
+                              "obs-sensitivity")
+)
+
+for (g in names(groups)) {
+  cat("\n\n## ", g, "\n\n", sep = "")
+  if (g == "Observational designs") {
+    cat("These packages serve the strategies for observational data that the guide ",
+        guide_links("x-cause-y"), " describes.\n\n", sep = "")
+  }
+  for (slug in groups[[g]]) {
+    t <- topics[topics$slug == slug, ]
+    cat("\n\n### ", str_remove(t$name, " \\(observational designs\\)$"), "\n\n", sep = "")
+    ## The observational topics share the guide named under their group heading.
+    if (!str_starts(slug, "obs-") && !is.na(t$guides)) {
+      cat("Related guides: ", guide_links(t$guides), "\n\n", sep = "")
+    }
+    rows <- catalog |>
+      filter(map_lgl(str_split(topics, ";\\s*"), \(x) slug %in% x)) |>
+      mutate(language = factor(language, levels = c("R", "Stata", "Python"))) |>
+      arrange(language, str_to_lower(name))
+    tab <- tibble(
+      Package = paste0("[", rows$name, "](", rows$url, ")<br><span class=\"lang\">",
+                       rows$language, "</span>"),
+      `What it does` = clean(rows$sentence),
+      Install = paste0("`", install_line(rows$install_from, as.character(rows$language),
+                                         rows$name, rows$github, rows$net_from), "`"),
+      Notes = map_chr(seq_len(nrow(rows)), \(i) clean(notes(rows[i, ])))
+    )
+    cat("\n\n::: {.software-table}\n\n")
+    print(knitr::kable(tab, format = "pipe"))
+    cat("\n\n:::\n\n")
+  }
+}
+```

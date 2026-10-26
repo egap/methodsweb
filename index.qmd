@@ -60,7 +60,7 @@ Learn methods for impact evaluations just-in-time to use them with guides for im
 
 # Software {.unlisted}
 
-Software tools in R and Stata can be useful for designing, implementing, analysis, and reporting on impact evaluations. We collected relevant software and provide a search interface for it.
+Software packages in R, Stata, and Python for designing and analyzing impact evaluations, arranged by the topics the methods guides cover.
 
 [More...](/software.html)
 
@@ -68,6 +68,6 @@ Software tools in R and Stata can be useful for designing, implementing, analysi
 
 ![Learning days host cities (red) and participant home countries (blue).](/img/ldmap.svg)
 
-Over the past decade, Evidence in Governance and Politics (EGAP) has organized Learning Days workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) – both researchers and practitioners – in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members. **The Learning Days Book**, which grew out of a desire to share the materials we developed for the Learning Days, is a comprehensive overview of causal inference methods for researchers developing an experimental research design.
+Over the past decade, Evidence in Governance and Politics (EGAP) has organized Learning Days workshops with the aim of building experimental social-science research capacity among principal investigators (PIs) --- both researchers and practitioners --- in Africa and Latin America. By sharing the practical and statistical methods of randomized field experiments with workshop participants, the Learning Days effort hopes to identify and nurture researcher networks around the world and to create strong, productive connections between these researchers and EGAP members. **The Learning Days Book**, which grew out of a desire to share the materials we developed for the Learning Days, is a comprehensive overview of causal inference methods for researchers developing an experimental research design.
 
 [More...](/teaching.html)
