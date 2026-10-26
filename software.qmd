@@ -4,7 +4,7 @@ toc-depth: 3
 number-sections: false
 ---
 
-This page lists software packages in R, Stata, and Python for the tasks that the methods guides describe. The packages are arranged by topic. Choose a topic from the contents above to see its packages, each with one sentence on what the package does and the command that installs it.
+This page lists software packages in R, Stata, and Python for the tasks that the methods guides describe. The packages are arranged by topic. Choose a topic from the contents above to see its packages, each with one sentence on what the package does and the command that installs it. To sort a topic's table by name or by release date, click the heading Package or Latest release, and click it again to reverse the order.
 
 EGAP has not tested every package listed here. EGAP assembled the list in October 2026 from three sources: the R packages that the guides use, an earlier EGAP list of software, and three CRAN Task Views, which are lists of R packages kept by volunteers. For each package, EGAP checked that the archive linked from its name still distributes it, and recorded the date of its latest release where the archive gives one. The one-sentence descriptions were drafted from each package's own title and description, and EGAP has not yet checked all of them.
 
@@ -19,13 +19,81 @@ Three notes appear beside some packages:
 /* Fixed column widths, so that long install commands wrap instead of
    squeezing the descriptions into a narrow column. */
 .software-table table { table-layout: fixed; width: 100%; font-size: 0.9em; }
-.software-table th:nth-child(1) { width: 17%; }
-.software-table th:nth-child(2) { width: 38%; }
-.software-table th:nth-child(3) { width: 25%; }
-.software-table th:nth-child(4) { width: 20%; }
+.software-table th:nth-child(1) { width: 15%; }
+.software-table th:nth-child(2) { width: 12%; }
+.software-table th:nth-child(3) { width: 33%; }
+/* Keep a date on one line where the screen is wide enough for it. */
+@media (min-width: 768px) { .software-table td:nth-child(2) { white-space: nowrap; } }
+.software-table th:nth-child(4) { width: 22%; }
+.software-table th:nth-child(5) { width: 18%; }
 .software-table td code { white-space: normal; overflow-wrap: anywhere; }
 .software-table .lang { color: #555; font-size: 0.85em; }
+/* The sortable headings are buttons, so that a keyboard can reach them,
+   styled to look like the other headings. The arrow shows the order. */
+.software-table .sort-button { background: none; border: 0; padding: 0; font: inherit;
+  font-weight: bold; color: inherit; text-align: left; cursor: pointer; }
+.software-table .sort-button:hover { text-decoration: underline; }
+.software-table th[aria-sort="none"] .sort-button::after { content: " \2195"; color: #999; }
+.software-table th[aria-sort="ascending"] .sort-button::after { content: " \2191"; }
+.software-table th[aria-sort="descending"] .sort-button::after { content: " \2193"; }
 </style>
+
+<script>
+// Let a reader sort each table by package name or by latest release.
+// A click sorts that table alone, and a second click reverses the order.
+// Packages with no release date stay at the bottom in either order, so
+// that sorting newest first does not open the table with blank dates.
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".software-table table").forEach(function (table) {
+    var tbody = table.tBodies[0];
+    var sortable = [];
+    Array.prototype.forEach.call(table.tHead.rows[0].cells, function (th, col) {
+      var label = th.textContent.trim();
+      var key;
+      if (label === "Package") {
+        // The cell holds the name as a link with the language below it.
+        key = function (row) {
+          return row.cells[col].querySelector("a").textContent.toLowerCase();
+        };
+      } else if (label === "Latest release") {
+        // Dates are written YYYY-MM-DD, so text order is date order.
+        key = function (row) { return row.cells[col].textContent.trim(); };
+      } else {
+        return;
+      }
+      // A reader asking about release dates most likely wants the newest
+      // first; a reader asking about names wants A to Z.
+      var firstOrder = label === "Latest release" ? "descending" : "ascending";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "sort-button";
+      button.textContent = label;
+      th.textContent = "";
+      th.appendChild(button);
+      th.setAttribute("aria-sort", "none");
+      sortable.push(th);
+
+      button.addEventListener("click", function () {
+        var now = th.getAttribute("aria-sort");
+        var order = now === "ascending" ? "descending" :
+                    now === "descending" ? "ascending" : firstOrder;
+        sortable.forEach(function (other) { other.setAttribute("aria-sort", "none"); });
+        th.setAttribute("aria-sort", order);
+        var rows = Array.prototype.slice.call(tbody.rows);
+        rows.sort(function (a, b) {
+          var ka = key(a), kb = key(b);
+          if (ka === kb) return 0;
+          if (ka === "") return 1;
+          if (kb === "") return -1;
+          var cmp = ka < kb ? -1 : 1;
+          return order === "descending" ? -cmp : cmp;
+        });
+        rows.forEach(function (row) { tbody.appendChild(row); });
+      });
+    });
+  });
+});
+</script>
 ```
 
 To suggest a package or correct an entry, open an issue or a pull request on [GitHub](https://github.com/egap/methodsweb). The list is the file `software/catalog.csv` in that repository.
@@ -72,7 +140,6 @@ notes <- function(row) {
     surnames <- word(str_split(row$egap_authors, ";\\s*")[[1]], -1)
     out <- c(out, paste0("EGAP author: ", paste(surnames, collapse = ", ")))
   }
-  if (!is.na(row$last_release)) out <- c(out, paste0("Latest release: ", row$last_release))
   paste(out, collapse = "<br>")
 }
 
@@ -108,6 +175,8 @@ for (g in names(groups)) {
     tab <- tibble(
       Package = paste0("[", rows$name, "](", rows$url, ")<br><span class=\"lang\">",
                        rows$language, "</span>"),
+      ## The heading must match the one the sorting script looks for.
+      `Latest release` = clean(rows$last_release),
       `What it does` = clean(rows$sentence),
       Install = paste0("`", install_line(rows$install_from, as.character(rows$language),
                                          rows$name, rows$github, rows$net_from), "`"),

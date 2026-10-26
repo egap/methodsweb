@@ -53,6 +53,17 @@ test_that("each row says where to install from and has what the page shows", {
   }
 })
 
+## The page lets a reader sort a table by release date, and its script sorts
+## the dates as text. Text order equals date order only when every date is
+## written YYYY-MM-DD, and refresh.R copies dates from three archives that
+## write them three different ways.
+test_that("release dates are YYYY-MM-DD or blank, so sorting them as text sorts by date", {
+  dated <- catalog$last_release[!is.na(catalog$last_release)]
+  expect_true(all(str_detect(dated, "^\\d{4}-\\d{2}-\\d{2}$")),
+              info = paste(dated[!str_detect(dated, "^\\d{4}-\\d{2}-\\d{2}$")], collapse = ", "))
+  expect_false(any(is.na(as.Date(dated, format = "%Y-%m-%d"))))
+})
+
 test_that("the install line is the command a reader would type", {
   expect_equal(install_line("CRAN", "R", "RItools", NA), 'install.packages("RItools")')
   expect_equal(install_line("SSC", "Stata", "ritest", NA), "ssc install ritest")
